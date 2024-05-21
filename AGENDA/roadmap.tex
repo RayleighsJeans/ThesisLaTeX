@@ -1,0 +1,120 @@
+\documentclass[%
+    a4,
+    10pt,
+    twoside
+    ]{%
+    %scrartcl%
+    scrreprt%
+    }
+
+%% PACKAGES
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{makecell}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{geometry}
+\geometry{%
+    % showframe, % show how the type block is set on the page
+    paper=a4paper, % Change to letterpaper for US letter
+    inner=2.0cm, % Inner margin
+    outer=2.0cm, % Outer margin
+    bindingoffset=0.0cm, % Binding offset
+    top=2.0cm, % Top margin
+    bottom=2.0cm % Bottom margin
+} % Bottom margin
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\newcommand{\foo}{%
+  \hspace{-2.3pt}$\bullet$ \hspace{5pt}%
+}
+
+\newcommand{\degree}{^\circ}
+\newcommand{\diff}{\textnormal{d}}
+\newcommand{\tenpo}[1]{ 10^{#1}}
+\newcommand{\greek}[1]{\greektext#1\latintext}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand{\grad}[1]{\textit{grad}\left(#1\right)}
+\newcommand{\divergenz}[1]{\textit{div}\left(#1\right)}
+\newcommand{\euler}{\mathnormal{e}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+
+
+\begin{document}%
+
+  \thispagestyle{empty}
+
+  \section*{%
+    PhD Thesis Timetable (20.02.23) for Philipp Hacker%
+  }%
+    
+  In accordance with the requirements of the faculty (head) for Mathematics and Natural Sciences of the University of Greifswald, a both retrospective and future-sighted timetable will be provided in order to address the corresponding finalisation of this thesis. Page counts, dates etc. are colelcted from the respective MPCDF gitlab repository of this project, i.e. 
+  \url{https://gitlab.mpcdf.mpg.de/pih/latex}.
+
+  \begin{table}[h!]%
+
+    \begin{tabular}{r |@{\foo} p{0.7\textwidth}}%
+
+      Febuary 26th, 2021 & %
+      42 pages after second revision by F. Reimold; first chapter about bolometer geometry, measurement performance etc. generally filled\newline\\%
+      April 5th, 2021 & %
+      First chapter done (57p), second started (+27p) about feedback control and results\newline\\%
+      May 2nd, 2021 & %
+      Second chapter initially done and review ready at 122p\newline\\%
+      \dots & \dots\newline\\%
+      May 15th, 2021 & %
+      End of IPP contract on 1st of May, moved to Munich\newline\\%
+      July 1st, 2021 & %
+      Start of new position at Krauss-Maffei Wegmann\newline\\%
+      \dots & \dots\newline\\%
+      Febuary 5th, 2022 & %
+      Finalized all other images, their positions and captions, accompanying equations and paragraph headings for remaining chapters\newline\\%
+      May 7th, 2022 & %
+      Finished evaluation and discussion of paramater impact from plasma feedback and multi-chamber modelling of thermal gas injection with respect to radiation power, 144p\newline\\%
+      December 11th, 2022 & %
+      Completed very large investigation in local sensitivity and predictibility for channel selection variation in plasma radiation feedback, 167p\newline\\%
+      \textcolor{orange}{\dots ongoing} & %
+      \textcolor{orange}{%
+        Writing subsection about STRAHL parameter variation and correlation with experimental findings, currently at 175p}%
+      \newline\\%
+      \textcolor{red}{\textbf{TODO}} & %
+      \textbf{1)} Finish STRAHL section (parameter variation, impact on chord brightness profile);\newline%
+      \textbf{2)} Complete 2D Tomography chapter (Minimum Fisher introduction, radial anisotropy/relative gradient smoothing method, LOS pertubations, phantom reconstruction \& limits, experimental tomography, statistics);\newline%
+      \textbf{3)} Introductory chapter/physical background\newline%
+      \textcolor{red}{%
+        In total: $\sim$ 60-70p to go}%
+      \newline\\%
+      \textcolor{blue}{GOAL} & %
+      \underline{%
+        October "final" state of thesis%
+      }\newline%
+      $\Rightarrow$ 6\,-\,7 months or 25-30 weeks (180-210 days) to go\newline%
+      roughly 2\,-\,3.5p per week%
+      \newline\\%
+      \textcolor{cyan}{TBA, ca. T+2 months}\newline & %
+      public defense at University Greifswald, Institute for Physics%
+      \newline\\%
+
+    \end{tabular}%
+
+  \end{table}
+      
+  \par\noindent\rule{\textwidth}{0.4pt}
+
+  \flushleft%
+  \large\underline{Notes:}%
+
+\end{document}%

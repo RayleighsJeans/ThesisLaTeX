@@ -1,0 +1,149 @@
+\documentclass[%
+    a4,
+    10pt,
+    twoside
+    ]{%
+    %scrartcl%
+    scrreprt%
+    }
+
+%% PACKAGES
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{makecell}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{geometry}
+\geometry{%
+    % showframe, % show how the type block is set on the page
+    paper=a4paper, % Change to letterpaper for US letter
+    inner=2.0cm, % Inner margin
+    outer=2.0cm, % Outer margin
+    bindingoffset=0.0cm, % Binding offset
+    top=2.0cm, % Top margin
+    bottom=2.0cm } % Bottom margin
+
+
+\newcommand{\degree}{^\circ}
+\newcommand{\diff}{\textnormal{d}}
+\newcommand{\tenpo}[1]{ 10^{#1}}
+\newcommand{\greek}[1]{\greektext#1\latintext}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand{\grad}[1]{\textit{grad}\left(#1\right)}
+\newcommand{\divergenz}[1]{\textit{div}\left(#1\right)}
+\newcommand{\euler}{\mathnormal{e}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+
+%% START DOCUMENT
+\begin{document}
+
+    \thispagestyle{empty}
+
+    \section*{%
+        \textcolor{red}{RETROSPECT:}\newline%
+        Doctorate work(-load) agenda (26.04.19) for Philipp Hacker%
+    }%
+
+        \begin{table}[h!]%
+
+            \begin{tabular}{l|c|p{0.6\textwidth}}%
+
+                \large{\textbf{Priority}} & %
+                \large{\textbf{Possible Due Date}} & %
+                \large{\textbf{Topic}} \\%
+                \hline\hline%
+
+                high & %
+                end of July/August 2019? & %
+                \textcolor{ForestGreen}{%
+                  $\rightarrow$ correlation analysis for channel selection (specifically for XPID: 20171207.022/.024);%
+                }\newline%
+                \textcolor{ForestGreen}{%
+                  $\rightarrow$ find best channel/selection or combination of channels from any camera to suit the total radiated power loss the best (limited to one-three single experiments/discharges)%
+                }\newline%
+                \textcolor{ForestGreen}{%
+                  $\rightarrow$ localisation of radiation in SOL/edge seeded cases, see QSQ - thermal gas beam;%
+                }\newline%
+                \textcolor{ForestGreen}{%
+                  $\rightarrow$ spatial sensitivity of QSB system see n$\ix{e}$(P$\ix{rad}$), P$\ix{rad}$(n$\ix{e}$)%
+                }\newline%
+                \textcolor{orange}{%
+                  $\rightarrow$ interpretation in tandem with improved Thomson scattering profiles from Minerva and impurity content radiation/oxygen;%
+                }\newline%
+                \textcolor{orange}{%
+                  $\rightarrow$ based off of intrinsic impurities, see HEXOS maybe? relative intensities%
+                }\newline%
+                \textcolor{ForestGreen}{%
+                  $\rightarrow$ n$\ix{e}$+$\Delta$n$\ix{e}$ $\Rightarrow$ P$\ix{rad}$+$\Delta$P$\ix{rad}$;%
+                }\newline%
+                \textcolor{ForestGreen}{%
+                  ?: need to look at $\Delta$N$\ix{H2}$?%
+                }%
+                \\\hline%
+
+                medium -- high? & %
+                see above & %
+                \textcolor{orange}{%
+                  $\rightarrow$ analyse localisation of impurity seeding and hence radiation position/sensitivity of QSB;%
+                }\newline%
+                \textcolor{ForestGreen}{%
+                  ?: transport comparison/analysis with STRAHL, EMC3 (somebody already on it?)%
+                }%
+                \\\hline%
+
+                medium -- high? & %
+                end of August 2019? & %
+                \textcolor{red}{%
+                  $\rightarrow$ finish RSI paper scrap with images, graphs, references;%
+                }\newline%
+                \textcolor{red}{
+                  $\rightarrow$ finally add feedback system integration;%
+                }\newline%
+                \textcolor{red}{
+                  ?: show preliminary experimental achievements? document the timing errors in of DAQ with regards to channel selection, output and laser input(s)%
+                }%
+                \\\hline%
+
+                high & %
+                June-August 2020 & %
+                TOMOGRAPHY\newline%
+                \textcolor{ForestGreen}{%
+                  $\rightarrow$ transport analysis with tomography and STRAHL or EMC3;%
+                }\newline%
+                \textcolor{ForestGreen}{%
+                  $\rightarrow$ comparison between different methods, e.g Minerva/minimum Fischer regularization etc.;%
+                }\newline%
+                \textcolor{ForestGreen}{%
+                  $\rightarrow$ implementation of findinds from channel correlation to inversion, see whether the amount or channel distribution/geometry is efficient%
+                }%
+                \\\hline%
+
+                low & %
+                ??? & %
+                \textcolor{ForestGreen}{%
+                  $\rightarrow$ investigate on the different impact of extrinsic impurity seedings from thermal gas beam injection (QSQ);%
+                }\newline%
+                \textcolor{red}{%
+                  $\rightarrow$ localisation of different impurties, their radiation and impact on density changes%
+                }\newline%
+                \textcolor{ForestGreen}{%
+                  $\rightarrow$ set up database to maybe find common/individual scaling laws in tandem with relation to n$\ix{e}$, W$\ix{dia}$, P$\ix{EXRH}$ etc.%
+                }%
+                \\\hline%
+
+                none -- very low & %
+                ??? & %
+                \textcolor{orange}{%
+                  $\rightarrow$ D.Zhang already assembling a database for P$\ix{rad}$(SOL) and P$\ix{rad}$(core) in relation to n$\ix{e}$, W$\ix{dia}$, P$\ix{EXRH}$ etc.;%
+                }\newline%
+                \textcolor{orange}{%
+                  $\rightarrow$ possible semi experimental scaling laws governing the impact of fueling by different gas species and injection methods, as well as with respect to configuration magnetic field strenght etc.%
+                }%
+
+            \end{tabular}%
+        \end{table}%
+
+\end{document}
