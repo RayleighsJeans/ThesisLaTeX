@@ -1,0 +1,118 @@
+% start of file `cv_german.tex', based on `template_en.tex`
+% by Xavier Danaux (xdanaux@gmail.com).
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/
+%
+% Thomas Quaritsch <t.quaritsch@student.tugraz.at>
+
+\documentclass[11pt,a4paper]{moderncv}
+
+% \usepackage[german]{babel}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\moderncvtheme[red]{casual}
+\usepackage{moderncv-additions}
+
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+\setlength{\hintscolumnwidth}{3cm}
+
+\AtBeginDocument{\recomputelengths}
+
+% personal data
+\firstname{Philipp}
+\familyname{Scholl}
+\address{%
+    5 Merchants Place, Stephen Street}{%
+    W91 C3Y6, Dunlavin, Co. Wicklow}%
+\mobile{+353 87 1922755}
+\email{rayleighsjeans@gmail.com}
+\photo[64pt]{picture}
+
+% \title{Resumé title (optional)}
+% \phone{phone (optional)}
+% \fax{fax (optional)}
+% \extrainfo{additional information (optional)}
+
+% \nopagenumbers{}
+% uncomment to suppress automatic page numbering for CVs
+% longer than one page
+
+\newcommand{\sign}[1]{%
+  \begin{tabular}[t]{@{}l@{}}
+  \makebox[1.5in]{\dotfill}\\
+  \strut\emph{#1}\strut%
+  \end{tabular}}%
+\newcommand{\position}{%
+    Softwareentwickler Windows (w/m/d)}%
+\newcommand{\posaddress}{%
+    Thermo Fisher Scientific Inc.\\%
+    Personalstelle, Ref.: 133730BR\\%
+    Germering, Germany}%
+
+% content
+\begin{document}
+%
+    % color redefinitions must be after \begin{document}
+    % \definecolor{firstnamecolor}{RGB}{138,74,57}%
+    \definecolor{firstnamecolor}{RGB}{0,50,95}%
+    \definecolor{familynamecolor}{RGB}{0,50,95}%
+    \definecolor{quotecolor}{RGB}{0,70,110}%
+    \definecolor{addresscolor}{RGB}{0,70,110}%
+    \definecolor{sectionrectanglecolor}{RGB}{0,50,95}%
+    \definecolor{sectiontitlecolor}{RGB}{0,50,95}%
+    \definecolor{subsectioncolor}{RGB}{0,70,110}%
+    \definecolor{footersymbolcolor}{RGB}{0,70,110}%
+%
+    \makeatletter%
+    \pagestyle{empty}%
+
+    %\subsection{Technical Reports}
+    %\cvline{\dots}{\dots}
+    %\cvline{\dots}{alternativ kann man auch BibTex verwenden:}
+
+    %\renewcommand*{\refname}{Thesis}
+    %\nocite{*}
+    %\bibliographystyle{cv}
+    %\bibliography{publications}
+
+    \chapter{Abitur}{~Certificate}
+    \vspace*{0.0cm}
+    \begin{center}
+        \fbox{\includegraphics[height=0.9\textheight]%
+            {../figures/certificate/zeugnis_gym1.pdf}}
+        \fbox{\includegraphics[height=0.9\textheight]%
+            {../figures/certificate/zeugnis_gym2.pdf}}
+        \fbox{\includegraphics[height=0.9\textheight]%
+            {../figures/certificate/zeugnis_gym3.pdf}}
+        \fbox{\includegraphics[height=0.9\textheight]%
+            {../figures/certificate/zeugnis_gym4.pdf}}
+    \end{center}
+
+    \newpage
+    \chapter{Bachelor}{~Certificate}
+    \vspace*{0.0cm}
+    \begin{center}
+        \fbox{\includegraphics[height=0.9\textheight]%
+            {../figures/certificate/bachelor_eng1.pdf}}
+        \fbox{\includegraphics[height=0.9\textheight]%
+            {../figures/certificate/bachelor_eng2.pdf}}
+        \fbox{\includegraphics[height=0.9\textheight]%
+            {../figures/certificate/bachelor_eng3.pdf}}
+    \end{center}
+
+    \newpage
+    \chapter{Master}{~Certificate}
+    \vspace*{0.0cm}
+    \begin{center}
+        \fbox{\includegraphics[height=0.9\textheight]%
+            {../figures/certificate/master_eng1.pdf}}
+        \fbox{\includegraphics[height=0.9\textheight]%
+            {../figures/certificate/master_eng2.pdf}}
+        \fbox{\includegraphics[height=0.9\textheight]%
+            {../figures/certificate/master_eng3.pdf}}
+    \end{center}
+
+\end{document}

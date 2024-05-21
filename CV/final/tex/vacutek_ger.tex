@@ -1,0 +1,393 @@
+% start of file `cv_german.tex', based on `template_en.tex`
+% by Xavier Danaux (xdanaux@gmail.com).
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+%
+% Thomas Quaritsch <t.quaritsch@student.tugraz.at>
+
+\documentclass[11pt,a4paper]{moderncv}
+
+\usepackage[german]{babel}
+% \usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\moderncvtheme[blue]{casual}
+\usepackage{moderncv-additions}
+
+% adjust the page margins
+\usepackage[scale=0.8]{geometry}
+\setlength{\hintscolumnwidth}{3cm}
+
+% if you want to change the width of the column with the dates
+% \AtBeginDocument{\setlength{\maketitlenamewidth}{6cm}}
+% only for the classic theme, if you want to change the width
+% of your name placeholder (to leave more space for your address details
+
+\AtBeginDocument{\recomputelengths}
+% required when changes are made to page layout lengths
+
+% personal data
+\firstname{Philipp}
+\familyname{Hacker}
+\address{Erich-Böhmke-Straße 22a}{17489 Greifswald}
+\mobile{+49 152 020 95 226}
+\email{rayleighsjeans@gmail.com}
+\photo[64pt]{picture}
+\newcommand{\position}{%
+    Wissenschaftlicher Mitarbeiter Algorithmenentwicklung und Datenanalyse in der optischen Messtechnik (m/w/x)}
+
+% \title{Resumé title (optional)}
+% \phone{phone (optional)}
+% \fax{fax (optional)}
+% \extrainfo{additional information (optional)}
+
+% '64pt' is the height the picture must be resized
+% to and 'picture' is the name of the picture file
+% \quote{``Das ist ein toller Frusterspruch\\%
+%					von Friede Frusterfrau.'' -- Friede Frusterfrau}
+
+% \nopagenumbers{}
+% uncomment to suppress automatic page numbering for CVs
+% longer than one page
+
+\newcommand{\sign}[1]{%
+  \begin{tabular}[t]{@{}l@{}}
+  \makebox[1.5in]{\dotfill}\\
+  \strut\emph{#1}\strut%
+  \end{tabular}%
+}
+
+%-------------------------------------------------------------------------------
+%            content
+%-------------------------------------------------------------------------------
+\begin{document}
+
+    % color redefinitions must be after \begin{document}!
+    \definecolor{firstnamecolor}{RGB}{138,74,57}
+    \definecolor{familynamecolor}{RGB}{138,74,57}
+    \definecolor{quotecolor}{RGB}{125,85,85}
+    \definecolor{addresscolor}{RGB}{125,85,85}
+    \definecolor{sectionrectanglecolor}{RGB}{138,74,57}
+    \definecolor{sectiontitlecolor}{RGB}{138,74,57}
+    \definecolor{subsectioncolor}{RGB}{125,85,85}
+    \definecolor{footersymbolcolor}{RGB}{125,85,85}
+    \definecolor{chaptertitlecolor}{RGB}{138,74,58}
+
+    \makeatletter
+    % \pagestyle{empty}
+    % \chapter*{Bewerbung}{}
+
+    % \vspace*{3.5cm}
+    % \begin{minipage}{\textwidth}
+    %     \vspace*{3mm}
+    %     \familynamestyle{\@firstname}~\familynamestyle{\@familyname}
+    %         \hfill%\hspace*{5mm}%
+    %         {{\color{firstnamecolor}\includegraphics[width=96pt]%
+    %             {../figures/images/42.jpg}}}\\[0.3cm]
+    %         \@addressstreet\\[0.0cm]%
+    %         \@addresscity\\[0.3cm]%
+    %         \mobilesymbol~\@mobile\\[0.3cm]%
+    %         \emailsymbol~\@email%
+    % \end{minipage}
+    % \begin{minipage}{70pt}
+    % \end{minipage}
+    % \vfill
+    % \begin{minipage}{1.0\textwidth}
+    %     \section{Inhalt}
+    %     \tableofcontents
+    % \end{minipage}
+
+    % %---------------------------------------------------------------%
+    % %            letter
+    % %---------------------------------------------------------------%
+    % \newpage
+    % \makeatletter
+    % \chapter{Bewerbung}{}
+
+    % \vspace*{1.0cm}
+    % \begin{minipage}{0.6\textwidth}
+    %     \begin{flushleft}
+    %         %{\bfseries{\color{firstnamecolor}%
+    %         %    zollsoft\\[0.1cm]%
+    %         %    \position%
+    %         %    Position%
+    %         %}}\\[0.2cm]
+    %         VacuTec Meßtechnik GmbH\\%
+    %         Personalstelle\\%
+    %         Dresden
+    %     \end{flushleft}
+    % \end{minipage}
+    % \hfill
+    % \begin{minipage}{0.3\textwidth}
+    %     \begin{flushright}
+    %         %\vspace*{1.3cm}
+    %         Philipp Hacker\\%
+    %         Erich-Böhmke-Straße 22a\\%
+    %         17489 Greifswald
+    %     \end{flushright}
+    % \end{minipage}
+
+    % \vspace*{1.0cm}
+    % {\bfseries \color{familynamecolor}%
+    %     Bewerbung für die Position eines \position% TODO
+    % }\\[0.75cm]
+%
+    % Sehr geehrte Damen und Herren,\\[0.75cm]
+%
+    % hiermit möchte ich mich initial auf die Stelle eines \position~bewerben.\\[0.75cm]  %TODO add position
+%
+    % Momentan arbeite ich an meiner Doktorarbeit unter der Aufsicht von Prof. Dr. Thomas Klinger am Max-Planck Institut für Plasmaphysik in Greifswald. Diese werde ich voraussichtlich mit ihrer Einreichung und Verteidigung zwischen Mitte und Ende April 2021 abschließen.\\[0.75cm]%
+%
+    % Im Laufe meines Studiums und besonders meiner Promotion hatte ich die Möglichkeit, mir verschiedene Fähigkeiten in Bereichen der Steuerung und Integration von Diagnostiken anzueignen. Insbesondere während meiner Promotion konnte ich Erfahrungen mit der Konzeptionierung, dem Design, der Kontrolle und Implementierung von Forward-Feedback Steuerungen machen. Meine Neugierde und Passion für die intelligente Lösung von komplexen Problemen motoviert mich für die Bewerbung in einem Bereich mit neuen Herausforderungen.\\[0.75cm]%
+%
+    % Abschließend notiere ich Namen und Kontaktinformationen meiner früheren Vorgesetzten zur Referenz.\\[0.2cm]
+    % \hspace*{0.5cm}Prof. Dr. Andre Melzer (Kolloide Plasmen)%
+    %     \hfill Tel. +49~3834~/~420~4790\\
+    % \hspace*{0.5cm}Prof. Dr. Ralf Schneider (Computational Science)%
+    %     \hfill Tel. +49~3834~/~420~1400\\
+    % \hspace*{0.5cm}Prof. Dr. Thomas Klinger (E5 - Divertor-Dynamik und -Transport)%
+    %     \hfill Tel. +49~3834~/~~\,88~2500\\
+%
+    % \vspace*{0.3cm}
+    % \begin{flushleft}
+    %     Mit freundlichen Grüßen,\\[0.75cm]
+    %     \vspace*{-1.0cm}%
+    %     \includegraphics[width=4.0cm]{%
+    %         ../figures/images/signature_transparent.png}
+    %     \hspace*{-4.0cm}\sign{Philipp Hacker}\\[0.0cm]
+    %     % Greifswald; \today
+    % \end{flushleft}
+    % \newpage
+
+    \pagestyle{fancy}
+    \chapter{Curriculum}{~Vitae}
+    \makequote%
+
+    %/******************************************************************/%
+    \section{Persönliche~Informationen}
+    \cvline{Name}{\@firstname~\@familyname}
+    \cvline{Adresse}{\@addressstreet\newline \@addresscity}
+    \cvline{Telefon}{\@mobile}
+    \cvline{eMail}{\@email}
+    \cvline{Geburtsdatum}{15.~Juni,~1994~in~Demmin}
+    \cvline{Nationalität}{Deutschland}
+    \cvline{Familienstand}{ledig}
+    \cvline{Geschlecht}{männlich}
+    % \cvline{Präsenzdienst}{abgeleistet}
+    % \cvline{Führerschein}{A,B,C,D,E,F,G}
+    \makeatother
+
+    % \cventry{1901--1902}{Degree}{Institution}{City}%
+    %	 	 {\textit{Grade}}{Description}
+    % arguments 3 to 6 are optional
+
+    %/******************************************************************/%
+    \section{Sprachen}
+    \cvline{Deutsch}{erste Sprache, Muttersprache}{}
+    \cvline{Englisch}{zweite Sprache, erste Fremdsprache\newline%
+        7 Jahre Schulbildung}{}
+    \cvline{Russisch}{dritte Sprache, zweite Fremdsprache\newline%
+        5 Jahre Schuldbildung}{}
+
+    %/******************************************************************/%
+    \section{Schule}
+    \cventry{08/2000~--~03/2004}{Grundschule}{%
+        Grundschule~Jarmen\newline~Jarmen}{}{}{}
+    \cventry{08/2004~--~08/2010}{Mittelstufe}{Regionale~Schule~Jarmen\newline~Jarmen}{}{}{}
+    \cventry{08/2010~--~06/2012}{Gymnasialstufe}{%
+        Schlossgymnasium Gützkow}{Gützkow}%
+        {Hochschulreife}{(Zeugnis~im~Anhang)}
+
+    %/******************************************************************/%
+    \section{Hochschulausbildung}
+    \cventry{10/2012~--~09/2015}{Bachelorabschluss~in~Physik}{%
+            Ernst-Moritz-Arndt~Universität}%
+        {Greifswald}{Bachelor~of~Science}{%
+        (Zeugnis~und~Kursübersicht~im~Anhang)}
+    \cventry{10/2012~--~10/2017}{Mastersabschluss~in~Physik}{%
+            Ernst-Moritz-Arndt~Universität}%
+        {Greifswald}{Master~of~Sciences}{%
+        (Zeugnis~und~Kursübersicht~im~Anhang)}
+    %/******************************************************************/%
+    \newpage
+    \section{Wissenschaftliche~Praxiserfahrung}
+    \cventry{10/2012~--~04/2014}{Grundpraktikum,~Laborpraktikum}%
+        {Grundlegende~Experimente~in~allen~Forschungsgebieten~im~Institut~für~Physik\newline}{}%
+        {Universität~Greifswald}{}
+    \cventry{05/2015~--~09/2015}{%
+            Bachelorarbeit:~`Modenanregung~in~Yukawa-Bällen'}%
+        {Arbeitsgruppe~Prof.~Dr.~Andre~Melzer\newline}{}%
+        {Universität~Greifswald\newline}{Stereoskopische~Partikeldiagnostik~in~MATLAB}
+    \cventry{10/2015~--~07/2016}{Praktikum~in~der~Arbeitsgruppe~von~Prof.~Dr.~Melzer}%
+        {Komplexe~Plasma-Systeme,~experimenteller~Aufbau\newline}{}%
+        {Institut~für~Physik,~Universität~Greifswald}{}
+    \cventry{10/2015~--~04/2016}{Fortgeschrittenen-Praktikum}%
+        {Fortgeschrittene~experimentelle~Methoden\newline}{}%
+        {Institut~für~Physik,~Universität~Greifswald}{}
+    \cventry{04/2016~--~10/2016}{Arbeitsgruppen-Praktikum}%
+        {`Electric~field~strength~spectroscopy~in~dielectric~barrier~discharges'\newline}{}%
+        {Arbeitsgruppe~Prof.~Dr.~Jürgen~Meichsner\newline}%
+        {Institut~für~Physik,~Universität~Greifswald}
+    \cventry{10/2016~--~10/2017}{%
+        Master-Arbeit:~`Kinetic~Effects~in~RF~Discharges'}%
+        {Arbeitsgruppe~Prof.~Dr.~Ralf~Schneider\newline}{}%
+        {Institut~für~Physik,~Universität~Greifswald\newline}%
+        {C++ 2d3v PIC Simulation von ccrf Entladungen}
+    \cventry{11/2017~--~now}{%
+        Internationale~Helmholtz~Graduatierten-Schule~für~Plasma-Physik}%
+        {Graduatierten-Schule~für~Promotionsstudenten~des~MPI~für~Plasma-Physik\newline}{}%
+        {MPI~für~Plasma-Physik,~Greifswald;~Universität~Greifswald\newline}%
+        {Präsentationen~in~und~Teilnahme~an~Kolloquia,~Workshops~und~Konferenzen}
+    \cventry{11/2017~--~now}{%
+        Promotion:~`Impurity~radiation~and~transport~at~the~stellarator~W7-X'}%
+        {Abteilung~für~Stellarator-Dynamik~und~-Transport,~Prof.~Dr.~T.~Klinger\newline}{}%
+        {Max-Planck~Institut~für~Plasma-Physik,~Greifswald\newline}%
+        {Echtzeit-Feedback~mit~Plasma-Strahlung,~Evaluierung~von~lokalen~Strahlungs-Effekten}
+
+    %/******************************************************************/%
+    \section{Lehrtätigkeiten}
+    \cventry{03/2014~--~10/2018}{%
+        Praktikums-Assistenz~im~Grundpraktikum~der~Physik}%
+        {in:~Studienfach~der~Human-Medizin\newline}{}%
+        {Institut~für~Physik,~Universität~Greifswald}{}
+
+    %/******************************************************************/%
+    \section{Publikationen}
+    \cventry{Mai~2018}{%
+            `PIC~Simulation~of~electronegative~CCRF~discharges'}%
+        {Authoren:~P.~Matthias,~R.~Schneider,~J.~Meichsner,~%
+         G.~Bandelow,~J.~Duras,~K.~Matyash, K.-F.~Lüskow,~D.~Kahnfeld,~%
+         S.~Kemnitz,~L.~Lewerentz~and~P.~Hacker}{%
+            doi:~10.1140/epjd/e2017-80565-y}{}{}
+    \cventry{Dez.~2019}{%
+            `Measurement of edge ion temperature in W7-X with island divertor by retarding field analyzer'}%
+        {Authoren:~Y.~Li,~.~ Henkel,~Y.~Liang,~A.~Knieps,~P.~Drews,~C.~Killer,~D.~Nicolai,~J.~Cosfeld,~J.~Geiger,~Y.~Feng,~F.~Effenberg,~D.~Zhang,~P.~Hacker,~D.~Höschen,~G.~Satheeswaran,~S.~Liu,~O.~Grulke,~M.~Jakubowski, S.~Brezinsek,~M.~Otte,~O.~Neubauer,~B.~Schweer1,~G.~S.~Xu,~J.~Cai,~Z.~Huang,~the W7-X~Team}{doi:~10.1088/1741-4326/ab3a79}{}{}
+    \cventry{Juli~2019}{%
+            `The~influence~of~impurity~radiation~locations~on~the~plasma~performance~in~stellarator~Wendelstein~7-X'}%
+        {Authoren:~D.~Zhang,~R.~Burhenn,~F.~Reimold,~P.~Hacker,~L.~Giannone,~K.~J.~Brunner,~B.~Buttenschön,~G.~Fuchert,~H.~P.~Laqua,~K.~Rahbarnia,~C.~D.~Beidler,~S.~Brezinsek,~Y.~Feng,~M.~Jakubowski,~R.~König}{}{}{}
+    \cventry{Feb.~2020}{%
+            `Absence~of~Non-Local~Electron~Heat~Transport~in~ASDEX~Upgrade~and~Wendelstein~7-X~and~Modelling
+            ~with~the~Transport~Code~ASTRA'}%
+        {Authoren:~K.~Höfler,~T.~Happel,~P.~Hennequin,~U.~Höfel,~F.~Ryter,~U.~Stroth,~A.~Bock,~P.~David,~S.~Denk,~A.~Dinklage,~G.~Fuchert,~P.~Hacker,~M.~Hirsch,~P.~A.~Schneider,~J.~Schilling,~T.~Stange,~G.~Tardini,~T.~Andreeva,~M.~Beurskens,~S.~Bozhenkov,~K.~J.~Brunner,~N.~Chaudhary,~H.~Damm,~U.~Neuner,~J.~W.~Oosterbeek,~E.~Pasch,~K.~Rahbarnia,~H.~Thomsen, M.~Zanini,~D.~Zhang,~the~ASDEX~Upgrade~Team,~the~Wendelstein~7-X~Team}{}{}{}
+    \cventry{Feb.~2020}{%
+            `Large wetted areas of divertor power loads at Wendelstein 7-X'}%
+        {Authoren:~H.~Niemann,~P.~ Drewelow,~M.~ Jakubowski,~A.~Puig Sitjes,~B.~Cannas,~Y.~Gao,~F.~Pisano,~R.~König,~R.~Burhenn,~P.~Hacker,~F.~Reimold,~D.~Zhang,~K.~J.~Brunner,~J.~Knauer,~T.~Sunn~Pedersen}{%
+        doi:~10.1088/1741-4326/ab937a}{}{}
+    \cventry{unveröffentlicht,~2021}{%
+            `Stellarator-Tokamak~Energy~Confinement~Comparison~based~on~ASDEX~Upgrade~and~Wendelstein~7-X~Hydrogen~Plasmas'}%
+        {Authoren:~U.~Stroth,~G.~Fuchert,~M.~N.A.~Beurskens,~G.~Birkenmeier,~P.~Schneider,~E.R.~Scott,~K.J.~Brunner,~F.~Günzkofer,~P.~Hacker,~O.~Kardaun,~J.~Knauer,~K.~Rahbarina,~D.~Zhang}{%
+        doi:~0.1088/1741-4326/abbc4a}{}{}
+    \newpage
+
+    %/******************************************************************/%
+    \section{Forschungsinteressen}
+    \cvline{}{%
+        Maschinelles~Lernen,~Deep-Learning,~Plasmaphysik,\newline%
+        ~Niedertemperatur-Plasmaphysik,~Hochtemperaturen-Plasmaphysik,\newline%
+        numerische~Simulation,~Diagnostik-Steuerung,\newline%
+        ~Computational~Science,~Plasma-Diagnostik,~Daten-Auswertung}
+
+    %/******************************************************************/%
+    \section{Extracurriculäre Aktivitäten}
+    \cventry{2007~--~2010}{Teilnahme~am\newline%
+        `Baltic~Sea~School~Exchange~Program'}%
+        {Finnvedens~Gymnasium~`Figy';~Värnamo,~Schweden}{}{}{}
+    \cventry{2011}{%
+            Qualifikation~für~das~Deutsche~Drachen-Boot~%
+            Nationalteam~`Junior~A'}%
+        {Teilnahme~an~den~10.~IDBF~World~Dragon~Boat~Racing~Championships\newline}{}%
+        {Tampa~Bay,~FL;~Vereinigte~Staaten~von~Amerika\newline}%
+        {9~Gold-Medalien,~2~Silber-Medalien}
+    \cventry{2012}{%
+            `Hochschul-Sportgemeinschaft~Greifswald~e.V'}%
+        {Abteilung~Kanu/Drachenboot\newline%
+        2015~--~2016~Trainer~des~Drachen-Boot~Teams~`Greifendrachen'}{}{}{}{}
+    \cventry{2017}{%
+            Qualifikation~für~das~Deutsche~Drachen-Boot~Nationalteam~`U24'}%
+        {Teilnahme~an~den~13.~IDBF~World~Nations~Championships\newline}{}%
+        {Divonne-Les-Baines,~Frankreich}{}
+
+    %/******************************************************************/%
+    \subsection{Konferenzen und Workshops}
+        \cvline{Mai~2019}{%
+            P.~Hacker,~F.Reimold,~D.~Zhang,~M.~Krychowiak,~R.~Burhenn,~T.~Klinger:~\textbf{Consistently~calculating~radiated~power~in~near~real~time~at~the Wendelstein~7-X};~%
+            bei~\textit{DPG-Frühjahrstagung~der~Sektion~Materie~und~Kosmos~(SMuK)},~München,~Deutschland}
+        \cvline{Mai~2019}{%
+            D.~Maier,~A.~Dinklag,~J.~Baldzuhn,~R.~Burhenn,~R.~Bussiahn,~B.~Buttenschön,~P.~Hacker,~M.~Hirsch,~U.~Höfel,~T.~Wegner,~D.~Zhang,~the~W7-X~Team:~\textbf{Plasma~Terminating~Events~in~Large~Stellarators};~%
+            bei~\textit{DPG-Frühjahrstagung~der~Sektion~Materie~und~Kosmos~(SMuK)},~München,~Deutschland}
+        \cvline{Juni~2019}{%
+            Transferable~Skills~Seminar,~R.~Thompson:~\textbf{Plan,~Motivate,~Achieve:~Time~and~Self-Management};~%
+            in~\textit{Internationale~Helmholtz~Graduierten-Schule~für~Plasma-Physik}}
+        \cvline{Juni~2019}{%
+            Transferable~Skills~Seminar,~B.~Hey:~\textbf{Presentation~Skill~Workshop};~%
+            in~\textit{Internationale~Helmholtz~Graduierten-Schule~für~Plasma-Physik}}
+        \cvline{Juli~2019}{%
+            D.~Zhang,~R.~Burhenn,~F.~Reimold,~P.~Hacker,~L.~Giannone,~K.~J.~Brunner,~B.~Buttenschön,~G.~Fuchert,~H.~P.~Laqua,~K.~Rahbarnia,~C.~D.~Beidler,~S.~Brezinsek,~Y.~Feng,~M.~Jakubowski,~R.~König:~%
+            \textbf{The~influence~of~impurity~radiation~locations~%
+            on~the~plasma~performance~in~stellarator~Wendelstein~7-X};~%
+            bei~\textit{46th~European~Physical~Society~Conference~on~Plasma~Physics},~Milan,~Italien,}
+        \cvline{Juli~2019}{%
+            P.~Hacker,~D.~Zhang,~R.~Burhenn,~B.~Buttenschön,~T.~Klinger,~W7-X.~Team:~%
+            \textbf{The~bolometer~diagnostic~at~the~%
+            stellarator~Wendelstein~7-X};~%
+            bei~\textit{DPG-Frühjahrstagung~der~Sektion~AMOP~(DPG~2018)},~Erlangen,~Germany,}
+
+    %/****************************************************************/%
+    \subsection{Vorlesungen~and~Kurse}
+        \cvline{Oct.~2020}{%
+            Prof.~Dr.~Per~Helander,~\textit{Max~Planck~Institut~für~Plasmaphysik,~Greifswald}:~\textbf{Introduction~to~astrophysics}}%
+        \cvline{Oct.~2019}{%
+            Prof.~Dr.~M.~Stanke,~\textit{Institut~für~Mathematik,~Universität~Greifswald}:~\textbf{Maschinelles~Lernen}}%
+        \cvline{Oct.~2019}{%
+            Prof.~Dr.~T.~Sunn~Pedersen,~E.~Stenson,~Prof.~Dr.~L.~Schweikhard,~M.~Stoneking,~C.~Surko,~\textit{Max~Planck~Institut~für~Plasmaphysik,~Greifswald}:~\textbf{Non-Neutral~Plasmas~\&~Trapped~Charged~Particles}}%
+
+    %/******************************************************************/%
+    %\subsection{Technical Reports}
+    %\cvline{\dots}{\dots}
+    %\cvline{\dots}{alternativ kann man auch BibTex verwenden:}
+
+    %\renewcommand*{\refname}{Thesis}
+    %\nocite{*}
+    %\bibliographystyle{cv}
+    %\bibliography{publications}
+
+    % \newpage
+    % \chapter{Abiturzeugnis}{}
+    % \vspace*{-0.5cm}
+    % \begin{center}
+    %     \fbox{\includegraphics[height=0.9\textheight]%
+    %         {../figures/certificate/zeugnis_gym1.pdf}}
+    %     \fbox{\includegraphics[height=0.9\textheight]%
+    %         {../figures/certificate/zeugnis_gym2.pdf}}
+    %     \fbox{\includegraphics[height=0.9\textheight]%
+    %         {../figures/certificate/zeugnis_gym3.pdf}}
+    %     \fbox{\includegraphics[height=0.9\textheight]%
+    %         {../figures/certificate/zeugnis_gym4.pdf}}
+    % \end{center}
+
+    % \newpage
+    % \chapter{Bachelor-Zeugnis}{}
+    % \vspace*{0.0cm}
+    % \begin{center}
+    %     \fbox{\includegraphics[height=0.9\textheight]%
+    %         {../figures/certificate/bachelor_ger1.pdf}}
+    %     \fbox{\includegraphics[height=0.9\textheight]%
+    %         {../figures/certificate/bachelor_ger2.pdf}}
+    %     \fbox{\includegraphics[height=0.9\textheight]%
+    %         {../figures/certificate/bachelor_ger3.pdf}}
+    % \end{center}
+
+    % \newpage
+    % \chapter{Master-Zeugnis}{}
+    % \vspace*{-0.5cm}
+    % \begin{center}
+    %     \fbox{\includegraphics[height=0.9\textheight]%
+    %         {../figures/certificate/master_ger1.pdf}}
+    %     \fbox{\includegraphics[height=0.9\textheight]%
+    %         {../figures/certificate/master_ger2.pdf}}
+    %     \fbox{\includegraphics[height=0.9\textheight]%
+    %         {../figures/certificate/master_ger3.pdf}}
+    % \end{center}
+
+\end{document}

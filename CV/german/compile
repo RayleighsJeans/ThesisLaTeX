@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# convert='/c/users/pih/desktop/portableprograms/ImageMagick/convert.exe'
+# gs='/c/users/pih/desktop/portableprograms/Ghostscript/bin/gswin64.exe'
+
+# build
+pdflatex --interaction=batchmode cvger
+
+# compress
+convert -density 130x130 -quality 60 -compress jpeg cvger.pdf cvger_comp.pdf

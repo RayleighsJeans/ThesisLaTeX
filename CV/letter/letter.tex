@@ -1,0 +1,70 @@
+\documentclass[
+  fontsize=11pt,
+  paper=a4,
+  parskip=half,
+  enlargefirstpage=on,    % More space on first page
+  fromalign=right,        % PLacement of name in letter head
+  fromphone=on,           % Turn on phone number of sender
+  fromrule=aftername,     % Rule after sender name in letter head
+  addrfield=off,           % Adress field for envelope with window
+  backaddress=off,         % Sender address in this window
+  subject=beforeopening,  % Placement of subject
+  locfield=narrow,        % Additional field for sender
+  foldmarks=on,           % Print foldmarks
+]{scrlttr2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+
+\setkomafont{fromname}{\sffamily \LARGE}
+\setkomafont{fromaddress}{\sffamily}%% statt \small
+\setkomafont{pagenumber}{\sffamily}
+\setkomafont{subject}{\bfseries}
+\setkomafont{backaddress}{\mdseries}
+
+\LoadLetterOption{DIN}
+\setkomavar{fromname}{Philipp Scholl}
+\setkomavar{fromaddress}{%
+    5 Merchants Place, Stephen Street\\%
+    Dunlavin\\%
+    Co. Wicklow\\%
+    W91 C3Y6\\%
+    Ireland}
+\setkomavar{fromphone}{+353 87 1922755}
+\setkomavar{fromemail}{rayleighsjeans@gmail.com}
+\setkomavar{backaddressseparator}{\enspace\textperiodcentered\enspace}
+\setkomavar{signature}{(Philipp Scholl)}
+\setkomavar{place}{Dunlavin}
+\setkomavar{date}{\today}
+\setkomavar{enclseparator}{: }
+
+\begin{document}
+\begin{letter}{}
+  \setkomavar{subject}{Einspruchsbegründung zum Bescheid 2023 über Einkommensteuer und Solidaritätszuschlag vom 25.03.2024}
+  \opening{Sehr geehrte Damen und Herren,}
+
+  Hiermit übermittle ich Ihnen die entsprechende Begründung des Einspruches zum Bescheid für 2023 über Einkommensteuer und Solidaritätszuschlag vom 25.03.2024 der Eheleute Stella (IdNr. Ehefrau 69 248 720 538) und Philipp (IdNr. Ehemann 78 630 294 856) Scholl zur Steuernummer 185/368/14414.\\%
+
+  Diesen Einspruchs begründen wir wie folgt:\\%
+
+  \begin{enumerate}
+    \item[1.]{die Promotion konstitutiert keine zusätzliche Tätigkeit im Sinne des Einkommensteuergesetzes, wie wohl Seitens des Finanzamtes vermutet wurde, schließend aus der völligen Verwährung der angegebenen Werbungskosten für das häusliche Arbeitszimmer;}%
+    \item[2.]{die Dissertation ist als Maßnahme im Rahmen der Weiterbildung für die einzige nichtselbständige Tätigkeit bei Krauss-Krauss-Maffei Wegmann GmbH \& Co KG zu verstehen;}%
+    \item[3.]{diese Tätigkeit erstreckte sich u.a. über die Entwicklung von Fahrzeugdynamiken und -physik sowie deren KI (Künstliche Intelligenz) für das digitale Training und verschiedene Simulationskomponenten des Leopard 2;}%
+    \item[4.]{die Dissertation und damit einhergehende Qualifikation waren explizite Einstellungskritierien und sowohl gewünscht als auch unterstützt durch den Arbeitgeber;}%
+    \item[5.]{vor dem Hintergrund der technologischen Ausstattung des häuslichen Arbeitszimmers (Server, Netzwerkinfrastruktur, ) konnte und wurde dieses im prägenden Umfang für die Erwebstätigkeit bei KMW genutzt;}%
+    \item[6.]{hinsichtlich der notwendigen Tatbestandsmerkmale über die Abzugsfähigkeit eines häusliche Arbeitszimmer ist es keine Notwendigkeit mehr, dass dauerthaft kein weiterer Arbeitsplatz vorhanden sein darf (anders als Ihre Erläuterung zur Festsetzung darstellt).}%
+  \end{enumerate}%
+
+  Wie es die Ihnen bereits vorliegende Einkommensteuererklärung vom 31.01.2024 bzw. die bereitgestellten Anlagen vom 10.03.2024 explizit herausstellen wird das betroffene häusliche Arbeitszimmer ausschließlich für die einzig ausgeführte nichtselbständige Tätigkeit und darüber hinaus von keiner weiteren Person genutzt.\\%
+  Aufgrund der og. Argumente sehen wir keine Begründung warum einer Abzugsfähigkeit des häuslichen Arbeitszimmers erstmalig nicht statgegen wurde.%
+
+  %\closing{Mit freundlichen Grüßen,}
+  Mit freundlichen Grüßen,\\%
+  \includegraphics[width=3.5cm]{%
+    ../figures/images/signature_scholl.png}\\[-0.7cm]%
+  (Philipp Scholl)%
+\end{letter}
+\end{document}
