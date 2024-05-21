@@ -1,0 +1,587 @@
+\documentclass[final]{beamer}
+% beamer 3.10: do NOT use option hyperref={pdfpagelabels=false}!
+% don't show navigation symbols
+% 2016 A. Kleiber
+% 2018 A. Kleiber
+
+\beamertemplatenavigationsymbolsempty
+% \usepackage{2019_05_beamerouterthemeposterasdex}
+\usepackage{beamerouterthemeposterw7x}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{tcolorbox}
+\usepackage{amsmath, amsthm, amssymb, latexsym, stackrel}
+\usepackage{array}
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{mathtools}
+
+% Arial-Schrift
+%\usepackage{ipp}
+%\usepackage[scaled]{uarial}
+%\usepackage{times}\usefonttheme{professionalfonts}  % times is obsolete
+%\usefonttheme[onlymath]{serif}
+
+\boldmath
+\usepackage[orientation=portrait,size=a0,scale=1.4,debug]{%
+    beamerposteripp}  % e.g. for DIN-A0 poster
+
+%\usepackage[orientation=portrait,size=a1,scale=1.4,grid,debug]{%
+%   beamerposter}  % e.g. for DIN-A1 poster, optional grid and debug output
+%\usepackage[size=custom,width=200,height=120,scale=2,debug]{%
+%   beamerposter}  % e.g. for custom size poster
+%\usepackage[orientation=portrait,size=a0,scale=1.0,%
+%            printer=rwth-glossy-uv.df]{beamerposter}
+% e.g. for DIN-A0 poster with rwth-glossy-uv printer check
+
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+% Damit im Literaturverzeichnis Zahlen stehen.
+\setbeamertemplate{itemize item}[triangle]
+
+% title of the presentation
+\title{%
+    Local Radiated Power Sensitivity and Intrinsic Impurity Correlation %
+    Analysis at the Stellarator Wendelstein 7-X}%
+\author[Author]%
+    {\underline{P.~Hacker\inst{1,2}*},%
+     ~D.~Zhang\inst{1},~F.~Reimold\inst{1},~%
+     ~R.~Burhenn\inst{1} %
+     and T.~Klinger\inst{1},~%
+     for the Wendelstein 7-X Team-Collaboration\inst{1}}
+% email address of the corresponding author
+
+% Definieren mail corresponding author
+\newcommand{\emailcorrespondingauthor}{philipp.hacker@ipp.mpg.de}
+% Definieren Name Conference
+\newcommand{\nameconference}%
+    {Deutsche~Physikalische~Gesellschaft~-~%
+    Spring~Meeting~Munich~2019,~%
+    Matter and Cosmos Section (SMuK)}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+\institute[]{%\hspace{5cm}
+    \inst{1}%
+        Max~Planck~Institute~for~Plasma~Physics,~Wendelsteinstr.~1,~%
+        D-17491~Greifswald,~Germany,\\%
+    \inst{2}%
+        Ernst-Moritz-Arndt~University~Greifswald,~%
+        Rubenowstr.~1,~D-17489~Greifswald,~Germany}
+% set date of the talk
+\date{09.03.2020}
+
+\begin{document}\begin{frame}\frametitle{}%
+    \begin{minipage}[t]{0.39\textwidth}%
+        \vfill%
+        %\vspace*{.0cm}%
+        \begin{kasten}{\large%
+            Bolometer Diagnostic}% at Wendelstein 7-X}%
+            \vspace*{.25cm}%
+            \large{{\color{ipp}\fett{%
+                Goals}}}%
+            \vspace*{.25cm}%
+            \small{\begin{itemize}%
+                \item{%
+                    investigate total radiation powerloss through %
+                    impurities and its distribution}%
+                \item{%
+                   global \& local power balance, as well as impurity %
+                   and transport studies through tomographic %
+                   inversion}%
+                \color{red}{\item{%
+                   real time plasma feedback control based off of the %
+                   radiation power loss and its distribution to %
+                   achieve improved detachment, adjust thermal loads of %
+                   in-vessel components \& explore high radiation scenarios}}%
+            \end{itemize}}%
+            \vspace*{.25cm}%
+            \large{{\color{ipp}\fett{%
+                Motivation}}}%
+            \vspace*{.25cm}%
+            \small{\begin{itemize}%
+                \item{%
+                    averaged thermal load of in-vessel components %
+                    expected to be up to %
+                    \mbox{\SI{100}{\kilo\watt/\square\meter}} mainly by %
+                    radiation and non-absorbed heating power}%
+                \item{%
+                    calculating temporal and spatial evolution of %
+                    the radiation loss previously only after the plasma %
+                    has been terminated}
+                \item{%
+                    investigate radiation scaling, i.e. %
+                    importance of intrinsic \& extrinsic impurities %
+                    and their location}%
+            \end{itemize}}
+            \vspace*{.25cm}%
+            \large{{\color{ipp}\fett{%
+                Design}}}%
+            \vspace*{.25cm}\small{%
+            \begin{itemize}%
+                \item{%
+                    multi-device system: horizontal bolometer camera %
+                    (HBC, 32 channels) and vertical bolometer camera %
+                    (VBC, 20 channels for each of two subdetectors)%
+                    \newline$\Rightarrow$ more detectors with different %
+                    filters/coatings available, e.g. for investigation %
+                    of soft x-ray radiation}%
+                % \item{%
+                %     fan-shaped lines of sight provide full plasma %
+                %     coverage at $\SI{5}{\centi\meter}$ spatial resolution %
+                %     at magnetic axis}
+                \item{%
+                    steady state operation at discharges with up to %
+                    $\SI{30}{\minute}$ of $\SI{10}{\mega\watt}$ heating %
+                    power ensured by cooling system with %
+                    graphite elements and water cooling structures}
+                \item{%
+                    detectors are carbon coated Au-foil %
+                    on $\SI{5}{\micro\meter}$ Si$_{3}$N$_{4}$ %
+                    substrate, backed by a $\SI{30}{\micro\meter}$ %
+                    platin meander with a $\SI{0.25}{\milli\second}$ %
+                    response time; temporal resolution of %
+                    $\SI{0.8}{\milli\second}$ to $\SI{6.4}{\milli\second}$}%
+            \end{itemize}}%
+            \vspace*{.25cm}%
+            \begin{columns}%
+                \column{0.48\textwidth}%
+                    \centering{\small{\color{ipp}%
+                        \textbf{\underline{%
+                            HBC}}}}%
+                \column{0.48\textwidth}%
+                    \centering{\small{\color{ipp}%
+                        \textbf{\underline{%
+                            VBCr/VBCl}}}}%
+            \end{columns}%
+            \vspace*{.25cm}%
+            \begin{center}%
+                \includegraphics[width=0.7\textwidth]%
+                    {figures/content/linesofsight_in_vessel.pdf}%
+                \vspace*{.5cm}%
+                \newline\tiny{%
+                    LOS for HBC (32 ch.) and VBC (two 20-ch. subdetector %
+                    arrays) with individual apertures, retracted into %
+                    the vacuum vessel behind wall elements; located in %
+                    the triangle-shaped plane at W7-X.\cite{Zhang2010}}%
+                \newline%
+            \end{center}
+        \end{kasten}%
+        \vspace*{.25cm}%
+        \begin{kasten}{Equations}\vspace*{.25cm}\small{%
+            The radiation power observed by the bolometers equals to:
+            $$P\ix{rad,bolo}\propto\sum\ix{Z} n\ix{e}\cdot %
+                n\ix{Z}\cdot L\ix{Z}\left(T\ix{e}, T\ix{i}, T\ix{Z},%
+                \,\,\dots\right)$$%
+            where $L\ix{Z}$ is the line radiation function by %
+            species $Z$. For each channel the observed %
+            power $P\ix{ch}$ can be calculated by %
+            using\cite{Gianone2002}:%
+            $$P\ix{ch}=F\ix{ch}\cdot\left(\tau\ix{ch}%
+                \frac{\diff(\Delta U)}{\diff t}+%
+                f_{\tau, \text{ch}}\cdot(\Delta U)\right)$$%
+            with $\Delta U\propto\Delta T\propto\Delta P$ the change in %
+            measurement voltage, absorber temperature and incident radiation %
+            power. Properties denoting $(\cdot)\ix{ch}$ refer to the %
+            individual channel/foil characteristics, e.g. cooling %
+            time ($\tau$) and $f_{\tau, \text{ch}}$, $F\ix{ch}$ %
+            numbers calculated from cable attributes, detector %
+            resistance and heat capacity.}%
+            \vspace*{1.cm}\\%
+            \normalsize{\color{ipp}\fett{\underline{%
+                Global Power Estimate:}}}%
+            \vspace*{.5cm}\\%
+            \small{%
+                For each camera (VBC, HBC) individually, the total %
+                radiation loss can be calculated like:%
+                $$P\ix{rad, cam}=\frac{V\ix{P,tor}}{V\ix{cam}}\cdot%
+                    \sum\ix{ch}^{\text{cam}}\frac{V\ix{ch}}{K\ix{ch}}%
+                    \cdot\frac{P\ix{ch}}{53\%}$$%
+                \quad\quad with:%
+                $$V\ix{cam}=\sum\ix{ch}V\ix{ch}\,\,.$$%
+                The volume and geometry of the detectors lines %
+                of sight and corresponding aperture %
+                are noted as $V\ix{ch}$, $K\ix{ch}$ hence %
+                $V\ix{cam}$ is the total volume investigated %
+                by a camera. Using EMC3-Eirene simulation the %
+                estimated plasma volume from which radiation is %
+                emitted is approximated to be $V\ix{P, tor}$.}%
+            \vspace*{1.cm}\\%
+            \normalsize{\color{ipp}\fett{\underline{%
+                Real Time Prediction:}}}%
+            \vspace*{.5cm}\\%
+            \small{%
+                Due to technical limitations, feedback was only %
+                possible to be calculated based off of a selection S %
+                of lines of sights instead of a full array. %
+                $\widetilde{P\ix{ch}}$ notes a %
+                10-sample average to suppress noise without %
+                sacrificing temporal responsiveness:%
+                $$P\ix{pred}=P\ix{rad,S}=\frac{V\ix{P}}{V\ix{S}}\cdot%
+                    \sum\ix{ch}^{\text{S}}\frac{V\ix{ch}}{K\ix{ch}}%
+                    \cdot\frac{\widetilde{P\ix{ch}}}{%
+                    53\%}\inlineeqno\label{eq:predict}\,\,.$$%
+                }%
+        \end{kasten}%
+
+        \begin{kasten}{References}%
+            \fontsize{12}{12}{%
+            \begin{thebibliography}{}%
+                \bibitem{Zhang2010} %
+                    "Design Criteria of the Bolometer diagnostic %
+                    for steady-state operation of the W7-X stellarator"; %
+                    Zhang, D. et al.; %Burhenn, R., Koenig, %
+                    %R., Giannone, L., Grodzki, P.A., Klein, B., %
+                    %Grosser, L., Baldzuhn, J., Ewert, K., %
+                    %Erckmann, V., Hirsch, M., Laqua, H.P., %
+                    %Oosterbeek, J.W.; %
+                    Review of Scientific Instruments, %
+                    Jan 1st, 2010; DOI:10.1063/1.3483194
+        %         \bibitem{Zhang2016} %
+        %             "The bolometer diagnostic at stellarator %
+        %             Wendelstein 7-X and its first results in the %
+        %             initial campaign"; D. Zhang, et al. %
+        %             %R. Burhenn, A. Alonso, B. Buttenschön, %
+        %             %Y. Feng, L.Giannone, M.Hirsch, U.Höfel, R.%
+        %             %Lauber, M.Marquardt, K.Rahbarnia, J.Svensson, 
+        %             %G.A.Wurden, R.Brakel, O.Grulke, J.Knauer, R.
+        %             %König, H.Laqua, S.Marsen T.Stange, T.%
+        %             %Schröder, H.Thomsen, G.M. Weir, A.Werner and %
+        %             and the W7-X Team; Stellarator-New 2017
+        %         \bibitem{Mast1991} %
+        %             "A low noise highly integrated bolometer array %
+        %             for absolute measurement of VUV and soft x %
+        %             radiation"; K. F. Mast et. al; %
+        %             % J. C. Vallet, C. Andelfinger, %
+        %             % P. Betzler, H. Kraus, and %
+        %             %G. Schramm;%
+        %             Review of Scientific Instruments 62, 744 (1991);
+        %             DOI: 10.1063/1.11.42078%
+        %         \bibitem{VMEC} %
+        %             "Steepest descent moment method for three %
+        %             dimensional magnetohydrodynamic equilibria"; %
+        %             Hirshman, S.P. et al.; %Whitson, J.C.; %
+        %             Physics of Fluids 26, 3553, (1983); %
+        %             DOI: 10.1063/1.864116%
+        %         \bibitem{Wesson} %
+        %             "Tokamaks"; Wesson, J.; Clarendon Press, Oxford; 1987%
+        %         \bibitem{Feng} %
+        %             "Numerical investigation of plasma edge %
+        %             transport and limiter heat fluxes in %
+        %             Wendelstein 7-X startup plasmas with %
+        %             EMC3-EIRENE"; %
+        %             Effenberg, F., Feng, Y. et al. %
+        %             Nucl. Fusion 57 (2017) 036021 (15pp); %
+        %             DOI: 10.1088/1741-4326/aa4f83%
+                \bibitem{Gianone2002} %
+                    "Derivation of bolometer equations relevant to %
+                    operation in fusion experiments"; %
+                    Gianone, L. et al.; Review of Scientific Instruments; %
+                    20th of November, 2002; DOI: 10.1063/1.1498906%
+        %         \bibitem{Zhang2018} %
+        %             "Results of the bolometer diagnostic at %
+        %             OP 1.a of W7-X"; internal review of the %
+        %             physics plan during the %
+        %             second operational phase at the stellarator %
+        %             W7-X; 28.02.2018%
+        %         \bibitem{Yamada2005} %
+        %             "Characterization of energy confinement in %
+        %             net-current free plasmas using the %
+        %             extended International Stellarator Database"; %
+        %             H. Yamada et al.; %
+        %             INSTITUTE OF PHYSICS PUBLISHING and %
+        %             INTERNATIONAL ATOMIC ENERGY AGENCY; %
+        %             Nucl. Fusion 45 (2005) 1684¿1693%
+            \end{thebibliography}}%
+        \end{kasten}
+
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{0.6\textwidth}%
+        \vfill%
+        %\vspace*{.0cm}%
+        \begin{kasten}{Real Time Feedback}%
+            %\vspace*{0.5cm}%
+            \begin{columns}%
+                \column{0.49\textwidth}\small{%
+                    \begin{itemize}%
+                        \item{%
+                            during last experiment campaign \tilt{OP1.2b}: %
+                            real time plasma feedback control using %
+                            in-situ calibrations %
+                            and measurements of radiation loss distribution}%
+                        \item{%
+                            actuator is fast, thermal He-beam valve - %
+                            gas flow adjusted for target %
+                            where $P\ix{rad}\sim f(n\ix{e}, T\ix{e}, \dots)$.}%
+                        \item{%
+                            during experimental campaign used %
+                            selection $\widetilde{S}_{5}$ based on an %
+                            \tilt{educated guess} with 5 channels covering %
+                            the plasma core, edge and %
+                            \tilt{scrape-off layer} SOL}%
+                    \end{itemize}}%
+                    \vspace*{0.25cm}%
+
+                    \begin{center}
+                        \includegraphics[width=0.8\textwidth]%
+                            {figures/content/%
+                             overview20181010_032_prad_fb_qsq_div.png}%
+                        \vspace*{.25cm}%
+                        \newline\tiny{%
+                            \fett{(top):} %
+                            Comparison of input heating power $P\ix{ECR}$ and %
+                            radiation power loss, as measured by the two %
+                            camera arrays. Added are also the two feedback %
+                            lines provided for the He beam valves. One %
+                            features a predictive calculation like %
+                            eq. (1), whereas the other uses one %
+                            raw single channel signal multiplied by a %
+                            manually adjusted factor. %
+                            \fett{(middle):} %
+                            Valve actuation of the thermal He beam feedback %
+                            actuator. This signal indicates whether and how %
+                            far the valve has been opende to fuel hydrogen %
+                            H$_{2}$ into the plasma. %
+                            \fett{(bottom):} %
+                            Individual divertor module heat loads in W7-X (colored lines) and total integrated power.}%
+                        \newline%
+                    \end{center}%
+
+                    \begin{kasten3}{Post-Feedback Sensitivity Evaluation}%
+                        \vspace*{.25cm}
+                        \small{\centering{\color{red}{%
+                            What combination of or individual channels $S$ %
+                            would have yielded the best %
+                            feedback performance?}}%
+
+                        \vspace*{0.25cm}\flushleft%
+                        Using the prediction by a set $S$ from %
+                        eq. (1) one can define a %
+                        \tilt{weighted (normalised) deviation}-like %
+                        cost function as:%
+                        $$d\ix{S}(t)=\|P\ix{rad, cam}(t)-%
+                            P\ix{pred, S}(t)\|$$%
+                        $$\varepsilon\ix{S}(t)=%
+                            \left\{\begin{array}{ll}%
+                            1-\frac{d\ix{S}(t)}{P\ix{rad, cam}(t)}&,%
+                                \,\,d\ix{S}<P\ix{rad, cam}\\%
+                            0&,\text{ else}
+                            \end{array}\right\}\inlineeqno\label{eq:eps}$$%
+                        $$\vartheta\ix{S}=\int_{T}%
+                            \varepsilon\ix{S}(t)\diff t%
+                            \inlineeqno\label{eq:theta}$$%
+
+                        \begin{center}
+                            \includegraphics[width=.8\textwidth]%
+                                {figures/content/%
+                                 wghtd_dev_C[_5_16_27].png}%
+                            \vspace*{.25cm}%
+                            \newline\tiny{
+                                Comparison of $P\ix{rad}$ from XPID: %
+                                20181010.032 as calculated %
+                                from the LOS of the full HBC array and a %
+                                trace example for the subset %
+                                $S=\{5, 16, 27\}$ $P\ix{pred, S}$. %
+                                The purple line %
+                                is calculated using eq. (2), while %
+                                the number $\vartheta\ix{HBC, S}$ is produced %
+                                by eq. (3).}%
+                            \newline%
+                        \end{center}%
+
+                        \flushleft%
+                        For example for $N_{3}\sim10^{4}$ subsets $S\ix{3}$ of %
+                        $n=3$ lines of sight $\vartheta\ix{HBC, S}$ has been %
+                        calculated. Let $N^{\text{ch}}\ix{n}$ be the number of %
+                        $S^{\text{ch}}\ix{n}$ where %
+                        detector $ch$ is incoorporated, the %
+                        \tilt{average sensitivity of %
+                        channel ch} becomes:%
+                        $$\Omega^{\text{n}}\ix{ch}\,\,=\,\,%
+                            \frac{1}{N^{\text{n}}\ix{ch}}\,\,%
+                            \sum_{s(ch)}^{N}%
+                            \,\,\vartheta\ix{HBC, s(ch)}%
+                            \inlineeqno\label{eq:avsense}$$
+
+                        \begin{center}%
+                            \includegraphics[width=.8\textwidth]%
+                                {figures/content/%
+                                 spectrum_analysis_weighted_%
+                                 deviation_C3HBCm.png}%
+                            \vspace*{.25cm}%
+                            \newline\tiny{
+                                Results from eq. (4) for %
+                                $S_{3}$ and XPID: 20181010.032. %
+                                The abscissa is taken as the minimum %
+                                effective plasma radius along the LOS of a %
+                                detector. The combinatory space for the %
+                                subsets has been restricted to reduce %
+                                computational excess, which yields three %
+                                distinguishable ranges on the left, %
+                                center and right.%
+                            }\newline%
+                        \end{center}%
+                    }\end{kasten3}%
+
+                \column{0.49\textwidth}%
+                    \begin{kasten4}{%
+                        STRAHL Simulations of Carbon Radiation}%
+                        \begin{center}%
+                            \includegraphics[width=.7\textwidth]%
+                                {figures/content/%
+                                 radiational_fraction_%
+                                 20181010_032_edge_top.png}%
+                            \vspace*{.25cm}%
+                            \newline\tiny{%
+                                ECR heating power and $P\ix{rad,HBC}$ for %
+                                radiation feedback controlled W7-X experiment %
+                                XPID: 20181010.032. Indicated also the %
+                                corresponding radiation power loss fraction %
+                                $f\ix{rad}=P\ix{ECR}/P\ix{rad}$. For %
+                                different radiation loss regimes %
+                                $f\ix{rad}$ has been marked.}%
+                        \end{center}%
+                        \vspace*{.25cm}%
+                        \begin{center}%
+                            \includegraphics[width=.7\textwidth]%
+                                {figures/content/%
+                                 chordal_profile_HBCm_20181010_032.png}%
+                            \vspace*{.25cm}%
+                            \newline\tiny{%
+                                Chordal brightness profiles for the HBC %
+                                camera array, noted over the minimum %
+                                $r\ix{eff}$ along the lines of sight, %
+                                for points in time taken from the %
+                                radiation fraction on the top.}%
+                        \end{center}%
+
+                        \small{\begin{itemize}%
+                            \item{%
+                                line-int. chordal profile shows %
+                                majority of radiation coming from region close %
+                                to separatrix or SOL}%
+                            \item{%
+                                increasing radiation fraction shows inward %
+                                shift of brightness away from last closed %
+                                fluxsurface}%
+                        \end{itemize}}%
+                        \vspace*{.25cm}%
+                        \centering{\color{red}{%
+                            What causes this behaviour given %
+                            the 1D radiation distribution %
+                            and plasma profiles?}}%
+                        \vspace*{.25cm}%
+
+                        \flushleft{\normalsize{\color{ipp}\fett{\underline{%
+                            STRAHL:}}}}\\%
+                        \vspace*{.25cm}%
+                        \small{\begin{itemize}%
+                            \item{%
+                                assuming 1D distribution, majority of %
+                                radiation coming from inside LCFS}%
+                            \item{%
+                                impurity transport \& radiation in %
+                                coronal equilibrium modelled using %
+                                \tilt{STRAHL} code and \tilt{ADAS} %
+                                atomic database}%
+                            \item{%
+                                calculating radial transport $\Gamma\ix{i,Z}$ %
+                                and emission of impurity $i$ and ion-stage %
+                                $Z$ solving continuity equation %
+                                using ansatz of anomalous diffusivities %
+                                $D^{*}$ and radial drift velocities $v^{*}$:}%
+                        \end{itemize}}
+                        \begin{align}%
+                            \frac{\partial n\ix{i,Z}}{\partial t}=%
+                                &-\nabla\,\Gamma\ix{i,Z}+Q\ix{i,Z}\nonumber\\%
+                                =&\frac{1}{r}\frac{\partial}{\partial r}r\left(%
+                                D^{*}\frac{\partial n\ix{i,Z}}{\partial r}-%
+                                v^{*}n\ix{i,Z}\right)+Q\ix{i,Z}\nonumber%
+                        \end{align}
+                        \vspace*{.25cm}%
+
+                        \begin{center}%
+                            \includegraphics[width=.7\textwidth]%
+                                {figures/content/%
+                                 compare_ne_Te_93_94_edge.png}%
+                            \vspace*{.25cm}%
+                            \newline\tiny{%
+                                \tilt{Thomson Scattering} profiles for cases %
+                                of high $f\ix{rad}$, as depicted in the %
+                                top-page graph on XPID: 20181010.032, as %
+                                well as spline-interpolated smooth traces %
+                                for STRAHL input with exponentially decaying %
+                                density \& temperature beyond $r\ix{LCFS}$.}%
+                        \end{center}%
+                        \vspace*{.25cm}%
+                        \begin{center}%
+                            \includegraphics[width=.7\textwidth]%
+                                {figures/content/%
+                                 compare_strahl_rad_93_94_edge_bottom.png}%
+                            \vspace*{.25cm}%
+                            \newline\tiny{%
+                                Line radiation for all ion stages %
+                                C$^{\text{X}+}$ of carbon in the coronal %
+                                equilibrium according to the two radiation %
+                                regimes shown above. When integrated for the %
+                                plasma volume of W7-X the total radiation %
+                                matches experimental levels.}%
+                        \end{center}%
+                    \end{kasten4}%
+
+                    \begin{kasten2}{Conclusions}\small{%
+                        \begin{itemize}%
+                            \item{%
+                                benchmarks using eq.\,(1) on different %
+                                scenarios, cost metrics and camera/channels %
+                                subsets (up to $n=9$) show similar results}
+                            \item{%
+                                Bolometer most sensitive to changes %
+                                in radiation distribution along separatrix %
+                                and SOL}%
+                            \item{%
+                                sensitivity analysis in STRAHL input %
+                                parameters yields small changes in %
+                                $P\ix{diag}$}%
+                            \item{%
+                                STRAHL shows strong radial dependence of %
+                                intrinsic impurity radiation regarding %
+                                temperature profile input}%
+                            \item{%
+                                carbon radiation possible indicator for %
+                                regimes of detachment as main power sink}%
+                            % \item{%
+                            %     need 2D inversion of radiation distribution %
+                            %     to validate results and extend investigations}%
+                        \end{itemize}%
+                    }\end{kasten2}%
+
+            \end{columns}%
+        \end{kasten}%
+        \vfill%
+    \end{minipage}%
+    %\hfill%
+
+\end{frame}\end{document}
+
+        % QR AND SHIT
+        % \vspace*{.5cm}%
+        % \begin{columns}%
+        %     \column{0.7\textwidth}%
+        %         \centering{%
+        %             \normalsize{\color{ipp}{%
+        %               You want to look at this poster later or get %
+        %                 in contact with the author?}}
+        %         }
+        %     \column{0.2\textwidth}%
+        %         \centering{%
+        %             \includegraphics[width=0.7\textwidth]%
+        %                 {figures/header/Posters.png}%
+        %         }
+        % \end{columns}

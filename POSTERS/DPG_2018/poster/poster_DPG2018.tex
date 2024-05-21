@@ -1,0 +1,631 @@
+\documentclass[final]{beamer}
+% beamer 3.10: do NOT use option hyperref={pdfpagelabels=false}
+% don't show navigation symbols
+% 2016 A. Kleiber
+
+\beamertemplatenavigationsymbolsempty
+\usepackage{beamerouterthemew7xposter}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{tcolorbox}
+
+\usepackage{amsmath, amsthm, amssymb, latexsym, stackrel}
+\usepackage{mathtools}
+%\usefonttheme[onlymath]{serif}
+\boldmath
+\usepackage[orientation=portrait,size=a0,scale=1.4]{beamerposterippw7x}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+%\usepackage[orientation=portrait,size=a1,scale=1.4,grid,debug]{beamerposter}
+% e.g. for DIN-A1 poster, with optional grid and debug output
+%\usepackage[size=custom,width=200,height=120,scale=2,debug]{beamerposter}
+% e.g. for custom size poster
+
+% my packages
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{lipsum}
+\usepackage{xcolor}
+
+% title of the presentation, short will be shown in the footer
+\title{The bolometer diagnostic at the stellarator Wendelstein 7-X}
+
+% title zu lang, auf zwei Zeilen umgebrochen werden: 
+%\title{Effects
+%of collisions on the saturation dynamics\linebreak \hspace*{6ex}
+%of TAEs in tokamaks and stellarators}
+
+% authors of the presentation
+% lecturer (and maybe place and date) will be shown in the footer
+\author{\underline{P.~Hacker\inst{1,2}}, \and D.~Zhang\inst{1}, \and %
+        R.~Burhenn\inst{1}, \and B.~Buttenschön\inst{1}, \and %
+        T.~Klinger\inst{1}, \,\, and the W7-X~Team\inst{1}}
+\institute{\inst{1}Max Planck Institute for Plasma Physics, %
+           Wendelsteinstr. 1, D-17491 Greifswald, Germany %
+           \inst{2}Ernst-Moritz-Arndt University Greifswald, Domstr. 11, %
+                   D-17489 Greifswald, Germany}
+
+% set date of the talk
+\date{06.03.2018}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+\begin{document}
+  %\begin{frame}{}
+  \begin{frame}
+    \frametitle{}
+%
+    \begin{minipage}[t]{0.32\textwidth}
+      \begin{kasten}{\large Bolometer}
+        \vspace*{0.5cm}
+        \small{{\color{ipp}\fett{%
+          Goals}}}
+        \vspace*{0.5cm}%
+        \tiny{%
+          \begin{itemize}
+            \item{%
+              %bolometric diagnostic system
+              to investigate total radiation powerloss through impurities %
+              %loss through radiation
+              and its distribution%
+              %in triangle-shaped %
+              %plane at 108° toroidaly in W7-X%
+              }%
+            \item{global/local power balance, as well as (later) impurity and %
+              transport studies through tomographic inversion}%
+          \end{itemize}%
+        }
+        \vspace*{0.5cm}%
+        \small{{\color{ipp}\fett{%
+          Performance}}}%
+        \vspace*{0.5cm}%
+        \tiny{%
+          \begin{itemize}
+            \item{multi-device system: horizontal bolometer camera %
+              (HBC, 32 channels) and vertical bolometer camera %
+              (VBC, 20 channels for each of two subdetectors)%
+              %used for main evaluation%
+              \newline$\Rightarrow$ more detectos with different %
+              filters/coatings available, e.g. for investigation of %
+              soft x-ray radiation}%
+            \item{VBC/HBC detector arrays with carbon coated, %
+              $\SI{5}{\micro\meter}$ thick gold-foil absorbers for %
+              maximum absorbtion at sensitivity of $\SI{200}{\nano\watt}$ %
+              and minimum reflectivity %
+              (visible light to SXR between %
+              \SIrange{600}{0.2}{\nano\meter})}%
+            \item{fan-shaped lines of sight provide full plasma coverage at %
+              $\SI{5}{\centi\meter}$ spatial resolution}%
+            \item{Au-foil on $\SI{7.5}{\micro\meter}$ SiN %
+              substrate, backed by a gold meander with %
+              $\SI{0.25}{\milli\second}$ response time %
+              due to thermal diffusion}%
+            \item{temporal resolution in range of %
+              \SIrange{0.08}{1.6}{\milli\second}, depending on experiment %
+              and data economy}%
+          \end{itemize}%
+        }%
+        \vspace*{0.5cm}%
+        \small{{\color{ipp}\fett{%
+          Design Criteria}}}%
+        \vspace*{0.5cm}%
+        \tiny{
+          \begin{itemize}%
+            \item{steady state operation at discharges with up to %
+              $\SI{30}{\minute}$ of $\SI{10}{\mega\watt}$ heating power %
+              ensured by cooling system with %
+              graphite elements and water cooling structures}
+            \item{impact of electron cyclotron resonance heating (ECRH) %
+              stray radiation (several %
+              $\SI{10}{\kilo\watt\per\square\meter}$ %
+              at $\SI{140}{\giga\hertz}$) reduced by a conductive %
+              wire-mesh of thickness $\SI{90}{\micro\meter}$ and %
+              $\SI{0.24}{\milli\meter}$ spacing in front of the detector %
+              array, as well as a ceramic TiO/Al$_{2}$O$_{3}$ coating inside %
+              the camera housing%
+              \newline$\Rightarrow$ 3\% microwave transmission, %
+              optical transmission factor 53\%}
+          \end{itemize}
+        }
+        \vspace*{0.5cm}
+        \begin{columns}%
+          \column{0.4\textwidth}%
+            \centering{%
+              \small{%
+                \color{ipp}%
+                \textbf{%
+                  \underline{%
+                    HBC%
+                  }%
+                }%
+              }%
+            }%
+          \column{0.4\textwidth}%
+            \centering{%
+              \small{%
+                \color{ipp}%
+                \textbf{%
+                  \underline{%
+                    VBCr/VBCl%
+                  }%
+                }%
+              }%
+            }%
+        \end{columns}%
+        \vspace*{0.5cm}%
+        \centering{%
+        \includegraphics[width=0.9\textwidth]%
+            {figures/content/linesofsight_in_vessel_reff.pdf}%
+        }%
+        \newline
+        %caption
+        \tiny{%
+          Lines of sight for HBC (32 channels) and VBC (two 20-channel %
+          subdetector arrays) with individual apertures, %
+          retracted into the vacuum vessel behind protective wall elements. %
+          Located in the triangle-shaped plane at W7-X.%
+          \cite{Zhang2010}
+        }%
+        \vspace*{1cm}
+        \newline%
+        \centering{%
+        \includegraphics[width=0.8\textwidth]%
+            {figures/content/torus_full_banana.pdf}%
+        }%
+        \newline
+        %caption
+        \tiny{%
+          W7-X plasma vessel (torus, center) with equilibrium fluxsurfaces %
+          (red), calculated by VMEC\cite{VMEC} at triangle- (top-left, 108°) %
+          and "\tilt{bean}"-shaped (bottom-right, 0°) planes.%
+        }%
+      \end{kasten}%
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[b]{0.32\textwidth}%
+      \begin{kasten}{\large Components}%
+        \vspace*{0.5cm}
+        \centering{%
+          \small{%
+            \color{ipp}%
+              \textbf{%
+                \underline{%
+                  Camera Head Construction%
+                }%
+              }%
+            }%
+          }%
+        \vspace*{0.5cm}%
+        \linebreak%
+        \includegraphics[width=0.8\textwidth]%
+            {figures/content/component_3d.pdf}%
+        \par%
+        %caption
+        \tiny{%
+          Camera head (VBC) construction. Subdectector arrays on water %
+          cooled holdings with optic baffles (left). %
+          Capped graphite tile with stainless steel aperture for thermal %
+          protection.\cite{Zhang2010}%
+        }%
+        \vspace*{1cm}
+        \linebreak%
+        \centering{%
+          \small{%
+            \color{ipp}%
+              \textbf{%
+                \underline{%
+                  Detector
+                }%
+              }%
+            }%
+          }%
+        \vspace*{1cm}%
+        \linebreak%
+        \includegraphics[width=0.75\textwidth]%
+            {figures/content/goldmeander_new.pdf}%
+        \par%
+        %caption
+        \tiny{%
+          Scheme of a single detector channel with housing/holder, %
+          absorption foil, substrate and meander.%
+          \cite{Gianone2002}%\cite{Mast1991}%
+        }%
+      \end{kasten}%
+      %\vspace*{0cm}
+      \begin{kasten}{\large References}%
+        \fontsize{14}{14}{%
+        \begin{thebibliography}{}%
+          \bibitem{Zhang2010} "Design Criteria of the Bolometer diagnostic %
+                              for steady-state operation of the W7-X %
+                              stellarator"; %
+                              Zhang, D. et al.; %
+                              %Burhenn, R., Koenig, %
+                              %R., Giannone, L., Grodzki, P.A., Klein, B., %
+                              %Grosser, L., Baldzuhn, J., Ewert, K., %
+                              %Erckmann, V., Hirsch, M., Laqua, H.P., %
+                              %Oosterbeek, J.W.; %
+                              Review of Scientific Instruments, %
+                              Jan 1st, 2010; DOI:10.1063/1.3483194
+          \bibitem{Zhang2016} "The bolometer diagnostic at stellarator %
+                              Wendelstein 7-X and its first results in the %
+                              initial campaign"; %
+                              D. Zhang, et al. %
+                              %R. Burhenn, A. Alonso, B. Buttenschön, %
+                              %Y. Feng, L.Giannone, M.Hirsch, U.Höfel, R.%
+                              %Lauber, M.Marquardt, K.Rahbarnia, J.Svensson, 
+                              %G.A.Wurden, R.Brakel, O.Grulke, J.Knauer, R.
+                              %König, H.Laqua, S.Marsen T.Stange, T.%
+                              %Schröder, H.Thomsen, G.M. Weir, A.Werner and %
+                              and the W7-X Team; Stellarator-New 2017
+          \bibitem{Mast1991} "A low noise highly integrated bolometer array %
+                              for absolute measurement of VUV and soft x %
+                              radiation"; %
+                              K. F. Mast et. al; %
+                              %J. C. Vallet, %
+                              %C. Andelfinger, P. Betzler, H. Kraus, and %
+                              %G. Schramm;%
+                              Review of Scientific Instruments 62, 744 (1991);
+                              DOI: 10.1063/1.11.42078%
+               \bibitem{VMEC} "Steepest descent moment method for three %
+                              dimensional magnetohydrodynamic equilibria"; %
+                              Hirshman, S.P. et al.; %
+                              %Whitson, J.C.; %
+                              Physics of Fluids 26, 3553, (1983); %
+                              DOI: 10.1063/1.864116%
+
+             \bibitem{Wesson} "Tokamaks"; %
+                              Wesson, J.; %
+                              Clarendon Press, Oxford; %
+                              1987%
+               \bibitem{Feng} "Numerical investigation of plasma edge %
+                              transport and limiter heat fluxes in %
+                              Wendelstein 7-X startup plasmas with %
+                              EMC3-EIRENE"; %
+                              Effenberg, F., Feng, Y. et al. %
+                              Nucl. Fusion 57 (2017) 036021 (15pp); %
+                              DOI: 10.1088/1741-4326/aa4f83%
+        \bibitem{Gianone2002} "Derivation of bolometer equations relevant to %
+                              operation in fusion experiments"; %
+                              Gianone, L. et al.; %
+                              Review of Scientific Instruments; %
+                              20th of November, 2002; %
+                              DOI: 10.1063/1.1498906%
+          \bibitem{Zhang2018} "Results of the bolometer diagnostic at %
+                              OP 1.a of W7-X"; %
+                              internal review of the physics plan during the %
+                              second operational phase at the stellarator %
+                              W7-X; 28.02.20i18%
+         \bibitem{Yamada2005} "Characterization of energy confinement in %
+                              net-current free plasmas using the %
+                              extended International Stellarator Database"; %
+                              H. Yamada et al.; %
+                              INSTITUTE OF PHYSICS PUBLISHING and %
+                              INTERNATIONAL ATOMIC ENERGY AGENCY; %
+                              Nucl. Fusion 45 (2005) 1684¿1693%
+        \end{thebibliography}%
+        }
+      \end{kasten}%
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{0.32\textwidth}%
+      \begin{kasten}{\large Calibration}%
+        \vspace*{1cm}
+        \tiny{%
+          \begin{itemize}%
+            \item{\textit{in-situ calibration} when ultra-high vacuum %
+              pneumatic shutter is closed before every experiment}
+            \item{reference correlation with un-exposed, %
+              indentical part of the detectors \textit{Wheatstone bridge} %
+              with two calibration gold-foils of same thickness and size %
+              %($\SI{5x10}{\milli\meter}$)
+              }%
+            \item{for each channel, calibration is performed by a %
+              $\SI{5}{\watt}$ pre-heating with closed shutter, regarding %
+              cooling time, capacity and resistance\cite{Gianone2002}\\%
+              $\Rightarrow$ temperature change in Au film leads to change in %
+              resistance of underlying gold meanders}
+          \end{itemize}%
+        }%
+        \vspace*{1.5cm}%
+        \begin{columns}
+          \column{0.45\textwidth}
+            \centering{%
+              \small{%
+                \color{ipp}%
+                \textbf{%
+                  \underline{
+                    Detector Array%
+                  }%
+                }
+              }%
+            }%
+          \column{0.45\textwidth}
+            \centering{%
+              \small{%
+                \color{ipp}%
+                \textbf{%
+                  \underline{
+                    Wheatstone Bridge%
+                  }%
+                }
+              }%
+            }%
+          \end{columns}%
+          \vspace*{2cm}%
+          \centering
+          \includegraphics[width=0.95\textwidth]%
+            {figures/content/wheatstone_mitschema.pdf}%
+            \tiny{
+              (Left) Detector array with sealed reference array, meander and %
+              holder. (Right) Wheatstone bridge with radiated part (yellow) %
+              and reference (green), left un-exposed throughout operation. %
+              Reference and measurement resistances of the foils are the %
+              same.\cite{Gianone2002}%\cite{Mast1991}%
+            }%
+        \vspace*{2cm}
+        \centering
+        \includegraphics[width=0.6\textwidth]%
+          {figures/content/coating_results.pdf}%
+          \newline
+          \tiny{
+            Test results of a bolometer prototype in a strong microwave %
+            background provided by MISTRAL\cite{Zhang2016} with an withouth %
+            microwave suppresion measures (see left).
+          }%
+        \vspace*{2cm}%
+      \end{kasten}%
+    \end{minipage}%
+    \vspace*{0.5cm}
+%
+    \begin{kasten}{\large Results}%
+      \begin{columns}%
+        \hspace*{1cm}%
+        \column{0.28\textwidth}%
+          \begin{kasten}{Equations}
+            \tiny{%
+              The radiation power observed by the bolometers equals to:
+              $$P_{rad,bolo}\propto\sum_{Z} n_{e}\cdot n_{Z}\cdot L_{Z}$$%
+              \quad where $L_{Z}$ is the line radiation function by %
+              impurities ($Z$): 
+              $$L_{Z}=f\left(T_{e}, T_{i}, T_{Z}, %
+                                 wall\,\,material/%
+                                 conditions,\,\,\dots\right)$$%
+              For each channel the observed power $P_{Ch}$ can be calculated %
+              by using:%
+              $$P_{ch}=\frac{2}{V_{eff}}\cdot%
+                       \left(R_{ch}+2R_{C}\right)\cdot\kappa_{ch}%
+                       \sqrt{g_{C}}\cdot\left(\tau_{ch}%
+                       \frac{\diff(\Delta U)}{\diff t}+%
+                       f_{\tau}\cdot(\Delta U)\right)%
+                \inlineeqno\text{\cite{Gianone2002}}$$%
+              \quad\quad with $\Delta U\propto\Delta T$ the change in %
+              measurement voltage and absorber temperature%
+              %$$V_{eff}=\frac{U_{5V}R_{ch}}{R_{ch}+2R_{C}}%
+              %,\quad%
+              %g_{C}=1+\left(\omega\cdot\left(R_{ch}+R_{C}\right)^{2}%
+              %      \right)%
+              %,\quad%
+              %\omega=2\pi\cdot f_{Bridge}C_{cab}$$%
+              %$$f_\tau=1-U_{eff}^{2}\cdot\beta%
+              %\,,\quad\quad
+              %\beta=\frac{1-\left(\omega R_{ch}\right)^{2}+%
+              %        \left(\omega R_{C}\right)^{2}}%
+              %        {1+\left(\omega\cdot\left(R_{ch}+R_{C}\right)%
+              %        \right)}$$%
+              \vspace*{0.5cm}%
+              \begin{itemize}
+                \item{properties denoting $(\cdot)_{ch}$ are the %
+                  individual channel/foil characteristics, e.g. cooling %
+                  time ($\tau$), heat capacity ($\kappa$) and resistance %
+                  ($R$)}
+                \item{$R_{C}$ and $C_{cab}$ are the connection cable %
+                  resistance and %
+                  capacity with \SI{41}{\ohm} and \SI{9}{\nano\farad} %
+                  respectively}%
+                \item{$f_{Bridge}$ is a dimensionless scaling factor of %
+                  the Wheatstone bridge}%
+              \end{itemize}%
+            }%
+            \vspace*{2.5cm}
+            \tiny{\color{ipp}\fett{\underline{%
+              Global Power Estimate:}}}%
+            \tiny{ %
+              for each camera (VBC, HBC) individually
+              $$P_{rad}=\frac{V_{P,tor}}{V_{cam}}\cdot%
+                  \sum_{ch}\frac{V_{ch}}{K_{ch}}\cdot\frac{P_{ch}}{53\%}%
+                \inlineeqno$$%
+              \quad\quad with:
+              $$V_{cam}=\sum_{ch}V_{ch}$$%
+              %,\,\,
+              %V_{P,tor}=52381772\,\text{cm}^{3}$$
+              \begin{itemize}
+                \item{$V_{ch}$ the volume of the polygon created by the %
+                  lines of sight of each detector and the corresponding %
+                  aperture $\Rightarrow V_{cam}$ is the total volume %
+                  investigated by the camera}%
+                \item{$P_{ch}$ is calculated via eq. (1)}
+                \item{scaling with 53\% due to the reduced input intensity of %
+                  the stray radiation wire mesh}
+                \item{$V_{P,tor}$ the estimated plasma volume from which radiation is %
+                  emitted, approximated using one field configuration in an %
+                  EMC3-Eirene simulation}
+              \end{itemize}
+            }
+          \end{kasten}%
+          % \includegraphics[width=0.9\textwidth]%
+          %     {figures/content/raw_volt_1207051.pdf}%
+          % \vspace*{0.5cm}%
+          % \newline%
+          % \tiny{%
+          %   Raw signal of innermost/uppermost and plasma %
+          %   core viewing channels for VBC/HBC (21/20 channels). %
+          %   The vertical array used consists of a individual channels %
+          %   taken from the two subdetector arrays of VBC. %
+          %   One sample corresponds to $\Delta t=\SI{1.6}{\milli\second}$. %
+          %   Standard deviation is \SIrange{0.3}{2}{\micro\volt}, %
+          %   e.g. $\ll$ 1\%.%
+          % }%
+          \vspace*{2cm}%
+          \begin{columns}%
+            \column{0.48\textwidth}%
+              \centering
+              \includegraphics[width=\textwidth]%
+                    {figures/content/oxygen_carbon_rad.pdf}%
+              \vspace*{0.5cm}%
+              \newline%
+              \tiny{%
+                Impurity radiation intensities for most relevant %
+                elements in the device. Carbon and, but most importantly %
+                oxygen impurity radiation is assumed to contribute the %
+                most to line radiation.\cite{Wesson}%\cite{Post}
+              }%
+            \column{0.48\textwidth}
+              \vspace*{0.5cm}
+              \centering
+              \includegraphics[width=\textwidth]%
+                    {figures/content/emc3_sim_oxygen.pdf}%
+              \vspace*{2cm}%
+              \newline%
+              \tiny{%
+                EMC3-Eirene simulation results, which show the relative %
+                radiation profile/emissivity for 80\% oxygen impurities %
+                beyond the last closed fluxsurface (LCFS).\cite{Feng}%
+              }%
+          \end{columns}
+        \column{0.35\textwidth}%
+          \vspace*{1cm}
+          \centering%
+          \includegraphics[width=0.9\textwidth]%
+              {figures/content/steady_state_2017111452.pdf}%
+          \vspace*{0.5cm}%
+          \newline%
+          \tiny{%
+            XP.20171114.052: (LEFT) Calculated powers from eq. (1) for the inner-/uppermost %
+            channels from the VBC/HBC. One sample equals %
+            \SI{1.6}{\milli\second}. A \tilt{Savitzky-Golay} filter with a %
+            31 sample window is used on both raw signal/derivative to %
+            minimize bitwise noise from the A2D converter. %
+            (MIDDLE) Experiment parameters for the same discharge %
+            (\SI{2.7}{\second}, terminated). %
+            (RIGHT) channel power vs. effetive plasma radius, %
+            e.g. $\rho_{eff}=\sqrt{\Psi_{N}}$ the distance from the magnetic %
+            field center, for both camera.
+          }%
+          \vspace*{0.5cm}%
+          \begin{kasten}{\small Conclusion}
+          \vspace*{0.5cm}%
+            \begin{itemize}
+              \item{high-density, high-radiation discharges can show%
+                $$f_{rad}=\frac{P_{rad}}{P_{ECRH}}\approx 1$$}%
+              \item{inboard and lower plasma regions irradiate more intense %
+                in EJM magnetic field configuration}
+              \item{steady state: mainly radiation from outer plasma %
+                regions/LCFS}
+              \item{radiative collapse: strong centrification of plasma source %
+                (see $r_{eff}$, core very bright)}
+              \item{after $W_{dia}$ the plasma-stored energy begins to %
+                decrease, discharge has already begun to collapse and %
+                the input power is irradiated, hence $f_{rad}\ge 1$}
+              \item{collapse likely triggered around $t\approx$\SI{2.3}{\second}, %
+                by first pellet injection - edge localized radiation? -, %
+                causing the plasma to shrink}
+              \item{in radiative collapse case: thermal instabilities %
+                (see $T_{e}$) triggered around plasma edge\\%
+                $\Rightarrow$ local events, cooling effect by increasing %
+                $P_{rad}$}
+              \item{however, operational phase 1.2a (OP1.2a) at W7-X %
+                showed possible high-performance discharges with great %
+                power-exhaust capabilities around LCFS/scrape-off-layer\\%
+                $\Rightarrow$ detachment with plasma shrinkage, less %
+                impurity, better wall conditioning ...}
+              %\item{operational limit given by the radiated power and %
+              %  other plasma parameters?}
+            \end{itemize}
+          \vspace*{0.5cm}%
+          \end{kasten}
+          % \vspace*{0.5cm}
+          % \centering%
+          % \includegraphics[width=\textwidth]%
+          %     {figures/content/reff_vbcandhbc2017120751.png}%
+          % %\vspace*{0.5cm}%
+          % \newline%
+          % \tiny{%
+          %   (TOP) Surface plot of measured radiated power over the effective %
+          %   plasma radius, e.g. $\rho_{eff}=\sqrt{\Psi_{N}}$ the distance %
+          %   from the magnetic field center. (BOTTOM) Extrapolated total %
+          %   radiated power. (Discharge XP.20171207.051)
+          % }%
+        \column{0.35\textwidth}%
+          \centering%
+          \includegraphics[width=\textwidth]%
+              {figures/content/radiative_collapse_2017112136_3.pdf}%
+          \vspace*{0.5cm}%
+          \newline%
+          \tiny{%
+            XP.20171121.036: (LEFT) Channel number vs. power, e.g. the %
+            center corresponds to the center of the plasma core. %
+            (MIDDLE) The most important discharge properties. Similar setup %
+            as for the left discharge, but with forward feeding by frozen %
+            H$_{2}$ pellet injection. The discharge collapses where the %
+            stored, diamagnetic energy in the plasma drops drastically %
+            around \SI{2.9}{\second}. P$_{rad}$ shows that this %
+            corresponds to a radiative collapse, where the plasma shrinks %
+            towards the magnetic axis (as seen in the left figures), and all %
+            the input and stored energy is irradiated. %
+            (RIGHT) The channel power over the effective plasma radius.%
+          }%
+          \vspace*{0.5cm}
+          \begin{kasten}{\small OP1.2a}
+            \begin{columns}%
+              \hspace*{3cm}
+              \column{0.35\textwidth}
+                \vspace*{1cm}
+                \newline%
+                %\centering%
+                \tiny{%
+                  Collected database of different discharge %
+                  setups/characteristics where radiation fraction %
+                  reached unity. %
+                  Results based on Yamada et al.\cite{Yamada2005} show %
+                  good agreement for the energy confinement time scaling %
+                  for: \cite{Zhang2018}}\\%
+                  \centering%
+                  \small{\color{ipp}%
+                    $\tau_{E, ISS04}\propto n_{e}^{0.54}$}
+              \column{0.65\textwidth}
+                \centering%
+                \includegraphics[width=0.7\textwidth]%
+                    {figures/content/power_diagnostic_own_2.pdf}%
+            \end{columns}
+          \end{kasten}
+      \end{columns}%
+    \end{kasten}%
+%
+    %\begin{kasten}{\large Outlook}
+    %  \begin{columns}
+    %    \column{0.48\textwidth}
+    %      \begin{itemize}
+    %        \item{test}
+    %      \end{itemize}
+    %    \column{0.48\textwidth}
+    %  \end{columns}
+    %\end{kasten}
+%
+    %\hfill%
+    %\begin{kasten}{Outlook}%
+    %\end{kasten}%
+%
+    \vfill%
+    \centerline{\tiny 82. Jahrestagung der DPG und DPG-Frühjahrstagung %
+                       der Sektion AMOP, Erlangen, 04.03. - 09.03.2018}%
+    \centerline{\tiny Authors correspondence:\,\,%
+                P. Hacker, philipp.hacker@ipp.mpg.de; %
+                D. Zhang, daihong.zhang@app.mpg.de}%
+  \end{frame}%
+\end{document}

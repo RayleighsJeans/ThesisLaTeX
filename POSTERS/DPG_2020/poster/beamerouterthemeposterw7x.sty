@@ -1,0 +1,137 @@
+%% IPP presentation style for beamer package
+%% Copyright 2014 by M. Borchardt
+%% for Beamer-poster A. Kleiber 2016 (LaTeX-Vorlage erstellen)
+%% for Beamer-poster A. Kleiber 2018 (neue W7-X- und ASDEX-Logos)
+%
+\DeclareOptionBeamer{noSt}{\def\beamer@themeipp@w7x{0}}
+\DeclareOptionBeamer{IPPW7X}{\def\beamer@themeipp@ippw7x{1}}
+\ExecuteOptionsBeamer{IPPW7X}
+\ProcessOptionsBeamer
+%
+\mode<presentation>
+%
+\useinnertheme[shadow=true]{rounded}
+\usefonttheme{professionalfonts}
+\usecolortheme{whale}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Text Eurofusion
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\acknowledgement{\tiny %
+    This work has been carried out within the framework of the EUROfusion Consortium and has received funding from the Euratom research and training programme 2014-2018 and 2019-2020 under grant agreement number 633053. The views and opinions expressed herein do not necessarily reflect those of the European Commission.}%
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Farbdefinitionen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ipp2}{rgb}{0.19,0.42,0.70}
+\definecolor{ipp}{rgb}{0,0.40,0.75}
+\definecolor{ipplight}{rgb}{0.78,0.85,0.95}
+\definecolor{ippdark}{rgb}{0,0.22,0.46}
+\definecolor{linegrey}{rgb}{0.6,0.6,0.6}
+\setbeamercolor{section in head/foot}{parent=palette quaternary}
+\setbeamercolor{subsection in head/foot}{parent=palette primary}
+\setbeamercolor{author in head/foot}{parent=section in head/foot}
+\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
+\setbeamercolor{frametitle}{parent=subsection in head/foot}
+\setbeamercolor{frametitle right}{parent=section in head/foot}
+\setbeamercolor{footlinecolor}{bg=ipplight,fg=ipp2}
+\setbeamercolor*{structure}{fg=ipp2}
+\setbeamercolor*{block title}{fg=white, bg=ipp2}
+% \setbeamercolor*{block title}{fg=ipp, bg=ipplight}
+% \setbeamercolor*{block body}{fg=black, bg=ipplight}
+\setbeamercolor*{block body}{fg=black, bg=white}
+\setbeamercolor*{frametitle}{fg=ipp2}
+\setbeamerfont*{frametitle}{series=\bfseries,size=\large,parent=structure}
+\setbeamercolor*{title in head/foot}{bg=ipplight,fg=black}
+\setbeamercolor*{section in toc}{fg=ipp}
+%
+\AtBeginDocument{%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% horizontale Linie (Farbverlauf moeglich)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\insertframetitle{}
+\pgfdeclarehorizontalshading{beamer@topshade}{.3pt}{%
+    color(0pt)=(linegrey);% Farbe vorn fuer Farbverlauf
+    color(\paperwidth)=(linegrey)}% Farbe hinten fuer Farbverlauf
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ % Definition der Hoehe der Logos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pgfdeclareimage[height=3.5cm]{LogoIPPW7X2}%
+    {figures/header/w7x_white}
+\pgfdeclareimage[height=3.5cm]{LogoIPPASDEX}%
+    {figures/header/asdex_white}
+\pgfdeclareimage[height=3.5cm]{LogoIPP}%
+    {figures/header/ipp_logo_color}
+\pgfdeclareimage[height=.7cm]{LogoEurofusion}%
+    {figures/header/EUROfusion-LOGO-PANTONE_REFL_BLUE}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition der Seite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% no extra frame title
+\defbeamertemplate*{frametitle}{ipp theme}{}
+%% Head
+\defbeamertemplate*{headline}{ipp theme}
+{%
+    \vspace*{4ex}%
+    % Inhalt des oberen Kastens
+    % Text MPI und Titel
+    \hspace*{4ex}%
+    \begin{minipage}[]{0.85\paperwidth}%
+        %{\normalsize {%
+        %    \ippfont Max-Planck-Institut f{\"u}r Plasmaphysik}}\newline%
+        {\normalsize Max-Planck-Institut f{\"u}r Plasmaphysik}\vspace*{2ex}\newline%
+        \vfil%
+        \textbf{\LARGE \textcolor{ipp2}{\inserttitle}}\vspace*{2ex}%
+        \end{minipage}\hfill%
+        % Logo W7-X und IPP
+           \begin{minipage}[]{0.10\paperwidth}%
+                \includegraphics[width=0.45\textwidth]{w7x_white}\hfill%
+                \includegraphics[width=0.45\textwidth]{ipp_logo_color}%
+        \end{minipage}\hspace*{4ex}\vspace*{2ex}\newline%
+        % Autoren
+        \hspace*{4ex}\begin{minipage}[t]{0.35\textwidth}%
+            \normalsize\insertauthor %
+        \end{minipage}\hfill%
+        % Institute
+        \begin{minipage}[t]{0.55\textwidth}%
+            \begin{flushright}%
+                \normalsize\insertinstitute%
+            \end{flushright}%
+        \end{minipage}\hspace*{4ex}%
+        \vspace{4ex}
+        %  Linie unter oberen Kasten
+        \hbox to\paperwidth{\pgfuseshading{beamer@topshade}}%
+}
+    % Footer
+   \defbeamertemplate*{footline}{ipp theme}
+   {%
+    \leavevmode%
+    % Linie ueber oberen Kasten
+    \hbox to\paperwidth{\pgfuseshading{beamer@topshade}}
+    \vspace*{2ex}%
+    % Author and Conference
+    \begin{minipage}[]{0.30\paperwidth}
+        \hspace*{4ex}
+        * Coresponding author: \emailcorrespondingauthor\\[2ex]%
+        \hspace*{4ex}
+         \nameconference
+    \end{minipage}\hfill
+    % Text Eurofusion
+    \begin{minipage}[]{0.50\paperwidth}
+        \acknowledgement
+    \end{minipage}\hfill
+    % Logo Eurofusion
+    \begin{minipage}[]{0.10\paperwidth}
+        \begin{flushright}%
+        \includegraphics[width=\textwidth]{EUROfusion-LOGO-PANTONE_REFL_BLUE}
+    \end{flushright}%
+    \hspace*{4ex}
+    \end{minipage}\hspace{0.02\paperwidth}
+}%
+\vskip0pt%
+\mode
+<all>

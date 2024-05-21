@@ -1,0 +1,75 @@
+\documentclass[final]{beamer}
+% beamer 3.10: do NOT use option hyperref={pdfpagelabels=false}
+% don't show navigation symbols
+% 2016 A. Kleiber
+%
+\beamertemplatenavigationsymbolsempty
+\usepackage{beamerouterthemew7xposter}
+\usepackage[ngerman]{babel}
+\usepackage[LGR,T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{tcolorbox}
+%
+\usepackage{amsmath, amsthm, amssymb, latexsym, stackrel}
+\usepackage{mathtools}
+% \usefonttheme[onlymath]{serif}
+\boldmath
+\usepackage[orientation=portrait,size=a4,scale=1.4]{beamerposterippw7x}
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+%
+% \usepackage[orientation=portrait,size=a1,scale=1.4,grid,debug]{beamerposter}
+% e.g. for DIN-A1 poster, with optional grid and debug output
+% \usepackage[size=custom,width=200,height=120,scale=2,debug]{beamerposter}
+% e.g. for custom size poster
+%
+% my packages
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{lipsum}
+\usepackage{xcolor}
+%
+% title of the presentation, short will be shown in the footer
+\title{Wenn der Funke überspringt: der Bandgenerator}
+%
+% authors of the presentation
+% lecturer (and maybe place and date) will be shown in the footer
+\author{}
+\institute{}
+%
+% set date of the talk
+\date{14.09.2018}
+%
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand{\textgreek}[1]{\begingroup\fontencoding{LGR}\selectfont#1\endgroup}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+%
+\begin{document}
+    \begin{frame}{}
+%
+        Jeder kennt es: Man geht über einen Kunstoffboden oder Polyesterteppich, berührt anschließend eine Türklinke und ... *zapp* bekommt einen kleinen elektrischen Schlag. Aber was ist eigentlich passiert?
+        \vspace*{0.5cm}
+%
+        Die meisten Körper sind elektrisch neutral, was bedeutet, dass sie die gleiche Anzahl von negativen (Elektronen) und positiven (Protonen) Ladungen enthalten. Um einen Körper elektrisch aufzuladen, muss die Gleichgewicht also gestört werden, entweder durch Hinzufügen oder Enternen von Ladungen.\\
+        \vspace*{0.5cm}
+%
+        Beim Laufen über den Teppich nehmen zBsp. Schuhsohlen aus Gummi über die Zeit Elektronen auf, womit sich der Körper insgesamt negativ auflädt. Beim Berühren der Türklinke aus Metall springen die gesammelten Elektronen über und erzeugen einen Funken.\\
+        \vspace*{0.5cm}
+%
+        Aber nicht nur zuhause auf dem Fußboden findet diese Ladungstrennung statt: in vornehmen, antiken Haushalten nutzte man bereits große Bernsteine als Kleiderbürste. Das Gleiten über den Stoff hat den Stein negativ aufgeladen, womit dieser den positiv geladenen Staub und Fuselteilchen anzog. Das altgriechische Wort für Bernstein ist nämlich
+        élektron (\textgreek{hlektron}). Dieser Name wurde später zum Begriff für das einfach negativ geladene Elementarteilchen des Elektrons und Namensgeber der Elektrizität.\\
+        \vspace*{0.5cm}
+%
+        Mit einem Bandgenerator kann man eletrischen Ladungen trennen und hohe Gleichspannungen mit über \SI{150}{\kilo\volt} bei geringen Stromstärken von etwa \SI{6}{\micro\ampere} erzeugen.\\
+        Ein solcher Generator besteht aus einer großen Metallkugel, innerhalb welcher ein Gummiband einen Metallkamm streift. Dieser ist mit der Kugel verbunden. Durch die Reibung zwischen Metall und Gummi kommt es zur beschriebenen Ladungstrennung, bei der Elektronen von der Kugel abwandern, und diese damit positiv ``aufladen''.\\
+        Über einen zweiten Metallkamm und Leiter können die abgeführten Elektronen auf eine zweite Kugel gebracht werden.\\
+        \vspace*{0.5cm}
+%
+        Was passiert, wenn sich diese beiden Metallkugeln näher kommnen?
+%
+    \end{frame}
+\end{document}

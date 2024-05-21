@@ -1,0 +1,482 @@
+\documentclass[final]{beamer} 
+% beamer 3.10: do NOT use option hyperref={pdfpagelabels=false}
+% don't show navigation symbols
+% 2018 A. Kleiber
+
+\beamertemplatenavigationsymbolsempty
+\usepackage{2018_10_beamerouterthemeposterw7x}
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{tcolorbox}
+\usepackage{amsmath, amsthm, amssymb, latexsym, stackrel}
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{mathtools}
+
+% Arial-Schrift
+% \usepackage{ipp}
+% \usepackage[scaled]{uarial}
+% \usepackage{times}\usefonttheme{professionalfonts}  % times is obsolete
+% \usefonttheme[onlymath]{serif}
+
+\boldmath
+\usepackage[orientation=portrait,size=a0,scale=1.4,debug]{%
+    2018_10_beamerposteripp}  % e.g. for DIN-A0 poster
+
+% \usepackage[orientation=portrait,size=a1,scale=1.4,grid,debug]{beamerposter}
+% e.g. for DIN-A1 poster, with optional grid and debug output
+
+% \usepackage[size=custom,width=200,height=120,scale=2,debug]{beamerposter}
+% e.g. for custom size poster
+
+% \usepackage[orientation=portrait,size=a0,scale=1.0,%
+%   printer=rwth-glossy-uv.df]{beamerposter}
+% e.g. for DIN-A0 poster with rwth-glossy-uv printer check
+
+% Damit im Literaturverzeichnis Zahlen stehen.
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+\setbeamertemplate{itemize item}[triangle]
+
+% title of the presentation
+\title{%
+    Consistently calculating the radiated power in near real time at the %
+    stellarator Wendelstein 7-X}%
+% Sollte die Ueberschrift zu lang sein, kann sie wie
+% folgt auf zwei Zeilen umgebrochen werden: 
+% \title{Effects of collisions on the saturation dynamics\linebreak%
+%   \hspace*{6ex}%
+%   of TAEs in tokamaks and stellarators}
+
+% authors of the presentation
+\author[Author]%
+    {\underline{P.~Hacker\inst{1,2}*},~D.~Zhang\inst{1},~F.~Reimold\inst{1},~%
+     M.~Krychowiak\inst{1},~R.~Burhenn\inst{1} and T.~Klinger\inst{1},~%
+     for the Wendelstein 7-X Team-Collaboration\inst{1}}
+% email address of the corresponding author
+
+% Definieren mail corresponding author
+\newcommand{\emailcorrespondingauthor}{philipp.hacker@ipp.mpg.de}
+
+% Definieren Name Conference
+\newcommand{\nameconference}%
+    {Deutsche~Physikalische~Gesellschaft~-~%
+    Spring~Meeting~Munich~2019,~%
+    Matter and Cosmos Section (SMuK)}
+
+% institutes of the authors
+% \institute[IPP Greifswald]%
+%   {\inst{1}Max Planck Institute for Plasma Physics, %
+%    Wendelsteinstr. 1, D-17491 Greifswald, Germany}
+
+\institute[]{%\hspace{5cm}
+    \inst{1}%
+        Max~Planck~Institute~for~Plasma~Physics,~Wendelsteinstr.~1,~%
+        D-17491~Greifswald,~Germany,\\%
+    \inst{2}%
+        Ernst-Moritz-Arndt~University~Greifswald,~%
+        Rubenowstr.~1,~D-17489~Greifswald,~Germany}
+
+% name of the conference
+% \nameconference{Name der Konferenz Da.Tu.M000}
+% set date of the talk
+\date{\today}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+    \begin{frame}
+        \frametitle{}
+        \begin{minipage}[t]{0.30\textwidth}
+            \vfill%
+            \begin{kasten3}{\large%
+                Motivation}\vspace*{0.5cm}\small{%
+                \begin{itemize}%
+                    \item{%
+                        averaged thermal load on in-vessel components %
+                        expected to be up to %
+                        \mbox{\SI{100}{\kilo\watt/\square\meter}} mainly by %
+                        radiation and non-absorbed heating power}%
+                    \item{%
+                        calculating the temporal and spacial evolution of %
+                        the radiation loss previously only after the plasma %
+                        has been terminated}
+                    \item{%
+                        dynamically adjust heat loads on components and %
+                        investigate radiation regimes of high temperature %
+                        plasmas with possibility of improved detachment %
+                        experiments.}
+                    \item{%
+                        possibly find gas puff-radiation scaling law %
+                        for purposes of extensive plasma control, i.e. %
+                        density, power and radiation}
+                \end{itemize}}\vspace*{0.5cm}%
+            \end{kasten3}%
+            \vspace*{0.7cm}%\hfill%
+            \begin{kasten}{\large%
+                Recap}%
+                \vspace*{0.5cm}%
+                \large{{\color{ipp}\fett{%
+                  Design}}}%
+                \vspace*{0.5cm}\small{%
+                \begin{itemize}%
+                    \item{%
+                        multi-device system: horizontal bolometer camera %
+                        (HBC, 32 channels) and vertical bolometer camera %
+                        (VBC, 20 channels for each of two subdetectors)%
+                        \newline$\Rightarrow$ more detectors with different %
+                        filters/coatings available, e.g. for investigation %
+                        of soft x-ray radiation}%
+                    \item{%
+                        fan-shaped lines of sight provide full plasma %
+                        coverage at $\SI{5}{\centi\meter}$ spatial resolution}
+                    \item{%
+                        steady state operation at discharges with up to %
+                        $\SI{30}{\minute}$ of $\SI{10}{\mega\watt}$ heating %
+                        power ensured by cooling system with %
+                        graphite elements and water cooling structures}
+                \end{itemize}}%
+                \vspace*{0.5cm}%
+                \begin{columns}%
+                    \column{0.4\textwidth}%
+                        \centering{\small{\color{ipp}%
+                            \textbf{\underline{%
+                                HBC}}}}%
+                    \column{0.4\textwidth}%
+                        \centering{\small{\color{ipp}%
+                            \textbf{\underline{%
+                                VBCr/VBCl}}}}%
+                \end{columns}%
+                \vspace*{0.5cm}%
+                \begin{center}%
+                    \includegraphics[width=0.9\textwidth]%
+                        {figures/content/linesofsight_in_vessel.pdf}%
+                    \newline\tiny{%
+                        LOS for HBC (32 ch.) and VBC (two 20-ch. subdetector %
+                        arrays) with individual apertures, retracted into %
+                        the vacuum vessel behind wall elements; located in %
+                        the triangle-shaped plane at W7-X.\cite{Zhang2010}}%
+                    \newline%
+                \end{center}
+                \large{{\color{ipp}\fett{%
+                  Performance}}}%
+                \vspace*{0.5cm}\small{%
+                \begin{itemize}%
+                    \item{%
+                        VBC/HBC detector arrays with carbon coated, %
+                        $\SI{5}{\micro\meter}$ thick gold-foil absorbers for %
+                        maximum absorbtion at sensitivity of %
+                        $\SI{200}{\nano\watt}$ and minimum reflectivity %
+                        (visible light to SXR between %
+                        \SIrange{600}{0.2}{\nano\meter})}%
+                    \item{%
+                        Au-foil on $\SI{5}{\micro\meter}$ Si$_{3}$N$_{4}$ %
+                        substrate, backed by a \SI{30}{\micro\meter} platin %
+                        meander with a $\SI{0.25}{\milli\second}$ response %
+                        time}%
+                    \item{%
+                        temporal resolution in range of %
+                        \SIrange{0.08}{6.4}{\milli\second}, depending on %
+                        experiment and data economy}%
+                    \item{%
+                        impact of electron cyclotron resonance heating %
+                        (ECRH) stray radiation (several %
+                        $\SI{10}{\kilo\watt\per\square\meter}$ %
+                        at $\SI{140}{\giga\hertz}$) reduced down to 3\% %
+                        microwave transmission, opt. transmission factor 53\%}
+                \end{itemize}}%
+                \vspace*{1.0cm}%
+                \begin{columns}%
+                    \column{0.47\textwidth}%
+                        \centering{%
+                            \includegraphics[width=1.\textwidth]%
+                                {figures/content/torus_full_banana.pdf}%
+                        }\vspace*{0.5cm}\newline%
+                        \tiny{%
+                            W7-X plasma vessel (torus, center) with %
+                            equilibrium fluxsurfaces (red), calculated %
+                            by VMEC\cite{VMEC} at triangle- (top-left, %
+                            108\°) and "\tilt{bean}"-shaped (bottom-right, %
+                            0\°) planes.%
+                        }%
+                    \column{0.47\textwidth}
+                        \vspace*{0.6cm}
+                        \centering{%
+                            \includegraphics[width=1.\textwidth]%
+                                {figures/content/detector_me.pdf}
+                        }\vspace*{0.5cm}\newline%
+                        \tiny{%
+                            Scheme of a single detector channel with %
+                            housing/holder, absorption foil, substrate and %
+                            meander.\cite{Gianone2002} Layer dimensions are %
+                            noted.%
+                        }%
+                \end{columns}%
+            \end{kasten}%
+            \vspace*{0.7cm}%\hfill%
+            \begin{kasten}{\large%
+                References}
+                \fontsize{14}{14}{%
+                \begin{thebibliography}{}%
+                    \bibitem{Zhang2010} %
+                        "Design Criteria of the Bolometer diagnostic %
+                        for steady-state operation of the W7-X stellarator"; %
+                        Zhang, D. et al.; %Burhenn, R., Koenig, %
+                        %R., Giannone, L., Grodzki, P.A., Klein, B., %
+                        %Grosser, L., Baldzuhn, J., Ewert, K., %
+                        %Erckmann, V., Hirsch, M., Laqua, H.P., %
+                        %Oosterbeek, J.W.; %
+                        Review of Scientific Instruments, %
+                        Jan 1st, 2010; DOI:10.1063/1.3483194
+                    \bibitem{Zhang2016} %
+                        "The bolometer diagnostic at stellarator %
+                        Wendelstein 7-X and its first results in the %
+                        initial campaign"; D. Zhang, et al. %
+                        %R. Burhenn, A. Alonso, B. Buttenschön, %
+                        %Y. Feng, L.Giannone, M.Hirsch, U.Höfel, R.%
+                        %Lauber, M.Marquardt, K.Rahbarnia, J.Svensson, 
+                        %G.A.Wurden, R.Brakel, O.Grulke, J.Knauer, R.
+                        %König, H.Laqua, S.Marsen T.Stange, T.%
+                        %Schröder, H.Thomsen, G.M. Weir, A.Werner and %
+                        and the W7-X Team; Stellarator-New 2017
+                    \bibitem{Mast1991} %
+                        "A low noise highly integrated bolometer array %
+                        for absolute measurement of VUV and soft x %
+                        radiation"; K. F. Mast et. al; %
+                        %J. C. Vallet, C. Andelfinger, P. Betzler, H. Kraus, and %
+                        %G. Schramm;%
+                        Review of Scientific Instruments 62, 744 (1991);
+                        DOI: 10.1063/1.11.42078%
+                    \bibitem{VMEC} %
+                        "Steepest descent moment method for three %
+                        dimensional magnetohydrodynamic equilibria"; %
+                        Hirshman, S.P. et al.; %Whitson, J.C.; %
+                        Physics of Fluids 26, 3553, (1983); %
+                        DOI: 10.1063/1.864116%
+                    \bibitem{Wesson} %
+                        "Tokamaks"; Wesson, J.; Clarendon Press, Oxford; 1987%
+                    \bibitem{Feng} %
+                        "Numerical investigation of plasma edge %
+                        transport and limiter heat fluxes in %
+                        Wendelstein 7-X startup plasmas with %
+                        EMC3-EIRENE"; %
+                        Effenberg, F., Feng, Y. et al. %
+                        Nucl. Fusion 57 (2017) 036021 (15pp); %
+                        DOI: 10.1088/1741-4326/aa4f83%
+                    \bibitem{Gianone2002} %
+                        "Derivation of bolometer equations relevant to %
+                        operation in fusion experiments"; %
+                        Gianone, L. et al.; Review of Scientific Instruments; %
+                        20th of November, 2002; DOI: 10.1063/1.1498906%
+                    \bibitem{Zhang2018} %
+                        "Results of the bolometer diagnostic at %
+                        OP 1.a of W7-X"; internal review of the %
+                        physics plan during the %
+                        second operational phase at the stellarator %
+                        W7-X; 28.02.2018%
+                    \bibitem{Yamada2005} %
+                        "Characterization of energy confinement in %
+                        net-current free plasmas using the %
+                        extended International Stellarator Database"; %
+                        H. Yamada et al.; %
+                        INSTITUTE OF PHYSICS PUBLISHING and %
+                        INTERNATIONAL ATOMIC ENERGY AGENCY; %
+                        Nucl. Fusion 45 (2005) 1684¿1693%
+                    \bibitem{FIFOSource} %
+                        ``Introduction to the Queue Data Structure – Array %
+                        Implementation''; %
+                        URL: https://www.thecodingdelight.com/%
+                        queue-data-structure-array-implementation/
+                \end{thebibliography}}%
+            \end{kasten}
+            % QR AND SHIT
+            \vspace*{0.5cm}%
+            \begin{columns}%
+                \centering{%
+                \column{0.7\textwidth}%
+                    \centering{%
+                    \normal{\color{ipp}{%
+                        You want to look at this poster later or get %
+                        in contact with the author?}}}
+                \column{0.2\textwidth}%
+                    \centering{%
+                        \includegraphics[width=0.7\textwidth]%
+                            {figures/header/Posters.png}}%
+            }\end{columns}
+        \end{minipage}%
+        \hfill%
+        \begin{minipage}[t]{0.69\textwidth}%
+            \vfill%
+            \begin{kasten}{\large%
+                Setup}%
+                \vspace*{1.cm}
+                \centering{%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/mm.pdf}}%
+            \end{kasten}%
+            \vspace*{1.0cm}%\hfill%
+            \begin{kasten3}{\large%
+                Outlook}\small{%
+                \begin{columns}
+                    \column{0.5\textwidth}
+                        \begin{itemize}
+                            \item{%
+                                for the upcoming campaign OP2, %
+                                starting early/mid 2020, the system has %
+                                to be technically improved to account for %
+                                longer discharges \& more accurate %
+                                predictions, by e.g. automatic channel and %
+                                scaling selection based off of configuration %
+                                or programing}%
+                            \item{%
+                                extensive analysis of impact of helium %
+                                beam gas fueling on radiation loss in %
+                                comparison to the main valves, since it is %
+                                located closer to the divertor/SOL}%
+                        \end{itemize}}%
+                    \column{0.48\textwidth}
+                        \large{\color{red!75!black}{%
+                        On the horizon:}}\\%
+                        \small{%
+                        Implemented until next campaign will be a setup for %
+                        bayesian \& non-bayesian systems to calculate %
+                        poloidal tomography profiles. This will also %
+                        aid the developement of the introduced %
+                        feedback alogrithm, since one might be able to %
+                        weight the different lines of sight individually %
+                        given the configuration \& plasma shape.}
+                \end{columns}
+            \end{kasten3}
+        \end{minipage}%
+        \vfill%
+    \end{frame}
+\end{document}
+
+% GRAVEYARD
+% \tiny{%
+%     Combination of feedback signals, total $P_{rad,cam}$ %
+%     from post-processing for significance analysis and %
+%     the actual sampled results at the thermal He beam %
+%     diagnostic. (XP-ID: 20181018.39)
+% 
+%     Full offset-corrected and filtered samples for the inboard VBC %
+%     channels. Notice the slight slopes at the beginning of the signal.
+%
+%     Selection of most important plasma parameters, i.e. %
+%     ECRH input power, total radiation loss (P$_{rad}$), core and SOL plasma
+%     temperatures (T$_{e}$), as %
+%     well as line integrated density (n$_{e}$) and stored %
+%     plasma energy (W$_{dia}$).
+%
+%     Contour plot of the fully calibrated and filtered %
+%     channel power, unscaled with plasma/torus volume %
+%     and lines of sight. Note the non-functioning channel %
+%     #7 (6+1) in the HBC array. The channel number is relative %
+%     to the assembly of the indiv. arrays.
+%
+%     Same inboard VBC channels as before, but now in %
+%     units of power by the bolometer equation and filtered %
+%     using the \textit{Savitzki-Golay} 2nd order.
+%
+%     The feedback of course is done fully in parallel with %
+%     the rest of the acquistion, which is why it is shown to %
+%     the right here. Careful tweaking resulted in the best %
+%     possbile temporal resolution of the system while %
+%     keeping SNR and delay to a minimum.
+%
+% }
+%
+% \begin{itemize}
+%     \item{%
+%         testing feedback system internally prior to implementation/usage
+%     }
+%     \item{%
+%         defined solid-state laser pulses with cycle %
+%         frequency \SI{1}{\hertz}~-~\SI{1}{\kilo\hertz} %
+%         and \SI{7}{\milli\watt} power onto detector
+%     }%
+%     \item{%
+%         feedback loop and calculation algorithm limit %
+%         the system to a temporal response of %
+%         $\ge$\SI{14}{\milli\second}
+%     }%
+%     \item{%
+%         mainly due to $F\cdot\Delta t$ where %
+%         $\Delta t$ is the sample rate and $F$ the number %
+%         of \textit{FIFO} array elements to average
+%     }%
+%     \item{%
+%         shallow slope of rising edge in feedback is %
+%         result of detector response and neglected %
+%         dynamic (see bolometer %
+%         equation~\cite{Gianone2002})}
+% \end{itemize}
+%
+% \begin{columns}%
+%     \column{0.5\textwidth}%
+%     \begin{kasten4}{\large%
+%         Prelimanary results}
+%         \small{%
+%         \begin{itemize}%
+%             \item{%
+%                 feedback signals have been successfully commissioned %
+%                 and provided nearly for all experiments throughout the %
+%                 previous campaign OP1.2b}%
+%             \item{%
+%                 focused tweaking of raw scaling factor for %
+%                 a single SOL channel in VBC array w/o %
+%                 averaging~\&~scaling suprisingly sufficient}%
+%         \end{itemize}}%
+%         \vspace*{0.7cm}%
+%         \centering{%
+%             \includegraphics[width=1.0\textwidth]%
+%                 {figures/content/%
+%                  18101032_successfull_feedback.pdf}}%
+%         \vspace*{0.7cm}\newline\tiny{%
+%             XPID: 20181010.32; the thermal helium beam %
+%             diagnostic fueled He according to the %
+%             parametrisation (lime, bottom right) to dial in %
+%             the radiated power loss - implicitly given %
+%             through the feedback $P_{rad}$ - %
+%             \mbox{at $\ge\,0.9P_{ECRH}$.} The oscillations %
+%             are a result of the feedback control via the %
+%             bolometry signal. The goal was to achieve %
+%             stabilized detachment from the divertor %
+%             elements. Note how the radiation front along the %
+%             SOL (observed by \~ch. 3-6~\&~21-26) oscillates %
+%             as well.}
+%         \begin{itemize}\small{%
+%             \item{%
+%                 trying to find possible scaling between %
+%                 input power, density, gas fueling and %
+%                 radiated power loss, e.g. for plasma control}%
+%             \item{%
+%                 making simple 3 parameter %
+%                 $\lbrace a,b,c\rbrace$ intereference %
+%                 assumption like:\vspace*{0.5cm}%
+%                 \begin{align}
+%                     P_{rad}[\text{MW}]&\propto a%
+%                         \lbrace n_{e}%
+%                         [10^{19}\text{m}^{-3}]\rbrace^{b}%
+%                         \lbrace P_{ECRH}[\text{MW}]%
+%                         \rbrace^{c}\nonumber\\
+%                     \text{or}&\nonumber\\
+%                     &\propto a%
+%                         \lbrace f_{H2}%
+%                         [\text{mbar\,s/l}]\rbrace^{b}%
+%                         \lbrace P_{ECRH}[\text{MW}]%
+%                         \rbrace^{c}\nonumber
+%                 \end{align}}
+%         }\end{itemize}%
+%         \vspace*{0.7cm}%
+%         \centering{%
+%             \includegraphics[width=1.0\textwidth]%
+%                 {figures/content/scaling_test.pdf}}%
+%         \vspace*{0.7cm}\newline\tiny{%
+%             Attempt of finding a possible scaling between %
+%             input power, density/main gas fueling in %
+%             H$_{2}$ and radiation loss in arbitrary magnetic %
+%             configurations. Seperated however are the stages %
+%             after the fueling, i.e. right at the %
+%             peak of $P_{rad}$ and when equilibrated %
+%             (steady).}
+%     \end{kasten4}%
+% \end{columns}%
