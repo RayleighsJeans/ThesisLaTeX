@@ -1,0 +1,148 @@
+% IPP presentation style for beamer package
+% Copyright 2014 by M. Borchardt
+% modified 2016 A. Kleiber
+
+\DeclareOptionBeamer{noSt}{\def\beamer@themeipp@w7x{0}}
+\DeclareOptionBeamer{St}{\def\beamer@themeipp@w7x{1}}
+\DeclareOptionBeamer{now7x}{\def\beamer@themeipp@w7xx{0}}
+\DeclareOptionBeamer{w7x}{\def\beamer@themeipp@w7xx{1}}
+\ExecuteOptionsBeamer{St}
+\DeclareOptionBeamer{noEurofusion}{\def\beamer@themeipp@eurofusion{0}}
+\DeclareOptionBeamer{Eurofusion}{\def\beamer@themeipp@eurofusion{1}}
+\ExecuteOptionsBeamer{noEurofusion}
+\ProcessOptionsBeamer
+\mode<presentation>
+
+\useinnertheme[shadow=true]{rounded}
+\usefonttheme{professionalfonts}
+\usecolortheme{whale}
+\def\acknowledgement{\centering\tiny\itshape%
+    This work has been carried out within the
+    framework of the EUROfusion Consortium and has received funding from the
+    Euratom research and training programme 2014-2018 under grant
+    agreement No. 633053. The views and opinions expressed herein do not
+    necessarily reflect those of the European Commission.}
+
+%\definecolor{ipp}{rgb}{0.09,0.56,1.0}
+\definecolor{ipp}{rgb}{0,0.40,0.75}
+\definecolor{ipplight}{rgb}{0.78,0.85,0.95}
+\definecolor{ippdark}{rgb}{0,0.22,0.46}
+\setbeamercolor{section in head/foot}{parent=palette quaternary}
+\setbeamercolor{subsection in head/foot}{parent=palette primary}
+\setbeamercolor{author in head/foot}{parent=section in head/foot}
+\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
+\setbeamercolor{frametitle}{parent=subsection in head/foot}
+\setbeamercolor{frametitle right}{parent=section in head/foot}
+\setbeamercolor{footlinecolor}{bg=ipplight,fg=ipp}
+\setbeamercolor*{structure}{fg=ipp}
+\setbeamercolor*{block title}{fg=white, bg=ipp}
+\setbeamercolor*{block body}{fg=black, bg=ipplight}
+\setbeamercolor*{frametitle}{fg=ipp}
+\setbeamerfont*{frametitle}{series=\bfseries,size=\large,parent=structure}
+\setbeamercolor*{title in head/foot}{bg=ipplight,fg=black}
+\setbeamercolor*{section in toc}{fg=ipp}
+
+\AtBeginDocument{
+  \def\insertframetitle{}
+  \pgfdeclarehorizontalshading{beamer@topshade}{2pt}{%
+    color(0pt)=(ippdark);
+    color(\paperwidth)=(ipp)}
+}
+
+\pgfdeclarehorizontalshading[ipplight,ipplight]%
+                            {beamer@frametitleshade}{\paperheight}{%
+  color(0pt)=(ipplight);
+  color(\paperwidth)=(ipplight)}
+
+\pgfdeclareimage[height=1cm]{LogoIPP}{figures/ipp_logo_color.pdf}
+\pgfdeclareimage[height=1cm]{LogoW7X}{figures/w7x_logo.pdf}
+\pgfdeclareimage[height=.7cm]{LogoEurope}{figures/Flag_of_Europe}
+\pgfdeclareimage[height=.7cm]{LogoEurofusion}%
+                {figures/EUROfusion-LOGO-PANTONE_REFL_BLUE.pdf}
+\pgfdeclareimage[height=.6cm]{LogoHelmholtz}{figures/helmholtz_blau.pdf}
+\pgfdeclareimage[height=1cm]{LogoMinerva}%
+                {figures/minerva_gruen_ganz_ohne_hintergrund.png}
+\pgfdeclareimage[height=1cm]{LogoST}{figures/logo_stel_ipp_blau.pdf}
+
+\usesectionheadtemplate
+  {\hfill\insertsectionhead}
+  {\hfill\color{fg!50!bg}\insertsectionhead}
+
+% no extra frame title
+
+\defbeamertemplate*{frametitle}{ipp theme}{}
+
+                                % Head
+\defbeamertemplate*{headline}{ipp theme}
+{%
+  \leavevmode%
+  \@tempdimb=1.1cm%
+  \begin{pgfpicture}{.02pt}{0pt}{\paperwidth}{\@tempdimb}
+    \usebeamercolor{frametitle right}
+    \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\@tempdimb}}
+    \pgfusepath{clip}
+    \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+  \end{pgfpicture}
+  \ifnum\theframenumber=1%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0ex]{frametitle}
+      \vbox to\@tempdimb{\vfil%
+        \hspace*{1ex}\pgfuseimage{LogoEurope}\hspace*{\fill}\vfil}%
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0ex]{frametitle}
+      \vbox to\@tempdimb{\vfil%
+        \hspace*{14ex}\pgfuseimage{LogoHelmholtz}\hspace*{\fill}\vfil}%
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0ex]{frametitle}
+      \vbox to\@tempdimb{\vfil%
+        \hspace*{33ex}\pgfuseimage{LogoMinerva}\hspace*{\fill}\vfil}%
+    \end{beamercolorbox}
+    \ifnum\beamer@themeipp@eurofusion=1%
+      \begin{beamercolorbox}[wd=\paperwidth,ht=0ex]{frametitle}
+        \vbox to\@tempdimb{\vfil%
+          \hspace*{44ex}\pgfuseimage{LogoEurofusion}\hspace*{\fill}\vfil}%
+      \end{beamercolorbox}
+    \fi
+  \else
+    \ifnum\beamer@themeipp@w7xx=1%
+      \begin{beamercolorbox}[wd=\paperwidth,ht=0ex]{frametitle}
+        \vbox to\@tempdimb{\vfil\hspace*{1ex}\pgfuseimage{LogoW7X}%
+          \hspace*{\fill}\vfil}
+      \end{beamercolorbox}
+   \fi
+  \fi
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0ex]{frametitle}
+    \vbox to\@tempdimb{\vfil%
+      \hspace*{\fill}\pgfuseimage{LogoIPP}\hspace*{1ex}\vfil}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0ex]{frametitle}%
+    \vbox to\@tempdimb{\vfil%
+      \ifnum \beamer@themeipp@w7xx=1%
+        \hspace*{6em}%
+      \else%
+        \hspace*{2em}%
+      \fi%
+      \usebeamerfont{frametitle}\hbox{\insertframetitle}%
+      \hspace*{\fill}\vfil}
+  \end{beamercolorbox}
+  \vskip-0.2pt
+  \hbox to\paperwidth{\pgfuseshading{beamer@topshade}}
+  \vskip-2pt
+  \vskip-2ex
+}
+
+\defbeamertemplate*{footline}{ipp theme}
+{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
+      leftskip=.3cm,rightskip=.3cm]{title in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor\hspace*{\fill}
+      \usebeamerfont{title in head/foot}\insertshorttitle\hspace*{2em}
+      \insertframenumber{} / \inserttotalframenumber
+    \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+
+\mode
+<all>

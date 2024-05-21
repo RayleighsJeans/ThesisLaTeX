@@ -1,0 +1,1070 @@
+\documentclass{beamer}
+
+% use predefined IPP style
+% options: St,noSt : with/without stellarator theory logo
+% options: Eurofusion, noEurofusion : with/without Eurofusion logo
+\useoutertheme[Eurofusion, w7x]{ippw7x}
+
+% don't show navigation symbols
+\beamertemplatenavigationsymbolsempty
+% show navigation symbols
+%\setbeamertemplate{navigation symbols}[only frame symbol]{}
+
+% extra packages
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amssymb,stackrel}
+\usepackage{changepage}
+\usepackage{tikz}
+\usepackage{array}
+
+\newcommand{\backgroundlogo}{%
+    \tikz[overlay,remember picture]{%
+    \node[at=(current page.west)] (source) {};%
+    \node[opacity = 0.02] {%
+    \includegraphics[height=1.\paperheight]%
+        {figures/header/minerva}%
+    }%
+  }
+}
+
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{commath}
+\usepackage{color}
+\usepackage{media9}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{labelformat=empty,labelsep=none}
+
+\usepackage[%
+    style=authortitle,%
+    % style=verbose,%
+    % autocite=footnote,%
+    maxbibnames=15,%
+    maxcitenames=15,%
+    % babel=hyphen,%
+    % hyperref=true,%
+    % abbreviate=false,%
+    backend=bibtex%
+    % mcite%
+    % labelyear
+    ]{biblatex}
+\renewcommand*{\bibfont}{\footnotesize}
+
+\renewcommand{\arraystretch}{1.5}%
+
+\newcommand{\backupend}{\setcounter{framenumber}{\value{finalframe}}}
+\newcommand{\backupbegin}{\newcounter{finalframe}%
+  \setcounter{finalframe}{\value{framenumber}}}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+\newenvironment{variableblock}[3]{%
+    \setbeamercolor{block body}{#2}
+    \setbeamercolor{block title}{#3}
+    \begin{block}{#1}}{\end{block}}
+
+\begin{document}
+
+% title of the presentation
+% short title will be shown in the footer
+\title[HEPP progress talk]{%
+    Real time feedback on plasma radiation at W7-X}
+
+% authors of the presentation
+% lecturer (and maybe place and date) will be shown in the footer
+\author[P.Hacker]{%
+    P.Hacker\inst{1, 2}, F.Reimold\inst{1}, %
+    D.Zhang\inst{1}}  % , R.Burhenn\inst{1}, T.Klinger\inst{1}}
+
+% institutes of the authors
+\institute[MPI for Plasmaphysics Greifswald]{%
+    \inst{1}%
+    Max-Planck-Institute for Plasmaphysics, %
+    Wendelsteinstr. 1, Greifswald, Germany \and%
+    \inst{2}%
+    University of Greifswald, Rubenowstr. 6, Greifswald, Germany}
+
+% set date of the talk
+\date{25th of Sept., 2020}
+
+
+% first frame
+\begin{frame}
+    % show title of talk and authors
+    \titlepage%
+    \backgroundlogo%
+
+    % show Logos Helmholtz, Max-Planck and EUROfusion
+    \begin{minipage}[]{0.35\textwidth}
+        \includegraphics[height=6ex]%
+        {figures/header/2017_H_Logo_CMYK_untereinander_EN}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[]{0.2\textwidth}
+        \begin{center}
+            \includegraphics[height=4ex]{figures/header/minerva}
+        \end{center}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[]{0.35\textwidth}
+        \begin{flushright}
+            \includegraphics[height=5ex]%
+            {figures/header/EUROfusion-LOGO-PANTONE_REFL_BLUE}
+        \end{flushright}
+    \end{minipage}
+
+    % show acknoledgement from EUROfusion
+    \acknowledgement
+\end{frame}
+
+\begin{frame}{Contents}
+    % display all sections
+    \backgroundlogo%
+    \tableofcontents%
+\end{frame}%
+
+\section{Bolometer Diagnostic}%
+\begin{frame}{Bolometer}%
+
+    \begin{block}{What is the Bolometer at W7-X?}%
+        \vspace*{0.25cm}
+        -- two camera system using metal film resistive %
+        detector arrays to measure plasma radiation %
+        based on thermal effects%
+    
+        %\flushleft{\color{ipp}\underline{Goals:}}%
+        \begin{itemize}%
+            \item[$\Rightarrow$]{%
+                measure global \& local power balance, %
+                investigation of radiation power loss, %
+                mainly from impurities, and its distribution}%
+        \end{itemize}%
+    \end{block}%
+
+    \begin{columns}%
+        \column{0.4\textwidth}%
+        \centering{%
+            \color{ipp}%
+            \textbf{\underline{HBCm}}%
+        }%
+        \column{0.4\textwidth}%
+        \centering{%
+            \color{ipp}%
+            \textbf{\underline{VBCr/VBCl}}%
+        }%
+    \end{columns}%
+    \begin{figure}%
+        \centering{%
+            \includegraphics[width=.8\textwidth]%
+            {figures/content/linesofsight_in_vessel}%
+            \caption{\tiny{%
+                    (Lines of sight with individual apertures, %
+                    retracted into the vacuum vessel, D.Zhang~et~al.)}%
+            }
+        }%
+    \end{figure}%
+
+\end{frame}%
+
+\section{Calculations}
+\begin{frame}{Calculations}
+
+    \begin{block}{Plasma Radiation}
+        \only<1-3>{%
+            \begin{align}
+                P_{rad}\propto\sum_{Z} %
+                n_{e}\cdot n_{Z}\cdot L_{Z}\nonumber%
+            \end{align}
+        }%
+
+        \only<2-3>{%
+            \vspace*{-0.5cm}
+            \begin{align}
+                P_{rad,bolo}\,\,=\frac{\color{red}{V_{P,tor}}}%
+                {\color{ipp}{V_{cam}}}\cdot%
+                \sum_{ch}\frac{P_{ch}\cdot\color{ipp}{V_{ch}}}%
+                {K_{ch}}\nonumber%
+            \end{align}
+        }%
+
+        \only<3>{%
+            \vspace*{-0.5cm}
+            \flushleft{%
+                \color{ippdark}\underline{%
+                    Bolometer equation:}}%
+            \begin{align}
+                P_{ch}=F_{ch}\cdot\left(\Delta U+f_{\tau,ch}%
+                \frac{\diff(\Delta U)}{\diff t}\right)\nonumber
+            \end{align}
+        }%
+
+        % \only<4-5>{%
+        %     \flushleft{%
+        %         \color{ippdark}\underline{%
+        %             Bolometer equation:}}%
+        %     \begin{align}
+        %         P_{ch} & =F_{ch}\cdot\left(\tau_{ch}    %
+        %         \frac{\diff(\Delta U)}{\diff t}+%
+        %         f_{\tau}\cdot(\Delta U)\right)\nonumber \\%
+        %                & \approx                        %
+        %         25.737\cdot\frac{\text{W}}{\text{V}}\left(%
+        %         \diff(\Delta U_{ch})+0.014\cdot\Delta %
+        %         U_{ch}\right)\nonumber%
+        %     \end{align}
+        % }
+
+    \end{block}
+
+    \only<1>{%
+        \begin{itemize}
+            \item[$>$]{%
+                  $L_{Z}$: total radiation coefficient, %
+                  incl. line \& continuum radiation %
+                  of impurity $Z$\linebreak%
+                  \dots $=f\left(T_{e},\,\,T_{i},\,\,T_{Z},\,\,wall%
+                      \,\,material/conditions,\,\,\dots\right)$}%
+        \end{itemize}
+    }%
+
+    % \only<2>{%
+    %     \begin{itemize}%
+    %         \item[$>$]{%
+    %               $V_{ch}$: line-of-sight (\tilt{LoS}) %
+    %               volume of detector $ch$}%
+    %         \item[$>$]{%
+    %               $V_{P, tor}$: estimated radiation volume where %
+    %               emissivity is \tilt{not} negligible}%
+    %         \item[$>$]{%
+    %               $V_{cam}=\sum_{ch}V_{ch}$}%
+    %         \item[$>$]{%
+    %               $K_{ch}$: $\propto L_{ch}$ LoS length, %
+    %               geometrical factor for channel $ch$}%
+    %     \end{itemize}
+    % }
+    
+    \only<2>{%
+        \begin{figure}%
+            \centering%
+            \includegraphics[width=.6\textwidth]%
+                {figures/content/hbcm_63_to_153_3d.pdf}%
+            \caption{\tiny{%
+                (LoS of HBCm in 90$^\circ$ subsection of magnetic %
+                standard configuration fluxsurfaces; P.~Hacker~et~al)}}%
+        \end{figure}%
+    }
+
+    \only<3>{%
+        \begin{itemize}%
+            \item[$>$]{%
+                  $\Delta U\propto\Delta T$ the change in absorber %
+                  temperature}%
+            \item[$>$]{%
+                $f_{\tau,ch}$ cooling factor of detector}
+            % \item[$>$]{%
+            %       $F_{ch}=sensitivity\left(\text{detector %
+            %       properties~\dots}\right)$}
+            % \item[$>$]{%
+            %       $f_{\tau}=correction\left(\text{cable length, %
+            %       impedance, heat capacity~\dots}\right)$}
+            % \item[$>$]{%
+            %       $\tau_{ch}=$ cooling time of absorber}
+        \end{itemize}
+    }
+
+    % \only<4>{%
+    %     \begin{itemize}
+    %         \item[$>$]{%
+    %               channel \& cabel resistances %
+    %               $R_{ch}\approx\text{\SI{1}{\kilo\ohm}}$, %
+    %               $R_{cab}\approx\text{\SI{40}{\ohm}}$}%
+    %         \item[$>$]{%
+    %               cooling/relaxation time of the gold foil %
+    %               $\tau_{ch}\approx\text{\SI{110}{\milli\second}}$}%
+    %         \item[$>$]{%
+    %               heat capacity $\kappa_{ch}\approx%
+    %                   \text{\SI{0.8}{\milli\watt/\kilo\ohm}}$}%
+    %         \item[$>$]{%
+    %               scaling $f_{\tau}\approx1$}%
+    %         \item[$>$]{%
+    %               temporal sampling in measurement %
+    %               \SI{1.6}{\milli\second}}%
+    %     \end{itemize}
+    % }
+
+    % \only<5>{%
+    %     \vspace*{0.5cm}
+    %     \centering{%
+    %         \color{ipp}{\textbf{%
+    %                 $\Rightarrow\,\,$%
+    %                 for non-collapsing plasma scenarios: %
+    %                 $\Delta U\approx\text{\SI{e-3}{\volt}}$\\%
+    %                 signal derivative for sampling time %
+    %                 \SI{0.8}{\milli\second}: %
+    %                 $\diff(\Delta U)\approx\text{\SI{e-5}{\volt}}$}}}%
+    % }%
+
+\end{frame}%
+
+\section{Feedback during OP1.2b}%
+\begin{frame}{Feedback: Goals}%
+
+    \begin{variableblock}{Goal}{%
+            bg=example text.fg!20!bg,fg=black}{% body
+            bg=example text.fg, fg=white}% title
+        \centering%
+        Providing feedback signal for \tilt{fast feedback gas valve} %
+        diagnostic through fast (\SI{5}{\milli\second}) calculation of %
+        $P_{rad}$ estimate
+    \end{variableblock}%
+
+    \begin{block}{Investigations}
+        \begin{itemize}
+            \item[1.-]{%
+                adjust divertor heat loads, investigate radiation %
+                regimes, dedicated detachment}
+            \item[2.-]{find relationship between gas puff and %
+                radiation power loss for both intrinsic and extrinsic %
+                impurities}
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Feedback: Achievement}
+
+    \begin{minipage}{0.48\textwidth}%
+        \begin{block}{Prediction}%
+            \begin{itemize}%
+                \item[$>$]{%
+                    fast radiation power proxy for subset $S$ %
+                    of channel selection:}%
+            \end{itemize}%
+
+            \vspace*{-0.3cm}
+            $$P_{pred}=f\cdot%
+                \frac{V_{P,tor}}{V_{S}}\sum_{S}%
+                \frac{V_{ch}\cdot P_{ch}}{K_{ch}}$$%
+        \end{block}%
+    
+    \end{minipage}\hfill%
+    \begin{minipage}{0.48\textwidth}%
+                
+        % \only<1>{%
+        %     \begin{figure}%
+        %         \includegraphics[width=.9\textwidth]%
+        %             {figures/content/fsez_lofs2d.pdf}%
+        %         \caption{\tiny{%
+        %             \centering(VBCr/l LoS subset $S$; P.Hacker~et~al.)}}%
+        %     \end{figure}%
+        % }%
+        
+        \begin{figure}%
+            \includegraphics[width=.9\textwidth]%
+                {figures/content/overview20181010_032_prad_fb_qsq_div}%
+            \caption{\tiny{\centering%
+                \centering(Overview plot, $P_{rad}$, $P_{pred}$, valve %
+                actuation and integrated divertor target heat load; %
+                P.Hacker~et~al.)}}%
+        \end{figure}%
+
+    \end{minipage}%
+\end{frame}%
+
+\section{Sensitivity}%
+\begin{frame}{Feedback: Sensitivity}%
+
+    \begin{variableblock}{Problem}{%
+            bg=alerted text.fg!20!bg, fg=black}{% body
+            bg=alerted text.fg, fg=white}% title
+        \centering%
+        What subset of channels and/or cameras S yields the best %
+        prediction and feedback performance?
+    \end{variableblock}%
+
+    \begin{block}{Response}%
+        \begin{itemize}%
+            % \item[$>$]{%
+            %     due to time constraints during experimental campaign no %
+            %     prior testing of channel selection for feedback possible}%
+            \item[$>$]{%
+                subset $S$ of 3 - 7 channels with LoS both tangential to %
+                \tilt{scrape-off layer} (SOL) and through core}%
+            \item[$>$]{%
+                no more than a selection of 9 possible %
+                $\Rightarrow$ calculation too slow}%
+        \end{itemize}%
+    \end{block}%
+    
+    \begin{columns}%
+        \column{0.3\textwidth}%
+        \centering{%
+            \begin{figure}%
+                \includegraphics[width=1.\textwidth]%
+                    {figures/content/ch_selection_1_17_30_g}%
+            \end{figure}}%
+        \column{0.3\textwidth}%
+        \centering{%
+            \begin{figure}%
+                \includegraphics[width=1.\textwidth]%
+                    {figures/content/ch_selection_3_13_27_g}%
+            \end{figure}}%
+        \column{0.3\textwidth}%
+        \centering{%
+            \begin{figure}%
+                \includegraphics[width=1.\textwidth]%
+                    {figures/content/ch_selection_5_15_25_r}%
+            \end{figure}}%
+    \end{columns}%
+    \centering{\tiny{%
+        Examples of LoS selections $S$ from HBCm %
+        (P.Hacker~et~al.)}}%
+
+\end{frame}%
+
+\begin{frame}{Feedback: Sensitivity}%
+    \begin{block}{Prediction Quality Metric}%
+            
+        \only<1>{%
+            \begin{itemize}%
+                \item[$>$]{%
+                    prediction from set $S$ using Bolometer equation %
+                    $P_{pred,S}$ to define a weighted, normalised %
+                    cost function:}%
+            \end{itemize}%
+        }%
+
+        \centering%
+        \begin{tabular}{cc}
+
+            \only<1>{%
+                \underline{deviation:} & %
+                $d_{S}=\norm{P_{rad,cam}(t)-P_{pred,S}(t)}$\\%
+            }%
+
+            \only<1-2>{%
+                \underline{weighted:} & %
+                $\varepsilon_{S}(t)=%
+                    \left\{\begin{array}{ll}%
+                    1-\frac{d_{S}(t)}{P_{rad}(t)}&,%
+                        \,\,d_{S}(t)<P_{rad}(t)\\%
+                    0&,\text{ else}
+                    \end{array}\right\}$\\%
+                \underline{quality:} & %
+                $\vartheta_{S}=\int_T\varepsilon_{S}(t)\diff t$%
+            }%
+
+        \end{tabular}%
+
+        \only<1>{%
+            \vspace*{0.3cm}%
+            \begin{itemize}%
+                \item[$>$]{%
+                    e.g. $\varepsilon_{HBC}(t)=1$ and consequently %
+                    $\vartheta_{HBC}=1$}%
+            \end{itemize}%
+        }%
+
+    \end{block}%
+
+    \only<2>{%
+        \begin{figure}%
+            \includegraphics[width=.65\textwidth]%
+                {figures/content/wghtd_dev_C[_5_16_27]}%
+            \caption{\tiny{%
+                (XP: 20181010.032, $P_{rad}$, %
+                $P_{pred}$ and cost function for one subset of %
+                channels with $n=3$; P.Hacker~et~al.)}}%
+        \end{figure}%
+    }%
+
+\end{frame}%
+
+\begin{frame}{Feedback: Statistics}%
+
+    \begin{block}{Statistics: Example}%
+
+        \only<1-2>{%
+            \begin{itemize}
+                \item[$>$]{%
+                    pre-selecting combinatory space for subsets, %
+                    i.e. only LoS from SOL and core regions}%
+                \item[$>$]{%
+                    $N_{n}$ the total number of tested channel subsets %
+                    $S_{n}$ with prediction consisting of $n$ individual %
+                    LoS}%
+            \end{itemize}%
+        }%
+
+        \only<2>{%
+            \begin{itemize}
+                \item[$>$]{
+                    be $N^{n}_{ch}$ the amount of subsets $S_{n}$ that %
+                    include channel/LoS $ch$}%
+            \end{itemize}
+        }%
+
+        \only<4>{%
+            \begin{itemize}
+                \item[$>$]{%
+                    base quality of channel combinations %
+                    $\approx60$\% from educated pre-selection}%
+                \item[$>$]{%
+                    total sensitivity at minimum 60\% %
+                    for individual contributions from LoS to predictions}%
+            \end{itemize}
+        }%
+
+        \only<5>{%
+            \begin{itemize}
+                \item[$>$]{%
+                    maximum sensitivity around SOL or %
+                    \tilt{last closed fluxsurface}}%
+                \item[$>$]{%
+                    combination of \tilt{best} channels in one %
+                    subset can achieve up to %
+                    $\vartheta_{S}\approx0.95$ without %
+                    any further proportionality factors}%
+            \end{itemize}
+        }%
+
+        \only<2-3>{%
+            \quad\quad\quad%
+            \underline{total sensitivity:}%
+            \begin{align}%
+                \Omega_{ch}^{n}=%
+                \frac{1}{N^{n}_{ch}}\sum_{S_{ch}}^{N}%
+                \vartheta_{HBC,S^{ch}}\nonumber%
+            \end{align}%
+        }%
+
+    \end{block}%
+
+    \only<1>{%
+        \begin{figure}%
+            \includegraphics[width=.7\textwidth]%
+                {figures/content/wghtd_dev_spectrum_C3HBCm}%
+            \caption{\tiny{%
+                (XP: 20181010.032, $P_{rad}$, %
+                $P_{pred}$ and cost function for one subset of %
+                channels with $n=3$; P.Hacker~et~al.)}}%
+        \end{figure}%
+    }%
+
+    \only<3-5>{%
+        \begin{columns}
+            \column{0.33\textwidth}%
+            \begin{figure}%
+                \includegraphics[width=1.\textwidth]%
+                    {figures/content/ch_selection_comb_23}%
+                \caption{\tiny{%
+                    (Selections $S$ including \# 23)}}%
+            \end{figure}%
+
+            \column{0.65\textwidth}%
+            \begin{figure}%
+                \includegraphics[width=1.\textwidth]%
+                    {figures/content/spectrum_analysis_weighted_deviation}%
+                \caption{\tiny{%
+                    (XP: 20181010.032, $\Omega_{ch}^{3}$; P.Hacker~et~al.)}}%
+            \end{figure}%
+        \end{columns}
+    }
+
+\end{frame}%
+
+\section{STRAHL Simulation}%
+\begin{frame}{Simulation of Radiation}%
+
+    \begin{block}{Consequences: Radiation Fraction}%
+        \only<1>{%
+            \begin{itemize}
+                \item[$>$]{%
+                    feedback controlled experiment reaches target of %
+                    $f_{rad}=P_{rad}/P_{ECRH}\approx1.0$ %
+                    when seeded by fast feedback gas valve}%
+                \item[$>$]{%
+                    increasing radiation power loss until cycling between %
+                    $f_{rad}\sim0.9$ \& $1.0$}%
+            \end{itemize}
+        }%
+
+        \only<2>{%
+            \begin{itemize}
+                \item[$>$]{%
+                    line-integrated chordal profile shows majority of %
+                    radiation coming from region close to separatrix or SOL}%
+                \item[$>$]{%
+                    increasing radiation fraction shows inward shift of %
+                    brightness away from last closed fluxsurface %
+                    $\Rightarrow$ \color{red}{Why?}}%
+            \end{itemize}%
+        }%
+    \end{block}%
+
+    \only<1>{%
+        \begin{figure}%
+            \includegraphics[width=.9\textwidth]%
+                {figures/content/radiational_fraction_%
+                 20181010_032_edge_top}%
+            \caption{\tiny{%
+                (XP: 20181010.032; P.Hacker~et~al.)}}%
+        \end{figure}%
+    }%
+    
+    \only<2>{%
+        \begin{figure}%
+            \includegraphics[width=.8\textwidth]%
+                {figures/content/chordal_profile_HBCm_20181010_032}%
+            \caption{\tiny{%
+                (XP: 20181010.032, chordal brightness %
+                (i.e.~power density) of HBCm at fix radiation %
+                fractions; P.Hacker~et~al.)}}%
+        \end{figure}%
+    }%
+
+\end{frame}%
+
+\begin{frame}{Simulation of Radiation}%
+
+    \begin{block}{Intrinsic Impurities: STRAHL Results}%
+
+        \only<1>{%
+            \begin{itemize}%
+                \item[$>$]{%
+                    suspecting intrinsic impurity $C$ %
+                    ionisation to be very sensitive to separatrix %
+                    electron temperature \& density}%
+                \item[$>$]{%
+                    calculating radial transport $\Gamma_{i,Z}$ %
+                    and emission of impurity $i$ and ion-stage %
+                    $Z$ solving continuity equation %
+                    using ansatz of anomalous diffusivities %
+                    $D^{*}$ and radial drift velocities $v^{*}$:}%
+            \end{itemize}
+
+            \vspace*{-0.3cm}%
+            \begin{align}%
+                \frac{\partial n_{i,Z}}{\partial t}=%
+                    &-\nabla\,\Gamma_{i,Z}+Q_{i,Z}\nonumber\\%
+                =&\frac{1}{r}\frac{\partial}{\partial r}r\left(%
+                    D^{*}\frac{\partial n_{i,Z}}{\partial r}-%
+                    v^{*}n_{i,Z}\right)+Q_{i,Z}\nonumber%
+            \end{align}%
+        }%
+
+        \only<2>{%
+            \begin{itemize}%
+                \item[$>$]{%
+                    radial line radiation profiles for $C^{X+}$ ions in %
+                    coronal equilibrium for $f_{rad}=0.9$ and $1.0$ %
+                    experience inward shift}%
+            \end{itemize}
+        }%
+
+    \end{block}
+
+    \only<2>{%
+        \vspace*{.25cm}%
+        \begin{minipage}{0.49\textwidth}%
+            \begin{figure}%
+                \includegraphics[width=1.\textwidth]%
+                    {figures/content/%
+                     compare_ne_Te_93_94_edge}
+            \end{figure}%
+        
+        \end{minipage}%
+        %\hfill%
+        \begin{minipage}{0.49\textwidth}%
+
+            \begin{figure}%
+                \includegraphics[width=1.\textwidth]%
+                    {figures/content/%
+                     compare_strahl_rad_93_94_edge_bottom}
+            \end{figure}%
+        \end{minipage}%
+        \\\centering{\tiny{%
+            (Input profiles and ionization radiation for %
+            $C^{X+}$ calculated by STRAHL for %
+            $f_{rad}\in\left[0.9,\,1.0\right]$; P.Hacker~et~al.)}}%
+    }%
+
+\end{frame}%
+
+\section{Tomography}%
+\begin{frame}{Tomography}
+
+    \begin{block}{Method: Mimimum Fischer Regularization}
+
+        \only<1-2>{%
+            \centering%
+            \begin{tabular}{cc}
+        
+                \only<1-2>{%
+                    \underline{general problem:} & %
+                    $T\ast g=f_{m}$\\%
+                    \underline{regularization:} & %
+                    $\underset{g}{\text{argmin}}%
+                        \left[\left(T\ast g-f_{m}\right)^{2}%
+                    +\lambda\mathcal{R}\right]$\\%
+                }%
+
+                \only<2>{%
+                    & \\%
+                    \underline{Fisher regularization:} & %
+                    $\underset{g}{\text{solve}}%
+                        \left(T^{\intercal}T+\lambda%
+                        \mathcal{H}^{(n)}\right)\ast g^{(n+1)}=%
+                        T^{\intercal}\ast f_{m}$\\%
+                    & %
+                    $\mathcal{H}^{(n)}=\nabla^{\intercal}_{x}\ast%
+                    W^{(n)}\ast\nabla_{x}+\nabla^{\intercal}_{y}\ast%
+                    W^{(n)}\ast\nabla_{y}$%
+                }%
+            \end{tabular}%
+        }%
+
+    \end{block}
+
+    \only<1>{%
+        \begin{itemize}%
+            \item[$>$]{%
+                  $T$: LoS geometry information on %
+                  inversion grid}%
+            \item[$>$]{%
+                  $f_{m}$: line intgrated power for each channel}%
+            \item[$>$]{%
+                  $g$: matrix containing radiation %
+                  per channel \& pixel}%
+            \item[$>$]{%
+                $\lambda\in{\rm I\!R}$: regularization parameter}%
+            \item[$>$]{%
+                $\mathcal{R}$: regularization functional, %
+                constraint to solution}
+        \end{itemize}%
+    }%
+    
+    \only<2>{%
+        \begin{itemize}%
+            \item[$>$]{%
+                  $(\cdot)^{(n)}$: iterative process to find \tilt{argmin}}%
+            \item[$>$]{%
+                  $W^{(n)}$: \tilt{gradient based} weighting matrix}%
+        \end{itemize}%
+    }%
+
+\end{frame}
+
+\begin{frame}{Tomography: STRAHL Results}
+
+    \begin{columns}%
+        \column{0.6\textwidth}%
+
+            \begin{figure}%
+                \only<1>{%
+                    \centering%
+                    \color{ipp}{\textbf{\underline{$f_{rad}\sim 0.33$}}}\\%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/STRAHL/%
+                         phantom_v_tomo2D_strahl_ID00091_%
+                         aniM3_2_2_nigs1_times011}\\%
+                }%
+                \only<2>{%
+                    \centering%
+                    \color{ipp}{\textbf{\underline{$f_{rad}\sim 0.66$}}}\\%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/STRAHL/%
+                         phantom_v_tomo2D_strahl_ID00092_%
+                         aniM3_2_2_nigs1_times011}\\%
+                }%
+                \only<3>{%
+                    \centering%
+                    \color{ipp}{\textbf{\underline{$f_{rad}\sim 0.9$}}}\\%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/STRAHL/%
+                         phantom_v_tomo2D_strahl_ID00093_%
+                         aniM3_2_2_nigs1_times011}\\%
+                }%
+                \only<4>{%
+                    \centering%
+                    \color{ipp}{\textbf{\underline{$f_{rad}\sim 1.0$}}}\\%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/STRAHL/%
+                         phantom_v_tomo2D_strahl_ID00094_%
+                         aniM3_2_2_nigs1_times011}\\%
+                }%
+            \end{figure}%
+
+        \column{0.45\textwidth}%
+
+            \vspace*{-0.4cm}
+            \begin{figure}%
+                \only<1-4>{%
+                    \centering%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/STRAHL/rad/new/%
+                         phantom_v_tomo_profiles_strahl_ID00091_%
+                         aniM3_2_2_nigs1_times011}%
+                    \\%
+                }%
+                \only<2-4>{%
+                    \centering%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/STRAHL/rad/new/%
+                         phantom_v_tomo_profiles_strahl_ID00092_%
+                         aniM3_2_2_nigs1_times011}%
+                    \\%
+                }%
+                \only<3-4>{%
+                    \centering%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/STRAHL/rad/new/%
+                         phantom_v_tomo_profiles_strahl_ID00093_%
+                         aniM3_2_2_nigs1_times011}%
+                    \\%
+                }%
+                \only<4>{%
+                    \centering%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/STRAHL/rad/new/%
+                         phantom_v_tomo_profiles_strahl_ID00094_%
+                         aniM3_2_2_nigs1_times011}%
+                }%
+            \end{figure}%
+
+        \end{columns}
+
+\end{frame}%
+
+\begin{frame}{Tomography: Experiment 20181010.032}
+
+    \begin{columns}
+        \column{0.6\textwidth}%
+            \begin{figure}%
+                \only<1>{%
+                    \centering%
+                    \color{ipp}{\textbf{\underline{$f_{rad}\sim 0.33$}}}\\%
+                    \vspace{0.3cm}%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/20181010_032/%
+                         tomo_20181010_032aniM4__2_035__nT13_nW2_%
+                         reduced_nigs1_sN8_30x20x150_135_065_mfr1D}%
+                }%
+                \only<2>{%
+                    \centering%
+                    \color{ipp}{\textbf{\underline{$f_{rad}\sim 0.66$}}}\\%
+                    \vspace{0.3cm}%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/20181010_032/%
+                         tomo_20181010_032aniM4__2_035__nT13_nW2_%
+                         reduced_nigs1_sN8_30x20x150_135_165_mfr1D}%
+                }%
+                \only<3>{%
+                    \centering%
+                    \color{ipp}{\textbf{\underline{$f_{rad}\sim 0.9$}}}\\%
+                    \vspace{0.3cm}%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/20181010_032/%
+                         tomo_20181010_032aniM4__2_035__nT13_nW2_%
+                         reduced_nigs1_sN8_30x20x150_135_245_mfr1D}%
+                }%
+                \only<4>{%
+                    \centering%
+                    \color{ipp}{\textbf{\underline{$f_{rad}\sim 1.0$}}}\\%
+                    \vspace{0.3cm}%
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/20181010_032/%
+                         tomo_20181010_032aniM4__2_035__nT13_nW2_%
+                         reduced_nigs1_sN8_30x20x150_135_305_mfr1D}%
+                }%
+            \end{figure}%
+
+        \column{0.45\textwidth}%
+        
+            \vspace*{-0.4cm}
+            \begin{figure}%
+                \only<1-4>{%
+                    \centering%
+                    \includegraphics[width=.85\textwidth]%
+                        {figures/content/20181010_032/rad/new/%
+                         tomo_20181010_032aniM4_2_035_nT13_nW2_%
+                         reduced_nigs1_sN8_30x20x150_135_065_%
+                         mfr1D_XP_radial_profile}
+                }%
+                \only<2-4>{%
+                    \centering%
+                    \includegraphics[width=.85\textwidth]%
+                        {figures/content/20181010_032/rad/new/%
+                         tomo_20181010_032aniM4_2_035_nT13_nW2_%
+                         reduced_nigs1_sN8_30x20x150_135_165_%
+                         mfr1D_XP_radial_profile}\\%
+                }%
+                \only<3-4>{%
+                    \centering%
+                    \includegraphics[width=.85\textwidth]%
+                        {figures/content/20181010_032/rad/new/%
+                         tomo_20181010_032aniM4_2_035_nT13_nW2_%
+                         reduced_nigs1_sN8_30x20x150_135_245_%
+                         mfr1D_XP_radial_profile}\\%
+                }%
+                \only<4>{%
+                    \centering%
+                    \includegraphics[width=.85\textwidth]%
+                        {figures/content/20181010_032/rad/new/%
+                         tomo_20181010_032aniM4_2_035_nT13_nW2_%
+                         reduced_nigs1_sN8_30x20x150_135_305_%
+                         mfr1D_XP_radial_profile}\\%
+                }%
+            \end{figure}%
+        \end{columns}%
+
+\end{frame}%
+
+\begin{frame}{Conclusions}%
+
+    \only<1>{%
+        \begin{variableblock}{Sensitivity Study}{%
+                fg=black, bg=orange!30!white}{%
+                fg=black, bg=orange!50!white}%
+            \begin{itemize}%
+                \item[$>$]{%
+                    benchmarks on different %
+                    experiments, cost metrics and camera/channels %
+                    subsets (up to $n=9$) show similar results}
+                \item[$>$]{%
+                    Bolometer most sensitive to changes %
+                    in radiation distribution along separatrix %
+                    and SOL}%
+            \end{itemize}%
+        \end{variableblock}%
+    }%
+
+    \only<1>{%
+        \begin{variableblock}{Simulation and Inversion}{%
+                fg=black, bg=orange!30!white}{%
+                fg=black, bg=orange!50!white}%
+            \begin{itemize}%
+                % \item[$>$]{%
+                %     sensitivity analysis in STRAHL input %
+                %     parameters other than separatrix temperature %
+                %     and densitiy yields small changes in $P_{rad}$ profile}%
+                \item[$>$]{%
+                    STRAHL shows strong radial dependence of %
+                    intrinsic impurity radiation regarding %
+                    separatrix electron temperature and density}%
+                \item[$>$]{%
+                    $C^{X+}$ radiation close to seperatrix %
+                    indicator for regimes of detachment}%
+                \item[$>$]{%
+                    need 2D inversion of radiation distribution %
+                    to validate results and to understand %
+                    profiles}%
+            \end{itemize}%
+        \end{variableblock}
+    }%
+
+\end{frame}%
+
+\begin{frame}
+    \backgroundlogo%
+    \centering%
+    \color{ipp}{%
+        Thank you for your attention!}%
+\end{frame}
+
+\begin{frame}%
+    \backgroundlogo%
+\end{frame}
+
+% BACKUP
+\appendix
+\backupbegin
+
+\begin{frame}{Bibliography}
+    \backgroundlogo%
+
+    \only<1>{\footnotesize%
+        \begin{thebibliography}{}%
+            \bibitem{Zhang2010} "Design Criteria of the Bolometer diagnostic %
+            for steady-state operation of the W7-X %
+            stellarator"; %
+            Zhang, D. et al.; %
+            Review of Scientific Instruments, %
+            Jan 1st, 2010; DOI:10.1063/1.3483194
+            \bibitem{Zhang2016} "The bolometer diagnostic at stellarator %
+            Wendelstein 7-X and its first results in the %
+            initial campaign"; %
+            D. Zhang, et al. %
+            and the W7-X Team; Stellarator-New 2017
+            \bibitem{Mast1991} "A low noise highly integrated bolometer %
+            array %
+            for absolute measurement of VUV and soft x %
+            radiation"; %
+            K. F. Mast et. al; %
+            Review of Scientific Instruments 62, 744 %
+            (1991);
+            DOI: 10.1063/1.11.42078%
+            \bibitem{VMEC} "Steepest descent moment method for three %
+            dimensional magnetohydrodynamic equilibria"; %
+            Hirshman, S.P. et al.; %
+            Physics of Fluids 26, 3553, (1983); %
+            DOI: 10.1063/1.864116%
+            \bibitem{Wesson} "Tokamaks"; Wesson, J.; Clarendon Press, Oxford; %
+            1987%
+        \end{thebibliography}%
+    }
+
+    \only<2>{\footnotesize%
+        \begin{thebibliography}{}%
+            \bibitem{Feng} "Numerical investigation of plasma edge %
+            transport and limiter heat fluxes in %
+            Wendelstein 7-X startup plasmas with %
+            EMC3-EIRENE"; %
+            Effenberg, F., Feng, Y. et al. %
+            Nucl. Fusion 57 (2017) 036021 (15pp); %
+            DOI: 10.1088/1741-4326/aa4f83%
+            \bibitem{Gianone2002} "Derivation of bolometer equations %
+            relevant to %
+            operation in fusion experiments"; %
+            Gianone, L. et al.; %
+            Review of Scientific Instruments; %
+            20th of November, 2002; %
+            DOI: 10.1063/1.1498906%
+            \bibitem{Zhang2018} "Results of the bolometer diagnostic at %
+            OP 1.a of W7-X"; %
+            internal review of the physics plan during %
+            the %
+            second operational phase at the stellarator %
+            W7-X; 28.02.20i18%
+            \bibitem{Yamada2005} "Characterization of energy confinement in %
+            net-current free plasmas using the %
+            extended International Stellarator %
+            Database"; %
+            H. Yamada et al.; %
+            INSTITUTE OF PHYSICS PUBLISHING and %
+            INTERNATIONAL ATOMIC ENERGY AGENCY; %
+            Nucl. Fusion 45 (2005) 1684¿1693%
+            \bibitem{FIFOSource} ``Introduction to the Queue Data Structure %
+            – Array Implementation''; %
+            URL: https://www.thecodingdelight.com/%
+            queue-data-structure-array-implementation/
+        \end{thebibliography}%
+    }
+
+\end{frame}%
+
+\begin{frame}{}%
+    \backgroundlogo%
+\end{frame}%
+
+\backupend
+
+\end{document}

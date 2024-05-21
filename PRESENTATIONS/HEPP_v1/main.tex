@@ -1,0 +1,637 @@
+% presentation template
+% works only with pdflatex
+
+\documentclass{beamer}
+
+% use predefined IPP style
+% options: St,noSt : with/without stellarator theory logo
+% options: Eurofusion, noEurofusion : with/without Eurofusion logo
+\useoutertheme[Eurofusion, w7x]{ippw7x}
+
+% don't show navigation symbols
+\beamertemplatenavigationsymbolsempty
+% show navigation symbols
+%\setbeamertemplate{navigation symbols}[only frame symbol]{}
+
+% extra packages
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amssymb,stackrel}
+\usepackage{changepage}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{xcolor}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{labelformat=empty,labelsep=none}
+
+\usepackage[%
+      style=authortitle,%
+%     style=verbose,%
+%     autocite=footnote,%
+      maxbibnames=15,%
+      maxcitenames=15,%
+%     babel=hyphen,%
+%     hyperref=true,%
+%     abbreviate=false,%
+      backend=bibtex%
+%     mcite%
+%     labelyear
+]{biblatex}
+\renewcommand*{\bibfont}{\footnotesize}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+\newcommand{\backupend}{\setcounter{framenumber}{\value{finalframe}}}
+\newcommand{\backupbegin}{\newcounter{finalframe}%
+  \setcounter{finalframe}{\value{framenumber}}}
+
+\newcommand{\backgroundlogo}{%
+  \tikz[overlay,remember picture]{%
+  \node[at=(current page.west)] (source) {};%
+  \node[opacity = 0.04, %
+        below left= -0.4\paperheight and -0.6\paperheight of source] {%
+    \includegraphics[height=0.85\paperheight]%
+      {figures/minerva_gruen_ganz_ohne_hintergrund.png}%
+    }%
+  }
+}
+
+\begin{document}
+  % title of the presentation
+  % short title will be shown in the footer
+  \title[The Bolometer diagnostic at W7-X]%
+        {The bolometer diagnostic at the stellarator Wendelstein 7-X}
+
+  % authors of the presentation
+  % lecturer (and maybe place and date) will be shown in the footer
+  \author[P. Hacker; May 14th, 2018]%
+         {P. Hacker\inst{1,}\inst{2},\and D. Zhang\inst{1},\and%
+          R. Burhenn\inst{1}}
+
+  % institutes of the authors
+  \institute{\tiny%
+             \inst{1}Max Planck Institute for Plasma Physics, %
+                     Wendelsteinstr. 1, D-17491 Greifswald, Germany \and%
+             \inst{2}Ernst-Moritz-Arndt University Greifswald, Domstr. 11, %
+                     D-17489 Greifswald, Germany}
+
+  % set date of the talk
+  \date{May 14th, 2018}
+
+  % first frame 
+  \begin{frame}
+    \backgroundlogo%
+    % show title of talk and authors
+    \titlepage%
+    % show acknoledgement from EUROfusion
+    \acknowledgement%
+  \end{frame}
+
+  % new frame
+  \begin{frame}{Contents}
+    % display all sections
+    \only<1>{%
+      \tableofcontents%
+      \backgroundlogo%
+    }%
+  \end{frame}%
+
+  \section{Bolometer}
+  % new frame
+  \begin{frame}
+    % TMP
+    \only<1>{
+      \frametitle{Bolometer}%
+      \backgroundlogo%
+      \tableofcontents[currentsection]
+    }
+    % GOALS
+    \only<2>{%
+      \frametitle{Goals}%
+      \flushleft{\color{ipp}{What is the bolometer at W7-X?}}\linebreak%
+        -- a two camera system using metal film resistive detector arrays %
+        to measure plasma radiation based on thermal effects%
+      \vspace*{1.0cm}
+      \flushleft{\color{ipp}\underline{Goals:}}
+      \begin{itemize}%
+        \item[1. -]{globale power balance: %
+                    investigation of total radiation power loss, mainly from %
+                    impurities, and its distribution}%
+        \item[2. -]{local power balance: %
+                    radiation profiles for transport studies (using tomographic inversion)}%
+      \end{itemize}%
+    }%
+  \end{frame}
+
+  \section{Construction}
+  % new frame
+  \begin{frame}
+    % TMP
+    \only<1>{%
+      \backgroundlogo%
+      \tableofcontents[currentsection]
+    }
+    % PERFORMANCE
+    \only<2-4>{%
+      \frametitle{Construction}%
+      \begin{block}{}
+        \begin{itemize}%
+          \item{multi-camera system with 113 channels combined:\linebreak%
+                32@HBCm and 2 x 24@VBC subdetectors (+ differently %
+                coated/filtered channels)}
+        \end{itemize}%
+      \end{block}
+      \vspace*{0.2cm}%
+    }
+    \only<2>{%
+      \begin{columns}%
+        \column{0.4\textwidth}%
+          \centering{%
+            \color{ipp}%
+            \textbf{\underline{HBCm}}%
+          }%
+        \column{0.4\textwidth}%
+          \centering{%
+            \color{ipp}%
+            \textbf{\underline{VBCr/VBCl}}%
+          }%
+      \end{columns}%
+      \begin{figure}%
+        \centering{%
+          \includegraphics[width=1.0\textwidth]%
+           {figures/content/linesofsight_in_vessel.pdf}%
+          \caption{\footnotesize%
+                   (Lines of sight with individual apertures, retracted into %
+                    the vacuum vessel)}%
+        }%
+      \end{figure}%
+    }%
+    \only<3>{%
+      \begin{figure}%
+        \centering{%
+        \includegraphics[width=0.9\textwidth]%
+          {figures/content/torus_full_banana.pdf}%
+        \caption{\footnotesize%
+                 (W7-X equilibrium fluxsurfaces from VMEC)}%
+        }%
+      \end{figure}
+    }%
+    \only<4>{%
+      \begin{figure}%
+        \centering{%
+        \includegraphics[width=0.7\textwidth]%
+          {figures/content/component_3d.pdf}%
+        \caption{\footnotesize%
+                 (Camera head (VBCl/r) construction)}%
+        }%
+      \end{figure}
+    }%
+    \only<5-6>{%
+      \frametitle{Performance}%
+      \begin{block}{}
+        \begin{itemize}
+          \item{spatial resolution of \SI{5}{\centi\meter} %
+                \& temporal resolution of \SIrange{0.8}{1.6}{\milli\second}}%
+                %spectral range between $\SIrange{600}{0.2}{\nano\meter}}%
+                %\pm$ \SI{3}{\micro\second}}%
+          \item{detectors of \SI{5}{\micro\meter} thick gold-foil absorbers %
+                with carbon coating on \SI{1.5}{\micro\meter} Si$_{3}$N$_{4}$ %
+                substrate and gold meander for \SI{200}{\nano\watt} %
+                resolution between \SIrange{600}{0.2}{\nano\meter}}
+        \end{itemize}
+      \end{block}
+    }
+    \only<5>{%
+      \begin{figure}%
+        \centering{%
+        \includegraphics[width=0.6\textwidth]%
+          {figures/content/goldmeander_new.pdf}%
+        \caption{\footnotesize%
+                 (Single detector channel scheme with holder)}%
+        }%
+      \end{figure}
+    }
+    \only<6>{%
+      \begin{figure}%
+        \centering{%
+        \includegraphics[width=0.6\textwidth]%
+          {figures/content/wheatstone_mitschema.pdf}%
+        \caption{\footnotesize%
+                 ([Left] Detector array of one head with reference %
+                  [Right] Wheatstone bridge, radiated (green) and un-exposed %
+                  (yellow) parts)}%
+        }%
+      \end{figure}
+    }
+  \end{frame}%
+
+  \section{Calibration \& Calculation}
+  % new frame
+  \begin{frame}{Calibration \& Calculation}
+    % TMP
+    \only<1>{%
+      \backgroundlogo
+      \tableofcontents[currentsection]
+    }%
+    \only<2>{%
+      \frametitle{Design criteria}
+      \begin{block}{}
+        \begin{itemize}
+          \item{water cooled elements (front plates) for \SI{30}{\minute} steady state operation}
+          \item{ECRH stray radiation ($\sim$ %
+          \SI{10}{\kilo\watt\per\square\meter}) screening by wire-mesh and %
+          absorption by ceramic coating inside the camera enclosure}
+        \end{itemize}
+      \end{block}
+      \begin{columns}
+        \column{0.5\textwidth}
+          \begin{figure}%
+            \centering{%
+            \includegraphics[width=\textwidth]%
+              {figures/content/coating_results.pdf}%
+            \caption{\footnotesize%
+                     (Bolometer prototype in strong microwave %
+                     background of MISTRAL)}%
+            }
+          \end{figure}
+        \column{0.5\textwidth}%
+          \vspace*{-1.0cm}
+          \begin{block}{}
+            \centering%
+            \color{ipp}%
+            $\ll$ 1\% microwave power flux\linebreak%
+            \&\linebreak%
+            53\% optical transmissivity
+          \end{block}
+      \end{columns}
+    }
+    \only<3-6>{%
+      \frametitle{Equations}
+      \begin{block}{Plasma radiation}
+        \only<3-6>{%
+          \begin{align}
+            P_{rad,bolo}\propto\sum_{Z} n_{e}\cdot n_{Z}\cdot L_{Z}\nonumber%
+          \end{align}
+        }%
+        \only<4-6>{%
+          \vspace*{-0.5cm}
+          \begin{align}
+            \dots\,\,=\frac{V_{P,tor}}{V_{cam}}\cdot%
+            \sum_{ch}\frac{V_{ch}}{K_{ch}}\cdot\frac{P_{ch}}{f_{OT}}%
+            \nonumber
+          \end{align}
+        }%
+        \only<5-6>{%
+          \vspace*{-0.5cm}
+          \flushleft{%
+            \color{ippdark}\underline{%
+              Bolometer equation:}}%
+          \begin{align}
+            P_{ch}=\frac{2}{U_{eff}}\cdot%
+                   \left(R_{ch}+2R_{C}\right)\cdot\kappa_{ch}%
+                   \sqrt{g_{C}}\cdot\left(\tau_{ch}%
+                   \frac{\diff(\Delta U)}{\diff t}+%
+                   f_{\tau}\cdot(\Delta U)\right)%
+                   \nonumber
+          \end{align}
+        }%
+      \end{block}
+        \only<3>{%
+          \begin{itemize}
+            \item{$L_{Z}$: line radiation function of impurity $Z$\linebreak%
+            \dots $=f\left(T_{e},\,\,T_{i},\,\,T_{Z},\,\,wall\,\,material/%
+                     conditions,\,\,\dots\right)$}%
+          \end{itemize}
+        }%
+        \only<4>{%
+          \begin{itemize}%
+            \item{$V_{ch}$: polygon volume of detector $ch$}%
+            \item{$V_{P, tor}$: estimated plasma volume (EMC3 simulation)}%
+            \item{$K_{ch}$: geometrical factor for channel $ch$}%
+          \end{itemize}
+        }
+        \only<5>{%
+          \begin{itemize}%
+            \item{$\Delta U\propto\Delta T$ the change in absorber %
+                  temperature}%
+            \item{$U_{eff}$: voltage divider between foil and reference}%
+          \end{itemize}
+        }
+        \only<6>{%
+          \begin{itemize}%
+            \item{$\tau,\,\,\kappa,\,\,R$: cooling time, heat capacity and %
+                  resistance of foil}%
+            \item{$R_{C},\,\,C_{cab}$: electrical connector properties}%
+            \item{$f_{bridge}$: Wheatstone bridge scaling factor}%
+          \end{itemize}
+        }
+    }
+  \end{frame}
+
+  \section{Preliminary results (OP1.2a)}
+  % new frame
+  \begin{frame}{Preliminary results (OP1.2a)}
+    % TMP
+    \only<1>{%
+      \tableofcontents[currentsection]%
+    }%
+    \only<2-7>{%
+      \frametitle{steady state vs. collapse}
+    }
+    \only<2>{
+      \centering{\color{ipp}%
+        Channel signals (steady state)}%
+      \vspace*{0.15cm}
+      \begin{columns}%
+        \column{0.4\textwidth}%
+          \centering{%
+            \color{ipp}%
+            \textbf{\underline{voltage}}%
+          }%
+        \column{0.4\textwidth}%
+          \centering{%
+            \color{ipp}%
+            \textbf{\underline{power}}%
+          }%
+      \end{columns}%
+      \vspace*{0.25cm}
+      \includegraphics[width=1.0\textwidth]%
+        {figures/content/innerchannel_steady_vbc_20171114_52_combined.pdf}%
+      \vspace*{0.25cm}
+      \linebreak%
+      \footnotesize{Discharge XP.20171114.52: Selection of channels from %
+        the VBCl (innermost part), both raw voltage and %
+        calculated power $P_{ch}$}%
+    }
+    \only<3>{%
+      \centering{\color{ipp}%
+        Total radiated power (steady state)}%
+      \vspace*{0.25cm}
+      \includegraphics[width=0.55\textwidth]%
+        {figures/content/prad_handvbc20171114052.pdf}%
+      \vspace*{0.25cm}
+      \linebreak%
+      \footnotesize{Discharge XP.20171114.52: Full radiated power of both %
+        cameras/camera arrays according to previous equations.}%
+    }
+    \only<4>{%
+      \centering{\color{ipp}%
+        Discharge overview (steady state)}\linebreak%
+      \hspace*{-0.8cm}%
+      \includegraphics[width=1.15\textwidth]%
+        {figures/content/overview20171114052.pdf}%
+      \vspace*{0.25cm}
+      \linebreak%
+      \footnotesize{Discharge XP.20171114.52: Experiment parameters for the %
+        same discharge (2.7s, terminated).}%
+    }
+    \only<5>{%
+      \centering{\color{ipp}%
+        Discharge overview (radiative collapse)}\linebreak%
+      \hspace*{-0.8cm}%
+      \includegraphics[width=1.15\textwidth]%
+        {figures/content/overview20171121036.pdf}%
+      \vspace*{0.25cm}
+      \linebreak%
+      \footnotesize{Discharge XP.20171121.36: Discharge properties. Similar %
+        setup as for previous discharge, but with frozen $H_{2}$ pellet %
+        injection. Collapse around 2.9s.}%
+    }
+    \only<6>{%
+      \centering{\color{ipp}%
+        Radiation profile over effective radius (steady state)}\linebreak%
+      \vspace*{0.25cm}%
+      \includegraphics[width=1.\textwidth]%
+        {figures/content/reffs20171114052.pdf}%
+      \vspace*{0.25cm}
+      \linebreak%
+      \footnotesize{Discharge XP.20171114.52: Channel power vs. effetive plasma radius, e.g. $\rho{eff}=\sqrt{\Psi}$ the distance from the %
+      magnetic field center, both cameras.}%
+    }
+    \only<7>{%
+      \centering{\color{ipp}%
+        Radiation profile over effective radius (collapse)}\linebreak%
+      \vspace*{0.25cm}%
+      \includegraphics[width=1.\textwidth]%
+        {figures/content/reffs20171121036.pdf}%
+      \vspace*{0.25cm}
+      \linebreak%
+      \footnotesize{Discharge XP.20171121.26: Channel power vs. effetive plasma radius with radiative collapse.}%
+    }
+    \only<8>{
+      \frametitle{Outlook}
+      \flushleft{%
+        \color{ipp}\underline{%
+          Goals}}%
+      \begin{itemize}
+        \item[1.-]{Verifying and improve the evaluation of measurement data}%
+        \item[2.-]{instantaneous/direct tomographic inversion after %
+          discharge\linebreak%
+          \color{ipp}{$\Rightarrow$} investigation of impurity %
+          transport processes and discharge feedback}%
+        \item[3.-]{providing feedback signal for other diagnostics/%
+          CoDaC through fast (\SI{5}{\milli\second}) calculation of $P_{rad}$ %
+          estimate}%
+      \end{itemize}
+    }
+    \only<9>{%
+      \backgroundlogo%
+      \frametitle{End}
+      \begin{center}%
+        \large%
+        Thank you for your attention!\linebreak%
+        Now: questions.%
+      \end{center}
+    }
+  \end{frame}
+
+  \begin{frame}{Bibliography}
+    \tikz[overlay,remember picture]{%
+    \node[at=(current page.west)] (source) {};%
+    \node[opacity = 0.04, %
+          below left= -0.4\paperheight and -0.6\paperheight of source] {%
+      \includegraphics[height=0.85\paperheight]%
+        {figures/minerva_gruen_ganz_ohne_hintergrund.png}%
+      }%
+    }%
+    % BIBLIOGRAPHY
+    \only<1>{\footnotesize%
+      \begin{thebibliography}{}%
+        \bibitem{Zhang2010} "Design Criteria of the Bolometer diagnostic %
+                            for steady-state operation of the W7-X %
+                            stellarator"; %
+                            Zhang, D. et al.; %
+                            Review of Scientific Instruments, %
+                            Jan 1st, 2010; DOI:10.1063/1.3483194
+        \bibitem{Zhang2016} "The bolometer diagnostic at stellarator %
+                            Wendelstein 7-X and its first results in the %
+                            initial campaign"; %
+                            D. Zhang, et al. %
+                            and the W7-X Team; Stellarator-New 2017
+        \bibitem{Mast1991} "A low noise highly integrated bolometer array %
+                            for absolute measurement of VUV and soft x %
+                            radiation"; %
+                            K. F. Mast et. al; %
+                            Review of Scientific Instruments 62, 744 (1991);
+                            DOI: 10.1063/1.11.42078%
+             \bibitem{VMEC} "Steepest descent moment method for three %
+                            dimensional magnetohydrodynamic equilibria"; %
+                            Hirshman, S.P. et al.; %
+                            Physics of Fluids 26, 3553, (1983); %
+                            DOI: 10.1063/1.864116%
+           \bibitem{Wesson} "Tokamaks"; %
+                            Wesson, J.; %
+                            Clarendon Press, Oxford; %
+                            1987%
+      \end{thebibliography}%
+    }
+    \only<2>{\footnotesize%
+      \begin{thebibliography}{}%
+             \bibitem{Feng} "Numerical investigation of plasma edge %
+                            transport and limiter heat fluxes in %
+                            Wendelstein 7-X startup plasmas with %
+                            EMC3-EIRENE"; %
+                            Effenberg, F., Feng, Y. et al. %
+                            Nucl. Fusion 57 (2017) 036021 (15pp); %
+                            DOI: 10.1088/1741-4326/aa4f83%
+      \bibitem{Gianone2002} "Derivation of bolometer equations relevant to %
+                            operation in fusion experiments"; %
+                            Gianone, L. et al.; %
+                            Review of Scientific Instruments; %
+                            20th of November, 2002; %
+                            DOI: 10.1063/1.1498906%
+        \bibitem{Zhang2018} "Results of the bolometer diagnostic at %
+                            OP 1.a of W7-X"; %
+                            internal review of the physics plan during the %
+                            second operational phase at the stellarator %
+                            W7-X; 28.02.20i18%
+       \bibitem{Yamada2005} "Characterization of energy confinement in %
+                            net-current free plasmas using the %
+                            extended International Stellarator Database"; %
+                            H. Yamada et al.; %
+                            INSTITUTE OF PHYSICS PUBLISHING and %
+                            INTERNATIONAL ATOMIC ENERGY AGENCY; %
+                            Nucl. Fusion 45 (2005) 1684¿1693%
+      \end{thebibliography}%
+    }
+  \end{frame}%
+
+  % EMPTY FRAME
+  \begin{frame}{}
+    \backgroundlogo
+  \end{frame}
+
+  % BACKUP
+  \appendix
+  \backupbegin
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/20171207_049_stddiv.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/20171207_049_linoffs.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/fs_EIM_beta000_3d.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/ez_lofs2d.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/ez_lofs3d.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/fsez_lofs2d.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/fsez_lofs3d.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/mesh2dEIM_beta000_5000_full.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/lines_of_sight_mesh.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/lines_of_sight_mesh_cart.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/crosspoints_HBC.pdf}
+    \end{figure}
+  \end{frame}
+
+  \begin{frame}{}
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.75\textwidth]%
+        {figures/content/backup/crosspoints_HBC_cartesian.pdf}
+    \end{figure}
+  \end{frame}
+
+  % BACKUPEND
+  \backupend
+
+\end{document}

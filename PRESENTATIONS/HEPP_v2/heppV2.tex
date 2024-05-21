@@ -1,0 +1,967 @@
+\documentclass{beamer}
+
+% use predefined IPP style
+% options: St,noSt : with/without stellarator theory logo
+% options: Eurofusion, noEurofusion : with/without Eurofusion logo
+\useoutertheme[Eurofusion, w7x]{ippw7x}
+
+% don't show navigation symbols
+\beamertemplatenavigationsymbolsempty
+% show navigation symbols
+%\setbeamertemplate{navigation symbols}[only frame symbol]{}
+
+% extra packages
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amssymb,stackrel}
+\usepackage{changepage}
+\usepackage{tikz}
+\usepackage{array}
+
+\newcommand{\backgroundlogo}{%
+    \tikz[overlay,remember picture]{%
+    \node[at=(current page.west)] (source) {};%
+    \node[opacity = 0.02] {%
+    \includegraphics[height=1.\paperheight]%
+        {figures/header/minerva}%
+    }%
+  }
+}
+
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{labelformat=empty,labelsep=none}
+
+\usepackage[%
+    style=authortitle,%
+    % style=verbose,%
+    % autocite=footnote,%
+    maxbibnames=15,%
+    maxcitenames=15,%
+    % babel=hyphen,%
+    % hyperref=true,%
+    % abbreviate=false,%
+    backend=bibtex%
+    % mcite%
+    % labelyear
+    ]{biblatex}
+\renewcommand*{\bibfont}{\footnotesize}
+
+\newcommand{\backupend}{\setcounter{framenumber}{\value{finalframe}}}
+\newcommand{\backupbegin}{\newcounter{finalframe}%
+  \setcounter{finalframe}{\value{framenumber}}}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+\newenvironment{variableblock}[3]{%
+    \setbeamercolor{block body}{#2}
+    \setbeamercolor{block title}{#3}
+    \begin{block}{#1}}{\end{block}}
+
+\begin{document}
+
+% title of the presentation
+% short title will be shown in the footer
+\title[HEPP progress talk]{%
+    Real time feedback on plasma radiation at W7-X}
+
+% authors of the presentation
+% lecturer (and maybe place and date) will be shown in the footer
+\author[P.Hacker]{%
+    P.Hacker\inst{1, 2}, F.Reimold\inst{1},%
+    D.Zhang\inst{1}, R.Burhenn\inst{1}, T.Klinger\inst{1}}
+
+% institutes of the authors
+\institute[MPI for Plasmaphysics Greifswald]{%
+    \inst{1}%
+        Max-Planck-Institute for Plasmaphysics, %
+        Wendelsteinstr. 1, Greifswald, Germany \and%
+    \inst{2}%
+        University of Greifswald, Rubenowstr. 6, Greifswald, Germany}
+
+% set date of the talk
+\date{20th of May, 2019}
+
+
+    % first frame
+    \begin{frame}
+        % show title of talk and authors
+        \titlepage
+
+        % show Logos Helmholtz, Max-Planck and EUROfusion
+        \begin{minipage}[]{0.35\textwidth}
+            \includegraphics[height=6ex]%
+                {figures/header/2017_H_Logo_CMYK_untereinander_EN}
+        \end{minipage}
+            \hfill
+        \begin{minipage}[]{0.2\textwidth}
+            \begin{center}
+                \includegraphics[height=4ex]{figures/header/minerva}
+            \end{center}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[]{0.35\textwidth}
+            \begin{flushright}
+                \includegraphics[height=5ex]%
+                    {figures/header/EUROfusion-LOGO-PANTONE_REFL_BLUE}
+            \end{flushright}
+        \end{minipage}
+
+        % show acknoledgement from EUROfusion
+        \acknowledgement
+    \end{frame}
+
+    % \begin{frame}{Contents}
+    %     % display all sections
+    %     \backgroundlogo%
+    %     \tableofcontents%
+    % \end{frame}%
+
+    \section{Quick recap}
+
+        \begin{frame}
+
+            % GOALS
+            \only<1>{%
+                \frametitle{Recap}%
+                \flushleft{\color{ipp}{What's the bolometer at W7-X?}}%
+                \linebreak -- a two camera system using metal film resistive %
+                detector arrays to measure plasma radiation based on thermal %
+                effects%
+                \vspace*{1.0cm}
+                \flushleft{\color{ipp}\underline{Goals:}}
+                \begin{itemize}%
+                    \item[1. -]{global power balance: %
+                                investigation of total radiation power loss, %
+                                mainly from impurities, and its distribution}
+                    \item[2. -]{local power balance: %
+                                radiation profiles for transport studies %
+                                (using tomographic inversion)}%
+                \end{itemize}
+            }%
+        \end{frame}
+
+        \begin{frame}
+
+            \only<1-2>{%
+            	\frametitle{Recap: Construction}%
+                \begin{block}{}
+                    \begin{itemize}%
+                    \item[+]{multi-camera system with 113 channels combined:%
+                          \linebreak 32@HBCm and 2 x 24@VBC subdetectors %
+                          (+ differently coated/filtered channels)}
+                    \end{itemize}%
+                \end{block}
+                \vspace*{0.2cm}%
+            }
+
+            \only<1>{%
+                \begin{columns}%
+                    \column{0.4\textwidth}%
+                        \centering{%
+                            \color{ipp}%
+                            \textbf{\underline{HBCm}}%
+                      }%
+                    \column{0.4\textwidth}%
+                        \centering{%
+                            \color{ipp}%
+                            \textbf{\underline{VBCr/VBCl}}%
+                      }%
+                \end{columns}%
+                \begin{figure}%
+                    \centering{%
+                        \includegraphics[width=1.0\textwidth]%
+                            {figures/content/linesofsight_in_vessel}%
+                        \caption{\tiny{%
+                                 (Lines of sight with individual apertures, %
+                                 retracted into the vacuum vessel)}%
+                        }
+                    }%
+                \end{figure}%
+            }%
+
+            \only<2>{%
+              \begin{figure}%
+                \centering{%
+                    \includegraphics[width=0.9\textwidth]%
+                        {figures/content/torus_full_banana}%
+                    \caption{\tiny{%
+                             (W7-X equilibrium fluxsurfaces from VMEC)}%
+                    }
+                }%
+              \end{figure}
+            }%
+
+            \only<3>{%
+                \frametitle{Recapitulation: Performance}%
+                \begin{block}{}
+                    \begin{itemize}
+                        \item[+]{%
+                            spatial resolution of \SI{5}{\centi\meter} %
+                            \& temporal resolution of %
+                            \SIrange{0.8}{6.4}{\milli\second}, spectral %
+                            range between \SIrange{600}{0.2}{\nano\meter}}%
+                        \item[+]{%
+                            detectors of gold-foil absorbers with carbon %
+                            coating on silicon-nitrate substrate and gold %
+                            meander for \SI{200}{\nano\watt} resolution}
+                    \end{itemize}
+                \end{block}
+                \begin{figure}%
+                    \centering{%
+                        \includegraphics[width=0.8\textwidth]%
+                            {figures/content/detector_me}%
+                        \caption{\tiny{%
+                                 (Single detectior channel scheme with %
+                                 holder), D.~Zhang,~P.~Hacker~et~al.}%
+                        }
+                    }%
+              \end{figure}
+            }
+
+        \end{frame}%
+
+    \section{Calculations}
+
+        \begin{frame}{Calculations}
+
+            \only<1>{%
+              \backgroundlogo
+              \tableofcontents[currentsection]
+            }%
+
+            \only<2-6>{%
+                \frametitle{Equations}
+                \begin{block}{Plasma radiation}
+                    \only<2-4>{%
+                        \begin{align}
+                            P_{rad,bolo}\propto\sum_{Z} %
+                                n_{e}\cdot n_{Z}\cdot L_{Z}\nonumber%
+                        \end{align}
+                    }%
+
+                    \only<3-4>{%
+                        \vspace*{-0.5cm}
+                        \begin{align}
+                            \dots\,\,=\frac{V_{P,tor}}{V_{cam}}\cdot%
+                                \sum_{ch}\frac{V_{ch}}{K_{ch}}\cdot%
+                                \frac{P_{ch}}{f_{OT}}\nonumber%
+                        \end{align}
+                    }%
+
+                    \only<4>{%
+                        \vspace*{-0.5cm}
+                        \flushleft{%
+                            \color{ippdark}\underline{%
+                            Bolometer equation:}}%
+                        \begin{align}
+                            P_{ch}=F_{ch}\cdot\left(\tau_{ch}%
+                                \frac{\diff(\Delta U)}{\diff t}+%
+                                f_{\tau}\cdot(\Delta U)\right)\nonumber
+                        \end{align}
+                    }%
+
+                    \only<5-6>{%
+                        \flushleft{%
+                            \color{ippdark}\underline{%
+                            Bolometer equation:}}%
+                        \begin{align}
+                            P_{ch}&=F_{ch}\cdot\left(\tau_{ch}%
+                                \frac{\diff(\Delta U)}{\diff t}+%
+                                f_{\tau}\cdot(\Delta U)\right)\nonumber\\%
+                                &\approx%
+                                25.737\cdot\frac{\text{W}}{\text{V}}\left(%
+                                \diff(\Delta U_{ch})+0.014\cdot\Delta %
+                                U_{ch}\right)\nonumber%
+                        \end{align}
+                    }
+
+                \end{block}
+            }
+
+            \only<2>{%
+                \begin{itemize}
+                    \item{$L_{Z}$: line radiation function of impurity %
+                          $Z$\linebreak%
+                          \dots $=f\left(T_{e},\,\,T_{i},\,\,T_{Z},\,\,wall%
+                          \,\,material/conditions,\,\,\dots\right)$}%
+                \end{itemize}
+            }%
+
+            \only<3>{%
+                \begin{itemize}%
+                    \item{$V_{ch}$: polygon volume of detector $ch$}%
+                    \item{$V_{P, tor}$: estimated plasma volume (EMC3/VMEC %
+                          simulation)}%
+                    \item{$K_{ch}$: geometrical factor for channel $ch$}%
+                \end{itemize}
+            }
+
+            \only<4>{%
+                \begin{itemize}%
+                    \item{$\Delta U\propto\Delta T$ the change in absorber %
+                          temperature}%
+                    \item{$F_{ch}=f\left(\text{detector electrical %
+                          properties, excitation, cables~\dots}\right)$}
+                    \item{$f_{\tau}=f\left(\text{detector impedance, %
+                          heat capacity~\dots}\right)$}
+              \end{itemize}
+            }
+
+            \only<5>{%
+                \begin{itemize}
+                    \item{channel \& cabel resistances %
+                          $R_{ch}\approx\text{\SI{1}{\kilo\ohm}}$, %
+                          $R_{cab}\approx\text{\SI{40}{\ohm}}$}%
+                    \item{cooling/relaxation time of the gold foil %
+                          $\tau_{ch}\approx\text{\SI{110}{\milli\second}}$}%
+                    \item{heat capacity $\kappa_{ch}\approx%
+                          \text{\SI{0.8}{\milli\watt/\kilo\ohm}}$}%
+                    \item{scaling $f_{\tau}\approx1$}%
+                    \item{temporal sampling in measurement %
+                          \SI{1.6}{\milli\second}}
+                \end{itemize}
+            }
+
+            \only<6>{%
+                \vspace*{0.5cm}
+                \centering{%
+                    \color{ipp}{\textbf{%
+                        $\Rightarrow\,\,$%
+                        for non-collapsing plasma scenarios: %
+                        $\Delta U\approx\text{\SI{e-3}{\volt}}$\\%
+                        signal derivative for sampling time %
+                        $\diff(\Delta U)\approx\text{\SI{e-5}{\volt}}$%
+                        }%
+                    }%
+                }%
+            }%
+
+        \end{frame}%
+
+    \section{Near real time feedback during OP1.2b}%
+
+        \begin{frame}{Previously on ...}%
+
+            \only<1>{%
+              \backgroundlogo%
+              \tableofcontents[currentsection]%
+            }%
+
+            \only<2-4>{%
+                \begin{variableblock}{}{%
+                    bg=gray,fg=white}{bg=gray,fg=white}%
+                    \flushleft{%
+                        \underline{Goals}}%
+                    \begin{itemize}[label=\textcolor{white}{\textbullet}]
+                        \item[1.-]{Verifying and improve the evaluation of %
+                                   measurement data}%
+                        \item[2.-]{instantaneous/direct tomographic %
+                                   inversion after discharge\linebreak%
+                                   $\Rightarrow$ investigation %
+                                   of impurity transport processes and %
+                                   discharge feedback}%
+
+                        \only<2>{%
+                            \item[3.-]{providing feedback signal for other %
+                                       diagnostics/CoDaC through fast %
+                                       (\SI{5}{\milli\second}) calculation %
+                                       of $P_{rad}$ estimate}%
+                        }
+
+                        \only<3-4>{%
+                            \item[\textcolor{black}{3.-}]{\color{black}{%
+                                providing feedback signal for other %
+                                diagnostics/CoDaC through fast %
+                                (\SI{5}{\milli\second}) calculation %
+                                of $P_{rad}$ estimate}}%
+                        }
+
+                    \end{itemize}
+                \end{variableblock}%
+            }
+
+            \only<4>{%
+                \begin{block}{Feedback}
+                    \begin{itemize}
+                        \item[1.-]{adjust heat loads, investigate radiation %
+                                   regimes, maybe improved detachment}
+                        \item[2.-]{find gas puff to radiation scaling law, %
+                                   i.e.~importance of intrinsic/extrinsic %
+                                   impurities}
+                    \end{itemize}
+                \end{block}
+            }
+
+        \end{frame}
+        
+		\begin{frame}{Feedback: Example}
+
+            \begin{minipage}{0.5\textwidth}%
+                \only<1-6>{%
+                    \begin{block}{Dataflow}
+                        \centering{%
+							\only<1>{\textcolor{ipp}{%
+								plasma radiation \& DAQ\\}}%
+							\only<2->{%
+								plasma radiation \& DAQ\\}%
+                        	$\downarrow$\\%
+							\only<2>{\textcolor{ipp}{%
+								calculation, i.e. FIFO, filter\\}}%
+							\only<1,3->{%
+								calculation, i.e. FIFO, filter\\}%
+                        	$\downarrow$\\%
+							\only<3>{\textcolor{ipp}{%
+	                        	single/multi-channel feedback\\}}%
+							\only<1-2,4->{%
+								single/multi-channel feedback\\}%
+                        	$\downarrow$\\%
+							\only<4>{\textcolor{ipp}{%
+								two BNC/glas fiber lines to thermal helium beam diagnostic\\}}%
+							\only<1-3,5->{%
+								two BNC/glas fiber lines to thermal helium beam diagnostic\\}%
+                        	$\downarrow$\\%
+							\only<5>{\textcolor{ipp}{%
+								plasma feedback\\}}%
+							\only<1-4,6->{%
+                        		plasma feedback\\}%
+                        	$\downarrow$\\%
+							\only<6>{\textcolor{ipp}{%
+								change in radiation, density etc.}}
+							\only<1-5,7->{%
+								change in radiation, density etc.}
+						}
+                    \end{block}
+                }
+
+            \end{minipage}\hfill%
+            \begin{minipage}{0.45\textwidth}
+
+				\only<2-6>{%
+					\begin{variableblock}{}{%
+					  bg=ipp,fg=white}{bg=ipp,fg=white}%
+
+                		\only<2-3>{%
+                		    \begin{figure}
+                		        \includegraphics[width=.8\textwidth]%
+                		            {figures/content/fsez_lofs2d.pdf}
+                		        \vspace*{-0.25cm}
+                		        \caption{\tiny{%
+                		            P.Hacker~et~al.}
+                		        }
+                		    \end{figure}
+                		    \vspace*{-0.75cm}
+                		    \begin{align}
+                		        P_{rad}=f%
+                		        \frac{V_{P,tor}}{V_{cam}}\sum_{S}%
+                		        \frac{V_{ch}}{K_{ch}}%
+                		        \frac{P_{ch}}{53\%}\nonumber%
+                		    \end{align}
+                		}
+
+                		\only<4-5>{%
+                		    \begin{figure}
+                		        \includegraphics[width=.8\textwidth]%
+                		            {figures/content/hebeambox}
+                		        \caption{\tiny{%
+                		            (Thermal helium beam diagnostic %
+                		            with piezo valves) %
+                		            M.Krychowiak~et~al.}
+                		        }
+                		    \end{figure}
+                		}
+
+                		\only<6>{%
+                		    \begin{figure}
+                		        \includegraphics[width=0.8\textwidth]%
+                		            {figures/content/overview20181010032}
+                		        \vspace*{-.8cm}
+                		        \caption{\tiny{%
+                		            P.Hacker~et~al.}
+                		        }
+                		    \end{figure}
+                		}
+
+					\end{variableblock}
+				}
+            \end{minipage}
+
+        \end{frame}
+
+        \begin{frame}{Implementation}
+
+                \only<1-3>{%
+                    \begin{variableblock}{Sanity check~\dots}%
+                        {bg=gray,fg=white}{bg=gray,fg=white}%
+
+                        \only<1>{%
+                            \begin{figure}
+                                \includegraphics[width=0.7\textwidth]%
+                                    {figures/content/oscilloscope}
+                                \caption{\tiny{%
+                                    (Testing feedback system internally %
+                                    prior to campaign, using an %
+                                    oscilloscope and closely defined %
+                                    \SI{7}{\milli\watt} laser pulse)%
+                                }}
+                            \end{figure}%
+                        }%
+
+                        \only<2-3>{%
+                            \begin{itemize}
+                                \item[+]{%
+                                    defined solid-state laser pulses with %
+                                    cycle frequency \SI{1}{\hertz}~-%
+                                    ~\SI{1}{\kilo\hertz} and %
+                                    \SI{7}{\milli\watt} power onto detector
+                                }%
+                                \item[+]{%
+                                    limit the system to a temporal response %
+                                    of $\ge$\SI{14}{\milli\second}
+                                }%
+                                \item[+]{%
+                                    mainly $F\cdot\Delta t$, %
+                                    $\Delta t$ is sample rate and $F$ the %
+                                    number of \textit{FIFO} array elements
+                                }%
+                                \item[+]{%
+                                    shallow slope due to detector response
+                                }
+                            \end{itemize}
+                        }
+                    \end{variableblock}
+                }
+
+                \only<3>{%
+                    \begin{figure}
+                        \includegraphics[height=0.4\textheight]%
+                            {figures/content/FIFO}
+                        \vspace*{-0.3cm}
+                        \caption{\tiny{%
+                            https://www.thecodingdelight.com/}
+                        }
+                    \end{figure}
+                }
+
+        \end{frame}
+
+    \section{Scaling analysis}%
+
+        \begin{frame}{Scaling analysis}%
+
+            \only<1>{%
+              \backgroundlogo%
+              \tableofcontents[currentsection]%
+            }%
+
+            \only<2-3>{%
+                \begin{variableblock}{}%
+                    {bg=red,fg=white}{bg=red,fg=white}
+                    \centering{\large{%
+                        In the aftermath: Who said that we need to %
+                        ``calculate'' $P_{rad}$?}}
+                \end{variableblock}
+            }
+
+            \only<3>{%
+                \begin{block}{Semi-experimental scaling}
+                    \begin{itemize}
+                        \item[+]{%
+                            find scaling between ECRH, density, %
+                            fueling and radiation, i.e.~instead of %
+                            expensive \& slow feedback}%
+                        \item[+]{%
+                            making simple 3 parameter %
+                            $\lbrace a,b,c\rbrace$ inference %
+                            assumption like:%
+                            \begin{align}
+                                P_{rad}[\text{MW}]&\propto a%
+                                    \lbrace n_{e}%
+                                    [10^{19}\text{m}^{-3}]\rbrace^{b}%
+                                    \lbrace P_{ECRH}[\text{MW}]%
+                                    \rbrace^{c}\nonumber\\
+                                \text{or}&\nonumber\\
+                                &\propto a%
+                                    \lbrace f_{H2}%
+                                    [\text{mbar\,s/l}]\rbrace^{b}%
+                                    \lbrace P_{ECRH}[\text{MW}]%
+                                    \rbrace^{c}\nonumber
+                            \end{align}
+                            }%
+                    \end{itemize}%
+                \end{block}
+            }
+
+        \end{frame}
+
+        \begin{frame}{To find or not to find...}
+
+            \only<1-2>{%
+                \begin{block}{Results: manual selection on main gas valve}%
+
+                    \only<1>{%
+                        \begin{figure}
+                            \centering%
+                            \includegraphics[width=\textwidth]%
+                                {figures/content/overview20180822020}%
+                            \caption{\tiny{%
+                                Example of discharges in dataset for %
+                                analysis, P.Hacker~et~al.}
+                            }
+                        \end{figure}
+                    }
+
+                    \only<2>{%
+                        \begin{figure}
+                            \centering%
+                            \includegraphics[height=0.65\textheight]%
+                                {figures/content/scaling_test}%
+                            \caption{\tiny{%
+                                Possible scaling between ECRH, density/main gas fueling in H$_{2}$ and radiation loss, %
+                                P.Hacker~et~al.}
+                            }
+                        \end{figure}
+                    }
+
+                \end{block}
+            }
+
+            \only<3>{%
+                \begin{variableblock}%
+                    {}{bg=black,fg=white}{bg=black,fg=white}%
+                    \begin{itemize}
+                        \item[+]{%
+                            no common scaling found, parameters all over %
+                            the place
+                        }
+                        \item[+]{%
+                            further analysis would maybe require to find %
+                            additional dependencies, but that would be %
+                            the ``needle in the hay stack''
+                        }
+                        \item[+]{%
+                            originally forseen scaling based off of thermal %
+                            helium gas inlet too complicated for now
+                        }
+                        \item[--]{%
+                            ALSO: differentiation between intrinsic/%
+                            extrinsic impurities totally neglected here, but %
+                            seriously important anyhow
+                        }
+                    \end{itemize}
+                \end{variableblock}
+            }
+
+        \end{frame}
+
+    \section{New agenda}
+
+        \begin{frame}{New agenda: construction ...}
+
+            \only<1>{%
+              \backgroundlogo%
+              \tableofcontents[currentsection]%
+            }%
+
+            \only<2>{%
+                \begin{block}{Correlation analysis}%
+
+                    \begin{itemize}%
+                        \item[+]{%
+                            find most relevant channel combination to %
+                            predict P$_{rad}$, i.e. the best channels %
+                            for divertor gas insertion experiments
+                        }
+                        \item[+]{%
+                            localisation and sensitivity of channels in %
+                            response divertor valves, maybe %
+                            n$_{e}$(P$_{rad}$), P$_{rad}$(n$_{e}$)\\%
+                            $\Rightarrow$ spatial sensitivity for tomography?
+                        }
+                    \end{itemize}
+                    \vspace*{-0.25cm}
+                    \begin{align}
+                        P_{prediction}&=\frac{V_{P,tor}}{V_{S}}\cdot%
+                            \sum_{ch}^{S}\frac{V_{ch}}{K_{ch}}\cdot%
+                            \frac{P_{ch}}{53\%}\nonumber\\%
+                        V_{S}&=\sum_{ch}^{S}V_{ch}\nonumber%
+                    \end{align}
+
+                \end{block}
+            }%
+
+            \only<3>{%
+                \begin{block}{Example: ``Standard deviation''-method}%
+                    \centering%
+                    \vspace*{.75cm}%
+                    $d_{diff}(t)=\|P_{rad}(t) - P_{prediction}(t)\|$\\%
+                    \vspace*{.75cm}%
+                    $\varepsilon(t)=%
+                        \left\{\begin{array}{ll}%
+                        1-\frac{d_{diff}(t)}{P_{rad}(t)}&,%
+                            \,\,d_{diff}<P_{rad}\\%
+                        0&,\text{ else}
+                        \end{array}\right\}$\\%
+                    \vspace*{.75cm}%
+                    $\vartheta=\overline{\varepsilon(t)}$%
+                    \vspace*{.75cm}%
+                \end{block}
+            }%
+
+            \only<4>{%
+                \begin{block}{Example: testing against P$_{rad}$(HBCm)}%
+                    \centering%
+                    \begin{minipage}{0.47\textwidth}%
+                        \includegraphics[width=1.0\textwidth]%
+                            {figures/content/std_dev[_0_15_30]}%
+                    \end{minipage}%
+                    \hfill%
+                    \begin{minipage}{0.47\textwidth}%
+                        \includegraphics[width=1.0\textwidth]%
+                            {figures/content/std_dev_spectrum}%
+                    \end{minipage}%
+                \end{block}%
+            }%
+
+        \end{frame}
+
+        \begin{frame}{Back on the envelope ...}%
+
+            \only<1>{%
+                \begin{block}{}
+                    \flushleft{%
+                        \underline{Goals}}%
+                    \begin{itemize}[label=\textcolor{white}{\textbullet}]
+                        \item[x]{%
+                            Verifying and improve the evaluation of %
+                            measurement data}%
+                        \item[\textcolor{red}{1.-}]{%
+                            \textcolor{red}{%
+                            instantaneous/direct tomographic %
+                            inversion after discharge\linebreak%
+                            $\Rightarrow$ investigation %
+                            of impurity transport processes and %
+                            discharge feedback}}%
+                        \item[x]{%
+                            providing feedback signal for other %
+                            diagnostics/CoDaC through fast %
+                            (\SI{5}{\milli\second}) calculation %
+                            of $P_{rad}$ estimate}%
+                        \item[\textcolor{orange}{2.-}]{\color{orange}{%
+                            local sensitivity analysis of bolometer %
+                            system with regards to feedback and %
+                            configuration/scenarios}}%
+                    \end{itemize}
+                \end{block}%
+            }%
+
+            \only<2>{%
+                \backgroundlogo%
+                \frametitle{End}
+                \begin{center}%
+                    \large%
+                    Thank you for your attention.\linebreak%
+                    Now: questions.%
+                \end{center}
+            }
+
+        \end{frame}
+
+    % BACKUP
+    \appendix
+    \backupbegin
+
+    \begin{frame}{Bibliography}
+        \backgroundlogo%
+
+        \only<1>{\footnotesize%
+          \begin{thebibliography}{}%
+            \bibitem{Zhang2010} "Design Criteria of the Bolometer diagnostic %
+                                for steady-state operation of the W7-X %
+                                stellarator"; %
+                                Zhang, D. et al.; %
+                                Review of Scientific Instruments, %
+                                Jan 1st, 2010; DOI:10.1063/1.3483194
+            \bibitem{Zhang2016} "The bolometer diagnostic at stellarator %
+                                Wendelstein 7-X and its first results in the %
+                                initial campaign"; %
+                                D. Zhang, et al. %
+                                and the W7-X Team; Stellarator-New 2017
+            \bibitem{Mast1991} "A low noise highly integrated bolometer %
+                                array %
+                                for absolute measurement of VUV and soft x %
+                                radiation"; %
+                                K. F. Mast et. al; %
+                                Review of Scientific Instruments 62, 744 %
+                                (1991);
+                                DOI: 10.1063/1.11.42078%
+            \bibitem{VMEC} "Steepest descent moment method for three %
+                           dimensional magnetohydrodynamic equilibria"; %
+                           Hirshman, S.P. et al.; %
+                           Physics of Fluids 26, 3553, (1983); %
+                           DOI: 10.1063/1.864116%
+           \bibitem{Wesson} "Tokamaks"; Wesson, J.; Clarendon Press, Oxford; %
+                            1987%
+            \end{thebibliography}%
+        }
+
+        \only<2>{\footnotesize%
+            \begin{thebibliography}{}%
+                \bibitem{Feng} "Numerical investigation of plasma edge %
+                               transport and limiter heat fluxes in %
+                               Wendelstein 7-X startup plasmas with %
+                               EMC3-EIRENE"; %
+                               Effenberg, F., Feng, Y. et al. %
+                               Nucl. Fusion 57 (2017) 036021 (15pp); %
+                               DOI: 10.1088/1741-4326/aa4f83%
+            \bibitem{Gianone2002} "Derivation of bolometer equations %
+                                  relevant to %
+                                  operation in fusion experiments"; %
+                                  Gianone, L. et al.; %
+                                  Review of Scientific Instruments; %
+                                  20th of November, 2002; %
+                                  DOI: 10.1063/1.1498906%
+            \bibitem{Zhang2018} "Results of the bolometer diagnostic at %
+                                OP 1.a of W7-X"; %
+                                internal review of the physics plan during %
+                                the %
+                                second operational phase at the stellarator %
+                                W7-X; 28.02.20i18%
+            \bibitem{Yamada2005} "Characterization of energy confinement in %
+                                 net-current free plasmas using the %
+                                 extended International Stellarator %
+                                 Database"; %
+                                 H. Yamada et al.; %
+                                 INSTITUTE OF PHYSICS PUBLISHING and %
+                                 INTERNATIONAL ATOMIC ENERGY AGENCY; %
+                                 Nucl. Fusion 45 (2005) 1684¿1693%
+            \bibitem{FIFOSource} ``Introduction to the Queue Data Structure %
+                                 – Array Implementation''; %
+                                URL: https://www.thecodingdelight.com/%
+                                queue-data-structure-array-implementation/
+            \end{thebibliography}%
+        }
+
+    \end{frame}%
+
+    \begin{frame}{}%
+        \backgroundlogo%
+    \end{frame}%
+
+    \begin{frame}{Correlation: Cross correlation}
+        \only<1>{%
+            \section{Correlation: Cross correlation}
+            \begin{block}{Cross correlation-method}%
+                \centering%
+                \vspace*{.75cm}%
+                $C_{corr}=%
+                    \int (P_{rad}*P_{prediction})%
+                    (\tau)\diff\tau$\\%
+                    \vspace*{.75cm}\hspace*{1.6cm}%
+                    $=\iint P_{rad}(t)P_{prediction}(t+\tau)\diff t\diff\tau$%
+                \vspace*{.75cm}%
+            \end{block}
+        }
+        \only<2>{%
+            \begin{block}{Example: testing against P$_{rad}$(HBCm)}%
+                \centering%
+                \includegraphics[height=.7\textheight]%
+                    {figures/content/cross_corr_spectrum}%
+            \end{block}%
+        }%
+    \end{frame}
+
+    \begin{frame}{Correlation: Coherence}
+        \only<1>{%
+            \section{Correlation: Coherence}
+            \begin{block}{Coherence}%
+                \centering%
+                \vspace*{.75cm}%
+                $C_{x,y}=\frac{\|(P_{x,y}\|^{2}}{P_{x,x}\cdot P_{y,y}}$\\%
+                \vspace*{.5cm}%
+                $P_{x,x}$ and $P_{y,y}$ are power spectral density estimates %
+                of $X=P_{rad}$ and $Y=P_{prediction}$,\\%
+                and $P_{x,y}$ is the cross spectral density estimate of X,Y%
+                \vspace*{.75cm}%
+            \end{block}
+        }
+        \only<2>{%
+            \begin{block}{Example: testing against P$_{rad}$(HBCm)}%
+                \centering%
+                \includegraphics[height=.8\textheight]%
+                    {figures/content/coherence[_0_15_30]}%
+            \end{block}%
+        }%
+    \end{frame}
+
+    \begin{frame}{XPID: 20181010.032}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth]%
+                {figures/content/HBC_surf_20181010032}
+            \caption{Horizontal camera radiation profile}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}{XPID: 20181010.032}
+          \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth]%
+                {figures/content/VBC_surf_20181010032}
+            \caption{Vertical camera radiation profile}
+          \end{figure}
+    \end{frame}
+
+    \begin{frame}{XPID: 20181010.032}
+        \begin{figure}
+            \centering
+            \includegraphics[width=\textwidth]%
+                    {figures/content/powsum_20181010032}
+            \caption{Line integrated power for each camera}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}{System schematics}
+            \only<1>{
+                \begin{figure}
+                    \includegraphics[width=.9\textwidth]%
+                        {figures/content/mm_DAQ_boxless_top}
+                \end{figure}%
+            }
+
+            \only<2>{%
+                \begin{figure}
+                    \includegraphics[width=.9\textwidth]%
+                        {figures/content/mm_DAQ_boxless_bottom}
+                \end{figure}%
+            }
+
+            \only<3>{%
+                \begin{figure}
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/mm_feedback_boxless_top}
+                \end{figure}%
+            }
+
+            \only<4>{%
+                \begin{figure}
+                    \includegraphics[width=1.\textwidth]%
+                        {figures/content/mm_feedback_boxless_bottom}
+                \end{figure}%
+            }
+
+    \end{frame}
+
+    \backupend
+
+\end{document}
