@@ -1,0 +1,416 @@
+\documentclass{beamer}
+
+% use predefined IPP style
+% options: St,noSt : with/without stellarator theory logo
+% options: Eurofusion, noEurofusion : with/without Eurofusion logo
+\useoutertheme[Eurofusion, w7x]{ippw7x}
+
+% don't show navigation symbols
+\beamertemplatenavigationsymbolsempty
+% show navigation symbols
+%\setbeamertemplate{navigation symbols}[only frame symbol]{}
+
+% transition effects
+% \transblindshorizontal
+%    Vertical blinds pulled away
+% \transblindsvertical
+%    Move to center from all sides
+% \transboxin
+%    Move to all sides from center
+% \transboxout
+%    Slowly dissolve what was shown before
+% \transdissolve
+%    Glitter sweeps in specified direction
+% \transglitter
+%    Sweeps two vertical lines in
+% \transslipverticalin
+%    Sweeps two vertical lines out
+% \transslipverticalout
+%    Sweeps two horizontal lines in
+% \transhorizontalin
+%    Sweeps two horizontal lines out
+% \transhorizontalout
+%    Sweeps single line in specified direction
+% \transwipe
+%    Show slide specified number of seconds
+% \transcover
+% \transfade
+% \transpush
+% \transuncover
+% \transduration{2}
+% \addtobeamertemplate{background canvas}{\transfade}{}
+
+% change left/right margins
+% \setbeamersize{text margin left=20pt,text margin right=20pt}
+
+% extra packages
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amssymb,stackrel}
+\usepackage{changepage}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{units}
+\usepackage{siunitx}
+
+\newcommand{\backgroundlogo}{%
+    \tikz[overlay,remember picture]{%
+    \node[at=(current page.west)] (source) {};%
+    \node[opacity = 0.02] {%
+    \includegraphics[height=1.\paperheight]%
+        {figures/header/minerva}%
+    }%
+  }
+}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% \selectlanguage{german}
+
+% title of the presentation
+% short title will be shown in the footer
+\title[Report]{Report}
+
+% authors of the presentation
+% lecturer (and maybe place and date) will be shown in the footer
+\author[P.Hacker]{P. Hacker\inst{1, 2}}
+
+% institutes of the authors
+\institute[MPI for Plasmaphysics Greifswald]{%
+    \inst{1}%
+        Max-Planck-Institute for Plasmaphysics, %
+        Wendelsteinstr. 1, Greifswald, Germany \and%
+    \inst{2}%
+        University of Greifswald, Rubenowstr. 6, Greifswald, Germany}
+
+% set date of the talk
+\date{\today}
+
+    % first frame
+    \begin{frame}
+        % show title of talk and authors
+        \titlepage
+
+        % show Logos Helmholtz, Max-Planck and EUROfusion
+        \begin{minipage}[]{0.35\textwidth}
+            \includegraphics[height=6ex]%
+                {figures/header/2017_H_Logo_CMYK_untereinander_EN}
+        \end{minipage}
+            \hfill
+        \begin{minipage}[]{0.2\textwidth}
+            \begin{center}
+                \includegraphics[height=4ex]{figures/header/minerva}
+            \end{center}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[]{0.35\textwidth}
+            \begin{flushright}
+                \includegraphics[height=5ex]%
+                    {figures/header/EUROfusion-LOGO-PANTONE_REFL_BLUE}
+            \end{flushright}
+        \end{minipage}
+
+        % show acknoledgement from EUROfusion
+        \acknowledgement
+    \end{frame}
+
+    \begin{frame}{Protocoll}
+        \begin{block}{Protocoll 2019/12/16}
+            \only<1>{%
+                \begin{itemize}
+                    \item[+]{\color{orange}{%
+                        last time agreed upon thoroughly, step-by-step redo the STRAHL scan; i.e. change transport, profiles and values at the LCFS on at a time to distinguish their effects
+                    }}%
+                    \item[+]{\color{red}{%
+                        do easy, quick and dirty Minimum Fisher Regularization inversions of the same radiation distribution using Daihongs tool
+                    }}%
+                    \item[+]{\color{orange}{%
+                        find missing parts in total radiation distribution and final/last ionistation stage in STRAHL for accurate calculations
+                    }}
+                \end{itemize}
+            }%
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{STRAHL simulations}
+        \begin{block}{Simulations}
+            \only<1>{%
+                \begin{itemize}
+                    \item[+]{%
+                        mainly two sets of Thomson scattering profile shapes: orignal and spline interpolated, using different orders (3, 5) of polynoms and number of points
+                    }
+                    \item[+]{%
+                        values at ($\rho_{pol}=1.0$) the LCFS change between 80\% and 33\% of previous value
+                    }
+                    \item[+]{%
+                        different decay lengths of \SIrange{1}{5}{\centi\meter}; transport $D=$\SIrange{2}{4}{\meter\per\square\second}
+                    }
+                    \item[+]{
+                        $D/v$ shape either flat or electron root-like
+                    }
+                \end{itemize}
+            }
+
+            \only<2-5>{%
+                \frametitle{Orig. TS, 5cm, $2m/s^{2}$, D/v flat, 80\%}
+                \only<2>{%
+                    \centering%
+                    \includegraphics[width=.6\textwidth]%
+                        {figures/content/compare_ne_Te_00012_00013_full}
+                    \\full profiles of $n_{e}$ and $T_{e}$ at $f_{rad}=0.9$(12) and $1.0$(13)
+                }
+                \only<3>{%
+                    \centering%
+                    \includegraphics[width=.6\textwidth]%
+                        {figures/content/compare_ne_Te_00012_00013_edge}
+                    \\full profiles of $n_{e}$ and $T_{e}$ at $f_{rad}=0.9$(12) and $1.0$(13)
+                }
+                \only<4>{%
+                    \centering%
+                    \includegraphics[width=.6\textwidth]%
+                        {figures/content/compare_strahl_rad_00012_00013_full}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$(12) and $1.0$(13)
+                }
+                \only<5>{%
+                    \centering%
+                    \includegraphics[width=.6\textwidth]%
+                        {figures/content/compare_strahl_rad_00012_00013_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$(12) and $1.0$(13)
+                }
+            }
+
+            \only<6-10>{%
+                \frametitle{Orig. TS, 1cm, $2m/s^{2}$, D/v flat, 80\%}
+                \only<6>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_ne_Te_00012_00016_full}
+                    \\full profiles of $n_{e}$ and $T_{e}$ at $f_{rad}=0.9$ with 5cm(12) and 1cm(16) decay length
+                }
+                \only<7>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_ne_Te_00012_00016_edge}
+                    \\edge profiles of $n_{e}$ and $T_{e}$ at $f_{rad}=0.9$ with 5cm(12) and 1cm(16) decay length
+                }
+                \only<8>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00012_00016_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$ with 5cm(12) and 1cm(16) decay length
+                }
+                \only<9>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00013_00017_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=1.0$ with 5cm(13) and 1cm(17) decay length
+                }
+                \only<10>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00016_00017_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$(16) and 1.0(17) with 1cm decay length
+                }
+            }
+
+            \only<11-12>{%
+                \frametitle{Orig. TS, 5cm, $4m/s^{2}$, D/v flat, 80\%}
+                \only<11>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00016_00020_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$ with D=2m/s$^{2}$(16) and 4m/s$^{2}$(20)
+                }
+                \only<12>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00017_00021_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=1.0$ with D=2m/s$^{2}$(16) and 4m/s$^{2}$(20)
+                }
+            }
+
+            \only<13-16>{%
+                \frametitle{Orig. TS, 5cm, $4m/s^{2}$, D/v electron root, 80\%}
+                \only<13>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_anomal_transp_00021_00025_full}
+                    \\profile shapes for D and D/v
+                }
+                \only<14>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00020_00024_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$ with(24) and without(20) D/v profile
+                }
+                \only<15>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00021_00025_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=1.0$ with(25) and without(21) D/v profile
+                }
+                \only<16>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00024_00025_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$(24) and 1.0(25) with D/v profile
+                }
+            }
+
+            \only<17-21>{%
+                \frametitle{Spline interp., 80\%, k=3, N=25}
+                \only<17>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_ne_Te_00012_00028_full}
+                    \\full profiles of $n_{e}$ and $T_{e}$ at $f_{rad}=0.9$
+                }
+                \only<18>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_ne_Te_00013_00029_full}
+                    \\full profiles of $n_{e}$ and $T_{e}$ at $f_{rad}=1.0$
+                }
+                \only<19>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_ne_Te_00013_00029_edge}
+                    \\edge profiles of $n_{e}$ and $T_{e}$ at $f_{rad}=1.0$
+                }
+                \only<20>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00012_00028_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$ from orig.(12) and spline interp.(28) profile
+                }
+                \only<21>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00028_00029_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$(28) and 1.0(29) from spline interp. profile
+                }
+            }
+
+            \only<22-26>{%
+                \frametitle{Spline interp., 33\%, k=35 N=25}
+                \only<22>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_ne_Te_00029_00033_full}
+                    \\full profiles of $n_{e}$ and $T_{e}$ at $f_{rad}=0.9$ with k=3(29) and 5(33)
+                }
+                \only<23>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00029_00033_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$ with k=3(29) and 5(33)
+                }
+                \only<24>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_ne_Te_00029_00045_edge}
+                    \\full profiles of $n_{e}$ and $T_{e}$ at $f_{rad}=1.0$ with values of 80\%(29) and 33\%(45) at LCFS
+                }
+                \only<25>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00029_00045_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=1.0$ with values of 80\%(29) and 33\%(45) at LCFS
+                }
+                \only<26>{%
+                    \centering%
+                    \includegraphics[width=.5\textwidth]%
+                        {figures/content/compare_strahl_rad_00044_00045_edge}
+                    \\radiation of each diagnostic line/ionisation at $f_{rad}=0.9$(44) and 1.0(45)
+                }
+            }
+
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Conclusions}
+
+        \only<1-5>{%
+            \begin{block}{STRAHL results}
+                \begin{itemize}
+                    \only<1>{%
+                        \item[+]{%
+                            simple TS profiles with 'standard' settings yield small to no seperations between 90\% and 100\% radiation fracation in radial location shift of line maximum
+                        }
+                        \item[+]{%
+                            lower ionisation stages seemingly don't move at all, higher charges shift roughly \SIrange{10}{15}{\centi\meter} at a quarter of the intensity
+                        }
+                    }
+                    \only<2>{%
+                        \item[+]{%
+                            smaller decay length modelled for SOL without adjunct plasma island region, where profiles would be expected to appear flat or even peaked
+                        }
+                        \item[+]{%
+                            slightly moved peak positions of lower stages, only around a few centimeters (insignificant, not within Bolometer resolution); intensity at LCFS increases noteably
+                        }
+                    }
+                    \only<3>{%
+                        \item[+]{%
+                            additional increase of D from 2 to \SI{4}{\meter\per\square\second} yields neither a change in maximum position nor change in intensity
+                        }
+                        \item[+]{%
+                            likewise picking a D/v profile according to effects of electron root heating adds no new information
+                        }
+                    }
+                    \only<4>{%
+                        \item[+]{%
+                            inclusion of spline smoothed profile instead of the original, 'rough' TS datasets holds two effects:
+                        }
+                        \item[1)]{%
+                            STRAHL mapping of profile intput points gives large hill right before LCFS, where the manually 80\% input follows
+                        }
+                        \item[2)]{%
+                            unrelated towards its effect, higher ionisation levels move even further from 90\% to 100\% $f_{rad}$
+                        }
+                        \item[+]{%
+                            changing the LCFS values level shifts the lower ions especially even disregarding the large bump created by STRAHL
+                        }
+                    }
+                    \only<5>{%
+                        \item[+]{%
+                            possibly biggest distinguishable shift from high to highest fraction in spline interpolated profiles with 33\% at LCFS
+                        }
+                        \item[+]{%
+                            the higher the profile gradiant towards LCFS, the greater the shift inside; governing factor is edge profile shape
+                        }
+                    }
+                \end{itemize}
+            \end{block}
+        }
+
+        \only<6>{%
+            \begin{block}{Inversion \& Exp. Comparison}
+                \begin{itemize}
+                    \item[+]{%
+                        could not access inversion tool, AFS access not granted properly and deprecated version on E5 server ..., waiting for Daihongs eMail response to copy the most recent edition to drive
+                    }
+                    \item[+]{%
+                        added all radiation sources (incl. brems., cont. imp. etc.) to calculated data from STRAHL routine
+                    }
+                    \item[+]{%
+                        started calculations based off of STRAHL simulations to compare experimental results; projection tool for slanted fluxsurfaces to map to from VMEC? (forgot about it ...)
+                    }
+                \end{itemize}
+            \end{block}
+        }
+
+    \end{frame}
+
+    % BACKUP
+    % \begin{frame}
+    % \end{frame}
+
+\end{document}

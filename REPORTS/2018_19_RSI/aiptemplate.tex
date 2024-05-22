@@ -1,0 +1,303 @@
+%% ****** Start of file aiptemplate.tex ***************************************
+%%
+%% This file is part of the files in the distribution
+%% of AIP substyles for REVTeX4.
+%% Version 4.1 of 9 October 2009.
+%%
+%%
+%% This is a template for producing documents for use with 
+%% the REVTEX 4.1 document class and the AIP substyles.
+%% 
+%% Copy this file to another name and then work on that file.
+%% That way, you always have this original template file to use.
+%%
+%% ****************************************************************************
+
+\documentclass[
+    aps,%
+    twocolumn,%
+    secnumarabic,%
+    amssymb,%
+    % reprint,%
+    % preprint,%
+    % draft%
+    prd,%
+    10pt%
+    ]{revtex4-1}
+
+%% PACKAGES
+\usepackage{units}
+\usepackage{siunitx}
+\usepackage{amsmath, amsthm, amssymb, latexsym, stackrel}
+\usepackage{mathtools}
+\usepackage{fancyref}
+\usepackage{cleveref}
+
+%% TEMPLATES
+% long equation mode
+% \begin{widetext}
+%   $$\mbox{put long equation here}$$
+% \end{widetext}
+
+% Figure
+% \begin{figure}
+%   \includegraphics{}%
+%   \caption{\label{}}%
+% \end{figure}
+
+% Table
+% \begin{table}
+%   \caption{\label{} }
+%   \begin{tabular}{}
+%   \end{tabular}
+% \end{table}
+
+% Acknowledgments
+% \begin{acknowledgments}
+%   Put your acknowledgments here.
+% \end{acknowledgments}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+%% START DOCUMENT
+\begin{document}
+\sisetup{per-mode=fraction, quotient-mode=fraction}
+
+% Use the \preprint command to place your local institutional report number 
+% on the title page in preprint mode.
+% Multiple \preprint commands are allowed.
+% \preprint{}
+
+\title{%
+    The bolometer system at the stellarator W7-X %
+    with near real-time feedback} % Title of paper
+
+% repeat the \author .. \affiliation  etc. as needed
+% \email, \thanks, \homepage, \altaffiliation all apply to the current author.
+% Explanatory text should go in the []'s, 
+% actual e-mail address or url should go in the {}'s for \email and \homepage.
+% Please use the appropriate macro for the type of information
+
+% \affiliation command applies to all 
+% authors since the last \affiliation command. 
+% The \affiliation command should follow the other information.
+
+\author{Philipp Hacker}
+\email[Philipp Hacker: ]{philipp.hacker@ipp.mpg.de}
+\affiliation{%
+    Max-Planck Institute for Plasma Physics, %
+    Wendelsteinstrasse 1, %
+    D-17491 Greifswald, %
+    Germany\linebreak%
+    Ernst-Moritz-Arndt University, %
+    Rubenowstrasse 6, %
+    D-17489 Greifswald, %
+    Germany}
+
+% \altaffiliation{Test}
+% \homepage[]{Your web page}
+% \thanks{}
+
+% Collaboration name, if desired (requires 
+% use of superscriptaddress option in \documentclass). 
+% \noaffiliation is required (may also be used with the \author command).
+\collaboration{%
+    F.Reimold,~D.Zhang,~M.Krychowiak,~%
+    R.Burhenn,~T.Klinger~and~the~W7-X Team}
+\noaffiliation
+
+%
+\date{\today}
+
+\begin{abstract}  % insert abstract here
+    %
+    The bolometer diagnostic at the stellarator Wendelstein 7-X (W7-X) investigates the features of the plasma radiation mainly from impurities. It provides the total radiated power loss for global power balance studies and additionally information about the transport. During the last experimental campaign a near real-time evaluation system has been established which uses the line integrated radiation intensity from the blackened gold foil resistive detectors as a feedback control of the plasma discharge with auxiliary gas fueling as an actuator. The fan-shaped lines of sight provide full coverage of the studied plasma with a spatial resolution of \mbox{\SI{5}{\centi\meter}} on the magnetic axis, viewing the plasma at the triangular cross section horizontally and vertically in one toroidal position, respectively, while the the total radiated power loss of the plasma has been estimated independently. For the feedback different methods of estimation have been used to access the radiated power in near real-time with the smallest time delay as possible. A single channel signal and weighting factor was used for edge radiating plasma. As a second estimator a selection of sight lines were used together with their geometrical properties to extrapolate the power loss by radiation the same way it is done for the post-processed analysis of the total radiated power.
+\end{abstract}
+
+\maketitle  %\maketitle must follow title, authors, abstract and \pacs
+
+% Body of paper goes here. Use proper sectioning commands. 
+% References should be done using the \cite, \ref, and \label commands
+\section{Motivation}\label{sec:Motivation}
+    %
+    The fusion experiment Wendelstein 7-X is a stellarator where parameters and phyical processes in dense high temperature plasma are studied. It is designed to be capable of sustaining steady-state operation for up to \mbox{\SI{30}{\minute}} at an input power of \mbox{\SI{10}{\mega\watt}} of microwave electron cyclotron resonance heating (ECRH) at \SI{140}{GHz}. Through loss via different channels, mainly radiation and non-absorbed or reflected microwave heating, the averaged thermal load on in-vessel components facing the plasma is expected to be up to \mbox{\SI{10}{\kilo\watt/\square\meter}.}\\%
+    Regarding the plasma itself, one of the most important properties under investigation is the radiation. In specific, the overall radiation loss distribution and the governing transport, mainly through impurities but also neutral particles in the device as well as the global and local power balance are of large importance.\\%
+    Since the bolometer diagnostic at W7-X and its detectors are very sensitive to thermal interference and stray radiation from the input microwave heating, considerations regarding the construction and location were made to avoid overestimation of the calculated irradiated power from the plasma.\\%
+    Further requirements for the detectors are, e.g. sufficient time response and resistance against deterioration over long term exposition inside the vessel, since later adjustments during operational campaigns are not possible. Furthermore, calibrations can only be done prior to contruction and, once assembled, inside the device, so that only an in-situ method gives access to relevant detector parameters needed for calculations.\\%
+    In the last experimental phase a new diagnostic feature has been implemented which gives the possibility of enhanced plasma control. Hence, in addition to calculating the temporal and spacial evolution of the total radiation after the plasma has been terminated, a real-time feedback signal was used to, e.g. dynamically adjust heat loads on in-vessel components or investigate radiation regimes of such high temperature plasmas.\\%
+    This work will adequately introduce the construction and performance of the bolometer as is in W7-X in \cref{sec:Construction} without going to deep into engineering details. Furthermore, the diagnostics application to the experiment is explained in \cref{sec:calculations}, including the calibration process and at very last the newly developed fast feedback system is presented in \cref{sec:feedback}.%
+%
+\section{Construction}\label{sec:Construction}
+    %
+    In the following section the construction of the detector and electronics will be presented. The Limits and the performance of said system are outlined. There will also be an introduction to the geometrical setup of the lines of sight with respect to the insides of W7-X. Finally, the most important features and attributes of the analog-digital data acquisition system are highlighted.
+    %
+    \subsection{Detector}\label{subsec:Detector}
+        %
+        In the fusion experiment W7-X the core bolometer diagnostic consists of a two-camera system of metal film resistive detectors. Their advantage is longevity, stability, high sensitivity in ultraviolet ($>$85\%) and soft X-ray ($>$95\%, SXR) radiation and their ability to be calibrated \textit{in-situ} via an Ohmic heating stage.\\%
+        %
+        \begin{figure}[t!]
+            \centering
+            \includegraphics[width=.425\textwidth]%
+                {figures/content/detector_me.pdf}
+            \caption{Diagram of a single blackened detector foil with frame, substrate and meander. Layer dimensions are noted, however not pictured to scale.}\label{fig:detector_foil}
+        \end{figure}
+        %
+        A single detector is enclosed by a \mbox{\SI{0.6}{\milli\meter}} thick Si front plate frame, which resides on a \mbox{\SI{5}{\micro\meter}} Si$_{3}$N$_{4}$ layer. The detector itself consists of a \mbox{\SI{5}{\micro\meter}} thick gold film. Ontop of the gold, nitrate membrane and silicon frame a \mbox{\SI{150}{\nano\meter}} aluminium layer has been sputtered on. The detector area above the Al layer was covered by a thin \mbox{\SI{50}{\nano\meter}} carbon coat. The silicon-nitrate substrate is connected via two, \mbox{\SI{1}{\kilo\ohm}} Pt meanders to the electrical circuit for acquisition. Both of the \mbox{\SI{30}{\micro\meter\squared}$\times$\SI{200}{\nano\meter}} connections have been sputtered onto the backside of the SiN membrane.\\%
+        One should note that besides this main design there are also Be and Al covered detectors that are used for the focused analysis of high impurity plasma, SXR radiation and high energy photons.\\%
+        Behind the silicon frame, four of the eight total gold foils per detector head are hidden, see \cref{subsec:calibration}. Any of the four detector arrays - two per camera each - are covered by a conductive wire-mesh of \mbox{\SI{90}{\micro\meter}} thickness and \mbox{\SI{0.24}{\milli\meter}} rectangular spacing. Temperature changes are monitored by a Pt100 resistive thermometer integrated into the back of each array.\\%
+        The insides of the camera heads have been coated with a special ceramic TiO and \mbox{Al$_{2}$O$_{3}$} layer. Between the two pinholes in each camera face plate and the detector arrays located behind there is a rotary shutter that is capable of blocking any radiation entering the housing. Welded against the aperture and holding plate are CuBe springs.\\%
+        This detector design has an optical range of \mbox{\SIrange{600}{0.2}{\nano\meter}} where reflectivity is greatly reduced due to the carbon coating, while the sensitivity regarding input power is as low as \mbox{\SI{200}{\nano\watt}}.\\%
+        For the given arrangement of silicon-nitrate and gold, the temporal response of the detector becomes \mbox{\SI{0.25}{\milli\second}} due to thermal diffusivity of the material. That said, the silicon frame and aluminium layer are used as thermal diffusors to spread the incident power load away from the very temperature sensitive gold film resistor onto the structured graphite and stainless steel aperture plate. To limit the detector from reaching his maximum allowable temperature of \mbox{\SI{250}{\celsius}} and minimizing the thermal drift - characterized as \mbox{\SI{100}{\micro\volt/\kelvin}} - the thermally high conductive CuCrZr detector holder, camera housing and aperture are cooled via the central water system of W7-X. The shutter is used for protection during vessel conditioning, e.g. cleaning glow discharges and in-between segments for calibration and offset measurements.\\%
+        Ceramic coating, holding plate springs and wire mesh all greatly improve the cameras response to ECRH stray radiation. The resulting microwave transmission factor is reduced to 3\%, which prevents heating of the detectors, while the optical transmission stays remarkably high at 53\%. Furthermore, the ceramic coating inside limits any more heating inside the housing by multi-path reflectance, while the CuBe springs prevent ECRH leakage through gaps between steel plate/graphite aperture camera.
+    %
+    \subsection{Lines of sight geometry}\label{subsec:Losg}
+        %
+        To achieve the best possible results when evaluating the line of sight integrated data from each detector and calculating the radiated power distribution, the camera geometry has to provide good coverage of the plasma cross section. Hence, the two cameras are located, at slighltly offset toroidal positions, in the so-called `triangular' plane of W7-X. One camera head is located on the outer side of the vessel, watching the plasma horizontally, while the other is positioned below, viewing vertically into the vessel.\\%
+        In general, each camera head is made up out of two subsystems that are slightly offset toroidally and separated by a plate to limit bleeding between them. The displacement is small however, so that the observed plasma volume is approximately the same. Furthermore, the toroidal distance between cameras and the extend of the LoS in this dimension are small enough for the change in location of the magnetic axis is smaller than the spacial resolution of \SI{5}{\centi\meter}.\\%
+        The horizontal bolometer camera (HBC) is divided into two 32 channel subarrays, where one is used as described in \cref{subsec:Detector}, while the other contains filtered and backup detectors. The same goes for the vertical bolometer camera (VBC). In the latter case, again the two arrays are made up out of 32 channels each. However, both have 20 main channels, while their LoS overlap around the poloidal center of the vessel. The remaining detectors again work as backup or filtered acquisitors. \\%
+        While the HBC covers the entire inner vessel cross section horizontally, which guarantees maximum information on many varying configurations, the VBCs LoS only cross the magnetically confined plasma area, i.e. inside the last closed fluxsurface.\\%
+        Each of the \mbox{\SI{5}{\milli\meter\squared}} detectors lines of sight are collimated through the \mbox{\SI{84}{\milli\meter}} away placed \mbox{\SI{50}{\milli\meter\squared}} aperture, which are arranged in a fan shape for maximum power flux. This is also due to space limitations inside the device, which vice versa leads to a horizontal and vertical viewing angle of \mbox{\SI{53}{\degree}} and \mbox{\SI{120}{\degree}} respectively - the angle between upper- and lowermost line of sight vector.%
+    %
+    \subsection{Data acqusition}\label{subsec:acqusition}
+        %
+        The detector system is connected via shielded ultra high vacuum (UHV) proof, low resistance, low impedance, \mbox{\SI{40}{\meter}} long cables, which are terminated in ten pole LEMO® connectors on both sides, to the data acquisition (DAQ) chassis. The two server racks hold four 2U formfactor slots wherein the base printed circuit boards (PCB) connect to 32 individual DAQ cards each that contain the analog-to-digital converter (ADC) AD7730 from \mbox{NationalInstruments\textsuperscript{\textregistered}}. This specific system on a chip (SOIC) acquires voltages in the range of \mbox{$\pm$\SI{80}{\milli\volt}}, sampled into \mbox{\SI{16}{bit}}, which translates to \mbox{\SI{2.44}{\micro\volt}} acquisition resolution. It also provides its own self calibration method, which will later be used in \cref{subsec:calibration}. The temporal resolution of the ADC is limited by its master clock rate of \mbox{\SI{4.9152}{\mega\hertz}}, however the field programmable gate arrays (FPGA) delay times range, depending on the operation of read and write, between \mbox{\SIrange{10}{100}{\nano\second}}. This is a small pertubation compared to the physical limits of the detector.\\%
+        All main PCBs are connected via ribbon cables with individual pins for each DAQ card to a \mbox{NI\textsuperscript{\textregistered} 7813R}, an extension card on a \mbox{PCI-E 16x gen.\,2.0} slot with a bandwidth of \mbox{5\,Gbd or 8\,GB/s.}\\%
+        The entire 128 channel system is controlled via a \mbox{LabVIEW\textsuperscript{\textregistered}} software program, consisting of both bitcode which controlls the ADCs and FPGAs directly, and graphical user interface for diagnostics and debugging. Data of an ongoing measurement is stored in volatile random acces memory (RAM) with a burst rate of \mbox{\SIrange{0.47}{1,25}{\nano\second}} or input-output frequency of up to \mbox{\SI{1.066}{\giga\hertz}.} Before it is uploaded via an ethernet link of \mbox{1\,GB/s} speed to the central W7-X archive data vault for redundancy, an individual local copy is safed on the onboard storage device.\\%
+        Data acquisition is possible on the time basis of \mbox{$\{0.8, 1.6, 3.2, 6.4, 12.8\}$\SI{}{\milli\second}.} Since the aformentioned software solution is currently running on the priority based execution \mbox{OS Windows 7\textsuperscript{\textregistered}}, real time calculation and acqusition to RAM is not possible below a sampling time of \mbox{\SI{0.8}{\milli\second},} since the load of the system plays a key role here.\\%
+        The DAQ boards can be switched between measurement and calibration mode. Data acqusition is executed by synchronous modulation of the output of a \textit{Wheatstone bridge}, consisting of two exposed and two hidden detector foils, with a \mbox{\SI{20}{\volt}} signal at \mbox{\SI{19.2}{\kilo\hertz}}. The different calibration steps are either done by simply acquiring the signal of the floating detector without radiation, or by pre-heating the detector with a defined input voltage while observing the current response and cooldown characteristics, as explained later in detail in \cref{subsec:calibration}.\\%
+        In measurement mode it was found that the white noise background caused by small fluctutations on the detector in situations without incident radiation is in the range of \mbox{\SIrange{0.5}{6}{\micro\volt}}. This results in a signal-to-noise ratio in high radiation scenarios of at least 1000.\\%
+        %
+\section{Calculations}\label{sec:calculations}
+    %
+    Next the calibration process and calculation will be outlined. Enclosed is the simplified derivation of the bolometer equation used to estimate the plasma radiation.
+    %
+    \subsection{Calibration}\label{subsec:calibration}
+    Because of the intrinsic nature of the aforementioned manufacturing processes, no detector is created equally, espcially with regards to substrate thicknesses. Variations in dimension or contacting may lead to changes in heat capacity, resistance or cooling time across a camera or even single bridge. Also, deterioration due to exposition to heavy plasma radiation also might contribute to a change in response of the detector. The objective to continuously monitor the systems characteristics becomes key, especially in context of the application of this experiment. Therefore, a thorough calibration method based off an Ohmic heating phase, involving protected foils as reference and taking cable properties into account, has been established and used, as previously described by \textbf{TODO REF}.\\%
+    Before acquiring the detector characteristics however, an offset measurement takes place to pre-determine the floating voltage in a radiationless torus of each individual foil. This also helps indentifying possibly corrupted or broken channels.\\%
+    Next, after switching the ADC into calibration mode, two concurrent voltage levels are applied to a single element in the Wheatstone bridge, while the other are short circuited. First, the current flowing through the detector at floating potential $I_{0}$ is acquired. It is assumed that the detector $M$ has the resistance $R_{M}$ before the calibration. For the two values of \mbox{$U\ix{cal}=\SI{1.2}{\volt}$} and \mbox{\SI{2.5}{\volt}} the stages are run each for \mbox{\SI{0.8}{\second}} on the circuit. One finds for the resistance%
+    %
+    \begin{align}
+        R_{M}=2\left[\frac{U\ix{cal}}%
+            {I\left(t\rightarrow\infty\right)-I_{0}}%
+                -R\ix{L}-R\ix{cab}\right]\,\,.%
+    \end{align}
+    %
+    Here, \mbox{$R\ix{L}=\SI{10}{\ohm}$} is a load resistor and \mbox{$R\ix{cab}=\SI{40}{\ohm}$} accounts for the connected cables.\\%
+    The electric power leads to an Ohmic heating of the foil, which vice versa changes the resistance and therefore again the current flowing trough the detector. The time rate of change of the current \mbox{$I\left(t\right)$} through the detector, \mbox{$\Delta I\left(t\right)$} can be expressed by an exponential decay function%
+    %
+    \begin{align}
+        \Delta I\left(t\right) = - \Delta I\left(0\right)%
+            \left[1-\exp\left(-\frac{t}{\tau_{M}}\right)\right]\,\,.%
+            \label{eq:timedecay}
+    \end{align}
+    %
+    Here, $\tau_{M}$ yields the temperature decay or cooling time constant of the measurement foil $M$. The time $t$ is measured relative to the occurance of the ohmic heating stage, and \mbox{$\Delta I\left(0\right)$} is the resulting current thereof.\\%
+    By a numeric fitting procedure of the previous function in \cref{eq:timedecay} to the response of the detector one easily finds the values of $\tau_{M}$ and \mbox{$\Delta I\left(0\right)$}, which will be needed to later calculate the incident power from the line intergrated signals.\\%
+    The current when heated up \mbox{$\Delta I\left(0\right)$} can be used the find the normalized heat capacity $\kappa_{M}$. By linearization of the change $\Delta R$ in resistor value $R_{M}$ one can write the power balance as%
+    %
+    \begin{align}
+        \begin{split}\label{eq:powerbalance}
+            R\ix{B}\left(0\right)I^{2}_{0}+I_{0}\Delta%
+                I&\left(\infty\right)\left[R\ix{B}\left(0\right)-%
+                R\ix{L}-R\ix{cab}\right]\\%
+            &=-\kappa_{M}\frac{4U\ix{cal}}{I^{2}_{0}}\left[%
+                \frac{\diff\Delta I}{\diff t}+\Delta I\right]\,\,.%
+        \end{split}
+    \end{align}
+    %
+    Substituting \cref{eq:timedecay} for $\Delta I$ and calculating for the steady state case, i.e \mbox{$t\rightarrow\infty$} hence \mbox{$\diff I/\diff t\rightarrow 0$} and \mbox{$\Delta I\rightarrow 0$,} \cref{eq:powerbalance} can be rewritten to
+    %
+    \begin{align}
+        \kappa_{M}=\frac{R\ix{B}\left(0\right)I^{4}\left(0\right)}%
+                        {4U\ix{cal}\Delta I%
+                         \left(t\rightarrow\infty\right)}\,\,.%
+    \end{align}
+    %
+    With the previously outlined setup it is possible to do the above measurements simultaneously for all active and reference foils, which results in the values of $\tau$, $\kappa$ and $R$ for each detector. Those are important not only for the calculation of the plasma radiation power, but for information on foil status and reliability as well.\\%
+    In reality, the above equations have to be corrected to account for the temperature dependence of all three quantities. Furthermore, recently it was found that the pressure inside the vessel as well can significantly change the detector parameters. One possible solution might be to systematically look up allready known calibration values, since the circuitry does not allow the measurement of voltage and current at the same time. Ano ther way could be to model the temperature and pressure dependence of silicon nitrate, carbon coated gold and aluminium into the equations to extend their accuracy. However, it was found that the heat capacity and cooling time of gold change with a rate of \mbox{\SI{0.2}{\micro\joule/\kelvin\squared}} and \mbox{\SI{0.13}{\milli\second/\kelvin}.} Though the temperature increase of the detector due to the voltage applied for excitation during measurement is expected to be \mbox{\SI{25}{\kelvin},} the calibration iteslf also heats up the foil, hence this deviation will be neglected in later considerations.\\%
+    The first few \mbox{\SI{}{\milli\second}} of the heating stage are exluced from the numerical fit of the function in \cref{eq:timedecay}. Due to the multilateral compositioning of the detector the initial response of the electrical circuit can be significantly different to an exponential decay. However, the cooling is dominated by the carbon coated gold and aliminium layer in between, which is why the later part of the curve can be used to calculated $\tau$, $R$ and $\kappa$.\\%
+    Important to note is that in this case, the change of the current \mbox{$I\left(t\right)$} does not yield the maximum current through the detector like noted above by \mbox{$\Delta I\left(0\right)$.} This property is measured independently at the peak of \mbox{$I\left(t\right)$} during the Ohmic heating pulse.
+    %
+    \subsection{Radiation power measurement}\label{subsec:radiationpower}
+    %
+    % \begin{align}
+    %     P_{rad,bolo}\propto\sum_{Z} n_{e}n_{Z}L_{Z}
+    % \end{align}
+    % \begin{align}
+    %     L_{Z}=f\left(T_{e}, T_{i}, T_{Z}, \text{wall material/conditions}%
+    %         ,\,\,\dots\right)
+    % \end{alignh}
+    %
+    Finally, the measurement process will be outlined, accompanying the equations to calculate the incident radiation power.\\
+    Considering that either the measurement or reference foils are short circuited for detector $M$ being in acquisition mode, the power balance equation can be written as:
+    %
+    \begin{align}
+        P_{\text{bolo}, ch}=C_{ch}\left(\frac{\diff\Delta T_{ch}}{\diff t} +%
+            \frac{\Delta T_{ch}}{\tau_{ch}}\right)\,\,.\label{eq:bolopower}
+    \end{align}
+    % 
+    The specific heat capacity of detector $M$ is $C_{M}$.\\%
+    Because of the resistive characteristics of the foil, incident radiation and conclusively, a change in temperature can be linked to a dynamic in voltage dropped around the irradiated detector. Hence, concurringly to \cref{eq:bolopower}, the change in resistance can be calculated. By finding the respective currents through the equivalent circuit for the Wheatstone bridge in accordance to Gianone et al. in \fett{TODO REF}, one can substitute resistances with voltages and arrive at the \tilt{Bolometer equation}:
+    %
+    \begin{align}
+        \begin{split}\label{eq:bolometer}
+            P_{M}=\frac{2}{V\ix{eff}}&\left(R_{M}+%
+                2R\ix{cab}\right)\kappa_{M}\\%
+                &\times\sqrt{g\ix{cab}}\left(\tau_{M}%
+                \frac{\diff(\Delta U_{M})}{\diff t}+%
+                f_{\tau}\Delta U_{M}\right)\,\,.
+        \end{split}
+    \end{align}
+    %
+    The corresponding variables for \cref{eq:bolometer}, i.e. $V\ix{eff}$, $f_{\tau}$, $g\ix{cab}$, $\beta$, $\omega$ etc. are shown below in \cref{eq:bolometer_variables}. The Wheatstone bridge frequency is taken as \mbox{$f\ix{bridge}=\text{\SI{2500}{\hertz}}$} and cable parameters are measured to be \mbox{$R\ix{cab}=\text{\SI{40}{\ohm}}$} and \mbox{$C\ix{cab}=\text{\SI{2}{\nano\farad}}$.}
+    %
+    \begin{align}
+        \begin{split}\label{eq:bolometer_variables}
+            V_{eff}&=\frac{\left(\text{\SI{5}{\volt}}\right)\cdot%
+                R_{M}}{R_{M}+2R\ix{cab}}\\%
+            g\ix{cab}&=1+\left(\omega\left(R_{M}%
+                +R\ix{cab}\right)\right)^{2}\\%
+            \beta&=\frac{1-\left(\omega R_{M}\right)^{2}+%
+                \left(\omega R\ix{cab}\right)^{2}}%
+                {1+\left(\omega\cdot\left(R_{M}+R\ix{cab}%
+                \right)\right)^{2}}\\%
+            \omega&=2\pi\cdot f\ix{bridge}C\ix{cab}\\%
+            f_\tau&=1-\frac{V\ix{eff}^{2}\cdot\beta}{4\kappa\ix{M}\left(R_{M}+R\ix{cab}\right)^{2}}%
+        \end{split}
+    \end{align}
+    %
+    As previously pointed out, \cref{eq:bolometer} is only a valid estimator for the radiation power in a single detector within a small temperature range and at constant neutral gas pressures, as was found in the last experimental campaign. During manometer tests where the vessel pressure was continuously increased, detector signals would show a rise in temperature in the absence of plasma or radiation. Additionally, each detector is only approved for evaluation if its calibration values are within a 2\% deviation window from their covered reference part.\\
+    In summary, the absorbed radiated power is expressed as a function of dropped voltage around the irradiated detector and the corresponding time derivative. Assuming \mbox{$R_{M}\approx\text{\SI{1}{\kilo\ohm}}$,} \mbox{$\tau_{M}\approx\text{\SI{110}{\milli\second}}$} and \mbox{$\kappa_{M}\approx\text{\SI{0.8}{\milli\watt/\kilo\ohm}}$,} which gives \mbox{$\omega=\text{\SI{3.14e-5}{\hertz\farad}}$,} \mbox{$\beta\approx1$,} \mbox{$\sqrt{g\ix{cab}}\approx1$,} \mbox{$V\ix{eff}=\text{\SI{4.63}{\volt}}$} and \mbox{$f_{\tau}\approx1$,} \cref{eq:bolopower} can be written for a sample time of \mbox{\SI{1.6}{\milli\second}} as%
+    %
+    \begin{align}
+        P_{ch}\approx\text{%
+            \SI{25.737}{\watt\per\volt}}\left(%
+            \diff(\Delta U_{ch})+0.014\Delta U_{ch}\right)\,\,.\label{eq:approx}
+    \end{align}
+    %
+    While \mbox{$\Delta U\sim\text{\SI{e-3}{\volt}}$,} the change in signal on the time basis given above is typically \mbox{$\diff(\Delta U)\sim\text{\SI{e-5}{\volt}}$.} Hence, the predominant part of the equation yields the signal, however e.g. during transient plasma phases the dynamic part may play a more important role.\\%
+    After the specified number of samples have been gathered, the raw signal is corrected for offset and temperature drift. By design of the acquistion system, the detector temperature changes naturally due to ohmic heating of the excitation and incident radition. Additionally, during fast plasma breakdown the central water cooling system has to compensate large amounts of plasma energy as thermal input on in-vessel components in a relatively short amount of time, which leads to a rapid increase in coolant temperature of up to \SI{5}{\kelvin}. This in consequence causes rising temperatures of the enclosure, which again heats up the detectors through contact and infrared radiation. Although the measurement of calibration parameters as a function of temperature might theoretically absolve this problem, yet the system is not capable of parallel acqusition and calibration and therefore one can not recalibrate the detector.\\%
+    After the prior to acqusition measured individual floating potential for each detector has been subtracted, one makes a simple ansatz to adjust for any changes in detector temperature, as outlined previously. Before plasma start-up, i.e. $t=0$ and the last sample $N$, one averages over 50 points each and fits a linear baseline in-between, like \mbox{$f\ix{Offset}=\langle\Delta U\rangle\ix{t=0}+\xi n\ix{Sample}\,$,} which then also is subtracted. Let the resulting signal be $\Delta U^{*}$, so that the low pass filtered voltage becomes $\widetilde{\Delta U}$. Therefore a \tilt{Savitzky-Golay} polynomial fit of order $p$ and dataset width $M$ is applied. The $j$-th sample of $\widetilde{\Delta U}$ becomes a convolution of $M$ surrounding points with coefficients $c_{i}$ weighting the original data like a polynomial in the order of $n$:
+    %
+    \begin{align}
+        % \widetilde{\Delta U}=\frac{1}{M}%
+        %     \int\limits_{t}^{t+M\Delta t}\Delta U^{*}\diff t\,\,.%
+        %     \label{eq:averaging}
+        \widetilde{\Delta U}_{j}=\sum_{i=\frac{1-M}{2}}^{\frac{M-1}{2}}%
+            c_{i}\Delta U^{*}_{j+i}
+    \end{align}
+%
+\section{Near real-time feedback system}\label{sec:feedback}
+%
+% Create the reference section using BibTeX:
+\bibliography{aiptemplate.bib}
+%
+\end{document}
+%
+%% ****** End of file aiptemplate.tex *****************************************

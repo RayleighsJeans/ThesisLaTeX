@@ -1,0 +1,67 @@
+%% ****** Start of file apsguide4-1.tex ***************************************
+%%
+%%   This file is part of the APS files in the REVTeX 4.1 distribution.
+%%   Version 4.1r of REVTeX, August 2010.
+%%
+%%   Copyright (c) 2009, 2010 The American Physical Society.
+%%
+%%   See the REVTeX 4.1 README file for restrictions and more information.
+%%
+%% ****************************************************************************
+
+\documentclass[%
+	aps,%
+	twocolumn,%
+	secnumarabic,%
+	amssymb,%
+	% nobibnotes,%
+	% preprint,%
+	prd,%
+	10pt
+	]{revtex4-1}
+
+%% PACKAGES
+% \usepackage{acrofont}
+\usepackage{units}
+\usepackage{siunitx}
+
+%% NEWCOMMANDS
+\newcommand{\revtex}{REV\TeX\ }
+\newcommand{\classoption}[1]{\texttt{#1}}
+\newcommand{\macro}[1]{\texttt{\textbackslash#1}}
+\newcommand{\m}[1]{\macro{#1}}
+\newcommand{\env}[1]{\texttt{#1}}
+\setlength{\textheight}{9.5in}
+
+%% START DOCUMENT
+\begin{document}
+
+\title{%
+	Test for PhysRev Contribution with Rev\TeX%
+	}
+\author{Philipp Hacker}
+\email[Philipp Hacker: ]{philipp.hacker@ipp.mpg.de}
+\affiliation{%
+	Max-Planck Institute for Plasma Physics, %
+	Wendelsteintraße 1, %
+	D-17491, %
+	Greifswald, %
+	Germany}
+\date{\today}
+\maketitle
+\tableofcontents
+
+
+%% FIRST SECTION
+\section{Abstract}
+	At the stellarator Wendelstein 7-X a two-camera bolometer system consisting of detectors with blackened gold foil absorbers has been used in the previous experiment campaign to implement and optimize a real time evaluation of the radiated power. The calculated line integrated radiation intensity was used for feedback control of the plasma discharge with auxiliary gas fueling as an actuator. The bolometer views the plasma at a triangular cross-section of W7-X horizontally and vertically across a poloidal position. Its fan-shaped lines of sight provide full coverage of the studied plasma at this cross-section with a spatial resolution of \SI{5}{\centi\meter} on the magnetic axis. Based on the line-integrated measurements the radiated power loss of the plasma has been estimated independently for both cameras. Different methods of estimation have been used to access the radiated power in near real time. A single channel signal and weighting factor was used for edge radiating plasma. As a second estimator, a selection of sightlines were used together with their geometrical properties to extrapolate the power loss by radiation, as is done for the offline analysis of the radiated power. Feedback results will be shown, including benchmarks of the global power balance using the calculated radiated power.
+	% The bolometer diagnostic at the stellarator Wendelstein 7-X (W7-X) uses metal film resistive detectors to investigate the features of the plasma radiation mainly from the impurities. The system provides the total radiated power loss for global power balance studies and additionally information about the transport. A two-camera system consisting of detector arrays with blackened gold-foil absorbers has been installed at W7-X. They view the plasma at a triangular cross section horizontally and vertically, respectively. The fan-shaped lines of sight provide full coverage of the studied plasma with a spatial resolution of 5 cm. Based on their line-integrated measurements the total radiated power loss of the divertor plasma has been estimated independently. The initial results for helium and hydrogen plasma at different magnetic configurations and heating powers will be presented.
+
+
+%% SECOND SECTION
+\section{Test}
+
+
+\end{document}
+
+%% ****** End of file aps_guided.tex ******************************************

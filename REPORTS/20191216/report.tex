@@ -1,0 +1,452 @@
+\documentclass{beamer}
+
+% use predefined IPP style
+% options: St,noSt : with/without stellarator theory logo
+% options: Eurofusion, noEurofusion : with/without Eurofusion logo
+\useoutertheme[Eurofusion, w7x]{ippw7x}
+
+% don't show navigation symbols
+\beamertemplatenavigationsymbolsempty
+% show navigation symbols
+%\setbeamertemplate{navigation symbols}[only frame symbol]{}
+
+% transition effects
+% \transblindshorizontal
+%    Vertical blinds pulled away
+% \transblindsvertical
+%    Move to center from all sides
+% \transboxin
+%    Move to all sides from center
+% \transboxout
+%    Slowly dissolve what was shown before
+% \transdissolve
+%    Glitter sweeps in specified direction
+% \transglitter
+%    Sweeps two vertical lines in
+% \transslipverticalin
+%    Sweeps two vertical lines out
+% \transslipverticalout
+%    Sweeps two horizontal lines in
+% \transhorizontalin
+%    Sweeps two horizontal lines out
+% \transhorizontalout
+%    Sweeps single line in specified direction
+% \transwipe
+%    Show slide specified number of seconds
+% \transcover
+% \transfade
+% \transpush
+% \transuncover
+% \transduration{2}
+% \addtobeamertemplate{background canvas}{\transfade}{}
+
+% change left/right margins
+% \setbeamersize{text margin left=20pt,text margin right=20pt}
+
+% extra packages
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amssymb,stackrel}
+\usepackage{changepage}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{units}
+\usepackage{siunitx}
+
+\newcommand{\backgroundlogo}{%
+    \tikz[overlay,remember picture]{%
+    \node[at=(current page.west)] (source) {};%
+    \node[opacity = 0.02] {%
+    \includegraphics[height=1.\paperheight]%
+        {figures/header/minerva}%
+    }%
+  }
+}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% \selectlanguage{german}
+
+% title of the presentation
+% short title will be shown in the footer
+\title[Meeting Report]{Report 12/12/19}
+
+% authors of the presentation
+% lecturer (and maybe place and date) will be shown in the footer
+\author[P.Hacker]{P. Hacker\inst{1, 2}}
+
+% institutes of the authors
+\institute[MPI for Plasmaphysics Greifswald]{%
+    \inst{1}%
+        Max-Planck-Institute for Plasmaphysics, %
+        Wendelsteinstr. 1, Greifswald, Germany \and%
+    \inst{2}%
+        University of Greifswald, Rubenowstr. 6, Greifswald, Germany}
+
+% set date of the talk
+\date{12/12/2019}
+
+    % first frame
+    \begin{frame}
+        % show title of talk and authors
+        \titlepage
+
+        % show Logos Helmholtz, Max-Planck and EUROfusion
+        \begin{minipage}[]{0.35\textwidth}
+            \includegraphics[height=6ex]%
+                {figures/header/2017_H_Logo_CMYK_untereinander_EN}
+        \end{minipage}
+            \hfill
+        \begin{minipage}[]{0.2\textwidth}
+            \begin{center}
+                \includegraphics[height=4ex]{figures/header/minerva}
+            \end{center}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[]{0.35\textwidth}
+            \begin{flushright}
+                \includegraphics[height=5ex]%
+                    {figures/header/EUROfusion-LOGO-PANTONE_REFL_BLUE}
+            \end{flushright}
+        \end{minipage}
+
+        % show acknoledgement from EUROfusion
+        \acknowledgement
+    \end{frame}
+
+    \begin{frame}{STRAHL comparisons}
+        \begin{block}{Basic procedure}
+                \begin{itemize}
+                    \only<1>{%
+                        \item[+]{%
+                            two sets of 1D simulations modelled after particular discharge XPID: 20181010.032, incorporating 4 scenarios where $f_{rad}=P_{rad}/P_{H}=\langle0.33, 0.66, 0.9, 1.0\rangle$
+                        }%
+                        \item[+]{%
+                            each point in time trace with individual Thomson scattering profiles of $n_{e}$ \& $T_{e}$ as input for STRAHL
+                        }%
+                        \item[+]{%
+                            both sets distinguished by different decay lenghts, transport profiles of $D/v$ and $D$ as well as profile shapes from TS (measured vs. Gaussian process fit)
+                        }%
+                    }%
+                    \only<2>{%
+                        \item[+]{%
+                            set No.1 of simulation \# 2-5 $\lambda_{n, T, e}=$\SI{3}{\centi\meter} in alignment with profiles across plasma islands; set No.2 \# 6-9 $\lambda_{n, T, e}=$\SI{0.5}{\centi\meter} for 'free' SOL regions
+                        }%
+                        \item[+]{%
+                            first set with measured and corrected data points from TS; second set based off of Gaussian process fits from measured data with most likely profile shape
+                        }%
+                        \item[+]{%
+                            set No.1 constant $D=$\SI{0.5}{\square\meter\per\second} and null $D/v$ profile; set No.2 constant $D=$\SI{2.0}{\square\meter\per\second} and conservative electron root $D/v$ profile (see later)
+                        }%
+                    }%
+                    \only<3>{%
+                        \item[+]{%
+                            otherwise equal $T_{i}$ profiles (none specified), neutral/pressure $n_{n}$, $p$ profiles (none given) and magnetic configurations (standard EJM)
+                        }%
+                        \item[+]{%
+                            also both constant impurity sources located at $r_{LCFS}$ with intensity of \SI{3e17}{\per\second}
+                        }%
+                        \item[+]{%
+                            same connections lengths to LCFS, divertor/limiter for both sets
+                        }
+                        \item[+]{%
+                            relaxation time in simulation \SI{1}{\second}, convergence steps per time 1000
+                        }%
+                    }%
+                \end{itemize}%
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Expirement 20181010.032}
+        \only<1-2>{%
+            \begin{block}{Radiation fractions}
+                \centering%
+                \only<1>{%
+                    \includegraphics[width=.8\textwidth]%
+                        {figures/content/radiational_fraction.pdf}%
+                }%
+                \only<2>{%
+                    \includegraphics[width=.8\textwidth]%
+                        {figures/content/radiational_fraction_edge.pdf}%
+                }%
+            \end{block}
+        }%
+        \only<3-8>{%
+            \begin{block}{Chordial profiles \& 'best' channels}
+                \only<3>{%
+                    \begin{itemize}
+                        \item[+]{%
+                            'best' = most sensitive to this particular radiation trace
+                        }%
+                        \item[+]{%
+                            method for quality evaluation used:
+                        }%
+                    \end{itemize}
+                    \centering%
+                    $d_{diff}(t)=\|P_{rad}(t) - P_{prediction}(t)\|$\\%
+                    \vspace*{.75cm}%
+                    $\varepsilon(t)=%
+                        \left\{\begin{array}{ll}%
+                        1-\frac{d_{diff}(t)}{P_{rad}(t)}&,%
+                            \,\,d_{diff}<P_{rad}\\%
+                        0&,\text{ else}
+                        \end{array}\right\}$\\%
+                    \vspace*{.75cm}%
+                    $\vartheta=\overline{\varepsilon(t)}$%
+                }%
+                \only<4>{%
+                    \centering%
+                    \includegraphics[width=.8\textwidth]%
+                        {figures/content/wghtd_dev_C[_5_16_23].pdf}%
+                }
+                \only<5>{%
+                    \centering%
+                    \includegraphics[width=.8\textwidth]%
+                        {figures/content/spectrum_analysis.pdf}%
+                }
+                \only<6>{%
+                    \centering%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/best_channels_and_fit_withLOS.pdf}%
+                }
+                \only<7>{%
+                    \centering%
+                    \includegraphics[width=.8\textwidth]%
+                        {figures/content/chordal_profile.pdf}%
+                }
+                \only<8>{%
+                    \centering%
+                    \includegraphics[width=.8\textwidth]%
+                        {figures/content/chordal_profile_edge.pdf}%
+                }
+            \end{block}%
+        }%
+    \end{frame}
+
+    \begin{frame}{STRAHL comparison}
+        \only<1-6>{%
+            \begin{block}{Set No.1, $f_{rad}=0.33, 0.66$}
+                \centering%
+                \only<1>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00002_00003_full.pdf}
+                }%
+                \only<2>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00002_00003_edge.pdf}
+                }%
+                \only<3>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00002_00003_full.pdf}
+                }%
+                \only<4>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00002_00003_edge.pdf}
+                }%
+                \only<5>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00002_00003_full.pdf}
+                }%
+                \only<6>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00002_00003_edge.pdf}
+                }%
+            \end{block}
+        }%
+        \only<7-12>{%
+            \begin{block}{Set No.1, $f_{rad}=0.66, 0.9$}
+                \centering%
+                \only<7>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00003_00004_full.pdf}
+                }%
+                \only<8>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00003_00004_edge.pdf}
+                }%
+                \only<9>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00003_00004_full.pdf}
+                }%
+                \only<10>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00003_00004_edge.pdf}
+                }%
+                \only<11>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00003_00004_full.pdf}
+                }%
+                \only<12>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00003_00004_edge.pdf}
+                }%
+            \end{block}
+        }%
+        \only<13-18>{%
+            \begin{block}{Set No.1, $f_{rad}=0.9, 1.0$}
+                \centering%
+                \only<13>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00004_00005_full.pdf}
+                }%
+                \only<14>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00004_00005_edge.pdf}
+                }%
+                \only<15>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00004_00005_full.pdf}
+                }%
+                \only<16>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00004_00005_edge.pdf}
+                }%
+                \only<17>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00004_00005_full.pdf}
+                }%
+                \only<18>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00004_00005_edge.pdf}
+                }%
+            \end{block}
+        }%
+        \only<19-25>{%
+            \begin{block}{Set No.1\&2, $f_{rad}=0.9$}
+                \centering%
+                \only<19>{%
+                    \includegraphics[width=.8\textwidth]%
+                        {figures/content/strahl/%
+                         compare_anomal_transp_00004_00008_full.pdf}
+                }%
+                \only<20>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00004_00008_full.pdf}
+                }%
+                \only<21>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00004_00008_edge.pdf}
+                }%
+                \only<22>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00004_00008_full.pdf}
+                }%
+                \only<23>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00004_00008_edge.pdf}
+                }%
+                \only<24>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00004_00008_full.pdf}
+                }%
+                \only<25>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00004_00008_edge.pdf}
+                }%
+            \end{block}
+        }%
+        \only<26-31>{%
+            \begin{block}{Set No. 2, $f_{rad}=0.9, 1.$}
+                \centering%
+                \only<26>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00008_00009_full.pdf}
+                }%
+                \only<24>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00008_00009_edge.pdf}
+                }%
+                \only<28>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00008_00009_full.pdf}
+                }%
+                \only<29>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00008_00009_edge.pdf}
+                }%
+                \only<30>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00008_00009_full.pdf}
+                }%
+                \only<31>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00008_00009_edge.pdf}
+                }%
+            \end{block}
+        }%
+        \only<32-37>{%
+            \begin{block}{Set No. 2, $f_{rad}=0.66, 1.$}
+                \centering%
+                \only<32>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00007_00009_full.pdf}
+                }%
+                \only<33>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_ne_Te_00007_00009_edge.pdf}
+                }%
+                \only<34>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00007_00009_full.pdf}
+                }%
+                \only<35>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_strahl_rad_00007_00009_edge.pdf}
+                }%
+                \only<36>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00007_00009_full.pdf}
+                }%
+                \only<37>{%
+                    \includegraphics[height=.8\textheight]%
+                        {figures/content/strahl/%
+                         compare_fract_abund_00007_00009_edge.pdf}
+                }%
+            \end{block}
+        }%
+    \end{frame}
+
+\end{document}

@@ -1,0 +1,11 @@
+# data_name;data_stream;version
+TS_data;Test/raw/W7X/QTB_Profile/volume_**vol_no**_DATASTREAM;V10
+reference_equilibria;ArchiveDB/raw/W7XAnalysis/Equilibrium/RefEq_PARLOG/V1/parms/equilibriumID;V2
+TS_active_flag_2017;Test/raw/W7X/QTB_Test_V/volume_**vol_no**_PARLOG/V1/parms/active;None
+TS_active_flag_2018;Test/raw/W7X/QTB_Profile/volume_**vol_no**_PARLOG/V1/parms/active;V10
+TS_scatter_vol_params;Test/raw/W7X/QTB_Profile/volume_**vol_no**_PARLOG;V10
+vmec_client;http://esb:8280/services/vmec_v8?wsdl;None
+vmec_base;http://svvmec1.ipp-hgw.mpg.de:8080/vmecrest/v1/;None
+TS_laserno;Test/raw/W7X/QTB_Profile_LaserStream/laser_number_DATASTREAM;V10
+high_res_interferometry (burst mode TS);Test/raw/W7XAnalysis/QMJ_IEDDI/IED_DDR/V1/1/density;None
+low_res_interferometry;ArchiveDB/codac/W7X/CoDaStationDesc.16339/DataModuleDesc.16341_DATASTREAM/0/Line integrated density/scaled;None

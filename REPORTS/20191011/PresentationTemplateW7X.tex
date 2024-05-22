@@ -1,0 +1,274 @@
+\documentclass{beamer}
+
+% use predefined IPP style
+% options: St,noSt : with/without stellarator theory logo
+% options: Eurofusion, noEurofusion : with/without Eurofusion logo
+\useoutertheme[Eurofusion, w7x]{ippw7x}
+
+% don't show navigation symbols
+\beamertemplatenavigationsymbolsempty
+% show navigation symbols
+%\setbeamertemplate{navigation symbols}[only frame symbol]{}
+
+% transition effects
+% \transblindshorizontal
+%    Vertical blinds pulled away
+% \transblindsvertical
+%    Move to center from all sides
+% \transboxin
+%    Move to all sides from center
+% \transboxout
+%    Slowly dissolve what was shown before
+% \transdissolve
+%    Glitter sweeps in specified direction
+% \transglitter
+%    Sweeps two vertical lines in
+% \transslipverticalin
+%    Sweeps two vertical lines out
+% \transslipverticalout
+%    Sweeps two horizontal lines in
+% \transhorizontalin
+%    Sweeps two horizontal lines out
+% \transhorizontalout
+%    Sweeps single line in specified direction
+% \transwipe
+%    Show slide specified number of seconds
+% \transcover
+% \transfade
+% \transpush
+% \transuncover
+% \transduration{2}
+% \addtobeamertemplate{background canvas}{\transfade}{}
+
+% change left/right margins
+% \setbeamersize{text margin left=20pt,text margin right=20pt}
+
+% extra packages
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amssymb,stackrel}
+\usepackage{changepage}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{units}
+\usepackage{siunitx}
+
+\newcommand{\backgroundlogo}{%
+    \tikz[overlay,remember picture]{%
+    \node[at=(current page.west)] (source) {};%
+    \node[opacity = 0.02] {%
+    \includegraphics[height=1.\paperheight]%
+        {figures/header/minerva}%
+    }%
+  }
+}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% \selectlanguage{german}
+
+% title of the presentation
+% short title will be shown in the footer
+\title[Meet-Up Report]{Meet Report 10/11/2019}
+
+% authors of the presentation
+% lecturer (and maybe place and date) will be shown in the footer
+\author[P.Hacker]{P. Hacker\inst{1, 2}}
+
+% institutes of the authors
+\institute[MPI for Plasmaphysics Greifswald]{%
+    \inst{1}%
+        Max-Planck-Institute for Plasmaphysics, %
+        Wendelsteinstr. 1, Greifswald, Germany \and%
+    \inst{2}%
+        University of Greifswald, Rubenowstr. 6, Greifswald, Germany}
+
+% set date of the talk
+\date{2019/10/11}
+
+
+    % first frame
+    \begin{frame}
+        % show title of talk and authors
+        \titlepage
+
+        % show Logos Helmholtz, Max-Planck and EUROfusion
+        \begin{minipage}[]{0.35\textwidth}
+            \includegraphics[height=6ex]%
+                {figures/header/2017_H_Logo_CMYK_untereinander_EN}
+        \end{minipage}
+            \hfill
+        \begin{minipage}[]{0.2\textwidth}
+            \begin{center}
+                \includegraphics[height=4ex]{figures/header/minerva}
+            \end{center}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[]{0.35\textwidth}
+            \begin{flushright}
+                \includegraphics[height=5ex]%
+                    {figures/header/EUROfusion-LOGO-PANTONE_REFL_BLUE}
+            \end{flushright}
+        \end{minipage}
+
+        % show acknoledgement from EUROfusion
+        \acknowledgement
+    \end{frame}
+
+    \begin{frame}{Protocoll of meeting}
+        \begin{block}{Protocoll}
+            \only<1>{%
+                Last protocoll, 2019/07/11:
+                \begin{itemize}
+                    \item[1]{%
+                        calculate sensitivity for channels -- localistaion
+                    }%
+                    \item[2]{%
+                        rudimentally same channel selection (with %
+                        regards to the number) seem to be mor pontent of %
+                        information about plasma radiation%
+                    }
+                    \item[3]{\color{orange}{%
+                        why is that the case? differences in radiation locals%
+                    }}%
+                    \item[4]{\color{red}{%
+                        applicable conclusions for feedback system
+                    }}
+                \end{itemize}
+            }%
+            \only<2->{%
+                \begin{itemize}
+                    \only<2>{%
+                        \section{Protocoll}
+                        \item[+]{\color{orange}{%
+                            get n$_{e}$ and T$_{e}$ profiles regarding the %
+                            analised XP IDs accordingly from QTB or divertor %
+                            spectroscopy/MPM%
+                        }}
+                        \item[+]{%
+                            just look at O2/O in HEXOS lines to figure stuff %
+                            out, also C maybe%
+                        }
+                        \item[+]{\color{orange}{%
+                            P$_{rad}$ not always maximised at LCFS or %
+                            island necessarily, rather %
+                            $f\left(n_{e},\,T_{e}\right)$ (moving in/out)
+                        }}
+                    }
+                \end{itemize}
+            }
+        \end{block}
+    \end{frame}
+
+    \begin{frame}
+        \begin{block}{TS/QTB Profiles}
+            \only<1>{%
+                \centering
+                \includegraphics[height=0.7\textheight]%
+                    {figures/content/thomson/%
+                     TS_profile_at_0_920516096s_combined.pdf}
+            }
+            \only<2>{%
+                \centering
+                \includegraphics[height=0.7\textheight]%
+                    {figures/content/thomson/%
+                     TS_profile_at_0_6871616s_combined.pdf}
+            }
+            \only<3>{%
+                \centering
+                \includegraphics[height=0.7\textheight]%
+                    {figures/content/thomson/%
+                     avg_Profile_thomson.pdf}
+            }
+        \end{block}
+    \end{frame}
+
+    \begin{frame}
+        \begin{block}{Radiational Fraction}
+            \only<1>{%
+                \centering
+                \includegraphics[height=0.7\textheight]%
+                    {figures/content/%
+                     radiational_fraction_20181010_032.pdf}
+            }
+            \only<2>{%
+                \centering
+                \includegraphics[height=0.7\textheight]%
+                    {figures/content/%
+                     radiational_fraction_20181010_032_edge.pdf}
+            }
+        \end{block}
+    \end{frame}
+
+    \begin{frame}
+        \begin{block}{Chordial Profile and HEXOS Lines}
+            \only<1>{%
+                \centering
+                \includegraphics[height=0.7\textheight]%
+                    {figures/content/%
+                     chordal_profile_HBCm.pdf}
+            }
+            \only<2>{%
+                \centering
+                \includegraphics[height=0.7\textheight]%
+                    {figures/content/hexos/%
+                     hexos_and_channels_20181010_032_%
+                     [-0_37451663,1_62548337]['C_II','C_IV','C_V','C_VI'].pdf}
+            }
+            \only<3>{%
+                \centering
+                \includegraphics[height=0.7\textheight]%
+                    {figures/content/hexos/%
+                     hexos_and_channels_20181010_032_%
+                     [1_2323633699999998,3_23236337]%
+                     ['C_II','C_IV','C_V','C_VI'].pdf}
+            }
+            \only<4>{%
+                \centering
+                \includegraphics[height=0.7\textheight]%
+                    {figures/content/hexos/%
+                     hexos_and_channels_20181010_032_%
+                     [2_43684337,4_43684337]['C_II','C_IV','C_V','C_VI'].pdf}
+            }
+        \end{block}
+    \end{frame}
+
+    \begin{frame}{Conclusions and further Proceedings}
+        \begin{block}{Protocoll}
+            \begin{itemize}
+                \item[+]{%
+                    QTB profiles most likely of insufficient accuracy and %
+                    range for match with r$_{eff}$ and ionisation energies %
+                    or photon levels%
+                }%
+                \item[+]{%
+                    L$_{Z}$ needed and transport to link spacial position of %
+                    radiation sensitivity (see channel number and analysis) %
+                    to a possible ion/impurity species%
+                }
+                \item[+]{%
+                    using STRAHL code with already in the past set up %
+                    geometric factors to predict radiation per channel and %
+                    hence local emissivity of ion species%
+                }
+                \item[+]{%
+                    already have profiles to feed into STRAHL, else see %
+                    MPM or maybe (more work) He-beam%
+                }
+            \end{itemize}
+        \end{block}
+    \end{frame}
+
+    % BACKUP
+    \begin{frame}
+    \end{frame}
+
+\end{document}

@@ -1,0 +1,127 @@
+% IPP presentation style for beamer package
+% Copyright 2014 by M. Borchardt
+% modified 2016 A. Kleiber
+% modified 2018 A. Kleiber, new logos for W7-X and ASDEX
+
+%\DeclareOptionBeamer{noSt}{\def\beamer@themeipp@w7x{0}}
+%\DeclareOptionBeamer{St}{\def\beamer@themeipp@w7x{1}}
+\DeclareOptionBeamer{now7x}{\def\beamer@themeipp@w7xx{0}}
+\DeclareOptionBeamer{w7x}{\def\beamer@themeipp@w7xx{1}}
+%\ExecuteOptionsBeamer{w7x}
+\DeclareOptionBeamer{noEurofusion}{\def\beamer@themeipp@eurofusion{0}}
+\DeclareOptionBeamer{Eurofusion}{\def\beamer@themeipp@eurofusion{1}}
+\ExecuteOptionsBeamer{noEurofusion}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\useinnertheme[shadow=true]{rounded}
+\usefonttheme{professionalfonts}
+\usecolortheme{whale}
+\def\acknowledgement{\tiny This work has been carried out within the
+  framework of the EUROfusion Consortium and has received funding from the
+  Euratom research and training programme 2014-2018 under grant
+  agreement No 633053. The views and opinions expressed herein do not
+  necessarily reflect those of the European Commission.}
+
+\definecolor{ipp2}{rgb}{0.19,0.42,0.70}
+\definecolor{ipp}{rgb}{0,0.40,0.75}
+\definecolor{ipplight}{rgb}{0.78,0.85,0.95}
+\definecolor{ippdark}{rgb}{0,0.22,0.46}
+\setbeamercolor{section in head/foot}{parent=palette quaternary}
+\setbeamercolor{subsection in head/foot}{parent=palette primary}
+\setbeamercolor{author in head/foot}{parent=section in head/foot}
+\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
+\setbeamercolor{frametitle}{parent=subsection in head/foot}
+\setbeamercolor{frametitle right}{parent=section in head/foot}
+\setbeamercolor{footlinecolor}{bg=ipplight,fg=ipp}
+\setbeamercolor*{structure}{fg=ipp}
+\setbeamercolor*{block title}{fg=white, bg=ipp}
+\setbeamercolor*{block body}{fg=black, bg=ipplight}
+\setbeamercolor*{frametitle}{fg=ipp}
+\setbeamerfont*{frametitle}{series=\bfseries,size=\large,parent=structure}
+\setbeamercolor*{title in head/foot}{bg=ipplight,fg=black}
+\setbeamercolor*{section in toc}{fg=ipp}
+
+\AtBeginDocument{
+  \def\insertframetitle{}
+  \pgfdeclarehorizontalshading{beamer@topshade}{0.5pt}{%
+    color(0pt)=(ipp2);
+    color(\paperwidth)=(ipp2)}
+}
+
+\pgfdeclarehorizontalshading[ipplight,ipplight]{beamer@frametitleshade}{\paperheight}{%
+  color(0pt)=(ipplight);
+  color(\paperwidth)=(ipplight)}
+
+\pgfdeclareimage[height=1cm]{LogoIPP}{figures/header/ipp_logo_color}
+\pgfdeclareimage[height=1cm]{LogoIPPSchrift}{figures/header/Logo_ipp_mit_Schrift}
+\pgfdeclareimage[height=1cm]{LogoW7X}{figures/header/w7x_white}
+\pgfdeclareimage[height=.7cm]{LogoEurope}{figures/header/Flag_of_Europe}
+\pgfdeclareimage[height=.7cm]{LogoEurofusion}{figures/header/EUROfusion-LOGO-PANTONE_REFL_BLUE}
+\pgfdeclareimage[height=.6cm]{LogoHelmholtz}{figures/header/helmholtz_blau}
+\pgfdeclareimage[height=1cm]{LogoMinerva}{figures/header/minerva_gruen_ganz_ohne_hintergrund.png}
+\pgfdeclareimage[height=1cm]{LogoST}{figures/header/logo_stel_ipp_blau}
+
+\usesectionheadtemplate
+  {\hfill\insertsectionhead}
+  {\hfill\color{fg!50!bg}\insertsectionhead}
+
+% no extra frame title
+
+\defbeamertemplate*{frametitle}{ipp theme}{}
+
+                                % Head
+\defbeamertemplate*{headline}{ipp theme}
+{%
+    \ifnum\theframenumber=1%
+        \vspace*{4ex}%
+        \begin{minipage}{0.15\paperwidth}%
+            \textcolor{white}{text}%
+        \end{minipage}%
+        \hfill%
+        \begin{minipage}{0.65\paperwidth}%
+            \begin{flushright}%
+                \includegraphics[height=8ex]{figures/header/w7x_white}\hspace*{4ex}\includegraphics[height=8ex]{figures/header/Logo_ipp_mit_Schrift}%
+            \end{flushright}%
+        \end{minipage}%
+        \hspace*{10ex}%%\vfil}
+    \else
+        \ifnum\beamer@themeipp@w7xx=1%
+            \vspace*{2ex}%
+            \hspace*{2em}%
+            \begin{minipage}{0.6\paperwidth}%
+                \textcolor{ipp2}{%
+                    \usebeamerfont{frametitle}\insertframetitle}%
+            \end{minipage}%
+            \hfill%
+            \begin{minipage}{0.3\paperwidth}%
+                \begin{flushright}%
+                    \includegraphics[height=6ex]{figures/header/w7x_white}%
+                    \hspace*{1ex}%
+                    \includegraphics[height=6ex]%
+                        {figures/header/ipp_logo_color}%
+                \end{flushright}%
+            \end{minipage}%
+            \hspace*{2em}%
+            \vspace*{2ex}%
+            \newline%
+            \hbox to\paperwidth{\pgfuseshading{beamer@topshade}}
+        \fi
+    \fi
+}
+
+\defbeamertemplate*{footline}{ipp theme}
+{%
+      \hspace*{2em}%
+      \textcolor{ipp2}{%
+      \usebeamerfont{author in head/foot} 12/12/2019 \hfill%%}
+      \insertframenumber{} / \inserttotalframenumber
+      }%
+      \hspace*{2em}%
+      \vspace*{1ex}%
+}
+
+
+\mode
+<all>

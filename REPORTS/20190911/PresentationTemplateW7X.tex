@@ -1,0 +1,584 @@
+\documentclass{beamer}
+
+% use predefined IPP style
+% options: St,noSt : with/without stellarator theory logo
+% options: Eurofusion, noEurofusion : with/without Eurofusion logo
+\useoutertheme[Eurofusion, w7x]{ippw7x}
+
+% don't show navigation symbols
+\beamertemplatenavigationsymbolsempty
+% show navigation symbols
+%\setbeamertemplate{navigation symbols}[only frame symbol]{}
+
+% transition effects
+% \transblindshorizontal
+%    Vertical blinds pulled away
+% \transblindsvertical
+%    Move to center from all sides
+% \transboxin
+%    Move to all sides from center
+% \transboxout
+%    Slowly dissolve what was shown before
+% \transdissolve
+%    Glitter sweeps in specified direction
+% \transglitter
+%    Sweeps two vertical lines in
+% \transslipverticalin
+%    Sweeps two vertical lines out
+% \transslipverticalout
+%    Sweeps two horizontal lines in
+% \transhorizontalin
+%    Sweeps two horizontal lines out
+% \transhorizontalout
+%    Sweeps single line in specified direction
+% \transwipe
+%    Show slide specified number of seconds
+% \transcover
+% \transfade
+% \transpush
+% \transuncover
+% \transduration{2}
+% \addtobeamertemplate{background canvas}{\transfade}{}
+
+% change left/right margins
+% \setbeamersize{text margin left=20pt,text margin right=20pt}
+
+% extra packages
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amssymb,stackrel}
+\usepackage{changepage}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{units}
+\usepackage{siunitx}
+
+\newcommand{\backgroundlogo}{%
+    \tikz[overlay,remember picture]{%
+    \node[at=(current page.west)] (source) {};%
+    \node[opacity = 0.02] {%
+    \includegraphics[height=1.\paperheight]%
+        {figures/header/minerva}%
+    }%
+  }
+}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% \selectlanguage{german}
+
+% title of the presentation
+% short title will be shown in the footer
+\title[Meet-Up Report]{First Sub\,-\,Topical Group Meeting 09/11/2019}
+
+% authors of the presentation
+% lecturer (and maybe place and date) will be shown in the footer
+\author[P.Hacker]{P. Hacker\inst{1, 2}}
+
+% institutes of the authors
+\institute[MPI for Plasmaphysics Greifswald]{%
+    \inst{1}%
+        Max-Planck-Institute for Plasmaphysics, %
+        Wendelsteinstr. 1, Greifswald, Germany \and%
+    \inst{2}%
+        University of Greifswald, Rubenowstr. 6, Greifswald, Germany}
+
+% set date of the talk
+\date{2019/09/11}
+
+
+    % first frame
+    \begin{frame}
+        % show title of talk and authors
+        \titlepage
+
+        % show Logos Helmholtz, Max-Planck and EUROfusion
+        \begin{minipage}[]{0.35\textwidth}
+            \includegraphics[height=6ex]%
+                {figures/header/2017_H_Logo_CMYK_untereinander_EN}
+        \end{minipage}
+            \hfill
+        \begin{minipage}[]{0.2\textwidth}
+            \begin{center}
+                \includegraphics[height=4ex]{figures/header/minerva}
+            \end{center}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[]{0.35\textwidth}
+            \begin{flushright}
+                \includegraphics[height=5ex]%
+                    {figures/header/EUROfusion-LOGO-PANTONE_REFL_BLUE}
+            \end{flushright}
+        \end{minipage}
+
+        % show acknoledgement from EUROfusion
+        \acknowledgement
+    \end{frame}
+
+    \begin{frame}{Methods}
+        % display all sections
+        \begin{block}{}
+            \begin{itemize}
+                \item[+]{%
+                    \underline{Laboratory Results:} %
+                    taken from Dasen's laboratory %
+                    measurements, given each a linear fit function of %
+                    $\tau(n)=\omega\cdot n+\beta=T\ix{new}(n)$}%
+                \item[+]{%
+                    \underline{Measurement Results:} %
+                    time base as measured by LabVIEW %
+                    itself based off of the CPU time inside the loops/program}
+                \item[+]{%
+                    \underline{Manual Method:} %
+                    mapped HEXOS to measured bolometer %
+                    radiation and assumed a similar function in time %
+                    as above}
+            \end{itemize}
+        \end{block}%
+    \end{frame}
+
+    % new frame
+    \begin{frame}{Function Pattern}
+        % display all sections
+        \begin{block}{Time Equation: Lab results}
+            taking measurements either from laboratory with laser or %
+            internal timing from LabVIEW as reference for actual timetrace:%
+            \begin{align}%
+                t\left(n\right)=%
+                    T\ix{start, old}+\Theta\ix{pre DAQ}+%
+                    \left(S\ix{new}+\omega\right)\cdot n\nonumber%
+            \end{align}%
+            \quad\quad\underline{with:}%
+            \begin{align}%
+                T\ix{start, old}&\text{: first timestamp of measurement, old}%
+                    \nonumber\\%
+                S\ix{new}&\text{: new sample time}\nonumber\\%
+                \omega&\text{: slope of fit from laboratory results}%
+                    \nonumber\\%
+                n&\text{: number of sample}\nonumber\\%
+                \Theta_{pre-DAQ}&=%
+                    \left(S\ix{new}-S\ix{old}+\omega\right)%
+                    \cdot N\ix{skip}\nonumber\\%
+                S\ix{old}&\text{: old sample time}\nonumber\\%
+                N\ix{skip}&\text{: skipped samples before }T\ix{start, old}%
+                    \nonumber%
+            \end{align}%
+        \end{block}%
+    \end{frame}%
+
+    \begin{frame}{Laboratory Results: 1.6\,ms}%
+        \begin{minipage}{0.4\textwidth}
+            \only<1>{%
+                \centering
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181016.16/%
+                     trigger_check_016_t=0_0__lab.pdf}%
+            }%
+            \only<2>{%
+                \centering
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181016.16/%
+                     trigger_check_016_t=22_0__lab.pdf}%
+            }
+            \only<3>{%
+                \centering
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181016.16/%
+                     trigger_check_016_t=31_101__lab.pdf}%
+            }
+        \end{minipage}%
+        \hfill%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1-2>{%
+                \begin{block}{Info: lab method}%
+                    \begin{itemize}
+                        \item[+]{%
+                            from lab results, $N\ix{skip}=1000$, %
+                            $\omega=0$}%
+                        \item[+]{%
+                            1.56\% error, %
+                            $S\ix{new}=$\SI{1.625088}{\milli\second}}%
+                        \item[+]{%
+                            shift around T1/T4: 131.25\,/\,%
+                            \SI{617.2}{\milli\second}}%
+                        \item[+]{%
+                            samples and time before T1: %
+                            5169, \SI{8.4001}{\second}}%
+                    \end{itemize}%
+                \end{block}%
+            }%
+            \only<3>{%
+                \centering
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181016.16/%
+                     overview20181016016.pdf}%
+            }%
+        \end{minipage}%
+    \end{frame}%
+
+    \begin{frame}{Laboratory Results: 0.8\,ms}%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1>{%
+                \centering
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181011.15/%
+                     trigger_check_015_t=0_0__lab.pdf}%
+            }%
+            \only<2>{%
+                \centering
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181011.15/%
+                     trigger_check_015_t=1_303__lab.pdf}%
+            }%
+            \only<3>{%
+                \centering
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181011.15/%
+                     trigger_check_015_t=6_003__lab.pdf}%
+            }%
+            \only<4>{%
+                \centering
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181011.15/%
+                     trigger_check_015_t=6_603__lab.pdf}%
+            }%
+        \end{minipage}%
+        \hfill%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1-3>{%
+                \begin{block}{Info: lab method}%
+                    \begin{itemize}
+                        \item[+]{%
+                            from lab results, $N\ix{skip}=1000$, %
+                            $\omega=1.005\tenpo{-6}$}%
+                        \item[+]{%
+                            2.62\% error, %
+                            $S\ix{new}=$\SI{0.821}{\milli\second}}%
+                        \item[+]{%
+                            shift around T1/T4: 262.51\,/\,%
+                            \SI{475.17}{\milli\second}}%
+                        \item[+]{%
+                            samples and time before T1: %
+                            12180, \SI{9.9997}{\second}}%
+                        \item[+]{%
+                            Fe/Ti LBO injections}
+                    \end{itemize}%
+                \end{block}%
+            }%
+            \only<4>{%
+                \centering
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181011.15/%
+                     overview20181011015.pdf}%
+            }%
+        \end{minipage}%
+    \end{frame}%
+
+    % new frame
+    \begin{frame}{Function Pattern: Recursive test}
+        % display all sections
+        \begin{block}{Time Equation}
+        taking HEXOS lines for reference to map timeline/peaks to:%
+            \begin{align}%
+                t\left(n\right)=%
+                    T\ix{start, old}+\Theta\ix{pre DAQ}+%
+                    \left(S\ix{old}\right)\cdot n\cdot G\nonumber%
+            \end{align}%
+            \quad\quad\underline{with:}%
+            \begin{align}%
+                G&\text{: global scaling factor from HEXOS fit}\nonumber\\%
+                \Theta_{pre-DAQ}&=%
+                    \left(S\ix{new}-S\ix{old}+\omega\right)%
+                    \cdot N\ix{skip}+\sigma\ix{of}\nonumber\\%
+                \sigma\ix{of}&\text{: offset from HEXOS fit}\nonumber%
+            \end{align}
+        \end{block}
+    \end{frame}%
+
+    \begin{frame}{Manual Results: 1.6\,ms}%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1-2>{%
+                \centering
+                \large{\color{ipp}{%
+                    manual fit}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/manual/20181016.16/%
+                     trigger_check_016_t=0_0__manual.pdf}%
+            }%
+            \only<3>{%
+                \centering
+                \large{\color{ipp}{%
+                    manual fit}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/manual/20181016.16/%
+                     trigger_check_016_t=31_101__manual.pdf}%
+            }%
+        \end{minipage}%
+        \hfill%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1>{%
+                \begin{block}{Info: manual method}%
+                    \begin{itemize}
+                        \item[+]{%
+                            from HEXOS, $N\ix{skip}=1000$, %
+                            $\omega=0$}%
+                        \item[+]{%
+                            0\% error, %
+                            $S\ix{new}=$\SI{1.6}{\milli\second}}%
+                        \item[+]{%
+                            shift around T1/T4: 177.324\,/\,%
+                            \SI{519.433}{\milli\second}}%
+                        \item[+]{%
+                            samples and time before T1: %
+                            5140, \SI{8.31479}{\second}}%
+                        \item[+]{%
+                            $\sigma\ix{of}=$\SI{84}{\milli\second}, %
+                            $G=$1.011}%
+                    \end{itemize}%
+                \end{block}%
+            }%
+            \only<2>{%
+                \centering
+                \large{\color{ipp}{%
+                    laboratory fit}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181016.16/%
+                     trigger_check_016_t=0_0__lab.pdf}%
+            }%
+            \only<3>{%
+                \centering
+                \large{\color{ipp}{%
+                    overview plot}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/manual/20181016.16/%
+                     overview20181016016.pdf}%
+            }%
+        \end{minipage}%
+    \end{frame}%
+
+    \begin{frame}{Manual Results: 0.8\,ms}%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1-3>{%
+                \centering
+                \large{\color{ipp}{%
+                    manual fit}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/manual/20181011.15/%
+                     trigger_check_015_t=0_0__manual.pdf}%
+            }%
+        \end{minipage}%
+        \hfill%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1>{%
+                \begin{block}{Info: manual method}%
+                    \begin{itemize}
+                        \item[+]{%
+                            from HEXOS, $N\ix{skip}=1000$, %
+                            $\omega=0$}%
+                        \item[+]{%
+                            0\% error, %
+                            $S\ix{new}=$\SI{0.8}{\milli\second}}%
+                        \item[+]{%
+                            shift around T1/T4: 23.891\,/\,%
+                            \SI{23.891}{\milli\second}}%
+                        \item[+]{%
+                            samples and time before T1: %
+                            12470, \SI{9.976}{\second}}%
+                        \item[+]{%
+                            $\sigma\ix{of}=$\SI{23.89}{\milli\second}, %
+                            $G=$1.0}%
+                    \end{itemize}%
+                \end{block}%
+            }%
+            \only<2>{%
+                \centering
+                \large{\color{ipp}{%
+                    manual fit}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/manual/20181011.15/%
+                     overview20181011015.pdf}%
+            }%
+            \only<3>{%
+                \centering
+                \large{\color{ipp}{%
+                    laboratory fit}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/lab/20181011.15/%
+                     trigger_check_015_t=0_0__lab.pdf}%
+            }%
+        \end{minipage}%
+    \end{frame}%
+
+    \begin{frame}{LabVIEW Results: 1.6\,ms}%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1-2>{%
+                \centering
+                \large{\color{ipp}{%
+                    measurement fit}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/meas/20181016.16/%
+                     trigger_check_016_t=0_0__meas.pdf}%
+            }%
+        \end{minipage}%
+        \hfill%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1>{%
+                \begin{block}{Info: measurement method}%
+                    \begin{itemize}
+                        \item[+]{%
+                            from LabVIEW, $N\ix{skip}=1000$, %
+                            $\omega=0$}%
+                        \item[+]{%
+                            -0.72\% error, %
+                            $S\ix{new}=$\SI{1.589}{\milli\second}}%
+                        \item[+]{%
+                            shift around T1/T4: \SI{-71.667}{}\,/\,%
+                            \SI{-294.556}{\milli\second}}%
+                        \item[+]{%
+                            samples and time before T1: %
+                            5295, \SI{8.411}{\second}}%
+                    \end{itemize}%
+                \end{block}%
+            }%
+            \only<2>{%
+                \centering
+                \large{\color{ipp}{%
+                    manual fit}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/manual/20181016.16/%
+                     trigger_check_016_t=0_0__manual.pdf}%
+            }%
+        \end{minipage}%
+    \end{frame}%
+
+    \begin{frame}{LabVIEW Results: 0.8\,ms}%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1-2>{%
+                \centering
+                \large{\color{ipp}{%
+                    measurement fit}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/meas/20181011.15/%
+                     trigger_check_015_t=0_0__meas.pdf}%
+            }%
+        \end{minipage}%
+        \hfill%
+        \begin{minipage}{0.4\textwidth}%
+            \only<1>{%
+                \begin{block}{Info: measurement method}%
+                    \begin{itemize}
+                        \item[+]{%
+                            from LabVIEW, $N\ix{skip}=1000$, %
+                            $\omega=0$}%
+                        \item[+]{%
+                            -0.72\% error, %
+                            $S\ix{new}=$\SI{0.794}{\milli\second}}%
+                        \item[+]{%
+                            shift around T1/T4: \SI{-77.4}{}\,/\,%
+                            \SI{-135.45}{\milli\second}}%
+                        \item[+]{%
+                            samples and time before T1: %
+                            12597, \SI{10.007}{\second}}%
+                        \item[+]{%
+                            Fe/Ti LBO injections}
+                    \end{itemize}%
+                \end{block}%
+            }%
+            \only<2>{%
+                \centering
+                \large{\color{ipp}{%
+                    manual fit}}
+                \includegraphics[height=0.9\textheight]%
+                    {figures/content/manual/20181011.15/%
+                     trigger_check_015_t=0_0__manual.pdf}%
+            }%
+        \end{minipage}%
+    \end{frame}%
+
+    \begin{frame}{Summary}%
+        \begin{block}{}%
+            \begin{itemize}%
+                \only<1>{%
+                    \item[+]{%
+                        laboratory results do not work flawlessly for %
+                        0.8 and 1.6\,ms}
+                    \item[+]{%
+                        linear function yields over-estimation towards end of
+                        discharge}%
+                    \item[+]{%
+                        potentially only offset in time base}
+                    \item[+]{%
+                        highly likely that, since experimental campaign %
+                        something in the setup changed that influences the %
+                        timing}
+                }%
+                \only<2>{%
+                    \item[+]{%
+                        manual fit method from HEXOS works much more %
+                        reliable, beginning and end of discharge}%
+                    \item[+]{%
+                        properly represents event timings in-between}
+                    \item[+]{%
+                        possibly applicable for more experiments or entire %
+                        campaign with some fine tuning}
+                    \item[+]{%
+                        LabVIEW time measurements (old) not useable, %
+                        however loop timings from DAQ routine looked similar}
+                }
+            \end{itemize}
+        \end{block}%
+    \end{frame}%
+
+    % Protocoll
+    \begin{frame}{Protocoll 2019/09/11}
+        \begin{block}{Protocoll}
+            \only<1>{%
+                \begin{itemize}
+                    \item[+]{%
+                        need to implement the skipped samples into the %
+                        timebase correction, sadly not in PARLOGs %
+                        (assumed to be 1000)}%
+                    \item[+]{%
+                        subtopical group archive to be established in %
+                        //sv-di-fs-1/E5-IMP/Bolometer/Besprechungen/%
+                        SubtopicalGroupMeeting/}%
+                    \item[+]{%
+                        overview plots to be shown along the respective %
+                        trigger cross checks}%
+                    \item[+]{%
+                        HEXOS lines for LBO/intrinsic impurities to be %
+                        displayed alongside/next to}%
+                    \item[+]{%
+                        time difference at specified sample/trigger to old %
+                        timetraces}%
+                    \item[+]{%
+                        discussed cosmetics and phrasing on Dasen Fu's %
+                        v3.0 presentation on the timing problem}%
+                \end{itemize}
+            }%
+            \only<2>{%
+                \begin{itemize}
+                    \item[+]{%
+                        compare the HEXOS distinguished timings to the %
+                        peak locations of the Prad/channels}%
+                    \item[+]{%
+                        write the function used for correction down}%
+                    \item[+]{%
+                        joust down a quick summary}%
+                    \item[+]{%
+                        add more channels from both cameras (core, 2xedge) %
+                        to display}%
+                \end{itemize}
+            }%
+        \end{block}
+    \end{frame}
+
+\end{document}
