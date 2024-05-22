@@ -1,0 +1,147 @@
+\documentclass{beamer}
+
+% use predefined IPP style
+% options: St,noSt : with/without stellarator theory logo
+% options: Eurofusion, noEurofusion : with/without Eurofusion logo
+\useoutertheme[Eurofusion, w7x]{ippw7x}
+
+% don't show navigation symbols
+\beamertemplatenavigationsymbolsempty
+% show navigation symbols
+%\setbeamertemplate{navigation symbols}[only frame symbol]{}
+
+% transition effects
+% \transblindshorizontal
+%    Vertical blinds pulled away
+% \transblindsvertical
+%    Move to center from all sides
+% \transboxin
+%    Move to all sides from center
+% \transboxout
+%    Slowly dissolve what was shown before
+% \transdissolve
+%    Glitter sweeps in specified direction
+% \transglitter
+%    Sweeps two vertical lines in
+% \transslipverticalin
+%    Sweeps two vertical lines out
+% \transslipverticalout
+%    Sweeps two horizontal lines in
+% \transhorizontalin
+%    Sweeps two horizontal lines out
+% \transhorizontalout
+%    Sweeps single line in specified direction
+% \transwipe
+%    Show slide specified number of seconds
+% \transcover
+% \transfade
+% \transpush
+% \transuncover
+% \transduration{2}
+% \addtobeamertemplate{background canvas}{\transfade}{}
+
+% change left/right margins
+% \setbeamersize{text margin left=20pt,text margin right=20pt}
+
+% extra packages
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amssymb,stackrel}
+\usepackage{changepage}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{units}
+\usepackage{siunitx}
+
+\newcommand{\backgroundlogo}{%
+    \tikz[overlay,remember picture]{%
+    \node[at=(current page.west)] (source) {};%
+    \node[opacity = 0.02] {%
+    \includegraphics[height=1.\paperheight]%
+        {figures/header/minerva}%
+    }%
+  }
+}
+
+\newcommand{\diff}{\text{d}}
+\newcommand{\tenpo}[1]{\cdot 10^{#1}}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% \selectlanguage{german}
+
+% title of the presentation
+% short title will be shown in the footer
+\title[Report]{Report}
+
+% authors of the presentation
+% lecturer (and maybe place and date) will be shown in the footer
+\author[P.Hacker]{P. Hacker\inst{1, 2}}
+
+% institutes of the authors
+\institute[MPI for Plasmaphysics Greifswald]{%
+    \inst{1}%
+        Max-Planck-Institute for Plasmaphysics, %
+        Wendelsteinstr. 1, Greifswald, Germany \and%
+    \inst{2}%
+        University of Greifswald, Rubenowstr. 6, Greifswald, Germany}
+
+% set date of the talk
+\date{\today}
+
+    % first frame
+    \begin{frame}
+        % show title of talk and authors
+        \titlepage
+
+        % show Logos Helmholtz, Max-Planck and EUROfusion
+        \begin{minipage}[]{0.35\textwidth}
+            \includegraphics[height=6ex]%
+                {figures/header/2017_H_Logo_CMYK_untereinander_EN}
+        \end{minipage}
+            \hfill
+        \begin{minipage}[]{0.2\textwidth}
+            \begin{center}
+                \includegraphics[height=4ex]{figures/header/minerva}
+            \end{center}
+        \end{minipage}
+        \hfill
+        \begin{minipage}[]{0.35\textwidth}
+            \begin{flushright}
+                \includegraphics[height=5ex]%
+                    {figures/header/EUROfusion-LOGO-PANTONE_REFL_BLUE}
+            \end{flushright}
+        \end{minipage}
+
+        % show acknoledgement from EUROfusion
+        \acknowledgement
+    \end{frame}
+
+    \begin{frame}{Protocoll}
+        \begin{block}{Protocoll}
+            \only<1>{%
+                \begin{itemize}
+                    \item[+]{%
+                        Test 1
+                    }%
+                    \item[+]{\color{orange}{%
+                        Test 2
+                    }}%
+                \end{itemize}
+            }%
+            \only<2->{%
+                Test 3
+            }
+        \end{block}
+    \end{frame}
+
+    % BACKUP
+    \begin{frame}
+    \end{frame}
+
+\end{document}

@@ -1,0 +1,51 @@
+\documentclass[numbers=noenddot,12pt,a4paper]{letter}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{epsfig}
+
+\signature{%
+    Philipp Hacker%
+    }
+
+\address{%
+    Philipp Hacker\\%
+    Erich-Böhmke-Straße 22a\\%
+    17489, Greifswald\\%
+    Deutschland%
+    }
+
+\begin{document}
+
+\begin{letter}{%
+    Frau Krüger\\%
+    Sachbearbeiterin (G-J)\\%
+    Mensa am Wall, Am Schießwall 1 – 4\\%
+    17489 Greifswald\\
+    Deutschland%
+    }
+        \opening{Sehr geehrte Damen und Herren,}%
+        Hiermit beantrage ich die Stundung der BAföG-Rückforderungen zum Kassenzeichen:\\%
+        \textbf{301-0.000417421.1}\,.\\%
+        Eine aktuelle Studienbescheinigung nach § 9 BAföG befindet sich im Anhang.%
+
+        \vspace{2.0cm}%
+        \closing{Mit freundlichen Grüßen,}%
+        \hspace{6.0cm}%
+        \includegraphics[width=4.0cm]{fig/signature_transparent.png}%
+        \newline%
+    \end{letter}%
+
+    \newpage%
+    \begin{center}%
+        \fbox{\includegraphics[height=0.97\textheight]%
+            {fig/report.pdf}}%
+    \end{center}%
+
+\end{document}

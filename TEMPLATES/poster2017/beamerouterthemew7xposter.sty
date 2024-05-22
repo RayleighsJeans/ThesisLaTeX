@@ -1,0 +1,163 @@
+%	%% IPP presentation style for beamer package
+%	%% Copyright 2014 by M. Borchardt
+%  %% for Beamer-poster A. Kleiber 2016
+%	%
+	\DeclareOptionBeamer{noSt}{\def\beamer@themeipp@w7x{0}}
+	\DeclareOptionBeamer{IPPW7X}{\def\beamer@themeipp@ippw7x{1}}
+	\ExecuteOptionsBeamer{IPPW7X}
+	\DeclareOptionBeamer{St}{\def\beamer@themeipp@w7x{1}}
+	\ExecuteOptionsBeamer{St}
+	\DeclareOptionBeamer{noEurofusion}{\def\beamer@themeipp@eurofusion{0}}
+	\DeclareOptionBeamer{Eurofusion}{\def\beamer@themeipp@eurofusion{1}}
+	\ExecuteOptionsBeamer{noEurofusion}
+	\ProcessOptionsBeamer
+%	%
+	\mode<presentation>
+	%
+	\useinnertheme[shadow=true]{rounded}
+	\usefonttheme{professionalfonts}
+	\usecolortheme{whale}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   % Text Eurofusion
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\def\acknowledgement{\tiny This work has been carried out within the framework of the EUROfusion Consortium and has received funding from the Euratom research and training programme 2014-2018 under grant agreement number 633053. The views and opinions expressed herein do not necessarily reflect those of the European Commission.
+}
+	%
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   % Farbdefinitionen
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%	%%\definecolor{ipp}{rgb}{0.09,0.56,1.0}
+\definecolor{ipp}{rgb}{0,0.40,0.75}
+\definecolor{ipplight}{rgb}{0.78,0.85,0.95}
+\definecolor{ippdark}{rgb}{0,0.22,0.46}
+\setbeamercolor{section in head/foot}{parent=palette quaternary}
+\setbeamercolor{subsection in head/foot}{parent=palette primary}
+\setbeamercolor{author in head/foot}{parent=section in head/foot}
+\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
+\setbeamercolor{frametitle}{parent=subsection in head/foot}
+\setbeamercolor{frametitle right}{parent=section in head/foot}
+\setbeamercolor{footlinecolor}{bg=ipplight,fg=ipp}
+\setbeamercolor*{structure}{fg=ipp}
+%\setbeamercolor*{block title}{fg=white, bg=ipp}
+\setbeamercolor*{block title}{fg=ipp, bg=ipplight}
+%\setbeamercolor*{block body}{fg=black, bg=ipplight}
+\setbeamercolor*{block body}{fg=black, bg=white}
+\setbeamercolor*{frametitle}{fg=ipp}
+\setbeamerfont*{frametitle}{series=\bfseries,size=\large,parent=structure}
+\setbeamercolor*{title in head/foot}{bg=ipplight,fg=black}
+\setbeamercolor*{section in toc}{fg=ipp}
+%
+\AtBeginDocument{
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   % horizontale Linie (Farbverlauf moeglich)
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \def\insertframetitle{}
+  %\pgfdeclarehorizontalshading{beamer@topshade}{2pt}{%
+  \pgfdeclarehorizontalshading{beamer@topshade}{3pt}{%
+    color(0pt)=(ipp);% Farbe vorn fuer Farbverlauf
+    color(\paperwidth)=(ipp)}% Farbe hinten fuer Farbverlauf
+%%    color(0pt)=(black);
+%%    color(\paperwidth)=(black)}
+}
+	%
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   % horizontaler farbiger Kasten oben und unten (Farbverlauf moeglich)
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pgfdeclarehorizontalshading[ipplight,ipplight]{beamer@frametitleshade}{\paperheight}{%
+  %color(0pt)=(white);
+  color(0pt)=(ipplight);% Farbe vorn fuer Farbverlauf
+  %color(\paperwidth)=(white)}
+  color(\paperwidth)=(ipplight)}% Farbe hinten fuer Farbverlauf
+	  %
+	%}
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   % Definition der Höhe der Logos
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pgfdeclareimage[height=3.5cm]{LogoIPPW7X}{w7x_logo}
+\pgfdeclareimage[height=3.5cm]{LogoIPP}{ipp_logo_color}
+\pgfdeclareimage[height=.7cm]{LogoEurope}{Flag_of_Europe}
+\pgfdeclareimage[height=.7cm]{LogoEurofusion}{EUROfusion-LOGO-PANTONE_REFL_BLUE}
+%	%%\pgfdeclareimage[height=.6cm]{LogoHelmholtz}{helmholtz_blau}
+%	%%\pgfdeclareimage[height=1cm]{LogoMinerva}{minerva_gruen_ganz_ohne_hintergrund.png}
+%	%%\pgfdeclareimage[height=1cm]{LogoST}{logo_stel_ipp_blau.png}
+\pgfdeclareimage[height=3cm]{LogoST}{logo_stel_ipp_blau}
+%	%\pgfdeclareimage[height=3cm]{LogoST}{logo_stel_ipp_blau.pdf}
+
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   % Definition der Seite
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%% no extra frame title
+	%
+	\defbeamertemplate*{frametitle}{ipp theme}{}
+	%
+	%                                % Head
+	\defbeamertemplate*{headline}{ipp theme}
+	{%
+	  \leavevmode%
+	  \@tempdimb=5cm%
+	  % oberer farbiger Kasten
+	  \begin{pgfpicture}{.02pt}{0pt}{\paperwidth}{\@tempdimb}
+	    \usebeamercolor{frametitle right}
+	    \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\@tempdimb}}
+	    \pgfusepath{clip}
+	    \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+	  \end{pgfpicture}
+	  % Inhalt des oberen Kastens
+	  % Logo W-7X
+	  \begin{beamercolorbox}[wd=\paperwidth,ht=0ex]{frametitle}
+	     \vbox to\@tempdimb{\vfil\hspace*{4ex}\pgfuseimage{LogoIPPW7X}%
+	        \hspace*{\fill}\vfil}
+	  \end{beamercolorbox}
+	  % Titel
+	  \begin{beamercolorbox}[wd=\paperwidth,ht=1ex]{frametitle}
+	        \vbox to\@tempdimb{\vfil\hspace*{25ex}{\textbf{\LARGE \inserttitle}}%
+	          \hspace*{\fill}\vfil}
+	  \end{beamercolorbox}
+	  % Logo IPP
+	  \vskip-0.3cm
+	  \begin{beamercolorbox}[wd=\paperwidth,ht=0ex]{frametitle}
+	    \vbox to\@tempdimb{\vfil%
+	      \hspace*{\fill}\pgfuseimage{LogoIPP}\hspace*{4ex}\vfil}
+	  \end{beamercolorbox}
+	  %\vskip-0.3cm
+	  % Linie unter oberen Kasten
+	  \hbox to\paperwidth{\pgfuseshading{beamer@topshade}}
+	  % Autoren
+	  \begin{beamercolorbox}[wd=\paperwidth,ht=2cm]{frametitle}
+	    \vbox to\@tempdimb{\vfil%
+	    \centerline {\large \bf \insertauthor}
+	    }
+	  \end{beamercolorbox}
+	  % Institute
+	  \begin{beamercolorbox}[wd=\paperwidth,ht=2cm]{frametitle}
+	    \vbox to\@tempdimb{\vfil%
+	    \centerline {\large \insertinstitute}
+	    }
+	  \end{beamercolorbox}
+	}
+	% Fusszeile
+   \defbeamertemplate*{footline}{ipp theme}
+   {%
+    \leavevmode%
+	 % Linie ueber oberen Kasten
+	 \hbox to\paperwidth{\pgfuseshading{beamer@topshade}}
+    \hbox{%
+    % unterer farbiger Kasten
+    \begin{beamercolorbox}[wd=\paperwidth,ht=10ex,dp=10ex,%
+      leftskip=.3cm,rightskip=.3cm]{title in head/foot}%
+      \centerline{\hspace{0.01\paperwidth}
+      % Logo EU und Eurofusion
+      \begin{minipage}[]{0.20\paperwidth}
+        \includegraphics[width=0.3\textwidth]{Flag_of_Europe}\hfill
+        \includegraphics[width=0.7\textwidth]{EUROfusion-LOGO-PANTONE_REFL_BLUE}
+	   \end{minipage}\hfill
+	   % Text Eurofusion
+      \begin{minipage}[]{0.75\paperwidth}
+	     \acknowledgement
+	   \end{minipage}\hspace{0.02\paperwidth}}
+    \end{beamercolorbox}
+  }%
+  \vskip0pt%
+}
+\mode
+<all>

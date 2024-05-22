@@ -1,0 +1,265 @@
+% presentation template
+% works only with pdflatex
+
+\documentclass{beamer}
+
+% use predefined IPP style
+% options: St,noSt : with/without stellarator theory logo
+% options: Eurofusion, noEurofusion : with/without Eurofusion logo
+\useoutertheme[Eurofusion, asdex]{ippasdex}
+
+% don't show navigation symbols
+\beamertemplatenavigationsymbolsempty
+% show navigation symbols
+%\setbeamertemplate{navigation symbols}[only frame symbol]{}
+
+% transition effects
+% \transblindshorizontal
+%    Vertical blinds pulled away
+% \transblindsvertical
+%    Move to center from all sides
+% \transboxin
+%    Move to all sides from center
+% \transboxout
+%    Slowly dissolve what was shown before
+% \transdissolve
+%    Glitter sweeps in specified direction
+% \transglitter
+%    Sweeps two vertical lines in
+% \transslipverticalin
+%    Sweeps two vertical lines out
+% \transslipverticalout
+%    Sweeps two horizontal lines in
+% \transhorizontalin
+%    Sweeps two horizontal lines out
+% \transhorizontalout
+%    Sweeps single line in specified direction
+% \transwipe
+%    Show slide specified number of seconds
+% \transcover
+% \transfade
+% \transpush
+% \transuncover
+% \transduration{2}
+%\addtobeamertemplate{background canvas}{\transfade}{}
+
+% change left/right margins 
+%\setbeamersize{text margin left=20pt,text margin right=20pt}
+
+% extra packages
+\usepackage[english]{babel}
+\usepackage{amsmath,amsfonts,amssymb,stackrel}
+\usepackage{changepage}
+
+\begin{document}
+%\selectlanguage{german}
+
+% title of the presentation
+% short title will be shown in the footer
+\title[Short presentation title]{Long title of the presentation}
+
+% authors of the presentation
+% lecturer (and maybe place and date) will be shown in the footer
+\author[lecturer, maybe place and date]{P. Author1\inst{1} \and
+  P. Author2\inst{2} \and P. Author3\inst{2}}
+
+% institutes of the authors
+\institute[short name]{\inst{1}Max-Planck-Institut f\"ur Plasmaphysik, Boltzmannstr. 2, Garching, Germany \and
+  \inst{2}Institute 2, street2, town2, country2}
+
+% set date of the talk
+\date{ }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% first frame 
+\begin{frame}
+  % show title of talk and authors
+  \titlepage
+
+  % show Logos Helmholtz, Max-Planck and EUROfusion
+  \begin{minipage}[]{0.35\textwidth}
+			\includegraphics[height=6ex]{2017_H_Logo_CMYK_untereinander_EN}
+	\end{minipage}
+				\hfill
+  \begin{minipage}[]{0.2\textwidth}
+	  \begin{center}
+			\includegraphics[height=4ex]{minerva}
+	  \end{center}
+	\end{minipage}
+				\hfill
+  \begin{minipage}[]{0.35\textwidth}
+			\begin{flushright}
+			\includegraphics[height=5ex]{EUROfusion-LOGO-PANTONE_REFL_BLUE}
+			\end{flushright}
+	\end{minipage}
+	
+  % show acknoledgement from EUROfusion
+  \acknowledgement
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% new section
+\section{lists}
+
+% new frame
+\begin{frame}
+  % display all sections
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% new frame
+% show actual section
+\begin{frame}
+  \tableofcontents[currentsection]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% new frame
+\begin{frame}
+% frame title
+\frametitle{simple list}
+\begin{enumerate}
+\item item1
+\item item2
+\item item3
+\item item4
+\item item5
+\item item6
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% new frame with overlay
+\begin{frame}
+% frame title
+\frametitle{list with overlay}
+\begin{itemize}
+\item<1-> new item1
+\item<1-> new item2
+\item<2-> new item3
+\item<3-> new item4
+\item<4-> new item5
+\item<4-> new item6
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% new section
+\section{blocks}
+% show actual section
+\begin{frame}
+  \tableofcontents[currentsection]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}
+\frametitle{block with transparent overlay}
+
+\setbeamercovered{transparent}
+
+\begin{block}<1->{block description}
+  some text or formula $$\sum\limits_{i=1}^n i = \frac{n (n+1)}{2}$$
+\end{block}
+
+\begin{block}<2->{block description 2}
+  more notes {\tiny small notes}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{alerts}
+% show actual section
+\begin{frame}
+  \tableofcontents[currentsection]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% new overlay frame
+\begin{frame}
+\frametitle{alerts in lists}
+
+\onslide<1->text1:
+\begin{itemize}[<+-| alert@+>]
+\item important1
+\item important2
+\item important3
+\item important4
+\end{itemize}
+
+\onslide<5->text2
+\begin{itemize}
+\item<alert@5> item1
+\item<alert@6> item2
+\item<alert@7> item3
+\item<alert@8> item4
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{colums}
+% show actual section
+\begin{frame}
+  \tableofcontents[currentsection]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}
+  \frametitle{columns}
+  \begin{columns}
+    \column{6cm}
+    some text on the left hand side
+    \column{4cm}
+    text for the right hand side
+  \end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\section{figures}
+% show actual section
+\begin{frame}
+  \tableofcontents[currentsection]
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{frame}
+  \begin{adjustwidth}{-1em}{-1em}
+    \frametitle{figures}
+    \begin{minipage}[]{0.5\textwidth}
+      \includegraphics[width=\textwidth]{Flag_of_Europe.png}
+    \end{minipage}\hfill
+    \begin{minipage}[]{0.5\textwidth}
+      \includegraphics[width=\textwidth]{Flag_of_Europe.png}
+    \end{minipage}
+  \end{adjustwidth}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,96 @@
+%% File 'sample.tex'
+%% 
+%% Copyright (C) 2003 by Maarten Sneep <sneep@nat.vu.nl>
+%% Modified 2004 by B.Ph. van Milligen <boudewijn.vanmilligen@ciemat.es>
+%% 
+%% This file may be distributed and/or modified under the conditions of
+%% the LaTeX Project Public License, either version 1.2 of this license
+%% or (at your option) any later version.  The latest version of this
+%% license is in:
+%% 
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.2 or later is part of all distributions of LaTeX version
+%% 1999/12/01 or later.
+%% 
+\documentclass{epsconf}
+\usepackage{graphicx}
+%\usepackage{epsfig} % use this package to include EPS format figures
+\usepackage{wrapfig}
+\usepackage{amsmath}
+
+\title{Sample abstract and paper}
+\author{A. First$^1$, \underline{B.C. Second}$^2$, D. Third$^3$}
+\institute{$^1$ Institute, City, Country\\
+$^2$ Institute, City, Country\\
+$^3$ Institute, City, Country}
+
+\begin{document}
+\maketitle
+
+Text of the contribution. As an example, we include a figure (Fig.~\ref{fig:flow}). The rest of
+this text is just filler material.
+
+\begin{wrapfigure}{r}{70mm}\centering
+\vspace{0cm} % Adjust vertical figure placement
+\includegraphics[width=70mm]{epslogo}
+\caption{\it \small EPS logo}
+\label{fig:flow}
+\vspace{0cm} % Adjust vertical figure spacing
+\end{wrapfigure}
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+\begin{equation}
+\label{eq:prad}
+    P_{\text{\scriptsize rad}} =
+    \left( \frac{\omega^4}{32 \epsilon_0 \pi^2 c^3}\,p_{\text{\scriptsize max}}^2 \right)
+    \int_{\varphi=0}^{2\pi} \int_{\vartheta'=0}^{\pi} \sin^3\vartheta'\,d\vartheta'\,d\varphi
+    = \frac{1}{4\pi\epsilon_0}\,\frac{\omega^4}{3 c^3}\,p_{\text{\scriptsize max}}^2
+\end{equation}
+As Eq.~(\ref{eq:prad}) shows~\cite{Interestingpaper}, bla bla bla.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+Filler text, filler text, filler text.
+
+\begin{thebibliography}{99}
+\bibitem{Interestingpaper}
+A. First, B.C. Second and D. Third, Journal of interesting papers {\bf 10}, 10 (2004)
+\bibitem{Anotherpaper}
+A. First, B.C. Second and D. Third, Journal of interesting papers {\bf 11}, 11 (2004)
+\end{thebibliography}
+
+\end{document}
+\endinput
+%%
+%% End of file `sample.tex'.
