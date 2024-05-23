@@ -1,0 +1,61 @@
+\usepackage
+        [
+            % choose language
+            locale=UK,
+            % uncertainty of the format (x \pm y) unit
+            separate-uncertainty,
+            % Use a fraction to separate units if \per is used 
+            % per-mode=symbol-or-fraction,
+            % display 10^0 respectively e0
+            % retain-zero-exponent=true,
+            binary-units, % have byte and bit available
+            per-mode=symbol
+        ]
+        {siunitx%
+        % use older (deprecated) version for backwards compatibility
+        }[=v2]
+
+% \sisetup{mode=text,range-phrase = {\text{~to~}}}
+% see https://tex.stackexchange.com/questions/34997/how-to-use-sirange-in-math-mode
+\newcommand{\SIrangemath}[3]{%
+    \text{\SIrange{#1}{#2}{#3}}}
+
+% Make nice intervals. Could also be done by reconfiguring \SIrange
+\newcommand{\SIinterval}[3]{%
+    \ensuremath{\lbrack\num{#1}{,}\ %
+    \num{#2}\rbrack\,\si{#3}}}
+
+%%% Util definitions
+% au
+\DeclareSIUnit{\arbitraryunit}{a.\,u.}
+\DeclareSIUnit{\atom}{atoms}
+
+% per mille
+\DeclareSIUnit{\permille}{‰}
+
+% samples
+\DeclareSIUnit{\sample}{S}
+
+% We need that as for fW, fF etc. the letters overlap, which souldn't happen here. Don't use for e.g. fA !
+\DeclareSIPrefix{\Femto}{f\kern0.1ex}{-15}
+
+% barn related shortcuts
+\DeclareSIUnit{\pb}{\pico\barn}
+\DeclareSIUnit{\fb}{\femto\barn}
+\DeclareSIUnit{\nb}{\nano\barn}
+
+\sisetup{range-phrase=--}
+\sisetup{range-units=single}
+%\sisetup{per-symbol=symbol}
+
+% Example Code
+% \sisetup{...}
+% \num{9.99 + 3.7i}
+% \num[parse-numbers=false]{9{,}99 + \sqrt{2}i}
+% -- Option necessary if one uses \sqrt e.g.
+% \num{375628375823765}
+% \SIrange{1e3}{3e3}{\meter}
+% \SI{1 \pm 2 e3}{\meter}
+
+% Remarks
+% Use \tothe{} for exponents!

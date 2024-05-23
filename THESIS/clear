@@ -1,0 +1,28 @@
+#!/bin/bash
+# convert='/c/users/pih/desktop/portableprograms/ImageMagick/convert.exe'
+# gs='/c/users/pih/desktop/portableprograms/Ghostscript/bin/gswin64.exe'
+
+rm main.synctex.gz
+rm main.acn
+rm main.acr
+rm main.alg
+rm main.aux
+rm main.auxlock
+rm main.bcf
+rm main.blg
+rm main.bbl
+rm main.glg
+rm main.glo
+rm main.gls
+rm main.fdb_latexmk
+rm main.fls
+rm main.lof
+rm main.log
+rm main.slg
+rm main.syg
+rm main.syi
+rm main.toc
+rm main.run.xml
+rm main.out.ps
+rm main.dvi
+rm main.ist

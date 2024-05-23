@@ -1,0 +1,21 @@
+% allows the placement of subfigures
+\usepackage
+		[
+			hypcap=true, % needed for correct linking. Also needed as an option for the caption-package.
+			textfont={color={black},small}, % font=footnotesize for smaller font
+			width=0.925\textwidth, % width of the caption
+			indention=1em, % how much is the second line indented
+			% labelfont=	{
+			% 				color={black},
+			% 				small,
+			% 				sf,
+			% 				bf,
+			% 			},
+		]
+		{subcaption}
+
+\captionsetup{subrefformat=parens} % make parentheses around the referenced label
+
+%%% example code
+% --------
+% --------

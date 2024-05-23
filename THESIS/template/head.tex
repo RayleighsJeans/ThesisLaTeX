@@ -1,0 +1,118 @@
+\input{preamble/packages/nag}
+\input{preamble/packages/import}
+% \RequirePackage{ifthen}
+
+% lisp like object oriented property definition,
+% see https://tex.stackexchange.com/questions/37094/
+% what-is-the-recommended-way-to-assign-a-value-
+% to-a-variable-and-retrieve-it-for
+\makeatletter
+\def\ece#1#2{\expandafter#1\csname#2\endcsname}%
+
+% \setproperty{ATOM}{PROPNAME}{VALUE} defines the property PROPNAME on the
+% ``atom'' ATOM to have VALUE.
+\def\setproperty#1#2#3{\ece\protected@edef{#1@p#2}{\unexpanded{#3}}}%
+
+% \getproperty{ATOM}{PROPNAME} expands to the value of the property
+% PROPNAME on ATOM, or to nothing (i.e., \empty), if the property isn't
+% present.
+\def\getproperty#1#2{%
+  \expandafter\ifx\csname#1@p#2\endcsname\relax
+  % then \empty
+  \else \csname#1@p#2\endcsname
+  \fi
+}%
+
+\def\ifthenelsepropertydefined#1#2#3#4{%
+  \expandafter\ifx\csname#1@p#2\endcsname\relax
+  #4
+  \else#3
+  \fi
+}%
+
+\def\ifpropertydefined#1#2#3{%
+    \ifthenelsepropertydefined{#1}{#2}{#3}{}
+}
+
+\def\ifpropertyundefined#1#2#3{%
+    \ifthenelsepropertydefined{#1}{#2}{}{#3}
+}
+
+\def\raiseifpropertyundefined#1#2#3{%
+    \ifpropertyundefined{#2}{#3}{\PackageError{#1}{%
+        Property #2 #3 needs to be defined. Put %
+        \@backslashchar setproperty{#2}{#3} %
+        to your settings file}{Grep for your property :)}}
+}
+
+% Only set the property if it has not been set yet. 
+% This should be used in the definition of default properties in 
+% preamble/properties.tex. It allows to define a
+% property in documentcls without beeing overwritten by 
+% setters in properties.tex.
+\def\setpropertyifundefined#1#2#3{%
+    \ifpropertyundefined{#1}{#2}{%
+        \setproperty{#1}{#2}{#3}
+    }{}
+}
+
+% Forwarding a default usage message with a value 
+% proposal (#3) to setpropertyifundefined
+\def\setpropertyifundefinedwithusageinfo#1#2#3{%
+    \setpropertyifundefined{#1}{#2}{TODO>> %
+    Put \backslash{}setproperty\{#1\}\{#2\}\{<your %
+    value here, e.g. ``#3``>\} into content/settings.tex <<}
+}
+
+% \ifthenelseproperty{ATOM}{PROPNAME}{if}{else}
+% For boolean properties
+\def\ifthenelseproperty#1#2#3#4{\providetoggle{%
+    #1@p#2}\settoggle{#1@p#2}{\getproperty{%
+    #1}{#2}}\iftoggle{#1@p#2}{#3}{#4}}
+% \ifthenelsepropertyequal{ATOM}{PROPNAME}{VALUE}{if}{else}
+
+\def\ifthenelsepropertyequal#1#2#3#4#5{%
+    \ifthenelse{\equal{\getproperty{#1}{#2}}{#3}}{#4}{#5}}
+\makeatother
+
+\makeatletter
+% This command should be used instead of usepackage.
+% It provides clashes of re-imports and sets the union of all options.
+\newcommand\RequirePackageWithOption[2][]{%
+    \@ifpackageloaded{#2}{%
+        \PassOptionsToPackage{#1}{#2}
+    }{%
+        \RequirePackage[#1]{#2}
+    }
+}
+
+% This command follows the hirarchy for default import defined like so:
+% If you do not find the file to import in content, look in 
+% templates/\getproperty{default}{<filename>}, 
+% else import templates/Default/<filename>
+
+% The values of the property default should are the name of 
+% the templates which are caps Args:
+%   #1: filename
+\newcommand\ImportDefault[1]{
+    \IfFileExists{content/#1.tex}{
+        \typeout{----- LOAD OWN #1 -----}
+        \import{content/}{#1}
+    }{
+        \typeout{----- LOAD DEFAULT #1 -----}
+        \ifthenelsepropertydefined{default}{#1}{%
+            \import{template/\getproperty{default}{#1}/}{#1}
+        }{%
+            \import{template/}{#1}
+        }
+    }
+}
+
+\newcommand\ImportPackage[1]{
+    \IfFileExists{content/packages/#1.tex}{
+        \input{preamble/packages/#1}
+    }{%
+        \input{preamble/packages/#1}
+    }
+}
+\makeatother

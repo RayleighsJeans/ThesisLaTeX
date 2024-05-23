@@ -1,0 +1,34 @@
+% greatly improves microtypography, for a good website about this package see http://www.khirevich.com/latex/microtype/
+\ifluatex
+	\RequirePackageWithOption
+			[
+				activate={true,nocompatibility}, % activate protrusion and expansion
+				final, % enable microtype; use "draft" to disable
+				tracking=true,
+% 				kerning=true, % does not work with LuaLaTeX currently
+% 				spacing=true, % does not work with LuaLaTeX currently
+				factor=1100, % add 10% to the protrusion amount (default is 1000)
+				stretch=10, % reduce stretchability (default is 20)
+				shrink=10, % reduce shrinkability (default is 20)
+			]
+			{microtype}
+\else
+	\RequirePackageWithOption
+			[
+				activate={true,nocompatibility}, % activate protrusion and expansion
+				final, % enable microtype; use "draft" to disable
+				tracking=true,
+				kerning=true, % does not work with LuaLaTeX currently
+				spacing=true, % does not work with LuaLaTeX currently
+				factor=1100, % add 10% to the protrusion amount (default is 1000)
+				stretch=10, % reduce stretchability (default is 20)
+				shrink=10, % reduce shrinkability (default is 20)
+			]
+			{microtype}
+\fi
+
+\setproperty{compilation}{microtype}{true}
+
+%%% settings
+\SetTracking[no ligatures]{encoding={*}, shape=sc}{40} % adds additional space between small capitals (should always be done) and disables all ligatures for small caps
+\frenchspacing % this is a babel option. Double spaces after a period are english tradition, french tradition is single space after a point.

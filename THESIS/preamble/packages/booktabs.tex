@@ -1,0 +1,21 @@
+% publication-quality tables
+\usepackage{booktabs}
+
+%%% Util definitions
+\ifthenelseproperty{compilation}{fontspec}{%
+	% as we want monospaced numbers in tables
+	\AtBeginEnvironment{tabular}{\addfontfeatures{Numbers={Monospaced}}}
+    }{}
+
+%%% example
+% \begin{table}
+% 	\centering
+% 	\caption{\emph{Nichtinvasivität}, das Plasma wird also nicht direkt gestört.}%
+% 	\label{tab:knhu}%
+% 	\begin{tabular}{lcr}\toprule[1.5pt]
+% 		\num{23}	&	\num{1}				&	\num{24}	\\\midrule\addlinespace[0.5ex]%
+% 		\num{24}	&	\num{12345678902}	&	\num{42}	\\[0.5ex]%
+% 		\num{24}	&	\num{24}			&	\num{4242}	\\[0.5ex]%
+% 		\num{4}		&	\num{44}			&	\num{242}	\\\bottomrule[1.5pt]%
+% 	\end{tabular}%
+% \end{table}%

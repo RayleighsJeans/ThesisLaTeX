@@ -1,0 +1,8 @@
+\AtEndPreamble{
+	\ifthenelseproperty{compilation}{pdfa}{
+		\newcommand{\textattachfileandprintout}[3]{#2} % ignore attached file, since not compatible with pdfx package at the moment
+	}{
+		\usepackage{intopdf}
+		\newcommand{\textattachfileandprintout}[3]{\attachandlink{#1}[application/x-tex]{#3}{#2}}
+	}
+}

@@ -1,0 +1,93 @@
+\ifluatex
+    \input{preamble/packages/fontspec}
+    \input{preamble/packages/unicode-math}
+    % \input{preamble/packages/fontawesome5}  TODO: version specific import
+    % \showthe\font
+    \AtEndPreamble{
+        \ifthenelseproperty{compilation}{minionfonts}{
+            % \input{preamble/fonts/MinionPro.tex}
+            % \input{preamble/fonts/MyriadPro.tex}
+            % \input{preamble/fonts/Consolas.tex}
+            \setmathfont{Cambria Math}
+            \ifthenelseproperty{compilation}{complementglyphs}{%
+                \setmathfont[range=\mathup/{%
+                    num,latin,Latin,greek,Greek}]{Minion Pro}
+                \setmathfont[range=\mathbfup/{%
+                    num,latin,Latin,greek,Greek}]{MinionPro-Bold}
+                \setmathfont[range=\mathit/{%
+                    num,latin,Latin,greek,Greek}]{MinionPro-It}
+                \setmathfont[range=\mathbfit/{%
+                    num,latin,Latin,greek,Greek}]{MinionPro-BoldIt}
+                \setmathfont[range={%
+                    "0025,"002B,"002C,"002D,"002E,"2212,"2248,"007E,%
+                    `±,`×,`·,`÷,`¬,`∂,`∆,`∕,`∞,`⌐,`<,`>,`=,`≥,`≤,`−}]{%
+                    Minion Pro}
+                \setmathfont[range={"2211,"221A}]{Latin Modern Math}
+                % \setmathfont[range={%
+                %     "2225,"0028,"0029,"005B,"007B,"005D,"007C,"007D,
+                %     `∫,"27C2,`/,`∬,`⟨,`⟩}]{Cambria Math}
+                % STIX Math also looks okay. one could also add "2211
+            }{}
+
+            % This is a hack, as %
+            % \setmathfont[range=\mathcal/{%
+            %     num,latin,Latin,greek,Greek},Contextuals=Swash]{%
+            %     MinionPro-It} doesn't work
+            \renewcommand{\mathcal}[1]{{\textit{\addfontfeatures{Contextuals=Swash}#1}}}
+            \newfontface{\MinionProSwash}{MinionPro-It}[%
+                Contextuals=Swash,
+                Ligatures={TeX,Common,Rare,Historic,Contextual,Required}]%
+            \typeout{----- USING MINION FONTS -----}
+        }{% elif
+            \ifthenelseproperty{compilation}{libertinusfonts}{
+                \input{preamble/fonts/Libertinus.tex}
+                \input{preamble/fonts/LibertinusSans.tex}
+                \input{preamble/fonts/LibertinusMono.tex}
+                \setmathfont{Cambria Math}
+                \ifthenelseproperty{compilation}{complementglyphs}{%
+                    \setmathfont[range=\mathup/{%
+                        num,latin,Latin,greek,Greek}]{LibertinusSerif}
+                    \setmathfont[range=\mathbfup/{%
+                        num,latin,Latin,greek,Greek}]{LibertinusSerif-Bold}
+                    \setmathfont[range=\mathit/{%
+                        num,latin,Latin,greek,Greek}]{LibertinusSerif-Italic}
+                    \setmathfont[range=\mathbfit/{%
+                        num,latin,Latin,greek,Greek}]{%
+                        LibertinusSerif-BoldItalic}
+                    \setmathfont[range={%
+                        "0025,"002B,"002C,"002D,"002E,"2212,"2248,"007E,%
+                        "2208,"221D,"2A85,`±,`×,`·,`÷,`¬,`∂,`∆,`∕,`∞,`⌐,%
+                        `<,`>,`=,`≥,`≤,`−,`;,}]{Libertinus Math}
+                    \setmathfont[range={"2211,"221A}]{Latin Modern Math}
+                    % \setmathfont[range={%
+                    %     "2225,"0028,"0029,"005B,"007B,"005D,"007C,"007D,
+                    %     `∫,"27C2,`/,`∬,`⟨,`⟩}]{Cambria Math}
+                    % STIX Math also looks okay. one could also add "2211
+                    % This is a hack, as
+                    % \setmathfont[range=\mathcal/{%
+                    %     num,latin,Latin,greek,Greek},%
+                    %     Contextuals=Swash]{MinionPro-It} doesn't work
+                    \setmathfont[range=\mathcal/{%
+                        num,latin,Latin,greek,Greek},%
+                        Contextuals=Swash]{Cambria Math}
+                }{}
+                \newfontface{\LibertinusSwash}{LibertinusSerif-Italic}[%
+                        Contextuals=Swash, Ligatures={%
+                        TeX,Common,Rare,Historic,Contextual,Required}]%
+                \newfontface{\LibertinusInitials}{LibertinusSerif-Initials}
+                \typeout{----- USING LIBERTINUS FONTS -----}
+            }{% else
+                \setmathfont{latinmodern-math.otf}
+                \ifthenelseproperty{compilation}{complementglyphs}{%
+                    \setmathfont[range=\setminus]{Asana Math}
+                }{}
+            }
+        }
+    }
+\else
+    \input{preamble/packages/fontenc}
+    \input{preamble/packages/inputenc}
+    \input{preamble/packages/lmodern}
+\fi
+
+\input{preamble/packages/fontawesome5} % provides some useful symbols 

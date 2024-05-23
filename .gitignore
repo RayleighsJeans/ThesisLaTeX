@@ -237,3 +237,5 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+THESIS/main_comp.pdf
+THESIS/main.pdf

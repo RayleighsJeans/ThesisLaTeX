@@ -1,0 +1,567 @@
+% DISCLAIMER: THIS FILE NEEDS preamble/subjects/math.tex included
+
+%%% general physics
+\newglossaryentry{physics}{%
+    name={General physics quantitites},
+    type=symbols,
+    description={\nopostdesc},
+    symbol={},
+}
+\newglossaryentry{n}{%
+    parent=physics,
+    name=\ensuremath{n},
+    type=symbols,
+    sort=density,
+    description={Particle density, $n = N / V$},
+    symbol={\si{\per\cubic\meter}}
+}
+\newglossaryentry{T}{%
+    parent=physics,
+    name=\ensuremath{T},
+    type=symbols,
+    sort=temperature,
+    description={Temperature},
+    symbol={\si{\eV}}
+}
+\newglossaryentry{energy}{%
+    parent=physics,
+    name=\ensuremath{W},
+    type=symbols,
+    sort=energy,
+    description={Plasma kinetic energy},
+    symbol={\si{\kg\square\meter\per\square\second}}
+}
+\newglossaryentry{cs}{%
+    parent=physics,
+    name=\ensuremath{\sigma},
+    type=symbols,
+    sort=cross-section,
+    description={Reaction cross-section},
+    symbol={\si{\meter\square}}
+}
+\newglossaryentry{v}{%
+    parent=physics,
+    name=\ensuremath{\vect{v}},
+    type=symbols,
+    sort=velocity,
+    description={Particle velocity},
+    symbol={\si{\meter\per\second}}
+}
+\newglossaryentry{me}{%
+    parent=physics,
+    name=\ensuremath{m_{\text{e}}},
+    type=symbols,
+    sort= mass ,
+    description={electron mass},
+    symbol={\si{\kilo\gram}},
+}
+\newglossaryentry{mp}{%
+    parent=physics,
+    name=\ensuremath{m_{\text{p}}},
+    type=symbols,
+    sort= mass ,
+    description={proton mass},
+    symbol={\si{\kilo\gram}},
+}
+
+\newcommand{\kB}{k\pedex{B}} % k_B T
+\newcommand{\kT}{\kB T} % k_B T
+
+% Electromagnetism
+\newglossaryentry{B}{%
+    parent=physics,
+    name=\ensuremath{\vect{B}},
+    type=symbols,
+    sort=electromagnetism,
+    description={Magnetic field},
+    symbol={\si{\tesla} = \si{\kg\per\ampere\per\square\second}}
+}
+\newglossaryentry{E}{%
+    parent=physics,
+    name=\ensuremath{\vect{E}},
+    type=symbols,
+    sort=electromagnetism,
+    description={Electric field},
+    symbol={\si{\kg\meter\per\ampere\per\cubic\second}}
+}
+\newglossaryentry{chargedensity}{%
+    parent=physics,
+    name=\ensuremath{\rho},
+    type=symbols,
+    sort=electromagnetism,
+    description={Electric charge density},
+    symbol={\si{\ampere\second\per\cubic\meter}}
+}
+\newglossaryentry{currentdensity}{%
+    parent=physics,
+    name=\ensuremath{\vect{j}},
+    type=symbols,
+    sort=electromagnetism,
+    description={Electric current density},
+    symbol={\si{\ampere\per\square\meter}}
+}
+\newglossaryentry{resistance}{%
+    parent=physics,
+    name=\ensuremath{R},
+    type=symbols,
+    sort=impedance,
+    description={Electric resistance},
+    symbol={\si{\ohm}}
+}
+\newglossaryentry{inductance}{%
+    parent=physics,
+    name=\ensuremath{L},
+    type=symbols,
+    sort=inductance,
+    description={Inductance},
+    symbol={\si{\henry} = \si{\kg\square\meter\per\square\ampere\per\square\second}}
+}
+\newglossaryentry{larmor}{%
+    parent=physics,
+    name=\ensuremath{\rho},
+    type=symbols,
+    sort={Larmor radius},
+    description={Larmor radius},
+    symbol={\si{\meter}}
+}
+
+%%% special plasma physics
+\newglossaryentry{plasmaphysics}{%
+    name={Plasma physics quantitites},
+    type=symbols,
+    description={\nopostdesc},
+    symbol={},
+}
+
+\newglossaryentry{vperp}{%
+    parent=plasmaphysics,
+    name=\ensuremath{v_{\perp}},
+    type=symbols,
+    sort=velocity,
+    description={Field-perpendicular velocity},
+    symbol={\si{\meter\per\second}}
+}
+\newglossaryentry{flowvelocity}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\vect{v_{\text{f}}}},
+    type=symbols,
+    sort=velocity,
+    description={Plasma flow velocity},
+    symbol={\si{\meter\per\second}}
+}
+\newglossaryentry{p}{%
+    parent=plasmaphysics,
+    name=\ensuremath{p},
+    type=symbols,
+    sort=pressure,
+    description={Plasma pressure},
+    symbol={\si{\kg\per\meter\per\square\second}}
+}
+\newglossaryentry{V}{%
+    parent=plasmaphysics,
+    name=\ensuremath{V},
+    type=symbols,
+    sort=volume,
+    description={Plasma volume},
+    symbol={\si{\cubic\meter}}
+}
+\newglossaryentry{viscosity}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\matr{\pi}},
+    type=symbols,
+    sort=viscosity,
+    description={Plasma viscosity tensor},
+    symbol={\si{\kg\per\meter\per\second}}
+}
+\newglossaryentry{Te}{%
+    parent=plasmaphysics,
+    name=\ensuremath{T_{\mathrm{e}}},
+    type=symbols,
+    sort=temperature,
+    description={Electron temperature},
+    symbol={\si{\eV}}
+}
+\newglossaryentry{Ti}{%
+    parent=plasmaphysics,
+    name=\ensuremath{T_{\mathrm{i}}},
+    type=symbols,
+    sort=temperature,
+    description={Ion temperature},
+    symbol={\si{\eV}}
+}
+\newglossaryentry{Tn}{%
+    parent=plasmaphysics,
+    name=\ensuremath{T_{\mathrm{n}}},
+    type=symbols,
+    sort=temperature,
+    description={Neutral temperature},
+    symbol={\si{\eV}}
+}
+\newglossaryentry{ni}{%
+    parent=plasmaphysics,
+    name=\ensuremath{n_{\mathrm{i}}},
+    type=symbols,
+    sort=density,
+    description={Ion density},
+    symbol={\si{\per\cubic\meter}}
+}
+\newglossaryentry{ne}{%
+    parent=plasmaphysics,
+    name=\ensuremath{n_{\mathrm{e}}},
+    type=symbols,
+    sort=density,
+    description={Electron density},
+    symbol={\si{\per\cubic\meter}}
+}
+\newglossaryentry{nn}{%
+    parent=plasmaphysics,
+    name=\ensuremath{n_{\mathrm{n}}},
+    type=symbols,
+    sort=density,
+    description={Neutral density},
+    symbol={\si{\per\cubic\meter}}
+}
+
+\newglossaryentry{nimp}{%
+    parent=plasmaphysics,
+    name=\ensuremath{n_{\mathrm{imp}}},
+    type=symbols,
+    sort=density,
+    description={Impurity density},
+    symbol={\si{\per\cubic\meter}}
+}
+
+\newglossaryentry{te}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\tau_{\mathrm{E}}},
+    type=symbols,
+    sort=time,
+    description={Energy confinement time},
+    symbol={\si{\second}}
+}
+\newglossaryentry{radialShift}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\makeup{\Delta} R},
+    type=symbols,
+    sort=confinement,
+    description={Radial shift of the magnetic axis},
+    symbol={\si{\meter}}
+}
+\newglossaryentry{plasmaBeta}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\beta},
+    type=symbols,
+    sort=confinement,
+    description={Plasma beta},
+    symbol={}
+}
+\newglossaryentry{Itor}{%
+    parent=plasmaphysics,
+    name=\ensuremath{I_{\mathrm{tor}}},
+    type=symbols,
+    sort=confinement,
+    description={Toroidal plasma current},
+    symbol={\si{\ampere}}
+}
+\newglossaryentry{Ibs}{%
+    parent=plasmaphysics,
+    name=\ensuremath{I_{\mathrm{bs}}},
+    type=symbols,
+    sort=confinement,
+    description={Bootstrap current},
+    symbol={\si{\ampere}}
+}
+\newglossaryentry{Ips}{%
+    parent=plasmaphysics,
+    name=\ensuremath{I_{\mathrm{ps}}},
+    type=symbols,
+    sort=confinement,
+    description={Pfirsch-Schlueter current},
+    symbol={\si{\ampere}}
+}
+\newcommand{\quer}[1]{\mathrel{\hbox{-}\mkern-6.55mu #1}}
+\newglossaryentry{ibar}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\quer{\iota}},
+    type=symbols,
+    sort=confinement,
+    description={Rotational transform},
+    symbol={}
+}
+\newglossaryentry{ibarCF}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\quer{\iota}_{\mathrm{CF}}},
+    type=symbols,
+    sort=confinement,
+    description={Current free rotational transform},
+    symbol={}
+}
+
+\newglossaryentry{Vp}{%
+    parent=plasmaphysics,
+    name=\ensuremath{V_\mathrm{p}},
+    type=symbols,
+    sort=potential,
+    description={Plasma potential},
+    symbol={\si{\volt}}
+}
+\newglossaryentry{Vf}{%
+    parent=plasmaphysics,
+    name=\ensuremath{V_\mathrm{f}},
+    type=symbols,
+    sort=potential,
+    description={Floating potential},
+    symbol={\si{\volt}}
+}
+\newglossaryentry{Isat}{%
+    parent=plasmaphysics,
+    name=\ensuremath{I_\text{sat}},
+    type=symbols,
+    sort=current,
+    description={Ion saturation current},
+    symbol={\si{\ampere}}
+}	
+\newglossaryentry{jsat}{%
+    parent=plasmaphysics,
+    name=\ensuremath{j_\text{sat}},
+    type=symbols,
+    sort=current,
+    description={Ion saturation current density},
+    symbol={\si{\ampere\per\square\meter}}
+}
+\newglossaryentry{csound}{%
+    parent=plasmaphysics,
+    name=\ensuremath{c_\mathrm{s}},
+    type=symbols,
+    sort=velocity,
+    description={Ion sound speed},
+    symbol={\si{\meter\per\second}}
+}
+\newglossaryentry{Vbias}{%
+    parent=plasmaphysics,
+    name=\ensuremath{V_\mathrm{bias}},
+    type=symbols,
+    sort=potential,
+    description={Bias voltage},
+    symbol={\si{\volt}}
+}
+\newglossaryentry{r}{%
+    parent=plasmaphysics,
+    name=\ensuremath{r},
+    type=symbols,
+    sort=radius,
+    description={minor radius},
+    symbol={\si{\meter}}
+}
+\newglossaryentry{ra}{%
+    parent=plasmaphysics,
+    name=\ensuremath{r_a},
+    type=symbols,
+    sort=radius,
+    description={minor radius of the last closed flux surface},
+    symbol={\si{\meter}}
+}
+\newglossaryentry{reff}{%
+    parent=plasmaphysics,
+    name=\ensuremath{r_{\mathrm{eff}}},
+    type=symbols,
+    sort=radius,
+    description={Effective minor radius},
+    symbol={\si{\meter}}
+}
+\newglossaryentry{R}{%
+    parent=plasmaphysics,
+    name=\ensuremath{R},
+    type=symbols,
+    sort=radius,
+    description={Major radius},
+    symbol={\si{\meter}}
+}
+\newglossaryentry{aspectRatio}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\epsilon},
+    type=symbols,
+    sort=radius,
+    description={Aspect ratio},
+    symbol={\si{}}
+}
+\newglossaryentry{Np}{%
+    parent=plasmaphysics,
+    name=\ensuremath{N_p},
+    type=symbols,
+    sort=number,
+    description={Number of field periods},
+    symbol={\si{}},
+}
+
+\newglossaryentry{Pconv}{%
+    parent=plasmaphysics,
+    name=\ensuremath{P_{\mathrm{conv}}},
+    type=symbols,
+    sort=power,
+    description={Convective power},
+    symbol={\si{\watt}}
+}
+\newglossaryentry{Prad}{%
+    parent=plasmaphysics,
+    name=\ensuremath{P_{\mathrm{rad}}},
+    type=symbols,
+    sort=power,
+    description={Radiated power},
+    symbol={\si{\watt}}
+}
+\newglossaryentry{Pheat}{%
+    parent=plasmaphysics,
+    name=\ensuremath{P_{\mathrm{heat}}},
+    type=symbols,
+    sort=power,
+    description={Total heating power},
+    symbol={\si{\watt}}
+}
+\newglossaryentry{Lc}{%
+    parent=plasmaphysics,
+    name=\ensuremath{L_{\mathrm{c}}},
+    type=symbols,
+    sort=length,
+    description={Connection length},
+    symbol={\si{\meter}}
+}
+\newglossaryentry{heatflux}{%
+    parent=plasmaphysics,
+    name=\ensuremath{q},
+    type=symbols,
+    sort=power flux,
+    description={Heat flux or heat load},
+    % symbol={\si{\MW\per\square\meter}}
+    symbol={\si{\kg\per\cubic\second}}
+}
+\newglossaryentry{Zav}{%
+    parent=plasmaphysics,
+    name=\ensuremath{Z_{\mathrm{av}}},
+    type=symbols,
+    sort=average ion charge,
+    description={Average ion charge},
+    symbol={\si{}},
+}
+\newglossaryentry{Zeff}{%
+    parent=plasmaphysics,
+    name=\ensuremath{Z_{\mathrm{eff}}},
+    type=symbols,
+    sort=effective ion charge,
+    description={Effective ion charge},
+    symbol={\si{}},
+}
+\newglossaryentry{iongyro}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\rho_{\text{i}}},
+    type=symbols,
+    sort=radius,
+    description={ion gyro (Lamor) radius},
+    symbol={\si{\meter}},
+}
+\newglossaryentry{mi}{%
+    parent=plasmaphysics,
+    name=\ensuremath{m_{\text{i}}},
+    type=symbols,
+    sort=mass,
+    description={ion mass},
+    symbol={\si{\kilo\gram}},
+}
+\newglossaryentry{ndl}{%
+    parent=plasmaphysics,
+    name=\ensuremath{n\text{d}\ell},
+    type=symbols,
+    sort=density,
+    description={line integrated density},
+    symbol={\si{\per\square\meter}},
+}
+
+%% Optics, Spectroscopy and Wavelengths
+% \newglossaryentry{Halpha}{%
+%     parent=plasmaphysics,
+%     name=\ensuremath{\text{H}_{α}\xspace},
+%     type=symbols,
+%     sort=Wavelengths,
+%     description={Hydrogen $\alpha$ transition line, Balmer series transition n=3 -> n=2, \SI{656.5}{\nano\meter}},
+%     symbol=\si{\nano\meter},
+% }
+
+\newglossaryentry{sxb}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\text{S/XB}},
+    type=symbols,
+    sort= Coefficients,
+    description={Ratio of ionisation, excitation and branching ratio. Inverse photons per neutral.},
+    symbol=,
+}
+\newglossaryentry{particleFlux}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\Gamma},
+    type=symbols,
+    sort= Particle flux,
+    description={Particle flux},
+    symbol=\si{\per\second\square\meter},
+}
+\newglossaryentry{stf}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\gamma_{\text{s}}},
+    type=symbols,
+    sort=Sheath transmission coefficient,
+    description={Sheath transmission coefficient},
+    symbol={\si{}},
+}
+\newglossaryentry{frad}{%
+    parent=plasmaphysics,
+    name=\ensuremath{f_{\text{rad}}},
+    type=symbols,
+    sort=Fraction,
+    description={Radiated power fraction},
+    symbol={\si{}},
+}
+\newglossaryentry{mfpi}{%
+    parent=plasmaphysics,
+    name=\ensuremath{\lambda_\text{mfp,i}},
+    type=symbols,
+    sort=Length,
+    description={Mean free path length of ionisation},
+    symbol={\si{\meter}},
+}
+\newglossaryentry{recRat}{%
+    parent=plasmaphysics,
+    name=\ensuremath{r_\text{R}},
+    type=symbols,
+    sort=Fraction,
+    description={Ratio of neutral flux from PWI and ion flux},
+    symbol={\si{}},
+}
+
+
+\newcommand{\radialShift}{\gls{radialShift}\xspace}  % radial shift. One contribution is the shafranov shift
+\newcommand{\plasmaBeta}{\gls{plasmaBeta}\xspace}
+\newcommand{\Itor}{\gls{Itor}\xspace}
+\newcommand{\Ibs}{\gls{Ibs}\xspace}  % bootstrap current
+\newcommand{\Ips}{\gls{Ips}\xspace}  % pfirsch-schlueter current
+\newcommand{\ibar}{\gls{ibar}\xspace}
+\newcommand{\ibarCF}{\gls{ibarCF}\xspace}  % current free iota
+
+\newcommand{\Dorth}{\ensuremath{D_{\perp}}\xspace}  % perpendicular diffusion coefficient
+\newcommand{\mfp}{\ensuremath{\lambda_\text{mfp}}\xspace}  % mean free path
+\newcommand{\debye}{\ensuremath{\lambda_\text{D}}\xspace}  % Debye length
+\newcommand{\velocity}{\gls{v}\xspace}
+\newcommand{\Bfield}{\gls{B}\xspace}
+\newcommand{\Efield}{\gls{E}\xspace}
+\newcommand{\aspectRatio}{\gls{aspectRatio}\xspace}  % aspect ratio r/R
+
+\newcommand{\heatflux}{\gls{heatflux}\xspace}
+\newcommand{\heatload}{\gls{heatflux}\xspace}  % alias
+
+\newcommand{\trippleProduct}{\ensuremath{\gls{n}\gls{Ti}\gls{te}}\xspace}
+\newcommand{\Te}{\gls{Te}\xspace}
+\newcommand{\Ti}{\gls{Ti}\xspace}
+\newcommand{\Tn}{\gls{Tn}\xspace}
+\newcommand{\me}{\ensuremath{m_e}\xspace}
+\newcommand{\mi}{\ensuremath{m_i}\xspace}
+\newcommand{\edens}{\gls{ne}\xspace} %\ne already has the meaning not equal and that command is loaded later than this, so it doesn't work
+\newcommand{\idens}{\gls{ni}\xspace} %\ni already has the meaning owns, has member, opposite of \in
+\newcommand{\ndens}{\gls{nn}\xspace}
+

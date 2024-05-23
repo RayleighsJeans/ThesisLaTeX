@@ -1,0 +1,15 @@
+\usepackage{tikz-network}
+
+\RequirePackage{xparse}
+\NewDocumentCommand{\textbox}{ O{} O{} m }{% two optional arguments (\textbox[][]{TEXT possible)
+    \begin{tikzpicture}
+        \Text[style={#1}, #2]{#3}
+    \end{tikzpicture}
+}
+\NewDocumentCommand{\ovaltextbox}{ O{} O{} m }{%
+    \textbox[rounded corners,#1][#2]{#3}
+}
+\NewDocumentCommand{\overlay}{ O{} O{} m }{%
+    \typeout{-------------------------------------------------------------------------------------------------------------------------------- #1----------------------- #2}
+    \textbox[draw,fill=white,opacity=.5,#1][#2]{#3}
+}

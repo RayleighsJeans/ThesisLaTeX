@@ -1,0 +1,280 @@
+% NOTE: glossaries-extra argument atuomake=immediate requires a latex version later than 2019/01/04
+\makeatletter
+% \@ifpackagelater{glossaries-extra}{2019/01/04}{%
+	\PassOptionsToPackage{automake=immediate}{glossaries-extra}
+% }{%
+% 	\PassOptionsToPackage{automake}{glossaries-extra}
+% }
+\makeatother
+
+
+% allows the easy use of glossaries
+\usepackage
+		[
+			nonumberlist, % don't display numbers
+			acronym, % make an acronym
+			toc, % put the glossaries in the toc
+% 			ucmark, % uppercase mark
+% 			counter=equation, % use equations instead of pagenumbers
+% 			nomain, % as we don't want an index at the moment
+% 			nogroupskip,
+		]
+		{glossaries-extra}
+
+\usepackage{glossary-mcols}
+\renewcommand{\glsmcols}{2}
+\renewcommand*{\glsnamefont}[1]{\textsf{#1}}
+\setabbreviationstyle[acronym]{long-short}
+
+% \makeatletter
+% \@ifpackagelater{glossaries-extra}{2019/01/04}{}{%
+% 	\patchcmd\@gls@automake{\write18}{\DelayedShellEscape}{}{\fail}
+% }
+\makeatother
+
+%%% settings
+\setlength{\glsdescwidth}{0.685\textwidth} % width of the description field
+\setlength{\glspagelistwidth}{0.1\textwidth} % width of the pagelist field
+
+\newglossary[slg]{symbols}{syi}{syg}{List of Symbols} % new glossary for symbols
+
+
+\makeglossaries % make the glossaries
+
+\renewcommand{\entryname}{\textsf{Symbol}} % Redefine headings for list of symbols (not the one in toc)
+\renewcommand{\descriptionname}{\textsf{Description}}
+\renewcommand{\symbolname}{\textsf{Unit}}
+
+
+%%% custom glossary styles
+\newglossarystyle{customGlossaryStyleForListOfSymbols}{%
+    \renewenvironment{theglossary}{%
+        \begin{longtable}{p{0.12\textwidth}p{\glsdescwidth}p{\glspagelistwidth}}
+    }{%
+        \end{longtable}
+    }
+    \renewcommand*{\glossaryheader}{}
+    \renewcommand*{\glsgroupheading}[1]{}
+    \renewcommand{\glossentry}[2]{%
+        \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}} & \glossentrydesc{##1}. &  \glossentrysymbol{##1}\tabularnewline
+    }
+    \renewcommand{\subglossentry}[3]{%
+        & \glssubentryitem{##2}\glstarget{##2}{\strut}\glossentrydesc{##2} & \glossentrysymbol{##2}\tabularnewline
+    }
+    \renewcommand*{\glsgroupskip}{%
+        \ifglsnogroupskip
+        \else
+            & &\tabularnewline
+        \fi
+    }
+}
+
+\newglossarystyle{customListOfSymbols}{% make a new glossarystyle
+    \setglossarystyle{customGlossaryStyleForListOfSymbols}
+    \renewcommand*{\glossaryheader}{%
+        % For some reason the commands \entryname and \symbolname were not set.
+        % \bfseries\entryname&\bfseries\descriptionname&\bfseries \symbolname\\\toprule[1.5pt]\endhead
+        \bfseries\textsf{Symbol}&\bfseries\textsf{Description}&\bfseries \textsf{Unit}\\\toprule[1.5pt]\endhead
+    }
+    \renewenvironment{theglossary}{%
+        \begin{longtable}{p{0.12\textwidth}p{\glsdescwidth}p{\glspagelistwidth}}
+    }{%
+        \end{longtable}
+    }
+}
+
+\newglossarystyle{customListOfAbbreviations}{%
+    \renewenvironment{theglossary}{%
+        \begin{longtable}{lp{\glsdescwidth}}
+    }{%
+        \end{longtable}
+    }
+    \renewcommand*{\glossaryheader}{}
+    \renewcommand*{\glsgroupheading}[1]{}
+    \renewcommand{\glossentry}[2]{%
+        \textsf{\textbf{\glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}}}} & \glossentrydesc{##1}\glspostdescription\space ##2\tabularnewline[1ex]
+    }
+    \renewcommand{\subglossentry}[3]{%
+        & \glssubentryitem{##2}\glstarget{##2}{\strut}\glosentrydesc{##2}\glspostdescription\space##3\tabularnewline
+    }
+    \renewcommand*{\glsgroupskip}{%
+        \ifglsnogroupskip
+        \else
+            & \tabularnewline
+        \fi
+    }
+}
+
+\makeatletter
+\newglossarystyle{customIndex}{% this gives a goodlooking index
+    \renewenvironment{theglossary}{%
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{0pt plus 0.3pt}
+        \let\item\@idxitem
+    }{%
+    }
+    \renewcommand*{\glossaryheader}{}
+    \renewcommand*{\glsgroupheading}[1]{}
+    \renewcommand*{\glossaryentryfield}[5]{%
+    \item\glstarget{##1}{##2}
+        \ifx\relax##4\relax
+        \else
+            \space(##4)
+        \fi
+        \dotfill ##3\glspostdescription \space ##5
+    }
+    \renewcommand*{\glossarysubentryfield}[6]{%
+        \ifcase##1\relax
+                                % level 0
+        \item
+        \or
+                                % level 1
+            \subitem
+        \else
+                                % all other levels
+            \subsubitem
+        \fi
+        \glstarget{##2}{##3}
+        \ifx\relax##5\relax
+        \else
+            \space(##5)
+        \fi
+        \dotfill ##4\glspostdescription\space ##6
+    }
+    \renewcommand*{\glsgroupskip}{\indexspace}
+    \renewcommand*{\glsgroupheading}[1]{%
+        \item\textbf{\glsgetgrouptitle{##1}}\indexspace
+    }
+}
+\makeatother
+
+
+\newglossarystyle{documentationLabelStyle}{%  adapted from https://tex.stackexchange.com/questions/555612/glossariesextra-document-available-labels/565083#565083
+    \renewenvironment{theglossary}{%
+        \begin{longtable}{p{.2\textwidth}p{.3\textwidth}p{.5\textwidth}}
+    }{%
+        \end{longtable}
+    }%
+    \renewcommand*{\glossaryheader}{%                   setting the table's header
+        \bfseries Acronym & \bfseries Label & \bfseries Description
+        \\\tabularnewline\endhead
+    }%
+    \renewcommand*{\glossentry}[2]{%                    main entries displayed 
+        \typeout{GLOSS: ##1}
+        \ifglshaschildren{##1}{%
+            \tabularnewline%                                break line before new section
+            \multicolumn{3}{l}{%
+                %         \ifglshasparent{\glsentryparent{\glsentryparent{##1}}}{%
+                %             \ifglshasparent{\glsentryparent{\glsentryparent{\glsentryparent{##1}}}}{%
+                %                 ---→
+                %             }{--→}
+                %         }{-→}
+                %     }{→}
+                % }{}
+                \textbf{\glstarget{##1}{\glossentryname{##1}}}
+            }
+            \tabularnewline%                                end of row
+        }{%
+            \glstarget{##1}{\glossentryname{##1}}%          name
+            & \glscurrententrylabel%                        label
+            & \glossentrydesc{##1}%                         description
+            \tabularnewline%                                end of row
+        }
+    }%
+    \renewcommand{\subglossentry}[3]{%
+        \typeout{SUBGLOSS: ##2}
+        \glssubentryitem{##2}%                          increment the subentrycounter
+        \glstarget{##2}{\glossentryname{##2}}%          name
+        & \glscurrententrylabel%                        label
+        & \glossentrydesc{##2}%                         description
+        \tabularnewline%                                end of row
+    }%
+    \renewcommand*{\glsgroupskip}{%
+        \ifglsnogroupskip
+        \else
+            \tabularnewline
+        \fi
+    }
+}
+
+
+\newglossarystyle{documentationSymbolsStyle}{%  adapted from https://tex.stackexchange.com/questions/555612/glossariesextra-document-available-labels/565083#565083
+    % \setglossarystyle{tree}  % inherit the tree style
+    \renewcommand*{\glsgroupskip}{}%
+    \renewenvironment{theglossary}{%
+        \begin{longtable}{p{0.12\textwidth}p{.2\textwidth}p{\glsdescwidth}p{\glspagelistwidth}}
+    }{%
+        \end{longtable}
+    }
+    \renewcommand*{\glossaryheader}{%
+        % For some reason the commands \entryname and \symbolname were not set.
+        % \bfseries\entryname&\bfseries\descriptionname&\bfseries \symbolname\\\toprule[1.5pt]\endhead
+        \bfseries\textsf{Symbol}&\bfseries\textsf{Label}&\bfseries\textsf{Description}&\bfseries \textsf{Unit}\\\toprule[1.5pt]\endhead
+    }
+    \renewcommand*{\glossentry}[2]{%                    main entries displayed 
+        \ifglshaschildren{##1}{%
+            \tabularnewline%                                break line before new section
+            \multicolumn{4}{l}{%
+                % \ifglshasparent{##1}{% indentation according to number of parents
+                %     \ifglshasparent{\glsentryparent{##1}}{%
+                %         \ifglshasparent{\glsentryparent{\glsentryparent{##1}}}{%
+                %             \ifglshasparent{\glsentryparent{\glsentryparent{\glsentryparent{##1}}}}{%
+                %                 ---→
+                %             }{--→}
+                %         }{-→}
+                %     }{→}
+                % }{}
+                \textbf{\glstarget{##1}{\glossentryname{##1}}}
+            }
+            \tabularnewline%                                end of row
+        }{%
+            \glstarget{##1}{\glossentryname{##1}}%          name
+            & \glscurrententrylabel%                        label
+            & \glossentrydesc{##1}%                         description
+            & \glossentrysymbol{##1}%                       symbol
+            \tabularnewline%                                end of row
+        }
+    }%
+    \renewcommand{\subglossentry}[3]{%
+        \glssubentryitem{##2}%                                  increment the subentrycounter
+        \glstarget{##2}{\glossentryname{##2}}%                  name          
+        & \glscurrententrylabel%                                label
+        & \glossentrydesc{##2}\glspostdescription\space##3
+        & \glossentrysymbol{##2}%                               symbol
+        \tabularnewline
+    }%
+    \renewcommand*{\glsgroupskip}{%
+        \ifglsnogroupskip
+        \else
+            \tabularnewline
+        \fi
+    }
+}
+
+
+%%% example code
+% \newglossaryentry{Ditt}
+% 			{
+% 				type=symbols,
+% 				name=Dichte,
+% 				sort=dichte,
+% 				description={}
+% 			}
+%
+% \newglossaryentry{categorical}
+% 			{
+% 				type=symbols,
+% 				name={-funktionaltheorie},
+% 				description={},
+% 				parent=Ditt
+% 			}
+%
+% \newglossaryentry{Dichte}
+% 			{
+% 				type=symbols,
+% 				name={$\varrho$},
+% 				sort=deltafunktion,
+% 				description={Die Delta-Distribution wertet eine beliebig oft differenzierbare Funktion $f$ an der Stelle $0$ aus, also gilt $\mathrm{\delta}(f\,)=f(0)$ wobei $f(0) \in \mathbb{C}$.},
+% 				symbol={\si{\newton\meter}}
+% 			}
+% use like: \gls{Dichte}

@@ -1,0 +1,50 @@
+% otherwise pdflscape is not capable of detecting if we use lua
+\ifluatex
+	\usepackage[luatex]{pdflscape}
+\else
+\fi
+
+\usepackage
+		[
+			final, % include the pdfs
+		]
+		{pdfpages}
+
+
+% HACK since externalize and pdfpages clash!:
+\pretocmd{\includepdf}{%
+    \ifthenelseproperty{compilation}{externalize}{%
+        \tikzset{external/optimize=false}%
+    }{}
+}{}{}
+
+ 
+
+
+%%% example code
+% \includepdf[pages=-]{⟨filename⟩} % include all pages
+% \includepdf[pages={3,4,7,8}]{⟨filename⟩} % include the specified pages
+% \includepdf[pages={3-8}]{⟨filename⟩} % include the specified pages
+
+
+% hyper-link to includepdf with article label - inspired by https://tex.stackexchange.com/questions/338438/crossreferencing-single-pages-with-cleveref-and-pdfpages
+% usage: \includearticle[pages=2-]{articles/articleII.pdf}
+% this pdf can now be cited with \Cref{art:2} and a page can be referred as \hyperref{art:2.<pagenumber>}{Page <pagenumber>}
+\makeatletter
+\@ifpackageloaded{cleveref}{%
+    \newcounter{articlenumber}
+    \crefname{articlenumber}{article}{articles}
+    \Crefname{articlenumber}{Article}{Articles}
+    \renewcommand{\thearticlenumber}{\Roman{articlenumber}}
+    
+    \newcommand{\includearticle}[2][]{%
+        \refstepcounter{articlenumber}
+        \label{art:\arabic{articlenumber}}
+        \includepdf[%
+            #1,
+            link,
+            linkname=art:\arabic{articlenumber},
+        ]{#2} %
+    }
+}
+\makeatother

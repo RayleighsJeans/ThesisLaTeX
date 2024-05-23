@@ -1,0 +1,26 @@
+\usepackage[a-3b,pdf17]{pdfx}
+\usepackage{xmpincl}
+
+\ifluatex
+    \pdfvariable omitcidset=1
+\else
+    % TODO check wheter cid is set appropriately
+\fi
+
+\ifluatex
+	\newcommand{\replaceNBSP}[1]{\luadirect{s,_ = string.gsub("\luatexluaescapestring{#1}", "\luatexluaescapestring{~}", " "); tex.print(-2,s)}}
+\else
+	\newcommand{\replaceNBSP}[1]{} % do nothing
+\fi
+
+\AtBeginDocument{
+	\newwrite\metadatafile
+	\immediate\openout\metadatafile=\jobname.xmpdata
+	\immediate\write\metadatafile{\unexpanded{\Title}{\expanded{\replaceNBSP{\getproperty{document}{title}}}}}
+	\immediate\write\metadatafile{\unexpanded{\Author}{\expanded{\getproperty{author}{firstname} \getproperty{author}{familyname}}}}
+	\immediate\write\metadatafile{\unexpanded{\Subject}{\expanded{\getproperty{document}{subject}}}}
+	\immediate\write\metadatafile{\unexpanded{\Keywords}{\getproperty{document}{keywords}}}
+	\immediate\write\metadatafile{\unexpanded{\PublicationType}{\expanded{\getproperty{document}{type}}}}
+	\immediate\write\metadatafile{\unexpanded{\Doi}{\expanded{\getproperty{document}{doi}}}}
+	\immediate\closeout\metadatafile
+}

@@ -1,0 +1,160 @@
+% Make the pdf PDF/A resp. PDF/X compatible
+\ifluatex
+    \ImportPackage{pdfx}
+\else
+\fi
+
+% settings units nicely
+\ImportPackage{siunitx}
+
+% draw chemical figures
+\ImportPackage{chemfig}
+
+% allows to write proper reaction equations
+\ImportPackage{chemmacros}
+
+% helper package for chemmacros
+\ImportPackage{chemformula}
+
+% put at the end of the preamble as it fixes some other packages which need to be loaded first
+\AtEndPreamble{\ImportPackage{scrhack}}
+
+% allows to embedd files in the pdf
+% \ImportPackage{attachfile2} % retired, incompatible with pdfx, although a-3b allows file attachments
+\ImportPackage{intopdf}
+
+% currently broken
+% allows the animation of files and tikz code
+% \ImportPackage{animate}
+
+% produces currently unbearable results with lualatex :-/
+% improves footnotes
+% \ImportPackage{bigfoot}
+
+% use notes in the document
+\ImportPackage{todonotes}
+
+% Provides a command to split sequences at any character
+\ImportPackage{seqsplit}
+
+% publication-quality tables
+\ImportPackage{booktabs}
+
+% easy access to colours
+\ImportPackage{xcolor}
+
+% include e.g. .jpegs
+\ImportPackage{graphicx}
+
+% include pgf
+\ImportPackage{pgf}
+
+% improves the handling of captions
+\ImportPackage{caption}
+
+% foo
+\ImportPackage{float}
+
+% allows to includepictures with text floating around
+\ImportPackage{wrapfig}
+
+% allows the use of subfigures
+\ImportPackage{subcaption}
+
+% high quality vector graphics
+\ImportPackage{tikz}
+
+% high quality vector graphic plots
+\ImportPackage{pgfplots}
+
+% uses Pygments to do code formatting, requires python 2.6+
+% not the default because badly customizable
+% \ImportPackage{minted}
+
+% for code listings - more difficult to use than minted, but customizable...
+\ImportPackage{listings}
+
+% allows to use hyperlinking in the document
+\ImportPackage{hyperref}
+
+% greatly enhances microtypography
+\ImportPackage{microtype}
+
+% easy use of quotations
+\ImportPackage{epigraph}
+
+% provides blindtext for testing purposes
+\ImportPackage{blindtext}
+
+% allows the easy use of references
+\ImportPackage{cleveref}
+
+% allows the easy use of context sensitive quotes
+\ImportPackage{csquotes}
+
+% allows the use of lettrines
+\ImportPackage{lettrine}
+
+% allows the use of bibliographies
+\ImportPackage{biblatex}
+
+% allows the use of bibliographies
+\ImportPackage{scrlayer-scrpage}
+
+% adjust the pdf bookmarks
+\ImportPackage{bookmark}
+
+% allows the easy use of a list of symbols and an index
+\ImportPackage{glossaries-extra}
+
+% allows the use of \thistime
+\ImportPackage{scrtime}
+
+% currently broken
+% allows the inclusion of videos
+% \ImportPackage{media9}
+
+% allows for ragged text
+\ImportPackage{ragged2e}
+
+% easy use of marginnotes
+\ImportPackage{marginnote}
+
+% include other pdfs, like papers or a cv
+\ImportPackage{pdfpages}
+
+% allows to use enumerations that are named
+\ImportPackage{enumitem}
+
+% algorithm display
+\usepackage[
+    ruled,
+    %vlined
+    %lined,
+    % boxed,
+    ]{algorithm2e}
+% like writing code display 
+\usepackage{%
+    algorithmic}
+
+%%% LuaTeX specific packages
+\ifluatex
+
+	% loads luacode, necessary to use e.g. \luaexec
+	\ImportPackage{luacode}
+
+	% fixes/displays various typographical issues
+	\ImportPackage{impnattypo}
+
+	% breaks wrong ligatures
+	\ImportPackage{selnolig}
+
+	% allows visual feedback of glues and so on
+% 	\ImportPackage{lua-visual-debug}
+
+    \usepackage{pdftexcmds}
+    \makeatletter
+    \let\pdfstrcmp\pdf@strcmp
+    \makeatother
+\else
+\fi

@@ -1,0 +1,59 @@
+% Syntax: [draw options] (center) (initial angle:final angle:radius)
+\def\centerarc[#1](#2)(#3:#4:#5)%
+    { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+
+\makeatletter
+
+% Use e.g. like: \draw [-centero,thick] (0.4,0) -- (0.75,0);
+\pgfarrowsdeclare{center*}{center*}
+{
+  \pgfarrowsleftextend{+-.5\pgflinewidth}
+  \pgfutil@tempdima=0.4pt%
+  \advance\pgfutil@tempdima by.2\pgflinewidth%
+  \pgfarrowsrightextend{4.5\pgfutil@tempdima}
+}
+{
+  \pgfutil@tempdima=0.4pt%
+  \advance\pgfutil@tempdima by.2\pgflinewidth%
+  \pgfsetdash{}{+0pt}
+  \pgfpathcircle{\pgfqpoint{4.5\pgfutil@tempdima}{0bp}}{4.5\pgfutil@tempdima}
+  \pgfusepathqfillstroke
+}
+
+% Use e.g. like: \draw [center*-, thick] (0,0) -- (1.5,-2.625);
+\pgfarrowsdeclare{centero}{centero}
+{
+  \pgfarrowsleftextend{+-.5\pgflinewidth}
+  \pgfutil@tempdima=0.4pt%
+  \advance\pgfutil@tempdima by.2\pgflinewidth%
+  \pgfarrowsrightextend{4.5\pgfutil@tempdima}
+}
+{
+  \pgfutil@tempdima=0.4pt%
+  \advance\pgfutil@tempdima by.2\pgflinewidth%
+  \pgfsetdash{}{+0pt}
+  \pgfpathcircle{\pgfqpoint{4.5\pgfutil@tempdima}{0bp}}{4.5\pgfutil@tempdima}
+  \pgfusepathqstroke
+}
+
+% allows to reuse paths
+% see https://tex.stackexchange.com/questions/26382/calling-a-previously-named-path-in-tikz
+% example:
+% \draw[ultra thick,name path=mypath] (0,0) circle[radius=1cm];
+% \fill[blue,use path=mypath] (0,0) rectangle (1,1);
+% \draw[use path=mypath,postaction={decorate},decoration={markings,mark=at position .5 with {\arrow[orange,line width=5pt]{>};}}] (3,3) -- (4,4);
+\tikzset{
+  use path for main/.code={%
+    \tikz@addmode{%
+      \expandafter\pgfsyssoftpath@setcurrentpath\csname tikz@intersect@path@name@#1\endcsname
+    }%
+  },
+  use path for actions/.code={%
+    \expandafter\def\expandafter\tikz@preactions\expandafter{\tikz@preactions\expandafter\let\expandafter\tikz@actions@path\csname tikz@intersect@path@name@#1\endcsname}%
+  },
+  use path/.style={%
+    use path for main=#1,
+    use path for actions=#1,
+  }
+}
+\makeatother

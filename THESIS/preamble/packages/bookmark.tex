@@ -1,0 +1,13 @@
+% change the pdf bookmarks
+\usepackage{bookmark}
+
+%%% settings
+\bookmarksetup
+			{
+				open,
+				addtohook={
+					\ifnum\bookmarkget{level}<1
+						\bookmarksetup{bold}
+					\fi
+				},
+			}

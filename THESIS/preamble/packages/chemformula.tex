@@ -1,0 +1,40 @@
+\usepackage{chemformula}
+
+%%% settings
+
+% this is the default
+\setchemformula
+		{
+			arrow-style={
+							>=stealth',
+							line cap=round,
+							thick
+						},
+		}
+
+% specific stuff
+\ifthenelseproperty{compilation}{minionfonts}{
+	\setchemformula
+			{
+				arrow-style={
+								>=stealth',
+								line cap=round,
+								thick
+							},
+				font-spec={[Numbers={Proportional,Lining}]MinionPro}
+			}
+}{}
+
+\ifthenelseproperty{compilation}{libertinusfonts}{
+	\setchemformula
+			{
+				arrow-style={
+								>=stealth',
+								line cap=round,
+								thick
+							},
+				font-spec={[Numbers={Proportional,Lining}]LibertinusSerif}
+			}
+}{}
+
+\RenewChemArrow{->}{\draw[chemarrow,->] (cf_arrow_start) -- (cf_arrow_end);}

@@ -1,0 +1,79 @@
+\tlmaxdates{1999}{2019}
+\renewcommand{\posUpperCV}{center}
+\renewcommand{\posLowerCV}{center}
+
+
+
+
+
+
+
+\makecvtitle
+\section{Personal Data}
+\cvline{Name}{\getproperty{author}{firstname} \getproperty{author}{familyname}}
+\cvline{Date of Birth}{\getproperty{author}{dateofbirth}}
+\cvline{Place of Birth}{\getproperty{author}{placeofbirth}}
+\cvline{Nationality}{\getproperty{author}{nationality}}
+\vspace{0.5cm}
+
+
+
+
+\section{Education}
+\subsection{Studies}
+
+\renewcommand{\posLowerCV}{east}
+\tlcventry{2016}{2019}{PhD}{Max Planck Institute for Plasma Physics (Greifswald branch) and University of Greifswald}{}{}{}
+\cvlistitem{Member of the International Helmholtz Graduate School for Plasma Physics}
+\cvlistitem{Invited Talk Somewhere}
+\renewcommand{\posLowerCV}{center}
+
+\tlcventry{2012}{2014}{Master of science}{Some University}{Particle Physics and Astroparticle Physics (TODO Grade)}{}{Master thesis: \enquote{TODO Thesis Title}}
+\cvlistitem{Named to the Dean's List for outstanding academic achievement}
+
+\tlcventry{2009}{2012}{Bachelor of science}{Some University}{Physics (TODO Grade)}{}{Bachelor thesis: \enquote{TODO Thesis Title}}
+
+% \subsection{School}
+\renewcommand{\posUpperCV}{west}
+\tlcventry{1999}{2008}{General qualification for university entrance}{TODO Name of school (TODO Grade)}{}{Main courses:}{Math, Physics}
+\renewcommand{\posUpperCV}{center}
+
+\subsection{Extracurricular}
+\tldatecventry{2017}{Seminar}{Name of seminar}{}{}{}
+\tldatecventry{2016}{Summer School}{Name of summer school}{}{}{}
+\tldatecventry{2014}{Internship}{Description}{All departments}{}{}
+
+
+\vspace{0.5cm}
+
+
+\section{Experience}
+\subsection{Teaching}
+\tlcventry{2014}{2015}{Lab courses}{ elementary particle physics}{}{}{}
+\tlcventry{2017}{2018}{Master student supervision}{Max Planck Institute for Plasma Physics (Greifswald branch)}{Description}{}{}{}
+
+
+\subsection{Work}
+\tlcventry{2015}{2016}{Research scientist}{Name of University}{Institute}{Project}{Responsibilities: \ldots}
+
+
+\subsection{Natural languages}
+\cvlanguage{german}{native speaker}{}
+\cvlanguage{english}{fluent}{}
+\cvlanguage{spanish}{basic}{}
+
+
+\subsection{Constructed languages}
+\cvlanguage{python}{native speaker}{}
+\cvlanguage{c++}{independent}{}
+\cvlanguage{latex}{excelent}{}
+
+
+\subsection{Miscellaneous}
+\tlcventry{2019}{0}{Book club}{}{}{}{}
+
+
+\newpage
+
+\nocite{dummy,dummy}
+\printbibliography[title={Publications}]

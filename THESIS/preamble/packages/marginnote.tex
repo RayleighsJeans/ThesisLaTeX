@@ -1,0 +1,34 @@
+% allows to show marginnotes
+\usepackage{marginnote}
+
+%%% Util definitions
+\DeclareDocumentCommand{\myMarginnote} % needs xparse
+					{
+				 		O{0cm} O{c} m 
+				 	}{
+				 		% needs marginnote package
+						\marginnote
+								{
+									\ifthispageodd
+											{
+												\RaggedRight % needs ragged2e package
+											}{
+												\RaggedLeft % needs ragged2e package
+											}
+									\raisebox{#1}[#1]
+											{
+												\begin{minipage}[#2]{\marginparwidth}
+													\RaggedRight % needs ragged2e package
+													\color{\getMainColor}
+													\lineskiplimit=-\maxdimen
+													\normalfont\sffamily%\scriptsize
+													#3\end{minipage}}
+											}
+					}
+
+
+%%% example code
+% for use in normal text amd math mode, the first argument 
+% is optional and shifts the text box up resp. down, the 
+% second one allows to specify c(enter), b(ottom) and t(op) 
+% \myMarginnote[-1cm][t]{hysteresis measurements}

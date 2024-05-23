@@ -1,0 +1,12 @@
+\RequirePackageWithOption[
+			fleqn % left aligned equations
+		]
+		{amsmath}
+
+
+\newenvironment{shiftedflalign}{%
+    \csname flalign\endcsname
+    \hskip\mathindent
+}{%
+    \csname endflalign\endcsname\ignorespacesafterend
+}

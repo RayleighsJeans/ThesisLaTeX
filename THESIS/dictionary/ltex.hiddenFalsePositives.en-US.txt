@@ -1,0 +1,3 @@
+{"rule":"EN_SIMPLE_REPLACE","sentence":"^\\QTechnische Universität München, Lehrstuhl für Messsystem- und Sensortechnik\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QNumerical Recipes in Fortran.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QOne should note that the variance of the distribution \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q is bound by the inverse of the Fisher information or that its accuracy is limited by \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q, which is given by the Cramér–Rao bound: \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q In other words: the solution of the Minimum Fisher regularisation (MFR) with the smallest information has maximum variance and is the smoothest.\\E$"}

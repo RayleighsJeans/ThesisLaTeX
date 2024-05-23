@@ -1,0 +1,623 @@
+
+%%% convenience methods
+
+%%% provides functionality similar to \rlap, see e.g. https://www.tug.org/TUGboat/tb22-4/tb72perlS.pdf
+\def\clap#1{\hbox to 0pt{\hss#1\hss}}
+\def\LW{\dimexpr.25\linewidth-.5em} % linewidth for subfigure
+
+%%% Gives the complementary to 1ex (height of a small x) for a capital X
+\newlength{\heightOfX}
+\AtBeginDocument{\settoheight{\heightOfX}{X}} 
+
+%%% Get the current font size
+\newlength{\fsize}
+\makeatletter
+    \setlength{\fsize}{\f@size pt}
+\makeatother
+
+% own definitions
+\def\-{\raisebox{.75pt}{-}}%
+\newcommand{\textgreek}[1]{%
+    \begingroup%
+    \fontencoding{LGR}%
+    \selectfont#1\endgroup}%
+\newcommand{\diff}{%
+    \textnormal{d}}%
+\newcommand{\tenpo}[1]{%
+    10^{#1}}%
+\newcommand{\greek}[1]{%
+    \greektext#1\latintext}
+\newcommand{\ix}[1]{%
+    _{\text{#1}}}%
+\newcommand{\head}[1]{%
+    ^{\text{#1}}}%
+\newcommand{\imag}{%
+    \mathbf{i}}%
+\newcommand{\tilt}[1]{%
+    \textit{#1}}%
+\newcommand{\divergenz}[1]{%
+    \textit{div}\left(#1\right)}
+\newcommand{\euler}{%
+    \mathnormal{e}}%
+\newcommand{\fett}[1]{%
+    \textbf{#1}}%
+\newcommand{\inexample}{%
+    \text{e.g.}}%
+\newcommand{\kett}{%
+    \rangle}%
+\newcommand{\bra}{%
+    \langle}%
+\newcommand{\grad}[1]{%
+    \textit{grad}\left(#1\right)}
+
+%%% citing related
+% stolen from Will Robertson, prevents linebreaks before citations
+\newcommand{\nobreakbefore}
+    {%
+        \relax
+        \ifvmode
+        \else
+            \ifhmode
+                \ifdim\lastskip > 0pt\relax
+                    \unskip\nobreakspace
+                \fi
+            \fi
+          \fi
+    }
+\let\oldcite\cite
+\renewcommand{\cite}{\nobreakbefore\oldcite}
+\let\oldref\ref
+\renewcommand{\ref}{\nobreakbefore\oldref}
+
+\newcommand{\colorboxwithoutxtraspace}[2]{\smash{\rlap{\colorbox{#1}{\phantom{#2}}}}#2}
+
+%%% disable typographically bad settings for toc,lof etc.
+\newcommand{\disabledprotrusion}[1]
+        {
+            \ifKOMA
+                \ifthenelseproperty{compilation}{fontspec}{%
+                    \begingroup
+                        \addfontfeatures{Numbers={Lining,Monospaced}}
+                }{}
+            \fi
+            \ifthenelseproperty{compilation}{microtype}{%
+                \microtypesetup{protrusion=false}
+            }{}
+            #1
+            \ifthenelseproperty{compilation}{microtype}{%
+                \microtypesetup{protrusion=true}
+            }{}
+            \ifKOMA
+                \ifthenelseproperty{compilation}{fontspec}{%
+                    \endgroup
+                }{}
+            \fi
+        }
+
+%%% remove next character (don't remember for what this was good or where it is from)
+\makeatletter
+\newcommand{\removeifnextchar}[3]
+        {
+            \begingroup
+            \ltx@LocToksA{\endgroup#2}
+            \ltx@LocToksB{\endgroup#3}
+            \ltx@ifnextchar{#1}
+                {
+                    \def\next{\the\ltx@LocToksA}
+                    \afterassignment\next
+                    \let\scratch= %
+                }{
+                    \the\ltx@LocToksB
+                }
+        }
+\makeatother
+\newcommand*{\removeDot}
+        {
+            \removeifnextchar{.}{}{}
+        }
+
+
+%%% change the appearance of names
+\newcommand{\nameofperson}[1]{\textsc{#1}}
+
+% \RequirePackage{tabularx}
+%%% provides a signature command
+\newcommand{\Signature}[2]% provides a labeling field. \Signature{Place}{Name}
+        {%
+            \vspace{2cm}%
+            \noindent%
+            \begin{tabular*}{\textwidth}{@{\extracolsep{0pt}} l @{\extracolsep{\fill}} r @{\extracolsep{0pt}}}%
+#1, \getproperty{document}{date}	& \rule{0.33\textwidth}{1pt} 	\\
+& \raggedleft{\textsc{#2}}
+            \end{tabular*}
+            \vspace{1cm}
+        }
+
+\AtBeginDocument{%
+    \newif\ifKOMAandFancyChapterHeadings%
+    \KOMAandFancyChapterHeadingsfalse%
+    \ifKOMA%
+        \ifthenelseproperty{compilation}{fancychapterheadings}{%
+            \RedeclareSectionCommand[
+                    beforeskip=\dimexpr3.3\baselineskip+1\parskip\relax,
+                    innerskip=0pt,% <- space between chapter number and chapter title
+                    afterskip=1.725\baselineskip plus .115\baselineskip minus .192\baselineskip,
+                    afterindent=false
+                ]%
+                {chapter}%
+            \renewcommand\raggedchapter{\raggedleft}%
+            \renewcommand\chapterformat{{\fontsize{80pt}{80pt}\selectfont\textcolor{gray!25}{\thechapter}}}%
+            \KOMAandFancyChapterHeadingstrue%
+        }{}%
+    \fi%
+    \ifKOMAandFancyChapterHeadings%
+        \renewcommand\chapterlineswithprefixformat[3]{#2#3\vspace*{-.5\baselineskip}\rule{\textwidth}{.4pt}\par\nopagebreak}%
+    \else%
+    \fi%
+}
+
+%%% float positioning
+% alter some LaTeX defaults for better treatment of figures:
+% see p.105 of "TeX Unbound" for suggested values.
+% see pp. 199-200 of Lamport's "LaTeX" book for details.
+% general parameters, for ALL pages:
+\renewcommand{\topfraction}{0.9} % max fraction of floats at top
+\renewcommand{\bottomfraction}{0.5} % max fraction of floats at bottom
+
+% parameters for TEXT pages:
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4} % 2 may work better
+\setcounter{dbltopnumber}{2} % for 2-column pages
+\renewcommand{\dbltopfraction}{0.9} % fit big float above 2-col. text
+\renewcommand{\textfraction}{0.1} % allow minimal text w. figs
+
+% parameters for FLOAT pages (not text pages):
+% nota bene: floatpagefraction MUST be less than topfraction !!
+\renewcommand{\floatpagefraction}{0.8} % require fuller float pages
+\renewcommand{\dblfloatpagefraction}{0.8} % require fuller float pages
+
+% hidden parameters for float pages:
+% \@fptop % space at top of float page
+% \@fpbot % space at bottom of float page
+% \@fpsep % space between floats on a float page
+
+%%% adjust TOC
+\ifKOMA
+    \ifthenelseproperty{compilation}{fontspec}{%
+        \DeclareTOCStyleEntry[%
+            entryformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}\bfseries\sffamily\color{\getproperty{color}{main}}
+            },
+        pagenumberformat={%
+            \addfontfeatures{Numbers={Lining,Monospaced}}%
+            \bfseries\sffamily
+        },
+        ]
+        {default}
+        {chapter}
+        \DeclareTOCStyleEntry[%
+            entryformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}
+            },
+            pagenumberformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}
+            },
+        ]
+        {default}
+        {section}
+        \DeclareTOCStyleEntry[%
+            entryformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}
+            },
+            pagenumberformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}
+            },
+        ]
+        {default}
+        {subsection}
+        \DeclareTOCStyleEntry[%
+            entryformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}
+            },
+            pagenumberformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}
+            },
+        ]
+        {default}
+        {subsubsection}
+        \DeclareTOCStyleEntry[%
+            entryformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}
+            },
+            pagenumberformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}
+            },
+        ]
+        {tocline}
+        {figure}
+        \DeclareTOCStyleEntry[%
+            entryformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}
+            },
+            pagenumberformat={%
+                \addfontfeatures{Numbers={Lining,Monospaced}}
+            },
+        ]
+        {tocline}
+        {table}
+    }{}
+\fi
+
+
+%%% Chapter without head. Usefull for includepdf
+\makeatletter
+\newcommand{\headlesschapter}[1]{%
+  \begingroup
+  \let\@makechapterhead\@gobble % make \@makechapterhead do nothing
+  \chapter{#1}
+  \endgroup
+}
+\makeatother
+
+
+%%% graphic includes
+\makeatletter
+\newcommand\appendgraphicspath[1]{%
+  \g@addto@macro\Ginput@path{#1}%
+}
+\makeatother
+% \appendgraphicspath{{./content/figures/}}
+\graphicspath{{content/figures/}}
+
+
+%%% igraph: IGRAPH /igraph IGRAPH definition
+\RequirePackage{xkeyval}
+\RequirePackage{xstring}
+\RequirePackage{xfp}
+\RequirePackage{ifthen}
+\RequirePackage{tikzscale} % for pgffigure rescaling with native font
+\makeatletter
+\define@key{igraph}{width}{\def\igraph@width{#1}}
+\define@key{igraph}{svgwidth}{\def\igraph@svgwidth{#1}}
+% Options that only work with includegraphics forwarding
+\define@key{igraph}{angle}{\def\igraph@angle{#1}}
+\define@key{igraph}{draft}{\def\igraph@draft{#1}}
+\define@key{igraph}{scale}{\def\igraph@scale{#1}}
+% svgwidth is a hack to change the size of text afterwards.
+% The optimal way to go is to use scaletext=false as is the default and build your picture suitable for the publication width.
+\define@key{igraph}{height}{\def\igraph@height{#1}}
+\define@boolkey{igraph}{scaletext}{\def\igraph@scaletext{#1}}
+\newcommand{\igraph}[2][]{%
+    \filename@parse{#2}
+    \setkeys{igraph}{width=\linewidth} % set default
+    \setkeys{igraph}{svgwidth=\linewidth} % set default
+    \setkeys{igraph}{height=\empty} % set default
+    \setkeys{igraph}{scaletext=false} % set default
+    \setkeys{igraph}{#1}
+    \ifthenelse{%
+        \equal{\filename@ext}{pgf}%
+    }{%
+        %--------------------
+        % pgf
+        %--------------------
+        \typeout{----- INCLUDE pgf @ #2 ------}%
+        \let\pgfimageWithoutPath\pgfimage%
+        \renewcommand{\pgfimage}[2][]{\typeout{----- INCLUDE pgfimgage @ ##2 ------}\pgfimageWithoutPath[##1]{\filename@area/##2}}%
+        \resizebox{\igraph@width}{!}{\input{#2}}%
+        % \let\pgfimage\pgfimageWithoutPath  % reset to old definition
+    }{%
+        \ifnum\pdfstrcmp{\filename@ext}{pdf_tex}=0
+            %--------------------
+            % pdf_tex
+            %--------------------
+            \typeout{----- INCLUDE pdf_tex @ #2 ------}%
+            \IfSubStr{#1}{height}{%
+                \PackageError{igraph}{pdf_tex does not allow the height attribute}{}%
+                }{}%
+            \ifthenelse{%
+                \boolean{\igraph@scaletext}%
+            }{%
+                \def\svgwidth{\igraph@svgwidth}%
+                \resizebox{\igraph@width}{!}{%
+                    \import{\filename@area}{\filename@base.\filename@ext}%
+                }%
+            }{%
+                \def\svgwidth{\igraph@width}%
+                \import{\filename@area}{\filename@base.\filename@ext}%
+            }%
+        \else
+            \ifthenelse{%
+                \equal{\filename@ext}{svg}%
+            }{%
+                %--------------------
+                % svg
+                %--------------------
+                % This requires inkscape installation. You can set the inkscape path by
+                % \usepackage{svg}
+                % \setsvg{
+                %     inkscape = flatpak run --branch=master --arch=x86_64 --command=inkscape % set the correct path to inkscape
+                % }
+                \typeout{----- INCLUDE svg @ #2 ------}%
+                % \appendgraphicspath{\filename@area}
+                % \includesvg[width=\igraph@width]{#2}%
+                \PackageError{igraph}{svg not implemented!}{}%
+            }{%
+                \ifthenelse{%
+                    \equal{\filename@ext}{tikz}%
+                }{%
+                    %--------------------
+                    % tikz
+                    %--------------------
+                    \typeout{----- INCLUDE tikz @ #2 ------}%
+                    \tikzsetnextfilename{\filename@base}%
+                    \begin{minipage}{\igraph@width}%
+                        % this way, we set textwidth to width and thus scale the tikz picture.
+                        \input{#2}%
+                    \end{minipage}%
+                }{%
+                    %--------------------
+                    % else
+                    %--------------------
+                    \typeout{----- INCLUDE with includegraphics @ #2 ------}%
+                    \IfSubStr{#1}{height}{%
+                        \includegraphics[#1]{#2}%
+                    }{%
+                        \includegraphics[width=\igraph@width, #1]{#2}%
+                    }%
+                }%
+            }%
+        \fi
+    }%
+}%
+\makeatother
+
+
+%%% setimagedimensions: Retrieve image dimensions inspired by https://tex.stackexchange.com/questions/3657/get-the-size-that-a-figure-is-being-rendered
+\newlength{\imageh}
+\newlength{\imaged}
+\newlength{\imagew}
+\newcommand{\setimageh}[1]{
+ \settoheight{\imageh}{\usebox{#1}}
+}
+\newcommand{\setimagew}[1]{
+ \settowidth{\imagew}{\usebox{#1}}
+}
+\newcommand{\setimaged}[1]{
+ \settodepth{\imaged}{\usebox{#1}}
+}
+\newsavebox{\imagesavebox}
+\newcommand{\setimagedimensions}[1]{
+    \savebox{\imagesavebox}{\igraph{#1}}
+    \setimageh{\imagesavebox}
+    \setimagew{\imagesavebox}
+    \setimaged{\imagesavebox}
+    %    The height of the image is : \the\imageh\\
+    %    The width of the  image is : \the\imagew\\
+    %    The depth of the  image is : \the\imaged\\
+}
+
+
+%%% storedata / getdata implemenataion gotten from https://tex.stackexchange.com/questions/215563/storing-an-array-of-strings-in-a-command
+% example: \storedata{mydata}{{one}{two}{three}}
+%          \storedata{mylongdata}{
+%            {one} {two} {three} {four} {five} {six} {seven} {eight} {nine} {ten}
+%            {eleven} {twelve} {thirteen} {fourteen} {fifteen} {sixteen}
+%            {seventeen} {eighteen} {nineteen} {twenty} {twenty-one} {twenty-two}
+%            {twenty-three} {twenty-four}
+%          }
+%          \getdata{1}{mylongdata}  -> one
+%          \getdata{0}{mylongdata}  -> len(mylongdata)
+\makeatletter
+\newcommand*{\storedata}[2]{%
+  \count@=0 %
+  \@tfor\@tmp:=#2\do{%
+    \advance\count@\@ne
+    \expandafter\let\csname data:\the\count@:#1\endcsname\@tmp
+  }%
+  \expandafter\edef\csname data:0:#1\endcsname{\the\count@}%
+}
+\newcommand*{\getdata}[2]{%
+  \@ifundefined{data:0:#2}{%
+    \@latex@error{Undefined data `#2'}\@ehc
+  }{%
+    \expandafter\@getdata\expandafter{%
+      \the\numexpr
+        \ifnum\numexpr(#1)<\z@
+          \@nameuse{data:0:#2}+1+%
+        \fi
+        (#1)%
+      \relax
+    }{#2}{#1}%
+  }%
+}
+\newcommand*{\@getdata}[3]{%
+  \ifnum#1<\z@
+    \@getdata@error{\the\numexpr(#3)\relax}{#2}%
+  \else
+    \ifnum#1>\@nameuse{data:0:#2} %
+      \@getdata@error{#1}{#2}%
+    \else
+      \@nameuse{data:#1:#2}%
+    \fi
+  \fi
+}
+\newcommand*{\@getdata@error}[2]{%
+  \@latex@error{%
+    Wrong data selector #1 for `#2',\MessageBreak
+    which only contains \@nameuse{data:0:#2} item(s)%
+  }\@ehc
+}
+\makeatother
+
+\storedata{mydata}{{one}{two}{three}}
+\storedata{mylongdata}{
+  {one} {two} {three} {four} {five} {six} {seven} {eight} {nine} {ten}
+  {eleven} {twelve} {thirteen} {fourteen} {fifteen} {sixteen}
+  {seventeen} {eighteen} {nineteen} {twenty} {twenty-one} {twenty-two}
+  {twenty-three} {twenty-four}
+}
+
+
+%%% multigraph: Same height graphs
+% Example:
+% \begin{figure}
+%     \centering
+%     \multigraph[labels=
+%         {fig:first-label}
+%         {fig:second-label}
+%     ]{%
+%         data/figures/example.pdf;
+%         data/figures/example.pgf}{%
+%         {My pdf example.}
+%         {My tikz example.}
+%     }
+%     \caption{%
+%         Example of a \\multigraph command
+%     }
+%     \label{fig:multigraph}
+% \end{figure}
+% Note: Since _ is catcode translated you should use \sb in equations for sub (_)
+\makeatletter
+% \RequirePackage{forarray}
+\RequirePackage{calc}
+\RequirePackage{listings}
+\newlength\figratiosum
+\newlength\figratio
+\newlength\figheight
+\newlength\figwidth
+\newcounter{npaths}
+\newcommand{\multigraph}{\begingroup
+  \catcode`_=12 \domultigraph}
+\newcommand{\catcodeigraph}{\begingroup
+  \catcode`_=11 \igraph}
+\define@key{multigraph}{width}{\def\multigraph@width{#1}}
+\define@key{multigraph}{labels}{\def\multigraph@labels{#1}}
+\newcommand{\domultigraph}[3][]{
+    % #1: width=, labels=. . .
+    % #2: semicolon seperated file names
+    % #3: semicolon seperated subcaptions
+    \setkeys{multigraph}{width=\linewidth - 1em} % set default
+    \setkeys{multigraph}{labels=\empty} % set default
+    \setkeys{multigraph}{#1}
+
+    % get number of paths
+    % \storedata{paths}{#2}
+    % \getndata{paths}
+    \setcounter{npaths}{0}
+    \ForEachX{;}{%
+        \stepcounter{npaths}
+    }{#2}
+
+    % put labels in pgflist \labels
+    \IfSubStr{#1}{labels}{%
+        \def\subfigurelabels{}
+        \ForEachX{;}{%
+            % set the path variable to an array
+            \edef\subfigurelabels{\subfigurelabels"\thislevelitem"}
+            \ifnum\thislevelcount=\value{npaths}
+            \else
+                \edef\subfigurelabels{\subfigurelabels,}
+            \fi
+        }{\multigraph@labels}
+    }{}
+
+    % put paths in pgflist \paths
+    \def\paths{}
+    \setlength\figratiosum{0pt}
+    \def\figratios{}
+    \ForEachX{;}{%
+        % set the path variable to an array
+        \edef\paths{\paths"\thislevelitem"}
+        \ifnum\thislevelcount=\value{npaths}
+        \else
+            \edef\paths{\paths,}
+        \fi
+
+        % calulate ratio hi / wi and sum of the ratios
+        \setimagedimensions{\thislevelitem}
+        \setlength\figratio{1pt*\ratio{\imagew}{\imageh}}
+        \addtolength{\figratiosum}{\figratio}
+        \edef\figratios{\figratios"\the\figratio"}
+        \ifnum\thislevelcount=\value{npaths}
+        \else
+            \edef\figratios{\figratios,}
+        \fi
+    }{#2}
+
+    % put captions in pgflist \subcaptions
+    \storedata{subcaptions}{#3}
+    % \def\subcaptions{}
+    % \ForEachX{;}{%
+    %     % set the subcaption variable to an array
+    %     \edef\subcaptions{\subcaptions"\thislevelitem"}
+    %     \ifnum\thislevelcount=\value{npaths}
+    %     \else
+    %         \edef\subcaptions{\subcaptions,}
+    %     \fi
+    % }{#3}
+
+    % calculate figheight = 1*completewidth/sum(figratio_i}
+    \setlength{\figheight}{1pt*\ratio{\multigraph@width}{\figratiosum}}
+
+    \addtocounter{npaths}{-1}  % CAREFUL: npaths is reduced by one for the use in foreach!
+    \foreach \i in {0,...,\value{npaths}}{%
+        % calculate figwidth = figheight / figratio
+        \pgfmathparse{{\figratios}[\i]}
+        \setlength\figwidth{\figheight}
+        \pgfmathparse{\figwidth * \pgfmathresult}
+        \setlength{\figwidth}{\pgfmathresult pt}
+        \begin{subfigure}{\figwidth}
+            \centering
+            \pgfmathparse{{\paths}[\i]}
+            \typeout{----- Width for multigraph figure \pgfmathresult : \the\figwidth ------}
+            % \igraph{\pgfmathresult}
+            \catcodeigraph{\pgfmathresult}\endgroup
+            % subcaption
+            % \pgfmathparse{{\subcaptions}[\i]}
+            % \subcaption{\pgfmathresult}
+            \subcaption{\getdata{\i+1}{subcaptions}}
+            % label
+            \IfSubStr{#1}{labels}{%
+                \pgfmathparse{{\subfigurelabels}[\i]}
+                \label{\pgfmathresult}
+            }{}
+        \end{subfigure}
+    }
+    \endgroup
+}
+\makeatother
+
+
+% upright in math mode
+\newcommand{\makeup}[1]{%
+    \ensuremath{
+        \ifluatex
+            \symup{#1}
+        \else
+            \mathrm{#1}
+        \fi
+    }
+}
+\newcommand{\makebf}[1]{%
+    \ensuremath{
+        \ifluatex
+            \symbf{#1}
+        \else
+            \mathbf{#1}
+        \fi
+    }
+}
+\input{preamble/subjects/text}
+
+
+%%% remarks
+% hyphenation:
+% If words shall not be hyphenated, write them in \hyphenation{...} without -, mark hyphenation points with - in \hyphenation{...}
+% Rules: words that shall be hyphenated should be at least 5 letters long, hyphenation points result from syllables or etymology
+% Rules: personal names, numbers, acronyms, values and their units don't get hyphenated
+% Rules: There should be no more than 3 hyphenations in a row, because hyphenations disturb the reader
+% example:
+% \hyphenation{Un-ter-su-chung}
+% \babelhyphenation[british]{cy-lin-der}
+% \babelhyphenation[ngerman]{Sol=Gel=Tauch-be-schich-tungs-pro-zess}

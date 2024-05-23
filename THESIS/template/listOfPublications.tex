@@ -1,0 +1,53 @@
+\begin{refsection}
+    \setboolean{bibCV}{true}
+    \newrefcontext[sorting=ndymdt]
+    \nocite{*}
+    \ifthenelseproperty{compilation}{clsdefineschapter}{%
+        \ifKOMA
+            \addchap[Publications as first author]{Publications as first author}\label{sec:publications_as_first_author}
+        \else
+            \chapter[Publications as first author]{Publications as first author}\label{sec:publications_as_first_author}
+        \fi
+    }{%
+        \ifKOMA
+            \addsec[Publications as first author]{Publications as first author}\label{sec:publications_as_first_author}
+        \else
+            \section[Publications as first author]{Publications as first author}\label{sec:publications_as_first_author}
+        \fi
+    }
+    \printbibliography[
+                        keyword=firstAuthor,
+                        keyword=refereed,
+                        heading=subbibliography,
+                        title={Peer-reviewed articles},
+                        resetnumbers=true
+                    ]
+    \setboolean{bibCV}{false}
+\end{refsection}
+\begin{refsection}
+    \setboolean{bibCV}{true}
+    \newrefcontext[sorting=ndymdt]
+    \nocite{*}
+    \ifthenelseproperty{compilation}{clsdefineschapter}{%
+        \ifKOMA
+            \addchap[Publications as coauthor]{Publications as coauthor}\label{sec:publications_as_coauthor}
+        \else
+            \chapter[Publications as coauthor]{Publications as coauthor}\label{sec:publications_as_coauthor}
+        \fi
+    }{%
+        \ifKOMA
+            \addsec[Publications as coauthor]{Publications as coauthor}\label{sec:publications_as_coauthor}
+        \else
+            \section[Publications as coauthor]{Publications as coauthor}\label{sec:publications_as_coauthor}
+        \fi
+    }
+    \setboolean{isCoauthorList}{true}
+    \printbibliography[
+                        keyword=coAuthor,
+                        keyword=refereed,
+                        heading=subbibliography,
+                        title={Peer-reviewed articles},
+                        resetnumbers=true
+                    ]
+    \setboolean{bibCV}{false}
+\end{refsection}

@@ -1,0 +1,31 @@
+% fine control of captions
+\usepackage
+    [
+    format=plain, % usual layout, resulting in Figure X:... respectively Table X:...
+    indention=1em, % how much is the second line indented
+    textfont={color={black},small}, % font=footnotesize for smaller font
+    width=0.925\linewidth, % width of the caption
+    hypcap=true, % needed for correct linking if subcaptions are used. Deactivate otherwise
+    ]
+    {caption}
+
+% foat support for multicaptions
+\usepackage{paracol}
+
+%%% settings
+\AtBeginDocument
+    {
+    \captionsetup
+        {
+        labelfont={color=\getproperty{color}{main},small,sf,bf}, % adjust the labelfont, size, bold, sans serif, italic... color (good-looking e.g. RoyalBlue!50!black)
+        }
+    }
+% example code
+% --------
+% \begin{figure}
+% \centering
+% \includegraphics{bla}
+% \caption{Schematisierung von irgendwas.}
+% \label{pic:rogowski1}
+% \end{figure}
+% --------

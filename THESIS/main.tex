@@ -1,0 +1,37 @@
+\input{template/head}
+
+% PUBLISH:START
+\typeout{----- BEGIN PREAMBLE -----}
+\IfFileExists{template/preamble.tex}{%
+    \typeout{----- LOAD OWN PREAMBLE -----}%
+    \import{content/}{preamble}}{%
+    \typeout{----- LOAD DEFAULT PREAMBLE -----}%
+    \import{template/}{preamble}}
+
+% PUBLISH: PYTHON
+% if os.path.exists('content/preamble.tex'):
+%   tex = r'\input{content/preamble.tex}'
+% else:
+%   tex = r'\input{templates/Default/preamble.tex}'
+% PUBLISH:END
+
+% bibresource
+\addbibresource{content/bibliography/bibliography.bib}
+% the filename of the bibliography
+
+\typeout{----- END OF PREAMBLE -----}
+\begin{document}
+  
+    \typeout{----- BEGIN DOCUMENT -----}
+    \typeout{}
+    \typeout{--------------------------------}
+    \typeout{----- Document properties: -----}
+    \typeout{--------------------------------}
+    \typeout{Font size: \the\fsize}
+    \typeout{Text width: \the\textwidth}
+    \typeout{--------------------------------}
+    \typeout{--------------------------------}
+
+    \ImportDefault{document}
+    \typeout{----- END OF DOCUMENT -----}
+\end{document}

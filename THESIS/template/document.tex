@@ -1,0 +1,45 @@
+\ifthenelseproperty{compilation}{frontmatter}{%
+    \frontmatter}{}%
+
+\ifthenelseproperty{compilation}{titlepage}{%
+    \ImportDefault{titlepage}}{}%
+
+\IfFileExists{content/dedication.tex}{%
+    \import{content}{dedication}}{}%
+
+\ifthenelseproperty{compilation}{abstract}{%
+    \ImportDefault{abstract}}{}%
+
+\ifthenelseproperty{compilation}{toc}{%
+    \ImportDefault{toc}}{}%
+
+\ImportDefault{content}
+
+\sloppy
+\ifthenelseproperty{compilation}{bibliography}{%
+    \ImportDefault{bibliography}}{}%
+\fussy
+
+\ifthenelseproperty{compilation}{glossaries}{%
+    \ImportDefault{glossaries}}{}%
+
+\ifthenelseproperty{compilation}{lof}{%
+    \ImportDefault{lof}}{}%
+
+\ifthenelseproperty{compilation}{lot}{%
+    \ImportDefault{lot}}{}%
+
+\ifthenelseproperty{compilation}{lol}{%
+    \ImportDefault{lol}}{}%
+
+\ifthenelseproperty{compilation}{appendix}{%
+    \ImportDefault{appendix}}{}%
+
+\ifthenelseproperty{compilation}{listofpublications}{%
+    \ImportDefault{listOfPublications}}{}%
+
+\ifthenelseproperty{compilation}{appendix}{%
+    \ImportDefault{acknowledgement}}{}%
+
+\ifthenelseproperty{compilation}{affidavit}{%
+    \ImportDefault{affidavit}}{}%

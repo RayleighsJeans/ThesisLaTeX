@@ -1,0 +1,34 @@
+% allows to embedd files easily. Useful to include data and/or scripts.
+\usepackage{attachfile2}
+
+%%% Util definitions
+% this allows to use smth along the lines of 
+% \textattachfileandprintout{data/eval.java}{\faSave}, 
+% which shows the symbol in printout as well
+\newlength{\Urlname}
+\newcommand{\doubleprint}[1]{\setlength{\Urlname}{\widthof{#1}}}
+\newcommand{\textattachfileandprintout}[2]{\textattachfile[color=0 0 0]{#1}{#2}\nolinebreak[4]\doubleprint{#2}\hspace{-\Urlname}\protect\raisebox{0.1ex}{#2}}
+
+
+%%% HACKS FOR LUALATEX, AS ATTACHFILE2 IS NOT FIXED FOR THE RENAMED PRIMITIVES IN LUALATEX
+\ifluatex
+	\ifdefined\saveboxresource             \let\pdfxform          \saveboxresource             \fi
+	\ifdefined\lastsavedboxresourceindex   \let\pdflastxform      \lastsavedboxresourceindex   \fi
+	\ifdefined\pdfextension
+    	\protected\def\pdfannot          {\pdfextension annot }
+	\fi
+\else\fi
+
+
+%%% example code
+% --------
+% \attachfile[icon=Paperclip, description=wuha]{blabla.txt}
+% --------
+
+% --------
+% \textattachfile[color=0 0 0]{blabla.txt}{$\alpha_i$}
+% --------
+
+% --------
+% \textattachfileandprintout{data/eval.java}{\faSave}
+% --------

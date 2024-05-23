@@ -1,0 +1,155 @@
+\usepackage
+        [
+            hyperref=true,
+            backend=biber, % modern backend, if missing google for biber.exe, arguments for the compiler: "%tm"
+            url=true, % urls in bibliography?
+            abbreviate=false,
+            isbn=false, % isbn-number in bibliography?
+            doi=true, % doi in bibliography?
+            backref=true, % if true show on which sites the cited source is used
+            urldate=long, % specifies how to display the urldate. Options are short, long, terse, comp, iso8601
+            style=numeric,  % alphabetic,  %numeric,  % -comp,
+            citestyle=numeric-comp,  %science, numeric-comp,
+            maxbibnames=3, % 7 is enough, then et. al should be inserted
+            giveninits=true,
+            block=none,
+            sorting=none,
+            defernumbers=true,
+            %dashed=false, % removes the dashes on multiple consecutive copies of the same authors %this option is incompatible with style=numeric*
+        ]
+        {biblatex}
+
+\DefineBibliographyStrings{english}{%
+  backrefpage={page},  % originally "cited on page"
+  backrefpages={pages},  % originally "cited on pages"
+}
+
+%%% settings
+% PUBLISH:START
+\IfFileExists{content/bibliography/bibliography.bib}{%
+    \typeout{----- FOUND BIBLIOGRAPHY @ content/data/bibliography/bibliography.bib -----}
+    \addbibresource{content/bibliography/bibliography.bib}
+}{%
+    \IfFileExists{content/library.bib}{%
+        \typeout{----- FOUND BIBLIOGRAPHY @ content/library.bib -----}
+        \addbibresource{/library.bib}
+    }{%
+        \typeout{----- NO BIBLIOGRAPHY FOUND -----}
+        \addbibresource{bibliography/dummy.bib}
+    }
+}
+% PUBLISH:PYTHON
+% if os.path.exists('content/data/bibliography/bibliography.bib'):
+%     tex = r'\addbibresource{content/data/bibliography/bibliography.bib}'
+% elif os.path.exists('content/library.bib'):
+%     tex = r'\addbibresource{content/library.bib}'
+% else:
+%     tex = r'\addbibresource{bibliography/dummy.bib}'
+% PUBLISH:END
+
+\makeatletter
+\@ifpackageloaded{seqsplit}{
+    \DeclareFieldFormat{eid}{Art.\addnbspace\seqsplit{#1}}
+}{}
+\makeatother
+
+% use either doi or url
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \step[fieldsource=doi,final]
+      \step[fieldset=url,null]
+    }
+  }
+}
+
+\setcounter{biburllcpenalty}{7000} % set to a value greather than 0 to allow url breaking after lowercase (lc) values
+\setcounter{biburlucpenalty}{7000} % set to a value greather than 0 to allow url breaking after uppercase (uc) values
+\setcounter{biburlnumpenalty}{7000} % set to a value greather than 0 to allow url breaking after numerical (num) values
+
+\DeclareFieldFormat{journaltitle}{\mkbibemph{#1},} % italic journal title with comma
+\DeclareFieldFormat[inbook,thesis]{title}{\mkbibemph{#1}\addperiod} % italic title with period
+\DeclareFieldFormat[article,misc]{title}{\enquote{#1}} % title of journal article is printed as normal text
+\DeclareFieldFormat[article,inproceedings,incollection]{volume}{Vol.~#1} % makes volume of journal bold and adds colon
+\DeclareFieldFormat{edition}{\ifinteger{#1}{\mkbibordedition{#1}\addnbthinspace{}ed.}{#1\isdot}}
+
+% use eprint for urn: example fields (bib-file)
+% % eprint = {urn:nbn:de:bsz:100-opus-5191},
+% % eprinttype = {urn},							
+\DeclareFieldFormat{eprint:urn}{\textsc{URN}\addcolon\space\ifhyperref{\href{http://www.nbn-resolving.org/#1}{\nolinkurl{#1}}}{\nolinkurl{#1}}}
+
+% make names with small capitals
+\renewcommand{\mkbibnamegiven}[1]{\textsc{#1}}
+\renewcommand{\mkbibnamefamily}[1]{\textsc{#1}}
+\renewcommand{\mkbibnameprefix}[1]{\textsc{#1}}
+\renewcommand{\mkbibnamesuffix}[1]{\textsc{#1}}
+
+\DeclareLanguageMapping{english}{bibliography/custom-british-ordinal-sscript}
+\DeclareLanguageMapping{british}{bibliography/custom-british-ordinal-sscript}
+
+% last entries first
+\DeclareSortingTemplate{ndymdt}{
+     \sort{
+        \field{presort}
+    }
+    \sort[final]{
+        \field{sortkey}
+    }
+    \sort[direction=descending]{
+        \field{sortyear}
+        \field{year}
+        \literal{9999}
+    }
+    \sort[direction=descending]{
+        \field[padside=left,padwidth=2,padchar=0]{month}
+        \literal{99}
+    }
+    \sort[direction=descending]{
+        \field[padside=left,padwidth=2,padchar=0]{day}
+        \literal{99}
+    }
+}
+
+%%%%%%%%%%%%
+% useful for ListOfPublications at end of thesis
+\newboolean{bibCV}
+\setboolean{bibCV}{false}
+
+\ifluatex
+    \def\getAuthorBibCv{\FirstChar{\getproperty{author}{firstname}}.~\getproperty{author}{familyname}}
+\else
+    \def\getAuthorBibCv{\getproperty{author}{firstname}~\getproperty{author}{familyname}}
+\fi
+
+\newboolean{isCoauthorList}
+\setboolean{isCoauthorList}{false}
+
+\DefineBibliographyStrings{english}{andothers={\ifthenelse{\boolean{isCoauthorList}}
+                                                        {et\addabbrvspace al\adddot\addcomma\addspace amongst them \textbf{\textsc{\getAuthorBibCv}}}
+                                                        {et\addabbrvspace al\adddot}}}
+%%%%%%%%%%%%
+% useful for Author contribution e.g. at the end of a cumulative thesis
+% Careful: This command does not by generate a bibligraphy!!! (dontbib category)
+% See https://tex.stackexchange.com/questions/113996/how-to-cite-without-an-entry-in-the-bibliography
+\DeclareBibliographyCategory{dontbib}
+\let\printbibliographyold\printbibliography%
+\renewcommand{\printbibliography}[1][]{\typeout{----- printbibliography ------}\printbibliographyold[notcategory=dontbib,#1]}%
+\makeatletter
+\newcommand{\tempmaxup}[1]{\def\blx@maxcitenames{99}#1}
+\DeclareCiteCommand{\fullcitecontribution}[\tempmaxup]{% precode
+    \usebibmacro{prenote}
+    \addtocategory{dontbib}{\thefield{entrykey}}
+}{% loopcode
+    \textbf{\usebibmacro{maintitle+title}}
+    \newline\nopunct\newblock
+    \usebibmacro{author}
+    \newline\nopunct\newblock
+    \usebibmacro{journal+issuetitle}, \usebibmacro{doi+eprint+url} \usebibmacro{addendum+pubstate}
+}{% sepcode
+    \multicitedelim
+}{% postcode
+    \usebibmacro{postnote}
+}
+\makeatother
+
+%%%%%%%%%%%%

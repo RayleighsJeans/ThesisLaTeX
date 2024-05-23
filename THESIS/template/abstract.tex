@@ -1,0 +1,35 @@
+\ifthenelseproperty{compilation}{clsdefineschapter}{%
+	\ifKOMA
+		\addchap[Abstract]{Abstract}
+	\else
+    	\chapter[Abstract]{Abstract}
+    \fi
+}{%
+	\ifKOMA
+		\addsec[Abstract]{Abstract}
+	\else
+    	\section[Abstract]{Abstract}
+    \fi
+}
+% \lettrine[lhang=0.25,findent=2pt,nindent=0pt]{M}{agnetic nanoparticles} possess a multitude of fields of application, for example in biotechnology and utilization as (magnetically) easily separable catalysts.
+Among the diverse fabrication methods that allow the production of nanoparticles with magnetic properties respectively a chemical composition tailored for a specific task one can find the bottom-up sol-gel dip-coating technique, with which the Co$_{\textit{x}}$Ni$_{\text{\num{1}−\,\textit{x}}}$ nanoparticles embedded in silica were created.
+Those nanoparticles exhibit a wavelength dependent coercivity if irradiated with laser light.
+
+\ifthenelseproperty{compilation}{clsdefineschapter}{%
+	\ifKOMA
+		\addchap[Zusammenfassung]{Zusammenfassung}
+	\else
+    	\chapter[Zusammenfassung]{Zusammenfassung}
+    \fi
+}{%
+	\ifKOMA
+		\addsec[Zusammenfassung]{Zusammenfassung}
+	\else
+    	\section[Zusammenfassung]{Zusammenfassung}
+    \fi
+}
+% \lettrine[lhang=0.25,findent=2pt,nindent=0pt]{M}{agnetische Nanopartikel} 
+\begin{otherlanguage}{ngerman} % breaks if before \lettrine :-/
+besitzen einen Durchmesser, welcher unter \SI{100}{\nano\meter} liegt und die Fabrikation entsprechend anspruchsvoll gestaltet.
+Trotz der damit einhergehenden Herausforderungen gelang es in den letzten Jahren die Herstellungsmethoden soweit zu verbessern, dass sich die magnetischen Eigenschaften wie auch die chemische Zusammensetzung anwendungsspezifisch maßschneidern lassen.
+\end{otherlanguage}

@@ -1,0 +1,28 @@
+% allows to include pgfplots
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+
+\pgfplotsset{compat=newest}
+
+\usetikzlibrary{pgfplots.groupplots}
+
+\usepgflibrary{decorations.pathmorphing}
+\usepgfplotslibrary{fillbetween,colormaps,external,colorbrewer}
+
+% useful def for using a specific aspect ratio
+\pgfplotsset{aspect ratio/.code args={#1:#2}{%
+  \def\axisdefaultwidth{#1 cm}%
+  \def\axisdefaultheight{#2 cm}},
+}
+
+\pgfplotsset{cycle list/Dark2-8}
+\pgfplotsset{colormap/viridis}
+\pgfkeys{/pgf/number format/.cd,1000 sep={\,}}
+
+\AtEndPreamble{\ifthenelseproperty{compilation}{externalize}{
+		\tikzexternalize[prefix=\getproperty{compilation}{externalfolder}]
+		\typeout{----- USING TIKZ EXTERNALIZE -----}
+	}{
+		\typeout{----- NOT USING TIKZ EXTERNALIZE -----}
+	}
+}

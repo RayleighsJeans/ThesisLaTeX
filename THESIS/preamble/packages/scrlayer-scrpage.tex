@@ -1,0 +1,43 @@
+% header and footer formatting
+\usepackage
+		[
+			automark,
+			headsepline, % use a separation line above the text
+		]
+		{scrlayer-scrpage}
+
+%%% settings
+\AtBeginDocument{%
+    \ifKOMA
+        \addtokomafont{pagehead}{\color{\getproperty{color}{main}}}
+        \ifthenelseproperty{compilation}{clsdefineschapter}{%
+            \addtokomafont{chapter}{\color{\getproperty{color}{main}}}
+        }{}
+        \addtokomafont{section}{\color{\getproperty{color}{main}}}
+        \addtokomafont{subsection}{\color{\getproperty{color}{main}}}
+        \addtokomafont{subsubsection}{\color{\getproperty{color}{main}}}
+        \addtokomafont{paragraph}{\color{\getproperty{color}{main}}}
+
+        \addtokomafont{footnoterule}{\color{\getproperty{color}{secondary}}}
+        \addtokomafont{headsepline}{\color{\getproperty{color}{secondary}}}
+
+        % TODO: check
+	    % \ifUseFontspec
+	    % 	\addtokomafont{pagenumber}
+	    % 				{
+	    % 					\setmainfont
+	    % 							[
+	    % 								ItalicFont={MinionPro-It},
+	    % 								BoldFont={MinionPro-Bold},
+	    % 								BoldItalicFont={MinionPro-BoldIt},
+	    % 								SmallCapsFeatures={Renderer=Basic},
+	    % 								Ligatures={TeX,Common},
+	    % 								Scale=MatchLowercase,
+	    % 								Numbers={OldStyle,Proportional}
+	    % 								]
+	    % 								{MinionPro}
+        % 											\color{\getproperty{color}{secondary}}
+	    % 							}
+	    % \fi
+    \fi
+}

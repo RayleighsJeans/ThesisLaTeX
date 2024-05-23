@@ -1,0 +1,9 @@
+\usepackage{ifluatex}
+
+\ifluatex
+	\newcommand{\FirstChar}[1]{\luaexec{tex.print(string.sub('#1', 1, 1))}}
+    % \newcommand{\FirstWord}[1]{\luaexec{tex.print(string.match('#1', "^(\%S+)\%s*"))}}
+	\newcommand{\FirstWord}[1]{\luaexec{tex.print(#1)}}
+	\newcommand{\LastWord}[1]{\luaexec{tex.print(string.match('#1', "\%s*(\%S+)$"))}}
+\else
+\fi

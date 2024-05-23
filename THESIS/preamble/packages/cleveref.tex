@@ -1,0 +1,29 @@
+% easy referencing, noabbrev avoids abbreviations
+\usepackage
+		[
+			noabbrev
+		]
+		{cleveref}
+
+%%% Util definitions
+\crefname{line}{line}{lines}
+\creflabelformat{line}{#2#1#3}
+
+\crefname{reaction}{reaction}{reactions}
+\creflabelformat{reaction}{#2(#1)#3}
+
+% make cleveref aware that we have code, not a listing
+\crefname{listing}{code}{codes}
+
+%%% example code
+% --------
+% \cref{pic:rogowski1}
+% \cref{eq:rog1,eq:rog2,eq:rog3}
+% \cpageref{anotherlabel}
+% --------
+
+% --------
+% in listings you can refer to specific lines by putting
+% \label[line]{li:foo}
+% in the specific line
+% --------

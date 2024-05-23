@@ -1,0 +1,176 @@
+% output formatted code
+\usepackage{listings}
+
+%%% generic settings
+\lstset{%
+	basicstyle=\small\ttfamily,
+	stepnumber=1,
+	numbers=left,
+	numbersep=1em,
+	backgroundcolor=\color{gray!10},
+	frame=single,
+	columns=flexible,
+	captionpos=t, % in general, listings are table-like and might span more than one page -> putting the caption above is preferable
+	belowcaptionskip=10pt, % this should be the default anyway
+	numberblanklines=false,
+	keepspaces=true,
+	showstringspaces=false,
+	breaklines=true,
+}
+
+%%% language specific definitions
+\definecolor{javagray}{rgb}{0.55, 0.52, 0.54} % for comments
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+\definecolor{javaLila}{RGB}{127,0,85}
+
+\lstset{language=Java,
+	keywordstyle=\color{javapurple}\bfseries\ttfamily,
+	stringstyle=\color{javagreen},
+	keywordstyle=[2]\color{javared},
+	keywordstyle=[3]\itshape,% static methods
+	keywordstyle=[4]\color{javaLila}\itshape,% enums
+	keywordstyle=[5]\color{javadocblue}\itshape\bfseries,% enum values
+	keywordstyle=[6]\color{javadocblue!50},% interfaces
+	keywordstyle=[7]\color{javagray},% annotations
+	keywordstyle=[8]\color{javapurple}\bfseries,% e.g. for "enum"
+	commentstyle=\color{javagray},
+	morecomment=[s][\color{javagray}]{/**}{*/},
+	moredelim=[il][\textcolor{javagray}]{$$}, % for java annotations, put $$@dontSerialize
+	moredelim=[is][\textcolor{javagray}]{\%\%}{\%\%}, % or for inline annotations %%@dontSerialize%% private...
+	escapeinside={*&}{&*}, % so you can ref lines, if you put |*@\label[line]{li:yourLabel}@*| in your listing
+}
+
+%%% Util definitions
+% to change the name of the caption (not the text of the caption)
+\renewcommand{\lstlistingname}{Code}
+
+% to change the title of the list-of-listings
+\renewcommand{\lstlistlistingname}{List of Codes}
+
+% vertical dots (needs to be escaped)
+\newcommand{\lstvdots}{\makebox[\linewidth][c]{$\smash{\vdots}$}}
+\let\origthelstnumber\thelstnumber
+
+\makeatletter
+% suppresses the the line numbers form here on
+\newcommand*\Suppressnumber{%
+  \lst@AddToHook{OnNewLine}{%
+    \let\thelstnumber\relax%
+  }%
+}
+% reactivates line numbering in the next line (sic!) with the given line number
+\newcommand\Reactivatenumber[1]{%
+  \global\c@lstnumber#1%
+  \global\advance\c@lstnumber\m@ne\relax%
+  \lst@AddToHook{OnNewLine}{%
+  \let\thelstnumber\origthelstnumber%
+  }%
+}
+\makeatother
+
+\newcommand{\Java}{Java\xspace}
+\newcommand{\Javadoc}{Javadoc\xspace}
+
+%%% hacks
+
+% puts greek utf8 symbols in. This hack is no longer strictly necessary, but it fixes a remaining bug (context sensitivity of e.g. μ), so I'll leave it in for now. Revisit around 2020.
+\makeatletter
+\lst@InputCatcodes
+\def\lst@DefEC{%
+ \lst@CCECUse \lst@ProcessLetter
+^^80^^81^^82^^83^^84^^85^^86^^87^^88^^89^^8a^^8b^^8c^^8d^^8e^^8f%
+  ^^90^^91^^92^^93^^94^^95^^96^^97^^98^^99^^9a^^9b^^9c^^9d^^9e^^9f%
+  ^^a0^^a1^^a2^^a3^^a4^^a5^^a6^^a7^^a8^^a9^^aa^^ab^^ac^^ad^^ae^^af%
+  ^^b0^^b1^^b2^^b3^^b4^^b5^^b6^^b7^^b8^^b9^^ba^^bb^^bc^^bd^^be^^bf%
+  ^^c0^^c1^^c2^^c3^^c4^^c5^^c6^^c7^^c8^^c9^^ca^^cb^^cc^^cd^^ce^^cf%
+  ^^d0^^d1^^d2^^d3^^d4^^d5^^d6^^d7^^d8^^d9^^da^^db^^dc^^dd^^de^^df%
+  ^^e0^^e1^^e2^^e3^^e4^^e5^^e6^^e7^^e8^^e9^^ea^^eb^^ec^^ed^^ee^^ef%
+  ^^f0^^f1^^f2^^f3^^f4^^f5^^f6^^f7^^f8^^f9^^fa^^fb^^fc^^fd^^fe^^ff%
+	^^^^03b8^^^^03c8^^^^03b7^^^^03bc^^^^03c3^^^^03b1^^^^03a9^^^^03b6%
+	^^^^03c9^^^^03b4^^^^03c0%
+^^00}
+\lst@RestoreCatcodes
+\makeatother
+
+
+%%% example codes
+% --------
+% \begin{lstlisting}
+% 			[
+% 				caption={Useless code},
+% 				label=useless,
+% 				language=Python,
+% 			]
+% 
+% def removeSuffix(s, suffix):
+%    if s.endswith(suffix):
+%        return s[:-len(suffix)]
+%    return s
+% bla = "Test" #===== Another test
+% \end{lstlisting}
+% --------
+
+% --------
+% \lstset{%
+% 	literate=
+% 	{Ç}{{\c{C}}}1
+% 	{Ã}{{\~{A}}}1
+% 	{á}{{\'{a}}}1
+% 	{θ}{{\keywordstyle{$\theta$}}}1
+% 	{SENÃO}{{\keywordstyle{SEN\~{A}O}}}5
+% 	{FAÇA}{{\keywordstyle{FA\c{C}A}}}4,
+% 	extendedchars=true,
+% 	alsoletter={_},
+% 	morekeywords={θ_,θ,ψ,ψ_,H,H_,minval_,maxval_},
+% 	keywords=[2]{i,j},
+% 	ndkeywords={NUMERO,TEXTO,LEIA,ESCREVA},
+% 	sensitive=true,
+% 	morecomment=[l]{//},
+% 	morecomment=[s]{/*}{*/},
+% 	morestring=[b]"
+% }
+% --------
+
+% --------
+% \begin{lstlisting}
+% 			[
+% 				style=javac,
+% 				caption={My Caption}
+% 			]
+% /**
+%  * This is a doc comment.
+%  */
+% package com.ociweb.jnb.lombok;
+% 
+% import java.util.Date;
+% import lombok.Data;
+% import lombok.EqualsAndHashCode;
+% import lombok.NonNull;
+% 
+% $$@Data
+% $$@EqualsAndHashCode(exclude={"address","city","state","zip"})
+% public class Person {
+%     enum Gender { Male, Female }
+% 
+%     // another comment μ
+% 
+%     %%@NonNull%% private String firstName;
+%     %%@NonNull%% private String lastName;
+%     %%@NonNull%% private final Gender gender;
+%     %%@NonNull%% private final Date dateOfBirth;
+% 
+%     private String ssn;
+%     private String address;
+%     private String city;
+%     private String state;
+%     private String zip;
+% }
+% \end{lstlisting}
+% --------
+
+
+%%% remarks
+% the list of lists is defined via \lstlistoflistings

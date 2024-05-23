@@ -1,0 +1,25 @@
+\newcommand*{\firstname}{\getproperty{author}{firstname}}
+\newcommand*{\familyname}{\getproperty{author}{familyname}}
+\newcommand*{\acadtitle}{\getproperty{author}{acadtitle}}
+\newcommand*{\addressstreet}{\getproperty{author}{addressstreet}}
+\newcommand*{\addresscity}{\getproperty{author}{addresscity}}
+\newcommand*{\address}[2]{\addressstreet{#1}\addresscity{#2}}
+\ifthenelse{\equal{\getproperty{author}{mobile}}{}}{}{%
+    \newcommand*{\mobile}{\getproperty{author}{mobile}}
+}
+\ifthenelse{\equal{\getproperty{author}{phone}}{}}{}{%
+    \newcommand*{\phone}{\getproperty{author}{phone}}
+}
+\ifthenelse{\equal{\getproperty{author}{faxnr}}{}}{}{%
+    \newcommand*{\faxnr}{\getproperty{author}{faxnr}}
+}
+\ifthenelse{\equal{\getproperty{author}{email}}{}}{}{%
+    \newcommand*{\email}{\getproperty{author}{email}}
+}
+
+
+\usepackage
+        [
+            myblue,
+        ] % other predefined colors that may be used: red, green, blue, cyan, magenta, yellow, black, white, darkgray, gray, lightgray
+        {koma-moderncvclassic}

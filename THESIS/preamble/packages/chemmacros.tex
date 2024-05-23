@@ -1,0 +1,25 @@
+\usepackage{chemmacros}
+
+%%% settings
+\usechemmodule{all}
+
+
+% Important note: chemmacros loads mathtools, which redefines over- and underbraces in a way it collides with unicode-math
+% Therefore one has to use the standard LaTeX definition, which is accomplished by the following lines
+\let\underbrace\LaTeXunderbrace
+\let\overbrace\LaTeXoverbrace
+
+% brackets around counter
+\renewtagform{reaction}[]{(}{)}
+
+\AtBeginEnvironment{reactions}{\renewcommand{\theequation}{\thechapter.\textls[-100]{\textsc{\roman{equation}}}}}
+\AtEndEnvironment{reactions}{\renewcommand{\theequation}{\thechapter.\Roman{equation}}}
+
+
+%%% example code
+% \Cref{rct:SolGelHydrolyse} shows the partial hydrolysis of a metal alcoholate denoted by \enquote{M}.
+% The general condensation reaction is shown in \cref{rct:SolGelKondensation}.
+% \begin{reactions}
+% 	M (OR)_{$n$} + H2O 							&-> M (OR)_{$n-1$} OH + ROH	\label[reaction]{rct:SolGelHydrolyse}\\
+% 	(RO)_{$n'$}M-OH + HO-M(RO)_{$n'$} &-> (RO)_{$n'$}M-O-M(RO)_{$n'$} + H2O	\label[reaction]{rct:SolGelKondensation}
+% \end{reactions}

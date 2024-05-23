@@ -1,0 +1,180 @@
+\setpropertyifundefined{color}{main}{black}
+\setpropertyifundefined{color}{secondary}{black}
+
+\setpropertyifundefinedwithusageinfo{author}{firstname}{Philipp}
+\setpropertyifundefinedwithusageinfo{author}{familyname}{Hacker}
+\setpropertyifundefinedwithusageinfo{author}{acadtitle}{}
+\setpropertyifundefinedwithusageinfo{author}{addressstreet}{%
+    Betzenweg 20}
+\setpropertyifundefinedwithusageinfo{author}{addresscity}{%
+    81247 München}
+\AtBeginDocument{%
+    \setpropertyifundefined{author}{address}{%
+    \getproperty{author}{addressstreet%
+        }\\\getproperty{author}{addresscity}}
+}
+\setpropertyifundefinedwithusageinfo{author}{dateofbirth}{15.06.1994}
+\setpropertyifundefinedwithusageinfo{author}{placeofbirth}{Demmin}
+\setpropertyifundefinedwithusageinfo{author}{nationality}{german}
+\setpropertyifundefinedwithusageinfo{author}{mobile}{+49 1520 2095226}
+\setpropertyifundefinedwithusageinfo{author}{phone}{}
+\setpropertyifundefinedwithusageinfo{author}{faxnr}{}
+\setpropertyifundefinedwithusageinfo{author}{email}{philipp.hacker@ipp.mpg.de}
+\setpropertyifundefinedwithusageinfo{author}{orcid}{}
+\setpropertyifundefinedwithusageinfo{author}{signature}{\backslash{}igraph\{path to your signature here>\}}
+\setpropertyifundefined{author}{affiliationindices}{1}
+
+\setpropertyifundefinedwithusageinfo{affiliations}{1}{%
+    Max-Planck-Institute for Plasma Physics, 17491 Greifswald, Germany}
+
+\setpropertyifundefined{document}{date}{\today}
+\setpropertyifundefinedwithusageinfo{document}{title}{%
+    Impurity Transport and Radiation at the Stellarator \glsentrylong{W7X}}
+\setpropertyifundefinedwithusageinfo{document}{titlehead}{}
+\setpropertyifundefinedwithusageinfo{document}{subject}{Thesis}
+\setpropertyifundefinedwithusageinfo{document}{keywords}{%
+    radiaton,fusion,impurity,impurities,transport,bolometer,w7x}
+\setpropertyifundefinedwithusageinfo{document}{location}{Greifswald}
+\setpropertyifundefinedwithusageinfo{document}{publishers}{}
+\setpropertyifundefinedwithusageinfo{document}{dedication}{}
+\setpropertyifundefinedwithusageinfo{document}{logos}{%
+    \backslash{}igraph\{<path to your logo here>\}}
+\setpropertyifundefinedwithusageinfo{document}{type}{Thesis}
+\setpropertyifundefinedwithusageinfo{document}{doi}{}
+
+% externalize
+\setpropertyifundefined{compilation}{externalfolder}{tikz/}
+\setpropertyifundefined{compilation}{externalize}{false}
+\setpropertyifundefined{compilation}{pdfa}{false}
+
+\AtEndPreamble{
+    \ifthenelseproperty{compilation}{pdfa}{%
+        \setpropertyifundefined{compilation}{externalize}{false}}{}
+}
+
+% typesetting
+\setpropertyifundefined{compilation}{minionfonts}{false}
+\setpropertyifundefined{compilation}{libertinusfonts}{false}
+\setpropertyifundefined{compilation}{complementglyphs}{true}
+\setpropertyifundefined{compilation}{fancychapterheadings}{false}
+\setpropertyifundefined{compilation}{microtype}{false}
+\setpropertyifundefined{compilation}{fontspec}{false}
+
+% letter specifics
+\setpropertyifundefinedwithusageinfo{letter}{recipientname}{}
+\setpropertyifundefinedwithusageinfo{letter}{recipientaddress}{%
+    }
+\setpropertyifundefinedwithusageinfo{letter}{subject}{%
+    }
+\setpropertyifundefinedwithusageinfo{letter}{opening}{%
+    Dear Sir or Madam,}
+\setpropertyifundefined{letter}{body}{%
+    TODO>> Motivate why you apply by setting %
+    \backslash{}setproperty\{letter\}\{body\}\{my motivation\} in %
+    content/settings.tex. If you do not want a application letter, %
+    set this to be empty (\\setproperty\{letter\}\{body\}\{\}). %
+    As a result this whole page will not occure. <<}
+\setpropertyifundefinedwithusageinfo{letter}{closing}{%
+    Sincerely yours,}
+
+% thesis specifics
+\setpropertyifundefined{thesis}{faculty}{%
+    Faculty of Mathematics and Natural Sciences}
+\setpropertyifundefined{thesis}{degree}{Doctorate}
+\setpropertyifundefined{thesis}{defensedate}{}
+\setpropertyifundefined{thesis}{submissionyear}{2022}
+
+% Switch to be used in documentcls to indicate
+% wheter your documentcls is a koma-script class
+\makeatletter
+\@ifundefined{ifKOMA}{%
+    \newif\ifKOMA
+    \KOMAfalse
+}{}
+
+% document specifics
+\@ifclassloaded{book}{
+    \setpropertyifundefined{compilation}{titlepage}{true}
+    \setpropertyifundefined{compilation}{abstract}{true}
+    \setpropertyifundefined{compilation}{toc}{true}
+    \setpropertyifundefined{compilation}{bibliography}{true}
+    \setpropertyifundefined{compilation}{lof}{true}
+    \setpropertyifundefined{compilation}{lot}{true}
+    \setpropertyifundefined{compilation}{appendix}{true}
+    \setpropertyifundefined{compilation}{affidavit}{true}
+    \setpropertyifundefined{compilation}{clsdefineschapter}{true}
+}{}
+\@ifclassloaded{report}{
+    \setpropertyifundefined{compilation}{titlepage}{true}
+    \setpropertyifundefined{compilation}{abstract}{true}
+    \setpropertyifundefined{compilation}{toc}{true}
+    \setpropertyifundefined{compilation}{bibliography}{true}
+    \setpropertyifundefined{compilation}{lof}{true}
+    \setpropertyifundefined{compilation}{lot}{true}
+    \setpropertyifundefined{compilation}{appendix}{true}
+    \setpropertyifundefined{compilation}{affidavit}{true}
+    \setpropertyifundefined{compilation}{clsdefineschapter}{true}
+}{}
+\@ifclassloaded{article}{
+    \setpropertyifundefined{compilation}{titlepage}{true}
+    \setpropertyifundefined{compilation}{abstract}{true}
+    \setpropertyifundefined{compilation}{toc}{true}
+    \setpropertyifundefined{compilation}{bibliography}{true}
+}{}
+\@ifclassloaded{scrbook}{
+    \setpropertyifundefined{compilation}{frontmatter}{true}
+    \setpropertyifundefined{compilation}{titlepage}{true}
+    \setpropertyifundefined{compilation}{abstract}{false}
+    \setpropertyifundefined{compilation}{mainmatter}{true}
+    \setpropertyifundefined{compilation}{toc}{true}
+    \setpropertyifundefined{compilation}{bibliography}{true}
+    \setpropertyifundefined{compilation}{lof}{true}
+    \setpropertyifundefined{compilation}{lot}{true}
+    \setpropertyifundefined{compilation}{appendix}{true}
+    \setpropertyifundefined{compilation}{backmatter}{true}
+    \setpropertyifundefined{compilation}{affidavit}{true}
+    \setpropertyifundefined{compilation}{clsdefineschapter}{true}
+}{}
+\@ifclassloaded{scrreprt}{
+    \setpropertyifundefined{compilation}{titlepage}{true}
+    \setpropertyifundefined{compilation}{abstract}{true}
+    \setpropertyifundefined{compilation}{toc}{true}
+    \setpropertyifundefined{compilation}{bibliography}{true}
+    \setpropertyifundefined{compilation}{lof}{true}
+    \setpropertyifundefined{compilation}{lot}{true}
+    \setpropertyifundefined{compilation}{appendix}{true}
+    \setpropertyifundefined{compilation}{affidavit}{true}
+    \setpropertyifundefined{compilation}{clsdefineschapter}{true}
+}{}
+\@ifclassloaded{scrartcl}{
+    \setpropertyifundefined{compilation}{titlepage}{true}
+    \setpropertyifundefined{compilation}{abstract}{true}
+    \setpropertyifundefined{compilation}{toc}{true}
+    \setpropertyifundefined{compilation}{bibliography}{true}
+}{}
+\@ifclassloaded{moderncv}{
+    \setpropertyifundefined{compilation}{titlepage}{false}
+    \setpropertyifundefined{compilation}{abstract}{false}
+    \setpropertyifundefined{compilation}{toc}{false}
+    \setpropertyifundefined{compilation}{bibliography}{false}
+    \setpropertyifundefined{compilation}{glossaries}{false}
+}{}
+
+\setpropertyifundefined{compilation}{frontmatter}{false}
+\setpropertyifundefined{compilation}{titlepage}{false}
+\setpropertyifundefined{compilation}{abstract}{false}
+\setpropertyifundefined{compilation}{toc}{false}
+\setpropertyifundefined{compilation}{los}{false}
+\setpropertyifundefined{compilation}{bibliography}{false}
+\setpropertyifundefined{compilation}{lof}{false}
+\setpropertyifundefined{compilation}{lot}{false}
+\setpropertyifundefined{compilation}{lol}{false}
+\setpropertyifundefined{compilation}{appendix}{false}
+\setpropertyifundefined{compilation}{listofpublications}{false}
+\setpropertyifundefined{compilation}{acknowledgement}{false}
+\setpropertyifundefined{compilation}{affidavit}{false}
+\setpropertyifundefined{compilation}{clsdefineschapter}{false}
+\setpropertyifundefined{compilation}{acronyms}{false}
+\setpropertyifundefined{compilation}{glossaries}{true}
+
+\makeatother

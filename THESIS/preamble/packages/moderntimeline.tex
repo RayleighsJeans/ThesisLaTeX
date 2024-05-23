@@ -1,0 +1,204 @@
+% The following 4 lines are for compatibility with the koma-moderncvclassic package
+\definecolor{color0}{rgb}{0,0,0}% main default color, normally left to black
+\definecolor{color1}{rgb}{0,0,0}% primary scheme color
+\definecolor{color2}{rgb}{0,0,0}% secondary scheme color
+\definecolor{color3}{rgb}{0,0,0}% tertiary scheme color
+\usepackage{moderntimeline}
+
+\renewcommand{\tltextstart}[2][base west]{%
+   \tikzset{%
+       tl@startyear/.style={%
+           font=#2,
+           name=tl@startyear,
+           above={0.8ex+1pt},
+           inner xsep=0pt,
+           anchor=#1,
+       }
+   }
+}
+\tltext{\scriptsize}
+
+
+
+\makeatletter
+\@ifclassloaded{moderncv}{%
+    %%% The following definitions introduce some small changes
+    
+    % define reference column
+    \newcommand{\cvreferencecolumn}[2]{%
+      \cvitem[0.8em]{}{%
+        \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#1\end{minipage}%
+        \hfill%
+        \begin{minipage}[t]{\listdoubleitemmaincolumnwidth}#2\end{minipage}%
+        }%
+    }
+    
+    % contact
+    \newcommand{\cvreference}[8]{%
+        \textbf{#1}\newline% Name
+        \ifthenelse{\equal{#2}{}}{}{\addresssymbol~#2\newline}%
+        \ifthenelse{\equal{#3}{}}{}{#3\newline}%
+        \ifthenelse{\equal{#4}{}}{}{#4\newline}%
+        \ifthenelse{\equal{#5}{}}{}{#5\newline}%
+        \ifthenelse{\equal{#6}{}}{}{\emailsymbol~\texttt{\href{mailto:#6}{\nolinkurl{#6}}}\newline}%
+        \ifthenelse{\equal{#7}{}}{}{\phonesymbol~#7\newline}%
+        \ifthenelse{\equal{#8}{}}{}{\mobilephonesymbol~#8}}
+    
+    % allow the use of \social[orcid][link]{Bla}
+    \newcommand*{\orcidsocialsymbol}{\textnormal{\aiOrcid}}
+    
+    % adjust cventry
+    \renewcommand*{\cventry}[7][.25em]{%
+    	\cvitem[#1]{#2}{%
+    		{\bfseries#3}%
+    		\ifthenelse{\equal{#4}{}}{}{, {\slshape#4}}% ... into this one (without comma).
+    		\ifthenelse{\equal{#5}{}}{}{, #5}%
+    		\ifthenelse{\equal{#6}{}}{}{, #6}%
+    		\ifthenelse{\equal{#7}{}}{}{:}\strut%
+    		\ifx&#7&%
+    		\else{\newline{}\begin{minipage}[t]{\linewidth}\small#7\end{minipage}}\fi
+    	}
+    }
+    
+    
+    \newcommand{\posUpperCV}{center}
+    \newcommand{\posLowerCV}{center}
+    
+    
+    \newcounter{AmountOfLines}
+    \setcounter{AmountOfLines}{20} % Default. Can be changed
+    \setlength{\hintscolumnwidth}{2.75cm} % Default. Can be changed
+    
+    \usetikzlibrary{shapes.geometric}
+    \makeatletter
+    \renewcommand{\tldatecventry}[7][color1]{%
+        \pgfmathsetmacro\tl@endyear{\tl@lastyear}%
+        \pgfmathsetmacro\tl@diffyears{\tl@lastyear-\tl@firstyear}
+        \pgfmathsetmacro\tl@startfraction{(#2-\tl@firstyear)/(\tl@lastyear-\tl@firstyear)}%
+        \pgfmathsetmacro\tl@endfraction{(\tl@endyear-\tl@firstyear)/(\tl@lastyear-\tl@firstyear)}%
+        \cventry{
+            \tikz[baseline=0pt]{
+                \useasboundingbox (0,-1.5ex) rectangle (\hintscolumnwidth,1ex);
+                \fill [\tl@runningcolor,draw,semithick,line cap=rect] (0,0) -- (\hintscolumnwidth,0);
+        	    	\foreach \x in {0,...,\theAmountOfLines} \draw [\tl@runningcolor,semithick] (\x*\hintscolumnwidth/\theAmountOfLines,0pt) -- (\x*\hintscolumnwidth/\theAmountOfLines,2pt); %---- If too many lines add a fitting prefactor in front of \tl@diffyears and adjust the x-values by multiplying with the inverse
+        	    	%\foreach \x in {0,...,\tl@diffyears} \draw [\tl@runningcolor,semithick] (\x*\hintscolumnwidth/\tl@diffyears,0pt) -- (\x*\hintscolumnwidth/\tl@diffyears,2pt); %---- If too many lines add a fitting prefactor in front of \tl@diffyears and adjust the x-values by multiplying with the inverse
+                \fill [#1] (0,0)
+                   ++(\tl@startfraction*\hintscolumnwidth,0pt)
+                   node [yshift=0.5ex,tl@singleyear] {#2\vphantom{g}}
+                   node [draw,fill,shape border rotate=180,regular polygon,regular polygon sides=3,inner sep=1pt,anchor=corner 1] {};
+            }%
+        }%
+        {#3}{#4}{#5}{#6}{#7}%
+    }
+    \makeatother
+    
+    
+    \makeatletter
+    \renewcommand{\tlcventry}[8][color1]{%
+    \pgfmathsetmacro\tl@endyear{ifthenelse(#3==0,\tl@lastyear,#3)}%
+    \pgfmathsetmacro\tl@startfraction{(#2-\tl@firstyear)/(\tl@lastyear-\tl@firstyear)}%
+    \pgfmathsetmacro\tl@endfraction{(\tl@endyear-\tl@firstyear)/(\tl@lastyear-\tl@firstyear)}%
+    \pgfmathsetmacro\tl@diffyears{\tl@lastyear-\tl@firstyear}
+    \pgfmathsetlength{\pgf@xa}{#3} \ifdim\pgf@xa=0pt \def\tl@startlabel{\tl@since #2} \else \def\tl@startlabel{#2} \fi
+     \cventry{\tikz[baseline=0pt]{
+        \useasboundingbox (0,-1.5ex) rectangle (\hintscolumnwidth,1ex);
+        \fill [#1] (0,0) ++ (\tl@startfraction*\hintscolumnwidth,0)
+           node [tl@startyear,anchor=\posUpperCV,yshift=1ex] {\tl@startlabel\vphantom{g}}
+           rectangle (\tl@endfraction*\hintscolumnwidth,\tl@width-1pt)
+           node [tl@endyear,anchor=\posLowerCV,yshift=-1.75ex] {\pgfmathparse{ifthenelse(#3==0,,#3)}\pgfmathresult\vphantom{h}}
+           (\hintscolumnwidth,0pt);
+    		\draw [#1,thick] (0,0) ++(\tl@startfraction*\hintscolumnwidth,0) -- (\tl@startfraction*\hintscolumnwidth,\tl@width+2pt);
+    		%\pgfextra{\ifthenelse{\tl@endyear==\tl@lastyear}{}{\draw [#1,thick] (0,0) ++(\tl@endfraction*\hintscolumnwidth,\tl@width) -- (\tl@endfraction*\hintscolumnwidth,-2pt); }} %------  
+    			%
+    			\pgfmathifthenelse{\tl@endyear==\tl@lastyear}{}{"\noexpand\draw [#1,thick] (0,0) ++(\tl@endfraction*\hintscolumnwidth,\tl@width) -- (\tl@endfraction*\hintscolumnwidth,-2pt);"}\pgfmathresult
+    			%
+        \pgfmathsetlength{\pgf@xa}{#3} \ifdim\pgf@xa=0pt
+           \shade [left color=#1] (\tl@startfraction*\hintscolumnwidth,0)
+               rectangle (\tl@endfraction*\hintscolumnwidth,\tl@width);
+        \else
+           \fill [#1] (\tl@startfraction*\hintscolumnwidth,0)
+               rectangle (\tl@endfraction*\hintscolumnwidth,\tl@width);
+        \fi
+    		\fill [\tl@runningcolor,semithick,draw,line cap=rect] (0,0) -- (\hintscolumnwidth,0);
+    		\foreach \x in {0,...,\tl@diffyears} \draw [\tl@runningcolor,semithick] (\x*\hintscolumnwidth/\tl@diffyears,0pt) -- (\x*\hintscolumnwidth/\tl@diffyears,2pt); %---- If too many lines add a fitting prefactor in front of \tl@diffyears and adjust the x-values by multiplying with the inverse
+        }%
+    }%
+    {#4}{#5}{#6}{#7}{#8}%
+    }
+    \makeatother
+    
+    \newboolean{useFancyCitation}
+    \setboolean{useFancyCitation}{false}
+    \newcommand{\useFancyCitation}{\setboolean{useFancyCitation}{true}}
+    
+    \newcommand{\fancyCitation}{
+    	\ifthenelse{\boolean{useFancyCitation}}{
+    		\defbibenvironment{bibliography}{
+    			\list{%
+    				\IfInteger{\thefield{cited}}{%
+    				\pgfplotscolormapaccess[0:\MaxCitation]{\thefield{cited}}{mal-map}%
+        			\def\TEMP{\definecolor{my color}{rgb}}%
+        			\expandafter\TEMP\expandafter\pgfmathresult%
+    				\color{my color}%
+    			}{}%
+    			\printtext[labelnumberwidth]{%
+    				\printfield{labelnumber}}
+    			}{
+    				\setlength{\labelwidth}{\labelnumberwidth}%
+          			\setlength{\leftmargin}{\labelwidth}%
+          			\setlength{\labelsep}{\biblabelsep}%
+          			\addtolength{\leftmargin}{\labelsep}%
+          			\setlength{\itemsep}{\bibitemsep}%
+          			\setlength{\parsep}{\bibparsep}
+          		}%
+          		\renewcommand*{\makelabel}[1]{\hss##1}
+          	}
+      		{\endlist}
+      		{\item}
+    	
+    		\cvitem{Citations}{
+    			\begin{minipage}[c]{5.5cm}
+    				\pgfplotsset{
+    					colormap={mal-map}{rgb255=(0,0,0) rgb255=(255,0,0)}
+    				}
+    				\begin{tikzpicture}
+    					\begin{axis}
+    						[
+    						colormap name={mal-map},
+    						colorbar horizontal,
+    						scale only axis,
+    						height=0pt,
+    						width=0pt,
+    						colorbar style={title=,
+    										width=5cm,
+    										height=0.5cm,
+    										title style={at={(xticklabel* cs:0)},anchor=east}},
+    						hide axis,
+    						point meta min=0,
+    						point meta max=\MaxCitation,
+    						]
+    						\addplot [draw=none] coordinates {(0,0) (1,1)};
+    					\end{axis}
+    				\end{tikzpicture}
+    			\end{minipage}
+    		}
+    	}{}
+    }
+    
+    \makeatletter
+    \newcommand{\useFullLines}{
+    	\RenewDocumentCommand{\section}{sm}{%
+    		\par\addvspace{2.5ex}%
+    		\phantomsection{}% reset the anchor for hyperrefs
+    		\addcontentsline{toc}{section}{##2}%
+    		\parbox[t]{\hintscolumnwidth}{\strut\raggedleft\raisebox{\baseletterheight}{\color{color1}\rule{\hintscolumnwidth}{0.95ex}}}%
+    		\hspace{\separatorcolumnwidth}%
+    		\parbox[t]{\maincolumnwidth}{\strut\sectionstyle{##2}\hspace{\separatorcolumnwidth}%
+    			\strut\raisebox{\baseletterheight}{\color{color1}\rule{\maincolumnwidth-\widthof{\sectionstyle{##2}}-\separatorcolumnwidth}{0.95ex}}}%
+    		\par\nobreak\addvspace{1ex}\@afterheading
+    	}% to avoid a pagebreak after the heading
+    }
+    \makeatother
+
+}{}
+\makeatother 
