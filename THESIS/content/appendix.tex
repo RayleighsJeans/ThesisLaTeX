@@ -1,0 +1,18 @@
+\newpage
+\raiseifpropertyundefined{Appendix}{committee}{supervisor}
+
+\appendix%
+\input{content/chapters/appendix}
+\newpage%
+
+\thispagestyle{empty}%
+Confirmed by Supervisor,
+\newline
+\Signature{\getproperty{document}{location}}{%
+    \getproperty{committee}{supervisor}}
+
+    Confirmed by doctoral candidate,
+\newline
+\Signature{\getproperty{document}{location}}{%
+    \textsc{\getproperty{author}{firstname} \getproperty{author}{familyname}}}
+\newpage%

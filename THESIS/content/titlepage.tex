@@ -1,0 +1,85 @@
+% This titlepage requires you to set the following properties
+% title
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{document}{title}
+\label{chapter:title}%
+
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{document}{location}
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{document}{date}
+
+% name
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{author}{firstname}
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{author}{familyname}
+% daet+place of birth
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{author}{dateofbirth}
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{author}{placeofbirth}
+
+% referees and dean
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{committee}{dean}
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{committee}{%
+    firstreferee}
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{committee}{%
+    secondreferee}
+\raiseifpropertyundefined{Titlepage GreifswaldCumulative}{committee}{%
+    dayofevent}
+
+\begin{titlepage}
+    \begin{center}
+        \huge\textbf{\getproperty{document}{title}}\\
+        \vspace{0.8cm}
+        {\huge\itshape Inauguraldissertation}\\
+        \vspace{0.8cm}
+        {\Large zur\\
+        \vspace{0.25cm}
+        Erlangung des akademischen Grades eines\\
+        Doktors der Naturwissenschaften\\
+        (Dr.\ rer.\ Nat.)\\
+        \vspace{0.25cm}
+        der\\
+        \vspace{0.25cm}
+        Mathematisch-Naturwissenschaftlichen Fakultät\\
+        \vspace{0.25cm}
+        der\\
+        \vspace{0.25cm}
+        Universität Greifswald\\
+        }
+        \vspace{1cm}
+    \end{center}
+    \vspace*{\fill}%
+
+    % \includegraphics[width=0.15\textwidth]{example-image-1x1}\par\vspace{1cm}
+    \begin{minipage}[]{0.66\linewidth}
+        \hfill\vspace{0.1cm}
+    \end{minipage}
+    \begin{minipage}[]{0.33\linewidth}
+        \begin{flushleft}
+            vorgelegt von \\
+            \getproperty{author}{firstname} %
+            \getproperty{author}{familyname}\\%
+            geboren am \getproperty{author}{dateofbirth}\\%
+            in \getproperty{author}{placeofbirth}\\%
+        \end{flushleft}
+    \end{minipage}
+    \vspace{0.5cm}%
+
+    % Bottom of the page
+    \begin{center}
+        \getproperty{document}{location}, \getproperty{document}{date}
+    \end{center}
+    \newpage
+    % \vfill
+    % \getproperty{document}{logos}
+
+    \checkoddpage\ifoddpage\clearpage\else\cleardoublepage\fi%
+
+    \vspace*{\fill}
+        \begin{flushright}
+            \begin{tabular}{ll}
+                Dekan              & \getproperty{committee}{dean} \\
+                                   &   \\
+                1. Gutachter       & \getproperty{committee}{firstreferee} \\
+                2. Gutachter       & \getproperty{committee}{secondreferee} \\
+                                   &   \\
+                Tag der Promotion: & \getproperty{committee}{dayofevent} 
+            \end{tabular}
+        \end{flushright}
+\end{titlepage}

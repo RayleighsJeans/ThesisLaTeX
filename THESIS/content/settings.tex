@@ -1,0 +1,38 @@
+% externalize tikz graphics
+\setproperty{compilation}{externalize}{true}
+
+% In the case, the CV contains the list of publications:
+% \setproperty{compilation}{listofpublications}{false}
+
+% load defaults for math and plasma physics (defs, utils, etc)
+\input{preamble/subjects/engineering}
+\input{preamble/subjects/math}
+\input{preamble/subjects/plasma_physics}
+\input{preamble/subjects/ml}
+\input{preamble/subjects/tikz-util}
+\input{preamble/packages/tikz-network}
+
+% basic info
+\setproperty{author}{firstname}{Philipp}
+\setproperty{author}{familyname}{Scholl, geb. Hacker}
+\setproperty{author}{dateofbirth}{15.06.1994}
+\setproperty{author}{placeofbirth}{Demmin}
+\setproperty{committee}{dean}{Prof. Dr. Gerald Kerth}
+\setproperty{committee}{firstreferee}{Prof. Dr. Thomas Klinger}
+% TODO add academic supervisor
+
+\setproperty{committee}{secondreferee}{}
+% TODO Second Referee - leave empty for first hand-in
+\setproperty{committee}{dayofevent}{}
+% TODO Date of event - leave empty for first hand-in
+
+\setproperty{committee}{supervisor}{Prof. Dr. Thomas Klinger}
+% TODO add daily supervisor
+
+\setproperty{document}{title}{%
+    Impurity Transport and Radiation at the Stellarator \glsentrylong{W7X}}
+\setproperty{document}{location}{Greifswald}
+
+\widowpenalty        = 10000%
+\clubpenalty         = 10000%
+\displaywidowpenalty = 10000%

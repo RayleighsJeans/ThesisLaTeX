@@ -1,0 +1,57 @@
+\ifthenelseproperty{compilation}{frontmatter}{%
+    \frontmatter}{}%
+
+\ifthenelseproperty{compilation}{titlepage}{%
+    \ImportDefault{titlepage}}{}%
+
+\IfFileExists{content/quote.tex}{%
+    \import{content}{quote}}{}%
+\IfFileExists{content/dedication.tex}{%
+    \import{content}{dedication}}{}%
+
+\IfFileExists{content/abstract_de.tex}{%
+    \import{content}{abstract_de}}{}%
+\IfFileExists{content/abstract.tex}{%
+    \import{content}{abstract}}{}%
+
+\ifthenelseproperty{compilation}{acknowledgement}{%
+    \ImportDefault{acknowledgement}}{}%
+
+\ifthenelseproperty{compilation}{toc}{%
+    \ImportDefault{toc}}{}%
+
+% main matter
+\ifthenelseproperty{compilation}{mainmatter}{%
+    \mainmatter}{}%
+
+\ImportDefault{content}
+
+% appendix
+\ifthenelseproperty{compilation}{appendix}{%
+    \appendix}{}%
+
+\sloppy
+\ifthenelseproperty{compilation}{bibliography}{%
+    \ImportDefault{bibliography}}{}%
+\fussy
+
+\ifthenelseproperty{compilation}{appendix}{%
+    \ImportDefault{appendix}}{}%
+
+\ifthenelseproperty{compilation}{lof}{%
+    \ImportDefault{lof}}{}%
+
+\ifthenelseproperty{compilation}{lot}{%
+    \ImportDefault{lot}}{}%
+
+\ifthenelseproperty{compilation}{lol}{%
+    \ImportDefault{lol}}{}%
+
+\ifthenelseproperty{compilation}{glossaries}{%
+    \ImportDefault{glossaries}}{}%
+
+\ifthenelseproperty{compilation}{affidavit}{%
+    \ImportDefault{affidavit}}{}%
+
+\IfFileExists{content/cats.tex}{%
+    \import{content}{cats}}{}%

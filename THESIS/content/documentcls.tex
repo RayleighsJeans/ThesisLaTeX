@@ -1,0 +1,63 @@
+\documentclass[%
+    a4paper,
+    DIV=calc,
+    BCOR=8mm,
+    headinclude,
+    bibliography=totoc,
+    listof=totoc,
+    index=totoc,
+    british,
+    twoside,
+    12pt,
+    openright,
+    captions=tableheading,
+    chapterprefix
+    % headlines=2,
+    % headings=normal,
+]{scrbook}
+
+\newif\ifKOMA
+\KOMAtrue
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\setproperty{default}{titlepage}{GreifswaldCumulative}
+\setproperty{default}{document}{GreifswaldCumulative}
+\setproperty{default}{appendix}{GreifswaldCumulative}
+\setproperty{default}{affidavit}{GreifswaldCumulative}
+
+% Structure
+% do not use list of tables
+\setproperty{compilation}{lot}{false}
+% do not use list of libraries (code)
+\setproperty{compilation}{lol}{false}
+% use list of symbols
+\setproperty{compilation}{los}{true}
+% use list of acronyms
+\setproperty{compilation}{acronyms}{true}
+% no abstract
+\setproperty{compilation}{abstract}{true}
+% use acknowledgement
+\setproperty{compilation}{acknowledgement}{true}
+% do not use list of publications
+\setproperty{compilation}{listofpublications}{false}
+
+% Appearance
+% fancy chapter headings
+\setproperty{compilation}{fancychapterheadings}{true}
+
+% roman footnotes
+\renewcommand{\thefootnote}{\Roman{footnote}}
+
+% format time
+\AtBeginDocument{%
+    % AtBeginDocument necessary because otherwise babel is changing settings 
+    \usepackage{datetime2}% succeeds datetime
+    \DTMnewdatestyle{mydate}{%
+        \renewcommand{\DTMdisplaydate}[4]{\DTMtwodigits{##3}.\DTMtwodigits{##2}.\number##1}%
+        \renewcommand{\DTMDisplaydate}{\DTMdisplaydate}%
+    }
+    \DTMsetdatestyle{mydate}
+    % \DTMsetdatestyle{ddmmyyyy}
+}

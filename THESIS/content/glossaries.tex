@@ -1,0 +1,12 @@
+\ifthenelseproperty{compilation}{acronyms}{%
+    \printglossary[type=\acronymtype,style=mcoltree]%
+}{}%
+
+\ifthenelseproperty{compilation}{los}{%
+    \setlength\extrarowheight{5pt}%
+    \printglossary[%
+        title=List of Symbols,
+        type=symbols,
+        style=customListOfSymbols,
+    ]\setlength\extrarowheight{0pt}%
+}{}%

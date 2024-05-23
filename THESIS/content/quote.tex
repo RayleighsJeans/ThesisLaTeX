@@ -1,0 +1,20 @@
+
+\checkoddpage\ifoddpage\clearpage\else\cleardoublepage\fi%
+%
+\thispagestyle{empty}%
+%
+\def\signed #1{{\leavevmode\unskip\nobreak\hfil\penalty50\hskip2em
+  \hbox{}\nobreak\hfil(#1)%
+  \parfillskip=0pt \finalhyphendemerits=0 \endgraf}}
+%
+\newsavebox\mybox
+\newenvironment{aquote}[1]
+  {\savebox\mybox{#1}\begin{quote}}
+  {\signed{\usebox\mybox}\end{quote}}
+%
+\vspace*{\fill}%
+\begin{aquote}{John Strutt, 3rd Baron Rayleigh}%
+    The work may be hard, and the discipline severe; but the interest never fails, and great is the privilege of achievement.%
+\end{aquote}%
+\vspace*{\fill}%
+%

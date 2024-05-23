@@ -1,0 +1,193 @@
+%
+\chapter{Measurement algorithm}\label{apx:algorithm}%
+%
+    \begin{algorithm}[H]%
+        \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}%
+        \IncMargin{1em}%
+
+        \SetAlgoLined%
+        \KwResult{calibration, measurement, real-time feedback}%
+        \BlankLine%
+
+        \Input{$\Delta t$, ranges, $S$, $c$, $N$, $M$, $V_{M}$ and $K_{M}$}%
+        \Output{\emph{at runtime:} $P\ix{pred}^{\left(1\right)}$, $P\ix{pred}^{\left(2\right)}$; \emph{post:} calibration, $\kappa$, $\tau$, $R$, $\Delta U$, $P\ix{pred}^{\left(n\right)}$}%
+        \BlankLine%
+
+        \textbf{TRIGGER} $\rightarrow$ \emph{initialization} $\left[T1-\text{\SI{60}{\second}}\right]$\;%
+        $K_{M}$, $V_{M}$ $\leftarrow$ input file (standard geometry)\;%\
+        $S$, $c$ $\leftarrow$ file/visual input, selection and single channel\;%
+        \BlankLine
+
+        $U_{\text{AO},n}$ $\leftarrow$ memory adress, initialize \SI{0}{\volt}\;%
+        \textbf{NI}\textsuperscript{\textregistered} \textbf{6321} $\leftarrow$ initialize two-channel analog output\;%
+        \BlankLine%
+    
+        \tcp{output as long as main data cquisition}%
+        \tcp{does not return successfully}%
+        \While{measurement incomplete}{%
+            \For{$n\in\left\{1,2\right\}$}{%
+                $U_{\text{A0},n}$ $\leftarrow$ read $P\ix{pred}^{\left(n\right)}$\;
+                device FIFO $\leftarrow$ $U_{\text{A0},n}$;%
+                \hspace{10em}\raisebox{.1\baselineskip}[0pt][0pt]{$\left.\rule{0pt}{2.75\baselineskip}\right\}\ \mbox{parallel}$}\\%
+                flush FIFO to voltage output\;
+            }%
+        }%
+
+        \vdots%
+        \caption{Bolometer measurement routine and feedback.}\label{alg:algorithm}%
+    \end{algorithm}%
+    \newpage%
+%
+    \addtocounter{algocf}{-1}%
+    \begin{algorithm}[H]%
+        \vdots%
+        \textbf{mode register} $\leftarrow$ full range $\pm$\SI{80}{\milli\volt}\;%
+        \textbf{filter register} $\leftarrow$ sample time \SI{0.4}{\milli\second}\;
+        $V\ix{off}$ $\leftarrow$ \SI{10}{\second} offset measurement mean\;
+        \BlankLine%
+
+        \textbf{mode register} $\leftarrow$ two-stage calibration\;%
+        \For{absorber$\,\,\in($measurement, reference$)$}{%
+            \emph{\tcp{10000 samples over \SI{4}{\second}}}%
+            \For{$i=0$, $i<10000$, $i\rightarrow 10000$}{%
+                \If{$2000<i<6000$}{%
+                    $R$, $\tau$ $\leftarrow$ max current and decay\;%
+                    $\kappa$ $\leftarrow$ linear resistance change by ohmic heating\;%
+                }%
+            }%
+        }%
+
+        \textbf{mode register} $\leftarrow$ individual range (\SI{10}{\milli\volt}, \SI{20}{\milli\volt})\;%
+        \textbf{filter register} $\leftarrow$ sample time $\Delta t$\;%
+        \BlankLine%
+
+        $^{\left(1\right)}$\text{FIFO} $\leftarrow$ initialize $\vert S\vert\times\left(M+2\right)$ array\;%
+        $^{\left(2\right)}$\text{FIFO} $\leftarrow$ initialize $\left(M+1\right)$ array\;%
+        $P\ix{pred}^{\left(n\right)}$, $\Delta U$ $\leftarrow$ initialize $N$ sample array\;%
+
+        \vdots%
+        \caption{Bolometer measurement routine and feedback.}%
+    \end{algorithm}%
+    \newpage%
+
+    \addtocounter{algocf}{-1}%
+    \begin{algorithm}[H]%
+        \vdots%
+        \tcp{final measurement}%
+        \For{$i=0$, $i<N+1000$, $i\rightarrow N+1000$}{%
+            \If{$i>1000$}{
+                $\Delta U^{\left(i\right)}$ $\leftarrow$ $\Delta t$ integrated absorber voltage\;
+                \tcp{store samples in FIFO}%
+                \For{$j\in S$}{%
+                    $^{\left(1\right)}$\text{FIFO}$_{j}^{\left(i\,\text{mod}\,M\right)}$ $\leftarrow$ $\Delta U_{j}^{\left(i\right)}$\;%
+                }%
+                $^{\left(2\right)}$\text{FIFO}$^{\left(i\,\text{mod}\,M\right)}$ $\leftarrow$ $\Delta U_{c}^{\left(i\right)}$\;%
+                \BlankLine%
+
+                \tcp{mean over previous $M$ samples}%
+                \For{$j\in S$}{%
+                    $^{\left(1\right)}$\text{FIFO}$_{j}^{\left(M+2\right)}$ $\leftarrow$ $^{\left(1\right)}$\text{FIFO}$_{j}^{\left(M+1\right)}$\;%
+                    $^{\left(1\right)}$\text{FIFO}$_{j}^{\left(M+1\right)}$ $\leftarrow$ $1/M\,\sum_{k}^{M}\,^{\left(1\right)}\text{FIFO}_{j}^{\left(k\right)}$\;%
+                    \BlankLine%
+
+                    \tcp{derivative}%
+                    $\diff\left(\Delta\widetilde{U}_{j}^{\left(i\right)}\right)/\diff t$ $\leftarrow$ $\left(^{\left(1\right)}\text{FIFO}_{j}^{\left(M+2\right)}+^{\left(1\right)}\text{FIFO}_{j}^{\left(M+1\right)}\right)/\Delta t$\;%
+                }%
+                $^{\left(2\right)}$\text{FIFO}$^{\left(M+1\right)}$ $\leftarrow$ $1/M\,\sum_{k}^{M}\,^{\left(2\right)}\text{FIFO}^{\left(k\right)}$\;%
+                \BlankLine%
+
+                \tcp{memory address for feedback}%
+                $P\ix{pred}^{\left(1\right)}$ $\leftarrow$ \cref{eq:prediction} $\leftarrow$ $K_{M}$, $V_{M}$, $\diff\left(\Delta\widetilde{U}_{j}^{\left(i\right)}\right)/\diff t$, $^{\left(1\right)}\text{FIFO}^{\left(k\right)}$\;%
+                $P\ix{pred}^{\left(2\right)}$ $\leftarrow$ \cref{eq:prediction2} $\leftarrow$ $^{\left(2\right)}\text{FIFO}^{\left(M+1\right)}$\;%
+            }%
+        }%
+        \BlankLine%
+
+        \tcp{done, upload and saving}%
+        \textbf{HDD} $\leftarrow$ $P\ix{pred}^{\left(1\right)}$, $P\ix{pred}^{\left(2\right)}$, $\Delta U$, $\kappa$, $\tau$, $R$, calibration currents\;%
+        \textbf{W7-X archive} $\leftarrow$ $P\ix{pred}^{\left(1\right)}$, $P\ix{pred}^{\left(2\right)}$, $\Delta U$, $\kappa$, $\tau$, $R$, calibration currents\;%
+        \caption{Bolometer measurement routine and feedback.}%
+    \end{algorithm}%
+
+
+%% RESIDUAL
+
+% STRAHL
+% \begin{align}%
+%     \begin{split}%
+%         \Phi\ix{0}=4\pi r\ix{bound}v\ix{0}n_{\text{i,}0}\left(r\ix{out}\right)\\%
+%         S_{\text{i,}0\to 1}\overset{!}{=}S_{\text{i,}0}=n\ix{0}\left(r\right)n\ix{e}\left(r\right)Q_{\text{i,}0}\left(r\right)\\%
+%         n\ix{0}\left(r\right)=\frac{n\ix{0}\left(r\ix{out}\right)r\ix{out}}{r}\exp{\left(-\displaystyle\int_{r}^{r\ix{out}}\frac{n\ix{e}Q_{\text{i,}0}}{v\ix{0}}\diff r\right)}%
+%     \end{split}%
+% \end{align}%
+%
+% \begin{align}%
+%     \begin{split}%
+%         D\ix{i,Z}\head{cl}=&\left(\frac{\partial\Psi\ix{pol}}{\partial r}\right)^{-2}\left\langle\frac{R^{2}B^{2}\ix{pol}}{B^[2]}\right\rangle\,\frac{m\ix{i}k\ix{B}T\ix{i}\nu\ix{i,D}}{e^{2}Z^{2}}\\%
+%         v\ix{i,Z}\head{cl}=&D\ix{i,Z}\head{cl}Z\,\left(\frac{\diff\left(\ln\,n\ix{D}\right)}{\diff r}-\frac{1}{2}\frac{\diff\left(\ln\,T\ix{i}\right)}{\diff r}\right)\\%
+%         \nu\ix{i,D}=&\frac{4e^{4}\sqrt{2\pi}}{m\ix{e}}\sqrt{\frac{m\ix{i}m\ix{D}}{m\ix{i}+m\ix{D}}}\frac{Z\ix{i}^{2}Z\ix{D}^{2}\ln\,\Lambda}{\left(k\ix{B}T\right)^{3/2}}\,n\ix{D}%
+%     \end{split}%
+% \end{align}%
+%
+% \begin{align}%
+%     \begin{split}%
+%         D\ix{i,Z}\head{PS}=&\left(\frac{\partial\Psi\ix{pol}}{\partial r}\right)^{-2}\left\langle RB\ix{tor}\right\rangle^{2}\left(\left\langle B^{-2}\right\rangle-\left\langle B^{2}\right\rangle^{-1}\right)K\ix{PS}\frac{m\ix{i}k\ix{B}T\ix{i}\nu\ix{i,D}}{e^{2}Z^{2}}\\%
+%         v\ix{i,Z}\head{PS}=&D\ix{i,Z}\head{PS}\,Z\left(\frac{\diff\left(\ln n\ix{D}\right)}{\diff r}+F\ix{PS}\left(\varepsilon,\,v^{\ast}\ix{D}\right)\frac{\diff\left(\ln T\ix{i}\right)}{\diff r}\right)%
+%     \end{split}%
+% \end{align}%
+%
+% \begin{align}%
+%     \begin{split}%
+%         D\ix{i,Z}\head{bp}=&\left(\frac{\partial\Psi\ix{pol}}{\partial r}\right)^{-2}\frac{\left\langle RB\ix{tor}\right\rangle^{2}}{\left\langle B^{2}\right\rangle}\frac{k\ix{B}T\ix{i}\mu\ix{i,D}^{\ast}}{e^{2}Z^{2}n\ix{i}}\\%
+%         v\ix{i,Z}\head{bp}=&D\ix{i,Z}\head{bp}\,Z\left(\frac{\diff \left(\ln n\ix{D}\right)}{\diff r}+F\ix{bp}\frac{\diff\left(\ln T\ix{i}\right)}{\diff r}\right)%
+%     \end{split}%
+% \end{align}%
+%
+
+% \subsubsection*{Fourier transform}%
+
+%     Fourier transform.%
+
+%     \begin{align}%
+%         \begin{split}\label{eq:fourier_base}%
+%             g\ix{i}=\mathcal{F}\left(P\ix{rad}\right)&\left(\omega\right)\,\qquad g\ix{j}=\mathcal{F}\left(P\ix{pred}^{\left(1\right)}\right)\left(\omega\right)\\%
+%             g\ix{i,j}\left(\omega\right)&=g\ix{i}^{\ast}\left(\omega\right)g\ix{j}\left(\omega\right)%
+%         \end{split}%
+%     \end{align}%
+
+%     \begin{align}%
+%         \begin{split}\label{eq:fourier}%
+%             \varphi\left(\omega\right)=\frac{\vert g\ix{i,j}^{2}\vert}{\vert g\ix{i}g\ix{j}\vert}\,,\qquad\vartheta=\int_{-\infty}^{\infty}\varphi\left(\omega\right)\diff \omega%
+%         \end{split}%
+%     \end{align}%
+
+% \subsubsection*{Coherence}%
+
+%     Coherence.%
+
+%     \begin{align}%
+%         \begin{split}\label{eq:coherence_base}%
+%             g\ix{i,T}\left(\omega\right)=&\mathcal{F}\left(P\ix{rad}\left(t\right)f\ix{T}\left(t\right)\right)\left(\omega\right)\,,\qquad f\ix{T}\left(t\right)=\left\{%
+%             \begin{array}{ll}%
+%                 1&,\,t\in T\\%
+%                 0&,\,\text{else}%
+%             \end{array}\right.\\%
+%             g\ix{j,T}\left(\omega\right)=&\mathcal{F}\left(P\ix{pred}^{\left(1\right)}\left(t\right)f\ix{T}\left(t\right)\right)\left(\omega\right)%
+%         \end{split}%
+%     \end{align}%
+
+%     \begin{align}%
+%         \begin{split}\label{eq:coherence_adv}%
+%             S\ix{kk}\left(\omega\right)=&\displaystyle\lim_{T\to\infty}\,\frac{1}{T}\,\vert g\ix{k,T}\left(\omega\right)\vert^{2}\,, \qquad k\in\{i\,,j\}\\%
+%             S\ix{ij}\left(\omega\right)=&\displaystyle\lim_{T\to\infty}\frac{1}{T}\left(g\ix{i,T}^{\ast}\ast\left(\omega\right)g\ix{j,T}\left(\omega\right)\right)\\%
+%             =&\int_{-\infty}^{\infty}\left(\displaystyle\lim_{T\to\infty}\frac{1}{T}\int_{-\infty}^{\infty}P\ix{rad}\left(t-\tau\right)f\ix{T}\left(t-\tau\right)\times\right.\\%
+%             &\hspace{1.25cm}\left.P\ix{pred}^{\left(1\right)}\left(t\right)f\ix{T}\left(t\right)\diff t\right)\euler^{-i2\pi\omega\tau}\diff\tau%
+%         \end{split}%
+%     \end{align}%
+
+%     \begin{align}%
+%         \begin{split}\label{eq:coherence}%
+%             \varphi\left(\omega\right)=\frac{\vert S\ix{ij}\left(\omega\right)\vert^{2}}{S\ix{ii}\left(\omega\right)S\ix{jj}\left(\omega\right)}\,,\qquad\vartheta=\displaystyle\int_{-\infty}^{\infty}\frac{\vert S\ix{ij}\left(\omega\right)\vert^{2}}{S\ix{ii}\left(\omega\right)S\ix{jj}\left(\omega\right)}\diff \omega%
+%         \end{split}%
+%     \end{align}%
+%
