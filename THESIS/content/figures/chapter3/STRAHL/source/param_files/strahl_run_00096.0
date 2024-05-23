@@ -1,0 +1,113 @@
+#   M A I N  I O N
+cv  # background ion: atomic weight    charge
+                      1.0              1.0
+
+#   G R I D - F I L E
+cv  shot      index
+    00001     0
+
+#   G R I D   P O I N T S  A N D  I T E R A T I O N
+cv  # rho = r**K (->K)    number of grid points      dr_0       dr_1
+    6.0                   135                        1.0        .05
+
+cv  # max. iterations at fixed time    -1 : use Lackner method (no iteration)
+    1000                               -1.
+
+#   S T A R T   C O N D I T I O N S
+cv  # start new=0/from old impurity distribution=1   shot   at    time  index
+    0                                                0            0.0   0
+
+#   O U T P U T
+cv  # save all cycles = 1, save final and start distribution = 0
+    1
+
+#   T I M E S T E P S
+cv  # number of changes (start-time+ ... +stop-time)
+    2
+
+cv  # time     dt at start    increase of dt after cycle     steps per cycle
+    1.2205     1.0e-04        1.0                            50
+    2.2205     1.0e-04        1.0                            50
+
+#   S T A R T    I M P U R I T Y   E L E M E N T S
+#   ---------------------------------------------------------------------------
+#   (for each impurity one input line needed in this block)
+cv  # number of impurities
+    2
+
+cv  # element atomic weight  energy of neutrals(eV)
+    'C_'      12.011         1.0
+    'O_'      15.999         1.0
+
+#   S O U R C E
+cv  # r_source-r_lcfs(cm) constant rate(1/s)   time dependent rate from file(1/0)
+    7.5                   .6e+21              0
+    7.5                   .6e+21              0
+
+cv  # divertor puff source_width_in(cm)    source_width_out(cm)  prompt redep
+    0               0.                     0.                    0
+    0               0.                     0.                    0
+
+#   E D G E ,  R E C Y C L I N G
+cv  # decay length of impurity outside last grid point(cm)
+    -5.
+    -5.
+
+cv  #  Rec.:ON=1/OFF=0 wall-rec.  Tau-div->SOL(ms)   Tau-pump(ms)
+    0                  1.         1.e+09             1.
+    0                  1.         1.e+09             1.
+
+# -----------------------------------------------------------------------------
+#   E N D    I M P U R I T Y   E L E M E N T S
+
+#                                             Connection lenghts [m]      Mach #
+cv  # r_bound-r_lcfs (cm)  r_lim-r_lcfs(cm)   to divertor   to limiter    SOL Flow
+    8.0                    6.5                25.           0.5           0.05
+
+cv  # additional sheath voltage [V]
+    0.
+
+#   D E N S I T Y, T E M P E R A T U R E  &&
+#   N E U T R A L  H Y D R O G E N  F O R  CX
+cv  # take from file with:    shot   index
+                              00096  0
+
+#    N E O C L A S S I C A L     T R A N S P O R T
+#
+#          NEOART with
+#      0 = off, >0 = % of Drift,      2 = one stage     no BP      max       min
+cv  # <0 = figure out, but dont use   3 = all stages    contrib    rho_pol   rho_pol
+       0                              4                 1          1.0       0.0
+
+#   A N O M A L O U S     T R A N S P O R T
+cv  # of changes for transport
+    1
+
+cv  # time-vector
+    1
+    0.000
+
+cv  # Diffusion [m^2/s]
+    'funct'
+
+cv  # D    D_SOL   Dmax   beta    gamma    r_max/r(LCFS)
+    0.1    1.0     5.0    20.0    6.0      0.9
+
+cv  # Drift function  Drift Parameter/Velocity
+    'interp'         'velocity'
+
+cv  # number of gridpoints
+    13
+
+cv  # rho poloidal grid for interpolation
+    0.0000  0.10000  0.20000  0.30000  0.40000  0.50000  0.60000  0.70000  0.80000  0.90000  1.0000  1.10000  1.20000
+
+cv  # D[m**2/s] / v[m/s] / alpha[1]
+    0.0000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.00000  0.0000  0.00000  0.00000
+
+cv  # of sawteeth  inversion radius
+    0              0.0
+
+cv  # times of sawteeth
+    0.0
+

@@ -1,0 +1,109 @@
+# run ind profile type    f_rad   L[cm]   D[m2/s]     D/v shape       LCFS %  comments
+00001 0   TS
+00002 0   TS
+00003 0   TS
+00004 0   TS
+00005 0   TS
+00006 0   TS
+00007 0   TS
+00008 0   TS
+00009 0   TS
+00010 0   TS orig.        0.33   5        2                           n.8t.8  S:3e17@1., n=interp, T=interp, beta=20, gamma=2, r/LCFS=0.9
+00011 0   TS orig.        0.66   5        2                           n.8t.8  -""-
+00012 0   TS orig.        0.9    5        2                           n.8t.8  -""-
+00013 0   TS orig.        1.0    5        2                           n.8t.8  -""-
+00014 0   TS orig.        0.33   1        2                           n.8t.8  -""-
+00015 0   TS orig.        0.66   1        2                           n.8t.8  -""-
+00016 0   TS orig.        0.9    1        2                           n.8t.8  -""-
+00017 0   TS orig.        1.0    1        2                           n.8t.8  -""-
+00018 0   TS orig.        0.33   5        4                           n.8t.8  -""-
+00019 0   TS orig.        0.66   5        4                           n.8t.8  -""-
+00020 0   TS orig.        0.9    5        4                           n.8t.8  -""-
+00021 0   TS orig.        1.0    5        4                           n.8t.8  -""-
+00022 0   TS orig.        0.33   5        4            electron root  n.8t.8  -""-
+00023 0   TS orig.        0.66   5        4            electron root  n.8t.8  -""-
+00024 0   TS orig.        0.9    5        4            electron root  n.8t.8  -""-
+00025 0   TS orig.        1.0    5        4            electron root  n.8t.8  -""-
+00026 0   TS spline, k=3  0.33   5        2                           n.8t.8  -""-
+00027 0   TS spline, k=3  0.66   5        2                           n.8t.8  -""-
+00028 0   TS spline, k=3  0.9    5        2                           n.8t.8  -""-
+00029 0   TS spline, k=3  1.0    5        2                           n.8t.8  -""-
+00030 0   TS spline, >k=5 0.33   5        2                           n.8t.8  -""-
+00031 0   TS spline, >k=5 0.66   5        2                           n.8t.8  -""-
+00032 0   TS spline, >k=5 0.9    5        2                           n.8t.8  -""-
+00033 0   TS spline, >k=5 1.0    5        2                           n.8t.8  -""-
+00034 0   TS spline, k=3  0.33   1        4                           n.8t.8  -""-
+00035 0   TS spline, k=3  0.66   1        4                           n.8t.8  -""-
+00036 0   TS spline, k=3  0.9    1        4                           n.8t.8  -""-
+00037 0   TS spline, k=3  1.0    1        4                           n.8t.8  -""-
+00038 0   TS spline, k=3  0.33   5        4            electron root  n.8t.8  -""-
+00039 0   TS spline, k=3  0.66   5        4            electron root  n.8t.8  -""-
+00040 0   TS spline, k=3  0.9    5        4            electron root  n.8t.8  -""-
+00041 0   TS spline, k=3  1.0    5        4            electron root  n.8t.8  -""-
+00042 0   TS spline, k=3  0.33   5        4                           n.3t.3  -""-
+00043 0   TS spline, k=3  0.66   5        4                           n.3t.3  -""-
+00044 0   TS spline, k=3  0.9    5        4                           n.3t.3  -""-
+00045 0   TS spline, k=3  1.0    5        4                           n.3t.3  -""-
+00046 0   TS orig.        1.0    5        .1, 5., .5                  n.3t.3  S:1e20@1., interpa, beta=15, gamma=6, r/LCFS=0.75
+00047 0   TS orig.        1.0    5        .1, 5., .5                  n.3t.3  exppol0, -""-
+00048 0   TS orig.        1.0    5        .1, 5., .5                  n.3t.3  ratfun, -""-
+00049 0   TS orig.        1.0    5        .1, 5., .5                  n.3t.3  exppol1, -""-
+00050 0   TS spline, k=3  1.0    5        .1, 5., .5                  n.8t.3  interp, -""-, N=51, dr=0.1, r**K=6.
+00051 0   n=spl.T=orig.   0.33   5        .1, 5., .5                  n.3t.3  S:1e21@1., n=interp, T=ratfun, beta=15, gamma=6, r/LCFS=0.95
+00052 0   n=spl.T=orig.   0.66   5        .1, 5., .5                  n.3t.3  -""-
+00053 0   n=spl.T=orig.   0.9    5        .1, 5., .5                  n.3t.3  -""-
+00054 0   n=spl.T=orig.   1.0    5        .1, 5., .5                  n.3t.3  -""-
+00055 0   n=spl.T=spl..   0.33   5        .1, 5., .5                  n.3t.3  S:1e21@1.+.1cm, n=interp, T=interp, -""-
+00056 0   n=spl.T=spl..   0.6    5        .1, 5., .5                  n.3t.3  -""-
+00057 0   n=spl.T=spl..   0.9    5        .1, 5., .5                  n.3t.3  -""-
+00058 0   n=spl.T=spl..   1.0    5        .1, 5., .5                  n.3t.3  -""-
+00059 0   n=spl.T=spl..   0.33   5        .1, 5., .5                  n.1t.1  S:1e21@1.+.1cm, n=interp, T=interp, -""-, edge gradient improved by skipping N-1 within .9 value
+00060 0   n=spl.T=spl..   0.6    5        .1, 5., .5                  n.1t.1  -""-
+00061 0   n=spl.T=spl..   0.9    5        .1, 5., .5                  n.1t.1  -""-
+00062 0   n=spl.T=spl..   1.0    5        .1, 5., .5                  n.1t.1  -""-
+00063 0   n=spl.T=spl..   0.33   5        .1, 5., 1.                  n.1t.02 S:1e21@1.+.1cm, beta=20., gamma=6., r/LCFS=0.9, n=interp, T=interp, -""-
+00064 0   n=spl.T=spl..   0.6    5        .1, 5., 1.                  n.1t.02 -""-
+00065 0   n=spl.T=spl..   0.9    5        .1, 5., 1.                  n.1t.02 -""-
+00066 0   n=spl.T=spl..   1.0    5        .1, 5., 1.                  n.1t.02 -""-
+00067 0   n=spl.T=orig.   0.33   5        .1, 5., 1.                  n.1t.1  S:1e21@1.+.1cm, beta=20., gamma=6., r/LCFS=0.9, n=interp, T=none, no last value skipping, T_lcfs=24.5
+00068 0   n=spl.T=orig.   0.6    5        .1, 5., 1.                  n.1t.1  -""-, T_lcfs=22.2
+00069 0   n=spl.T=orig.   0.9    5        .1, 5., 1.                  n.1t.1  -""-, T_lcfs=20.4
+00070 0   n=spl.T=orig.   1.0    5        .1, 5., 1.                  n.1t.1  -""-, T_lcfs=13.8
+00071 0   n=spl.T=spl.    0.33   5        .1, 5., 1.                  n.1t.07 S:1e21@1., beta=20., gamma=6., r/LCFS=0.9, n=interp, T=interp, no last value skipping, k_Te=4, k_ne=3, T_lcfs=29
+00072 0   n=spl.T=spl.    0.6    5        .1, 5., 1.                  n.1t.07 -""-, T_lcfs=17
+00073 0   n=spl.T=spl.    0.9    5        .1, 5., 1.                  n.1t.07 -""-, T_lcfs=12
+00074 0   n=spl.T=spl.    1.0    5        .1, 5., 1.                  n.1t.05 -""-, T_lcfs=3
+00075 0   n=spl.T=spl.    0.33   5        .1, 5., 1.                  n.1t.07 -""- like 00071, N=13
+00076 0   n=spl.T=spl.    0.6    5        .1, 5., 1.                  n.1t.07 -""- like 00072
+00077 0   n=spl.T=spl.    0.9    5        .1, 5., 1.                  n.1t.07 -""- like 00073
+00078 0   n=spl.t=spl.    0.9    5        .1, 5., 1.                  n.1t.05 -""- like 00074
+00079 0   n=spl.t=spl.    0.3    5        .1, 5., 1.                  n1t1    S:.3e21@1., N=50, k_ne=3, knots_ne=[0.2, 0.5], n_lcfs=5.2e19, k_Te=3, knots_Te=[0.4, 0.7], Te_lcfs=57, L_source=-5.
+00080 0   n=spl.t=spl.    0.6    5        .1, 5., 1.                  n1t1    S:.6e21@1., k_ne=4, knots_ne=[0.4, 0.7], n_lcfs=7.4e19, knots_Te=[0.3, 0.5], Te_lcfs=65
+00081 0   n=spl.t=spl.    0.9    5        .1, 5., 1.                  n1t1    S:.9e21@1., k_ne=3, knots_ne=[0.2, 0.5], n_lcfs=4.7e19, knots_Te=[0.2, 0.45, 0.65], Te_lcfs=31
+00082 0   n=spl.t=spl.    1.0    5        .1, 5., 1.                  n1t1    S:1.e21@1., k_ne=4, knots_ne=[0.25, 0.5], n_lcfs=5.25e19, knots_Te=[0.3], Te_lcfs=5.5
+00083 0   n=spl.t=spl.    0.3    5        .1, 5., 1.                  n.5t.5  like 00079, ne_lcfs=3.8e19, Te_lcfs=37
+00084 0   n=spl.t=spl.    0.6    5        .1, 5., 1.                  n.5t.5  like 00080, ne_lcfs=5.3e19, Te_lcfs=46
+00085 0   n=spl.t=spl.    0.9    5        .1, 5., 1.                  n.5t.5  like 00081, ne_lcfs=3.4e19, Te_lcfs=23
+00086 0   n=spl.t=spl.    1.0    5        .1, 5., 1.                  n.5t.5  like 00082, ne_lcfs=3.7e19, Te_lcfs=3
+00087 0   n=spl.t=spl.    0.3    5        .1, 5., 1.                  n.1t.1  like 00079, ne_lcfs=2.6e19, Te_lcfs=21
+00088 0   n=spl.t=spl.    0.6    5        .1, 5., 1.                  n.1t.1  like 00080, ne_lcfs=3.5e19, Te_lcfs=31
+00089 0   n=spl.t=spl.    0.9    5        .1, 5., 1.                  n.1t.1  like 00081, ne_lcfs=2.4e19, Te_lcfs=17
+00090 0   n=spl.t=spl.    1.0    5        .1, 5., 1.                  n.1t.1  like 00082, ne_lcfs=2.4e19, Te_lcfs=3
+00091 0   n=spl.t=spl.    0.3    5        .1, 5., 1.                  n1t1    S:.3e21@1.+7.5cm, like 00079
+00092 0   n=spl.t=spl.    0.6    5        .1, 5., 1.                  n1t1    S:.6e21@1.+7.5cm, like 00080
+00093 0   n=spl.t=spl.    0.9    5        .1, 5., 1.                  n1t1    S:.9e21@1.+7.5cm, like 00081
+00094 0   n=spl.t=spl.    1.0    5        .1, 5., 1.                  n1t1    S:1.e21@1.+7.5cm, like 00082
+00095 0   n=spl.t=spl.    0.3    5        .1, 5., 1.                  n1t.1   S:.3e21@1.+7.5cm, like 00087
+00096 0   n=spl.t=spl.    0.6    5        .1, 5., 1.                  n1t.1   S:.6e21@1.+7.5cm, like 00088
+00097 0   n=spl.t=spl.    0.9    5        .1, 5., 1.                  n1t.1   S:.9e21@1.+7.5cm, like 00089
+00098 0   n=spl.t=spl.    1.0    5        .1, 5., 1.                  n1t.1   S:1.e21@1.+7.5cm, like 00090
+00099 0   n=spl.t=spl.    0.3    5        .1, 5., 1.                  n1t1    S:1.5e19@1.+7.5cm, like 00079
+00100 0   n=spl.t=spl.    0.6    5        .1, 5., 1.                  n1t1    S:1.5e19@1.+7.5cm, like 00080
+00101 0   n=spl.t=spl.    0.9    5        .1, 5., 1.                  n1t1    S:1.5e19@1.+7.5cm, like 00081
+00102 0   n=spl.t=spl.    1.0    5        .1, 5., 1.                  n1t1    S:1.5e19@1.+7.5cm, like 00082
+00103 0   n=spl.t=spl.    1.0    5        .2, 10., 2.                 n1t1    S:1.e21@1.+7.5cm, like 00094
+00104 0   n=spl.t=spl.    1.0    5        .0, 2.5, .5                 n1t1    S:1.e21@1.+7.5cm, like 00094
+00105 0   n=spl.t=spl.    1.0    2        .1, 5., 1.                  n1t1    S:1.e21@1.+7.5cm, like 00094
+00106 0   n=spl.t=spl.    1.0    .5       .1, 5., 1.                  n1t1    S:1.e21@1.+7.5cm, like 00094
+00107 0   n=spl.t=spl.    1.0    5        .1, 5., 1.    electron root n1t1    S:1.e21@1.+7.5cm, like 00094
+00108 0   n=spl.t=spl.    1.0    5        .1, 5., 1.                  n1t1    S:1.e21@1.+7.5cm, like 00094, neutral profile

@@ -1,0 +1,41 @@
+# INFO
+
+# NE
+cv  # time-vector [s]
+    1
+    3.421
+
+cv  # ne function
+    'ratfun'
+
+cv  # interpolation coordinates
+    'poloidal rho'
+
+cv  # ne ratfun values
+    1.05764e+14  0.166899694  4.733580561  0.283666944  0.283666944
+
+cv  # ne decay length [cm]
+    5.0
+
+# TE
+cv  # time-vector [s]
+    1
+    3.421
+
+cv  # Te function
+    'ratfun'
+
+cv  # interpolation coordinates
+    'poloidal rho'
+
+cv  # Te ratfun values
+    2171.88  0.05536  1.50234  3.16282  3.16282
+
+cv  # Te decay length [cm]
+    5.0
+
+# TI
+cv  # time-vector
+    0
+    0.000
+

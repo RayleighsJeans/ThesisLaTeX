@@ -1,0 +1,19 @@
+std dev: 95th percentile; HBCm - 1.2008 [µV], VBCr - 2.2692 [µV], VBCl - 3.1198 [µV], 
+
+abs offs: 95th percentile; HBCm - 2.2418 [µV], VBCr - 3.6451 [µV], VBCl - 3.1302 [µV], 
+
+slope: 95th percentile; HBCm - 0.3395 [µV/s], VBCr - 0.4376 [µV/s], VBCl - 0.2109 [µV/s], 
+
+raw max: 95th percentile; HBCm - 8.1916 max., VBCr - 6.3721 max., VBCl - 8.4913 max., 
+
+raw min: 95th percentile; HBCm - 3.2129 min., VBCr - 0.0049 min., VBCl - 0.0096 min., 
+
+adj max: 95th percentile; HBCm - 3.0810 [mV], VBCr - 0.0163 [mV], VBCl - 0.3909 [mV], 
+
+adj median: 95th percentile; HBCm - 0.0933 [mV], VBCr - 0.0030 [mV], VBCl - 0.1660 [mV], 
+
+Kappam: 95th percentile; HBCm - 0.0007 [A²], VBCr - 0.0008 [A²], VBCl - 0.0008 [A²], 
+
+Rohm: 95th percentile; HBCm - 1.0158 [kOhm], VBCr - 1.3500 [kOhm], VBCl - 0.9736 [kOhm], 
+
+Taum: 95th percentile; HBCm - 122.6669 [ms], VBCr - 130.2220 [ms], VBCl - 115.3259 [ms]

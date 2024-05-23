@@ -1,0 +1,37 @@
+cv  main ion: brems  SXR  spectral brems  thermal CX  NBI CX
+              1      1    0               1           0
+
+cv  diagnostic lines
+    1
+
+   D A T A   F I L E S   F O R   A T O M I C   P R O C E S S E S
+cc Atomic Data        Descrioption
+acd:acd85_fe.dat      recombination
+scd:scd00_fe.dat      ionisation
+prb:prb00_fe.dat      continuum radiation
+plt:pltic_fe.dat      line radiationplt  (old file, 97_fe.dat, pltls_fe.dat is replaced)
+pls:plsx2_fe.dat      line radiation in SXR range
+prs:prsx2_fe.dat      continuum radiation in SXR range
+fis:sxrfl10.dat       sensitivity of SXR für 10µm-Be-foil
+pbs:pbsx5_fe.dat      bremsstrahlung in SXR range
+brs:brs05320.dat      spectral bremsstrahlung
+ccd:ccd89_fe.dat      charge exchange
+prc:prc89_fe.dat      radition by charge exchange
+
+    D I A G N O S T I C   L I N E S
+cd  excitation  recombination  charge exchange
+    1           0              0
+
+cd  number of lines
+    9
+
+cd  charge of ion   wavelength(A)   half width of window(A)   file extension
+    12               203.700        20.                       'ben'
+    14               284.400        20.                       'ben'
+    15               335.100        20.                       'ben'
+    17                93.900        20.                       'ben'
+    18               108.400        20.                       'ben'
+    21               117.200        20.                       'ben'
+    22               132.800        20.                       'ben'
+    23               192.000        20.                       'ben'
+    24                 1.900        20.                       'ben'

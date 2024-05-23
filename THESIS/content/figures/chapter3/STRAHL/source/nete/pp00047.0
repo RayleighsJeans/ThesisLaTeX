@@ -1,0 +1,41 @@
+# INFO
+
+# NE
+cv  # time-vector [s]
+    1
+    3.421
+
+cv  # ne function
+    'exppol0'
+
+cv  # interpolation coordinates
+    'poloidal rho'
+
+cv  # ne exppol0 values
+    1.05764e+14  -0.004823439  -0.061977141  -0.077991293  13.571199736
+
+cv  # ne decay length [cm]
+    5.0
+
+# TE
+cv  # time-vector [s]
+    1
+    3.421
+
+cv  # Te function
+    'exppol0'
+
+cv  # interpolation coordinates
+    'poloidal rho'
+
+cv  # Te exppol0 values
+    2171.88  -6.92618  7.33477  89.77166  -0.14949
+
+cv  # Te decay length [cm]
+    5.0
+
+# TI
+cv  # time-vector
+    0
+    0.000
+

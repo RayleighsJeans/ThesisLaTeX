@@ -1,0 +1,30 @@
+cv  main ion: brems  SXR  spectral brems  thermal CX  NBI CX
+              1      1    0               0           0
+
+cv  diagnostic lines
+    1
+
+   D A T A   F I L E S   F O R   A T O M I C   P R O C E S S E S
+cc Atomic Data        Descrioption
+acd:acd96_o.dat       recombination
+scd:scd96_o.dat       ionisation
+prb:prb96_o.dat       continuum radiation
+plt:plt96_o.dat       line radiationplt
+pls:plsx5_o.dat       line radiation in SXR range
+prs:prsx5_o.dat       continuum radiation in SXR range
+pbs:pbsx5_o.dat       bremsstrahlung in SXR range
+
+    D I A G N O S T I C   L I N E S
+cd  excitation  recombination   charge exchange
+    1           0               0
+
+cd  number of lines
+    6
+
+cd  charge of ion   wavelength(A)   half width of window(A)   file extension
+    2                834.500        20.                      'pju'
+    3                789.400        20.                      'pju'
+    4                760.400        20.                      'pju'
+    5               1033.800        20.                      'pju'
+    6                128.500        20.                      'pju'
+    7                102.400        20.                      'pju'

@@ -1,0 +1,53 @@
+# INFO
+
+# NE
+cv  # time-vector
+    1
+    1.000
+
+cv  # Ne-Funktion
+    'interp'
+
+cv  # x-coordinate
+    'volume rho'
+
+cv  # of interpolation points
+    10
+
+cv  # x-grid for ne-interpolation
+    0.10000  0.20000  0.30000  0.40000  0.50000  0.60000  0.70000  0.80000  0.90000  0.99000
+
+cv  # ne DATA [cm-3]
+    1.00000E+14  1.00000  0.90000  0.85000  0.80000  0.75000  0.70000  0.65000  0.60000  0.55000  0.50000
+
+cv  # ne decay length [cm]
+    5.0
+
+# TE
+cv  # time-vector
+    1
+    1.000
+
+cv  # Te function
+    'interp'
+
+cv  # x-coordinate
+    'poloidal rho'
+
+cv  # of interpolation points
+    10
+
+cv  # x-grid for Te-interpolation
+    0.10000  0.20000  0.30000  0.40000  0.50000  0.60000  0.70000  0.80000  0.90000  0.99000
+
+cv  # Te [eV]
+    3000.00  1.00000  0.90000  0.80000  0.70000  0.60000  0.50000  0.40000  0.30000  0.20000  0.100000
+
+cv  # Te decay length [cm]
+    5.0
+
+# TI
+cv  # time-vector
+    0
+    0.0000
+
