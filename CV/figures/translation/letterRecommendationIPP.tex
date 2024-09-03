@@ -1,0 +1,116 @@
+\documentclass[
+  fontsize=11pt,
+  paper=a4,
+  parskip=half,
+  enlargefirstpage=on,    % More space on first page
+  fromalign=right,        % PLacement of name in letter head
+  fromphone=on,           % Turn on phone number of sender
+  fromemail=on,            
+  fromrule=off,           % Rule after sender name in letter head
+  addrfield=off,          % Adress field for envelope with window
+  backaddress=off,        % Sender address in this window
+  subject=beforeopening,  % Placement of subject
+  locfield=narrow,        % Additional field for sender
+  foldmarks=off,          % Print foldmarks
+]{scrlttr2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+% \usepackage[german]{babel}
+\usepackage{graphicx}
+\usepackage{color}
+
+\setkomafont{fromname}{\sffamily \LARGE}
+\setkomafont{fromaddress}{\sffamily}%% statt \small
+\setkomafont{pagenumber}{\sffamily}
+\setkomafont{subject}{\bfseries}
+\setkomafont{backaddress}{\mdseries}
+
+\LoadLetterOption{DIN}
+\setkomavar{fromname}{%
+    Max-Planck-Institute\\%
+    for Plasma Physics%
+}
+\setkomavar{fromaddress}{%
+  \\[0.4cm]%
+  Wendelstein 7-X Project\\[0.4cm]%
+  Dr. Felix Reimold\\[0.4cm]%
+  Impurity Transport \& Radiation Physics\\[0.4cm]%
+  Greifswald Subinstitute\\%
+  Wendelsteinstraße 1\\%
+  D-17491 Greifswald\\[0.4cm]%
+  Main Phone: +49 3834 88-1000%
+}
+\setkomavar{fromphone}{%
+  +49 3834 88-2825}
+\setkomavar{fromemail}{%
+  Felix.Reimold@ipp.mpg.de}
+\setkomavar{backaddressseparator}{%
+    \enspace\textperiodcentered\enspace}
+\setkomavar{signature}{%
+}
+\setkomavar{place}{%
+}
+\setkomavar{date}{%
+}
+\setkomavar{enclseparator}{%
+}
+
+\newcommand\blankFootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\definecolor{light}{rgb}{0.5, 0.5, 0.5}
+\def\light#1{{\color{light}#1}}
+
+\renewcommand*\footnoterule{\vspace{0.4cm}}
+
+\begin{document}
+
+
+\begin{letter}{}
+
+  \hspace*{9.2cm}%
+  \includegraphics[width=1.5cm]{%
+    ippLogo.png}\\%
+
+  \setkomavar{subject}{\centering Job Reference}%
+  \opening{}
+
+  Mr. Philipp Hacker, born on 15.06.1994 in Demmin, was employed from 01.11.2017 to 30.04.2021 as a Ph.D. student at the Max Planck Institute for Plasma Physics.\\[0.4cm]%
+
+  The IPP is a research institute funded by the federal government, the Free State of Bavaria, the state of Mecklenburg-Vorpommern and the EU through annual grants amounting to 120 million euros with around 1100 employees. The IPP maintains a sub-institute in Greifswald (approx. 420 employees). The institute researches ways of generating energy through fusion processes and operates a major research project in Greifswald research project, the Wendelstein 7-X stellarator.\\[0.4cm]%
+
+  As\blankFootnote{%
+    \light{%
+      Board of Directors:\\%
+      Prof. Dr. Sibylle Günter (Chairwoman)%
+      \hfill Sites of the Max Planck Institute for Plasma Physics\\%
+      Dr. Josef Schweinzer (Managing Director)%
+      \hfill are Garching and Greifswald\\%
+      Prof. Dr. Ulrich Stroth\\%
+      Prof. Dr. Robert Wolf}\\%
+  } part of his doctoral thesis, Mr. Hacker was responsible for operating, maintaining and further developing the bolometer diagnostics. He was also responsible for data analysis of the bolometers, as well as the investigation of the radiation distribution of impurities with a low nuclear charge number in the plasma. Mr. Hacker further developed various analytic tools for the diagnostic data or implemented and validated them himself. For impurity transport in the plasma he carried out numerical simulations and compared the predictions with the experimental data. Furthermore, Mr. Hacker integrated some improvements to the control and data acquisition for the bolometers. This led to the development of a real-time control of the W7-X experiment using the bolometers, which Mr. Hacker implemented and supervised for the last operating phase.\\[0.4cm]%
+
+  Mr. Hacker has comprehensive and versatile specialist knowledge, which he can apply at any time and purposefully applied in practice at all times. Thanks to his very quick comprehension Mr. Hacker was able to grasp even difficult situations immediately and recognized the key aspects. Particularly noteworthy is his excellent analytical thinking, which enabled Mr. Hacker to make independent, balanced and accurate judgment even under difficult circumstances.\\[0.4cm]%
+
+  Mr. Hacker impressed us with his high level of motivation and his constant willingness to take on additional responsibility. He also always remained resilient under heavy workloads. At all times, he worked very prudently, conscientiously and precise. When faced with difficult problems, Mr. Hacker found and implemented solutions and always achieved good results. We have always been thoroughly satisfied with his performance. His behaviour towards superiors, colleagues and all other contact persons was exemplary at all times and Mr. Hacker always met them with his friendly, open and courteous manner. Mr. Hacker is leaving our institute at his own request to take on a new challenge. We very much regret his decision, thank him for his cooperation and wish him all the best for the future and continued success.\\[0.6cm]%
+
+  Max-Planck Institute for Plasma Physics\\%
+  Greifswald, 30.04.2021\\%
+  \includegraphics[width=4.5cm]{%
+    signatureKlinger.png}%
+  \hfill%
+  \includegraphics[width=4.5cm]{%
+    signatureReimold.png}\\%[-0.7cm]%
+  Prof. Thomas Klinger\hfill%
+  Dr. Felix Reimold\\%
+  Division Head Stellarator Dynamics\hfill%
+  Group Leader Transport\\
+  and Transport%
+
+\end{letter}
+\end{document}
