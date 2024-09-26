@@ -1,0 +1,55 @@
+\documentclass[
+  fontsize=11pt,
+  paper=a4,
+  parskip=half,
+  enlargefirstpage=on,    % More space on first page
+  fromalign=right,        % PLacement of name in letter head
+  fromphone=on,           % Turn on phone number of sender
+  fromrule=aftername,     % Rule after sender name in letter head
+  addrfield=off,           % Adress field for envelope with window
+  backaddress=off,         % Sender address in this window
+  subject=beforeopening,  % Placement of subject
+  locfield=narrow,        % Additional field for sender
+  foldmarks=on,           % Print foldmarks
+]{scrlttr2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+
+\setkomafont{fromname}{\sffamily \LARGE}
+\setkomafont{fromaddress}{\sffamily}%% statt \small
+\setkomafont{pagenumber}{\sffamily}
+\setkomafont{subject}{\bfseries}
+\setkomafont{backaddress}{\mdseries}
+
+\LoadLetterOption{DIN}
+\setkomavar{fromname}{Philipp Scholl}
+\setkomavar{fromaddress}{%
+    5 Merchants Place, Stephen Street\\%
+    Dunlavin\\%
+    Co. Wicklow\\%
+    W91 C3Y6\\%
+    Ireland}
+\setkomavar{fromphone}{+353 87 1922755}
+\setkomavar{fromemail}{rayleighsjeans@gmail.com}
+\setkomavar{backaddressseparator}{\enspace\textperiodcentered\enspace}
+\setkomavar{signature}{(Philipp Scholl)}
+\setkomavar{place}{Dunlavin}
+\setkomavar{date}{\today}
+\setkomavar{enclseparator}{: }
+
+\begin{document}
+\begin{letter}{}
+  \setkomavar{subject}{Resignation from the Position of AI Data Annotator at Covalen}
+  \opening{Dear ladies and gentlemen and to whom it may concern,}
+
+  please accept this letter as formal notification of resignation from my position as AI Data Annotator with Covalen, effective immediately. Please acknowledge and confirm in written form. Thank you.\\%
+
+  Kinds regards/Mit freundlichen Grüßen,\\%
+  \includegraphics[width=3.5cm]{%
+    ../figures/images/signature_scholl.png}\\[-0.7cm]%
+  (Philipp Scholl)%
+\end{letter}
+\end{document}
