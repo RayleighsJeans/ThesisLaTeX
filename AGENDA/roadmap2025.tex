@@ -1,0 +1,102 @@
+\documentclass[%
+    a4,
+    10pt,
+    twoside
+    ]{%
+    %scrartcl%
+    scrreprt%
+    }
+
+%% packages
+\usepackage{makecell}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{geometry}
+\geometry{%
+    % showframe, % show how the type block is set on the page
+    paper=a4paper, % change to letterpaper for us letter
+    inner=2.0cm, % inner margin
+    outer=2.0cm, % outer margin
+    bindingoffset=0.0cm, % binding offset
+    top=2.0cm, % top margin
+    bottom=2.0cm % bottom margin
+} % bottom margin
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={overleaf example},
+    pdfpagemode=fullscreen,
+    }
+
+\usepackage{graphicx}
+\usepackage{calc}
+\newlength\myheight
+\newlength\mydepth
+\settototalheight\myheight{Xygp}
+\settodepth\mydepth{Xygp}
+\setlength\fboxsep{0pt}
+
+\newcommand{\foo}{%
+  \hspace{-2.3pt}$\bullet$ \hspace{5pt}%
+}
+
+\newcommand{\degree}{^\circ}
+\newcommand{\diff}{\textnormal{d}}
+\newcommand{\tenpo}[1]{ 10^{#1}}
+\newcommand{\greek}[1]{\greektext#1\latintext}
+\newcommand{\ix}[1]{_\text{#1}}
+\newcommand{\imag}{\mathbf{i}}
+\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand{\grad}[1]{\textit{grad}\left(#1\right)}
+\newcommand{\divergenz}[1]{\textit{div}\left(#1\right)}
+\newcommand{\euler}{\mathnormal{e}}
+\newcommand{\fett}[1]{\textbf{#1}}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+
+
+\begin{document}%
+
+  \thispagestyle{empty}
+
+  \section*{%
+    PhD Thesis Timetable (17.03.25) for Philipp Hacker%
+  }%
+    
+  In accordance with the requirements of the faculty (head) for Mathematics and Natural Sciences of the University of Greifswald, a both retrospective and future-sighted timetable will be provided in order to address the finalisation of this thesis (\url{https://github.com/RayleighsJeans/ThesisLaTeX}).
+
+  \begin{table}[h!]%
+
+    \begin{tabular}{r |@{\foo} p{0.7\textwidth}}%
+
+        \dots & \dots\newline\\%
+        May 1st, 2021 & %
+        End of IPP contract; reviewed thesis at this stage $\sim150$p\newline\\%
+        \dots & \dots\newline\\%
+        March 2023 & %
+        Begin last stretch of writing (estimate necessary 2.5-3.5p weekly average, manage 3.43p), complete and add 152p\newline\\%
+        March 4th, 2024 & %
+        Shared first completed thesis (previously agreed upon contents, $\sim370$p total) with Prof. Dr. Klinger and colleagues\newline\\%
+        July 29th-31st, 2024 & %
+        Receive and discuss feedback, agree on strategy and changes going forward (estimate and aim for completion at end of 2024)\newline\\%
+        \dots & %
+        life happens %
+        \raisebox{-\mydepth}{\mbox{\includegraphics[height=\myheight]{figures/wickel.png}}} %
+        \raisebox{-\mydepth}{\mbox{\includegraphics[height=\myheight]{figures/clover.png}}} %
+        \raisebox{-\mydepth}{\mbox{\includegraphics[height=\myheight]{figures/ibm.png}}}\newline\\%
+        Status & \dots%
+
+    \end{tabular}%
+
+  \end{table}
+      
+  \par\noindent\rule{\textwidth}{0.4pt}
+
+  \flushleft%
+  \large\underline{Notes:}%
+
+\end{document}%
