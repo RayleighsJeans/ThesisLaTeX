@@ -194,84 +194,152 @@
         In the top left of \cref{fig:peak_parameters_QSQ}, the superimposed core electron density slightly increases with larger $\Delta P\ix{rad}$ for smaller gas flows. At higher injection intensities, few data points scattered along the ordinate and at very low radiation impact also indicate higher $n\ix{e}$. Similar to \cref{fig:peak_parameters_QSQ}, on the bottom left larger $\Delta P\ix{rad}$ for small injection durations are noted with increasing input heating powers. The two right-hand plots show the same quantitative picture as before, where with larger $P\ix{ECRH}$ both electron density and radiation power loss fraction $f\ix{rad}$ increase. Furthermore, the overall structure of the data point distributions are very similar. The top right image however does not feature an accumulation of points towards very high $f\ix{rad}$ and heating powers with $n\ix{e}\ge\,$\SI{10}{\per\cubic\meter}.\\%
         From \cref{fig:peak_database_H2} through \cref{fig:peak_parameters_Main}, one can summarize that, in general, a gas injection with moderate intensity and duration is most suited for radiatively cooling the scrape-off layer and thereby potentially improving its overall performance with regard to increasing electron density and temperature. Besides the apparent differences in application, i.e. construction and methodology, no significant qualitative change in plasma radiation response between thermal gas feedback valve and main gas inlet is found. That said, this is concluded with respect to the implied direct causality (algorithm), where the action-reaction connection between the gas pulse and peak in radiation power loss is implied. As stated before, and supported by the very similar results in \cref{fig:peak_parameters_Main}, the algorithmically established peak database adheres to the same plasma (performance) scaling laws which have been established for steady state conditions. Finally, in reference to the scientific questions posed in the beginning of this \cref{chap:feedbackeval}, so far no correlation between the activation of the feedback, the radiation power loss and underlying plasma parameters could be established.%
 
-%% RESIDUAL
 
-% STRAHL
-% \begin{align}%
-%     \begin{split}%
-%         \Phi\ix{0}=4\pi r\ix{bound}v\ix{0}n_{\text{i,}0}\left(r\ix{out}\right)\\%
-%         S_{\text{i,}0\to 1}\overset{!}{=}S_{\text{i,}0}=n\ix{0}\left(r\right)n\ix{e}\left(r\right)Q_{\text{i,}0}\left(r\right)\\%
-%         n\ix{0}\left(r\right)=\frac{n\ix{0}\left(r\ix{out}\right)r\ix{out}}{r}\exp{\left(-\displaystyle\int_{r}^{r\ix{out}}\frac{n\ix{e}Q_{\text{i,}0}}{v\ix{0}}\diff r\right)}%
-%     \end{split}%
-% \end{align}%
+\chapter{Line-of-Sight Senstivity Evaluation}%
 %
-% \begin{align}%
-%     \begin{split}%
-%         D\ix{i,Z}\head{cl}=&\left(\frac{\partial\Psi\ix{pol}}{\partial r}\right)^{-2}\left\langle\frac{R^{2}B^{2}\ix{pol}}{B^[2]}\right\rangle\,\frac{m\ix{i}k\ix{B}T\ix{i}\nu\ix{i,D}}{e^{2}Z^{2}}\\%
-%         v\ix{i,Z}\head{cl}=&D\ix{i,Z}\head{cl}Z\,\left(\frac{\diff\left(\ln\,n\ix{D}\right)}{\diff r}-\frac{1}{2}\frac{\diff\left(\ln\,T\ix{i}\right)}{\diff r}\right)\\%
-%         \nu\ix{i,D}=&\frac{4e^{4}\sqrt{2\pi}}{m\ix{e}}\sqrt{\frac{m\ix{i}m\ix{D}}{m\ix{i}+m\ix{D}}}\frac{Z\ix{i}^{2}Z\ix{D}^{2}\ln\,\Lambda}{\left(k\ix{B}T\right)^{3/2}}\,n\ix{D}%
-%     \end{split}%
-% \end{align}%
+    \section{Fourier Transform Correlation}\label{sec:fouriercorrelate}%
 %
-% \begin{align}%
-%     \begin{split}%
-%         D\ix{i,Z}\head{PS}=&\left(\frac{\partial\Psi\ix{pol}}{\partial r}\right)^{-2}\left\langle RB\ix{tor}\right\rangle^{2}\left(\left\langle B^{-2}\right\rangle-\left\langle B^{2}\right\rangle^{-1}\right)K\ix{PS}\frac{m\ix{i}k\ix{B}T\ix{i}\nu\ix{i,D}}{e^{2}Z^{2}}\\%
-%         v\ix{i,Z}\head{PS}=&D\ix{i,Z}\head{PS}\,Z\left(\frac{\diff\left(\ln n\ix{D}\right)}{\diff r}+F\ix{PS}\left(\varepsilon,\,v^{\ast}\ix{D}\right)\frac{\diff\left(\ln T\ix{i}\right)}{\diff r}\right)%
-%     \end{split}%
-% \end{align}%
+        An additional evaluation method can be the \textit{Fourier transform correlation} metric, using the \textit{Fourier transform} $\mathcal{F}\left(\cdot\right)$ and cross correlation to calculate the likeness between $P\ix{rad}$ and the prediction $P\ix{pred}$. This transform finds the continuous frequency spectrum - the spectral function - for the provided aperiodic signals and calculates the similarity between them. The definition of the individual (spectral) transforms $\gamma\ix{i/j}$ can be found in \cref{eq:fourier_convolve_base}, including the map of both signals from their temporal to a frequency domain using the cross correlation.%
 %
-% \begin{align}%
-%     \begin{split}%
-%         D\ix{i,Z}\head{bp}=&\left(\frac{\partial\Psi\ix{pol}}{\partial r}\right)^{-2}\frac{\left\langle RB\ix{tor}\right\rangle^{2}}{\left\langle B^{2}\right\rangle}\frac{k\ix{B}T\ix{i}\mu\ix{i,D}^{\ast}}{e^{2}Z^{2}n\ix{i}}\\%
-%         v\ix{i,Z}\head{bp}=&D\ix{i,Z}\head{bp}\,Z\left(\frac{\diff \left(\ln n\ix{D}\right)}{\diff r}+F\ix{bp}\frac{\diff\left(\ln T\ix{i}\right)}{\diff r}\right)%
-%     \end{split}%
-% \end{align}%
+        \begin{align}%
+            \begin{split}\label{eq:fourier_convolve_base}%
+                \gamma\ix{i}=&\mathcal{F}\left(\int_{-\infty}^{\infty}P\ix{rad}\left(t-\tau\right)\diff\tau\right)\left(\omega\right)\\%
+                \gamma\ix{j}=&\mathcal{F}\left(\int_{-\infty}^{\infty}P\ix{pred}\left(t-\tau\right)\diff\tau\right)\left(\omega\right)\\%
+                g\ix{i,j}\left(\omega\right)=\frac{1}{T}&\int_{-\infty}^{\infty}\gamma\ix{i}\left(\omega\right)\gamma\ix{j}\left(\omega-\nu\right)\diff\nu%
+            \end{split}%
+        \end{align}%
 %
-
-% \subsubsection*{Fourier transform}%
-
-%     Fourier transform.%
-
-%     \begin{align}%
-%         \begin{split}\label{eq:fourier_base}%
-%             g\ix{i}=\mathcal{F}\left(P\ix{rad}\right)&\left(\omega\right)\,\qquad g\ix{j}=\mathcal{F}\left(P\ix{pred}^{\left(1\right)}\right)\left(\omega\right)\\%
-%             g\ix{i,j}\left(\omega\right)&=g\ix{i}^{\ast}\left(\omega\right)g\ix{j}\left(\omega\right)%
-%         \end{split}%
-%     \end{align}%
-
-%     \begin{align}%
-%         \begin{split}\label{eq:fourier}%
-%             \varphi\left(\omega\right)=\frac{\vert g\ix{i,j}^{2}\vert}{\vert g\ix{i}g\ix{j}\vert}\,,\qquad\vartheta=\int_{-\infty}^{\infty}\varphi\left(\omega\right)\diff \omega%
-%         \end{split}%
-%     \end{align}%
-
-% \subsubsection*{Coherence}%
-
-%     Coherence.%
-
-%     \begin{align}%
-%         \begin{split}\label{eq:coherence_base}%
-%             g\ix{i,T}\left(\omega\right)=&\mathcal{F}\left(P\ix{rad}\left(t\right)f\ix{T}\left(t\right)\right)\left(\omega\right)\,,\qquad f\ix{T}\left(t\right)=\left\{%
-%             \begin{array}{ll}%
-%                 1&,\,t\in T\\%
-%                 0&,\,\text{else}%
-%             \end{array}\right.\\%
-%             g\ix{j,T}\left(\omega\right)=&\mathcal{F}\left(P\ix{pred}^{\left(1\right)}\left(t\right)f\ix{T}\left(t\right)\right)\left(\omega\right)%
-%         \end{split}%
-%     \end{align}%
-
-%     \begin{align}%
-%         \begin{split}\label{eq:coherence_adv}%
-%             S\ix{kk}\left(\omega\right)=&\displaystyle\lim_{T\to\infty}\,\frac{1}{T}\,\vert g\ix{k,T}\left(\omega\right)\vert^{2}\,, \qquad k\in\{i\,,j\}\\%
-%             S\ix{ij}\left(\omega\right)=&\displaystyle\lim_{T\to\infty}\frac{1}{T}\left(g\ix{i,T}^{\ast}\ast\left(\omega\right)g\ix{j,T}\left(\omega\right)\right)\\%
-%             =&\int_{-\infty}^{\infty}\left(\displaystyle\lim_{T\to\infty}\frac{1}{T}\int_{-\infty}^{\infty}P\ix{rad}\left(t-\tau\right)f\ix{T}\left(t-\tau\right)\times\right.\\%
-%             &\hspace{1.25cm}\left.P\ix{pred}^{\left(1\right)}\left(t\right)f\ix{T}\left(t\right)\diff t\right)\euler^{-i2\pi\omega\tau}\diff\tau%
-%         \end{split}%
-%     \end{align}%
-
-%     \begin{align}%
-%         \begin{split}\label{eq:coherence}%
-%             \varphi\left(\omega\right)=\frac{\vert S\ix{ij}\left(\omega\right)\vert^{2}}{S\ix{ii}\left(\omega\right)S\ix{jj}\left(\omega\right)}\,,\qquad\vartheta=\displaystyle\int_{-\infty}^{\infty}\frac{\vert S\ix{ij}\left(\omega\right)\vert^{2}}{S\ix{ii}\left(\omega\right)S\ix{jj}\left(\omega\right)}\diff \omega%
-%         \end{split}%
-%     \end{align}%
+        To calculate the individual Fourier transforms of the temporally sampled signals for all pre-composed LOS combinations, a \textit{discrete fast Fourier transformation} routine (DFFT) from the integrated \textit{NumPy}\footnote[1]{NumPy is the fundamental package for scientific computing in Python; provides multidimensional array objects (masked and matrices), fast operations, including mathematical, logical, manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation} package, a mathematical Python\footnote[2]{high-level, interpreted, general-purpose programming language; designed with code readability as a priority} library is used\cite{NumPyFFT}. The resulting spectral function $\gamma\ix{i/j}$ describes the contribution of a frequency bin $\diff\omega$, a discrete part of the spectral domain $\left[0,N/\left(2\diff t\right)\right]$, to the corresponding signal\cite{NumPyFFTFreq}. This is also referred to as spectral (power) density and $g\ix{i,j}$ as cross-spectral density. The latter provides a measure for the likeness of the two corresponding signals, as it was already applied by the previous correlation metric. Hence, a larger $\gamma\ix{i/j}\left(\omega\right)$ corresponds to a larger contribution of that frequency bin to the signal and therefore $g\ix{i,j}\left(\omega\right)$ likewise to a stronger correlation between the two spectral profiles. A  metric is defined by $\varphi\left(\omega\right)$, analogous to the \textit{(magnitude-squared) coherence}\cite{WikiCoherence}, together with a respective map to a prediction quality $\vartheta$ in \cref{eq:fourier_convolve}.%
+%
+        \begin{align}%
+            \begin{split}\label{eq:fourier_convolve}%
+                \varphi\left(\omega\right)=\sqrt{%
+                    \frac{\vert g\ix{i,j}^{2}\vert}{\vert\gamma\ix{i}\gamma\ix{j}\vert}}%
+                \,,\qquad\vartheta=\int_{-\infty}^{\infty}\varphi\left(\omega\right)\diff \omega%
+            \end{split}%
+        \end{align}%
+%
+        The metric $\varphi\left(\omega\right)$ applies the coherence relation, however the spectral densities $g\ix{ii/jj}$ are exchanged with the absolute value of the product of the above Fourier transforms $\gamma\ix{i/j}$. The coherence estimates the relation between two signals, measuring the probability that one is reproducible by or predictable through the other. For the purpose of this evaluation, this appropriation provides adequate normalization and finds $\varphi$ in units of spectral power per frequency, i.e. spectral (power) density. Finally, the prediction quality $\vartheta$ for a LOS selection $S$ is calculated by integrating $\varphi$ over the spectral interval provided by the DFFT, yielding a single value in units of spectral power - here noted as a.u. for consistency.\\%
+        An example for the results from \cref{eq:fourier_convolve_base} and \cref{eq:fourier_convolve} can be found in \cref{fig:fourier_correlation} on the left. Like before, for a combination of $P\ix{rad,HBC}$ and prediction $P\ix{pred}$ from a LOS  selection with $m=3$, the metric $\varphi\left(\omega\right)$ and subsequent quality $\vartheta$ are calculated and presented on the left. The spectral density profile is superimposed with a different abscissa in units of frequency on the top. The final prediction quality is noted in the bottom right corner. Due to the nature of the DFFT routine, the spectral profile extends to the negative frequency range and, in this case, is mirrored around zero. Frequency bins with $\omega<0$ correspond to the imaginary part of the spectrum. If the complex contributions are identical to the real, i.e. the negative is the mirror image of the positive part, the provided signals and their coherence are found to be exclusively real\cite{Cooley1965}. On the right-hand side, the full results of all three channel combination predictions for the Fourier transform metric is shown.\\%
+        Immediately, when examining the results on the left, a stark contrast to the previous metrics is noticeable. When comparing to the results of all three channel combinations on the right, this prediction appears to yield favourable results, however, the two signals $P\ix{rad}$ and $P\ix{pred}$ are particularly disjoint. The plot on the right of \cref{fig:fourier_correlation} shows all unsorted prediction qualities $\vartheta$ as calculated by \cref{eq:fourier_convolve} for selections with $m=3$. The spectrum of results reaches from \SIrange{2e3}{3.4e4}{\arbitraryunit}, while the majority of LOS selections $S$ achieve qualities around \SIrange{1e4}{1.5e4}{\arbitraryunit}. Individual predictions differ up to \SI{2e4}{\arbitraryunit} or $>50\%$ with one channel exchanged. In this case, the second half of the spectrum of combinations shows consistently smaller values of $\vartheta$. This range of three channel selection permutations collectively yields generally less accurate predictions of the plasma radiation loss, indicating a significantly weaker sensitivity of at least one or more channels to the overall measurement.\\%
+%
+        \begin{figure}[t]%
+            \centering%
+            \begin{subfigure}{0.43\textwidth}%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter3/training/best_combs/%
+                    best_comb_fft_and_convolve_C[4_20_30].pdf}%
+                \caption{}%
+            \end{subfigure}%
+            \hfill%
+            \begin{subfigure}{0.47\textwidth}%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter3/training/%
+                    fft_and_convolve_3_HBCm_combinations.pdf}%
+                \caption{}%
+            \end{subfigure}%
+            \caption{Example of how the quality of the prediction for the \textit{FT correlation} metric is calculated for the previously discussed XP20181010.32. \textbf{(a)} Comparison of traces $\varphi\left(t\right)$, calculated using \cref{eq:mean_deviation}, $P\ix{rad}$ and $P\ix{pred}^{\left(1\right)}$ for a subset of three channels of the HBC. \textbf{(b)} Overview of 900 different combinations of three channel subsets for $\vartheta$.}\label{fig:fourier_correlation}%
+        \end{figure}%
+%
+        The collected and averaged LOS sensitivity for three, five and seven channel selection sizes are shown in \cref{fig:results_fourier_correlation}. The plots are constructed the same way as for the previous evaluation metrics, featuring the results for all selection sizes $m$ of the horizontal bolometer camera on the left and of the vertical camera on the right. All profiles are, with the exception of the global maxima around $0.38r\ix{a}$ for the HBCm and $-0.13r\ix{a}$ for the VBC, in the range of \SIrange{2}{6e4}{\arbitraryunit} On the left, the different selection sizes yield qualitatively and, along most of the radial spectrum, quantitatively very similar values. In fact, the profile for $m=5$ and $m=7$ are respectively lower than the prior, except around the center LOS no. 15 of the HBC. Only on both ends of the camera fan, i.e. towards $\pm1.25r\ix{a}$ and at the global maximum location, the LOS combinations with $m=3$ provide higher prediction accuracy. However, in those locations, the latter also has larger uncertainties as indicated by the accompanying error bars. Local maxima are also found here towards $r\ix{a}$, $-0.4r\ix{a}$ and $0.7r\ix{a}$. The individual average prediction quality uncertainties decrease with selection size, while they are increased for the local maxima, especially the global maximum at $0.38r\ix{a}$.\\%
+%
+        \begin{figure}[t]%
+            \centering%
+            \begin{subfigure}{0.47\textwidth}%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter3/training/%
+                    fft_and_convolve_sensitivity_combs_HBCm.pdf}%
+                \caption{}%
+            \end{subfigure}%
+            \hfill%
+            \begin{subfigure}{0.47\textwidth}%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter3/training/%
+                    fft_and_convolve_sensitivity_combs_VBC.pdf}%
+                \caption{}%
+            \end{subfigure}%
+            \caption{Average prediction quality $\vartheta$ over a large number of experiments for combinations of three, five and seven channels using the \textit{FT correlation} metric. Prediction selections were limited to one of the individual camera arrays \textbf{(a)} HBCm and \textbf{(b)} VBC.}\label{fig:results_fourier_correlation}%
+        \end{figure}%
+%
+        The results for the vertical bolometer camera on the right-hand side generally are in strong quantitative and qualitative agreement with each other, while in contrast to the HBC profiles on the left, $m=7$ shows the overall largest average prediction quality. Except for the radial interval of $-0.13r\ix{a}$-$0.4r\ix{a}$, the individual plots are nearly congruent and hence well within their respective error bars of less than \SI{2e4}{\arbitraryunit} or 30\%. The quality profile for predictions with seven LOS yields higher results between the global maximum and $0.5r\ix{a}$. Here, shallower local maxima are located around $-0.75r\ix{a}$, $-0.35r\ix{a}$ and $0.65r\ix{a}$. The global and a local minimum are located either side, adjacent to the maximum in $-0.2r\ix{a}$ and $0$. Generally, $m=7$ provides the highest average prediction quality, except for measurements involving LOS between no. 64 and 6, where $m=3$ shows the best results.\\%
+        The \textit{Fourier transform correlation} focuses on the spectral correlation between the prediction and full data set $P\ix{rad}$. The above results in \cref{fig:results_fourier_correlation} show very similar features and characteristics as can be found in \cref{fig:results_correlation} for the \textit{correlation metric}. The global maximum in the prediction profile of the vertical bolometer camera is located at the same radius and features a nearly identical contour on both sides of the LOS spectrum. The relation between the individual selection size lines, with respect to the absolute level of $\vartheta$, and the qualitative plot profile also are virtually congruent to that in the latter figure. The only noticeably difference, besides the quantitative details, are the relative size of the error bars and intensity of the local extremes towards the negative end of the radial spectrum, i.e. $-1.25r\ix{a}$, which are more pronounced in \cref{fig:results_correlation}. However, this does not hold entirely true for the HBC predictions on the left. The negative part of the selection profiles generally reflect the results of the correlation metric, besides the quantitative differences and relative error bar sizes. Again, location and shape of the local maxima here are similar, while also being less intense than in the previous image. Contrary to \cref{fig:results_correlation}, the global maximum is featured on the right side of the radial spectrum in $0.38r\ix{a}$ instead of $-0.85r\ix{a}$. Beyond that, additional maxima can be found only for the Fourier transform correlation with significantly lower relative peak height than the secondary extremes in the prior plot.\\%
+        The presented quality profiles provide a measurement of the spectral likeness between the prediction and $P\ix{rad}$, contrasting the previously examined correlation metric by excluding quantitative contributions to the above results. Again, the horizontal bolometer shows that LOS viewing along the inside of the separatrix and SOL, as well as across the triangular plane and inboard side located X-points present the lowest prediction quality. However, channel no. 20 viewing the upper inboard facing X-point is an exception, which for $m=3$ features the global maximum - this is also indicated by channel no. 9, at a much lower intensity however, watching the corresponding lower magnetic island intersection. Average prediction qualities are higher outside the separatrix and inside the scrape-off layer, indicating a similarly increased sensitivity for feedback frequency responses of $P\ix{pred}$ in $P\ix{rad}$. Lines of sight viewing this part of the plasma yield line integrated measurements along the separatrix, from multiple upper and lower magnetic islands, as well as X-points. In particular, channel no. 4 focuses on the lower inboard X-point and no. 27 the upside located counterpart. Increased values of $\vartheta$ towards $\pm1.25r\ix{a}$ indicate similar contributions from both midplane and outboard islands, including the corresponding SOL separatrix intersections. Results of the vertical bolometer camera support the above examinations, where the global maximum also views the upper inboard X-point. Lines of sight watching only the plasma core and surrounding magnetic islands show relatively decreased average prediction qualities, which in context of the above observations about the separatrix intersections underlines the latter results. Conclusively, the Fourier transform correlation finds the largest local sensitivity of spectral representations in $P\ix{rad}$ to come from channels viewing X-points in the scrape-off-layer and more specifically the one located upside inboard of the triangular bolometer plane. With respect to the very similar results of the \textit{correlation metric} in \cref{fig:results_correlation}, the only significant qualitative change can be found in the radial location of the global maximum of the HBC prediction profile. Exclusion of the contribution of absolute values to the prediction quality yields a shift of the maximum from the top inboard magnetic islands to the below neighbouring X-point.%
+%
+    \section{Plasma Parameter Sensitivity Analysis}\label{sec:senseresults}%
+%
+        Median values of the central plasma parameters, i.e. microwave heating power $P\ix{ECRH}$, outboard electron temperature $T\ix{e}$ and radiative plasma power loss $P\ix{rad}$ have been collected for all feedback controlled experiments from the respective campaign. Based on this information, the results from, e.g. the \textit{weighted deviation} in \cref{fig:results_weighted_deviation} or any other metric can be used to correlate their findings with the governing plasma parameters. For the sake of clarity, the aforementioned weighted deviation and its prediction results where chosen to apply the above approach. The results can be found in \cref{fig:training_parameters}. For a selection $S$ of $m$ channels, the weighted deviation metric $\varphi^{\ast}$ finds a quality value $\vartheta$ for the calculated $P\ix{pred}$, given $P\ix{rad}$ and accompanying plasma parameters. Conclusively, this yields a map from LOS selection and characteristic plasma parameters, including $P\ix{ECRH}$, $P\ix{rad}$, $T\ix{e,out}$ etc., to one singular measure for prediction efficacy%
+%
+        \begin{align}%
+            \begin{split}\label{eq:sensitivity_parameter_map}%
+                \vartheta\coloneqq &f\left(S,\,\varphi^{\ast},\,\textit{plasma parameters}\right)\colon\mathbb{N}^{m}\times\mathbb{R}^{n}\to\mathbb{R}\,\,.%
+            \end{split}%
+        \end{align}%
+%
+        \begin{figure}[t]%
+            \parbox{0.44\linewidth}{%
+                \centering\,\,\,\,\textbf{HBC}}%
+            \quad%
+            \parbox{0.44\linewidth}{%
+                \centering\,\,\,\,\textbf{VBC}}%
+            \,\vspace*{0.2cm}\\%
+            \parbox{0.02\linewidth}{%
+                \textbf{(a)}}%
+            \quad%
+            \parbox{0.42\linewidth}{%
+                \includegraphics[width=\linewidth]{%
+                    content/figures/chapter3/training/%
+                    weighted_deviation_sensitivity_params_ECRH_HBCm.pdf}}%
+            \quad%
+            \parbox{0.42\linewidth}{%
+                \includegraphics[width=\linewidth]{%
+                    content/figures/chapter3/training/%
+                    weighted_deviation_sensitivity_params_ECRH_VBC.pdf}}%
+            \quad%
+            \parbox{0.02\linewidth}{%
+                \textbf{(b)}}%
+            \,\\%
+            \parbox{0.02\linewidth}{%
+                \textbf{(c)}}%
+            \quad%
+            \parbox{0.42\linewidth}{%
+                \includegraphics[width=\linewidth]{%
+                    content/figures/chapter3/training/%
+                    weighted_deviation_sensitivity_params_frad_HBCm.pdf}}%
+            \quad%
+            \parbox{0.42\linewidth}{%
+                \includegraphics[width=\linewidth]{%
+                    content/figures/chapter3/training/%
+                    weighted_deviation_sensitivity_params_frad_VBC.pdf}}%
+            \quad%
+            \parbox{0.02\linewidth}{%
+                \textbf{(d)}}%
+            \,\\%
+            \parbox{0.02\linewidth}{%
+                \textbf{(e)}}%
+            \quad%
+            \parbox{0.42\linewidth}{%
+                \includegraphics[width=\linewidth]{%
+                    content/figures/chapter3/training/%
+                    weighted_deviation_sensitivity_params_Te_out_HBCm.pdf}}%
+            \quad%
+            \parbox{0.42\linewidth}{%
+                \includegraphics[width=\linewidth]{%
+                    content/figures/chapter3/training/%
+                    weighted_deviation_sensitivity_params_Te_out_VBC.pdf}}%
+            \quad%
+            \parbox{0.02\linewidth}{%
+                \textbf{(f)}}%
+            \caption{Experiment parameter analysis for the \textit{weighted deviation} metric and the corresponding sensitivity results shown in \cref{fig:results_weighted_deviation}. Included are maps of both cameras each for parameters \textbf{(a)}, \textbf{(b)} microwave heating $P\ix{ECRH}$, \textbf{(c)}, \textbf{(d)} radiation fraction $f\ix{rad}$ and \textbf{(e)}, \textbf{(f)} core electron temperature $T\ix{e}$.%
+            }\label{fig:training_parameters}%
+        \end{figure}%
+%
+        This section will only focus on the results for $m=3$ in \cref{fig:results_weighted_deviation}, producing the coloured, two-dimensional height map in \cref{fig:training_parameters}. The top line of plots shows the combined individual selection prediction qualities of HBC and VBC from before with their corresponding median plasma heatings powers $P\ix{ECRH}$. The following two figures below correlate the previous profiles with the median radiative power loss $P\ix{rad}$ to find the radiation fraction $f\ix{rad}$. Due to differences in the two bolometric measurements, the colour scales are different here between the cameras. Finally, the last two images show the same results superimposed with the median core electron temperature $T\ix{e}$. All plots span the same ordinate ranges of $r\in\left[-1.26,\,1.29\right]r\ix{a}$ or $\left[-1.19,\,0.95\right]r\ix{a}$ for the HBC and VBC respectively, as well as abscissa range of $\vartheta\in\left[0,0.95\right]$\,a.u.\\%
+        On the top row, \cref{fig:training_parameters}:(a) and (b), the resulting $P\ix{ECRH}$ brightness profiles show heating powers of up to \SI{4.2}{\mega\watt} for both cameras and feature very similar structures. The images are presented with distinct gaps between \SIrange{0.25}{0.5}{\arbitraryunit} across the entire radial spectrum with few bright spots for exceptions. Algorithmically omitted HBC channels no. 11 and 22, as well as VBC channels no. 9 and 20 produce the same features vertically and therefore separates each of the profiles into three individual structures at the top and bottom. Indicated heating powers for lower prediction qualities $\le$\SI{0.3}{\arbitraryunit} are noticeably reduced with $\le$\SI{3.5}{\mega\watt} when compared to higher $\vartheta\ge$\SI{0.5}{\arbitraryunit} at $\ge$\SI{4}{\mega\watt}. The latter shows no visible structures in colouring or shape of the profile besides a minor descending gradient towards lesser quality values. At \SI{0.75}{\arbitraryunit} and \SI{1.5}{\arbitraryunit}, the bottom part of the plots features two characteristic lines with similar gradients in vertical direction. In between and above \SI{0.85}{\arbitraryunit}, single points with $>$\SI{0}{\mega\watt} appear sporadically distributed and random. For the HBC, edges of the top and bottom part of the image are generally unspecific, though the left- and rightmost portion with $\le\,-0.35r\ix{a}$ and $\ge\,0.7r\ix{a}$ consistently show lower qualities than the center. Similar features can be found at the bottom, while on the left the metric produces slightly higher $\vartheta$ for the given selection of LOS and experiments. The VBC shows an increased amount of structures with lower brightness or $P\ix{ECRH}$ above \SI{0.8}{\arbitraryunit} The upper left and right section at $<-0.65r\ix{a}$ and $>0.1r\ix{a}$ of the profile also extend further downward when compared to the HBC, which is also true only for the bottom left part below $-0.4r\ix{a}$.\\%
+        The next line of plots, \cref{fig:training_parameters}:(c) and (d), shows the radiation fraction $f\ix{rad}$ as a brightness profile over the minimum plasma radius along the LOS and mean deviation prediction quality in the same way as before. Due to the correlation $f\ix{rad}\sim P\ix{rad}/P\ix{ECRH}$, both images largely show the same results, with vertical gaps at the omitted channel numbers and a large void in the center of the quality spectrum like above. However, since $P\ix{rad,HBC}\neq P\ix{rad,VBC}$, the radiation fraction or brightness ranges from \SIrange{0}{1}{\arbitraryunit} or \SI{1.08}{\arbitraryunit} for the individual cameras respectively. The top part of the HBC plot is very similar in outline, but features a reduced brightness or smaller values of $f\ix{rad}$ of \SIrange{0.2}{0.4}{\arbitraryunit} Within the smooth profile is a bright line at \SI{0.75}{\arbitraryunit} across the entire radial spectrum with a radiation fraction of $\approx$\SI{0.65}{\arbitraryunit}. At the bottom, a singular bright structure is located at \SI{0.15}{\arbitraryunit} with $f\ix{rad}\sim$\SI{0.9}{\arbitraryunit}, while results for lower prediction qualities are negligible. The same image presents on the other side in \cref{fig:training_parameters}:(d) for the VBC, where the top part of the distribution is similarly shaped but significantly decreased in brightness or $f\ix{rad}$, and the bottom is reduced to one bright feature at the same $\vartheta$ as in the HBC plot.\\%
+        The last row of images shows the brightness profile of the core electron temperature $T\ix{e}$ from the same set of experiments as before. Results for the horizontal bolometer camera on the left in \cref{fig:training_parameters}:(e) are largely very similar in shape to the two prior plots. The gap in-between the top and bottom part is slightly increased due to the reduced distribution for higher prediction qualities $>$\SI{0.65}{\arbitraryunit} This also features a higher brightness between \SIrange{0.7}{0.75}{\arbitraryunit} of $\approx$\SI{1.3}{\kilo\electronvolt} and a local maximum towards \SI{1}{\arbitraryunit} of \SI{1.45}{\kilo\electronvolt}. At the bottom, the profiles structures are much more strongly separated, with an increased temperature of \SI{1.2}{\kilo\electronvolt} between \SIrange{0.05}{0.1}{\arbitraryunit} The global brightness maximum of \SI{1.6}{\kilo\electronvolt} can be found at \SIrange{0.2}{0.25}{\arbitraryunit} between $-1.25--0.05r\ix{a}$. Finally, the same is true for \cref{fig:training_parameters}:(f), where the structure of the VBC electron temperature profile is a combination of the prior two, and the brightness distribution features pronounced local extremes at the top and bottom. Most prominently, the highest brightness of \SI{1.65}{\kilo\electronvolt} is located between \SIrange{0.85}{0.95}{\arbitraryunit} and $-1.15--\,-0.25r\ix{a}$, with an additional local maximum below around \SI{0.7}{\arbitraryunit} across the radial spectrum. Similarly, the bottom part shows two characteristics with distinctly higher temperatures of $\sim$\SI{1.5}{\kilo\electronvolt}: around the same radial space as the maximum at up to \SI{0.05}{\arbitraryunit} and a singular bright spot at $-0.55r\ix{a}$ and \SI{0.25}{\arbitraryunit} Also, a slightly increased temperature can be seen just below \SI{0.1}{\arbitraryunit} for a few LOS with $>-0.25r\ix{a}$.\\%
+        The presented results in \cref{fig:training_parameters} all outline a very similar picture due to the underlying LOS prediction quality profile, calculated from the same experimental data set using the \textit{weighted deviation} metric. Small variations in the shape of the plots are due to the evaluation of the corresponding plasma parameter, which potentially yield negligible or no results, i.e.$\sim0$. In this case, this is interpreted as the background colour, since omitted channels and combinations of $\left\{r\ix{a}, \vartheta\ix{S}\right\}$ that yield no results also correspond to $0$. The most notable feature is the distinguishable gap in $\vartheta$ between $\approx$\SIrange{0.3}{0.5}{\arbitraryunit}, containing only few single spots with no pattern whatsoever. On one hand, qualitatively, profiles of the two cameras match very well throughout the series of plots, where overall shape, global extremes location and absolute values are in good agreement. On the other hand, the brightness profiles greatly differ for each camera across the individual colour axis, i.e. $P\ix{ECRH}$, $f\ix{rad}$ etc. At the top, a large range of prediction qualities \SIrange{0.5}{0.85}{\arbitraryunit} is found for the highest heating power of \SI{4.2}{\mega\watt}, while the bottom of the same plot features a decreased brightness of \SI{3.6}{\mega\watt} and narrower profile shape. Correspondingly, the highest $f\ix{rad}>$\SI{0.8}{\arbitraryunit} yield the lowest $\vartheta<$\SI{0.3}{\arbitraryunit}, with higher predictions qualities linked to slightly reduced radiation fractions above \SI{0.75}{\arbitraryunit} for both cameras. This plot also does not provide results at the bottom below \SI{0.1}{\arbitraryunit} Finally, in the last set of images, electron temperatures of $>$\SI{0.9}{\kilo\electronvolt} coincide with the full spectrum of prediction qualities for all featured LOS combinations and radii. However, increased $T\ix{e}>$\SI{1.2}{\kilo\electronvolt} can be found for $\vartheta<$\SI{0.15}{\arbitraryunit} or at \SI{0.7}{\arbitraryunit} consistently and for a small range of LOS towards the negative end of the radial spectrum across all qualities.\\%
+        The presented results in \cref{fig:training_parameters} provide a detailed insight into the correlation between central plasma parameters and the efficacy of individual bolometer channels towards a radiation power loss prediction. First and foremost, this shows that either the applied \textit{weighted deviation} evaluation metric yields no results for, or that combinations with a medium prediction quality, i.e. $\sim$\SI{0.5}{\arbitraryunit} correspond only to negligible plasma parameters. Considering the manually selected combination of experiments and evaluation procedure, the latter is the more plausible cause.  Within the scope of the above analysis, this is synonymous with the fact that only $\vartheta$ significantly below or above \SI{0.5}{\arbitraryunit} are found for the selection of LOS combinations. Furthermore, higher heating powers $P\ix{ECRH}$ correlate with an overall increased predictability of $P\ix{rad}$, while this is inversely linked to the respective radiation fraction $f\ix{rad}$. However, around prediction qualities of $\sim$\SI{0.75}{\arbitraryunit}, a significantly increased $f\ix{rad}$ compared to the surrounding profile of $<$\SI{0.5}{\arbitraryunit} can be found, indicating that at higher radiation loss fractions there exists an improved $\vartheta$. Finally, a similar picture is found for electron temperature measurements, where around the same prediction quality of \SI{0.75}{\arbitraryunit} and above \SI{0.9}{\arbitraryunit} a relatively higher value of \SI{1.3}{\kilo\electronvolt} is found across all LOS. However, consistently greater $T\ix{e}$ and also its global maximum are located at distinctly lower weighted deviation metric results <\SI{0.4}{\arbitraryunit} Furthermore, the latter applies only for LOS with $r<0.4r\ix{a}$, i.e. towards the lower inboard side of the triangular plane, close to the aperture of the VBC camera array and two neighbouring islands. In conclusion, both camera datasets are in very good agreement with each other, from which very confidently experimental configurations can be preset to achieve good plasma radiation predictability. Discharges with medium to high heating powers, $\ge$\SI{3.5}{\mega\watt}, core electron temperatures of $\sim$\SI{1.3}{\kilo\electronvolt} and radiation loss fractions >\SI{0.75}{\arbitraryunit} consistently fit well to the above methodology across all LOS combinations.\\%
+%
+        \newline%
+        This section serves as a robust study for the application and local sensitivity of plasma radiation feedback for future experiment campaigns. Hence, closing this particular investigation and referring back to the originally posed questions in the beginning of this chapter, sets of discharge configurations and corresponding line of sight combinations have been identified to positively correlate with the quality of the real-time radiation prediction. Therefore, there \textit{does exist an optimal set $S$ of LOS for a range of given plasma parameters}. The following section will try to answer the remaining question, posed in the beginning of this chapter, regarding the cause of the plasmas behaviour and LOS sensitivity under feedback conditions.%
 %
