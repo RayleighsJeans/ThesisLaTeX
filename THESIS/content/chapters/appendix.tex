@@ -400,3 +400,86 @@
 %
         \newline%
         The STRAHL simulation results for four different sets of experimentally measured kinetic profiles of electron temperature and density at specific radiation fraction levels from discharge XP20181010.32 with constant geometry, magnetic configuration and transport coefficients have thereby been presented. The significance of carbon in this particular case has been underlined, while showing that radiation from oxygen impurities is at least $10^{2}$ times smaller than emissions of the prior. Due to the peaked temperature profile shape and intrinsic transport of convection and diffusion, as indicated by \cref{fig:transp_lines_91_92}, the most relevant part of the simulation domain towards the LOS radiation sensitivity and chord brightness profiles for feedback scenarios is found to be centred around the separatrix. Furthermore, by comparing the $T\ix{e}$ and $n\ix{e}$ profiles next to their corresponding transport and radiation calculation results, the importance of shapes and absolute values in the input data is highlighted. At lower radiation fractions, i.e. 33\% and 66\%, a more than twofold increase in SOL emissivity is found for increments as small as \SI{6}{\electronvolt} or $\sim10\%$ in separatrix temperature and 43\% in density. Results from the second step in $f\ix{rad}$ support this fact, since for a 10\% higher power loss, $T\ix{e}$ at and beyond the LCFS is greatly reduced. Subsequently, the profiles of $f\ix{A}$ and $P\ix{diag}$ are changed drastically both quantitatively and qualitatively. The first set of comparisons is exhibited under nearly unchanged factional abundances, relative emissivities and $\sim5\%$ higher peak carbon concentration directly at the divertor. The population of carbon ions is largely dominated by fully ionized C$^{6+}$ up until the LCFS in any case. At around \SI{0.5}{\kilo\electronvolt} and below, lower charge states begin to appear. At even lower temperatures and therefore further outside and into the SOL, the impurity species are rearranged (in-)to the next lower, and finally doubly/singly charged C$^{1/2+}$ or carbon atoms at the limiting surface - due to recombinations and seeding from the divertor. However, those lesser charged carbon ions exist at a significantly higher concentration in the SOL due to the reduced background plasma density and radiate much stronger than C$^{6+}$ in the core. Hence, STRAHL finds the maximum of the one-dimensional radiation distribution for this set of coefficients to be in the SOL for all but one level, $f\ix{rad}=100\%$. With the limited validity of STRAHL simulations beyond closed flux surfaces and the overall poor quality of kinetic profiles - \textit{Thomson scattering} data were unreliable and were unavailable outside the separatrix - in mind, only the very last set of results is of relevance towards this particular investigation. Variations in the corresponding $T\ix{e}$ profile around the separatrix coincide significantly with the changes in the individual carbon ion emissivity profiles and resulting radiation distribution. This combination of parameters yields the only results relevant for modelling feedback scenarios in STRAHL towards the LOS sensitivity of the bolometer diagnostic. Furthermore, the STRAHL profiles in \cref{fig:total_rad_93_94_edge} are especially interesting for predicting and understanding potential (controlled) detachment processes under those circumstances, which ultimately is among the prospects for the real time radiation feedback system.%
+%
+    \section{Parameter Variation}\label{apx:strahlvar}%
+%
+        \subsubsection*{Electron Profile Decay Length Variation}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/nete/%
+                            compare_ne_Te_94_105_edge.png}%
+                    }%
+                \end{minipage}%
+                \hfill%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/fract_abund/%
+                            compare_fract_abund_94_105_edge.png}%
+                    }%
+                \end{minipage}%
+                \captionof{figure}{Comparison between two sets of input electron profiles and corresponding STRAHL simulation results around the separatrix - the fractional abundance is shown here -, both for $f\ix{rad}=100\%$ from experiment XP20181010.32. The decay length of the extrapolated profiles, beyond the last closed flux surface was varied. \textbf{(a)}: Electron density and temperature profiles from Thomson scattering measurements as before, where the decay length beyond the LCFS has been altered. \textbf{(b)}: fractional abundances of carbon from STRAHL simulation results, corresponding to the different profiles on the left.}\label{fig:nete_abund_94_105}%
+            \end{figure}%
+%
+            The second STRAHL input parameter variation is done using different constant SOL decay lengths $\lambda$ of \SI{5}{\centi\meter} and \SI{2}{\centi\meter}. Primarily, this dictates the shape and value of the input kinetic profiles for $T\ix{e}$ and $n\ix{e}$ outside the separatrix through changing the extrapolation methods coefficients. Like pointed out before, $\lambda=$\SI{5}{\centi\meter} is modelled after the plasma profile decay across a magnetic island inside the SOL, while \SI{2}{\centi\meter} is more akin to the drop over just open field lines. The respective kinetic input profile plots around the LCFS and carbon ion fractional abundances can be found in \cref{fig:nete_abund_94_105}. On the left, expectedly, the impact of variations in $\lambda$ is limited to the SOL, where for a decay length of \SI{2}{\centi\meter} $n\ix{e}$ drops significantly faster from the separatrix outwards, while only very small changes are visible for $T\ix{e}$. In both cases, the plasma core profiles are unaltered and their values at the LCFS are basically unchanged. The corresponding fractional abundances of carbon impurity ions on the right feature only very small or negligible differences in the core between the two $\lambda$. Inside the SOL, the relative C$^{6+}$, C$^{5+}$ and C$^{4+}$ counts increase by 12\%, 5\% and 2\%, respectively. Accordingly, the populations of C$^{3+}$, C$^{2+}$ and C$^{1+}$ remain at or decrease to 5\% by 6\% and 10\%. All $f\ix{A}$ profiles are relatively continuous or flat outside the separatrix and reach their individual plateau up until $1.1r\ix{a}$.\\%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/diag_lines/%
+                            compare_strahl_rad_ratios94_105_edge.png}
+                    }%
+                \end{minipage}%
+                \hfill%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/diag_lines/%
+                            compare_strahl_rad_94_105_edge.png}%
+                    }%
+                \end{minipage}%
+                \captionof{figure}{STRAHL simulation results of relative and total impurity radiation from carbon for the previously presented sets of electron density and temperature profiles around the separatrix in \cref{fig:nete_abund_94_105} for $f\ix{rad}=100\%$ from experiment XP20181010.32. \textbf{(a)}: relative radiation intensity for each individual ionisation stage of carbon. \textbf{(b)}: Absolute radiation power and integrated loss for the same ion species.}\label{fig:rad_ratios_total_94_105}%
+            \end{figure}%
+%
+            \cref{fig:rad_ratios_total_94_105} shows the individual relative emissivities $P\ix{i}$ on the left and their absolute value $P\ix{diag}$, as well as the total sum as the radiation power loss profile $P\ix{tot}$ on the right like before. Up to $0.9r\ix{a}$, there is no noticeable significant difference between the STRAHL results of the two sets of decay length $\lambda$. Beyond, at $\lambda=$\SI{2}{\centi\meter}, C$^{1+}$ is significantly compressed radially with a constant starting point in the core and its maximum slightly reduced to 20\% from 30\%. Therefore, $P\ix{1+}$ has its peak very much closer to the LCFS and a larger contribution to the plasma core radiation. In contrast, the factional abundance of C$^{2+}$ shows a minor reduction before and much stronger one at the LCFS. Outside  $f\ix{2+}$ no longer has a second local maximum like before and almost linearly drops to zero with C$^{1+}$. Lastly, the SOL part of C$^{3+}$ abundance appears strongly contracted towards the separatrix, which leads to an initially shallower drop and a conclusive sharp decline to zero before $1.15r\ix{a}$.\\%
+            The individual absolute carbon ion emissions in the top right reflect the changes examined on the left generally rather well, however their relative impact here varies between the species. For C$^{5+}$ and C$^{4+}$, their absolute emissivities are increased drastically when comparing to the variance in their fractional abundances, where they grow by at least \SI{7}{\kilo\watt\per\cubic\meter} in their local maximum. Inside the LCFS, similar differences are presented by C$^{3+}$ and C$^{2+}$, for which the increments are higher at \SIrange{10}{30}{\kilo\watt\per\cubic\meter}. Here, $P\ix{diag}$ of C$^{1+}$ has its maximum just in front of the separatrix at \SI{20}{\kilo\watt\per\cubic\meter} instead of in the SOL for $\lambda=$\SI{2}{\centi\meter}. Beyond $r\ix{a}$, the latter three ionization stages all decrease with a constant decay length equally, before reaching zero around $1.1r\ix{a}$. Besides C$^{1+}$, no radial shifts can be noted. Conclusively, the above variations are very clearly represented in $P\ix{tot}$ on the bottom. The plasma core radiation increments of \SIrange{5}{30}{\kilo\watt\per\cubic\meter} are reflected directly, whereas the previously found second maximum in the SOL is lost to the constant decay featured by the three lowest carbon ion charge states above.\\%
+            Parameter variations in the plasma edge decay length $\lambda$, through changes in the SOL part of the kinetic inputs $n\ix{e}$ and $T\ix{e}$, greatly impact the shape and height of the outside emissivity profiles. Furthermore, through transport, this indirectly also influences the absolute value of the core portion of said quantities. For large differences in the edge, small qualitative changes to the core part are possible, though no systematic radial shift inside each individual emissivity or the total radiation power can be found.%
+%
+        \subsubsection*{Radial Impurity Source Variation}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/fract_abund/%
+                            compare_fract_abund_82_94_edge.png}
+                    }%
+                \end{minipage}%
+                \hfill%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/diag_lines/%
+                            compare_strahl_rad_82_94_edge.png}%
+                    }%
+                \end{minipage}%
+                \captionof{figure}{STRAHL simulation results for different radial positions of the carbon impurity source around the separatrix in \cref{fig:nete_abund_94_105} for $f\ix{rad}=100\%$ from experiment XP20181010.32. \textbf{(a)}: fractional abundance of each individual ionisation stage of carbon. \textbf{(b)}: Absolute radiation power and integrated loss for the same ion species.}\label{fig:fract_abund_rad_total_82_94}%
+            \end{figure}%
+%
+            In order to further verify the robustness of the presented STRAHL results, the parameter model impurity source $S$ location, which is assumed to be the divertor at $r\ix{a}+$\SI{7.5}{\centi\meter}, will be varied. Contrary to before, this directly changes the impurity ion populations instead of the kinetic input plasma background or its extra- or interpolation. Therefore, \cref{fig:fract_abund_rad_total_82_94} only shows the fractional abundances on the left and the corresponding individual absolute emissivities and total impurity radiation on right. The previously presented $n\ix{e}$ and $T\ix{e}$ profiles for $f\ix{rad}=100\%$ in \cref{fig:nete_abund_lines_93_94_edge} remain the same in this case. Akin to the changes in $f\ix{A}$ profiles in \cref{fig:nete_abund_94_105}, differences between the individual fractional abundances for two radial source locations are almost exclusive to the SOL. Shifting the carbon impurity source $S$ to the separatrix leads to an increase of relative C$^{6+}$, C$^{5+}$ and C$^{4+}$ population in the SOL by $\sim7\%$ at the domain boundary. From the LCFS outward, the respective difference grows with distance until their plateau from $1.1r\ix{a}$ onward. Concurrently, the fractional abundances of C$^{2+}$ and C$^{1+}$ outside the separatrix decrease much more significantly from 11\% and 15\% to 4\% and 1\%. For C$^{4+}$ and C, the variations are very small, with a 1\% increase in $f\ix{4+}$ and a missing step at the divertor in carbon atom population for $S\,\rightarrow\,r\ix{a}$.\\%
+            On the right, the absolute radiation levels in $P\ix{diag}$ and $P\ix{tot}$ are, besides minor differences in the SOL decay rates, nearly congruent with those shown in \cref{fig:rad_ratios_total_94_105}. Here, the results for a source located at the LCFS would correspond to a set of STRAHL calculations with $\lambda=$\SI{2}{\centi\meter}. At the top, the plasma core emissivities for $S\,\rightarrow\,r\ix{a}$ are equal, within negligible variations in absolute height, to those for $\lambda=$\SI{2}{\centi\meter}. Outside the separatrix, the profile shape of all three lower ionization stages are defined by a steady decay from their value at the LCFS to zero before $1.15r\ix{a}$. However, in contrast to the above comparison, carbon atom emissions can be found just inside the core of up to \SI{5}{\kilo\watt\per\cubic\meter}. Conclusively, the total impurity radiation below is also a near copy of the results for a reduced SOL decay length, although with a less steep drop outside $r\ix{a}$.\\%
+            Changing the location of the impurity source $S$ and shifting it to the separatrix yields very similar if not equal results in core emissivity as a reduced kinetic profile decay length. More so, the corresponding SOL radiation is reduced and additional local maxima are missing. Therefore, no radial displacements of the individual and total carbon impurity emissions are found. The injection of carbon atoms at the LCFS yields a higher population of C$^{6+}$, as they are fully ionized at higher electron temperatures and densities and transported outward. Coincidentally, lower ion stage counts are greatly decreased or disappear entirely since much less carbon exists at radial locations where the respective reactions rate coefficients have a signal yield.%
+%
