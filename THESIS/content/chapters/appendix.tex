@@ -108,8 +108,7 @@
         \textbf{W7-X archive} $\leftarrow$ $P\ix{pred}^{\left(1\right)}$, $P\ix{pred}^{\left(2\right)}$, $\Delta U$, $\kappa$, $\tau$, $R$, calibration currents\;%
         \caption{Bolometer measurement routine and feedback.}%
     \end{algorithm}%
-
-
+%
 \chapter{Plasma feedback parameter analysis and LOS evaluation}\label{apx:feedbackeval}%
 %
     With respect to the challenges posed at the beginning of \cref{chap:feedbackeval}, an additional question concerning the prior results can be written as:%
@@ -117,6 +116,7 @@
     \begin{enumerate}%
         \item[3.]{%
             Is there, and if so what is the correlation of the activation of the thermal gas valves, the real time bolometer feedback system and the underlying plasma characteristics?}%
+    \end{enumerate}%
 %
     However, investigations and presented data have been either inconclusive or insufficient to answer this conclusively. For sake of completion, they will be shown and discussed below nevertheless so that they may aid successive experiments or analysis.%
 %
@@ -213,7 +213,7 @@
             \item[3.]{%
             %Is there, and if so what is the correlation of the activation of the thermal gas valves, the real time bolometer feedback system and the underlying plasma characteristics?}%
             There exists, given the current state of investigations, no particular correlation or scaling between the thermal feedback gas valves activation and underlying plasma characteristics. No such relation could either be found for the bolometer measured $P\ix{rad}$ in particular that goes beyond established steady state laws.}%
-        \begin{enumerate}%
+        \end{enumerate}%
 
     \section{Line-of-Sight Senstivity Evaluation}%
 %
@@ -360,3 +360,43 @@
             \newline%
             This serves as a robust study for the application and local sensitivity of plasma radiation feedback for future experiment campaigns. Hence, closing this particular investigation and referring back to the originally posed questions in the beginning of this chapter, sets of discharge configurations and corresponding line of sight combinations have been identified to positively correlate with the quality of the real-time radiation prediction. Therefore, there \textit{does exist an optimal set $S$ of LOS for a range of given plasma parameters}. The following section will try to answer the remaining question, posed in the beginning of this chapter, regarding the cause of the plasmas behaviour and LOS sensitivity under feedback conditions.%
 %
+\chapter{STRAHL modelling}\label{apx:strahl}%
+%
+    \section{Experimental Data}\label{apx:strahlexp}%
+%
+        \begin{figure}[t]%
+            \centering%
+            \begin{minipage}[b]{0.48\textwidth}%
+                \centering%
+                \subcaptionbox{}{%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter3/STRAHL/nete/%
+                        compare_ne_Te_93_94_edge.png}
+                }%
+            \end{minipage}%
+            \hfill%
+            \begin{minipage}[b]{0.48\textwidth}%
+                \centering%
+                \subcaptionbox{}{%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter3/STRAHL/diag_lines/%
+                        compare_strahl_rad_combine2_93_94_edge.png}%
+                }%
+            \end{minipage}%
+            \captionof{figure}{Comparison between \textit{Thomson scattering} data and corresponding STRAHL simulation results for $f\ix{rad}=90\%$ and $100\%$ from experiment XP20181010.32. \textbf{(a)}: Thomson scattering electron density and temperature data with individual second order spline interpolated lines (\textit{interp.}). \textbf{(b)}: STRAHL simulation results of carbon impurities. The top shows the fractional abundances and the bottom the radiation intensity fractions of the ionisation stages for carbon.}\label{fig:nete_abund_lines_93_94_edge}%
+        \end{figure}%
+%
+        \cref{fig:nete_abund_lines_93_94_edge} extends the previously displayed set of radiation fractions in \cref{subsec:strahl}, kinetic profiles and accompanying STRAHL simulation results. Here, the data and results for $f\ix{rad}=90\%$ and 100\% are presented. In contrast to before in \cref{fig:nete_abund_lines_91_92}, only the very edges of the plasma core and the SOL are shown by the remaining plots in order to focus on the most relevant areas for the intended investigation of chord brightness characteristics. Again, the left image shows the different experimentally measured electron temperature and density profiles from the Thomson scattering and their respective spline interpolations. The right image again shows the individual ion stage fractional abundances and relative radiation power loss contributions. At the top, $f\ix{6+}$ steadily declines until the separatrix for both radiation fractions. Only outside beyond $1.1r\ix{a}$ there is a significant difference, where for $f\ix{rad}=100\%$ the relative fully ionized carbon density is higher by $\sim15\%$, while both level off around the divertor location to 10\% and 25\% respectively. A similar behaviour can be noted for C$^{5+}$, which exhibits an even larger change from 5\% to 25\% at the domain boundary, though $f\ix{5+}$ has a local maximum closer of to the separatrix on the inside. The relative emissivities of the individual ions on the bottom present very strong differences around the LCFS between the two $f\ix{rad}$ levels. At 90\%, fully ionized carbon emissions decrease towards the SOL, but have a local maximum around $0.9r\ix{a}$ at $\sim27\%$. For $P\ix{rad}=P\ix{ECRH}$ the peak vanishes and $P\ix{6+}$ steadily falls before the separatrix. Increasing the radiation fraction leads to an outside shift towards the LCFS by $\sim$\SI{5}{\centi\meter} at constant peak values and change rates. With focus on the aforementioned local sensitivities towards radiation changes around the separatrix, the most significant variations between the different levels of $f\ix{rad}$ can be found for C$^{3+}$ and C$^{2+}$. At 90\% both feature their maximum outside the LCFS and have the majority of their emissions take place in the SOL. However, $P\ix{4+}$ begins to rapidly increase inside the core around $0.9r\ix{a}$ before reaching its peak just beyond $r\ix{a}$ and then more steadily decreasing towards the plasma boundary. Emissions from C$^{2+}$ only begin to increase at the separatrix and have their maximum of around $1.12r\ix{a}$. Going to $f\ix{rad}=100\%$ yields $P\ix{3+}$ to significantly shift closer to and around the LCFS. Similarly, $P\ix{2+}$ now starts to increase and has its peak just inside the plasma core, still featuring the bulk of the relative radiation power loss in the SOL.\\%
+%
+        \begin{figure}[t]%
+            \centering%
+                \includegraphics[width=0.5\textwidth]{%
+                    content/figures/chapter3/STRAHL/diag_lines/%
+                    compare_strahl_rad_93_94_edge.png}%
+            \captionof{figure}{Individual and total radiation intensities for carbon, corresponding to the previously shown one-dimensional STRAHL simulation results in \cref{fig:nete_abund_lines_93_94_edge}, for $f\ix{rad}=90\%$ and $100\%$.}\label{fig:total_rad_93_94_edge}%
+        \end{figure}%
+%
+        Concluding this exploration is \cref{fig:total_rad_93_94_edge}. Shown here are the individual and total absolute impurity emissivities close to and outside the separatrix for $f\ix{rad}=90\%$ and 100\% as before. For convenience, a more detailed description of the respective profiles for C$^{6+}$ through C$^{4+}$ will be omitted, since it has been established multiple times up until this point that their contribution is largely, if not entirely limited to the plasma core and does not yield particular impact on the local emissivity around the LCFS. Note however that the emission inside the separatrix of $P\ix{5+}$ and $P\ix{4+}$ are greatly increased for $f\ix{rad}=100\%$. Emissions from C$^{3+}$, with a peak of \SI{50}{\kilo\watt\per\cubic\meter} at $1.15r\ix{a}$, are mostly located in the SOL at a radiation fraction of 90\%. They radically shift radially inwards and constitute a much sharper maximum at $0.975r\ix{a}$. For all ionization stages large quantitative, and in particular for the lowest four charge states also qualitative changes can be observed when increasing the radiation fraction from 90\% to 100\%. This is then, most dominantly by differences in the profiles of C$^{3+}$ and C$^{2+}$, reflected in the total radiation power density profile in the last plot. At the lower $f\ix{rad}$, the sum of emissivities coincides with the SOL emissions of the three first ion stages at \SI{80}{\kilo\watt\per\cubic\meter} and their symmetrical decay therein.\\%
+%
+        \newline%
+        The STRAHL simulation results for four different sets of experimentally measured kinetic profiles of electron temperature and density at specific radiation fraction levels from discharge XP20181010.32 with constant geometry, magnetic configuration and transport coefficients have thereby been presented. The significance of carbon in this particular case has been underlined, while showing that radiation from oxygen impurities is at least $10^{2}$ times smaller than emissions of the prior. Due to the peaked temperature profile shape and intrinsic transport of convection and diffusion, as indicated by \cref{fig:transp_lines_91_92}, the most relevant part of the simulation domain towards the LOS radiation sensitivity and chord brightness profiles for feedback scenarios is found to be centred around the separatrix. Furthermore, by comparing the $T\ix{e}$ and $n\ix{e}$ profiles next to their corresponding transport and radiation calculation results, the importance of shapes and absolute values in the input data is highlighted. At lower radiation fractions, i.e. 33\% and 66\%, a more than twofold increase in SOL emissivity is found for increments as small as \SI{6}{\electronvolt} or $\sim10\%$ in separatrix temperature and 43\% in density. Results from the second step in $f\ix{rad}$ support this fact, since for a 10\% higher power loss, $T\ix{e}$ at and beyond the LCFS is greatly reduced. Subsequently, the profiles of $f\ix{A}$ and $P\ix{diag}$ are changed drastically both quantitatively and qualitatively. The first set of comparisons is exhibited under nearly unchanged factional abundances, relative emissivities and $\sim5\%$ higher peak carbon concentration directly at the divertor. The population of carbon ions is largely dominated by fully ionized C$^{6+}$ up until the LCFS in any case. At around \SI{0.5}{\kilo\electronvolt} and below, lower charge states begin to appear. At even lower temperatures and therefore further outside and into the SOL, the impurity species are rearranged (in-)to the next lower, and finally doubly/singly charged C$^{1/2+}$ or carbon atoms at the limiting surface - due to recombinations and seeding from the divertor. However, those lesser charged carbon ions exist at a significantly higher concentration in the SOL due to the reduced background plasma density and radiate much stronger than C$^{6+}$ in the core. Hence, STRAHL finds the maximum of the one-dimensional radiation distribution for this set of coefficients to be in the SOL for all but one level, $f\ix{rad}=100\%$. With the limited validity of STRAHL simulations beyond closed flux surfaces and the overall poor quality of kinetic profiles - \textit{Thomson scattering} data were unreliable and were unavailable outside the separatrix - in mind, only the very last set of results is of relevance towards this particular investigation. Variations in the corresponding $T\ix{e}$ profile around the separatrix coincide significantly with the changes in the individual carbon ion emissivity profiles and resulting radiation distribution. This combination of parameters yields the only results relevant for modelling feedback scenarios in STRAHL towards the LOS sensitivity of the bolometer diagnostic. Furthermore, the STRAHL profiles in \cref{fig:total_rad_93_94_edge} are especially interesting for predicting and understanding potential (controlled) detachment processes under those circumstances, which ultimately is among the prospects for the real time radiation feedback system.%
