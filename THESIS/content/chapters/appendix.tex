@@ -483,3 +483,132 @@
             On the right, the absolute radiation levels in $P\ix{diag}$ and $P\ix{tot}$ are, besides minor differences in the SOL decay rates, nearly congruent with those shown in \cref{fig:rad_ratios_total_94_105}. Here, the results for a source located at the LCFS would correspond to a set of STRAHL calculations with $\lambda=$\SI{2}{\centi\meter}. At the top, the plasma core emissivities for $S\,\rightarrow\,r\ix{a}$ are equal, within negligible variations in absolute height, to those for $\lambda=$\SI{2}{\centi\meter}. Outside the separatrix, the profile shape of all three lower ionization stages are defined by a steady decay from their value at the LCFS to zero before $1.15r\ix{a}$. However, in contrast to the above comparison, carbon atom emissions can be found just inside the core of up to \SI{5}{\kilo\watt\per\cubic\meter}. Conclusively, the total impurity radiation below is also a near copy of the results for a reduced SOL decay length, although with a less steep drop outside $r\ix{a}$.\\%
             Changing the location of the impurity source $S$ and shifting it to the separatrix yields very similar if not equal results in core emissivity as a reduced kinetic profile decay length. More so, the corresponding SOL radiation is reduced and additional local maxima are missing. Therefore, no radial displacements of the individual and total carbon impurity emissions are found. The injection of carbon atoms at the LCFS yields a higher population of C$^{6+}$, as they are fully ionized at higher electron temperatures and densities and transported outward. Coincidentally, lower ion stage counts are greatly decreased or disappear entirely since much less carbon exists at radial locations where the respective reactions rate coefficients have a signal yield.%
 %
+\chapter{Two-dimensional radiation inversion}\label{apx:mfr}%
+%
+    \section{Camera Geometry Perturbations}\label{apx:geompertub}%
+%
+        \subsection*{Unilateral Camera Array Mirroring}%
+%
+            An additional ariation to the horizontal camera is constructed by applying a rotation and transposition to one half of the array, i.e. channels 16 through 32 that adjusts their geometry to be in one plane with the remaining detectors and a mirror image of their counterpart. This hypothetical \textit{mirror} (plane) would be one that is spanned by the normal of the LOS fan and the direction of channel no.15. The transformation is constructed so that the new location and orientation of absorber no.32 is equal to that of no.1, rotated by the opening angle of the camera \SI{53}{\degree}. Similarly, channel no.31 becomes the mirror opposite of no.2, rotated by \SI{53}{\degree}$-\angle\left(\vec{LOS}(1), \vec{LOS}(2)\right)$ and so on. Resulting deviations to the original geometry are so small that a three-dimensional representation like in \cref{fig:geometry_change_centered} yields no visible distinction between the two. Hence, \cref{fig:geometry_forward_fixed} shows the etendue variation and the forward model integrated chord brightness profiles, again as in \cref{fig:chord_forward_exp_vs_STRAHL} for increasing levels of $f\ix{rad}$ for this proposed adjustment to $\mathbf{T}$. The change in local sensitivity is, as instructed above, limited to the upper half of the camera array, while it is two orders of magnitude lower than before at <\SI[per-mode=reciprocal]{e-13}{\per\cubic\milli\meter}.\\%
+            The chord brightness profiles for varying $f\ix{rad}$ on the right of \cref{fig:geometry_forward_fixed} are constructed the same way as before. With respect to the initial results, a decrease in variance between left and right half of the plot can be noted when inspecting the corresponding mirrored, semi-transparent lines. However, this miniscule deviation in the range of $0.5-1\%$ is found in profiles produced from both intrinsically symmetrical camera geometry and radiation distributions. All possible sources of asymmetry besides the toroidal extension of the array have been eliminated in order to produce this plot. Therefore, one has to conclude that at least some level of asymmetry in previously and hereafter measured or forward integrated HBC profiles is due to the tilt of the LOS fan of \SI{68.75}{\degree}. Furthermore, the difference between this chord brightness profile and the initial results using the original geometry from \cref{fig:chord_forward_exp_vs_STRAHL} hence is dominated by the variation among the individual horizontal camera LOS.\\%
+            The evaluation of this perturbation in $\mathbf{T}$ is concluded by underlining the fact that a change of this magnitude, i.e. $\tenpo{-2}$ times smaller than the variability of different segmentation methods, yields almost no variation in forward calculation.%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/MFR/%
+                        compare_fixedLoS_emissivities3D.pdf}%
+                    \caption{}%
+                \end{subfigure}%
+                \hfill%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/forward_int/%
+                        forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_det_fix_boloplane_sN8_30x20x150_1.35.png}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{\textbf{(a)} Impact of geometry changes on the collective etendues of the horizontal camera, where one half (\textit{upper}) of the camera array has been rotated so that all channels lie in one plane and each is the exact mirror opposite - the \textit{mirror} being a plane defined by the camera aperture normal, perpendicular to the LOS fan - of one from the other half. \textbf{(b)} Forward integrated chord brightness for the HBC at different $f\ix{rad}$ for previously presented STRAHL results in \cref{fig:chord_forward_exp_vs_STRAHL} using the hypothetical camera geometry from \textbf{(a)}.}\label{fig:geometry_forward_fixed}%
+            \end{figure}%
+%
+        \subsection*{Artificial Symmetrical Horizontal Camera}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/MFR/%
+                        compare_symmetric_emissivities3D.pdf}%
+                    \caption{}%
+                \end{subfigure}%
+                \hfill%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/forward_int/%
+                        forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_sN8_30x20x150_1.35.png}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{\textbf{(a)} Impact on the collective etendues of the horizontal camera, where the entire array has been replaced by an artificial, symmetrical, vertically upright LOS fan with equidistant channels around $z=0$, the vertical dimension of the W7-X coordinate system. \textbf{(b)} Forward integrated chord brightness at different $f\ix{rad}$ for previously presented STRAHL results in \cref{fig:chord_forward_exp_vs_STRAHL}, using the camera geometry of (a).}\label{fig:geometry_forward_symmetric}%
+            \end{figure}%
+%
+            Here on constructs a pseudo artificial horizontal camera array that has absolutely no variations among its absorbers and their LOS. The attribute \textit{pseudo} refers to this geometries' detector construction that is created by averaging size, shape and distance in-between the original HBCm absorbers that is therefore repeated 32 times to create this hypothetical device. This new, upright, centred, machine coordinate origin oriented camera with equidistant, equally sized detectors viewing the plasma through a parallel, centred aperture is also used to forward integrate the previous STRAHL results and find their respective chord brightness profiles. A plot for the varying radiation fraction levels $f\ix{rad}=0.33,\dots,1.0$ is accompanied by a two-dimensional deviation map in the triangular plane between this new geometries and the actual local sensitivity in \cref{fig:geometry_forward_symmetric}.\\%
+            With respect to the previous analysis of perturbations in etendue in \cref{fig:geometry_change_artificial}, this image presents similar magnitudes $\sim$\SIrange[per-mode=reciprocal]{e-11}{e-16}{\per\cubic\milli\meter} and comparable local maxima at the outboard side, closest to the pinhole of the artificial camera. Individual pixel artefacts can also be found here, though the poloidal structuring from before is far weaker and the characteristic of separate LOS can be noticed, originating at the aperture beyond the tip of the triangular domain. The also perfectly symmetric chord brightness profile on the right for $f\ix{rad}=1$ is very akin to the one before, though with a slightly reduced maximum of \SI{240}{\kilo\watt\per\cubic\meter}. At lower radiation fractions, the intensity of the local extremes are significantly increased by up to 50\% while also being further outside or even remaining beyond the separatrix. The overall shape however is still very similar.\\%
+            A planar correction and rotation of the original HBCm geometry provided fully symmetrical forward model integrated measurements without significant qualitative discrepancies to those produced by the underlying camera. The change in local sensitivity between that and this particular hypothetical array is of same order of magnitude as the differences created by varying detector and pinhole segmentation methods. A fully artificial horizontal camera that is achieved without any perturbation in orientation or detector construction also yields similarly symmetrical forward chord brightness profiles from STRAHL results for comparable etendue variations. On one hand, such small changes in $\mathbf{T}$ have the potential to significantly change the measurements and hence any thereon based reconstructions, while on the other the as-designed local sensitivity of the horizontal bolometer camera is proven to be very close to a theoretical, ideal geometry.%
+%
+    \section{Minimum Fisher regularisation}\label{apx:phantom}
+%
+        \subsection{RDA vs. RGS}\label{apx:rdavsrgs}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \makebox[\textwidth][c]{%
+                        \includegraphics[width=1.2\textwidth]{%
+                            content/figures/chapter4/MFR/new/phantom/2D/%
+                            phantom_v_tomo2D_dfs_0.7_1.0_asym_m1_mx1.0e+06_aniM3_0.3_0.3_nigs1_times0.11.png}}%
+                    \caption{standard, RDA ($k\ix{core},\,k\ix{edge}=\left\{0.3,\,0.3\right\}$)}%
+                \end{subfigure}%
+                \newline%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \makebox[\textwidth][c]{%
+                        \includegraphics[width=1.2\textwidth]{%
+                            content/figures/chapter4/MFR/new/phantom/2D/%
+                            phantom_v_tomo2D_dfs_0.7_1.0_asym_m1_mx1.0e+06_RGS_aniM3_0.3_0.3_nigs1_times0.11_white.png}}%
+                    \caption{RGS, RDA ($k\ix{core},\,k\ix{edge}=\left\{0.3,\,0.3\right\}$)}%
+                \end{subfigure}%
+                \caption{Comparison between different reconstruction weighting methods, RDA and RGS, on the same phantom radiation distribution, using the same weighing coefficients and tomography parameters as well as camera geometries. The phantom image is constructed similarly to \cref{fig:phantom_fsring_asym_0deg_2D}, while the outside ring at $r\ix{a}$ is also adjusted to be poloidally asymmetric, with its maximum at the same position as the inner structure. \textbf{(a)} Standard Minimum Fisher information reconstruction with RDA. \textbf{(b)} Relative gradient smoothing, using the same RDA tomography parameters.}\label{fig:phantom_fsring_asym_comparison_RGS}%
+            \end{figure}%
+%
+            A simple, anisoptropic and nested phantom radiation distribution will be used and reconstructed to examine the differences between \textit{radially dependent anisotropy} and \textit{relative gradient smoothing} regularisation methods when applied in a similar way. Both have been introduced in \cref{subsec:kani} and \cref{subsec:rgs}, while the prior has been employed extensively in \cref{sec:phantoms}. In order to adequately compare these results with one another, the same $k\ix{ani}$ coefficients will be used with the RGS. One should keep in mind that this approach builds upon the RDA weighting of a given set of parameters.\\%
+            In \cref{fig:phantom_fsring_asym_comparison_RGS}, the input phantom, resulting tomograms and MSD profiles for the two methods are shown. The artificial radiation distribution is based on the first superposition in \cref{fig:phantom_fsring_asym_180deg_2D}, with a bright ring at $r\ix{a}$ and a core anisotropy in $0.7r\ix{a}$, however with the change of similarly asymmetric intensity profiles in poloidal direction. The inside profile has a maximum of \SI{2.5}{\mega\watt\per\cubic\meter}, while the one on the outside only 50\% of that. Both of the structures feature the same orientation around $\vartheta\ix{0}=$\SI{0}{\degree} - same definition as before in \cref{eq:fsring_asym_single_deg} -, with a poloidal and radial width of $\sigma\ix{r}=0.25r\ix{a}$ and $\sigma\ix{$\vartheta$}=\pi/4$. The resulting phantom image is, as expected, largely an extension of the initially proposed core asymmetry at a higher intensity. For a constant $k\ix{ani}$ profile of $\left\{0.3, 0.3\right\}$, the MFR tomography using the RDA in \textbf{(a)} adequately reconstructs the two individual, radially separated emissivities, though with a significantly increased width in both polar directions. At the bottom in \cref{fig:phantom_fsring_asym_comparison_RGS}:\textbf{(b)}, a RGS weighted MFR reconstruction for the same RDA $k\ix{ani}$ coefficients finds a similar, however quantitatively distinctly different radiation distribution where local extremes are distributed the same locally at significantly higher individual brightness. Like before, \cref{fig:phantom_fsring_asym_comparison_RGS_profiles} shows the corresponding one-dimensional radial and weighting, as well as forward integrated detector signal profiles of the above phantom and tomogram radiation images. All weighting coefficient profiles are at their usual level and are flat like before for $k\ix{ani}=\left\{0.3, 0.3\right\}$.%
+%
+        \begin{figure}[t]%
+            \centering%
+            \begin{subfigure}{\textwidth}%
+                \centering%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter4/MFR/new/phantom/%
+                    phantom_v_tomo_profiles_dfs_0.7_1.0_asym_m1_mx1.0e+06_aniM3_0.3_0.3_nigs1_times0.11.png}%
+                \caption{standard, RDA ($k\ix{core},\,k\ix{edge}=\left\{0.3,\,0.3\right\}$)}%
+            \end{subfigure}%
+            \newline%
+            \begin{subfigure}{\textwidth}%
+                \centering%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter4/MFR/new/phantom/%
+                    phantom_v_tomo_profiles_dfs_0.7_1.0_asym_m1_mx1.0e+06_RGS_aniM3_0.3_0.3_nigs1_times0.11.png}%
+                \caption{RGS, RDA ($k\ix{core},\,k\ix{edge}=\left\{0.3,\,0.3\right\}$)}%
+            \end{subfigure}%
+            \caption{\textbf{(a), (b)} Corresponding analysis for the results shown in \cref{fig:phantom_fsring_asym_comparison_RGS}, using the noted below anisotropy parameters for the corresponding tomographic reconstruction methods. The results are presented in the same way as in \cref{fig:phantom_fsring_example_profiles}.}\label{fig:phantom_fsring_asym_comparison_RGS_profiles}%
+        \end{figure}%
+%
+        Comparing the application of standalone RDA and combined RGS and RDA regularisation weighting optimisations with the MFR tomography for the same phantom radiation profile and set of $k\ix{ani}=\left\{0.3, 0.3\right\}$ has produced only minor or almost negligible differences in the one-dimensional evaluations of radial and forward calculated profiles, or even integrated values of $P\ix{rad}$ and $P\ix{rad,2D}$. Deviations among those characteristic between the two sets of results are, on the one hand within the respective confidence intervals of said profiles, and on the other of an order of magnitude that was previously observed by altering $k\ix{ani}$ coefficients for a constant artificial radiation image. Like before, the cumulative trend of the changes from \textbf{(a)}:RDA to \textbf{(b)}:RGS+RDA is inconclusive at best due to the contradicting evidence presented by the singular power values, as well as the radial and camera profile and corresponding fitness factors. While the priors matching regresses, the latters congruence and quality improves noticeably. Therefore, judging just from the circumstances presented in \cref{fig:phantom_fsring_asym_comparison_RGS_profiles}, a combined RGS regularisation and RDA weighting tomography approach does not yield a significant advantage over just a standard MFR with RDA that would justify unrestricted utilisation instead of the latter. However, the two-dimensional distributions in \cref{fig:phantom_fsring_asym_comparison_RGS} show a different picture which, subjectively, does favour the RDS+RDA with respect to the development and composition of the characteristic features of the phantom. Although the corresponding MSD profile does yield higher error values for the latter, strong separation between the core and SOL structures, as well as short, poloidal decay lengths are far more prominent here. Furthermore, the conclusive total brightness and its maximum also match the input data better, though one should keep in mind that none of the reconstructions is able to adequately invert the more intense anisotropy in the core and instead shift its feature to the separatrix. A possible drawback from this favoured stronger localisation of emissivity in the tomogram is the loss of less intense structures in close radial or poloidal proximity to said extremes and smoother profiles of larger connection lengths, i.e. the remainder of the bright rings opposite of the asymmetry.\\%
+        This concludes the comparison between standard RDA weighting and combined RGS+RDA MFR tomography. A more elaborate and detailed exploration of said topic with more examples will not be performed here, nor be of subject to this work. Zhang et al.\cite{Zhang2013,Zhang2021_2} have already done such an extensive analysis. The above examinations only serve to further verify the standalone radially dependent anisotropy regularisation, which has been done so.\\%
+%
+        \subsubsection*{Inverted Anisotropic Phantom}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/2D/%
+                        phantom_v_tomo2D_symR0.8_fsR1.1_mx1.0e+06_aniM4_3.0_20.0_nT15_nW2_nigs1_times0.11.png}}%
+                    \caption{$k\ix{core},\,k\ix{edge}=\left\{0.3,\,2\right\}$}%
+                \end{subfigure}%
+                \newline%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/%
+                        phantom_v_tomo_profiles_symR0.8_fsR1.1_mx1.0e+06_aniM4_3.0_20.0_nT15_nW2_nigs1_times0.11.png}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{Phantom radiation distribution reconstruction, mimicking a bright outside ring and islands-like structures on the inside of that ring, similar to \cref{fig:phantom_islands_6_fsring_ani3} but inverted. The RDA coefficients have been changed accordingly to accompany the different orientation of poloidally symmetric and anisotropic radiation distributions. \textbf{(a, top)} Phantom, tomogram and relative deviance, similar to \cref{fig:phantom_fsring_example}. \textbf{(b)} Radial (left) and chordal (right) profile analysis, similar to \cref{fig:phantom_fsring_example_profiles}.}\label{fig:phantom_inside_islands_6_fsring}%
+            \end{figure}%
+%
+            For sake of completion, an inverted phantom to the original in \cref{fig:phantom_islands_6_fsring_ani3} and \ref{fig:phantom_islands_6_fsring_kanivar} is reconstructed using an also reversed regularisation weight profile with $k\ix{ani}=\left\{0.3, 0.2\right\}$, and shape given by \cref{eq:kani}. The artificial radiation distribution and MFR results are shown in \cref{fig:phantom_inside_islands_6_fsring} in the usual form. On the left, the inside-out turned phantom shows a maximum brightness of \SI{1.2}{\mega\watt\per\cubic\meter}, now in the core at $0.7r\ix{a}$ in eight up-down symmetrically distributed localised spots. Analytically, this profile can also be described by \cref{eq:prad_anisym} when parametrically reconfigured with $r\ix{0,1}=1.1r\ix{a}$ and $r\ix{0,2}=0.7r\ix{a}$, i.e. the reversed order from before. Hence, a smooth ring of \SI{1}{\mega\watt\per\cubic\meter} is found outside the separatrix in the SOL. Challenging with this particular phantom tomography is the potential obfuscation due to possibly increased interference from the symmetrical structure, given the position and orientation of the vertical and horizontal bolometer cameras.\\%
+            In terms of - subjectively measured - reconstruction quality, this type of artificial emissivity superposition shows greater discrepancies for the same approach and settings when compared to the prior, inverted case in \cref{fig:phantom_islands_6_fsring_kanivar} and following. Due to the switched radial orientation of the employed contrasting profiles, the increased sensitivity of the bolometer camera detectors in the SOL and along the separatrix leads to an \textit{obfuscating} effect on the anisotropic core structure. More specifically, the focus of the tomogram is entirely changed, certainly also due to the reversed $k\ix{ani}$ regularisation weighting, placing the majority of the brightness in that area, expanding until the edge of the domain. The maximum emissivity is found in the core still, in locations similar to those in the phantom, though with greatly decreased resolution and accuracy. Features vertically above the VBC arrays are entirely missing, coinciding with the LOS with the most unfavourable ratio between integration lengths through SOL and anisotropic core profiles. However, this is contrasted by the noticeably and significantly improved match between the poloidally averaged and forward integrated results, their corresponding power values $P\ix{rad,2D}$ and $P\ix{rad}$, as well as the better fitness $\chi^{2}$. In summary, similar experimentally measured radiation distributions will potentially be even more difficult to reconstruct adequately in terms of quality of more focused or localised features, respective their shape and relative intensity.%
+%
