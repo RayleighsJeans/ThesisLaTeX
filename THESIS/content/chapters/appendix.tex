@@ -537,6 +537,27 @@
 %
     \section{Minimum Fisher regularisation}\label{apx:phantom}
 %
+        \subsection{Relative Gradient Smoothing}\label{apx:rgs}%
+%
+            As noted above, Zhang et al.\cite{Zhang2013,Zhang2021_2} have proposed and applied another tailored reconstruction algorithm, also based on the already proven\cite{Anton1996} Minimum Fisher regularisation, using a novel functional with relative gradient
+            smoothing (RGS) of the iterated profile. It has been already successfully validated using simulation results by three-dimensional simulation model results for phantom radiation distributions from EMC3-EIRENE\cite{Zhang2021_2}. Note though that this was done for pure hydrogen plasma with dominating oxygen impurities. The idea is to modify the expression around the Fisher information $I\ix{F}$ after which the regularizing expression $\mathbf{K}$ is modelled.%
+%
+            \begin{align}%
+                \mathbf{K}\,\,\to\,\,\vec{x}^{\intercal}\,\mathbf{H}\ix{RGS}\,\vec{x}\propto\left(\frac{\nabla g}{g}\right)^{2}%
+            \end{align}\label{eq:baseRGS}%
+%
+            The regularizing weight in $\mathbf{K}$ becomes the inverse square of the distribution $1/g$, which corresponds to the emission profile. The RGS functional matrix $\mathbf{H}\ix{RGS}$, with respect to \cref{eq:fisher_algo} and following, now is:%
+%
+            \begin{align}%
+                \begin{split}%
+                    n\,=\,0\,\text{:}\qquad\mathbf{W}\ix{RGS}^{\left(0\right)}=&\mathbf{1}\,\,,\\%
+                    n\,\ge\,1\,\text{:}\qquad\mathbf{W}\ix{RGS}^{\left(n\right)}=&\left(1/g_{i}^{\left(n\right)}\right)^{2}\,\,,\\
+                    \mathbf{H}\ix{RGS}^{\left(n\right)}=&\,\pmb{\nabla}^{\intercal}\ix{r}\,\mathbf{W}\ix{RGS}^{\left(n\right)}\,\pmb{\nabla}\ix{r}+\pmb{\widetilde{\nabla}}^{\intercal}_{\vartheta}\,\mathbf{W}\ix{RGS}^{\left(n\right)}\pmb{\widetilde{\nabla}}_{\vartheta}\,\,.%
+                \end{split}%
+            \end{align}%
+%
+        A more detailed and deliberate expansion for sake of comparison will not be pursued here - not \cref{apx:rdavsrgs} -, as Zhang et al.\cite{Zhang2021_2} have already done so. The latter part of this work will focus on the exploration of the RDA and its intricacies.\\%
+%
         \subsection{RDA vs. RGS}\label{apx:rdavsrgs}%
 %
             \begin{figure}[t]%
