@@ -633,3 +633,45 @@
             For sake of completion, an inverted phantom to the original in \cref{fig:phantom_islands_6_fsring_ani3} and \ref{fig:phantom_islands_6_fsring_kanivar} is reconstructed using an also reversed regularisation weight profile with $k\ix{ani}=\left\{0.3, 0.2\right\}$, and shape given by \cref{eq:kani}. The artificial radiation distribution and MFR results are shown in \cref{fig:phantom_inside_islands_6_fsring} in the usual form. On the left, the inside-out turned phantom shows a maximum brightness of \SI{1.2}{\mega\watt\per\cubic\meter}, now in the core at $0.7r\ix{a}$ in eight up-down symmetrically distributed localised spots. Analytically, this profile can also be described by \cref{eq:prad_anisym} when parametrically reconfigured with $r\ix{0,1}=1.1r\ix{a}$ and $r\ix{0,2}=0.7r\ix{a}$, i.e. the reversed order from before. Hence, a smooth ring of \SI{1}{\mega\watt\per\cubic\meter} is found outside the separatrix in the SOL. Challenging with this particular phantom tomography is the potential obfuscation due to possibly increased interference from the symmetrical structure, given the position and orientation of the vertical and horizontal bolometer cameras.\\%
             In terms of - subjectively measured - reconstruction quality, this type of artificial emissivity superposition shows greater discrepancies for the same approach and settings when compared to the prior, inverted case in \cref{fig:phantom_islands_6_fsring_kanivar} and following. Due to the switched radial orientation of the employed contrasting profiles, the increased sensitivity of the bolometer camera detectors in the SOL and along the separatrix leads to an \textit{obfuscating} effect on the anisotropic core structure. More specifically, the focus of the tomogram is entirely changed, certainly also due to the reversed $k\ix{ani}$ regularisation weighting, placing the majority of the brightness in that area, expanding until the edge of the domain. The maximum emissivity is found in the core still, in locations similar to those in the phantom, though with greatly decreased resolution and accuracy. Features vertically above the VBC arrays are entirely missing, coinciding with the LOS with the most unfavourable ratio between integration lengths through SOL and anisotropic core profiles. However, this is contrasted by the noticeably and significantly improved match between the poloidally averaged and forward integrated results, their corresponding power values $P\ix{rad,2D}$ and $P\ix{rad}$, as well as the better fitness $\chi^{2}$. In summary, similar experimentally measured radiation distributions will potentially be even more difficult to reconstruct adequately in terms of quality of more focused or localised features, respective their shape and relative intensity.%
 %
+        \subsection{Accessory Phantom Tomographies}\label{apx:accessory}%
+%
+            \begin{figure}%
+                \centering%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/2D/%
+                        phantom_v_tomo2D_blind_test_ones_mx1.0e+06_aniM3_1.0_1.0_nigs1_times0.11.png}}%
+                    \caption{$k\ix{core},\,k\ix{edge}=\left\{1,\,1\right\}$}%
+                \end{subfigure}%
+                \newline%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/%
+                        phantom_v_tomo_profiles_blind_test_ones_mx1.0e+06_aniM3_1.0_1.0_nigs1_times0.11.png}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{Phantom radiation distribution and its reconstruction, where the entire reconstruction domain has been filled with a homogenous, \SI{1}{\mega\watt\per\cubic\meter} emissivity. Corresponding RDA coefficients have been set to equally weight an-/isotropic radiation profiles across the radius of the region of interest. \textbf{(a)} Phantom, tomogram and relative deviance, similarly displayed as before. \textbf{(b)} Radial (left) and chordal (right) profile analysis, like it was introduced in the previous reconstructions.}\label{fig:phantom_blind_test}%
+            \end{figure}%
+%
+            \begin{figure}%
+                \centering%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/2D/%
+                        phantom_v_tomo2D_sym_R1.1_m8_mx1.0e+06_aniM3_2.0_0.1_nigs1_times0.11.png}}%
+                    \caption{$k\ix{core},\,k\ix{edge}=\left\{2,\,0.1\right\}$}%
+                \end{subfigure}%
+                \newline%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/%
+                        phantom_v_tomo_profiles_sym_R1.1_m8_mx1.0e+06_aniM3_2.0_0.1_nigs1_times0.11.png}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{Phantom radiation distribution reconstruction, mimicking a bright ring on the inside and eight islands-like structures in the edge in and around the magntic islands, similar to \cref{fig:phantom_islands_6_fsring_ani3}. The RDA similarly support the reconstruction of the given profile. \textbf{(a)} Phantom, tomogram and relative deviance, similar to \cref{fig:phantom_fsring_example}. \textbf{(b)} Radial (left) and chordal (right) profile analysis, similar to \cref{fig:phantom_fsring_example_profiles}.}\label{fig:phantom_islands_8}%
+            \end{figure}%
+%
