@@ -14,9 +14,6 @@
 \IfFileExists{content/abstract.tex}{%
     \import{content}{abstract}}{}%
 
-\ifthenelseproperty{compilation}{acknowledgement}{%
-    \ImportDefault{acknowledgement}}{}%
-
 \ifthenelseproperty{compilation}{toc}{%
     \ImportDefault{toc}}{}%
 
@@ -52,6 +49,9 @@
 
 \ifthenelseproperty{compilation}{affidavit}{%
     \ImportDefault{affidavit}}{}%
+
+\ifthenelseproperty{compilation}{acknowledgement}{%
+    \ImportDefault{acknowledgement}}{}%
 
 \IfFileExists{content/cats.tex}{%
     \import{content}{cats}}{}%
