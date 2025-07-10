@@ -14,13 +14,6 @@ Felix:
 
 - Mehrkammermodel drin behalten - was fehlt essentiell? (i.e. mMn bleibt die Aussage, dass diese(s) Model seeding nachvollziehbar reporduzieren können, darüber hinaus fehlen weitere konkrete Untersuchungen?)
 
-
 - Analyse Geometrie behalten? alles?
 - Anisotropie-Faktoren mathematisch und experimentel (Ausgangspunkte) motiviert und benannt, nicht ausreichend?
 - individuelle Fälle zeigen oder auf Anhang verweisen für Plots/Darstellung und nur Zusammenfassungen für Phantome?
-
-
-Daihong:
-
-
-Maciej:

@@ -18,11 +18,11 @@
         $S$, $c$ $\leftarrow$ file/visual input, selection and single channel\;%
         \BlankLine
 
-        $U_{\text{AO},n}$ $\leftarrow$ memory adress, initialize \SI{0}{\volt}\;%
+        $U_{\text{AO},n}$ $\leftarrow$ memory address, initialize \SI{0}{\volt}\;%
         \textbf{NI}\textsuperscript{\textregistered} \textbf{6321} $\leftarrow$ initialize two-channel analog output\;%
         \BlankLine%
     
-        \tcp{output as long as main data cquisition}%
+        \tcp{output as long as main data acquisition}%
         \tcp{does not return successfully}%
         \While{measurement incomplete}{%
             \For{$n\in\left\{1,2\right\}$}{%
@@ -108,86 +108,570 @@
         \textbf{W7-X archive} $\leftarrow$ $P\ix{pred}^{\left(1\right)}$, $P\ix{pred}^{\left(2\right)}$, $\Delta U$, $\kappa$, $\tau$, $R$, calibration currents\;%
         \caption{Bolometer measurement routine and feedback.}%
     \end{algorithm}%
-
-
-%% RESIDUAL
-
-% STRAHL
-% \begin{align}%
-%     \begin{split}%
-%         \Phi\ix{0}=4\pi r\ix{bound}v\ix{0}n_{\text{i,}0}\left(r\ix{out}\right)\\%
-%         S_{\text{i,}0\to 1}\overset{!}{=}S_{\text{i,}0}=n\ix{0}\left(r\right)n\ix{e}\left(r\right)Q_{\text{i,}0}\left(r\right)\\%
-%         n\ix{0}\left(r\right)=\frac{n\ix{0}\left(r\ix{out}\right)r\ix{out}}{r}\exp{\left(-\displaystyle\int_{r}^{r\ix{out}}\frac{n\ix{e}Q_{\text{i,}0}}{v\ix{0}}\diff r\right)}%
-%     \end{split}%
-% \end{align}%
 %
-% \begin{align}%
-%     \begin{split}%
-%         D\ix{i,Z}\head{cl}=&\left(\frac{\partial\Psi\ix{pol}}{\partial r}\right)^{-2}\left\langle\frac{R^{2}B^{2}\ix{pol}}{B^[2]}\right\rangle\,\frac{m\ix{i}k\ix{B}T\ix{i}\nu\ix{i,D}}{e^{2}Z^{2}}\\%
-%         v\ix{i,Z}\head{cl}=&D\ix{i,Z}\head{cl}Z\,\left(\frac{\diff\left(\ln\,n\ix{D}\right)}{\diff r}-\frac{1}{2}\frac{\diff\left(\ln\,T\ix{i}\right)}{\diff r}\right)\\%
-%         \nu\ix{i,D}=&\frac{4e^{4}\sqrt{2\pi}}{m\ix{e}}\sqrt{\frac{m\ix{i}m\ix{D}}{m\ix{i}+m\ix{D}}}\frac{Z\ix{i}^{2}Z\ix{D}^{2}\ln\,\Lambda}{\left(k\ix{B}T\right)^{3/2}}\,n\ix{D}%
-%     \end{split}%
-% \end{align}%
+\chapter{Plasma feedback parameter analysis and LOS evaluation}\label{apx:feedbackeval}%
 %
-% \begin{align}%
-%     \begin{split}%
-%         D\ix{i,Z}\head{PS}=&\left(\frac{\partial\Psi\ix{pol}}{\partial r}\right)^{-2}\left\langle RB\ix{tor}\right\rangle^{2}\left(\left\langle B^{-2}\right\rangle-\left\langle B^{2}\right\rangle^{-1}\right)K\ix{PS}\frac{m\ix{i}k\ix{B}T\ix{i}\nu\ix{i,D}}{e^{2}Z^{2}}\\%
-%         v\ix{i,Z}\head{PS}=&D\ix{i,Z}\head{PS}\,Z\left(\frac{\diff\left(\ln n\ix{D}\right)}{\diff r}+F\ix{PS}\left(\varepsilon,\,v^{\ast}\ix{D}\right)\frac{\diff\left(\ln T\ix{i}\right)}{\diff r}\right)%
-%     \end{split}%
-% \end{align}%
+    With respect to the challenges posed at the beginning of \cref{chap:feedbackeval}, an additional question concerning the prior results can be written as:%
 %
-% \begin{align}%
-%     \begin{split}%
-%         D\ix{i,Z}\head{bp}=&\left(\frac{\partial\Psi\ix{pol}}{\partial r}\right)^{-2}\frac{\left\langle RB\ix{tor}\right\rangle^{2}}{\left\langle B^{2}\right\rangle}\frac{k\ix{B}T\ix{i}\mu\ix{i,D}^{\ast}}{e^{2}Z^{2}n\ix{i}}\\%
-%         v\ix{i,Z}\head{bp}=&D\ix{i,Z}\head{bp}\,Z\left(\frac{\diff \left(\ln n\ix{D}\right)}{\diff r}+F\ix{bp}\frac{\diff\left(\ln T\ix{i}\right)}{\diff r}\right)%
-%     \end{split}%
-% \end{align}%
+    \begin{enumerate}%
+        \item[3.]{%
+            Is there, and if so what is the correlation of the activation of the thermal gas valves, the real time bolometer feedback system and the underlying plasma characteristics?}%
+    \end{enumerate}%
 %
+    However, investigations and presented data have been either inconclusive or insufficient to answer this conclusively. For sake of completion, they will be shown and discussed below nevertheless so that they may aid successive experiments or analysis.%
+%
+    \section{Prediction if feedback impact on plasma parameters}\label{apx:peaktopeak}%
+%
+        In order to adjust and optimise the real time bolometer feedback with gas valves as actuators, the temporal and quantitative correlation between activation and reaction of plasma parameters has to be understood. Varying injection durations and amounts of gas from the feedback valve have equally varying impact on the evolution of plasma profiles. Furthermore, the latency between feedback action and plasma reaction can greatly change the effect the injected gas has on the discharge characteristics. This also may play a large role when reevaluating the applicability and performance of the real time bolometer feedback.\\%
+        In an attempt to find possible correlations between the activation of the thermal gas valves and change in plasma parameters, data from the entire set of accomplished feedback experiments has been evaluated using an algorithm that \textit{finds peaks (local maxima)} and compares them between the actuator and given profiles. An example of such a \textit{peak-finding-and-matching} can be found in \cref{fig:peak_finding_examples}. Two sets of results for different algorithm parameters but the same profiles are shown here. The origin profile, i.e. the evolution of the actuator, from which found peaks are used to look forward in time for correlating reactions in other profiles, is represented by the activation of the AEH51 thermal gas valve. The \textit{target profile}, i.e. the line representing the reaction to the \textit{origin profile} (feedback activation), in which the algorithm looks for corresponding maxima to the previous peaks from the origin, is given by the $P\ix{rad}$ of the horizontal bolometer camera. Depending on a provided \textit{width, distance} and \textit{prominence}, the algorithm searches for local maxima in the origin, which are colour coded with transparent bars and matched in the same colours to peaks in the target profile. The corresponding maxima in the activation are interlaced with higher transparency in the same plot. Such a match is produced if a local maximum is found in the target profile within a certain time interval, i.e. $T\ix{peaks}<$\SI{450}{\milli\second}, after the location of the peak in the activation. For multiple occurrences, the first maximum forward in time is chosen. In the provided examples, peaks for a given minimum width and distance in-between of $\tau$=\SI{75}{\milli\second} and \SI{150}{\milli\second} are shown. The prominence of local maxima with significant width and distance to other peaks are evaluated based on the surrounding profile: for an increase of $>100\%$ of the variation within $\tau/2$ in the profile around the peak, a local maximum is found by the algorithm. For further details, see the documentation of the underlying core routine in \cite{ScipyFindPeaks}.\\%
+%
+        \begin{figure}[t]%
+            \centering%
+            \begin{subfigure}{0.49\textwidth}%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter3/peaks/%
+                    peak_mathching_75ms_example.pdf}%
+                \caption{}%
+            \end{subfigure}%
+            %\hfill%
+            \begin{subfigure}{0.49\textwidth}%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter3/peaks/%
+                    peak_mathching_150ms_example.pdf}%
+                \caption{}%
+            \end{subfigure}%
+            \caption{%
+                XP:20181010.32:\\%
+                Example of how peaks in experimental data are detected. Shown here is $P\ix{rad,HBCm}$, as well as the feedback valve control in port AEH51. The peaks found in the lower plot are transparently overlaid onto the upper. Same colours indicate cause and effect relation between gas injection and plasma parameter ($P\ix{rad,HBCm}$) changes.  Algorithmic peak detection width set to \textbf{(a)} \SI{75}{\milli\second} and \textbf{(b)} \SI{150}{\milli\second}.}\label{fig:peak_finding_examples}%
+        \end{figure}%
+%
+        The provided examples for different peak widths and distances $\tau$ in \cref{fig:peak_finding_examples} showcase the importance of careful adjustment of the selected algorithm parameters and their influence. For smaller $\tau$, potentially fewer local maxima are detected for the same prominence as for larger $\tau$, while increasing width and distance inevitably lead the algorithm to produced false positive matches. Reducing the interval in which corresponding peaks can be found to match also, on one hand act as a cut-off for false positives but on the other hide high latency responses in the target plasma profiles. Within the range of $\tau=$\SIrange{75}{150}{\milli\second} and, depending on the profile, $T\ix{peaks}<$\SI{450}{\milli\second} the algorithm works best with the provided feedback experiment data. However, as is already presented by the above examples, not all local maxima are found for the given parameter selection. A manual procedure to find peaks in the lines of data from feedback experiments that were related to the activation of the thermal gas valves is, given the large number of plasma parameters to search through and discharges performed, not within the scope of this work. That said, if not stated otherwise, the following results have been achieved with $\tau=$\SI{150}{\milli\second} and the previously outlined prominence - an increase $>100\%$ of the variance within $\tau/2$ around a local maximum. For electron density measurements of the dispersion interferometer, the interval was set to $T\ix{peaks}=$\SI{150}{\milli\second}, while for $P\ix{rad}$ from the bolometer camera system required a larger setting of $T\ix{peaks}=$\SI{450}{\milli\second}. Data from central electron densities measurements $n\ix{e}$ and heating power $P\ix{ECRH}$ for points in time of both origin and target profile peak have also been collected simultaneously.\\%
+%
+        \begin{figure}[t]%
+            \centering%
+            \includegraphics[width=\textwidth]{%
+                content/figures/chapter3/peaks/%
+                peaks_key_gas_val_H2_150ms.pdf}%
+            \caption{Peak database of $P\ix{rad}$ for both bolometer cameras individually from hydrogen injection experiments. Changes in radiation power are shown for \textbf{(top left)} the change in control, \textbf{(top right)} the approximate injected gas amount, \textbf{(bottom left)} the time between the maximum peak values and \textbf{(bottom right)} the time delay between peaks over the respective feedback control change.}\label{fig:peak_database_H2}%
+        \end{figure}%
+%
+        The results for the above described procedure from all thermal gas injection feedback experiments that featured hydrogen as the injected gas are presented in \cref{fig:peak_database_H2}. The compiled data points show the results for the horizontal and vertical bolometer cameras as the target profile individually. The top left shows the increase in $P\ix{rad}$ over the change in gas flow or valve activation $\Gamma$ - assuming constant gas pressure and temperature they are synonymous. The absolute gas flow is not known for all data points, hence a presentation in arbitrary units in favour of comparability is chosen. Below that the increase in radiative power loss as a function of gas injection duration $T_{\Gamma}$ can be seen. The top right image shows the change in $P\ix{rad}$ over the total injected amount of gas, i.e. the integrated valve activation peak $\int\Gamma$ over the interval $T_{\Gamma}$.\\%
+        The presented results in \cref{fig:peak_database_H2}:(top left) show that for a large range of gas pulse strengths, $\Delta P\ix{rad}$ changes almost always with small increments, while few exceptions with no coherent pattern exist across the entire spectrum of valve activations. For smaller injection gas flows, i.e. between \SIrange{5}{10}{\arbitraryunit} a small group of points with larger corresponding $\Delta P\ix{rad}$ for both cameras can be seen, indicating that with a reduced flow rate the respective change in radiation increases. The aforementioned exceptions at higher radiation increments might be attributed to varying plasma parameters, which will be examined at a later point in this chapter. Similar findings are presented in the bottom left plot, where the majority of results are found at small $\Delta P\ix{rad}$ across the entire spectrum of gas injection durations $T_{\Gamma}$. However, a larger number of results for a radiation increase $>$\SI{0.25}{\mega\watt} is found for smaller durations, i.e. \SIrange{0.15}{0.3}{\second} by both cameras equally. Again, singular data points at high $\Delta P\ix{rad}$ across all $T_{\Gamma}$ show no distinct behaviour. This is also reflected in \cref{fig:peak_database_H2}:(top right), where for small to medium amounts of injected gas, i.e. up to \SI{20}{\arbitraryunit}, the majority of results are found below \SI{0.5}{\mega\watt} for both bolometer cameras. This can be linked to the previously discussed plots by either assuming small gas flows for longer injection durations or more intense, shorter pulses. Finally, the last image on the bottom right displays a significantly higher data point density for smaller gas flows and larger latencies between action and reaction in plasma radiation between \SIrange{0.2}{0.5}{\second}. For higher injection intensities, more results are found at $\Delta T\ix{peak}>$\,\SI{0.3}{\second}, further suggesting that higher gas flows do not necessarily, if at all lead to greater or quicker plasma radiation reactions.\\%
+%
+        \begin{figure}[t]%
+            \centering%
+            \includegraphics[width=\textwidth]{%
+                content/figures/chapter3/peaks/%
+                peaks_key_gas_val_He_150ms.pdf}%
+            \caption{Similar plot as figure \cref{fig:peak_database_H2}, with the gas used for feedback being helium. Peak searching algorithm parameters are kept the same.}\label{fig:peak_database_He}%
+        \end{figure}%
+%
+        The same layout and presentation of data has been used to collect and display results of the algorithm for \textit{helium impurity seeded} experiments, where the feedback controlled thermal gas valve was fed with molecular helium in \cref{fig:peak_database_He}. Far fewer results have been produced by the algorithm for the same set, or a selection of different sets of parameters at that, than for hydrogen feedback experiments. This is attributed to the greatly smaller number of performed experiments under such conditions. As for \cref{fig:peak_database_H2}, the top left image shows most of the points at $\Delta P\ix{rad}<$\,\SI{0.2}{\mega\watt}, while across the rest of the spectrum in gas flow no coherent pattern can be recognized. Similar findings are presented by the top right plot - the majority of the results show small injection gas amounts at $\Delta P\ix{rad}$<\,\SI{0.5}{\mega\watt}. Consequently, the point density in the bottom left image is highest up to $T_{\Gamma}<$\,\SI{0.5}{\second} and very small radiation power loss increments, while fewer results can also be found at up to $\Delta P\ix{rad}\sim$\,\SI{1}{\mega\watt}. Finally, the latency between injection of helium and changes in plasma radiation power, which is shown in the bottom right plot of \cref{fig:peak_database_He}, is generally found to be between \SIrange{0.1}{0.5}{\second} at small gas flows. For larger flows, no significant pattern is displayed here. In conclusion, very similar, results are presented by the algorithmically collected data points for helium injected feedback experiments as for their hydrogen counterparts. On one hand, this underlines the interpretation of the previously discussed \cref{fig:peak_database_H2}, since the experimental approach and goal were the same. On the other hand, this poses the question as to why a different impurity produces quantitatively comparable results to the injection of working gas. Hence, a more thorough analysis of the dataset is required, involving a larger set of evaluated plasma parameters than just $P\ix{rad}$ of the bolometer camera system.\\%
+%
+        \begin{figure}[t]%
+            \centering%
+            \includegraphics[width=\textwidth]{%
+                content/figures/chapter3/peaks/%
+                peaks_param_key_type_val_QSQ_150ms}%
+            \caption{Selected experiment parameters for previously presented peaks in $P\ix{rad}$ from feedback experiments. \textbf{(top left)} change in radiation power over change in control with electron density colour map \textbf{(top right)} radiation fraction over heating power with $n\ix{e}$ map \textbf{(bottom left)} radiation power delta over temporal peak delay with ECRH colour code \textbf{(bottom right)} electron density by heating power with radiation fraction map.}\label{fig:peak_parameters_QSQ}%
+        \end{figure}%
+%
+        The extended database of results previously shown and discussed in \cref{fig:peak_database_H2} and \ref{fig:peak_database_He}, including core plasma parameters $f\ix{rad}$, $P\ix{ECRH}$ and $n\ix{e}$ is shown in \cref{fig:peak_parameters_QSQ}. Results in all plots were reduced due to availability of the corresponding plasma parameters. The presentation of data points is very similar to the prior, where results are plotted for both bolometer cameras individually. Furthermore, the axis and abscissa on the two left images are kept the same. The two right figures feature, on the top, the radiation loss fraction $f\ix{rad}$ and, on the bottom, electron density $n\ix{e}$ over cyclotron heating power $P\ix{ECRH}$. In all four plots, a colour grading is imposed on the scattered points: the electron density is used on the top two images, while the bottom left shows the heating power and the bottom right the radiation fraction.\\%
+        The superimposed core electron density on the top left plot in \cref{fig:peak_parameters_QSQ} indicates no noticeable behaviour across the entire spectrum of gas flows and radiation powers. On the bottom left plot, $P\ix{ECRH}$ is higher for larger changes in radiation power loss $\Delta P\ix{rad}$, while no correlation to the latency between feedback action and plasma reaction therein is found. The plot on the top right features a clear trend of higher electron densities for higher heating powers and radiation loss fractions, i.e. peaks have been found for $f\ix{rad}\sim100\%$ and $P\ix{ECRH}=\,$\SI{6}{\mega\watt} at $n\ix{e}\ge\,$\SI{10}{\per\cubic\meter}. One should note here that radiation fractions greater than unity are found by the searching algorithm, since momentary power exhaust from the discharge through radiation can be greater than the input heating power under the assumption that plasma stored energy is lost. Finally, the last image on the bottom right supports the observations of the previous plot, where larger heating powers and electron densities are also accentuated with higher $f\ix{rad}$.\\%
+        The results presented in the two left images of \cref{fig:peak_parameters_QSQ} promote no further insight into possible correlations of feedback gas injection and changes in plasma radiation, besides the indication of a decreased latency between action and reaction. However, the findings in the top and bottom right plots describe an evident connection between the input heating power, electron core density and radiation loss fraction. Similar results have been previously examined and discussed for different divertor and magnetic field configurations, mainly under steady state conditions\cite{Klinger2016,Fuchert2018,Zhang2020}, implying that the feedback gas injection reactions are governed by the same plasma power scaling laws. Here, at higher heating powers $>\,$\SI{3}{\mega\watt}, peaks in the plasma radiation have been found for electron densities $n\ix{e}>\,$\SI{5e19}{\per\cubic\meter} and loss fractions $f\ix{rad}\in\left\{0.2,\,1.2\right\}$. Concurrently, for higher values of $P\ix{ECRH}$ and $n\ix{e}$, radiation power loss fractions significantly greater than unity, i.e. $f\ix{rad}>1$ are found. Examinations of the previous \cref{chap:realtimefeedback} and especially \cref{subsec:densityfeedback} have shown that higher electron densities combined with $P\ix{rad}$ close to the input heating power - $f\ix{rad}\ge80\%$ - are favourable to an improved radiative cooling of the scrape-off layer and target heat load reduction. The data presented in \cref{fig:peak_parameters_QSQ} therefore overall supports and is consistent with the findings of the latter chapter, however they so far do not exhibit any dependencies whatsoever that could be used to improve the performance of the real time radiation feedback.%
+%
+        \subsection{Comparison with Non-Feedback Gas Injection}\label{sec:compmainvalve}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter3/peaks/%
+                    peaks_key_type_val_Main_150ms.pdf}%
+                \caption{Peak database from main gas valve. Changes in radiation power $P\ix{rad}$ of both cameras for \textbf{(top left)} the change in gas flow, \textbf{(top right)} the approximate injected gas amount, \textbf{(bottom left)} the time between the maximum peak values and \textbf{(bottom right)} the time delay between peaks over the respective gas flow.}\label{fig:peak_database_main}%
+            \end{figure}%
+%
+            In order to reference the results gathered from the peak finding algorithm for the thermal gas injection valve and feedback activation, the same has to be conducted for the main gas valves located around W7-X. The corresponding data points for both working gases, helium and hydrogen and a minimum peak width of $\tau=$\,\SI{150}{\milli\second}, like in \cref{fig:peak_database_H2} and \cref{fig:peak_database_He}, can be found in \cref{fig:peak_database_main}. The structure of plots and quantities displayed here are the same as before. One should note here that the scale for $\Gamma$ is again in arbitrary units, though the absolute value thereof is not necessarily comparable to that of the thermal gas valves of the helium beam diagnostic, since nozzle and gas injection characteristics, as well as pressures and temperatures of the gases are different.\\%
+            In the top left image of \cref{fig:peak_database_main}, a similar behaviour as for the feedback gas valve is seen, where across the spectrum of gas flows $\Delta\Gamma$, the radiation power loss changes with small increments. For smaller fuelling intensities, i.e. <\SI{10}{\arbitraryunit} the response in $\Delta P\ix{rad}$ increases like before, quantitatively and qualitatively, while also no coherent pattern can be seen for larger $\Delta P\ix{rad}$ along the abscissa. The bottom left picture features a much narrower distribution of points than before. Up to $T_{\Gamma}\le\,$\SI{1}{\second}, a significant increase in radiation power loss is found towards $T_{\Gamma}\sim\,$\SI{0.15}{\second} with $\Delta P\ix{rad}>\,$\SI{1}{\mega\watt}. Furthermore, the majority of peaks is now located around an injection duration between \SIrange{0.3}{0.6}{\second} below \SI{0.5}{\mega\watt}. This may be attributed to, on one hand the method of injection - main gas valves are applied before the start of the discharge and again, if necessary, to feed the plasma during the experiment - and on the other the valve latency and their distance to the SOL. Beyond $T_{\Gamma}\sim\,$\SI{1.2}{\second} the point density is greatly reduced and almost no results can be found beyond this point. Scattered results at $\Delta P\ix{rad}>\,$\SI{0.5}{\mega\watt} show no coherent pattern. In combination of the latter two, the top right plot presents a continuation of the previous findings: around lower to medium amounts of injected gas, $\int\Gamma\le$\SI{20}{\arbitraryunit} the response in $P\ix{rad}$ is increased up to \SI{0.5}{\mega\watt}, while beyond that no significant differences can be seen. Finally, the last image on the bottom right also presents a higher data point density up to medium gas flows, $\Delta\Gamma\le\,10\,$a.u and higher latencies between injection and reaction $\Delta T\ix{peak}\ge\,$\SI{0.2}{\second}. However, no results are found for very small gas flows $\Delta\Gamma<$\SI{2}{\arbitraryunit} up to very high latencies of \SI{0.4}{\second}. At higher injection intensities, this density decreases greatly and for higher latencies $\Delta T\ix{peak}>\,$\SI{0.3}{\second} slightly more peaks are found still. This is in agreement with \cref{fig:peak_database_H2}: higher gas flows do not necessarily imply quicker or stronger reactions in radiation power loss, while slower, more moderate injections appear to yield better results for cooling the plasma.\\%
+%
+            \begin{figure}[t]%
+                \centering%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter3/peaks/%
+                    peaks_param_key_type_val_Main_150ms}%
+                \caption{Experiment parameters for main gas valve. \textbf{(top left)} change in radiation power over change in feedback control with electron density colour map \textbf{(top right)} radiation fraction over heating power with $n\ix{e}$ map \textbf{(bottom left)} radiation power delta over temporal peak delay with ECRH colour code \textbf{(bottom right)} electron density by heating power with radiation fraction map.}\label{fig:peak_parameters_Main}%
+            \end{figure}%
+%
+            In order to complete the comparison between the injection valves with respect to their impact on the radiation power loss, a counterpart to \cref{fig:peak_parameters_QSQ} involving additional plasma parameters has to be provided. The corresponding result can be found in \cref{fig:peak_parameters_Main}. The procedure to acquire the data points, as well as their presentation in the plots is the same as before.\\%
+            In the top left of \cref{fig:peak_parameters_QSQ}, the superimposed core electron density slightly increases with larger $\Delta P\ix{rad}$ for smaller gas flows. At higher injection intensities, few data points scattered along the ordinate and at very low radiation impact also indicate higher $n\ix{e}$. Similar to \cref{fig:peak_parameters_QSQ}, on the bottom left larger $\Delta P\ix{rad}$ for small injection durations are noted with increasing input heating powers. The two right-hand plots show the same quantitative picture as before, where with larger $P\ix{ECRH}$ both electron density and radiation power loss fraction $f\ix{rad}$ increase. Furthermore, the overall structure of the data point distributions are very similar. The top right image however does not feature an accumulation of points towards very high $f\ix{rad}$ and heating powers with $n\ix{e}\ge\,$\SI{10}{\per\cubic\meter}.\\%
+            From \cref{fig:peak_database_H2} through \cref{fig:peak_parameters_Main}, one can summarize that, in general, a gas injection with moderate intensity and duration is most suited for radiatively cooling the scrape-off layer and thereby potentially improving its overall performance with regard to increasing electron density and temperature. Besides the apparent differences in application, i.e. construction and methodology, no significant qualitative change in plasma radiation response between thermal gas feedback valve and main gas inlet is found using this approach. That said, this is concluded with respect to the implied direct causality (algorithm), where the action-reaction connection between the gas pulse and peak in radiation power loss is implied. As stated before, and supported by the very similar results in \cref{fig:peak_parameters_Main}, the algorithmically established peak database adheres to the same plasma (performance) scaling laws which have been established for steady state conditions. Others have in the past already very clearly highlighted the relationship between those parameters across a large area of configuration space. Finally, in reference to the scientific questions posed in the beginning of \cref{chap:feedbackeval}, so far no correlation between the activation of the feedback,i the radiation power loss and underlying plasma parameters could be established this way.\\%
+%
+        \newline%
+        A thorough evaluation of a very large number of thermal gas feedback experiments revealed no particular correlation between the activation of the valves and impact on central plasma parameters, especially the radiation power loss. In general, the impact of the feedback gas injections follow the established steady state scaling laws with respect to the underlying plasma profiles, while no significant difference to the effects of the main inlet could be established with this methodology. However, it was found that a moderately scaled, i.e. of medium length and intensity, gas injection is best suited to achieve radiative cooling of the SOL. Rudimentary models proposing a two and three chamber system for such impurity injections from the SOL or plasma core presented all the capability to reproduce experimentally observed radiation profiles of a two-stage feedback injection. With respect to its simplistic approach, those models have provided plausible results that find a strong correlation between the injected impurities in the SOL and the target plasma emission. The parameter space exploration of said two and three chamber models has also given insight into the relation of, therefore likely, impurity transport and radiation across the separatrix.\\%
+        Circling back to the, at the beginning of this chapter posed question, one can answer as follows:%
 
-% \subsubsection*{Fourier transform}%
+        \begin{enumerate}%
+            \item[3.]{%
+            %Is there, and if so what is the correlation of the activation of the thermal gas valves, the real time bolometer feedback system and the underlying plasma characteristics?}%
+            There exists, given the current state of investigations, no particular correlation or scaling between the thermal feedback gas valves activation and underlying plasma characteristics. No such relation could either be found for the bolometer measured $P\ix{rad}$ in particular that goes beyond established steady state laws.}%
+        \end{enumerate}%
 
-%     Fourier transform.%
-
-%     \begin{align}%
-%         \begin{split}\label{eq:fourier_base}%
-%             g\ix{i}=\mathcal{F}\left(P\ix{rad}\right)&\left(\omega\right)\,\qquad g\ix{j}=\mathcal{F}\left(P\ix{pred}^{\left(1\right)}\right)\left(\omega\right)\\%
-%             g\ix{i,j}\left(\omega\right)&=g\ix{i}^{\ast}\left(\omega\right)g\ix{j}\left(\omega\right)%
-%         \end{split}%
-%     \end{align}%
-
-%     \begin{align}%
-%         \begin{split}\label{eq:fourier}%
-%             \varphi\left(\omega\right)=\frac{\vert g\ix{i,j}^{2}\vert}{\vert g\ix{i}g\ix{j}\vert}\,,\qquad\vartheta=\int_{-\infty}^{\infty}\varphi\left(\omega\right)\diff \omega%
-%         \end{split}%
-%     \end{align}%
-
-% \subsubsection*{Coherence}%
-
-%     Coherence.%
-
-%     \begin{align}%
-%         \begin{split}\label{eq:coherence_base}%
-%             g\ix{i,T}\left(\omega\right)=&\mathcal{F}\left(P\ix{rad}\left(t\right)f\ix{T}\left(t\right)\right)\left(\omega\right)\,,\qquad f\ix{T}\left(t\right)=\left\{%
-%             \begin{array}{ll}%
-%                 1&,\,t\in T\\%
-%                 0&,\,\text{else}%
-%             \end{array}\right.\\%
-%             g\ix{j,T}\left(\omega\right)=&\mathcal{F}\left(P\ix{pred}^{\left(1\right)}\left(t\right)f\ix{T}\left(t\right)\right)\left(\omega\right)%
-%         \end{split}%
-%     \end{align}%
-
-%     \begin{align}%
-%         \begin{split}\label{eq:coherence_adv}%
-%             S\ix{kk}\left(\omega\right)=&\displaystyle\lim_{T\to\infty}\,\frac{1}{T}\,\vert g\ix{k,T}\left(\omega\right)\vert^{2}\,, \qquad k\in\{i\,,j\}\\%
-%             S\ix{ij}\left(\omega\right)=&\displaystyle\lim_{T\to\infty}\frac{1}{T}\left(g\ix{i,T}^{\ast}\ast\left(\omega\right)g\ix{j,T}\left(\omega\right)\right)\\%
-%             =&\int_{-\infty}^{\infty}\left(\displaystyle\lim_{T\to\infty}\frac{1}{T}\int_{-\infty}^{\infty}P\ix{rad}\left(t-\tau\right)f\ix{T}\left(t-\tau\right)\times\right.\\%
-%             &\hspace{1.25cm}\left.P\ix{pred}^{\left(1\right)}\left(t\right)f\ix{T}\left(t\right)\diff t\right)\euler^{-i2\pi\omega\tau}\diff\tau%
-%         \end{split}%
-%     \end{align}%
-
-%     \begin{align}%
-%         \begin{split}\label{eq:coherence}%
-%             \varphi\left(\omega\right)=\frac{\vert S\ix{ij}\left(\omega\right)\vert^{2}}{S\ix{ii}\left(\omega\right)S\ix{jj}\left(\omega\right)}\,,\qquad\vartheta=\displaystyle\int_{-\infty}^{\infty}\frac{\vert S\ix{ij}\left(\omega\right)\vert^{2}}{S\ix{ii}\left(\omega\right)S\ix{jj}\left(\omega\right)}\diff \omega%
-%         \end{split}%
-%     \end{align}%
+    \section{Line-of-Sight Sensitivity Evaluation}%
+%
+        \subsection{Fourier Transform Correlation}\label{sec:fouriercorrelate}%
+%
+            An additional evaluation method can be the \textit{Fourier transform correlation} metric, using the \textit{Fourier transform} $\mathcal{F}\left(\cdot\right)$ and cross correlation to calculate the likeness between $P\ix{rad}$ and the prediction $P\ix{pred}$. This transform finds the continuous frequency spectrum - the spectral function - for the provided aperiodic signals and calculates the similarity between them. The definition of the individual (spectral) transforms $\gamma\ix{i/j}$ can be found in \cref{eq:fourier_convolve_base}, including the map of both signals from their temporal to a frequency domain using the cross correlation.%
+%
+            \begin{align}%
+                \begin{split}\label{eq:fourier_convolve_base}%
+                    \gamma\ix{i}=&\mathcal{F}\left(\int_{-\infty}^{\infty}P\ix{rad}\left(t-\tau\right)\diff\tau\right)\left(\omega\right)\\%
+                    \gamma\ix{j}=&\mathcal{F}\left(\int_{-\infty}^{\infty}P\ix{pred}\left(t-\tau\right)\diff\tau\right)\left(\omega\right)\\%
+                    g\ix{i,j}\left(\omega\right)=\frac{1}{T}&\int_{-\infty}^{\infty}\gamma\ix{i}\left(\omega\right)\gamma\ix{j}\left(\omega-\nu\right)\diff\nu%
+                \end{split}%
+            \end{align}%
+%
+            To calculate the individual Fourier transforms of the temporally sampled signals for all pre-composed LOS combinations, a \textit{discrete fast Fourier transformation} routine (DFFT) from the integrated \textit{NumPy}\footnote[1]{NumPy is the fundamental package for scientific computing in Python; provides multidimensional array objects (masked and matrices), fast operations, including mathematical, logical, manipulation, sorting, selecting, I/O, discrete Fourier transforms, basic linear algebra, basic statistical operations, random simulation} package, a mathematical Python\footnote[2]{high-level, interpreted, general-purpose programming language; designed with code readability as a priority} library is used\cite{NumPyFFT}. The resulting spectral function $\gamma\ix{i/j}$ describes the contribution of a frequency bin $\diff\omega$, a discrete part of the spectral domain $\left[0,N/\left(2\diff t\right)\right]$, to the corresponding signal\cite{NumPyFFTFreq}. This is also referred to as spectral (power) density and $g\ix{i,j}$ as cross-spectral density. The latter provides a measure for the likeness of the two corresponding signals, as it was already applied by the previous correlation metric. Hence, a larger $\gamma\ix{i/j}\left(\omega\right)$ corresponds to a larger contribution of that frequency bin to the signal and therefore $g\ix{i,j}\left(\omega\right)$ likewise to a stronger correlation between the two spectral profiles. A  metric is defined by $\varphi\left(\omega\right)$, analogous to the \textit{(magnitude-squared) coherence}\cite{WikiCoherence}, together with a respective map to a prediction quality $\vartheta$ in \cref{eq:fourier_convolve}.%
+%
+            \begin{align}%
+                \begin{split}\label{eq:fourier_convolve}%
+                    \varphi\left(\omega\right)=\sqrt{%
+                        \frac{\vert g\ix{i,j}^{2}\vert}{\vert\gamma\ix{i}\gamma\ix{j}\vert}}%
+                    \,,\qquad\vartheta=\int_{-\infty}^{\infty}\varphi\left(\omega\right)\diff \omega%
+                \end{split}%
+            \end{align}%
+%
+            The metric $\varphi\left(\omega\right)$ applies the coherence relation, however the spectral densities $g\ix{ii/jj}$ are exchanged with the absolute value of the product of the above Fourier transforms $\gamma\ix{i/j}$. The coherence estimates the relation between two signals, measuring the probability that one is reproducible by or predictable through the other. For the purpose of this evaluation, this appropriation provides adequate normalization and finds $\varphi$ in units of spectral power per frequency, i.e. spectral (power) density. Finally, the prediction quality $\vartheta$ for a LOS selection $S$ is calculated by integrating $\varphi$ over the spectral interval provided by the DFFT, yielding a single value in units of spectral power - here noted as a.u. for consistency.\\%
+            An example for the results from \cref{eq:fourier_convolve_base} and \cref{eq:fourier_convolve} can be found in \cref{fig:fourier_correlation} on the left. Like before, for a combination of $P\ix{rad,HBC}$ and prediction $P\ix{pred}$ from a LOS  selection with $m=3$, the metric $\varphi\left(\omega\right)$ and subsequent quality $\vartheta$ are calculated and presented on the left. The spectral density profile is superimposed with a different abscissa in units of frequency on the top. The final prediction quality is noted in the bottom right corner. Due to the nature of the DFFT routine, the spectral profile extends to the negative frequency range and, in this case, is mirrored around zero. Frequency bins with $\omega<0$ correspond to the imaginary part of the spectrum. If the complex contributions are identical to the real, i.e. the negative is the mirror image of the positive part, the provided signals and their coherence are found to be exclusively real\cite{Cooley1965}. On the right-hand side, the full results of all three channel combination predictions for the Fourier transform metric is shown.\\%
+            Immediately, when examining the results on the left, a stark contrast to the previous metrics is noticeable. When comparing to the results of all three channel combinations on the right, this prediction appears to yield favourable results, however, the two signals $P\ix{rad}$ and $P\ix{pred}$ are particularly disjoint. The plot on the right of \cref{fig:fourier_correlation} shows all unsorted prediction qualities $\vartheta$ as calculated by \cref{eq:fourier_convolve} for selections with $m=3$. The spectrum of results reaches from \SIrange{2e3}{3.4e4}{\arbitraryunit}, while the majority of LOS selections $S$ achieve qualities around \SIrange{1e4}{1.5e4}{\arbitraryunit}. Individual predictions differ up to \SI{2e4}{\arbitraryunit} or $>50\%$ with one channel exchanged. In this case, the second half of the spectrum of combinations shows consistently smaller values of $\vartheta$. This range of three channel selection permutations collectively yields generally less accurate predictions of the plasma radiation loss, indicating a significantly weaker sensitivity of at least one or more channels to the overall measurement.\\%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{subfigure}{0.43\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter3/training/best_combs/%
+                        best_comb_fft_and_convolve_C[4_20_30].pdf}%
+                    \caption{}%
+                \end{subfigure}%
+                \hfill%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter3/training/%
+                        fft_and_convolve_3_HBCm_combinations.pdf}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{Example of how the quality of the prediction for the \textit{FT correlation} metric is calculated for the previously discussed XP20181010.32. \textbf{(a)} Comparison of traces $\varphi\left(t\right)$, calculated using \cref{eq:mean_deviation}, $P\ix{rad}$ and $P\ix{pred}^{\left(1\right)}$ for a subset of three channels of the HBC. \textbf{(b)} Overview of 900 different combinations of three channel subsets for $\vartheta$.}\label{fig:fourier_correlation}%
+            \end{figure}%
+%
+            The collected and averaged LOS sensitivity for three, five and seven channel selection sizes are shown in \cref{fig:results_fourier_correlation}. The plots are constructed the same way as for the previous evaluation metrics, featuring the results for all selection sizes $m$ of the horizontal bolometer camera on the left and of the vertical camera on the right. All profiles are, except the global maxima around $0.38r\ix{a}$ for the HBCm and $-0.13r\ix{a}$ for the VBC, in the range of \SIrange{2}{6e4}{\arbitraryunit} On the left, the different selection sizes yield qualitatively and, along most of the radial spectrum, quantitatively very similar values. In fact, the profile for $m=5$ and $m=7$ are respectively lower than the prior, except around the center LOS no. 15 of the HBC. Only on both ends of the camera fan, i.e. towards $\pm1.25r\ix{a}$ and at the global maximum location, the LOS combinations with $m=3$ provide higher prediction accuracy. However, in those locations, the latter also has larger uncertainties as indicated by the accompanying error bars. Local maxima are also found here towards $r\ix{a}$, $-0.4r\ix{a}$ and $0.7r\ix{a}$. The individual average prediction quality uncertainties decrease with selection size, while they are increased for the local maxima, especially the global maximum at $0.38r\ix{a}$.\\%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter3/training/%
+                        fft_and_convolve_sensitivity_combs_HBCm.pdf}%
+                    \caption{}%
+                \end{subfigure}%
+                \hfill%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter3/training/%
+                        fft_and_convolve_sensitivity_combs_VBC.pdf}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{Average prediction quality $\vartheta$ over a large number of experiments for combinations of three, five and seven channels using the \textit{FT correlation} metric. Prediction selections were limited to one of the individual camera arrays \textbf{(a)} HBCm and \textbf{(b)} VBC.}\label{fig:results_fourier_correlation}%
+            \end{figure}%
+%
+            The results for the vertical bolometer camera on the right-hand side generally are in strong quantitative and qualitative agreement with each other, while in contrast to the HBC profiles on the left, $m=7$ shows the overall largest average prediction quality. Except for the radial interval of $-0.13r\ix{a}$-$0.4r\ix{a}$, the individual plots are nearly congruent and hence well within their respective error bars of less than \SI{2e4}{\arbitraryunit} or 30\%. The quality profile for predictions with seven LOS yields higher results between the global maximum and $0.5r\ix{a}$. Here, shallower local maxima are located around $-0.75r\ix{a}$, $-0.35r\ix{a}$ and $0.65r\ix{a}$. The global and a local minimum are located either side, adjacent to the maximum in $-0.2r\ix{a}$ and $0$. Generally, $m=7$ provides the highest average prediction quality, except for measurements involving LOS between no. 64 and 6, where $m=3$ shows the best results.\\%
+            The \textit{Fourier transform correlation} focuses on the spectral correlation between the prediction and full data set $P\ix{rad}$. The above results in \cref{fig:results_fourier_correlation} show very similar features and characteristics as can be found in \cref{fig:results_correlation} for the \textit{correlation metric}. The global maximum in the prediction profile of the vertical bolometer camera is located at the same radius and features a nearly identical contour on both sides of the LOS spectrum. The relation between the individual selection size lines, with respect to the absolute level of $\vartheta$, and the qualitative plot profile also are virtually congruent to that in the latter figure. The only noticeably difference, besides the quantitative details, are the relative size of the error bars and intensity of the local extremes towards the negative end of the radial spectrum, i.e. $-1.25r\ix{a}$, which are more pronounced in \cref{fig:results_correlation}. However, this does not hold entirely true for the HBC predictions on the left. The negative part of the selection profiles generally reflect the results of the correlation metric, besides the quantitative differences and relative error bar sizes. Again, location and shape of the local maxima here are similar, while also being less intense than in the previous image. Contrary to \cref{fig:results_correlation}, the global maximum is featured on the right side of the radial spectrum in $0.38r\ix{a}$ instead of $-0.85r\ix{a}$. Beyond that, additional maxima can be found only for the Fourier transform correlation with significantly lower relative peak height than the secondary extremes in the prior plot.\\%
+            The presented quality profiles provide a measurement of the spectral likeness between the prediction and $P\ix{rad}$, contrasting the previously examined correlation metric by excluding quantitative contributions to the above results. Again, the horizontal bolometer shows that LOS viewing along the inside of the separatrix and SOL, as well as across the triangular plane and inboard side located X-points present the lowest prediction quality. However, channel no. 20 viewing the upper inboard facing X-point is an exception, which for $m=3$ features the global maximum - this is also indicated by channel no. 9, at a much lower intensity however, watching the corresponding lower magnetic island intersection. Average prediction qualities are higher outside the separatrix and inside the scrape-off layer, indicating a similarly increased sensitivity for feedback frequency responses of $P\ix{pred}$ in $P\ix{rad}$. Lines of sight viewing this part of the plasma yield line integrated measurements along the separatrix, from multiple upper and lower magnetic islands, as well as X-points. In particular, channel no. 4 focuses on the lower inboard X-point and no. 27 the upside located counterpart. Increased values of $\vartheta$ towards $\pm1.25r\ix{a}$ indicate similar contributions from both midplane and outboard islands, including the corresponding SOL separatrix intersections. Results of the vertical bolometer camera support the above examinations, where the global maximum also views the upper inboard X-point. Lines of sight watching only the plasma core and surrounding magnetic islands show relatively decreased average prediction qualities, which in context of the above observations about the separatrix intersections underlines the latter results. Conclusively, the Fourier transform correlation finds the largest local sensitivity of spectral representations in $P\ix{rad}$ to come from channels viewing X-points in the scrape-off-layer and more specifically the one located upside inboard of the triangular bolometer plane. With respect to the very similar results of the \textit{correlation metric} in \cref{fig:results_correlation}, the only significant qualitative change can be found in the radial location of the global maximum of the HBC prediction profile. Exclusion of the contribution of absolute values to the prediction quality yields a shift of the maximum from the top inboard magnetic islands to the below neighbouring X-point.%
+%
+        \subsection{Plasma Parameter Sensitivity Analysis}\label{sec:senseresults}%
+%
+            Median values of the central plasma parameters, i.e. microwave heating power $P\ix{ECRH}$, outboard electron temperature $T\ix{e}$ and radiative plasma power loss $P\ix{rad}$ have been collected for all feedback controlled experiments from the respective campaign. Based on this information, the results from, e.g. the \textit{weighted deviation} in \cref{fig:results_weighted_deviation} or any other metric can be used to correlate their findings with the governing plasma parameters. For the sake of clarity, the aforementioned weighted deviation and its prediction results where chosen to apply the above approach. The results can be found in \cref{fig:training_parameters}. For a selection $S$ of $m$ channels, the weighted deviation metric $\varphi^{\ast}$ finds a quality value $\vartheta$ for the calculated $P\ix{pred}$, given $P\ix{rad}$ and accompanying plasma parameters. Conclusively, this yields a map from LOS selection and characteristic plasma parameters, including $P\ix{ECRH}$, $P\ix{rad}$, $T\ix{e,out}$ etc., to one singular measure for prediction efficacy%
+%
+            \begin{align}%
+                \begin{split}\label{eq:sensitivity_parameter_map}%
+                    \vartheta\coloneqq &f\left(S,\,\varphi^{\ast},\,\textit{plasma parameters}\right)\colon\mathbb{N}^{m}\times\mathbb{R}^{n}\to\mathbb{R}\,\,.%
+                \end{split}%
+            \end{align}%
+%
+            \begin{figure}[t]%
+                \parbox{0.44\linewidth}{%
+                    \centering\,\,\,\,\textbf{HBC}}%
+                \quad%
+                \parbox{0.44\linewidth}{%
+                    \centering\,\,\,\,\textbf{VBC}}%
+                \,\vspace*{0.2cm}\\%
+                \parbox{0.02\linewidth}{%
+                    \textbf{(a)}}%
+                \quad%
+                \parbox{0.42\linewidth}{%
+                    \includegraphics[width=\linewidth]{%
+                        content/figures/chapter3/training/%
+                        weighted_deviation_sensitivity_params_ECRH_HBCm.pdf}}%
+                \quad%
+                \parbox{0.42\linewidth}{%
+                    \includegraphics[width=\linewidth]{%
+                        content/figures/chapter3/training/%
+                        weighted_deviation_sensitivity_params_ECRH_VBC.pdf}}%
+                \quad%
+                \parbox{0.02\linewidth}{%
+                    \textbf{(b)}}%
+                \,\\%
+                \parbox{0.02\linewidth}{%
+                    \textbf{(c)}}%
+                \quad%
+                \parbox{0.42\linewidth}{%
+                    \includegraphics[width=\linewidth]{%
+                        content/figures/chapter3/training/%
+                        weighted_deviation_sensitivity_params_frad_HBCm.pdf}}%
+                \quad%
+                \parbox{0.42\linewidth}{%
+                    \includegraphics[width=\linewidth]{%
+                        content/figures/chapter3/training/%
+                        weighted_deviation_sensitivity_params_frad_VBC.pdf}}%
+                \quad%
+                \parbox{0.02\linewidth}{%
+                    \textbf{(d)}}%
+                \,\\%
+                \parbox{0.02\linewidth}{%
+                    \textbf{(e)}}%
+                \quad%
+                \parbox{0.42\linewidth}{%
+                    \includegraphics[width=\linewidth]{%
+                        content/figures/chapter3/training/%
+                        weighted_deviation_sensitivity_params_Te_out_HBCm.pdf}}%
+                \quad%
+                \parbox{0.42\linewidth}{%
+                    \includegraphics[width=\linewidth]{%
+                        content/figures/chapter3/training/%
+                        weighted_deviation_sensitivity_params_Te_out_VBC.pdf}}%
+                \quad%
+                \parbox{0.02\linewidth}{%
+                    \textbf{(f)}}%
+                \caption{Experiment parameter analysis for the \textit{weighted deviation} metric and the corresponding sensitivity results shown in \cref{fig:results_weighted_deviation}. Included are maps of both cameras each for parameters \textbf{(a)}, \textbf{(b)} microwave heating $P\ix{ECRH}$, \textbf{(c)}, \textbf{(d)} radiation fraction $f\ix{rad}$ and \textbf{(e)}, \textbf{(f)} core electron temperature $T\ix{e}$.%
+                }\label{fig:training_parameters}%
+            \end{figure}%
+%
+            This section will only focus on the results for $m=3$ in \cref{fig:results_weighted_deviation}, producing the coloured, two-dimensional height map in \cref{fig:training_parameters}. The top line of plots shows the combined individual selection prediction qualities of HBC and VBC from before with their corresponding median plasma heatings powers $P\ix{ECRH}$. The following two figures below correlate the previous profiles with the median radiative power loss $P\ix{rad}$ to find the radiation fraction $f\ix{rad}$. Due to differences in the two bolometric measurements, the colour scales are different here between the cameras. Finally, the last two images show the same results superimposed with the median core electron temperature $T\ix{e}$. All plots span the same ordinate and abscissa ranges for the HBC and VBC respectively,\\%
+            The top row of \cref{fig:training_parameters}:(a) and (b) shows the resulting $P\ix{ECRH}$ brightness profiles for both cameras. Similarly, the next line of plots, image (c) and (d) show the radiation fraction $f\ix{rad}$ as a brightness profile over the minimum plasma radius along the LOS and mean deviation prediction quality in the same way as before. Finally, the last row of images features the core electron temperature $T\ix{e}$ from the same set of experiments as before. The presented results in all outline a very similar picture due to the underlying LOS prediction quality profile, calculated from the same experimental data set using the \textit{weighted deviation} metric. Small variations in the shape of the plots are due to the evaluation of the corresponding plasma parameter, which potentially yield negligible or no results, i.e.$\sim0$. In this case, this is interpreted as the background colour, since omitted channels and combinations of $\left\{r\ix{a}, \vartheta\ix{S}\right\}$ that yield no results also correspond to $0$. The most notable feature is the distinguishable gap in $\vartheta$ between $\approx$\SIrange{0.3}{0.5}{\arbitraryunit}, containing only few single spots with no pattern whatsoever. On one hand, qualitatively, profiles of the two cameras match very well throughout the series of plots, where overall shape, global extremes location and absolute values are in good agreement. On the other hand, the brightness profiles greatly differ for each camera across the individual colour axis, i.e. $P\ix{ECRH}$, $f\ix{rad}$ etc. At the top, a large range of prediction qualities \SIrange{0.5}{0.85}{\arbitraryunit} is found for the highest heating power of \SI{4.2}{\mega\watt}, while the bottom of the same plot features a decreased brightness of \SI{3.6}{\mega\watt} and narrower profile shape. Correspondingly, the highest $f\ix{rad}>$\SI{0.8}{\arbitraryunit} yield the lowest $\vartheta<$\SI{0.3}{\arbitraryunit}, with higher predictions qualities linked to slightly reduced radiation fractions above \SI{0.75}{\arbitraryunit} for both cameras. This plot also does not provide results at the bottom below \SI{0.1}{\arbitraryunit} Finally, in the last set of images, electron temperatures of $>$\SI{0.9}{\kilo\electronvolt} coincide with the full spectrum of prediction qualities for all featured LOS combinations and radii. However, increased $T\ix{e}>$\SI{1.2}{\kilo\electronvolt} can be found for $\vartheta<$\SI{0.15}{\arbitraryunit} or at \SI{0.7}{\arbitraryunit} consistently and for a small range of LOS towards the negative end of the radial spectrum across all qualities.\\%
+            The presented results in \cref{fig:training_parameters} provide a detailed insight into the correlation between central plasma parameters and the efficacy of individual bolometer channels towards a radiation power loss prediction. First and foremost, this shows that either the applied \textit{weighted deviation} evaluation metric yields no results for, or that combinations with a medium prediction quality, i.e. $\sim$\SI{0.5}{\arbitraryunit} correspond only to negligible plasma parameters. Considering the manually selected combination of experiments and evaluation procedure, the latter is the more plausible cause.  Within the scope of the above analysis, this is synonymous with the fact that only $\vartheta$ significantly below or above \SI{0.5}{\arbitraryunit} are found for the selection of LOS combinations. Furthermore, higher heating powers $P\ix{ECRH}$ correlate with an overall increased predictability of $P\ix{rad}$, while this is inversely linked to the respective radiation fraction $f\ix{rad}$. However, around prediction qualities of $\sim$\SI{0.75}{\arbitraryunit}, a significantly increased $f\ix{rad}$ compared to the surrounding profile of $<$\SI{0.5}{\arbitraryunit} can be found, indicating that at higher radiation loss fractions there exists an improved $\vartheta$. Finally, a similar picture is found for electron temperature measurements, where around the same prediction quality of \SI{0.75}{\arbitraryunit} and above \SI{0.9}{\arbitraryunit} a relatively higher value of \SI{1.3}{\kilo\electronvolt} is found across all LOS. However, consistently greater $T\ix{e}$ and also its global maximum are located at distinctly lower weighted deviation metric results <\SI{0.4}{\arbitraryunit} Furthermore, the latter applies only for LOS with $r<0.4r\ix{a}$, i.e. towards the lower inboard side of the triangular plane, close to the aperture of the VBC camera array and two neighbouring islands. In conclusion, both camera datasets are in very good agreement with each other, from which very confidently experimental configurations can be preset to achieve good plasma radiation predictability. Discharges with medium to high heating powers, $\ge$\SI{3.5}{\mega\watt}, core electron temperatures of $\sim$\SI{1.3}{\kilo\electronvolt} and radiation loss fractions >\SI{0.75}{\arbitraryunit} consistently fit well to the above methodology across all LOS combinations.\\%
+%
+            \newline%
+            This serves as a robust study for the application and local sensitivity of plasma radiation feedback for future experiment campaigns. Hence, closing this particular investigation and referring back to the originally posed questions in the beginning of this chapter, sets of discharge configurations and corresponding line of sight combinations have been identified to positively correlate with the quality of the real-time radiation prediction. Therefore, there \textit{does exist an optimal set $S$ of LOS for a range of given plasma parameters}. The following section will try to answer the remaining question, posed in the beginning of this chapter, regarding the cause of the plasmas behaviour and LOS sensitivity under feedback conditions.%
+%
+\chapter{STRAHL modelling}\label{apx:strahl}%
+%
+    \section{Experimental Data}\label{apx:strahlexp}%
+%
+        \begin{figure}[t]%
+            \centering%
+            \begin{minipage}[b]{0.48\textwidth}%
+                \centering%
+                \subcaptionbox{}{%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter3/STRAHL/nete/%
+                        compare_ne_Te_93_94_edge.png}
+                }%
+            \end{minipage}%
+            \hfill%
+            \begin{minipage}[b]{0.48\textwidth}%
+                \centering%
+                \subcaptionbox{}{%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter3/STRAHL/diag_lines/%
+                        compare_strahl_rad_combine2_93_94_edge.png}%
+                }%
+            \end{minipage}%
+            \captionof{figure}{Comparison between \textit{Thomson scattering} data and corresponding STRAHL simulation results for $f\ix{rad}=90\%$ and $100\%$ from experiment XP20181010.32. \textbf{(a)}: Thomson scattering electron density and temperature data with individual second order spline interpolated lines (\textit{interp.}). \textbf{(b)}: STRAHL simulation results of carbon impurities. The top shows the fractional abundances and the bottom the radiation intensity fractions of the ionisation stages for carbon.}\label{fig:nete_abund_lines_93_94_edge}%
+        \end{figure}%
+%
+        \cref{fig:nete_abund_lines_93_94_edge} extends the previously displayed set of radiation fractions in \cref{subsec:strahl}, kinetic profiles and accompanying STRAHL simulation results. Here, the data and results for $f\ix{rad}=90\%$ and 100\% are presented. In contrast to before in \cref{fig:nete_abund_lines_91_92}, only the very edges of the plasma core and the SOL are shown by the remaining plots in order to focus on the most relevant areas for the intended investigation of chord brightness characteristics. Again, the left image shows the different experimentally measured electron temperature and density profiles from the Thomson scattering and their respective spline interpolations. The right image again shows the individual ion stage fractional abundances and relative radiation power loss contributions. At the top, $f\ix{6+}$ steadily declines until the separatrix for both radiation fractions. Only outside beyond $1.1r\ix{a}$ there is a significant difference, where for $f\ix{rad}=100\%$ the relative fully ionized carbon density is higher by $\sim15\%$, while both level off around the divertor location to 10\% and 25\% respectively. A similar behaviour can be noted for C$^{5+}$, which exhibits an even larger change from 5\% to 25\% at the domain boundary, though $f\ix{5+}$ has a local maximum closer of to the separatrix on the inside. The relative emissivities of the individual ions on the bottom present very strong differences around the LCFS between the two $f\ix{rad}$ levels. At 90\%, fully ionized carbon emissions decrease towards the SOL, but have a local maximum around $0.9r\ix{a}$ at $\sim27\%$. For $P\ix{rad}=P\ix{ECRH}$ the peak vanishes and $P\ix{6+}$ steadily falls before the separatrix. Increasing the radiation fraction leads to an outside shift towards the LCFS by $\sim$\SI{5}{\centi\meter} at constant peak values and change rates. With focus on the aforementioned local sensitivities towards radiation changes around the separatrix, the most significant variations between the different levels of $f\ix{rad}$ can be found for C$^{3+}$ and C$^{2+}$. At 90\% both feature their maximum outside the LCFS and have the majority of their emissions take place in the SOL. However, $P\ix{4+}$ begins to rapidly increase inside the core around $0.9r\ix{a}$ before reaching its peak just beyond $r\ix{a}$ and then more steadily decreasing towards the plasma boundary. Emissions from C$^{2+}$ only begin to increase at the separatrix and have their maximum of around $1.12r\ix{a}$. Going to $f\ix{rad}=100\%$ yields $P\ix{3+}$ to significantly shift closer to and around the LCFS. Similarly, $P\ix{2+}$ now starts to increase and has its peak just inside the plasma core, still featuring the bulk of the relative radiation power loss in the SOL.\\%
+%
+        \begin{figure}[t]%
+            \centering%
+                \includegraphics[width=0.5\textwidth]{%
+                    content/figures/chapter3/STRAHL/diag_lines/%
+                    compare_strahl_rad_93_94_edge.png}%
+            \captionof{figure}{Individual and total radiation intensities for carbon, corresponding to the previously shown one-dimensional STRAHL simulation results in \cref{fig:nete_abund_lines_93_94_edge}, for $f\ix{rad}=90\%$ and $100\%$.}\label{fig:total_rad_93_94_edge}%
+        \end{figure}%
+%
+        Concluding this exploration is \cref{fig:total_rad_93_94_edge}. Shown here are the individual and total absolute impurity emissivities close to and outside the separatrix for $f\ix{rad}=90\%$ and 100\% as before. For convenience, a more detailed description of the respective profiles for C$^{6+}$ through C$^{4+}$ will be omitted, since it has been established multiple times up until this point that their contribution is largely, if not entirely limited to the plasma core and does not yield particular impact on the local emissivity around the LCFS. Note however that the emission inside the separatrix of $P\ix{5+}$ and $P\ix{4+}$ are greatly increased for $f\ix{rad}=100\%$. Emissions from C$^{3+}$, with a peak of \SI{50}{\kilo\watt\per\cubic\meter} at $1.15r\ix{a}$, are mostly located in the SOL at a radiation fraction of 90\%. They radically shift radially inwards and constitute a much sharper maximum at $0.975r\ix{a}$. For all ionisation stages large quantitative, and in particular for the lowest four charge states also qualitative changes can be observed when increasing the radiation fraction from 90\% to 100\%. This is then, most dominantly by differences in the profiles of C$^{3+}$ and C$^{2+}$, reflected in the total radiation power density profile in the last plot. At the lower $f\ix{rad}$, the sum of emissivities coincides with the SOL emissions of the three first ion stages at \SI{80}{\kilo\watt\per\cubic\meter} and their symmetrical decay therein.\\%
+%
+        \newline%
+        The STRAHL simulation results for four different sets of experimentally measured kinetic profiles of electron temperature and density at specific radiation fraction levels from discharge XP20181010.32 with constant geometry, magnetic configuration and transport coefficients have thereby been presented. The significance of carbon in this particular case has been underlined, while showing that radiation from oxygen impurities is at least $10^{2}$ times smaller than emissions of the prior. Due to the peaked temperature profile shape and intrinsic transport of convection and diffusion the most relevant part of the simulation domain towards the LOS radiation sensitivity and chord brightness profiles for feedback scenarios is found to be centred around the separatrix. Furthermore, by comparing the $T\ix{e}$ and $n\ix{e}$ profiles next to their corresponding transport and radiation calculation results, the importance of shapes and absolute values in the input data is highlighted. At lower radiation fractions, i.e. 33\% and 66\%, a more than twofold increase in SOL emissivity is found for increments as small as \SI{6}{\electronvolt} or $\sim10\%$ in separatrix temperature and 43\% in density. Results from the second step in $f\ix{rad}$ support this fact, since for a 10\% higher power loss, $T\ix{e}$ at and beyond the LCFS is greatly reduced. Subsequently, the profiles of $f\ix{A}$ and $P\ix{diag}$ are changed drastically both quantitatively and qualitatively. The first set of comparisons is exhibited under nearly unchanged factional abundances, relative emissivities and $\sim5\%$ higher peak carbon concentration directly at the divertor. The population of carbon ions is largely dominated by fully ionized C$^{6+}$ up until the LCFS in any case. At around \SI{0.5}{\kilo\electronvolt} and below, lower charge states begin to appear. At even lower temperatures and therefore further outside and into the SOL, the impurity species are rearranged (in-)to the next lower, and finally doubly/singly charged C$^{1/2+}$ or carbon atoms at the limiting surface - due to recombinations and seeding from the divertor. However, those lesser charged carbon ions exist at a significantly higher concentration in the SOL due to the reduced background plasma density and radiate much stronger than C$^{6+}$ in the core. Hence, STRAHL finds the maximum of the one-dimensional radiation distribution for this set of coefficients to be in the SOL for all but one level, $f\ix{rad}=100\%$. With the limited validity of STRAHL simulations beyond closed flux surfaces and the overall poor quality of kinetic profiles - \textit{Thomson scattering} data were unreliable and were unavailable outside the separatrix - in mind, only the very last set of results is of relevance towards this particular investigation. Variations in the corresponding $T\ix{e}$ profile around the separatrix coincide significantly with the changes in the individual carbon ion emissivity profiles and resulting radiation distribution. This combination of parameters yields the only results relevant for modelling feedback scenarios in STRAHL towards the LOS sensitivity of the bolometer diagnostic. Furthermore, the STRAHL profiles in \cref{fig:total_rad_93_94_edge} are especially interesting for predicting and understanding potential (controlled) detachment processes under those circumstances, which ultimately is among the prospects for the real time radiation feedback system.%
+%
+    \section{Parameter Variation}\label{apx:strahlvar}%
+%
+        \subsubsection*{Electron Profile Decay Length Variation}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/nete/%
+                            compare_ne_Te_94_105_edge.png}%
+                    }%
+                \end{minipage}%
+                \hfill%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/fract_abund/%
+                            compare_fract_abund_94_105_edge.png}%
+                    }%
+                \end{minipage}%
+                \captionof{figure}{Comparison between two sets of input electron profiles and corresponding STRAHL simulation results around the separatrix - the fractional abundance is shown here -, both for $f\ix{rad}=100\%$ from experiment XP20181010.32. The decay length of the extrapolated profiles, beyond the last closed flux surface was varied. \textbf{(a)}: Electron density and temperature profiles from Thomson scattering measurements as before, where the decay length beyond the LCFS has been altered. \textbf{(b)}: fractional abundances of carbon from STRAHL simulation results, corresponding to the different profiles on the left.}\label{fig:nete_abund_94_105}%
+            \end{figure}%
+%
+            The second STRAHL input parameter variation is done using different constant SOL decay lengths $\lambda$ of \SI{5}{\centi\meter} and \SI{2}{\centi\meter}. Primarily, this dictates the shape and value of the input kinetic profiles for $T\ix{e}$ and $n\ix{e}$ outside the separatrix through changing the extrapolation methods coefficients. Like pointed out before, $\lambda=$\SI{5}{\centi\meter} is modelled after the plasma profile decay across a magnetic island inside the SOL, while \SI{2}{\centi\meter} is more akin to the drop over just open field lines. The respective kinetic input profile plots around the LCFS and carbon ion fractional abundances can be found in \cref{fig:nete_abund_94_105}. On the left, expectedly, the impact of variations in $\lambda$ is limited to the SOL, where for a decay length of \SI{2}{\centi\meter} $n\ix{e}$ drops significantly faster from the separatrix outwards, while only very small changes are visible for $T\ix{e}$. In both cases, the plasma core profiles are unaltered and their values at the LCFS are basically unchanged. The corresponding fractional abundances of carbon impurity ions on the right feature only very small or negligible differences in the core between the two $\lambda$. Inside the SOL, the relative C$^{6+}$, C$^{5+}$ and C$^{4+}$ counts increase by 12\%, 5\% and 2\%, respectively. Accordingly, the populations of C$^{3+}$, C$^{2+}$ and C$^{1+}$ remain at or decrease to 5\% by 6\% and 10\%. All $f\ix{A}$ profiles are relatively continuous or flat outside the separatrix and reach their individual plateau up until $1.1r\ix{a}$.\\%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/diag_lines/%
+                            compare_strahl_rad_ratios94_105_edge.png}
+                    }%
+                \end{minipage}%
+                \hfill%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/diag_lines/%
+                            compare_strahl_rad_94_105_edge.png}%
+                    }%
+                \end{minipage}%
+                \captionof{figure}{STRAHL simulation results of relative and total impurity radiation from carbon for the previously presented sets of electron density and temperature profiles around the separatrix in \cref{fig:nete_abund_94_105} for $f\ix{rad}=100\%$ from experiment XP20181010.32. \textbf{(a)}: relative radiation intensity for each individual ionisation stage of carbon. \textbf{(b)}: Absolute radiation power and integrated loss for the same ion species.}\label{fig:rad_ratios_total_94_105}%
+            \end{figure}%
+%
+            \cref{fig:rad_ratios_total_94_105} shows the individual relative emissivities $P\ix{i}$ on the left and their absolute value $P\ix{diag}$, as well as the total sum as the radiation power loss profile $P\ix{tot}$ on the right like before. Up to $0.9r\ix{a}$, there is no noticeable significant difference between the STRAHL results of the two sets of decay length $\lambda$. Beyond, at $\lambda=$\SI{2}{\centi\meter}, C$^{1+}$ is significantly compressed radially with a constant starting point in the core and its maximum slightly reduced to 20\% from 30\%. Therefore, $P\ix{1+}$ has its peak very much closer to the LCFS and a larger contribution to the plasma core radiation. In contrast, the factional abundance of C$^{2+}$ shows a minor reduction before and much stronger one at the LCFS. Outside  $f\ix{2+}$ no longer has a second local maximum like before and almost linearly drops to zero with C$^{1+}$. Lastly, the SOL part of C$^{3+}$ abundance appears strongly contracted towards the separatrix, which leads to an initially shallower drop and a conclusive sharp decline to zero before $1.15r\ix{a}$.\\%
+            The individual absolute carbon ion emissions in the top right reflect the changes examined on the left generally rather well, however their relative impact here varies between the species. For C$^{5+}$ and C$^{4+}$, their absolute emissivities are increased drastically when comparing to the variance in their fractional abundances, where they grow by at least \SI{7}{\kilo\watt\per\cubic\meter} in their local maximum. Inside the LCFS, similar differences are presented by C$^{3+}$ and C$^{2+}$, for which the increments are higher at \SIrange{10}{30}{\kilo\watt\per\cubic\meter}. Here, $P\ix{diag}$ of C$^{1+}$ has its maximum just in front of the separatrix at \SI{20}{\kilo\watt\per\cubic\meter} instead of in the SOL for $\lambda=$\SI{2}{\centi\meter}. Beyond $r\ix{a}$, the latter three ionisation stages all decrease with a constant decay length equally, before reaching zero around $1.1r\ix{a}$. Besides C$^{1+}$, no radial shifts can be noted. Conclusively, the above variations are very clearly represented in $P\ix{tot}$ on the bottom. The plasma core radiation increments of \SIrange{5}{30}{\kilo\watt\per\cubic\meter} are reflected directly, whereas the previously found second maximum in the SOL is lost to the constant decay featured by the three lowest carbon ion charge states above.\\%
+            Parameter variations in the plasma edge decay length $\lambda$, through changes in the SOL part of the kinetic inputs $n\ix{e}$ and $T\ix{e}$, greatly impact the shape and height of the outside emissivity profiles. Furthermore, through transport, this indirectly also influences the absolute value of the core portion of said quantities. For large differences in the edge, small qualitative changes to the core part are possible, though no systematic radial shift inside each individual emissivity or the total radiation power can be found.%
+%
+        \subsubsection*{Radial Impurity Source Variation}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/fract_abund/%
+                            compare_fract_abund_82_94_edge.png}
+                    }%
+                \end{minipage}%
+                \hfill%
+                \begin{minipage}[b]{0.48\textwidth}%
+                    \centering%
+                    \subcaptionbox{}{%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter3/STRAHL/diag_lines/%
+                            compare_strahl_rad_82_94_edge.png}%
+                    }%
+                \end{minipage}%
+                \captionof{figure}{STRAHL simulation results for different radial positions of the carbon impurity source around the separatrix in \cref{fig:nete_abund_94_105} for $f\ix{rad}=100\%$ from experiment XP20181010.32. \textbf{(a)}: fractional abundance of each individual ionisation stage of carbon. \textbf{(b)}: Absolute radiation power and integrated loss for the same ion species.}\label{fig:fract_abund_rad_total_82_94}%
+            \end{figure}%
+%
+            In order to further verify the robustness of the presented STRAHL results, the parameter model impurity source $S$ location, which is assumed to be the divertor at $r\ix{a}+$\SI{7.5}{\centi\meter}, will be varied. Contrary to before, this directly changes the impurity ion populations instead of the kinetic input plasma background or its extra- or interpolation. Therefore, \cref{fig:fract_abund_rad_total_82_94} only shows the fractional abundances on the left and the corresponding individual absolute emissivities and total impurity radiation on right. The previously presented $n\ix{e}$ and $T\ix{e}$ profiles for $f\ix{rad}=100\%$ in \cref{fig:nete_abund_lines_93_94_edge} remain the same in this case. Akin to the changes in $f\ix{A}$ profiles in \cref{fig:nete_abund_94_105}, differences between the individual fractional abundances for two radial source locations are almost exclusive to the SOL. Shifting the carbon impurity source $S$ to the separatrix leads to an increase of relative C$^{6+}$, C$^{5+}$ and C$^{4+}$ population in the SOL by $\sim7\%$ at the domain boundary. From the LCFS outward, the respective difference grows with distance until their plateau from $1.1r\ix{a}$ onward. Concurrently, the fractional abundances of C$^{2+}$ and C$^{1+}$ outside the separatrix decrease much more significantly from 11\% and 15\% to 4\% and 1\%. For C$^{4+}$ and C, the variations are very small, with a 1\% increase in $f\ix{4+}$ and a missing step at the divertor in carbon atom population for $S\,\rightarrow\,r\ix{a}$.\\%
+            On the right, the absolute radiation levels in $P\ix{diag}$ and $P\ix{tot}$ are, besides minor differences in the SOL decay rates, nearly congruent with those shown in \cref{fig:rad_ratios_total_94_105}. Here, the results for a source located at the LCFS would correspond to a set of STRAHL calculations with $\lambda=$\SI{2}{\centi\meter}. At the top, the plasma core emissivities for $S\,\rightarrow\,r\ix{a}$ are equal, within negligible variations in absolute height, to those for $\lambda=$\SI{2}{\centi\meter}. Outside the separatrix, the profile shape of all three lower ionisation stages are defined by a steady decay from their value at the LCFS to zero before $1.15r\ix{a}$. However, in contrast to the above comparison, carbon atom emissions can be found just inside the core of up to \SI{5}{\kilo\watt\per\cubic\meter}. Conclusively, the total impurity radiation below is also a near copy of the results for a reduced SOL decay length, although with a less steep drop outside $r\ix{a}$.\\%
+            Changing the location of the impurity source $S$ and shifting it to the separatrix yields very similar if not equal results in core emissivity as a reduced kinetic profile decay length. More so, the corresponding SOL radiation is reduced and additional local maxima are missing. Therefore, no radial displacements of the individual and total carbon impurity emissions are found. The injection of carbon atoms at the LCFS yields a higher population of C$^{6+}$, as they are fully ionized at higher electron temperatures and densities and transported outward. Coincidentally, lower ion stage counts are greatly decreased or disappear entirely since much less carbon exists at radial locations where the respective reactions rate coefficients have a signal yield.%
+%
+\chapter{Two-dimensional radiation inversion}\label{apx:mfr}%
+%
+    \section{Camera Geometry Perturbations}\label{apx:geompertub}%
+%
+        \subsection*{Unilateral Camera Array Mirroring}%
+%
+            An additional variation to the horizontal camera is constructed by applying a rotation and transposition to one half of the array, i.e. channels 16 through 32 that adjusts their geometry to be in one plane with the remaining detectors and a mirror image of their counterpart. This hypothetical \textit{mirror} (plane) would be one that is spanned by the normal of the LOS fan and the direction of channel no.15. The transformation is constructed so that the new location and orientation of absorber no.32 is equal to that of no.1, rotated by the opening angle of the camera \SI{53}{\degree}. Similarly, channel no.31 becomes the mirror opposite of no.2, rotated by \SI{53}{\degree}$-\angle\left(\vec{LOS}(1), \vec{LOS}(2)\right)$ and so on. Resulting deviations to the original geometry are so small that a three-dimensional representation like in \cref{fig:geometry_change_centered} yields no visible distinction between the two. Hence, \cref{fig:geometry_forward_fixed} shows the etendue variation and the forward model integrated chord brightness profiles, again as in \cref{fig:chord_forward_exp_vs_STRAHL} for increasing levels of $f\ix{rad}$ for this proposed adjustment to $\mathbf{T}$. The change in local sensitivity is, as instructed above, limited to the upper half of the camera array, while it is two orders of magnitude lower than before at <\SI[per-mode=reciprocal]{e-13}{\per\cubic\milli\meter}.\\%
+            The chord brightness profiles for varying $f\ix{rad}$ on the right of \cref{fig:geometry_forward_fixed} are constructed the same way as before. With respect to the initial results, a decrease in variance between left and right half of the plot can be noted when inspecting the corresponding mirrored, semi-transparent lines. However, this miniscule deviation in the range of $0.5-1\%$ is found in profiles produced from both intrinsically symmetrical camera geometry and radiation distributions. All possible sources of asymmetry besides the toroidal extension of the array have been eliminated in order to produce this plot. Therefore, one has to conclude that at least some level of asymmetry in previously and hereafter measured or forward integrated HBC profiles is due to the tilt of the LOS fan of \SI{68.75}{\degree}. Furthermore, the difference between this chord brightness profile and the initial results using the original geometry from \cref{fig:chord_forward_exp_vs_STRAHL} hence is dominated by the variation among the individual horizontal camera LOS.\\%
+            The evaluation of this perturbation in $\mathbf{T}$ is concluded by underlining the fact that a change of this magnitude, i.e. $\tenpo{-2}$ times smaller than the variability of different segmentation methods, yields almost no variation in forward calculation.%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/MFR/%
+                        compare_fixedLoS_emissivities3D.pdf}%
+                    \caption{}%
+                \end{subfigure}%
+                \hfill%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/forward_int/%
+                        forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_det_fix_boloplane_sN8_30x20x150_1.35.png}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{\textbf{(a)} Impact of geometry changes on the collective etendues of the horizontal camera, where one half (\textit{upper}) of the camera array has been rotated so that all channels lie in one plane and each is the exact mirror opposite - the \textit{mirror} being a plane defined by the camera aperture normal, perpendicular to the LOS fan - of one from the other half. \textbf{(b)} Forward integrated chord brightness for the HBC at different $f\ix{rad}$ for previously presented STRAHL results in \cref{fig:chord_forward_exp_vs_STRAHL} using the hypothetical camera geometry from \textbf{(a)}.}\label{fig:geometry_forward_fixed}%
+            \end{figure}%
+%
+        \subsection*{Artificial Symmetrical Horizontal Camera}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/MFR/%
+                        compare_symmetric_emissivities3D.pdf}%
+                    \caption{}%
+                \end{subfigure}%
+                \hfill%
+                \begin{subfigure}{0.47\textwidth}%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/forward_int/%
+                        forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_sN8_30x20x150_1.35.png}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{\textbf{(a)} Impact on the collective etendues of the horizontal camera, where the entire array has been replaced by an artificial, symmetrical, vertically upright LOS fan with equidistant channels around $z=0$, the vertical dimension of the W7-X coordinate system. \textbf{(b)} Forward integrated chord brightness at different $f\ix{rad}$ for previously presented STRAHL results in \cref{fig:chord_forward_exp_vs_STRAHL}, using the camera geometry of (a).}\label{fig:geometry_forward_symmetric}%
+            \end{figure}%
+%
+            Here on constructs a pseudo artificial horizontal camera array that has absolutely no variations among its absorbers and their LOS. The attribute \textit{pseudo} refers to this geometries' detector construction that is created by averaging size, shape and distance in-between the original HBCm absorbers that is therefore repeated 32 times to create this hypothetical device. This new, upright, centred, machine coordinate origin oriented camera with equidistant, equally sized detectors viewing the plasma through a parallel, centred aperture is also used to forward integrate the previous STRAHL results and find their respective chord brightness profiles. A plot for the varying radiation fraction levels $f\ix{rad}=0.33,\dots,1.0$ is accompanied by a two-dimensional deviation map in the triangular plane between this new geometries and the actual local sensitivity in \cref{fig:geometry_forward_symmetric}.\\%
+            With respect to the previous analysis of perturbations in etendue in \cref{fig:geometry_change_artificial}, this image presents similar magnitudes $\sim$\SIrange[per-mode=reciprocal]{e-11}{e-16}{\per\cubic\milli\meter} and comparable local maxima at the outboard side, closest to the pinhole of the artificial camera. Individual pixel artefacts can also be found here, though the poloidal structuring from before is far weaker and the characteristic of separate LOS can be noticed, originating at the aperture beyond the tip of the triangular domain. The also perfectly symmetric chord brightness profile on the right for $f\ix{rad}=1$ is very akin to the one before, though with a slightly reduced maximum of \SI{240}{\kilo\watt\per\cubic\meter}. At lower radiation fractions, the intensity of the local extremes are significantly increased by up to 50\% while also being further outside or even remaining beyond the separatrix. The overall shape however is still very similar.\\%
+            A planar correction and rotation of the original HBCm geometry provided fully symmetrical forward model integrated measurements without significant qualitative discrepancies to those produced by the underlying camera. The change in local sensitivity between that and this particular hypothetical array is of same order of magnitude as the differences created by varying detector and pinhole segmentation methods. A fully artificial horizontal camera that is achieved without any perturbation in orientation or detector construction also yields similarly symmetrical forward chord brightness profiles from STRAHL results for comparable etendue variations. On one hand, such small changes in $\mathbf{T}$ have the potential to significantly change the measurements and hence any thereon based reconstructions, while on the other the as-designed local sensitivity of the horizontal bolometer camera is proven to be very close to a theoretical, ideal geometry.%
+%
+    \section{Minimum Fisher regularisation}\label{apx:phantom}
+%
+        \subsection{Relative Gradient Smoothing}\label{apx:rgs}%
+%
+            As noted above, Zhang et al.\cite{Zhang2013,Zhang2021_2} have proposed and applied another tailored reconstruction algorithm, also based on the already proven\cite{Anton1996} Minimum Fisher regularisation, using a novel functional with relative gradient
+            smoothing (RGS) of the iterated profile. It has been already successfully validated using simulation results by three-dimensional simulation model results for phantom radiation distributions from EMC3-EIRENE\cite{Zhang2021_2}. Note though that this was done for pure hydrogen plasma with dominating oxygen impurities. The idea is to modify the expression around the Fisher information $I\ix{F}$ after which the regularizing expression $\mathbf{K}$ is modelled.%
+%
+            \begin{align}%
+                \mathbf{K}\,\,\to\,\,\vec{x}^{\intercal}\,\mathbf{H}\ix{RGS}\,\vec{x}\propto\left(\frac{\nabla g}{g}\right)^{2}%
+            \end{align}\label{eq:baseRGS}%
+%
+            The regularizing weight in $\mathbf{K}$ becomes the inverse square of the distribution $1/g$, which corresponds to the emission profile. The RGS functional matrix $\mathbf{H}\ix{RGS}$, with respect to \cref{eq:fisher_algo} and following, now is:%
+%
+            \begin{align}%
+                \begin{split}%
+                    n\,=\,0\,\text{:}\qquad\mathbf{W}\ix{RGS}^{\left(0\right)}=&\mathbf{1}\,\,,\\%
+                    n\,\ge\,1\,\text{:}\qquad\mathbf{W}\ix{RGS}^{\left(n\right)}=&\left(1/g_{i}^{\left(n\right)}\right)^{2}\,\,,\\
+                    \mathbf{H}\ix{RGS}^{\left(n\right)}=&\,\pmb{\nabla}^{\intercal}\ix{r}\,\mathbf{W}\ix{RGS}^{\left(n\right)}\,\pmb{\nabla}\ix{r}+\pmb{\widetilde{\nabla}}^{\intercal}_{\vartheta}\,\mathbf{W}\ix{RGS}^{\left(n\right)}\pmb{\widetilde{\nabla}}_{\vartheta}\,\,.%
+                \end{split}%
+            \end{align}%
+%
+        A more detailed and deliberate expansion for sake of comparison will not be pursued here - not \cref{apx:rdavsrgs} -, as Zhang et al.\cite{Zhang2021_2} have already done so. The latter part of this work will focus on the exploration of the RDA and its intricacies.\\%
+%
+        \subsection{RDA vs. RGS}\label{apx:rdavsrgs}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \makebox[\textwidth][c]{%
+                        \includegraphics[width=1.2\textwidth]{%
+                            content/figures/chapter4/MFR/new/phantom/2D/%
+                            phantom_v_tomo2D_dfs_0.7_1.0_asym_m1_mx1.0e+06_aniM3_0.3_0.3_nigs1_times0.11.png}}%
+                    \caption{standard, RDA ($k\ix{core},\,k\ix{edge}=\left\{0.3,\,0.3\right\}$)}%
+                \end{subfigure}%
+                \newline%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \makebox[\textwidth][c]{%
+                        \includegraphics[width=1.2\textwidth]{%
+                            content/figures/chapter4/MFR/new/phantom/2D/%
+                            phantom_v_tomo2D_dfs_0.7_1.0_asym_m1_mx1.0e+06_RGS_aniM3_0.3_0.3_nigs1_times0.11_white.png}}%
+                    \caption{RGS, RDA ($k\ix{core},\,k\ix{edge}=\left\{0.3,\,0.3\right\}$)}%
+                \end{subfigure}%
+                \caption{Comparison between different reconstruction weighting methods, RDA and RGS, on the same phantom radiation distribution, using the same weighing coefficients and tomography parameters as well as camera geometries. The phantom image is constructed similarly to \cref{fig:phantom_fsring_asym_180deg_2D}, while the outside ring at $r\ix{a}$ is also adjusted to be poloidally asymmetric, with its maximum at the same position as the inner structure. \textbf{(a)} Standard Minimum Fisher information reconstruction with RDA. \textbf{(b)} Relative gradient smoothing, using the same RDA tomography parameters.}\label{fig:phantom_fsring_asym_comparison_RGS}%
+            \end{figure}%
+%
+            A simple, anisotropic and nested phantom radiation distribution will be used and reconstructed to examine the differences between \textit{radially dependent anisotropy} and \textit{relative gradient smoothing} regularisation methods when applied similarly. Both have been introduced in \cref{subsec:kani} and \cref{apx:rgs}, while the prior has been employed extensively in \cref{sec:phantoms}. In order to adequately compare these results with one another, the same $k\ix{ani}$ coefficients will be used with the RGS. One should keep in mind that this approach builds upon the RDA weighting of a given set of parameters.\\%
+            In \cref{fig:phantom_fsring_asym_comparison_RGS}, the input phantom, resulting tomograms and MSD profiles for the two methods are shown. The artificial radiation distribution is based on the first superposition in \cref{fig:phantom_fsring_asym_180deg_2D}, with a bright ring at $r\ix{a}$ and a core anisotropy in $0.7r\ix{a}$, however with the change of similarly asymmetric intensity profiles in poloidal direction. The inside profile has a maximum of \SI{2.5}{\mega\watt\per\cubic\meter}, while the one on the outside only 50\% of that. Both of the structures feature the same orientation around $\vartheta\ix{0}=$\SI{0}{\degree} - same definition as before in \cref{eq:fsring_asym_single_deg} -, with a poloidal and radial width of $\sigma\ix{r}=0.25r\ix{a}$ and $\sigma\ix{$\vartheta$}=\pi/4$. The resulting phantom image is, as expected, largely an extension of the initially proposed core asymmetry at a higher intensity. For a constant $k\ix{ani}$ profile of $\left\{0.3, 0.3\right\}$, the MFR tomography using the RDA in \textbf{(a)} adequately reconstructs the two individual, radially separated emissivities, though with a significantly increased width in both polar directions. At the bottom in \cref{fig:phantom_fsring_asym_comparison_RGS}:\textbf{(b)}, a RGS weighted MFR reconstruction for the same RDA $k\ix{ani}$ coefficients finds a similar, however quantitatively distinctly different radiation distribution where local extremes are distributed the same locally at significantly higher individual brightness. Like before, \cref{fig:phantom_fsring_asym_comparison_RGS_profiles} shows the corresponding one-dimensional radial and weighting, as well as forward integrated detector signal profiles of the above phantom and tomogram radiation images. All weighting coefficient profiles are at their usual level and are flat like before for $k\ix{ani}=\left\{0.3, 0.3\right\}$.%
+%
+        \begin{figure}[t]%
+            \centering%
+            \begin{subfigure}{\textwidth}%
+                \centering%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter4/MFR/new/phantom/%
+                    phantom_v_tomo_profiles_dfs_0.7_1.0_asym_m1_mx1.0e+06_aniM3_0.3_0.3_nigs1_times0.11.png}%
+                \caption{standard, RDA ($k\ix{core},\,k\ix{edge}=\left\{0.3,\,0.3\right\}$)}%
+            \end{subfigure}%
+            \newline%
+            \begin{subfigure}{\textwidth}%
+                \centering%
+                \includegraphics[width=\textwidth]{%
+                    content/figures/chapter4/MFR/new/phantom/%
+                    phantom_v_tomo_profiles_dfs_0.7_1.0_asym_m1_mx1.0e+06_RGS_aniM3_0.3_0.3_nigs1_times0.11.png}%
+                \caption{RGS, RDA ($k\ix{core},\,k\ix{edge}=\left\{0.3,\,0.3\right\}$)}%
+            \end{subfigure}%
+            \caption{\textbf{(a), (b)} Corresponding analysis for the results shown in \cref{fig:phantom_fsring_asym_comparison_RGS}, using the noted below anisotropy parameters for the corresponding tomographic reconstruction methods. The results are presented in the same way as in \cref{fig:phantom_fsring_example_profiles}.}\label{fig:phantom_fsring_asym_comparison_RGS_profiles}%
+        \end{figure}%
+%
+        Comparing the application of standalone RDA and combined RGS and RDA regularisation weighting optimisations with the MFR tomography for the same phantom radiation profile and set of $k\ix{ani}=\left\{0.3, 0.3\right\}$ has produced only minor or almost negligible differences in the one-dimensional evaluations of radial and forward calculated profiles, or even integrated values of $P\ix{rad}$ and $P\ix{rad,2D}$. Deviations among those characteristic between the two sets of results are, on the one hand within the respective confidence intervals of said profiles, and on the other of an order of magnitude that was previously observed by altering $k\ix{ani}$ coefficients for a constant artificial radiation image. Like before, the cumulative trend of the changes from \textbf{(a)}:RDA to \textbf{(b)}:RGS+RDA is inconclusive at best due to the contradicting evidence presented by the singular power values, as well as the radial and camera profile and corresponding fitness factors. While the priors matching regresses, the latters congruence and quality improves noticeably. Therefore, judging just from the circumstances presented in \cref{fig:phantom_fsring_asym_comparison_RGS_profiles}, a combined RGS regularisation and RDA weighting tomography approach does not yield a significant advantage over just a standard MFR with RDA that would justify unrestricted utilisation instead of the latter. However, the two-dimensional distributions in \cref{fig:phantom_fsring_asym_comparison_RGS} show a different picture which, subjectively, does favour the RDS+RDA with respect to the development and composition of the characteristic features of the phantom. Although the corresponding MSD profile does yield higher error values for the latter, strong separation between the core and SOL structures, as well as short, poloidal decay lengths are far more prominent here. Furthermore, the conclusive total brightness and its maximum also match the input data better, though one should keep in mind that none of the reconstructions is able to adequately invert the more intense anisotropy in the core and instead shift its feature to the separatrix. A possible drawback from this favoured stronger localisation of emissivity in the tomogram is the loss of less intense structures in close radial or poloidal proximity to said extremes and smoother profiles of larger connection lengths, i.e. the remainder of the bright rings opposite of the asymmetry.\\%
+        This concludes the comparison between standard RDA weighting and combined RGS+RDA MFR tomography. A more elaborate and detailed exploration of said topic with more examples will not be performed here, nor be of subject to this work. Zhang et al.\cite{Zhang2013,Zhang2021_2} have already done such an extensive analysis. The above examinations only serve to further verify the standalone radially dependent anisotropy regularisation, which has been done so.\\%
+%
+        \subsubsection*{Inverted Anisotropic Phantom}%
+%
+            \begin{figure}[t]%
+                \centering%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/2D/%
+                        phantom_v_tomo2D_symR0.8_fsR1.1_mx1.0e+06_aniM4_3.0_20.0_nT15_nW2_nigs1_times0.11.png}}%
+                    \caption{$k\ix{core},\,k\ix{edge}=\left\{0.3,\,2\right\}$}%
+                \end{subfigure}%
+                \newline%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/%
+                        phantom_v_tomo_profiles_symR0.8_fsR1.1_mx1.0e+06_aniM4_3.0_20.0_nT15_nW2_nigs1_times0.11.png}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{Phantom radiation distribution reconstruction, mimicking a bright outside ring and islands-like structures on the inside of that ring, similar to \cref{fig:phantom_islands_6_fsring_ani3} but inverted. The RDA coefficients have been changed accordingly to accompany the different orientation of poloidally symmetric and anisotropic radiation distributions. \textbf{(a, top)} Phantom, tomogram and relative deviance, similar to \cref{fig:phantom_fsring_example}. \textbf{(b)} Radial (left) and chordal (right) profile analysis, similar to \cref{fig:phantom_fsring_example_profiles}.}\label{fig:phantom_inside_islands_6_fsring}%
+            \end{figure}%
+%
+            For sake of completion, an inverted phantom to the original in \cref{fig:phantom_islands_6_fsring_ani3} and \ref{fig:phantom_islands_6_fsring_kanivar} is reconstructed using an also reversed regularisation weight profile with $k\ix{ani}=\left\{0.3, 0.2\right\}$, and shape given by \cref{eq:kani}. The artificial radiation distribution and MFR results are shown in \cref{fig:phantom_inside_islands_6_fsring} in the usual form. On the left, the inside-out turned phantom shows a maximum brightness of \SI{1.2}{\mega\watt\per\cubic\meter}, now in the core at $0.7r\ix{a}$ in eight up-down symmetrically distributed localised spots. Analytically, this profile can also be described by \cref{eq:prad_anisym} when parametrically reconfigured with $r\ix{0,1}=1.1r\ix{a}$ and $r\ix{0,2}=0.7r\ix{a}$, i.e. the reversed order from before. Hence, a smooth ring of \SI{1}{\mega\watt\per\cubic\meter} is found outside the separatrix in the SOL. Challenging with this particular phantom tomography is the potential obfuscation due to possibly increased interference from the symmetrical structure, given the position and orientation of the vertical and horizontal bolometer cameras.\\%
+            In terms of - subjectively measured - reconstruction quality, this type of artificial emissivity superposition shows greater discrepancies for the same approach and settings when compared to the prior, inverted case in \cref{fig:phantom_islands_6_fsring_kanivar} and following. Due to the switched radial orientation of the employed contrasting profiles, the increased sensitivity of the bolometer camera detectors in the SOL and along the separatrix leads to an \textit{obfuscating} effect on the anisotropic core structure. More specifically, the focus of the tomogram is entirely changed, certainly also due to the reversed $k\ix{ani}$ regularisation weighting, placing the majority of the brightness in that area, expanding until the edge of the domain. The maximum emissivity is found in the core still, in locations similar to those in the phantom, though with greatly decreased resolution and accuracy. Features vertically above the VBC arrays are entirely missing, coinciding with the LOS with the most unfavourable ratio between integration lengths through SOL and anisotropic core profiles. However, this is contrasted by the noticeably and significantly improved match between the poloidally averaged and forward integrated results, their corresponding power values $P\ix{rad,2D}$ and $P\ix{rad}$, as well as the better fitness $\chi^{2}$. In summary, similar experimentally measured radiation distributions will potentially be even more difficult to reconstruct adequately in terms of quality of more focused or localised features, respective their shape and relative intensity.%
+%
+        \subsection{Accessory Phantom Tomographies}\label{apx:accessory}%
+%
+            \begin{figure}%
+                \centering%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/2D/%
+                        phantom_v_tomo2D_blind_test_ones_mx1.0e+06_aniM3_1.0_1.0_nigs1_times0.11.png}}%
+                    \caption{$k\ix{core},\,k\ix{edge}=\left\{1,\,1\right\}$}%
+                \end{subfigure}%
+                \newline%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/%
+                        phantom_v_tomo_profiles_blind_test_ones_mx1.0e+06_aniM3_1.0_1.0_nigs1_times0.11.png}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{Phantom radiation distribution and its reconstruction, where the entire reconstruction domain has been filled with a homogenous, \SI{1}{\mega\watt\per\cubic\meter} emissivity. Corresponding RDA coefficients have been set to equally weight an-/isotropic radiation profiles across the radius of the region of interest. \textbf{(a)} Phantom, tomogram and relative deviance, similarly displayed as before. \textbf{(b)} Radial (left) and chordal (right) profile analysis, like it was introduced in the previous reconstructions.}\label{fig:phantom_blind_test}%
+            \end{figure}%
+%
+            \begin{figure}%
+                \centering%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/2D/%
+                        phantom_v_tomo2D_sym_R1.1_m8_mx1.0e+06_aniM3_2.0_0.1_nigs1_times0.11.png}}%
+                    \caption{$k\ix{core},\,k\ix{edge}=\left\{2,\,0.1\right\}$}%
+                \end{subfigure}%
+                \newline%
+                \begin{subfigure}{\textwidth}%
+                    \centering%
+                    \includegraphics[width=\textwidth]{%
+                        content/figures/chapter4/MFR/new/phantom/%
+                        phantom_v_tomo_profiles_sym_R1.1_m8_mx1.0e+06_aniM3_2.0_0.1_nigs1_times0.11.png}%
+                    \caption{}%
+                \end{subfigure}%
+                \caption{Phantom radiation distribution reconstruction, mimicking a bright ring on the inside and eight islands-like structures in the edge in and around the magnetic islands, similar to \cref{fig:phantom_islands_6_fsring_ani3}. The RDA similarly support the reconstruction of the given profile. \textbf{(a)} Phantom, tomogram and relative deviance, similar to \cref{fig:phantom_fsring_example}. \textbf{(b)} Radial (left) and chordal (right) profile analysis, similar to \cref{fig:phantom_fsring_example_profiles}.}\label{fig:phantom_islands_8}%
+            \end{figure}%
 %
