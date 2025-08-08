@@ -611,6 +611,41 @@
 }
 \input{preamble/subjects/text}
 
+\newcommand{\cvline}[2]{%
+    \par\medskip\noindent%
+    \parbox[t]{4cm}{%
+          #1}%
+    \hspace*{1em}%
+    \begin{minipage}[t]{%
+        \dimexpr\textwidth-3cm-1em}{%
+            #2}%
+    \end{minipage}%
+}%
+
+% \cventry{time}{what}{optional}{optional}{optional}
+\newcommand{\cventry}[5]{%
+    \par\medskip\noindent%
+    \parbox[t]{3.5cm}{%
+          \small{#1}}%
+    \hspace*{.5cm}%
+    \begin{minipage}[t]{%
+        \dimexpr\textwidth-3.5cm}{%
+            \bfseries{
+                #2}}%
+        \def\tmp{#3}%
+        \ifx\tmp\empty\else%
+        \\\small{#3}%
+        \fi%
+        \def\tmp{#4}%
+        \ifx\tmp\empty\else%
+            \\\footnotesize{#4}%
+        \fi%
+        \def\tmp{#5}%
+        \ifx\tmp\empty\else%
+            \\\footnotesize{#5}%
+        \fi%
+    \end{minipage}%
+}%
 
 %%% remarks
 % hyphenation:

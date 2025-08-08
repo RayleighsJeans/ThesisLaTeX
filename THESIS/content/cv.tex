@@ -1,0 +1,122 @@
+%
+\newpage%
+\thispagestyle{empty}%
+%
+\def\mobile{+49 1520 2095 226}
+\def\email{rayleighsjeans@gmai.com}
+\def\addressstreet{16 An Tor Aonarach, Dunaree}
+\def\addresscity{Kingscourt, Co. Cavan}
+%
+\ifthenelseproperty{compilation}{clsdefineschapter}{%
+    \ifKOMA%
+        \addchap[Curriculum Vitae]{Curriculum Vitae}%
+    \else%
+        \chapter[Curriculum Vitae]{Curriculum Vitae}%
+    \fi%
+}{%
+    \ifKOMA%
+        \addsec[Curriculum Vitae]{Curriculum Vitae}%
+    \else%
+        \section[Curriculum Vitae]{Curriculum Vitae}%
+    \fi%
+}%
+
+    \subsection*{%
+        Personal Information}%
+
+    \cvline{Name}{%
+        \getproperty{author}{firstname} \getproperty{author}{familyname}}
+    \cvline{Address}{%
+        \getproperty{author}{addressstreet}\newline%
+        \getproperty{author}{addresscity}, %
+        \getproperty{author}{zip}, Ireland}
+    \cvline{Telephone}{%
+        \getproperty{author}{mobile}}
+    \cvline{eMail}{%
+        \getproperty{author}{email}}
+    \cvline{Date of Birth}{%
+        \getproperty{author}{dateofbirth} in \getproperty{author}{placeofbirth}}
+    \cvline{Nationality}{Germany}
+    \cvline{Family Status}{married}
+    \cvline{Sex}{Male}
+    \makeatother
+
+    \subsubsection*{%
+        Languages}%
+
+        \cvline{German}{first language, mother tongue}{}
+        \cvline{English}{second language, first foreign lingo, C2 certificate\newline 7 years of school education}{}
+        \cvline{Russian}{third language, second foreign lingo\newline 5 years of school education}{}
+
+    \subsection*{%
+        School}%
+
+        \cventry{08/2000 -- 03/2004}{Elementary School}{Grundschule Jarmen}{Jarmen}{}{}
+        \cventry{08/2004 -- 08/2010}{Middle School}{Regionale Schule Jarmen}{Jarmen}{}{}
+        \cventry{08/2010 -- 06/2012}{Academic High School}{%
+            Schlossgymnasium Gützkow, Gützkow}{}%
+        {Higher Education Entrance Qualification}{}
+
+    \subsubsection*{%
+        Higher Education}
+
+        \cventry{10/2012 -- 09/2015}{Bachelors Degree in Physics}{Ernst-Moritz-Arndt University}
+        {Greifswald}{Bachelor of Sciences}{}
+        \cventry{10/2012 -- 10/2017}{Master’s Degree in Physics}{%
+            Ernst-Moritz-Arndt University}%
+        {Greifswald}{Master of Sciences}{}
+        \cventry{11/2017 -- now}{doctor rerum naturalium - Physics}{%
+            Max-Planck Institute for Plasma Physics}%
+        {Greifswald}{}{}
+    
+    \subsubsection*{%
+      Professional Experience}
+
+        \cventry{07/2021 -- 04/2024}{Software Developer - C/C++}{%
+            Krauss-Maffei Wegmann Nexter Defense Systems}%
+        {Munich}{Advanced C/C++, embedded development, frameworks, APIs, AI, computer generated forces, dynamics \& simulator logic}{}%
+        \cventry{11/2017 -- 05/2021}{Researcher/Scientist, Ph.D. - Plasma Fusion}{%
+            Max-Planck Institute for Plasma Physics}%
+        {Greifswald}{Project management, large scale data analysis, science, modelling, simulation, embedded development, international collaboration, professional documentation}{}
+        \cventry{12/2024 -- now}{Senior Software Developer}{%
+            IBM - International Business Machines Research Lab}%
+        {Mulhuddart, Ireland}{Advanced C/C++ development for relational database engine \textit{DB2}, hybrid data management, focus on object storage on cloud; regression testing and QA, including performance benchmarks and performance analysis tooling}{}
+    
+    \subsubsection*{%
+        Additional Training}
+
+        \cventry{02/2022}{Advanced C++ (for Embedded Systems)}{%
+            MicroConsult Microelectronics Consulting \& Training GmbH}%
+        {Munich}{basics, patterns, idioms, paradigms, `modern style' C++}{}
+        \cventry{Jun. 2019}{Plan, Motivate, Achieve: Time and Self-Management}{Transferable Skills Seminar}{R. Thompson}{International Helmholtz Graduate School for Plasma Physics}{}
+        \cventry{Jun. 2019}{Presentation Skill Workshop}{Transferable Skills Seminar}{B. Hey}{International Helmholtz Graduate School for Plasma Physics}{}
+
+    \subsubsection*{%
+        Publications}
+
+        \cventry{May 2018}{`PIC Simulation of electronegative CCRF discharges'}{%
+          Authors: P. Matthias, R. Schneider, J. Meichsner, G. Bandelow, J. Duras, K. Matyash, K.-F. Lüskow, D. Kahnfeld, S. Kemnitz, L. Lewerentz and P. Hacker}{
+          doi: 10.1140/epjd/e2017-80565-y}{}{}{}
+        \cventry{Dec. 2019}{`Measurement of edge ion temperature in W7-X with island divertor by retarding field analyzer'}{%
+          Authors: Y. Li, T. Henkel, Y. Liang, A. Knieps, P. Drews, C. Killer, D. Nicolai, J. Cosfeld, J. Geiger, Y. Feng, F. Effenberg, D. Zhang, P. Hacker, D. Höschen, G. Satheeswaran, S. Liu, O. Grulke, M. Jakubowski, S. Brezinsek, M. Otte, O. Neubauer, B. Schweer1, G. S. Xu, J. Cai, Z. Huang, and the W7-X Team}{
+          doi: 10.1088/1741-4326/ab3a79}{}{}{}
+        \cventry{Jul. 2019}{`The influence of impurity radiation locations on the plasma performance in stellarator Wendelstein 7-X'}{Authors: D. Zhang, R. Burhenn, F. Reimold, P. Hacker, L. Giannone, K. J. Brunner, B. Buttenschön, G. Fuchert, H. P. Laqua, K. Rahbarnia, C. D. Beidler, S. Brezinsek, Y. Feng, M. Jakubowski, R. König}{}{}{}
+        \cventry{Feb. 2020}{`Absence of Non-Local Electron Heat Transport in ASDEX Upgrade and Wendelstein 7-X and Modelling with the Transport Code ASTRA'}{Authors: K. Höfler, T. Happel, P. Hennequin, U. Höfel, F. Ryter, U. Stroth, A. Bock, P. David, S. Denk, A. Dinklage, G. Fuchert, P. Hacker, M. Hirsch, P. A. Schneider, J. Schilling, T. Stange, G. Tardini, T. Andreeva, M. Beurskens, S. Bozhenkov, K. J. Brunner, N. Chaudhary, H. Damm, U. Neuner, J. W. Oosterbeek, E. Pasch, K. Rahbarnia, H. Thomsen, M. Zanini, D. Zhang, the ASDEX Upgrade Team, the Wendelstein 7-X Team}{}{}{}
+        \cventry{Sep. 2020}{`Stellarator-Tokamak Energy Confinement Comparison based on ASDEX Upgrade and Wendelstein 7-X Hydrogen Plasmas'}{%
+          Authors: U. Stroth, G. Fuchert, M. N.A. Beurskens, G. Birkenmeier, P. Schneider, E.R. Scott, K.J. Brunner, F. Günzkofer, P. Hacker, O. Kardaun, J. Knauer, K. Rahbarnia, D. Zhang}{
+          doi: 0.1088/1741-4326/abbc4a}{}{}{}
+        \cventry{Jan. 2023}{`First feedback-controlled divertor detachment in W7-X: Experience from TDU operation, prospects for operation with actively cooled divertor'}{%
+          Authors: M. Krychowiak, R. König, T. Barbui, S. Brezinsek, J. Brunner, F. Effenberg, M. Endler, Y. Feng, E. Flom, Y. Gao, D. Gradic, P. Hacker, J.H. Harris, M. Hirsch, U. Höfel, M. Jakubowski, P. Kornejew, M. Otte, A. Pandey, T.S. Pedersen, A. Puig, F. Reimold, O. Schmitz, T. Schröder, V. Winters, D. Zhang}{
+          doi: 10.1016/j.nme.2023.101363}{}{}{}
+        \cventry{Sep. 2021}{`Plasma radiation behavior approaching high-radiation scenarios in W7-X'}{%
+          Authors: D. Zhang, R. Burhenn, Y. Feng, R. König, B. Buttenschön, C.D. Beidler, P. Hacker, F. Reimold, H. Thomsen, R. Laube, T. Klinger, [\dots], and the W7-X Team}{
+          doi: 10.1088/1741-4326/ac2b75}{}{}{}
+        \cventry{Oct. 2021}{`2D measurements of parallel counter-streaming flows in the W7-X scrape-off layer for attached, detached plasmas'}{%
+          Authors: V. Perseo, V. Winters, Y. Feng, F. Reimold, O.P. Ford, R. König, S.A. Bozhenkov, K.J. Brunner, R. Burhenn, P. Drewelow, D.A. Ennis, Y. Gao, D. Gradic, P. Hacker [\dots] and the W7-X Team}{
+          doi: 10.1088/1741-4326/ac277a}{}{}{}%
+        \cventry{Oct. 2021}{`Bolometer tomography on W7-X for study of radiation asymmetry'}{%
+          Authors: D. Zhang, R. Burhenn, C.D. Beidler, Y. Feng, H. Thomsen, C. Brandt, S. Buller, F. Reimold, P. Hacker [\dots] and the W7-X Team}{
+          doi: 10.1088/1741-4326/ac2778}{}{}{}
+        \cventry{Jul. 2020}{`Large wetted areas of divertor power loads at Wendelstein 7-X'}{%
+          Authors: H. Niemann, P. Drewelow, M. W. Jakubowski, A. Puig Sitjes, B. Cannas, Y. Gao, F. Pisano, R. König, R. Burhenn, P. Hacker, F. Reimold, D. Zhang, K. J. Brunner, J. Knauer, T. Sunn Pedersen and the W7-X Team}{
+          doi: 10.1088/1741-4326/ab937a}{}{}{}

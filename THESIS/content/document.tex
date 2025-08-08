@@ -23,17 +23,10 @@
 
 \ImportDefault{content}
 
-% appendix
-\ifthenelseproperty{compilation}{appendix}{%
-    \appendix}{}%
-
 \sloppy
 \ifthenelseproperty{compilation}{bibliography}{%
     \ImportDefault{bibliography}}{}%
 \fussy
-
-\ifthenelseproperty{compilation}{appendix}{%
-    \ImportDefault{appendix}}{}%
 
 \ifthenelseproperty{compilation}{lof}{%
     \ImportDefault{lof}}{}%
@@ -50,8 +43,15 @@
 \ifthenelseproperty{compilation}{affidavit}{%
     \ImportDefault{affidavit}}{}%
 
+\IfFileExists{content/cv.tex}{%
+    \import{content}{cv}}{}%
+
 \ifthenelseproperty{compilation}{acknowledgement}{%
     \ImportDefault{acknowledgement}}{}%
+
+appendix
+\ifthenelseproperty{compilation}{appendix}{%
+    \ImportDefault{appendix}}{}%
 
 \IfFileExists{content/cats.tex}{%
     \import{content}{cats}}{}%
