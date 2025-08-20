@@ -17,7 +17,7 @@
 \ifthenelseproperty{compilation}{toc}{%
     \ImportDefault{toc}}{}%
 
-% main matter
+% Main matter.
 \ifthenelseproperty{compilation}{mainmatter}{%
     \mainmatter}{}%
 
@@ -40,6 +40,10 @@
 \ifthenelseproperty{compilation}{glossaries}{%
     \ImportDefault{glossaries}}{}%
 
+% Appendix.
+\ifthenelseproperty{compilation}{appendix}{%
+    \ImportDefault{appendix}}{}%
+
 \ifthenelseproperty{compilation}{affidavit}{%
     \ImportDefault{affidavit}}{}%
 
@@ -48,10 +52,6 @@
 
 \ifthenelseproperty{compilation}{acknowledgement}{%
     \ImportDefault{acknowledgement}}{}%
-
-appendix
-\ifthenelseproperty{compilation}{appendix}{%
-    \ImportDefault{appendix}}{}%
 
 \IfFileExists{content/cats.tex}{%
     \import{content}{cats}}{}%
