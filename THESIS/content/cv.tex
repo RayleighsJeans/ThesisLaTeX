@@ -27,7 +27,7 @@
     \cvline{Name}{%
         \getproperty{author}{firstname} \getproperty{author}{familyname}}
     \cvline{Address}{%
-        \getproperty{author}{addressstreet}\newline%
+        \getproperty{author}{addressstreet}%
         \getproperty{author}{addresscity}, %
         \getproperty{author}{zip}, Ireland}
     \cvline{Telephone}{%
@@ -45,8 +45,8 @@
         Languages}%
 
         \cvline{German}{first language, mother tongue}{}
-        \cvline{English}{second language, first foreign lingo, C2 certificate\newline 7 years of school education}{}
-        \cvline{Russian}{third language, second foreign lingo\newline 5 years of school education}{}
+        \cvline{English}{second language, first foreign lingo, C2 certificate 7 years of school education}{}
+        \cvline{Russian}{third language, second foreign lingo 5 years of school education}{}
 
     \subsection*{%
         School}%
@@ -77,46 +77,73 @@
         {Munich}{Advanced C/C++, embedded development, frameworks, APIs, AI, computer generated forces, dynamics \& simulator logic}{}%
         \cventry{11/2017 -- 05/2021}{Researcher/Scientist, Ph.D. - Plasma Fusion}{%
             Max-Planck Institute for Plasma Physics}%
-        {Greifswald}{Project management, large scale data analysis, science, modelling, simulation, embedded development, international collaboration, professional documentation}{}
+        {Greifswald}{Project management, large scale data analysis, science, modelling, simulation, embedded development, international collaboration, professional documentation}{}%
         \cventry{12/2024 -- now}{Senior Software Developer}{%
             IBM - International Business Machines Research Lab}%
-        {Mulhuddart, Ireland}{Advanced C/C++ development for relational database engine \textit{DB2}, hybrid data management, focus on object storage on cloud; regression testing and QA, including performance benchmarks and performance analysis tooling}{}
+        {Mulhuddart, Ireland}{Advanced C/C++ development for relational database engine \textit{DB2}, hybrid data management, focus on object storage on cloud; regression testing and QA, including performance benchmarks and performance analysis tooling}{}%
     
     \subsubsection*{%
         Additional Training}
 
         \cventry{02/2022}{Advanced C++ (for Embedded Systems)}{%
             MicroConsult Microelectronics Consulting \& Training GmbH}%
-        {Munich}{basics, patterns, idioms, paradigms, `modern style' C++}{}
-        \cventry{Jun. 2019}{Plan, Motivate, Achieve: Time and Self-Management}{Transferable Skills Seminar}{R. Thompson}{International Helmholtz Graduate School for Plasma Physics}{}
-        \cventry{Jun. 2019}{Presentation Skill Workshop}{Transferable Skills Seminar}{B. Hey}{International Helmholtz Graduate School for Plasma Physics}{}
+        {Munich}{basics, patterns, idioms, paradigms, `modern style' C++}{}%
+        \cventry{Jun. 2019}{Plan, Motivate, Achieve: Time and Self-Management}{Transferable Skills Seminar}{R. Thompson}{International Helmholtz Graduate School for Plasma Physics}{}%
+        \cventry{Jun. 2019}{Presentation Skill Workshop}{Transferable Skills Seminar}{B. Hey}{International Helmholtz Graduate School for Plasma Physics}{}%
 
     \subsubsection*{%
         Publications}
 
         \cventry{May 2018}{`PIC Simulation of electronegative CCRF discharges'}{%
           Authors: P. Matthias, R. Schneider, J. Meichsner, G. Bandelow, J. Duras, K. Matyash, K.-F. Lüskow, D. Kahnfeld, S. Kemnitz, L. Lewerentz and P. Hacker}{
-          doi: 10.1140/epjd/e2017-80565-y}{}{}{}
+          doi: 10.1140/epjd/e2017-80565-y}{}%
         \cventry{Dec. 2019}{`Measurement of edge ion temperature in W7-X with island divertor by retarding field analyzer'}{%
           Authors: Y. Li, T. Henkel, Y. Liang, A. Knieps, P. Drews, C. Killer, D. Nicolai, J. Cosfeld, J. Geiger, Y. Feng, F. Effenberg, D. Zhang, P. Hacker, D. Höschen, G. Satheeswaran, S. Liu, O. Grulke, M. Jakubowski, S. Brezinsek, M. Otte, O. Neubauer, B. Schweer1, G. S. Xu, J. Cai, Z. Huang, and the W7-X Team}{
-          doi: 10.1088/1741-4326/ab3a79}{}{}{}
-        \cventry{Jul. 2019}{`The influence of impurity radiation locations on the plasma performance in stellarator Wendelstein 7-X'}{Authors: D. Zhang, R. Burhenn, F. Reimold, P. Hacker, L. Giannone, K. J. Brunner, B. Buttenschön, G. Fuchert, H. P. Laqua, K. Rahbarnia, C. D. Beidler, S. Brezinsek, Y. Feng, M. Jakubowski, R. König}{}{}{}
-        \cventry{Feb. 2020}{`Absence of Non-Local Electron Heat Transport in ASDEX Upgrade and Wendelstein 7-X and Modelling with the Transport Code ASTRA'}{Authors: K. Höfler, T. Happel, P. Hennequin, U. Höfel, F. Ryter, U. Stroth, A. Bock, P. David, S. Denk, A. Dinklage, G. Fuchert, P. Hacker, M. Hirsch, P. A. Schneider, J. Schilling, T. Stange, G. Tardini, T. Andreeva, M. Beurskens, S. Bozhenkov, K. J. Brunner, N. Chaudhary, H. Damm, U. Neuner, J. W. Oosterbeek, E. Pasch, K. Rahbarnia, H. Thomsen, M. Zanini, D. Zhang, the ASDEX Upgrade Team, the Wendelstein 7-X Team}{}{}{}
-        \cventry{Sep. 2020}{`Stellarator-Tokamak Energy Confinement Comparison based on ASDEX Upgrade and Wendelstein 7-X Hydrogen Plasmas'}{%
-          Authors: U. Stroth, G. Fuchert, M. N.A. Beurskens, G. Birkenmeier, P. Schneider, E.R. Scott, K.J. Brunner, F. Günzkofer, P. Hacker, O. Kardaun, J. Knauer, K. Rahbarnia, D. Zhang}{
-          doi: 0.1088/1741-4326/abbc4a}{}{}{}
-        \cventry{Jan. 2023}{`First feedback-controlled divertor detachment in W7-X: Experience from TDU operation, prospects for operation with actively cooled divertor'}{%
-          Authors: M. Krychowiak, R. König, T. Barbui, S. Brezinsek, J. Brunner, F. Effenberg, M. Endler, Y. Feng, E. Flom, Y. Gao, D. Gradic, P. Hacker, J.H. Harris, M. Hirsch, U. Höfel, M. Jakubowski, P. Kornejew, M. Otte, A. Pandey, T.S. Pedersen, A. Puig, F. Reimold, O. Schmitz, T. Schröder, V. Winters, D. Zhang}{
-          doi: 10.1016/j.nme.2023.101363}{}{}{}
-        \cventry{Sep. 2021}{`Plasma radiation behavior approaching high-radiation scenarios in W7-X'}{%
-          Authors: D. Zhang, R. Burhenn, Y. Feng, R. König, B. Buttenschön, C.D. Beidler, P. Hacker, F. Reimold, H. Thomsen, R. Laube, T. Klinger, [\dots], and the W7-X Team}{
-          doi: 10.1088/1741-4326/ac2b75}{}{}{}
-        \cventry{Oct. 2021}{`2D measurements of parallel counter-streaming flows in the W7-X scrape-off layer for attached, detached plasmas'}{%
-          Authors: V. Perseo, V. Winters, Y. Feng, F. Reimold, O.P. Ford, R. König, S.A. Bozhenkov, K.J. Brunner, R. Burhenn, P. Drewelow, D.A. Ennis, Y. Gao, D. Gradic, P. Hacker [\dots] and the W7-X Team}{
-          doi: 10.1088/1741-4326/ac277a}{}{}{}%
-        \cventry{Oct. 2021}{`Bolometer tomography on W7-X for study of radiation asymmetry'}{%
-          Authors: D. Zhang, R. Burhenn, C.D. Beidler, Y. Feng, H. Thomsen, C. Brandt, S. Buller, F. Reimold, P. Hacker [\dots] and the W7-X Team}{
-          doi: 10.1088/1741-4326/ac2778}{}{}{}
-        \cventry{Jul. 2020}{`Large wetted areas of divertor power loads at Wendelstein 7-X'}{%
-          Authors: H. Niemann, P. Drewelow, M. W. Jakubowski, A. Puig Sitjes, B. Cannas, Y. Gao, F. Pisano, R. König, R. Burhenn, P. Hacker, F. Reimold, D. Zhang, K. J. Brunner, J. Knauer, T. Sunn Pedersen and the W7-X Team}{
-          doi: 10.1088/1741-4326/ab937a}{}{}{}
+          doi: 10.1088/1741-4326/ab3a79}{}%
+        \cventry{Jul. 2019}{`The influence of impurity radiation locations on the plasma performance in stellarator Wendelstein 7-X'}{Authors: D. Zhang, R. Burhenn, F. Reimold, P. Hacker, L. Giannone, K. J. Brunner, B. Buttenschön, G. Fuchert, H. P. Laqua, K. Rahbarnia, C. D. Beidler, S. Brezinsek, Y. Feng, M. Jakubowski, R. König}{}{}%
+        \cventry{Feb. 2020}{`Absence of Non-Local Electron Heat Transport in ASDEX Upgrade and Wendelstein 7-X and Modelling with the Transport Code ASTRA'}{Authors: K. Höfler, T. Happel, P. Hennequin, U. Höfel, F. Ryter, U. Stroth, A. Bock, P. David, S. Denk, A. Dinklage, G. Fuchert, P. Hacker, M. Hirsch, P. A. Schneider, J. Schilling, T. Stange, G. Tardini, T. Andreeva, M. Beurskens, S. Bozhenkov, K. J. Brunner, N. Chaudhary, H. Damm, U. Neuner, J. W. Oosterbeek, E. Pasch, K. Rahbarnia, H. Thomsen, M. Zanini, D. Zhang, the ASDEX Upgrade Team, the Wendelstein 7-X Team}{}{}%
+        \cventry{Sep. 2020}{`Stellarator-Tokamak Energy Confinement Comparison based on ASDEX Upgrade and Wendelstein 7-X Hydrogen Plasmas'}{Authors: U. Stroth, G. Fuchert, M. N.A. Beurskens, G. Birkenmeier, P. Schneider, E.R. Scott, K.J. Brunner, F. Günzkofer, P. Hacker, O. Kardaun, J. Knauer, K. Rahbarnia, D. Zhang}{doi: 0.1088/1741-4326/abbc4a}{}%
+        \cventry{Jan. 2023}{`First feedback-controlled divertor detachment in W7-X: Experience from TDU operation, prospects for operation with actively cooled divertor'}{Authors: M. Krychowiak, R. König, T. Barbui, S. Brezinsek, J. Brunner, F. Effenberg, M. Endler, Y. Feng, E. Flom, Y. Gao, D. Gradic, P. Hacker, J.H. Harris, M. Hirsch, U. Höfel, M. Jakubowski, P. Kornejew, M. Otte, A. Pandey, T.S. Pedersen, A. Puig, F. Reimold, O. Schmitz, T. Schröder, V. Winters, D. Zhang}{doi: 10.1016/j.nme.2023.101363}{}%
+        \cventry{Sep. 2021}{`Plasma radiation behavior approaching high-radiation scenarios in W7-X'}{Authors: D. Zhang, R. Burhenn, Y. Feng, R. König, B. Buttenschön, C.D. Beidler, P. Hacker, F. Reimold, H. Thomsen, R. Laube, T. Klinger, [\dots], and the W7-X Team}{doi: 10.1088/1741-4326/ac2b75}{}%
+        \cventry{Oct. 2021}{`2D measurements of parallel counter-streaming flows in the W7-X scrape-off layer for attached, detached plasmas'}{Authors: V. Perseo, V. Winters, Y. Feng, F. Reimold, O.P. Ford, R. König, S.A. Bozhenkov, K.J. Brunner, R. Burhenn, P. Drewelow, D.A. Ennis, Y. Gao, D. Gradic, P. Hacker [\dots] and the W7-X Team}{doi: 10.1088/1741-4326/ac277a}{}%
+        \cventry{Oct. 2021}{`Bolometer tomography on W7-X for study of radiation asymmetry'}{Authors: D. Zhang, R. Burhenn, C.D. Beidler, Y. Feng, H. Thomsen, C. Brandt, S. Buller, F. Reimold, P. Hacker [\dots] and the W7-X Team}{doi: 10.1088/1741-4326/ac2778}{}%
+        \cventry{Jul. 2020}{`Large wetted areas of divertor power loads at Wendelstein 7-X'}{Authors: H. Niemann, P. Drewelow, M. W. Jakubowski, A. Puig Sitjes, B. Cannas, Y. Gao, F. Pisano, R. König, R. Burhenn, P. Hacker, F. Reimold, D. Zhang, K. J. Brunner, J. Knauer, T. Sunn Pedersen and the W7-X Team}{doi: 10.1088/1741-4326/ab937a}{}%
+
+    \subsubsection*{%
+        Conferences~\&~Workshops}
+        
+        \cventry{11/2017~--~05/2021}{International~Helmholtz~Graduate~School~for~Plasma~Physics}
+        {Graduate~School~for~Doctoral~Candidates~at~the~MPI~for~Plasma Physics}{MPI~for~Plasma~Physics,~Greifswald;~University~of~Greifswald}{presentations~and~participation~in~colloquia,~workshops~and~conferences}
+        \cventry{May~2019}{Consistently~calculating~the~radiated~power~in~near~real~time~at~the~stellarator~Wendelstein~7-X}{P.~Hacker,~F. Reimold,~D.~Zhang,~M.~Krychowiak,~R.~Burhenn,~T.~Klinger}{DPG-Frühjahrstagung~der~Sektion~Materie~und~Kosmos~(SMuK),~Munich,~Germany,~2019}{}%
+        \cventry{May~2019}{Plasma~Terminating~Events~in~Large~Stellarators}{D.~Maier,~A.~Dinklage,~J.~Baldzuhn,~R.~Burhenn,~R.~Bussiahn,~B.~Buttenschön,~P.~Hacker, [...],~the~W7-X~Team}{DPG-Frühjahrstagung~der~Sektion~Materie~und~Kosmos~(SMuK),~Munich,~Germany,~2019}{}%
+        \cventry{Jul.~2019}{The~influence~of~impurity~radiation~locations~on~the~plasma~performance~in~stellarator~Wendelstein~7-X}{D.~Zhang,~R.~Burhenn,~F.~Reimold,~P.~Hacker, [...],~the~W7-X~Team}{46th~European~Physical~Society~Conference~on~Plasma~Physics,~Milan,~Italy,~July~2019}{}%
+        \cventry{Jul.~2019}{The~bolometer~diagnostic~at~the~stellarator~Wendelstein~7-X}{P.~Hacker,~D.~Zhang,~R.~Burhenn,~B.~Buttenschön,~T.~Klinger,~W7-X.~Team}{DPG-Frühjahrstagung~der~Sektion~AMOP~(DPG~2018),~Erlangen,~Germany,~March~2018}{}%
+
+    \subsubsection*{%
+        Additional~Research}
+
+        \cventry{10/2016~--~10/2017}{Master~Thesis:~`Kinetic~Effects~in~RF~Discharges'}{Research~Group~of~Prof.~Dr.~Ralf~Schneider}{Institute~of~Physics,~University~of~Greifswald}{C/C++ particle simulation code development - C++ 2d3v PIC simulation of ccrf discharges}%
+        \cventry{04/2016~--~10/2016}{Research~Group~Internship}{`Electric~field~strength~spectroscopy~in~dielectric~barrier~discharges'}{Research~Group~of~Prof.~Dr.~Jürgen~Meichsner}{Institute~of~Physics,~University~of~Greifswald}%
+        \cventry{10/2015~--~07/2016}{Intership~in~the~Group~of~Prof.~Dr.~Melzer}{Complex~Plasma~Systems,~Experiment~Setup}{Institute~of~Physics,~University~of~Greifswald}{}%
+        \cventry{05/2015~--~09/2015}{Bachelor~Thesis:~`Modenanregung~in~Yukawa-Bällen'}{Research~Group~of~Prof.~Dr.~Andre~Melzer}{University~of~Greifswald}{Stereoscopic particle diagnostics with MATLAB}%
+
+    \subsubsection*{%
+        Supplementary~Lectures~\&~Classes}
+
+        \cventry{Oct.~2020}{Introduction~to~astrophysics}{Prof.~Dr.~Per~Helander}{Max~Planck~Institute~for~Plasmaphysics,~Greifswald}{}%
+        \cventry{Oct.~2019}{Machine~Learning}{Prof.~Dr.~M.~Stanke}{Institute~of~Mathematics,~University~of~Greifswald}{}%
+        \cventry{Oct.~2019}{Non-Neutral~Plasmas~\&~Trapped~Charged~Particles}{Prof.~Dr.~T.~Sunn~Pedersen,~E.~Stenson,~Prof.~Dr.~L.~Schweikhard,~M.~Stoneking,~C.~Surko}{Max~Planck~Institute~for~Plasmaphysics,~Greifswald}{}%
+
+    \subsubsection*{%
+        Lecturing Experiences}
+
+        \cventry{2014~--~2018}{Assistant~Associate~in~the~Practical~Course~-~Physics}{in:~Study~Programme~of~Humane~Medicine}{Institute~of~Physics,~University~of~Greifswald}{}%
+
+    \subsubsection*{%
+        Extra-Curriculars~\&~Extramural Activities}
+
+        \cventry{2007~--~2010}{Participation~in~the`Baltic~Sea~School~Exchange~Program'}{Finnvedens~Gymnasium~`Figy';~Värnamo,~Sweden}{}{}%
+        \cventry{2011}{Qualification~for~the~German~Dragon~Boat~National~Team~`Junior~A'}{Participation~in~the~10th~IDBF~World~Dragon~Boat~Racing~Championships}{Tampa~Bay,~FL;~United~States~of~America}{9~Gold~Medals,~2~Silver~Medals}%
+        \cventry{2012}{Entering~of~the~`Hochschul-Sportgemeinschaft~Greifswald~e.V'}{Department~of~Canoe/Dragonboat}{2015-2016~Trainer~of~the~Dragon~Boat~Team~`Greifendrachen'}{}%
+        \cventry{2017}{Qualification~for~the~German~Dragon~Boat~National~Team~`U24'}{Participation~in~the~13th~IDBF~World~Nations~Championships}{Divonne-Les-Baines,~France}{}%
+        \cventry{2021~--~now}{(Olympic)~Weightlifting~Team~Participation    ESV~München~Neuaubing~--~Local~League~and~Individual~Competitions}{County~Oberbayern~and~Bavarian~League~2021/22,~22/23,~23/24}{1st place Munich Championships '23, 2nd place Oberbayern Championships '23}{}%

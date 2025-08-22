@@ -46,7 +46,6 @@
     \end{center}
     \vspace*{\fill}%
 
-    % \includegraphics[width=0.15\textwidth]{example-image-1x1}\par\vspace{1cm}
     \begin{minipage}[]{0.6\linewidth}
         \hfill\vspace{0.1cm}
     \end{minipage}
@@ -64,22 +63,24 @@
     % Bottom of the page
     \begin{center}
         \getproperty{document}{location}, \getproperty{document}{date}
-    \end{center}
-    \newpage
+    \end{center}%
+    \newpage%
     % \vfill
     % \getproperty{document}{logos}
 
     \checkoddpage\ifoddpage\clearpage\else\cleardoublepage\fi%
 
-    \vspace*{\fill}
-        \begin{flushright}
-            \begin{tabular}{ll}
-                Dekan              & \getproperty{committee}{dean} \\
-                                   &   \\
-                1. Gutachter       & \getproperty{committee}{firstreferee} \\
-                2. Gutachter       & \getproperty{committee}{secondreferee} \\
-                                   &   \\
-                Tag der Promotion: & \getproperty{committee}{dayofevent} 
-            \end{tabular}
-        \end{flushright}
+    \thispagestyle{empty}%
+    \vspace*{\fill}%
+       \begin{flushright}%
+           \begin{tabular}{ll}%
+               Dekan              & \getproperty{committee}{dean} \\
+                                  &   \\
+               1. Gutachter       & \getproperty{committee}{firstreferee} \\
+               2. Gutachter       & \getproperty{committee}{secondreferee} \\
+                                  &   \\
+               Tag der Promotion: & \getproperty{committee}{dayofevent} 
+           \end{tabular}%
+       \end{flushright}%
+
 \end{titlepage}
