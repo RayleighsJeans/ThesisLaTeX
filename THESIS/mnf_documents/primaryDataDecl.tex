@@ -3,16 +3,28 @@
   paper=a4,
   %parskip=half,
   %enlargefirstpage=on,    % More space on first page
-  fromalign=right,         % PLacement of name in letter head
+  %fromalign=right,         % PLacement of name in letter head
   %fromphone=on,           % Turn on phone number of sender
-  fromrule=off,            % Rule after sender name in letter head
+  %fromrule=off,            % Rule after sender name in letter head
   %fromemail=on,           % Turn on email of sender
-  addrfield=on,            % Adress field for envelope with window
-  backaddress=off,         % Sender address in this window
+  %addrfield=on,            % Adress field for envelope with window
+  %backaddress=off,         % Sender address in this window
   %subject=beforeopening,  % Placement of subject
   %locfield=narrow,        % Additional field for sender
-  foldmarks=on             % Print foldmarks
-]{scrlttr2}
+  %foldmarks=on             % Print foldmarks
+%]{scrlttr2}
+]{report}
+
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  %twoside,
+  left=25mm,
+  right=25mm,
+  top=35mm,
+  bottom=35mm,
+  %bindingoffset=10mm
+}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -20,12 +32,14 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{ragged2e}
-\usepackage{array, booktabs}
+\usepackage{array}
+\usepackage{booktabs}
 \newcolumntype{L}[1]{>{\RaggedRight}p{#1}}
 
 \usepackage{makecell}
 \renewcommand\theadalign{bc}
 \renewcommand\theadfont{\bfseries}
+\setlength{\extrarowheight}{2pt}
 \renewcommand\theadgape{\Gape[4pt]}
 \renewcommand\cellgape{\Gape[4pt]}
 
@@ -41,30 +55,27 @@
     }
 \urlstyle{same}
 
-
-\setkomafont{fromname}{\sffamily \LARGE}
-\setkomafont{fromaddress}{\sffamily}%% statt \small
-\setkomafont{pagenumber}{\sffamily}
-\setkomafont{subject}{\bfseries}
-\setkomafont{backaddress}{\mdseries}
-
-\LoadLetterOption{DIN}
-\setkomavar{fromname}{Philipp Scholl}
-\setkomavar{fromaddress}{%
-    16 An Tor Aonarach\\%
-    Dunaree\\%
-    Kingscourt\\%
-    Co. Cavan\\%
-    A82 V2H0\\%
-    Irland}
-\setkomavar{fromphone}{+353 87 1922 755}
-\setkomavar{fromemail}{rayleighsjeans@gmail.com}
-\setkomavar{backaddressseparator}{\enspace\textperiodcentered\enspace}
-\setkomavar{signature}{(Philipp Scholl)}
-\setkomavar{place}{Kingscourt}
-\setkomavar{date}{\today}
-\setkomavar{enclseparator}{: }
-
+% \setkomafont{fromname}{\sffamily \LARGE}
+% \setkomafont{fromaddress}{\sffamily}%% statt \small
+% \setkomafont{pagenumber}{\sffamily}
+% \setkomafont{subject}{\bfseries}
+% \setkomafont{backaddress}{\mdseries}
+% \LoadLetterOption{DIN}
+% \setkomavar{fromname}{Philipp Scholl}
+% \setkomavar{fromaddress}{%
+%     16 An Tor Aonarach\\%
+%     Dunaree\\%
+%     Kingscourt\\%
+%     Co. Cavan\\%
+%     A82 V2H0\\%
+%     Irland}
+% \setkomavar{fromphone}{+353 87 1922 755}
+% \setkomavar{fromemail}{rayleighsjeans@gmail.com}
+% \setkomavar{backaddressseparator}{\enspace\textperiodcentered\enspace}
+% \setkomavar{signature}{(Philipp Scholl)}
+% \setkomavar{place}{Kingscourt}
+% \setkomavar{date}{\today}
+% \setkomavar{enclseparator}{: }
 %\setkomavar{toaddress}{}
 
 \newcommand{\thesistitle}{%
@@ -74,44 +85,119 @@
 }
 
 \begin{document}
-    \begin{letter}{%
-        An den\\%
-        Dekan der Mathematisch-Naturwissenschaftlichen Fakultät der Universität Greifswald\\% 
-        Friedrich-Ludwig-Jahn-Straße 15 a\\%
-        17487 Greifswald
+    % \begin{letter}{%
+    %     An den\\%
+    %     Dekan der Mathematisch-Naturwissenschaftlichen Fakultät der Universität Greifswald\\%
+    %     Friedrich-Ludwig-Jahn-Straße 15 a\\%
+    %     17487 Greifswald
+    % }%
+    % \setkomavar{subject}{%
+
+    \begin{flushright}
+      Kingscourt, \today\\[1cm]%
+    \end{flushright}
+
+    \subsection*{%
+        Erklärung zur Langzeitspreicherung von Primäraten und Computercode%
     }%
-      \setkomavar{subject}{%
-          Erklärung zur Langzeitspreicherung von Primäraten und Computercode%
-    }%
-    \opening{%
-        Spektabilität,\\%
-        sehr geehrte Damen und Herren,%
-    }%
+    %\opening{%
+        \vspace*{0.5cm}%
+        Sehr geehrte Damen und Herren,\\[0.5cm]%
+    %}%
 %
-    hiermit erkläre ich, dass die alle Primärdaten, Algorithmen sowie erstellter und genutzter Computercode der Dissertation zugrundeliegenden Untersuchungen gemäß der Regeln guter wissenschaftlicher Praxis für mindestens zehn Jahre innerhalb des \textit{Deutschen Forschungsnetzes} gesichert und externalisierbar zur Verfügung stehen.\\[0.5cm]%
+    hiermit erkläre ich, dass alle Primärdaten, Algorithmen, sowie erstellter und genutzter Computercode der Dissertation zugrundeliegenden Untersuchungen gemäß der Regeln guter wissenschaftlicher Praxis für mindestens zehn Jahre innerhalb des \textit{Deutschen Forschungsnetzes} und zusätzlich gesichert und externalisierbar zur Verfügung stehen.\\[0.5cm]%
 %
-    Im Folgenden gebe ich die Adressen der relevanten und notwendigen Resourcenan, welche für die Dissertation genutzt wurden. Darüber hinaus finden sich hier ebenfalls Kontaktdaten von Betreuern für weitere Nachfrage.\\[0.3cm]%
+    Im Folgenden gebe ich die Adressen der relevanten und notwendigen Ressourcen an, welche für die Dissertation genutzt wurden. Darüber hinaus finden sich im Anschluss ebenfalls Kontaktdaten von Betreuern für weitere Nachfrage.\\%[0.3cm]%
 %
     \begin{center}
         \def\arraystretch{1.5}%  1 is the default, change whatever you need
-        \begin{tabular}{c|L{\dimexpr0.5\linewidth-2\tabcolsep}}
+        \begin{tabular}{%
+          c||L{\dimexpr0.6\linewidth}%
+          }%
             \thead{Resource} & \thead{Adresse} \\\hline\hline%
-            \makecell{persoenliches \\ Respositorium} & 
+            \makecell{persoenliches \\ Respositorium} &
                 \url{https://git.ipp-hgw.mpg.de/pih} \\\hline%
             \makecell{Laborbuch d.\\ Diagnostik} & %
                 \url{https://w7x-logbook.ipp-hgw.mpg.de/components?id=QSB} \\\hline%
-            \makecell{Bolometer Messdaten \&\\ Parameter} & %
+            \makecell{Messdaten \&\\ Parameter d. Bolometer} & %
                 \url{http://archive-webapi.ipp-hgw.mpg.de/Test/raw/W7XAnalysis/QSB_Bolometry/} \\\hline%
-            \makecell{Python Auswertungs- \&\\ Geometrie-Code} & %
-                \makecell{\url{https://github.com/RayleighsJeans/BolometryPyLib} \\%
-                          \url{https://github.com/RayleighsJeans/BolometryPyLib}} \\\hline%
+            \makecell{Auswertungs- \&\\ Geometrie-Code} & %
+                \url{https://github.com/RayleighsJeans/BolometryPyLib} \\\hline%
+            \makecell{STRAHL \\ Simulationsalgorithmus} & %
+                \url{https://github.com/RayleighsJeans/STRAHL} \\\hline%
+            \makecell{Bolometer-Messsoftware} & %
+                \url{https://github.com/RayleighsJeans/QSBLabVIEW} \\\hline%
+            \makecell{Tomographie-Algorithmus} & %
+                \url{https://github.com/RayleighsJeans/BolometerMFR} \\\hline%
+            \makecell{Repositorium d. Dissertationsarbeit} & %
+                \url{https://github.com/RayleighsJeans/ThesisLaTeX}%
         \end{tabular}
     \end{center}
 %
-      Mit freundlichen Grüßen,\\[.5cm]%
-      \includegraphics[width=3.5cm]{%
-        ../../CV/figures/images/signature_scholl.png}\\[-0.5cm]%
-      (Philipp Scholl)%
+    \begin{center}
+        \def\arraystretch{2}%  1 is the default, change whatever you need
+        \begin{tabular}{%
+          c||l%
+          }%
+            \thead{Ansprechpartner} & \thead{Kontakt} \\\hline\hline%
+            \makecell{Prof. Dr. Thomas Klinger \\ (Erstgutachter, Betreuer)} & %
+                \makecell[l]{%
+                    Leiter des Bereichs Stellarator-Dynamik und -Transport\\%
+                    Max-Planck-Institut für Plasmaphysik (W7-X)\\%
+                    Wendelsteinstr. 1, 17491 Greifswald\\%
+                    Tel.: +49 3834 88 - 2500\\%
+                    E-Mail: \href{mailto:thomas.klinger@ipp.mpg.de}{thomas.klinger@ipp.mpg.de}} \\\hline%
+            \makecell{Dr. Felix Reimold \\ (Betreuer)} & %
+                \makecell[l]{%
+                    Fachgruppenleiter Transport, Verunreinigungen und Strahlung\\%
+                    Max-Planck-Institut für Plasmaphysik (W7-X)\\%
+                    Wendelsteinstr. 1, 17491 Greifswald\\%
+                    Tel.: +49 3834 88 - 2825\\%
+                    E-Mail: \href{mailto:felix.reimold@ipp.mpg.de}{felix.reimold@ipp.mpg.de}} \\\hline%
+            \makecell{Dr. Daihong Zhang \\ (Betreuerin)} & %
+                \makecell[l]{%
+                    Stellarator-Dynamik und -Transport, \textit{Responsible Officer QSB Bolometer}\\%
+                    Max-Planck-Institut für Plasmaphysik (W7-X)\\%
+                    Wendelsteinstr. 1, 17491 Greifswald\\%
+                    Tel.: +49 3834 88 - 2527\\%
+                    E-Mail: \href{mailto:daihong.zhang@ipp.mpg.de}{daihong.zhang@ipp.mpg.de}} %
+        \end{tabular}
+    \end{center}
+    \vspace*{1cm}%
 %
-    \end{letter}
+    Zugang zu den oben genannten Schnittstellen und Daten kann durch einen berechtigten Antrag am Max-Planck-Institut für Plasmaphysik in Greifswald oder am Rechenzentrum der Max-Planck-Gesellschaft (\textit{MPCDF}, \url{https://www.mpcdf.mpg.de/}) erlangt werden.\\[0.5cm]%
+%
+    Bei weiteren Rückfragen stehe ich jederzeit zur Verfügung.\\%
+%
+    \begin{minipage}{.47\textwidth}
+        \begin{center}
+            \def\arraystretch{2}%  1 is the default, change whatever you need
+            \begin{tabular}{rl}%
+              Name: & Philipp Scholl \\
+              Adresse: & \makecell{%
+                  16 An Tor Aonarach, Dunaree\\%
+                  A82 V2H0, Kingscourt\\%
+                  Co. Cavan, Irland}%
+            \end{tabular}
+        \end{center}
+    \end{minipage}
+    \hfill%
+    \begin{minipage}{.47\textwidth}
+        \begin{center}
+            \def\arraystretch{2}%  1 is the default, change whatever you need
+            \begin{tabular}{rl}%
+              E-Mail: & \href{mailto:rayleighsjeans@gmail.com}{rayleighsjeans@gmail.com} \\%
+              Tel.: & \makecell{%
+                  +49 1520 209 5226\\+353 87 1922 755}%
+            \end{tabular}
+        \end{center}
+    \end{minipage}
+    \\[0.5cm]%
+%
+    Mit freundlichen Grüßen,\\[.5cm]%
+    \includegraphics[width=3.5cm]{%
+      ../../CV/figures/images/signature_scholl.png}\\[-0.5cm]%
+    (Philipp Scholl)%
+%
+%    \end{letter}
 \end{document}
