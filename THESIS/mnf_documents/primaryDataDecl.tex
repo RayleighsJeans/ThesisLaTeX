@@ -85,6 +85,7 @@
 }
 
 \begin{document}
+    \pagestyle{empty}%
     % \begin{letter}{%
     %     An den\\%
     %     Dekan der Mathematisch-Naturwissenschaftlichen Fakultät der Universität Greifswald\\%
@@ -105,7 +106,9 @@
         Sehr geehrte Damen und Herren,\\[0.5cm]%
     %}%
 %
-    hiermit erkläre ich, dass alle Primärdaten, Algorithmen, sowie erstellter und genutzter Computercode der Dissertation zugrundeliegenden Untersuchungen gemäß der Regeln guter wissenschaftlicher Praxis für mindestens zehn Jahre innerhalb des \textit{Deutschen Forschungsnetzes} und zusätzlich gesichert und externalisierbar zur Verfügung stehen.\\[0.5cm]%
+    hiermit erkläre ich, dass alle Primärdaten, Algorithmen, sowie erstellter und genutzter Computercode für der Dissertation zugrundeliegenden Untersuchungen gemäß der Regeln guter wissenschaftlicher Praxis\footnote[1]{%
+      Deutsche Forschungsgemeinschaft; Guidelines for Safeguarding Good Research Practice - Code of Conduct; Jan. 2025, \url{https://doi.org/10.5281/zenodo.14281892}%
+    } für mindestens zehn Jahre innerhalb des \textit{Deutschen Forschungsnetzes} gesichert und externalisierbar zur Verfügung stehen. Diese sind im Archiv des Wendelstein 7-X am Institut für Plasmaphysik gespeichert und innerhalb des Forschungsnetz der Max-Planck-Gesellschaft geschützt.\\[0.5cm]%
 %
     Im Folgenden gebe ich die Adressen der relevanten und notwendigen Ressourcen an, welche für die Dissertation genutzt wurden. Darüber hinaus finden sich im Anschluss ebenfalls Kontaktdaten von Betreuern für weitere Nachfrage.\\%[0.3cm]%
 %
@@ -133,6 +136,9 @@
                 \url{https://github.com/RayleighsJeans/ThesisLaTeX}%
         \end{tabular}
     \end{center}
+    %\vspace*{0.5cm}
+    \vfill%
+    \newpage%
 %
     \begin{center}
         \def\arraystretch{2}%  1 is the default, change whatever you need
@@ -167,28 +173,31 @@
 %
     Zugang zu den oben genannten Schnittstellen und Daten kann durch einen berechtigten Antrag am Max-Planck-Institut für Plasmaphysik in Greifswald oder am Rechenzentrum der Max-Planck-Gesellschaft (\textit{MPCDF}, \url{https://www.mpcdf.mpg.de/}) erlangt werden.\\[0.5cm]%
 %
-    Bei weiteren Rückfragen stehe ich jederzeit zur Verfügung.\\%
+    Bei weiteren Rückfragen stehe ich jederzeit zur Verfügung.\\[.5cm]%
 %
     \begin{minipage}{.47\textwidth}
         \begin{center}
-            \def\arraystretch{2}%  1 is the default, change whatever you need
+            \def\arraystretch{1}%  1 is the default, change whatever you need
             \begin{tabular}{rl}%
               Name: & Philipp Scholl \\
-              Adresse: & \makecell{%
+              & \\%
+              Adresse: & %\makecell{%
                   16 An Tor Aonarach, Dunaree\\%
-                  A82 V2H0, Kingscourt\\%
-                  Co. Cavan, Irland}%
+                  & A82 V2H0, Kingscourt\\%
+                  & Co. Cavan, Irland%}%
             \end{tabular}
         \end{center}
     \end{minipage}
     \hfill%
     \begin{minipage}{.47\textwidth}
         \begin{center}
-            \def\arraystretch{2}%  1 is the default, change whatever you need
+            \def\arraystretch{1}%  1 is the default, change whatever you need
             \begin{tabular}{rl}%
               E-Mail: & \href{mailto:rayleighsjeans@gmail.com}{rayleighsjeans@gmail.com} \\%
-              Tel.: & \makecell{%
-                  +49 1520 209 5226\\+353 87 1922 755}%
+              & \\%
+              Tel.: & %\makecell{%
+                  \,\,\,+49 1520 209 5226\\%
+                  & +353 871 922 755%}%
             \end{tabular}
         \end{center}
     \end{minipage}
