@@ -33,8 +33,10 @@
 \usepackage{float}
 \usepackage{ragged2e}
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{booktabs}
 \newcolumntype{L}[1]{>{\RaggedRight}p{#1}}
+\newcolumntype{x}[1]{>{\X gedRight}p{#1}}
 
 \usepackage{makecell}
 \renewcommand\theadalign{bc}
@@ -46,43 +48,11 @@
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,
+    linkcolor=black,
     breaklinks=true,
-    urlcolor=cyan,
-    pdftitle={Overleaf Example},
-    pdfpagemode=FullScreen,
-    }
-\urlstyle{same}
-
-% \setkomafont{fromname}{\sffamily \LARGE}
-% \setkomafont{fromaddress}{\sffamily}%% statt \small
-% \setkomafont{pagenumber}{\sffamily}
-% \setkomafont{subject}{\bfseries}
-% \setkomafont{backaddress}{\mdseries}
-% \LoadLetterOption{DIN}
-% \setkomavar{fromname}{Philipp Scholl}
-% \setkomavar{fromaddress}{%
-%     16 An Tor Aonarach\\%
-%     Dunaree\\%
-%     Kingscourt\\%
-%     Co. Cavan\\%
-%     A82 V2H0\\%
-%     Irland}
-% \setkomavar{fromphone}{+353 87 1922 755}
-% \setkomavar{fromemail}{rayleighsjeans@gmail.com}
-% \setkomavar{backaddressseparator}{\enspace\textperiodcentered\enspace}
-% \setkomavar{signature}{(Philipp Scholl)}
-% \setkomavar{place}{Kingscourt}
-% \setkomavar{date}{\today}
-% \setkomavar{enclseparator}{: }
-%\setkomavar{toaddress}{}
-
-\newcommand{\thesistitle}{%
-    \textit{%
-        Impurity Transport and Radiation at the stellarator Wendelstein 7-X%
-    }%
+    urlcolor=black
 }
+ \urlstyle{same}
 
 \begin{document}
     \pagestyle{empty}%
@@ -107,42 +77,57 @@
     %}%
 %
     hiermit erkläre ich, dass alle Primärdaten, Algorithmen, sowie erstellter und genutzter Computercode für der Dissertation zugrundeliegenden Untersuchungen gemäß der Regeln guter wissenschaftlicher Praxis\footnote[1]{%
-      Deutsche Forschungsgemeinschaft; Guidelines for Safeguarding Good Research Practice - Code of Conduct; Jan. 2025, \url{https://doi.org/10.5281/zenodo.14281892}%
+      Deutsche Forschungsgemeinschaft; Guidelines for Safeguarding Good Research Practice - Code of Conduct; Jan. 2025, \url{doi.org/10.5281/zenodo.14281892}%
     } für mindestens zehn Jahre innerhalb des \textit{Deutschen Forschungsnetzes} gesichert und externalisierbar zur Verfügung stehen. Diese sind im Archiv des Wendelstein 7-X am Institut für Plasmaphysik gespeichert und innerhalb des Forschungsnetz der Max-Planck-Gesellschaft geschützt.\\[0.5cm]%
 %
     Im Folgenden gebe ich die Adressen der relevanten und notwendigen Ressourcen an, welche für die Dissertation genutzt wurden. Darüber hinaus finden sich im Anschluss ebenfalls Kontaktdaten von Betreuern für weitere Nachfrage.\\%[0.3cm]%
 %
-    \begin{center}
+    \begin{center}%
         \def\arraystretch{1.5}%  1 is the default, change whatever you need
-        \begin{tabular}{%
-          c||L{\dimexpr0.6\linewidth}%
+        \begin{tabularx}{\linewidth}{%
+          c||X%{\dimexpr0.6\linewidth}%
           }%
             \thead{Resource} & \thead{Adresse} \\\hline\hline%
             \makecell{persoenliches \\ Respositorium} &
-                \url{https://git.ipp-hgw.mpg.de/pih} \\\hline%
+                \makecell[l]{%
+                    $\bullet$\,\,\url{git.ipp-hgw.mpg.de/pih}\\%
+                    $\bullet$\,\,\url{gitlab.mpcdf.mpg.de/pih/}} \\\hline%
             \makecell{Laborbuch d.\\ Diagnostik} & %
-                \url{https://w7x-logbook.ipp-hgw.mpg.de/components?id=QSB} \\\hline%
-            \makecell{Messdaten \&\\ Parameter d. Bolometer} & %
-                \url{http://archive-webapi.ipp-hgw.mpg.de/Test/raw/W7XAnalysis/QSB_Bolometry/} \\\hline%
+                \url{w7x-logbook.ipp-hgw.mpg.de/components?id=QSB} \\\hline%
             \makecell{Auswertungs- \&\\ Geometrie-Code} & %
-                \url{https://github.com/RayleighsJeans/BolometryPyLib} \\\hline%
+                \makecell[l]{%
+                    $\bullet$\,\,\url{github.com/RayleighsJeans/BolometryPyLib}\\%
+                    $\bullet$\,\,\url{gitlab.mpcdf.mpg.de/pih/qsb_bolometry}} \\\hline%
             \makecell{STRAHL \\ Simulationsalgorithmus} & %
-                \url{https://github.com/RayleighsJeans/STRAHL} \\\hline%
+                \url{github.com/RayleighsJeans/STRAHL} \\\hline%
             \makecell{Bolometer-Messsoftware} & %
-                \url{https://github.com/RayleighsJeans/QSBLabVIEW} \\\hline%
+                \makecell[l]{%
+                    $\bullet$\,\,\url{github.com/RayleighsJeans/QSBLabVIEW}\\%
+                    $\bullet$\,\,\url{gitlab.mpcdf.mpg.de/pih/labview_qsb}} \\\hline%
             \makecell{Tomographie-Algorithmus} & %
-                \url{https://github.com/RayleighsJeans/BolometerMFR} \\\hline%
+                \makecell[l]{%
+                    $\bullet$\,\,\url{github.com/RayleighsJeans/BolometerMFR}\\%
+                    $\bullet$\,\,\url{gitlab.mpcdf.mpg.de/pih/bolometer_mfr}} \\\hline%
             \makecell{Repositorium d. Dissertationsarbeit} & %
-                \url{https://github.com/RayleighsJeans/ThesisLaTeX}%
-        \end{tabular}
-    \end{center}
+                \makecell[l]{%
+                    $\bullet$\,\,\url{github.com/RayleighsJeans/ThesisLaTeX}\\%
+                    $\bullet$\,\,\url{gitlab.mpcdf.mpg.de/pih/latex.git}} \\\hline%
+            \makecell{Messdaten \&\\ Parameter d. Bolometer} & %
+                \makecell[Xt]{%
+                    %\sloppy%
+                    $\bullet$\,\,\url{archive-webapi.ipp-hgw.mpg.de/Test/raw/W7XAnalysis/QSB_Bolometry/}\\%
+                    $\bullet$\,\,\url{archive-webapi.ipp-hgw.mpg.de/Test/raw/W7X/QSB_Bolometry/BoloSignal_DATASTREAM/}\\%
+                    $\bullet$\,\,\url{archive-webapi.ipp-hgw.mpg.de/ArchiveDB/raw/W7XAnalysis/QSB_Bolometry/}\\%
+                    }%
+        \end{tabularx}%
+    \end{center}%
     %\vspace*{0.5cm}
     \vfill%
     \newpage%
 %
-    \begin{center}
+    \begin{center}%
         \def\arraystretch{2}%  1 is the default, change whatever you need
-        \begin{tabular}{%
+        \begin{tabularx}{\linewidth}{%
           c||l%
           }%
             \thead{Ansprechpartner} & \thead{Kontakt} \\\hline\hline%
@@ -167,11 +152,11 @@
                     Wendelsteinstr. 1, 17491 Greifswald\\%
                     Tel.: +49 3834 88 - 2527\\%
                     E-Mail: \href{mailto:daihong.zhang@ipp.mpg.de}{daihong.zhang@ipp.mpg.de}} %
-        \end{tabular}
+        \end{tabularx}
     \end{center}
     \vspace*{1cm}%
 %
-    Zugang zu den oben genannten Schnittstellen und Daten kann durch einen berechtigten Antrag am Max-Planck-Institut für Plasmaphysik in Greifswald oder am Rechenzentrum der Max-Planck-Gesellschaft (\textit{MPCDF}, \url{https://www.mpcdf.mpg.de/}) erlangt werden.\\[0.5cm]%
+    Zugang zu den oben genannten Schnittstellen und Daten kann durch einen berechtigten Antrag am Max-Planck-Institut für Plasmaphysik in Greifswald oder am Rechenzentrum der Max-Planck-Gesellschaft (\textit{MPCDF}, \url{www.mpcdf.mpg.de/}) erlangt werden.\\[0.5cm]%
 %
     Bei weiteren Rückfragen stehe ich jederzeit zur Verfügung.\\[.5cm]%
 %
