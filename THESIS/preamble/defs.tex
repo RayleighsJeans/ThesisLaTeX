@@ -122,13 +122,13 @@
 
 % \RequirePackage{tabularx}
 %%% provides a signature command
-\newcommand{\Signature}[2]% provides a labeling field. \Signature{Place}{Name}
+\newcommand{\Signature}[3]% provides a labeling field. \Signature{Place}{Name}
         {%
             \vspace{2cm}%
             \noindent%
             \begin{tabular*}{\textwidth}{@{\extracolsep{0pt}} l @{\extracolsep{\fill}} r @{\extracolsep{0pt}}}%
-#1, \getproperty{document}{date}	& \rule{0.33\textwidth}{1pt} 	\\
-& \raggedleft{\textsc{#2}}
+#1, #2 & \rule{0.45\textwidth}{1pt}\\
+& \raggedleft{\textsc{#3}}
             \end{tabular*}
             \vspace{1cm}
         }
