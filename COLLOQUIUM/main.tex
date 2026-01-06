@@ -2,25 +2,32 @@
 % Plasma Radiation Diagnostics and Feedback Control at Wendelstein 7-X
 % Works only with pdflatex
 
-\documentclass{beamer}
+\documentclass[aspectratio=1610]{beamer}
 
 % Use predefined IPP style with Eurofusion and W7-X logos
-\useoutertheme[Eurofusion, w7x]{ippw7x}
+\usepackage{IPP-w7x}
+
+% References
+% \usepackage[
+%     backend=biber,
+%     url=true
+%     ]{biblatex}
+% \addbibresource{references.bib}
 
 % Don't show navigation symbols
-\beamertemplatenavigationsymbolsempty
+% \beamertemplatenavigationsymbolsempty
 
 % Extra packages
-\usepackage[english]{babel}
-\usepackage{amsmath,amsfonts,amssymb,stackrel}
-\usepackage{changepage}
-\usepackage{tikz}
-\usetikzlibrary{positioning}
-\usepackage{siunitx}
-\usepackage{xcolor}
-\usepackage{caption}
-\usepackage{subcaption}
-\captionsetup{labelformat=empty,labelsep=none}
+% \usepackage[english]{babel}
+% \usepackage{amsmath,amsfonts,amssymb,stackrel}
+% \usepackage{changepage}
+% \usepackage{tikz}
+% \usetikzlibrary{positioning}
+% \usepackage{siunitx}
+% \usepackage{xcolor}
+% \usepackage{caption}
+% \usepackage{subcaption}
+% \captionsetup{labelformat=empty,labelsep=none}
 
 % Custom commands
 % \newcommand{\diff}{\mathrm{d}}
@@ -48,31 +55,37 @@
 %   }
 % }
 
+% \title[Short Title]{Super Awesome Project Title}
+% \subtitle{Subtitle}
+% \author{Max Mustermann}
+% \date{YYYY-MM-DD}
+% \institute{Helmholtz Center ABC}
+
 \begin{document}
   % Title of the presentation
-  % \title[Plasma Radiation Diagnostics and Feedback Control at W7-X]%
-  %       {Plasma Radiation Diagnostics and Feedback Control\\at the Stellarator Wendelstein 7-X}
+  \title[Plasma Radiation Diagnostics and Feedback Control at W7-X]%
+        {Plasma Radiation Diagnostics and Feedback Control\\at the Stellarator Wendelstein 7-X}
 
-  % % Authors
-  % \author[P. Hacker]%
-  %        {P. Hacker\inst{1}\inst{2}}
+  % Authors
+  \author[P. Hacker]%
+         {P. Hacker\inst{1}\inst{2}}
 
-  % % Institutes
-  % \institute{\tiny%
-  %            \inst{1}Max Planck Institute for Plasma Physics, %
-  %                    Wendelsteinstr. 1, D-17491 Greifswald, Germany \and%
-  %            \inst{2}Ernst-Moritz-Arndt University Greifswald, Domstr. 11, %
-  %                    D-17489 Greifswald, Germany}
+  % Institutes
+  \institute{\tiny%
+             \inst{1}Max Planck Institute for Plasma Physics, %
+                     Wendelsteinstr. 1, D-17491 Greifswald, Germany \and%
+             \inst{2}Ernst-Moritz-Arndt University Greifswald, Domstr. 11, %
+                     D-17489 Greifswald, Germany}
 
-  % % Date
-  % \date{\today}
+  % Date
+  \date{\today}
 
-  % % Title frame 
-  % \begin{frame}
-  %   \backgroundlogo%
-  %   \titlepage%
-  %   \acknowledgement%
-  % \end{frame}
+  % Title frame 
+  \begin{frame}
+    %\backgroundlogo%
+    \titlepage%
+    \acknowledgement%
+  \end{frame}
 
   % Contents
   % \begin{frame}{Contents}
@@ -883,5 +896,3 @@
   % \backupend
 
 \end{document}
-
-% Made with Bob
