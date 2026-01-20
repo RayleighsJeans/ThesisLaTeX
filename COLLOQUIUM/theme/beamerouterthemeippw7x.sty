@@ -15,7 +15,8 @@
 
 \useinnertheme[shadow=true]{rounded}
 \usefonttheme{professionalfonts}
-\usecolortheme{whale}
+
+
 \def\acknowledgement{\centering\tiny\itshape%
     This work has been carried out within the
     framework of the EUROfusion Consortium and has received funding from the
@@ -23,24 +24,7 @@
     agreement No. 633053. The views and opinions expressed herein do not
     necessarily reflect those of the European Commission.}
 
-%\definecolor{ipp}{rgb}{0.09,0.56,1.0}
-\definecolor{ipp}{rgb}{0,0.40,0.75}
-\definecolor{ipplight}{rgb}{0.78,0.85,0.95}
-\definecolor{ippdark}{rgb}{0,0.22,0.46}
-\setbeamercolor{section in head/foot}{parent=palette quaternary}
-\setbeamercolor{subsection in head/foot}{parent=palette primary}
-\setbeamercolor{author in head/foot}{parent=section in head/foot}
-\setbeamercolor{title in head/foot}{parent=subsection in head/foot}
-\setbeamercolor{frametitle}{parent=subsection in head/foot}
-\setbeamercolor{frametitle right}{parent=section in head/foot}
-\setbeamercolor{footlinecolor}{bg=ipplight,fg=ipp}
-\setbeamercolor*{structure}{fg=ipp}
-\setbeamercolor*{block title}{fg=white, bg=ipp}
-\setbeamercolor*{block body}{fg=black, bg=ipplight}
-\setbeamercolor*{frametitle}{fg=ipp}
-\setbeamerfont*{frametitle}{series=\bfseries,size=\large,parent=structure}
-\setbeamercolor*{title in head/foot}{bg=ipplight,fg=black}
-\setbeamercolor*{section in toc}{fg=ipp}
+\usecolortheme{ipp}
 
 \AtBeginDocument{
   \def\insertframetitle{}
@@ -48,6 +32,9 @@
     color(0pt)=(ippdark);
     color(\paperwidth)=(ipp)}
 }
+
+% Don't show navigation symbols
+\beamertemplatenavigationsymbolsempty
 
 \pgfdeclarehorizontalshading[ipplight,ipplight]%
                             {beamer@frametitleshade}{\paperheight}{%

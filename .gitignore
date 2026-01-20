@@ -237,8 +237,13 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+
+# thesis
 THESIS/main_comp.pdf
 THESIS/main.pdf
 THESIS/main.slg
 THESIS/main.syg
 THESIS/main.syi
+
+# colloquium
+COLLOQUIUM/ippw7x.pdf

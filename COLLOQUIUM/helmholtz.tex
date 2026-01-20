@@ -1,0 +1,30 @@
+% Colloquium Presentation - PhD Thesis Defense
+% Plasma Radiation Diagnostics and Feedback Control at Wendelstein 7-X
+% Works with latexmk
+\documentclass[aspectratio=1610]{beamer}
+
+\usepackage{Helmholtz-AI}
+
+% References
+\usepackage[
+  backend=biber,
+  url=true
+  ]{biblatex}
+\addbibresource{references.bib}
+
+% Use standard TeX math font.
+% Copy or link /path/to/beamerfontthemeserif.sty into theme/, e.g.
+%   cd theme
+%   ln -s /usr/share/texlive/texmf-dist/tex/latex/beamer/beamerfontthemeserif.sty beamerfontthemeserif.sty
+\usepackage{lmodern}
+\usefonttheme[onlymath]{serif}
+
+\usepackage{definitions}
+
+\begin{document}
+
+  \maketitle[w7x-ipp-transparent]
+
+  \include{slides}
+
+\end{document}

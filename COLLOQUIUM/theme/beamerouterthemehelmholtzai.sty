@@ -11,7 +11,7 @@
 % research field
 \newcommand{\rfslider}[1]{%
     \begin{tikzpicture}[overlay, remember picture]
-        \draw [fill=#1, draw=none] 
+        \draw [fill=#1, draw=none]
             (current page.south east) --
             ++(0, 1.0em) --
             ++(-0.4\paperwidth, 0) --
@@ -25,7 +25,7 @@
 % bottom slider
 \newcommand{\bottomslider}[1]{%
     \begin{tikzpicture}[overlay, remember picture]
-        \draw [fill=#1, draw=none] 
+        \draw [fill=#1, draw=none]
             (current page.south east) --
             ++(0, 1.2em) --
             ++(-0.25\paperwidth, 0) --
@@ -39,7 +39,7 @@
 % top slider
 \newcommand{\topslider}[1]{%
     \begin{tikzpicture}[overlay, remember picture]
-        \draw [fill=#1, draw=none] 
+        \draw [fill=#1, draw=none]
             (current page.north west) --
             ++(0, -1.2em) --
             ++(0.25\paperwidth, 0) --
@@ -59,7 +59,9 @@
         leftskip=0.6cm
     ]{topline}
         \strut
-        \includegraphics[height=0.5em]{logos/helmholtzai-logo-2-lines.pdf}
+        \iffalse
+          \includegraphics[height=0.5em]{logos/helmholtz.png}
+        \fi
         \hfill
         \textcolor{hgfgray}{\tiny\insertframenumber/\inserttotalframenumber}
         \strut
@@ -69,16 +71,22 @@
 % footer logo
 \newcommand{\footerlogo}{%
     \begin{tikzpicture}[overlay, remember picture]
-        \node[anchor=south east, inner sep=0, yshift=0.3em, xshift=-0.8em] at (current page.south east) {
-            \includegraphics[height=0.5em]{logos/helmholtzai-logo-white.pdf}
+        \node[anchor=south east, inner sep=0, yshift=0.em, xshift=-3.5em] at (current page.south east) {
+            \includegraphics[height=1.18em]{logos/eurofusion_crop_white.png}
+        };
+        \node[anchor=south east, inner sep=0, yshift=0em, xshift=-1.em] at (current page.south east) {
+            \includegraphics[height=1.18em]{logos/ipp.png}
         };
     \end{tikzpicture}
 }
 
+\def\acknowledgement{\centering\tiny\itshape%
+    This work has been carried out within the framework of the EUROfusion Consortium and has received funding from the Euratom research and training programme 2014-2018 under grant agreement No. 633053. The views and opinions expressed herein do not necessarily reflect those of the European Commission.}
+
 % chevrons
 \newcommand{\chevrons}[2]{%
     \begin{tikzpicture}[overlay, remember picture]
-        \draw [fill=#1, draw=none] 
+        \draw [fill=#1, draw=none]
             (current page.north east) --
             ++(-0.25\paperwidth, 0) --
             ++(0.55cm, -0.45cm) --
@@ -87,7 +95,7 @@
             ++(0.45cm, -0.55cm) --
             cycle;
 
-        \draw [fill=#2, draw=none] 
+        \draw [fill=#2, draw=none]
             ($ (current page.north east) + (-0.45cm, -0.45cm) $) --
             ++(-0.25\paperwidth, 0) --
             ++(0.55cm, -0.45cm) --
@@ -100,8 +108,8 @@
 
 % regular slide
 \defbeamertemplate{background}{frame}{%
-    \rfslider{hgfdarkblue}
-    \bottomslider{hgflightblue}
+    \rfslider{ippdark}
+    \bottomslider{ippalt}
     \topline
     \footerlogo
 }
@@ -119,7 +127,7 @@
         \else %
             \strut\large\hermann{\insertframetitle}\strut\par
             \vspace{-0.4em}
-            \usebeamercolor[hgflightblue]{framesubtitle}\strut\small\insertframesubtitle\strut
+            \usebeamercolor[ippalt]{framesubtitle}\strut\small\insertframesubtitle\strut
         \fi %
     \end{beamercolorbox}
 }
@@ -160,6 +168,12 @@
 \defbeamertemplate{background canvas}{generic}{%
     \includegraphics[width=\paperwidth, height=\paperheight]{titles/generic.png}
 }
+\defbeamertemplate{background canvas}{w7x-ipp}{%
+    \includegraphics[width=\paperwidth, height=\paperheight]{titles/fluxsurface_ipp_matthias_otte.png}
+}
+\defbeamertemplate{background canvas}{w7x-ipp-transparent}{%
+    \includegraphics[width=\paperwidth, height=\paperheight]{titles/fluxsurface_ipp_matthias_otte_trans.png}
+}
 \defbeamertemplate{background canvas}{aeronautics-space-transport}{%
     \includegraphics[width=\paperwidth, height=\paperheight]{titles/aeronautics-space-transport.png}
 }
@@ -185,10 +199,10 @@
     \includegraphics[width=\paperwidth, height=\paperheight]{titles/computing.png}
 }
 \defbeamertemplate{background canvas}{abstract}{%
-    \color{hgfdarkblue}\vrule width\paperwidth height\paperheight
-    \topslider{hgflightblue}
-    \bottomslider{hgflightblue}
-    
+    \color{ippdark}\vrule width\paperwidth height\paperheight
+    \topslider{ippalt}
+    \bottomslider{ippalt}
+
     \begin{tikzpicture}[overlay, remember picture]
         \node[anchor=west, inner sep=0, yshift=-0.05\paperheight] at (current page.west) {\includegraphics[scale=0.4]{titles/abstract.png}};
         \node[anchor=north east, inner sep=0, xshift=-0.8cm, yshift=-0.1\paperheight] at (current page.north east) {\includegraphics[height=0.7em]{logos/helmholtzai-logo-2-lines-white.pdf}};
@@ -200,44 +214,75 @@
 \newcommand{\whitetitle}{ %
     \vspace{0.2\paperheight}
     \usebeamercolor[white]{title}\strut{\fontsize{34}{34}\selectfont\hermann{Helmholtz AI}}\strut\par%
-    
+
     \vspace{0.1\paperheight}
-    
+
     \usebeamercolor[white]{title}\strut{\large\hermann{\inserttitle}}\strut\par%
-    \usebeamercolor[hgflightblue]{subtitle}\strut{\insertsubtitle}\strut\par%
-    
+    \usebeamercolor[ippalt]{subtitle}\strut{\insertsubtitle}\strut\par%
+
     \vspace{0.1\paperheight}
-    
-    \usebeamercolor[hgflightblue]{subtitle}\strut{\tiny\insertauthor}\strut\par%
-    \usebeamercolor[hgflightblue]{subtitle}\strut{\tiny\insertinstitute\enspace/\enspace\insertdate}\strut\par%
+
+    \usebeamercolor[ippalt]{subtitle}\strut{\tiny\insertauthor}\strut\par%
+    \usebeamercolor[ippalt]{subtitle}\strut{\tiny\insertinstitute\enspace/\enspace\insertdate}\strut\par%
 }
 \newcommand{\bluetitle}{ %
     \vspace{0.25\paperheight}
-    
-    \usebeamercolor[hgfdarkblue]{title}\strut{\LARGE\hermann{\inserttitle}}\strut\par%
-    \usebeamercolor[hgfblue]{subtitle}\strut{\insertsubtitle}\strut\par%
-    
+
+    \usebeamercolor[ippdark]{title}\strut{\LARGE\hermann{\inserttitle}}\strut\par%
+    \usebeamercolor[ipp]{subtitle}\strut{\insertsubtitle}\strut\par%
+
     \vspace{0.1\paperheight}
-    
-    \usebeamercolor[hgfblue]{subtitle}\strut{\tiny\insertauthor}\strut\par%
-    \usebeamercolor[hgfblue]{subtitle}\strut{\tiny\insertinstitute\enspace/\enspace\insertdate}\strut\par%
+
+    \usebeamercolor[ipp]{subtitle}\strut{\tiny\insertauthor}\strut\par%
+    \usebeamercolor[ipp]{subtitle}\strut{\tiny\insertinstitute\enspace/\enspace\insertdate}\strut\par%
 }
 \newcommand{\whitetitleright}{ %
     \begin{flushright}
         \vspace{0.25\paperheight}
-        
+
         \usebeamercolor[white]{title}\strut{\large\hermann{\inserttitle}}\strut\par%
-        \usebeamercolor[hgflightblue]{subtitle}\strut{\insertsubtitle}\strut\par%
-        
+        \usebeamercolor[ippalt]{subtitle}\strut{\insertsubtitle}\strut\par%
+
         \vspace{0.1\paperheight}
-        
-        \usebeamercolor[hgflightblue]{subtitle}\strut{\tiny\insertauthor}\strut\par%
-        \usebeamercolor[hgflightblue]{subtitle}\strut{\tiny\insertinstitute\enspace/\enspace\insertdate}\strut\par%
+
+        \usebeamercolor[ippalt]{subtitle}\strut{\tiny\insertauthor}\st rut\par%
+        \usebeamercolor[ippalt]{subtitle}\strut{\tiny\insertinstitute\enspace/\enspace\insertdate}\strut\par%
     \end{flushright}
+}
+\newcommand{\ipptitle}{ %
+    \begin{minipage}{.1\paperwidth}
+        \begin{center}
+            \includegraphics[width=2.em]{logos/w7x_ippdark.png}\\[.1cm]%
+            \includegraphics[width=1.5em]{logos/minerva_ippdark.png}\\[.1cm]%
+            \includegraphics[height=1.25em,angle=90,origin=c]{logos/helmholtz_research_ippdark.png}\\[.1cm]%
+            \includegraphics[height=1.5em,angle=90,origin=c]{logos/eurofusion_crop_ippdark.png}\\[.1cm]%
+            \includegraphics[width=1.5em]{logos/europe.png}%
+        \end{center}%
+    \end{minipage}
+    \begin{minipage}{.78\paperwidth}
+        \begin{flushright}
+            \vspace{0.2\paperheight}
+
+            \usebeamercolor[ipp]{subtitle}\strut{\footnotesize\insertauthor}\strut\par%
+            \usebeamercolor[ippdark]{title}\strut{\Large\hermann{\inserttitle}}\strut\par%
+            \usebeamercolor[ipp]{subtitle}\strut{\insertsubtitle}\strut\par%
+            \usebeamercolor[ipp]{subtitle}\strut{\tiny\insertdate\enspace}\strut\par%
+
+            \vspace{0.3\paperheight}
+
+            \usebeamercolor[ipp]{subtitle}\strut{\tiny\insertinstitute\enspace}\strut%
+        \end{flushright}
+    \end{minipage}
 }
 
 \defbeamertemplate{title page}{generic}{
     \whitetitle
+}
+\defbeamertemplate{title page}{w7x-ipp}{
+    \whitetitleright
+}
+\defbeamertemplate{title page}{w7x-ipp-transparent}{
+    \ipptitle
 }
 \defbeamertemplate{title page}{aeronautics-space-transport}{
     \bluetitle
@@ -292,7 +337,7 @@
 \newcommand{\sectionheader}{%
     \begin{tikzpicture}
     \node[] at (0,0) {};
-    \node[text width=.8\textwidth, align=left, anchor=north 
+    \node[text width=.8\textwidth, align=left, anchor=north
     west] at (2.5cm, -2cm) {%
     \begin{minipage}[t]{\linewidth}
         \fontsize{24}{26}\selectfont
@@ -305,7 +350,7 @@
 % section slides
 \AtBeginSection[]{
     \begin{frame}%
-        \chevrons{hgfdarkblue}{hgflightblue}
+        \chevrons{ippdark}{ippalt}
         \sectionheader
     \end{frame}%
 }

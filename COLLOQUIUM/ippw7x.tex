@@ -1,0 +1,29 @@
+% Colloquium Presentation - PhD Thesis Defense
+% Plasma Radiation Diagnostics and Feedback Control at Wendelstein 7-X
+% Works with latexmk
+\documentclass[aspectratio=1610]{beamer}
+
+% Use predefined IPP style with Eurofusion and W7-X logos
+\usepackage{IPP-w7x}
+
+% References
+\usepackage[
+    backend=biber,
+    url=true
+    ]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{definitions}
+
+\begin{document}
+
+  % Title frame
+  \begin{frame}
+    %\backgroundlogo%
+    \titlepage%
+    \acknowledgement%
+  \end{frame}
+
+  \include{slides}
+
+\end{document}
