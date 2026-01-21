@@ -1,205 +1,780 @@
+% TALKING POINT: Welcome and introduce the thesis topic - bolometry diagnostics and real-time radiation feedback control at the W7-X stellarator
+% TALKING POINT: This work addresses critical challenges in fusion energy research: managing plasma radiation for machine protection and achieving stable detachment
+
+% TABLE OF CONTENTS
 \begin{frame}
-    \frametitle{Usage}
+    \frametitle{Contents}
+    \tableofcontents
+    % TALKING POINT: Overview of presentation structure - we'll cover fusion fundamentals, W7-X stellarator, bolometer diagnostics, feedback control system, experimental results, and tomographic reconstruction
+\end{frame}
+
+\section{Motivation and Context}
+
+\begin{frame}
+    \frametitle{Nuclear Fusion: The Energy Challenge}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item D-T fusion reaction: $^2$H + $^3$H $\rightarrow$ $^4$He (3.5 MeV) + n (14.1 MeV)
+                \item Lawson criterion for net energy gain:
+                \begin{equation*}
+                    n_e T \tau_E \ge \frac{12f_{tot}}{\langle\sigma_{DT}v\rangle f_H^2 E_\alpha - 4L_Z(T)} T^2
+                \end{equation*}
+                \item Requires: high temperature ($T \sim$ 10-20 keV), density, and confinement time
+                \item Magnetic confinement: tokamaks and stellarators
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{block}{Triple Product}
+                Key figure of merit for fusion performance combining density, temperature, and energy confinement time
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: Nuclear fusion offers clean, abundant energy through D-T reactions
+    % TALKING POINT: The Lawson criterion defines conditions for net energy gain - need high temperature plasma confined long enough
+    % TALKING POINT: Magnetic confinement devices like stellarators use strong magnetic fields to contain the hot plasma
+\end{frame}
+
+\begin{frame}
+    \frametitle{Wendelstein 7-X Stellarator}
+
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+            \begin{itemize}
+                \item World's largest stellarator (R = 5.5 m, a $\sim$ 0.5 m)
+                \item 50 superconducting coils, 5-fold symmetry
+                \item Island divertor configuration
+                \item Optimized for reduced neoclassical transport
+                \item Operational phases: OP1.1, OP1.2a, OP1.2b
+                \item Achieved 30 minute plasma discharges
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{alertblock}{Key Challenge}
+                Managing heat loads on plasma-facing components through controlled radiative cooling
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: W7-X is the world's most advanced stellarator - unlike tokamaks, stellarators use 3D-shaped coils for steady-state operation
+    % TALKING POINT: The island divertor handles exhaust heat, but requires careful radiation control to protect components
+    % TALKING POINT: Goal: achieve stable detachment with radiation fractions above 90% while maintaining plasma performance
+\end{frame}
+
+\begin{frame}
+    \frametitle{Plasma Radiation and Transport}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Transport Mechanisms:}
+            \begin{itemize}
+                \item Classical: collisional diffusion
+                \item Neoclassical: trapped particles, $\propto 1/\nu$
+                \item Anomalous: turbulent transport (dominant)
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Radiation Processes:}
+            \begin{itemize}
+                \item Bremsstrahlung: $P_{Brems} \propto n_e^2 T^{1/2}$
+                \item Line radiation: atomic transitions
+                \item Impurity effects on plasma performance
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{exampleblock}{Impurity Seeding}
+                Deliberate injection of low-Z (He, N$_2$) or high-Z (Ne, Ar) impurities to enhance edge cooling and achieve detachment
+            \end{exampleblock}
+
+            \vspace{1em}
+            \textbf{Radiation Fraction:}
+            \begin{equation*}
+                f_{rad} = \frac{P_{rad}}{P_{ECRH}}
+            \end{equation*}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: Plasma transport determines how energy and particles move - anomalous transport from turbulence dominates over classical predictions
+    % TALKING POINT: Radiation cools the plasma through bremsstrahlung and line emission from impurities
+    % TALKING POINT: Controlled impurity seeding allows us to radiate power in the edge, protecting divertor targets while maintaining core performance
+\end{frame}
+
+\section{Bolometer Diagnostic System}
+
+\begin{frame}
+    \frametitle{Bolometry at W7-X}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Metal Resistor Bolometers:}
+            \begin{itemize}
+                \item Thin metal film absorbers (Pt, Au)
+                \item Wheatstone bridge circuit
+                \item Measures total radiation power
+                \item Multicamera system: HBC, VBCl, VBCr
+                \item 128 channels total
+                \item Spatial resolution: $\sim$5 cm at magnetic axis
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{Measurement Principle:}
+            \begin{equation*}
+                P_M = F_M \cdot \left(\frac{d(\Delta\widetilde{U}_M)}{dt} + f_M \Delta\widetilde{U}_M\right)
+            \end{equation*}
+
+            \vspace{1em}
+            \textbf{Global Radiation Power:}
+            \begin{equation*}
+                P_{rad} = \frac{V_{P,tor}}{V_C} \sum_M \frac{P_M V_M}{K_M}
+            \end{equation*}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: Bolometers are the primary diagnostic for measuring total plasma radiation
+    % TALKING POINT: Metal film absorbers heat up from incident radiation, changing resistance in a Wheatstone bridge
+    % TALKING POINT: Three camera arrays (horizontal and two vertical) provide comprehensive coverage of the plasma cross-section
+    % TALKING POINT: Each channel integrates radiation along a line of sight - we extrapolate to get total radiated power
+\end{frame}
+
+\begin{frame}
+    \frametitle{Bolometer Calibration and Performance}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Calibration Methods:}
+            \begin{itemize}
+                \item In-situ laser calibration
+                \item Electrical calibration
+                \item Etendue calculations: $K_M = \int_M \widetilde{K}_M dA_M$
+                \item Volume determination: $V_M$ (LOS cone volume)
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Performance Characteristics:}
+            \begin{itemize}
+                \item Time resolution: $\sim$1 ms
+                \item Sensitivity: $\sim$10 kW/m$^3$
+                \item Uncertainty: $\sim$10-15\%
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{block}{Chord Brightness}
+                Line-integrated measurement along each detector's line of sight provides radial profile information
+            \end{block}
+
+            \vspace{1em}
+            \textbf{Applications:}
+            \begin{itemize}
+                \item Power balance calculations
+                \item Radiation profile monitoring
+                \item Real-time feedback control
+                \item Tomographic reconstruction
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: Accurate calibration is essential - we use laser and electrical methods to determine detector response
+    % TALKING POINT: Etendue describes the geometric sensitivity of each channel to radiation in different plasma regions
+    % TALKING POINT: Fast time resolution enables real-time monitoring and control applications
+    % TALKING POINT: Chord brightness profiles show where radiation is concentrated - core vs edge vs SOL
+\end{frame}
+
+\section{Real-Time Radiation Feedback Control}
+
+\begin{frame}
+    \frametitle{Feedback System Design}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{System Architecture:}
+            \begin{itemize}
+                \item NI 6321 data acquisition hardware
+                \item LabVIEW control software
+                \item PID controller implementation
+                \item Thermal gas valve actuation
+                \item Minimum latency: 13.6 ms
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{PID Controller:}
+            \begin{equation*}
+                u(t) = K_p e(t) + K_i \int e(t')dt' + K_d \frac{de(t)}{dt}
+            \end{equation*}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{Radiation Prediction Proxies:}
+
+            \vspace{0.5em}
+            \textit{Subset-based (3-7 channels):}
+            \begin{equation*}
+                P_{pred}^{(1)} = \frac{V_{P,tor}}{V_S} \sum_{M}^{S} \frac{P_M V_M}{K_M}
+            \end{equation*}
+
+            \vspace{0.5em}
+            \textit{Single channel (dimensionless):}
+            \begin{equation*}
+                P_{pred}^{(2)} \propto \Delta U_M
+            \end{equation*}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: First real-time bolometer feedback system at W7-X, operational during OP1.2b campaign
+    % TALKING POINT: Uses fast data acquisition and PID control to adjust impurity gas injection rates
+    % TALKING POINT: Two prediction methods: subset of channels for full power estimate, or single channel for fast response
+    % TALKING POINT: System latency of 13.6 ms is competitive but still limits performance compared to other diagnostics
+\end{frame}
+
+\begin{frame}
+    \frametitle{Experimental Achievements}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{XP20181010.32 - Benchmark Discharge:}
+            \begin{itemize}
+                \item Stable helium-seeded detachment
+                \item Radiation fraction: $f_{rad} > 90\%$
+                \item Peak values up to 100\%
+                \item Target heat load reduction: factor of 2
+                \item C$^{3+}$ detachment at $f_{rad} \sim 50\%$
+                \item Validated 3-channel LOS subset
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{exampleblock}{Key Result}
+                Demonstrated stable, feedback-controlled radiative cooling with $f_{rad} \ge 85\%$ without terminal plasma disruption
+            \end{exampleblock}
+
+            \vspace{1em}
+            \textbf{Comparison with Other Methods:}
+            \begin{itemize}
+                \item Electron density feedback
+                \item C-III filterscope feedback
+                \item Bolometer feedback shows intrinsic connection to detachment physics
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: XP20181010.32 was the breakthrough experiment - achieved stable high-radiation detachment with helium seeding
+    % TALKING POINT: Reduced divertor heat loads by half while maintaining plasma stability
+    % TALKING POINT: Validated that just 3 well-chosen bolometer channels can predict total radiation with >85% accuracy
+    % TALKING POINT: Bolometer feedback directly controls the relevant quantity (radiation) unlike density or spectroscopy proxies
+\end{frame}
+
+\begin{frame}
+    \frametitle{Feedback Performance Analysis}
+
+    \begin{itemize}
+        \item \textbf{Gas Injection Dynamics:} Moderately scaled gas puffs (medium length and intensity) most effective for reliable edge cooling
+        \item \textbf{Parameter Space:} No clear scaling law found for low-Z impurity seeded scenarios - complex multi-parameter dependencies
+        \item \textbf{System Limitations:} Computational and algorithmic constraints introduce non-negligible latencies
+        \item \textbf{Optimization Challenges:} Difficult to optimize during commissioning due to limited experimental time
+        \item \textbf{Future Outlook:} Essential approach for detachment control despite current limitations
+    \end{itemize}
+
+    \vspace{1em}
+    \begin{alertblock}{Critical Finding}
+        The intrinsic connection of $P_{rad}$ and $f_{rad}$ to the detachment process makes bolometer feedback essential for future fusion reactor applications
+    \end{alertblock}
+
+    % TALKING POINT: Gas injection strategy matters - moderate puffs work best, avoiding plasma perturbations
+    % TALKING POINT: The parameter space is complex - no simple scaling law emerged from experiments
+    % TALKING POINT: System latency remains a challenge but is being addressed through hardware and software upgrades
+    % TALKING POINT: Despite limitations, this is the most direct way to control radiative cooling for reactor-relevant scenarios
+\end{frame}
+
+\section{Line of Sight Sensitivity and Modeling}
+
+\begin{frame}
+    \frametitle{Impurity Seeding Models}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Two-Chamber Model:}
+            \begin{equation*}
+                \dot{N}_p = \Gamma_s + N_w \tau_{w,p} - N_p(\tau_{p,w}f + \tau_p)
+            \end{equation*}
+
+            \begin{itemize}
+                \item Plasma and wall compartments
+                \item Particle exchange rates
+                \item Pumping and recycling
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Three-Chamber Model:}
+            \begin{itemize}
+                \item Adds SOL compartment
+                \item Better represents edge physics
+                \item Both models equally capable of representing feedback measurements
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{LOS Sensitivity Evaluation:}
+            \begin{itemize}
+                \item Weighted deviation metric
+                \item Correlation analysis
+                \item Mean deviation assessment
+            \end{itemize}
+
+            \vspace{1em}
+            \begin{block}{Key Finding}
+                Detectors viewing separatrix and SOL region most viable for real-time feedback configurations
+            \end{block}
+
+            \vspace{0.5em}
+            \textbf{Optimal Channel Selection:}
+            \begin{itemize}
+                \item No single "best" set exists
+                \item Robust selection achieves $\ge$85\% prediction accuracy
+                \item Agreement between HBC and VBC cameras
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: Developed simple models to understand gas injection dynamics - two and three chamber systems
+    % TALKING POINT: Models capture basic physics but don't provide detailed predictive capability
+    % TALKING POINT: Systematic analysis identified which bolometer channels are most sensitive to relevant radiation scenarios
+    % TALKING POINT: Channels viewing the separatrix and SOL are optimal - this is where detachment radiation occurs
+\end{frame}
+
+\begin{frame}
+    \frametitle{STRAHL Impurity Transport Modeling}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{STRAHL Code:}
+            \begin{itemize}
+                \item 1D impurity transport simulation
+                \item Models carbon and oxygen radiation
+                \item Includes ionization, recombination
+                \item Diffusion and convection transport
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Key Results:}
+            \begin{itemize}
+                \item Carbon dominates SOL emissivity
+                \item Reduced diffusivity near separatrix
+                \item Inward shift of radiation for $f_{rad} \rightarrow 1$
+                \item Radiation moves from outside to inside separatrix
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{Forward Modeling:}
+            \begin{itemize}
+                \item Calculate chord brightness from STRAHL profiles
+                \item Compare with experimental measurements
+                \item Validate transport assumptions
+            \end{itemize}
+
+            \vspace{1em}
+            \begin{alertblock}{Discrepancy}
+                Forward calculations show less asymmetry in chord brightness than experiments, suggesting model limitations in capturing 3D effects
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: STRAHL is a 1D transport code that models how impurities move and radiate in the plasma
+    % TALKING POINT: Simulations show carbon is the main radiator in the SOL - intrinsic impurity from wall interactions
+    % TALKING POINT: As radiation fraction increases, the emission zone shifts inward toward the separatrix
+    % TALKING POINT: Model captures basic trends but misses some 3D asymmetries seen in experiments - stellarator complexity
+\end{frame}
+
+\section{Tomographic Reconstruction}
+
+\begin{frame}
+    \frametitle{Minimum Fisher Regularization (MFR)}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Ill-Posed Inverse Problem:}
+            \begin{itemize}
+                \item 128 line-integrated measurements
+                \item Reconstruct 2D emissivity: $\sim$4500 pixels
+                \item Requires regularization
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Fisher Information:}
+            \begin{equation*}
+                I_F = \int \frac{1}{g(\vec{r})} \left(\frac{\partial g(\vec{r})}{\partial \vec{r}}\right)^2 d\vec{r}
+            \end{equation*}
+
+            \vspace{0.5em}
+            \textbf{Iterative Solution:}
+            \begin{equation*}
+                \vec{x}^{(n+1)} = \left(\mathbf{T}^T\mathbf{T} + \mu\mathbf{H}^{(n)}\right)^{-1} \mathbf{T}^T\vec{b}
+            \end{equation*}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{Radially Dependent Anisotropy (RDA):}
+            \begin{itemize}
+                \item Tailored weighting: $k_{ani}(r)$
+                \item $k < 1$: localized structures
+                \item $k > 1$: smooth distributions
+                \item Separate core and edge parameters
+            \end{itemize}
+
+            \vspace{1em}
+            \begin{block}{MFR Advantages}
+                \begin{itemize}
+                    \item Robust to noisy data
+                    \item Smooth solutions
+                    \item Incorporates a priori knowledge
+                    \item Stable convergence
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: Tomography inverts line-integrated measurements to get 2D radiation distribution
+    % TALKING POINT: This is ill-posed - far more unknowns than measurements, needs regularization
+    % TALKING POINT: MFR finds the smoothest solution consistent with measurements using Fisher information theory
+    % TALKING POINT: Radially dependent anisotropy allows different smoothness in core vs edge - captures physics better
+\end{frame}
+
+\begin{frame}
+    \frametitle{Geometry Sensitivity and Benchmarking}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Geometry Perturbation Tests:}
+            \begin{itemize}
+                \item Camera position variations
+                \item Detector/aperture segmentation (N=2,4,8)
+                \item Triangulation vs rectangular splitting
+                \item Etendue calculation validation
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Key Findings:}
+            \begin{itemize}
+                \item Significant robustness to geometry variations
+                \item N$\ge$8 segmentation adequate
+                \item Intrinsic bias toward upper SOL/separatrix
+                \item Camera displacement effects non-negligible
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{Phantom Image Benchmarks:}
+            \begin{itemize}
+                \item Simple and complex test profiles
+                \item Quality metrics: $\chi^2$, $\rho_c$
+                \item Optimal $k_{ani}$ depends on profile
+                \item No universal "best" parameters
+            \end{itemize}
+
+            \vspace{1em}
+            \begin{exampleblock}{Recommended Settings}
+                $k_{ani} = \{2.0, 0.3\}$ (core, edge)\\
+                $N_T = 15$ (transition radius)\\
+                Grid: 30$\times$150 pixels\\
+                Domain: $1.3^2 V_P$
+            \end{exampleblock}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: Extensive testing of geometry sensitivity - how do uncertainties in camera positions affect results?
+    % TALKING POINT: Algorithm is robust but geometry matters - need accurate as-built measurements
+    % TALKING POINT: Phantom benchmarks with known input profiles test reconstruction quality
+    % TALKING POINT: Found optimal parameter ranges but no single "best" set - depends on radiation distribution
+\end{frame}
+
+\begin{frame}
+    \frametitle{Experimental Tomography Results}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{XP20181010.32 Reconstructions:}
+            \begin{itemize}
+                \item Evolution from core to edge radiation
+                \item Detachment at lower inboard X-point
+                \item Radiation concentration in SOL
+                \item MARFE-like structures
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{XP20180725.44 Reconstructions:}
+            \begin{itemize}
+                \item Plasma collapse event
+                \item Rapid radiation redistribution
+                \item Core condensation
+                \item Recovery dynamics
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{Statistical Analysis:}
+            \begin{itemize}
+                \item Forward vs backward $P_{rad}$ correlation
+                \item Core radiation slightly overestimated
+                \item Total power significantly overestimated
+                \item Consistent with phantom benchmarks
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Power Balance Application:}
+            \begin{equation*}
+                P_{bal} = P_{ECRH} - P_{rad} - P_{div}
+            \end{equation*}
+            \begin{itemize}
+                \item $P_{2D}^{core}$ improves balance accuracy
+                \item More stable than $P_{rad}$ alone
+                \item Alternative for quasi-steady-state analysis
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: Applied MFR to real experimental data from feedback-controlled discharges
+    % TALKING POINT: Reconstructions show radiation moving from core to edge as detachment develops
+    % TALKING POINT: Can resolve localized structures like X-point radiation and MARFEs
+    % TALKING POINT: Tomographic power integrals provide alternative to standard extrapolation for power balance
+\end{frame}
+
+\begin{frame}
+    \frametitle{Tomography Quality Assessment}
+
+    \begin{itemize}
+        \item \textbf{Reconstruction Accuracy:} $P_{rad}$ consistently underestimates total 2D integrated power by amount equal to SOL radiation
+        \item \textbf{Quality Metrics:} $\chi^2$ and correlation coefficient $\rho_c$ not always congruent - optimal tomogram may not have $\chi^2 = 1$
+        \item \textbf{Computational Cost:} SuperLU matrix inversion most expensive operation - limits real-time application
+        \item \textbf{Anisotropy Optimization:} Ideal $k_{ani}$ set exists for each profile but dimensionality makes finding it impractical
+        \item \textbf{Experimental Validation:} Results agree well with phantom benchmarks, supporting algorithm reliability
+    \end{itemize}
+
+    \vspace{1em}
+    \begin{block}{Conclusion}
+        MFR with RDA weighting provides robust, reliable 2D radiation reconstructions suitable for physics analysis and power balance calculations, though computational limitations prevent continuous real-time operation
+    \end{block}
+
+    % TALKING POINT: Quality assessment shows algorithm performs as expected from benchmarks
+    % TALKING POINT: Standard extrapolation underestimates total power - tomography reveals SOL contribution
+    % TALKING POINT: Computational cost is high - can't run continuously in real-time, but suitable for selected time points
+    % TALKING POINT: Overall, MFR is a validated, reliable tool for understanding radiation distributions at W7-X
+\end{frame}
+
+\section{Conclusions and Outlook}
+
+\begin{frame}
+    \frametitle{Key Achievements}
 
     \begin{enumerate}
-        \item Download all files from Github\\~
-        \item Edit \texttt{slides.tex} with your favorite editor\\~
-        \item Compile the slides by either:\\~
-        \begin{enumerate}
-            \item Typing \texttt{make} or \texttt{latexmk} in the directory of \texttt{slides.tex} or\\~
-            \item Using a LaTeX IDE like TeXstudio\\~
-        \end{enumerate}
-    \end{enumerate}
-\end{frame}
-%
-% \begin{frame}
-%     \frametitle{Main Slide Title}
-%     \framesubtitle{Subtitle with more details}
-%
-%     \begin{itemize}
-%         \item Standard bullet \textbf{point} can be created with the \texttt{itemize} \textit{environment}
-%         \item They can have multiple sub-point
-%         \begin{itemize}
-%             \item As can be seen here
-%             \begin{itemize}
-%                 \item Or here
-%             \end{itemize}
-%             \item The ordering is unimportant
-%         \end{itemize}
-%     \end{itemize}
-% \end{frame}
-%
-%
-% \begin{frame}
-% \frametitle{Equations}
-%
-%     \begin{equation*}
-%         f(x) = \sum_i wx_i^2 + \frac{\beta}{2}
-%     \end{equation*}
-% \end{frame}
-%
-%
-% \begin{frame}
-%     \frametitle{Columns and Figures}
-%
-%     \begin{columns}
-%         \begin{column}{0.4\textwidth}
-%             \begin{enumerate}
-%                 \item Columns allow you to have side-by-side content\\~
-%                 \item Each column itself is its own mini-slide\\~
-%                 \item Figures can be imported by path\\~
-%                 \item Scaling can be done relative to text width, height or initial size
-%             \end{enumerate}
-%         \end{column}
-%         \begin{column}{0.4\textwidth}
-%             \centering
-%             \includegraphics[width=0.8\textwidth]{logos/kit.pdf}
-%             \source{Karlsruhe Institute of Technology}
-%         \end{column}
-%     \end{columns}
-% \end{frame}
-%
-%
-% \begin{frame}[fragile]
-%     \frametitle{Source Code}
-%
-% \begin{minted}{python}
-% import numpy as np
-%
-% def foo(a, b):
-%     """
-%     asd
-%     """
-%     return a + b + 1
-% \end{minted}
-%
-% \end{frame}
-%
-% \begin{frame}
-%     \frametitle{Citations}
-%
-%     \begin{itemize}
-%         \item Using the usual \texttt{cite} command \cite{debus2023reporting}\\~
-%
-%         \item Using \texttt{fullcite}:
-%     \end{itemize}
-%
-%     \vspace{1em}
-%     \fullcite{debus2023reporting}
-% \end{frame}
-%
-%
-% % command for making the color boxes
-% \newcommand\crule[3][black]{\textcolor{#1}{\rule{#2}{#3}}}
-%
-% \begin{frame}
-%     \frametitle{Colors}
-%     \framesubtitle{Basic Definitions}
-%
-%     \vspace{-1.0em}
-%     \begin{table}
-%         \centering
-%         \small
-%         \begin{tabular}{cl}
-%             \toprule
-%             \textbf{Color} & \textbf{Name}\\\midrule
-%             \crule[hgfblue]{10pt}{10pt} & hgfblue \\
-%             \crule[hgflightblue]{10pt}{10pt} & hgflightblue \\
-%             \crule[hgfdarkblue]{10pt}{10pt} & hgfdarkblue \\
-%             \crule[hgfmint]{10pt}{10pt} & hgfmint \\
-%             \crule[hgfhighlight]{10pt}{10pt} & hgfhighlight \\
-%             \crule[hgfpale]{10pt}{10pt} & hgfpale \\
-%             \crule[hgfgreen]{10pt}{10pt} & hgfgreen \\
-%             \crule[hgfgray]{10pt}{10pt} & hgfgray \\
-%             \crule[hgfaerospace]{10pt}{10pt} & hgfaerospace (short: hgfast) \\
-%             \crule[hgfearthandenvironment]{10pt}{10pt} & hgfearthandenvironment (short: hgfee) \\
-%             \crule[hgfenergy]{10pt}{10pt} & hgfenergy \\
-%             \crule[hgfhealth]{10pt}{10pt} & hgfhealth \\
-%             \crule[hgfinformation]{10pt}{10pt} & hgfinformation (short: hgfinfo) \\
-%             \crule[hgfmatter]{10pt}{10pt} & hgfmatter \\\bottomrule
-%         \end{tabular}
-%     \end{table}
-% \end{frame}
-%
-%
-% \begin{frame}
-%     \frametitle{Colors}
-%     \framesubtitle{Shades}
-%
-%     \emph{For each color there exist 10 lighter shades, exemplary for hgfblue}\\
-%
-%     \begin{table}
-%         \centering
-%         \small
-%         \begin{tabular}{cl}\toprule
-%             \textbf{Color} & \textbf{Name}\\\midrule
-%             \crule[hgfblue10]{10pt}{10pt} & hgfblue10 \\
-%             \crule[hgfblue20]{10pt}{10pt} & hgfblue20 \\
-%             \crule[hgfblue30]{10pt}{10pt} & hgfblue30 \\
-%             \crule[hgfblue40]{10pt}{10pt} & hgfblue40 \\
-%             \crule[hgfblue50]{10pt}{10pt} & hgfblue50 \\
-%             \crule[hgfblue60]{10pt}{10pt} & hgfblue60 \\
-%             \crule[hgfblue70]{10pt}{10pt} & hgfblue70 \\
-%             \crule[hgfblue80]{10pt}{10pt} & hgfblue80 \\
-%             \crule[hgfblue90]{10pt}{10pt} & hgfblue90 \\
-%             \crule[hgfblue]{10pt}{10pt} & hgfblue \\\bottomrule
-%         \end{tabular}
-%     \end{table}
-% \end{frame}
-%
-%
-% \begin{frame}
-%     \frametitle{Blocks}
-%
-%     \begin{block}{block}
-%         This is how a regular block looks like
-%     \end{block}
-%     \vspace{2em}
-%     \begin{exampleblock}{exampleblock}
-%         An example block is stilled differently.
-%     \end{exampleblock}
-%     \vspace{2em}
-%     \begin{alertblock}{alertblock}
-%         Alert blocks can draw attention to critical information
-%     \end{alertblock}
-% \end{frame}
-%
-%
-% \section{Sections look like this}
-%
-%
-% \begin{frame}
-%     \frametitle{URLs and Fonts}
-%
-%     \begin{itemize}
-%         \item There are raw links with the full URL \url{https://www.google.com}
-%         \item You can add also links with names \href{https://www.google.com}{Google}\\~
-%
-% 		\item You might also want to write in \hermann{Hermann Bold} - Helmholtz's title font\footnote{With footnotes like this.}
-%     \end{itemize}
-% \end{frame}
+        \item \textbf{Real-Time Feedback System:} Successfully designed, implemented, and operated first bolometer radiation feedback at W7-X
+        \begin{itemize}
+            \item Achieved stable detachment with $f_{rad} \ge 85\%$, peaks up to 100\%
+            \item Reduced target heat loads by factor of 2
+            \item Validated 3-channel LOS subset for fast prediction
+        \end{itemize}
 
+        \vspace{0.5em}
+        \item \textbf{Line of Sight Optimization:} Systematic sensitivity analysis identified optimal detector configurations
+        \begin{itemize}
+            \item Separatrix and SOL viewing channels most effective
+            \item Robust selection achieves $\ge$85\% prediction accuracy
+            \item No single "best" set - multiple viable configurations
+        \end{itemize}
+
+        \vspace{0.5em}
+        \item \textbf{Tomographic Reconstruction:} Developed and benchmarked tailored MFR algorithm with RDA weighting
+        \begin{itemize}
+            \item Robust to geometry perturbations and noise
+            \item Successfully applied to experimental data
+            \item Provides alternative for power balance calculations
+        \end{itemize}
+    \end{enumerate}
+
+    % TALKING POINT: Three major achievements: feedback system, LOS optimization, and tomography algorithm
+    % TALKING POINT: Feedback system demonstrated stable high-radiation scenarios essential for future reactors
+    % TALKING POINT: Optimization work provides guidance for future diagnostic configurations
+    % TALKING POINT: Tomography gives detailed 2D view of radiation distribution for physics understanding
+\end{frame}
 
 \begin{frame}
-    \frametitle{On-slide References and Collaborators}
+    \frametitle{Scientific Insights}
 
-    \reference{
-        Foo et al, ``Bar and its theories'', 42, HAICON 24.
-    }
-    % optional argument regulates the size of each of the included logos
-    \collaborators[0.5cm]{%
-      {%
-        logos/minerva.png, %
-        logos/w7x.png, %
-        logos/ipp.png, %
-        logos/helmholtz_research.png, %
-        logos/eurofusion.png%
-      }%
-    }%
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Detachment Physics:}
+            \begin{itemize}
+                \item C$^{3+}$ detachment visible at $f_{rad} \sim 50\%$
+                \item Stable detachment achievable at $f_{rad} > 90\%$
+                \item Radiation shifts inward as $f_{rad} \rightarrow 1$
+                \item X-point and island radiation concentration
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Impurity Transport:}
+            \begin{itemize}
+                \item Carbon dominates SOL emissivity
+                \item Reduced diffusivity near separatrix
+                \item Complex 3D effects in stellarator geometry
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{Feedback Control:}
+            \begin{itemize}
+                \item Moderate gas puffs most effective
+                \item No simple scaling law found
+                \item Intrinsic connection to detachment essential
+                \item System latency limits performance
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Diagnostic Performance:}
+            \begin{itemize}
+                \item Multicamera system provides comprehensive coverage
+                \item Geometry uncertainties affect results
+                \item Tomography reveals SOL radiation underestimation
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: Work provided new insights into detachment physics at W7-X
+    % TALKING POINT: Carbon from walls is main radiator - important for understanding and predicting behavior
+    % TALKING POINT: Feedback control works but needs optimization - latency and parameter tuning challenges
+    % TALKING POINT: Diagnostic capabilities well-characterized - know strengths and limitations
 \end{frame}
 
+\begin{frame}
+    \frametitle{Future Outlook and Recommendations}
 
-% add full list of references
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{System Upgrades:}
+            \begin{itemize}
+                \item Reduce feedback latency through hardware/software optimization
+                \item Implement more complex $P_{pred}$ models
+                \item Per-experiment configurability
+                \item Develop predictive scaling laws
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Modeling Improvements:}
+            \begin{itemize}
+                \item Refine multi-chamber models with experimental data
+                \item Integrate with other SOL models
+                \item Better parametric optimization
+                \item 3D effects in STRAHL modeling
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{Tomography Extensions:}
+            \begin{itemize}
+                \item Larger phantom benchmark set
+                \item Additional virtual camera arrays
+                \item Real-time capable algorithms
+                \item Automated parameter optimization
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Reactor Relevance:}
+            \begin{itemize}
+                \item Essential for DEMO power plant operation
+                \item Reliable radiative cooling at $f_{rad} \ge 95\%$
+                \item Machine protection and heat load management
+                \item Steady-state operation capability
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    % TALKING POINT: Clear path forward for system improvements - hardware and software upgrades
+    % TALKING POINT: Modeling needs refinement to capture complex physics better
+    % TALKING POINT: Tomography can be extended with more benchmarks and faster algorithms
+    % TALKING POINT: This work is directly relevant to future fusion reactors - DEMO will need reliable radiation control
+\end{frame}
+
+\begin{frame}
+    \frametitle{Broader Impact}
+
+    \begin{block}{Contribution to Fusion Energy Research}
+        This thesis advances the state-of-the-art in plasma diagnostics and control for stellarator fusion devices, providing essential tools and knowledge for achieving reactor-relevant operating scenarios with controlled radiative cooling and stable detachment.
+    \end{block}
+
+    \vspace{1em}
+
+    \begin{columns}
+        \begin{column}{0.45\textwidth}
+            \textbf{Technical Contributions:}
+            \begin{itemize}
+                \item First real-time bolometer feedback at W7-X
+                \item Validated diagnostic optimization methods
+                \item Benchmarked tomography algorithm
+                \item Demonstrated stable high-$f_{rad}$ operation
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \textbf{Scientific Contributions:}
+            \begin{itemize}
+                \item Detachment physics understanding
+                \item Impurity transport insights
+                \item Radiation distribution characterization
+                \item Power balance methodology
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    \vspace{1em}
+
+    \reference{
+        This work was conducted at Max Planck Institute for Plasma Physics during W7-X operational phase OP1.2b
+    }
+
+    % TALKING POINT: This work makes significant contributions to both technical capabilities and scientific understanding
+    % TALKING POINT: Demonstrates that stellarators can achieve reactor-relevant radiation control
+    % TALKING POINT: Methods and insights applicable to other fusion devices and future reactors
+    % TALKING POINT: Lays groundwork for continued development toward fusion energy
+\end{frame}
+
+\begin{frame}
+    \frametitle{Summary}
+
+    \begin{itemize}
+        \item Developed and operated first real-time bolometer radiation feedback system at W7-X stellarator
+        \item Achieved stable, controlled detachment with radiation fractions $f_{rad} \ge 85\%$ and peaks up to 100\%
+        \item Reduced divertor target heat loads by factor of 2 through controlled impurity seeding
+        \item Validated 3-channel bolometer subset for fast radiation power prediction with $\ge$85\% accuracy
+        \item Systematic line of sight sensitivity analysis identified optimal detector configurations for feedback
+        \item STRAHL modeling revealed carbon dominance in SOL radiation and inward shift at high $f_{rad}$
+        \item Developed and benchmarked Minimum Fisher Regularization tomography with radially dependent anisotropy
+        \item Demonstrated robust 2D radiation reconstruction from experimental data
+        \item Provided alternative power balance methodology using tomographic integrals
+        \item Established essential approach for future fusion reactor heat load management
+    \end{itemize}
+
+    % TALKING POINT: In summary, this thesis successfully developed and demonstrated real-time radiation feedback control
+    % TALKING POINT: Achieved reactor-relevant operating scenarios with stable high radiation fractions
+    % TALKING POINT: Provided comprehensive diagnostic characterization and optimization
+    % TALKING POINT: Advanced understanding of detachment physics and radiation distributions in stellarators
+\end{frame}
+
+\begin{frame}[plain]
+    \begin{center}
+        {\Huge Thank You}
+
+        \vspace{2em}
+
+        {\Large Questions?}
+
+        \vspace{3em}
+
+        \collaborators[0.8cm]{%
+            {%
+                logos/w7x.png,%
+                logos/ipp.png,%
+                logos/helmholtz_research.png,%
+                logos/eurofusion.png%
+            }%
+        }%
+    \end{center}
+
+    % TALKING POINT: Thank the audience and open for questions
+    % TALKING POINT: Be prepared to discuss: feedback system details, tomography algorithm, experimental results, future work
+    % TALKING POINT: Acknowledge collaborators and funding agencies
+\end{frame}
+
 \begin{frame}[allowframebreaks]{References}
     \printbibliography
+    % TALKING POINT: Full reference list available for detailed citations
+    % TALKING POINT: Key references include Anton et al. (MFR), Zhang et al. (W7-X bolometry), and experimental campaign papers
 \end{frame}

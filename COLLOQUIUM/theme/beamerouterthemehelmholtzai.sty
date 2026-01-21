@@ -71,8 +71,8 @@
 % footer logo
 \newcommand{\footerlogo}{%
     \begin{tikzpicture}[overlay, remember picture]
-        \node[anchor=south east, inner sep=0, yshift=0.em, xshift=-3.5em] at (current page.south east) {
-            \includegraphics[height=1.18em]{logos/eurofusion_crop_white.png}
+        \node[anchor=south east, inner sep=0, yshift=0.03em, xshift=-3.5em] at (current page.south east) {
+            \includegraphics[height=1.1em]{logos/eurofusion_crop_white.png}
         };
         \node[anchor=south east, inner sep=0, yshift=0em, xshift=-1.em] at (current page.south east) {
             \includegraphics[height=1.18em]{logos/ipp.png}
@@ -80,8 +80,13 @@
     \end{tikzpicture}
 }
 
-\def\acknowledgement{\centering\tiny\itshape%
-    This work has been carried out within the framework of the EUROfusion Consortium and has received funding from the Euratom research and training programme 2014-2018 under grant agreement No. 633053. The views and opinions expressed herein do not necessarily reflect those of the European Commission.}
+\def\acknowledgement{%
+    \parbox{.9\paperheight}{%
+        \centering
+        \fontsize{5pt}{7pt}\selectfont
+        This work has been carried out within the framework of the EUROfusion Consortium and has received funding from the Euratom research and training programme 2014-2018 under grant agreement No. 633053. The views and opinions expressed herein do not necessarily reflect those of the European Commission.%
+    }%
+}
 
 % chevrons
 \newcommand{\chevrons}[2]{%
@@ -250,29 +255,34 @@
     \end{flushright}
 }
 \newcommand{\ipptitle}{ %
-    \begin{minipage}{.1\paperwidth}
-        \begin{center}
+    \begin{minipage}{.05\paperwidth}%
+        \rotatebox[origin=c]{90}{%
+            \acknowledgement%
+        }%
+    \end{minipage}%
+    \begin{minipage}{.05\paperwidth}%
+        \begin{center}%
             \includegraphics[width=2.em]{logos/w7x_ippdark.png}\\[.1cm]%
             \includegraphics[width=1.5em]{logos/minerva_ippdark.png}\\[.1cm]%
             \includegraphics[height=1.25em,angle=90,origin=c]{logos/helmholtz_research_ippdark.png}\\[.1cm]%
             \includegraphics[height=1.5em,angle=90,origin=c]{logos/eurofusion_crop_ippdark.png}\\[.1cm]%
             \includegraphics[width=1.5em]{logos/europe.png}%
         \end{center}%
-    \end{minipage}
-    \begin{minipage}{.78\paperwidth}
-        \begin{flushright}
-            \vspace{0.2\paperheight}
+    \end{minipage}%
+    \begin{minipage}{.78\paperwidth}%
+        \begin{flushright}%
+            \vspace{0.2\paperheight}%
 
             \usebeamercolor[ipp]{subtitle}\strut{\footnotesize\insertauthor}\strut\par%
             \usebeamercolor[ippdark]{title}\strut{\Large\hermann{\inserttitle}}\strut\par%
             \usebeamercolor[ipp]{subtitle}\strut{\insertsubtitle}\strut\par%
             \usebeamercolor[ipp]{subtitle}\strut{\tiny\insertdate\enspace}\strut\par%
 
-            \vspace{0.3\paperheight}
+            \vspace{0.3\paperheight}%
 
             \usebeamercolor[ipp]{subtitle}\strut{\tiny\insertinstitute\enspace}\strut%
-        \end{flushright}
-    \end{minipage}
+        \end{flushright}%
+    \end{minipage}%
 }
 
 \defbeamertemplate{title page}{generic}{
