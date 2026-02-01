@@ -80,11 +80,14 @@
     \end{tikzpicture}
 }
 
+\def\acknowledgementtext{
+    This work has been carried out within the framework of the EUROfusion Consortium and has received funding from the Euratom research and training programme 2014-2018 under grant agreement No. 633053. The views and opinions expressed herein do not necessarily reflect those of the European Commission.%
+}
+
 \def\acknowledgement{%
     \parbox{.9\paperheight}{%
         \centering
-        \fontsize{5pt}{7pt}\selectfont
-        This work has been carried out within the framework of the EUROfusion Consortium and has received funding from the Euratom research and training programme 2014-2018 under grant agreement No. 633053. The views and opinions expressed herein do not necessarily reflect those of the European Commission.%
+        \fontsize{5pt}{7pt}\selectfont\acknowledgementtext%
     }%
 }
 
@@ -255,6 +258,13 @@
     \end{flushright}
 }
 \newcommand{\ipptitle}{ %
+    \begin{minipage}{.02\paperwidth}%
+        \rotatebox[origin=c]{90}{%
+            {\fontsize{5pt}{7pt}\selectfont%
+                \color{ippdark}{\underline{Foto:} Dr. Matthias Otte}%
+            }%
+        }
+    \end{minipage}%
     \begin{minipage}{.05\paperwidth}%
         \rotatebox[origin=c]{90}{%
             \acknowledgement%
