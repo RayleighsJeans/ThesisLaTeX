@@ -35,14 +35,17 @@
 
 % Background logo
 \newcommand{\backgroundlogo}{%
-  \tikz[overlay,remember picture]{%
-  \node[at=(current page.west)] (source) {};%
-  \node[opacity = 0.04, %
-        below left= -0.4\paperheight and -0.6\paperheight of source] {%
-    \includegraphics[height=0.85\paperheight]%
-      {logos/bg_w7x.png}%
-    }%
-  }
+    \begin{tikzpicture}[overlay, remember picture]
+        \node[at=(current page.north west)] (source) {};%
+        \node[opacity = 0.033, %
+              below right = 0.1\paperheight and
+                            -0.1\paperheight of source] {%
+                \scalebox{-1}[1]{%
+                    \includegraphics[height=0.85\paperheight]%
+                        {logos/bg_w7x.png}%
+                }
+            };
+    \end{tikzpicture}
 }
 
 \newcommand{\source}[1]{%

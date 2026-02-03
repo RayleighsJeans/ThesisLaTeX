@@ -4,7 +4,9 @@
 % TABLE OF CONTENTS
 \begin{frame}
     \frametitle{Contents}
+    \backgroundlogo%
     \tableofcontents
+
     % TP: Overview of presentation structure - we'll cover fusion fundamentals, W7-X stellarator, bolometer diagnostics, feedback control system, experimental results, and tomographic reconstruction
 \end{frame}
 
@@ -12,6 +14,7 @@
 
 \begin{frame}
     \frametitle{Nuclear Fusion: The Energy Challenge}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -41,6 +44,7 @@
 
 \begin{frame}
     \frametitle{Wendelstein 7-X Stellarator}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.55\textwidth}
@@ -69,6 +73,7 @@
 
 \begin{frame}
     \frametitle{Plasma Radiation and Transport}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -116,6 +121,7 @@
 
 \begin{frame}
     \frametitle{Bolometry at W7-X}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -155,6 +161,7 @@
 
 \begin{frame}
     \frametitle{Bolometer Calibration and Performance}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -205,6 +212,7 @@
 
 \begin{frame}
     \frametitle{Feedback System Design}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -253,6 +261,7 @@
 
 \begin{frame}
     \frametitle{Experimental Achievements}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -293,6 +302,7 @@
 
 \begin{frame}
     \frametitle{Feedback Performance Analysis}
+    \backgroundlogo%
 
     \begin{itemize}
         \item \textbf{Gas Injection Dynamics:} Moderately scaled gas puffs (medium length and intensity) most effective for reliable edge cooling
@@ -317,6 +327,7 @@
 
 \begin{frame}
     \frametitle{Impurity Seeding Models}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -358,6 +369,7 @@
 
 \begin{frame}
     \frametitle{Channel Selection Sensitivity}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -395,6 +407,7 @@
 
 \begin{frame}
     \frametitle{STRAHL Impurity Transport Modeling}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -445,6 +458,7 @@
 
 \begin{frame}
     \frametitle{Minimum Fisher Regularization (MFR)}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -496,6 +510,7 @@
 
 \begin{frame}
     \frametitle{Geometry Sensitivity and Benchmarking}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -530,6 +545,7 @@
 
 \begin{frame}
     \frametitle{Geometry Sensitivity and Benchmarking}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -561,6 +577,7 @@
 
 \begin{frame}
     \frametitle{Experimental Tomography Results}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -597,6 +614,7 @@
 
 \begin{frame}
     \frametitle{Tomography Quality Assessment}
+    \backgroundlogo%
 
     \only<1->{
         \begin{itemize}
@@ -623,6 +641,7 @@
 
 \begin{frame}
     \frametitle{Key Achievements}
+    \backgroundlogo%
 
     \begin{enumerate}
         \item \textbf{Real-Time Feedback System:} Successfully implemented, tested and operated first bolometer radiation feedback at W7-X
@@ -663,6 +682,7 @@
 
 \begin{frame}
     \frametitle{Scientific Insights}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -717,6 +737,7 @@
 
 \begin{frame}
     \frametitle{Future Outlook and Recommendations}
+    \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -774,6 +795,7 @@
 
 \begin{frame}
     \frametitle{Broader Impact}
+    \backgroundlogo%
 
     \only<1->{
     \begin{block}{Contribution to Fusion Energy Research}
@@ -816,18 +838,24 @@
 
 \begin{frame}
     \frametitle{Summary}
+    \backgroundlogo%
 
     \begin{itemize}
-        \item Developed and operated first real-time bolometer radiation feedback system at W7-X stellarator
-        \item Achieved stable, controlled detachment with radiation fractions $f_{rad} \ge 85\%$ and peaks up to 100\%
-        \item Reduced divertor target heat loads by factor of 2 through controlled impurity seeding
-        \item Validated 3-channel bolometer subset for fast radiation power prediction with $\ge$85\% accuracy
-        \item Systematic line of sight sensitivity analysis identified optimal detector configurations for feedback
-        \item STRAHL modeling revealed carbon dominance in SOL radiation and inward shift at high $f_{rad}$
-        \item Developed and benchmarked Minimum Fisher Regularization tomography with radially dependent anisotropy
-        \item Demonstrated robust 2D radiation reconstruction from experimental data
-        \item Provided alternative power balance methodology using tomographic integrals
-        \item Established essential approach for future fusion reactor heat load management
+        \only<1->{%
+            \item Developed and operated first real-time bolometer radiation feedback system at W7-X stellarator
+            \item Achieved stable, controlled detachment with radiation fractions $f_{rad} \ge 85\%$ and peaks up to 100\%
+            \item Reduced divertor target heat loads by factor of 2 through controlled impurity seeding
+            \item Validated 3-channel bolometer subset for fast radiation power prediction with $\ge$85\% accuracy
+            \item Systematic line of sight sensitivity analysis identified optimal detector configurations for feedback
+        }
+
+        \only<2->{
+            \item STRAHL modeling revealed carbon dominance in SOL radiation and inward shift at high $f_{rad}$
+            \item Developed and benchmarked Minimum Fisher Regularization tomography with radially dependent anisotropy
+            \item Demonstrated robust 2D radiation reconstruction from experimental data
+            \item Provided alternative power balance methodology using tomographic integrals
+            \item Established essential approach for future fusion reactor heat load management
+        }
     \end{itemize}
 
     % TP: In summary, this thesis successfully developed and demonstrated real-time radiation feedback control
@@ -838,16 +866,7 @@
 
 \begin{frame}
     \frametitle{Collaborations}
-
-    %\backgroundlogo%
-    \tikz[overlay,remember picture]{%
-    \node[at=(current page.north west)] (source) {};%
-    \node[opacity = 0.4, %
-          below right= 0.33\paperheight and 0.33\paperheight of source] {%
-      \includegraphics[height=0.85\paperheight]%
-        {logos/bg_w7x.png}%
-      }%
-    }
+    \backgroundlogo%
 
     \begin{block}{Acknowledgement}
         \acknowledgementtext%
@@ -861,19 +880,15 @@
             logos/ipp.png,%
             logos/minerva.png,%
             logos/helmholtz_research_crop.png,%
-            logos/eurofusion.png%
+            logos/eurofusion_crop.png%
         }%
     }%
-
 \end{frame}
 
 \begin{frame}[plain]
+    \backgroundlogo%
     \begin{center}
         {\Huge Thank You}
-
-        \vspace{2em}
-
-        {\Large Questions?}
     \end{center}
 
     % TP: Thank the audience and open for questions
