@@ -4,7 +4,7 @@
 % TABLE OF CONTENTS
 \begin{frame}
     \frametitle{Contents}
-    \backgroundlogo%
+    \backgroundlogoL%
     \tableofcontents
 
     % TP: Overview of presentation structure - we'll cover fusion fundamentals, W7-X stellarator, bolometer diagnostics, feedback control system, experimental results, and tomographic reconstruction
@@ -58,6 +58,10 @@
             \end{itemize}
         \end{column}
         \begin{column}{0.4\textwidth}
+            \centering
+            \includegraphics[width=0.9\textwidth]{%
+                ../THESIS/content/figures/chapter0/w7x.pdf}
+
             \only<2->{
             \begin{alertblock}{Key Challenge}
                 Managing heat loads on plasma-facing components through controlled radiative cooling
@@ -93,28 +97,77 @@
                 \item Impurity effects on plasma performance
             \end{itemize}
             }
-        \end{column}
-
-        \begin{column}{0.45\textwidth}
-            \only<3->{
-            \begin{exampleblock}{Impurity Seeding}
-                Deliberate injection of low-Z (He, N$_2$) or high-Z (Ne, Ar) impurities to enhance edge cooling and achieve detachment
-            \end{exampleblock}
-            }
 
             \vspace{1em}
-            \only<3->{
+            \only<4->{
             \textbf{Radiation Fraction:}
             \begin{equation*}
                 f_{rad} = \frac{P_{rad}}{P_{ECRH}}
             \end{equation*}
             }
         \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \only<2->{
+            \centering
+            \includegraphics[width=0.9\textwidth]{%
+                ../THESIS/content/figures/chapter0/oxygen_carbon_rad.pdf}
+            }
+
+            \only<3->{
+            \begin{exampleblock}{Impurity Seeding}
+                Deliberate injection of low-Z (He, N$_2$) or high-Z (Ne, Ar) impurities to enhance edge cooling and achieve detachment
+            \end{exampleblock}
+            }
+
+        \end{column}
     \end{columns}
 
     % TP: Plasma transport determines how energy and particles move - anomalous transport from turbulence dominates over classical predictions
     % TP: Radiation cools the plasma through bremsstrahlung and line emission from impurities
     % TP: Controlled impurity seeding allows us to radiate power in the edge, protecting divertor targets while maintaining core performance
+    % TP: Carbon and oxygen are intrinsic impurities from wall interactions - their radiation depends strongly on temperature
+\end{frame}
+
+\begin{frame}
+    \frametitle{Island Divertor Configuration}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+            \textbf{Magnetic Configuration:}
+            \begin{itemize}
+                \item Standard configuration: $\iota = 5/5$
+                \item Five helical island chains
+                \item Ten divertor modules (5 half-modules)
+                \item Field lines connect upstream to downstream targets
+                \item Connection lengths: $\mathcal{O}$(100-1000 m)
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Gas Injection Strategy:}
+            \begin{itemize}
+                \item Thermal helium beam valves
+                \item Located behind divertor targets
+                \item Direct seeding into island chains
+                \item Fast piezo valves (ms response)
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/divertor_fluxtubes.pdf}
+
+            \vspace{1em}
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/divertor_effenberg_reduced.pdf}
+        \end{column}
+    \end{columns}
+
+    % TP: W7-X uses an island divertor - magnetic islands at the edge intercept heat flux
+    % TP: Five island chains wrap helically around the torus between upper and lower divertors
+    % TP: Gas injection valves are strategically placed to seed directly into these island chains
+    % TP: Field line connection between injection point and divertor targets is crucial for understanding radiation distribution
 \end{frame}
 
 \section{Bolometer Diagnostic System}
@@ -137,7 +190,12 @@
             \end{itemize}
             }
         \end{column}
+
         \begin{column}{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.8\textwidth]{%
+                ../THESIS/content/figures/chapter1/component_3d_bw.png}
+
             \only<2->{
             \textbf{Measurement Principle:}
             \begin{equation*}
@@ -232,6 +290,13 @@
                 u(t) = K_p e(t) + K_i \int e(t')dt' + K_d \frac{de(t)}{dt}
             \end{equation*}
             }
+
+            \vspace{0.5em}
+            \only<3->{
+            \centering
+            \includegraphics[width=0.9\textwidth]{%
+                ../THESIS/content/figures/chapter2/oscilloscope_fix.pdf}
+            }
         \end{column}
 
         \begin{column}{0.45\textwidth}
@@ -257,6 +322,7 @@
     % TP: Uses fast data acquisition and PID control to adjust impurity gas injection rates
     % TP: Two prediction methods: subset of channels for full power estimate, or single channel for fast response
     % TP: System latency of 13.6 ms is competitive but still limits performance compared to other diagnostics
+    % TP: Benchmark testing with laser diode confirmed minimum latency and system performance
 \end{frame}
 
 \begin{frame}
@@ -275,6 +341,13 @@
                 \item C$^{3+}$ detachment at $f_{rad} \sim 50\%$
                 \item Validated 3-channel LOS subset
             \end{itemize}
+            }
+
+            \vspace{0.5em}
+            \only<3->{
+            \centering
+            \includegraphics[width=0.95\textwidth]{%
+                ../THESIS/content/figures/chapter2/overview20181010032.pdf}
             }
         \end{column}
         \begin{column}{0.45\textwidth}
@@ -344,6 +417,13 @@
                 \item Pumping and recycling
             \end{itemize}
             }
+
+            \vspace{0.5em}
+            \only<3->{
+            \centering
+            \includegraphics[width=0.8\textwidth]{%
+                ../THESIS/content/figures/chapter3/chambers/twochamber_scheme_crop_colors.pdf}
+            }
         \end{column}
 
         \begin{column}{0.45\textwidth}
@@ -360,11 +440,19 @@
                 \item Both models equally capable of representing feedback measurements
             \end{itemize}
             }
+
+            \vspace{0.5em}
+            \only<3->{
+            \centering
+            \includegraphics[width=0.8\textwidth]{%
+                ../THESIS/content/figures/chapter3/chambers/threechamber_scheme_crop_colors.pdf}
+            }
         \end{column}
     \end{columns}
 
     % TP: Developed simple models to understand gas injection dynamics - two and three chamber systems
     % TP: Models capture basic physics but don't provide detailed predictive capability
+    % TP: Both models successfully reproduce experimental radiation evolution during gas injection
 \end{frame}
 
 \begin{frame}
@@ -397,12 +485,18 @@
             \begin{block}{Key Finding}
                 Detectors viewing separatrix and SOL region most viable for real-time feedback configurations
             \end{block}
+
+            \vspace{1em}
+            \centering
+            \includegraphics[width=0.95\textwidth]{%
+                ../THESIS/content/figures/chapter2/ch_selection_3_13_27_g.pdf}
             }
         \end{column}
     \end{columns}
 
     % TP: Systematic analysis identified which bolometer channels are most sensitive to relevant radiation scenarios
     % TP: Channels viewing the separatrix and SOL are optimal - this is where detachment radiation occurs
+    % TP: Multiple channel combinations can achieve similar prediction accuracy - system is robust
 \end{frame}
 
 \begin{frame}
@@ -481,6 +575,7 @@
                 \vec{x}^{(n+1)} = \left(\mathbf{T}^T\mathbf{T} + \mu\mathbf{H}^{(n)}\right)^{-1} \mathbf{T}^T\vec{b}
             \end{equation*}
         \end{column}
+
         \begin{column}{0.45\textwidth}
             \textbf{Radially Dependent Anisotropy (RDA):}
             \begin{itemize}
@@ -499,6 +594,11 @@
                     \item Stable convergence
                 \end{itemize}
             \end{block}
+
+            % \vspace{0.5em}
+            % \centering
+            % \includegraphics[width=0.8\textwidth]{%
+            %     ../THESIS/content/figures/chapter4/kAni_profile_comparison.pdf}
         \end{column}
     \end{columns}
 
@@ -706,6 +806,7 @@
             \end{itemize}
             }
         \end{column}
+
         \begin{column}{0.45\textwidth}
             \only<3->{
             \textbf{Feedback Control:}
