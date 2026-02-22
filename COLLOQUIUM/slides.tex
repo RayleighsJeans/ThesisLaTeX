@@ -19,12 +19,12 @@
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{itemize}
-                \item D-T fusion reaction: $^2$H + $^3$H $\rightarrow$ $^4$He (3.5 MeV) + n (14.1 MeV)
+                \item D-T fusion reaction: $^{2}$H + $^{3}$H $\rightarrow$ $^{4}$He (3.5 MeV) + n (14.1 MeV)
                 \item Lawson criterion for net energy gain:
                 \begin{equation*}
                     n_e T \tau_E \ge \frac{12f\ix{tot}}{\langle\sigma\ix{DT}v\rangle f_H^2 E_\alpha - 4L_Z(T)} T^2
                 \end{equation*}
-                \item Requires: high temperature ($T \sim$ 10-20 keV), density, and confinement time
+                \item Requires: high temperature ($T \sim$ \SIrange{10}{20}{\kilo\electronvolt}), density, and confinement time
                 \item Magnetic confinement: tokamaks and stellarators
             \end{itemize}
         \end{column}
@@ -49,12 +49,12 @@
     \begin{columns}
         \begin{column}{0.55\textwidth}
             \begin{itemize}
-                \item World's largest stellarator (R = 5.5 m, a $\sim$ 0.5 m)
+                \item World's largest stellarator (R$=$\SI{5.5}{\meter}, a$\sim$\SI{0.5}{\meter})
                 \item 50 superconducting coils, 5-fold symmetry
                 \item Island divertor configuration
                 \item Optimized for reduced neoclassical transport
                 \item Operational phases: OP1.1, OP1.2a, OP1.2b
-                \item Achieved 30 minute plasma discharges
+                \item Achieved \SI{30}{\minute} plasma discharges
             \end{itemize}
         \end{column}
         \begin{column}{0.4\textwidth}
@@ -92,7 +92,7 @@
             \vspace{1em}
             \textbf{Radiation Processes:}
             \begin{itemize}
-                \item Bremsstrahlung: $P\ix{Brems} \propto n_e^2 T^{1/2}$
+                \item Bremsstrahlung: $P\ix{Brems} \propto n\ix{e}^{2} T^{1/2}$
                 \item Line radiation: atomic transitions
                 \item Impurity effects on plasma performance
             \end{itemize}
@@ -141,7 +141,7 @@
                 \item Five helical island chains
                 \item Ten divertor modules (5 half-modules)
                 \item Field lines connect upstream to downstream targets
-                \item Connection lengths: $\mathcal{O}$(100-1000 m)
+                \item Connection lengths: $\mathcal{O}$(\SIrange{100}{1000}{\meter})
             \end{itemize}
 
             \vspace{1em}
@@ -186,7 +186,7 @@
                 \item Measures total radiation power
                 \item Multicamera system: HBC, VBCl, VBCr
                 \item 128 channels total
-                \item Spatial resolution: $\sim$5 cm at magnetic axis
+                \item Spatial resolution: $\sim$\SI{5}{\centi\meter} at magnetic axis
             \end{itemize}
             }
         \end{column}
@@ -228,15 +228,15 @@
             \begin{itemize}
                 \item In-situ laser calibration
                 \item Electrical calibration
-                \item Etendue calculations: $K_M = \int_M \widetilde{K}_M dA_M$
-                \item Volume determination: $V_M$ (LOS cone volume)
+                \item Etendue calculations: $K\ix{M} = \int\ix{M} \widetilde{K}\ix{M} dA\ix{M}$
+                \item Volume determination: $V\ix{M}$ (LOS cone volume)
             \end{itemize}
 
             \vspace{1em}
             \textbf{Performance Characteristics:}
             \begin{itemize}
-                \item Time resolution: $\sim$1 ms
-                \item Sensitivity: $\sim$10 kW/m$^3$
+                \item Time resolution: $\sim$\SI{1}{\milli\second}
+                \item Sensitivity: $\sim$\SI{10}{\kilo\watt\per\cubic\meter}
                 \item Uncertainty: $\sim$10-15\%
             \end{itemize}
             }
@@ -281,7 +281,7 @@
                 \item LabVIEW control software
                 \item PID controller implementation
                 \item Thermal gas valve actuation
-                \item Minimum latency: 13.6 ms
+                \item Minimum latency: \SI{13.6}{\milli\second}
             \end{itemize}
 
             \vspace{1em}
@@ -321,7 +321,7 @@
     % TP: First real-time bolometer feedback system at W7-X, operational during OP1.2b campaign
     % TP: Uses fast data acquisition and PID control to adjust impurity gas injection rates
     % TP: Two prediction methods: subset of channels for full power estimate, or single channel for fast response
-    % TP: System latency of 13.6 ms is competitive but still limits performance compared to other diagnostics
+    % TP: System latency of \SI{13.6}{\milli\second} is competitive but still limits performance compared to other diagnostics
     % TP: Benchmark testing with laser diode confirmed minimum latency and system performance
 \end{frame}
 
@@ -653,7 +653,7 @@
             \textbf{Phantom Image Benchmarks:}
             \begin{itemize}
                 \item Simple and complex test profiles
-                \item Quality metrics: $\chi^2$, $\rho_c$
+                \item Quality metrics: $\chi^{2}$, $\rho\ix{c}$
                 \item Optimal $k\ix{ani}$ depends on profile
                 \item No universal "best" parameters
             \end{itemize}
@@ -665,7 +665,7 @@
             \begin{exampleblock}{Recommended Settings}
                 $k\ix{ani} = \{2.0, 0.3\}$ (core, edge)\\
                 Grid: 30$\times$150 pixels\\
-                Domain: $1.3^2 V_P$
+                Domain: $1.3^{2} V\ix{P}$
             \end{exampleblock}
             }
         \end{column}
@@ -719,7 +719,7 @@
     \only<1->{
         \begin{itemize}
             \item \textbf{Reconstruction Accuracy:} $P\ix{rad}$ consistently underestimates total 2D integrated power by amount equal to SOL radiation
-            \item \textbf{Quality Metrics:} $\chi^2$ and correlation coefficient $\rho_c$ not always congruent - optimal tomogram may not have $\chi^2 = 1$
+            \item \textbf{Quality Metrics:} $\chi^{2}$ and correlation coefficient $\rho\ix{c}$ not always congruent - optimal tomogram may not have $\chi^{2} = 1$
             \item \textbf{Anisotropy Optimization:} Ideal $k\ix{ani}$ set exists for each profile but dimensionality makes finding it impractical
             \item \textbf{Experimental Validation:} Results agree well with phantom benchmarks, supporting algorithm reliability
         \end{itemize}
@@ -1036,13 +1036,13 @@
         \begin{column}{0.48\textwidth}
             \textbf{Algorithm Stages:}
             \begin{enumerate}
-                \item \textbf{Initialization} (T1-60s)
+                \item \textbf{Initialization} (T1-\SI{60}{\second})
                     \begin{itemize}
                         \item Load geometry matrices $K\ix{M}$, $V\ix{M}$
                         \item Configure channel selection $S$
                         \item Initialize analog output
                     \end{itemize}
-                \item \textbf{Calibration} (4s)
+                \item \textbf{Calibration} (\SI{4}{\second})
                     \begin{itemize}
                         \item Offset measurement
                         \item Two-stage calibration
@@ -1096,7 +1096,7 @@
         \begin{column}{0.55\textwidth}
             \textbf{Method:}
             \begin{itemize}
-                \item Uses spectral correlation between $P\ix{\text{rad}}$ and $P\ix{\text{pred}}$
+                \item Uses spectral correlation between $P\ix{rad}$ and $P\ix{pred}$
                 \item Discrete Fast Fourier Transform (DFFT)
                 \item Cross-spectral density analysis
                 \item Coherence-based metric
@@ -1105,8 +1105,8 @@
             \vspace{0.5em}
             \textbf{Mathematical Formulation:}
             \begin{align*}
-                \gamma_i &= \mathcal{F}(P\ix{\text{rad}})(\omega) \\
-                \gamma_j &= \mathcal{F}(P\ix{\text{pred}})(\omega) \\
+                \gamma_i &= \mathcal{F}(P\ix{rad})(\omega) \\
+                \gamma_j &= \mathcal{F}(P\ix{pred})(\omega) \\
                 \varphi(\omega) &= \sqrt{\frac{|g\ix{i,j}^2|}{|\gamma_i\gamma_j|}}
             \end{align*}
 
@@ -1327,7 +1327,7 @@
             \vspace{0.5em}
             \textbf{Relative Gradient Smoothing (RGS):}
             \begin{itemize}
-                \item Weight: $\mathbf{W}\ix{RGS}=(1/g_i)^2$
+                \item Weight: $\mathbf{W}\ix{RGS}=(1/g\ix{i})^{2}$
                 \item Can be combined with RDA
                 \item Stronger feature localization
                 \item Higher local intensities
@@ -1388,7 +1388,7 @@
 
             \includegraphics[width=0.9\textwidth]{../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_blind_test_ones_mx1.0e+06_aniM3_1.0_1.0_nigs1_times0.11.png}
 
-            \small Uniform 1 MW/m$^3$ everywhere
+            \small Uniform \SI{1}{\mega\watt\per\cubic\meter} everywhere
 
             \begin{itemize}
                 \item Tests baseline reconstruction
@@ -1438,7 +1438,7 @@
             \begin{itemize}
                 \item Parameter variations tested
                 \item Model robustness confirmed
-                \item Critical $f_{\text{rad}}$ dependence shown
+                \item Critical $f\ix{rad}$ dependence shown
             \end{itemize}
 
             \vspace{0.5em}
