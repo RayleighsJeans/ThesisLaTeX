@@ -81,7 +81,6 @@
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \only<1->{
             \textbf{Transport Mechanisms:}
             \begin{itemize}
                 \item Classical: collisional diffusion
@@ -89,37 +88,30 @@
                 \item Anomalous: turbulent transport (dominant)
             \end{itemize}
 
-            \vspace{1em}
+            \vspace{0.8em}
             \textbf{Radiation Processes:}
             \begin{itemize}
                 \item Bremsstrahlung: $P\ix{Brems} \propto n\ix{e}^{2} T^{1/2}$
                 \item Line radiation: atomic transitions
                 \item Impurity effects on plasma performance
             \end{itemize}
-            }
 
-            \vspace{1em}
-            \only<4->{
+            \vspace{0.8em}
             \textbf{Radiation Fraction:}
             \begin{equation*}
                 f\ix{rad} = \frac{P\ix{rad}}{P\ix{ECRH}}
             \end{equation*}
-            }
         \end{column}
 
         \begin{column}{0.45\textwidth}
-            \only<2->{
             \centering
             \includegraphics[width=0.9\textwidth]{%
                 ../THESIS/content/figures/chapter0/oxygen_carbon_rad.pdf}
-            }
 
-            \only<3->{
+            \vspace{0.5em}
             \begin{exampleblock}{Impurity Seeding}
                 Deliberate injection of low-Z (He, N$_2$) or high-Z (Ne, Ar) impurities to enhance edge cooling and achieve detachment
             \end{exampleblock}
-            }
-
         \end{column}
     \end{columns}
 
@@ -274,7 +266,6 @@
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \only<1->{
             \textbf{System Architecture:}
             \begin{itemize}
                 \item NI 6321 data acquisition hardware
@@ -289,18 +280,9 @@
             \begin{equation*}
                 u(t) = K_p e(t) + K_i \int e(t')dt' + K_d \frac{de(t)}{dt}
             \end{equation*}
-            }
-
-            \vspace{0.5em}
-            \only<3->{
-            \centering
-            \includegraphics[width=0.9\textwidth]{%
-                ../THESIS/content/figures/chapter2/oscilloscope_fix.pdf}
-            }
         \end{column}
 
         \begin{column}{0.45\textwidth}
-            \only<2->{
             \textbf{Radiation Prediction Proxies:}
 
             \vspace{0.5em}
@@ -314,13 +296,47 @@
             \begin{equation*}
                 P\ix{pred}^{(2)} \propto \Delta U_M
             \end{equation*}
-            }
         \end{column}
     \end{columns}
 
     % TP: First real-time bolometer feedback system at W7-X, operational during OP1.2b campaign
     % TP: Uses fast data acquisition and PID control to adjust impurity gas injection rates
     % TP: Two prediction methods: subset of channels for full power estimate, or single channel for fast response
+\end{frame}
+
+\begin{frame}
+    \frametitle{Feedback System Design (cont.)}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+            \textbf{System Performance:}
+            \begin{itemize}
+                \item Minimum latency: \SI{13.6}{\milli\second}
+                \item Competitive with other diagnostics
+                \item Real-time capability validated
+                \item Benchmark testing with laser diode
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{Operational Experience:}
+            \begin{itemize}
+                \item Deployed during OP1.2b campaign
+                \item Stable operation over multiple discharges
+                \item Robust to plasma variations
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/oscilloscope_fix.pdf}
+            
+            \vspace{0.5em}
+            \small Latency measurement with laser diode
+        \end{column}
+    \end{columns}
+
     % TP: System latency of \SI{13.6}{\milli\second} is competitive but still limits performance compared to other diagnostics
     % TP: Benchmark testing with laser diode confirmed minimum latency and system performance
 \end{frame}
@@ -331,7 +347,6 @@
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \only<1->{
             \textbf{XP20181010.32 - Benchmark Discharge:}
             \begin{itemize}
                 \item Stable helium-seeded detachment
@@ -341,35 +356,64 @@
                 \item C$^{3+}$ detachment at $f\ix{rad} \sim 50\%$
                 \item Validated 3-channel LOS subset
             \end{itemize}
-            }
 
             \vspace{0.5em}
-            \only<3->{
-            \centering
-            \includegraphics[width=0.95\textwidth]{%
-                ../THESIS/content/figures/chapter2/overview20181010032.pdf}
-            }
-        \end{column}
-        \begin{column}{0.45\textwidth}
-            \only<2->{
             \begin{exampleblock}{Key Result}
                 Demonstrated stable, feedback-controlled radiative cooling with $f\ix{rad} \ge 85\%$ without terminal plasma disruption
             \end{exampleblock}
-
-            \vspace{1em}
-            \textbf{Comparison with Other Methods:}
-            \begin{itemize}
-                \item Electron density feedback
-                \item C-III filterscope feedback
-                \item Bolometer feedback shows intrinsic connection to detachment physics
-            \end{itemize}
-            }
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \centering
+            \includegraphics[width=0.95\textwidth]{%
+                ../THESIS/content/figures/chapter2/overview20181010032.pdf}
         \end{column}
     \end{columns}
 
     % TP: XP20181010.32 was the breakthrough experiment - achieved stable high-radiation detachment with helium seeding
     % TP: Reduced divertor heat loads by half while maintaining plasma stability
     % TP: Validated that just 3 well-chosen bolometer channels can predict total radiation with >85% accuracy
+\end{frame}
+
+\begin{frame}
+    \frametitle{Experimental Achievements (cont.)}
+    \backgroundlogo%
+
+    \textbf{Comparison with Other Feedback Methods:}
+    
+    \begin{columns}
+        \begin{column}{0.48\textwidth}
+            \textbf{Electron Density Feedback:}
+            \begin{itemize}
+                \item Indirect control of radiation
+                \item Density affects confinement
+                \item Less direct connection to detachment
+            \end{itemize}
+
+            \vspace{1em}
+            \textbf{C-III Filterscope Feedback:}
+            \begin{itemize}
+                \item Spectroscopic proxy
+                \item Single impurity species
+                \item Limited spatial information
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \textbf{Bolometer Feedback:}
+            \begin{itemize}
+                \item Direct radiation measurement
+                \item Intrinsic connection to detachment physics
+                \item Total power control
+                \item Multiple viewing chords
+                \item Robust to impurity mix changes
+            \end{itemize}
+
+            \vspace{1em}
+            \begin{alertblock}{Advantage}
+                Bolometer feedback directly controls the relevant quantity (radiation) unlike density or spectroscopy proxies
+            \end{alertblock}
+        \end{column}
+    \end{columns}
+
     % TP: Bolometer feedback directly controls the relevant quantity (radiation) unlike density or spectroscopy proxies
 \end{frame}
 
@@ -461,7 +505,6 @@
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \only<1->{
             \textbf{LOS Sensitivity Evaluation:}
             \begin{itemize}
                 \item Weighted deviation metric
@@ -476,21 +519,17 @@
                 \item Robust selection achieves $\ge$85\% prediction accuracy
                 \item Agreement between HBC and VBC cameras
             \end{itemize}
-            }
-        \end{column}
 
-        \begin{column}{0.45\textwidth}
-            \only<2->{
             \vspace{0.5em}
             \begin{block}{Key Finding}
                 Detectors viewing separatrix and SOL region most viable for real-time feedback configurations
             \end{block}
+        \end{column}
 
-            \vspace{1em}
+        \begin{column}{0.45\textwidth}
             \centering
-            \includegraphics[width=0.95\textwidth]{%
+            \includegraphics[width=\textwidth]{%
                 ../THESIS/content/figures/chapter2/ch_selection_3_13_27_g.pdf}
-            }
         \end{column}
     \end{columns}
 
@@ -1193,7 +1232,7 @@
 
             \small SOL decay length: $\lambda=$\SI{2}{\centi\meter} vs \SI{5}{\centi\meter}
 
-            \vspace{0.5em}
+            \vspace{0.3em}
             \textbf{Impact:}
             \begin{itemize}
                 \item Affects SOL emissivity profiles
@@ -1209,12 +1248,11 @@
 
             \small Source at LCFS vs divertor ($r\ix{a}+$\SI{7.5}{\centi\meter})
 
-            \vspace{0.5em}
+            \vspace{0.3em}
             \textbf{Impact:}
             \begin{itemize}
                 \item Changes ion populations in SOL
                 \item Similar core emissivity results
-                \item Validates model robustness
             \end{itemize}
         \end{column}
     \end{columns}
