@@ -22,7 +22,7 @@
                 \item D-T fusion reaction: $^2$H + $^3$H $\rightarrow$ $^4$He (3.5 MeV) + n (14.1 MeV)
                 \item Lawson criterion for net energy gain:
                 \begin{equation*}
-                    n_e T \tau_E \ge \frac{12f_{tot}}{\langle\sigma_{DT}v\rangle f_H^2 E_\alpha - 4L_Z(T)} T^2
+                    n_e T \tau_E \ge \frac{12f\ix{tot}}{\langle\sigma\ix{DT}v\rangle f_H^2 E_\alpha - 4L_Z(T)} T^2
                 \end{equation*}
                 \item Requires: high temperature ($T \sim$ 10-20 keV), density, and confinement time
                 \item Magnetic confinement: tokamaks and stellarators
@@ -92,7 +92,7 @@
             \vspace{1em}
             \textbf{Radiation Processes:}
             \begin{itemize}
-                \item Bremsstrahlung: $P_{Brems} \propto n_e^2 T^{1/2}$
+                \item Bremsstrahlung: $P\ix{Brems} \propto n_e^2 T^{1/2}$
                 \item Line radiation: atomic transitions
                 \item Impurity effects on plasma performance
             \end{itemize}
@@ -102,7 +102,7 @@
             \only<4->{
             \textbf{Radiation Fraction:}
             \begin{equation*}
-                f_{rad} = \frac{P_{rad}}{P_{ECRH}}
+                f\ix{rad} = \frac{P\ix{rad}}{P\ix{ECRH}}
             \end{equation*}
             }
         \end{column}
@@ -205,7 +205,7 @@
             \vspace{1em}
             \textbf{Global Radiation Power:}
             \begin{equation*}
-                P_{rad} = \frac{V_{P,tor}}{V_C} \sum_M \frac{P_M V_M}{K_M}
+                P\ix{rad} = \frac{V\ix{P,tor}}{V_C} \sum_M \frac{P_M V_M}{K_M}
             \end{equation*}
             }
         \end{column}
@@ -306,13 +306,13 @@
             \vspace{0.5em}
             \textit{Subset-based (3-7 channels):}
             \begin{equation*}
-                P_{pred}^{(1)} = \frac{V_{P,tor}}{V_S} \sum_{M}^{S} \frac{P_M V_M}{K_M}
+                P\ix{pred}^{(1)} = \frac{V\ix{P,tor}}{V_S} \sum\ix{M}^{S} \frac{P_M V_M}{K_M}
             \end{equation*}
 
             \vspace{0.5em}
             \textit{Single channel (dimensionless):}
             \begin{equation*}
-                P_{pred}^{(2)} \propto \Delta U_M
+                P\ix{pred}^{(2)} \propto \Delta U_M
             \end{equation*}
             }
         \end{column}
@@ -335,10 +335,10 @@
             \textbf{XP20181010.32 - Benchmark Discharge:}
             \begin{itemize}
                 \item Stable helium-seeded detachment
-                \item Radiation fraction: $f_{rad} > 90\%$
+                \item Radiation fraction: $f\ix{rad} > 90\%$
                 \item Peak values up to 100\%
                 \item Target heat load reduction: factor of 2
-                \item C$^{3+}$ detachment at $f_{rad} \sim 50\%$
+                \item C$^{3+}$ detachment at $f\ix{rad} \sim 50\%$
                 \item Validated 3-channel LOS subset
             \end{itemize}
             }
@@ -353,7 +353,7 @@
         \begin{column}{0.45\textwidth}
             \only<2->{
             \begin{exampleblock}{Key Result}
-                Demonstrated stable, feedback-controlled radiative cooling with $f_{rad} \ge 85\%$ without terminal plasma disruption
+                Demonstrated stable, feedback-controlled radiative cooling with $f\ix{rad} \ge 85\%$ without terminal plasma disruption
             \end{exampleblock}
 
             \vspace{1em}
@@ -386,7 +386,7 @@
     \vspace{1em}
     \only<2->{
     \begin{alertblock}{Critical Finding}
-        The intrinsic connection of $P_{rad}$ and $f_{rad}$ to the detachment process makes bolometer feedback essential for future fusion reactor applications
+        The intrinsic connection of $P\ix{rad}$ and $f\ix{rad}$ to the detachment process makes bolometer feedback essential for future fusion reactor applications
     \end{alertblock}
     }
 
@@ -519,7 +519,7 @@
             \begin{itemize}
                 \item Carbon dominates SOL emissivity
                 \item Reduced diffusivity near separatrix
-                \item Inward shift of radiation for $f_{rad} \rightarrow 1$
+                \item Inward shift of radiation for $f\ix{rad} \rightarrow 1$
                 \item Radiation moves from outside to inside separatrix
             \end{itemize}
             }
@@ -579,7 +579,7 @@
         \begin{column}{0.45\textwidth}
             \textbf{Radially Dependent Anisotropy (RDA):}
             \begin{itemize}
-                \item Tailored weighting: $k_{ani}(r)$
+                \item Tailored weighting: $k\ix{ani}(r)$
                 \item $k < 1$: localized structures
                 \item $k > 1$: smooth distributions
                 \item Separate core and edge parameters
@@ -654,7 +654,7 @@
             \begin{itemize}
                 \item Simple and complex test profiles
                 \item Quality metrics: $\chi^2$, $\rho_c$
-                \item Optimal $k_{ani}$ depends on profile
+                \item Optimal $k\ix{ani}$ depends on profile
                 \item No universal "best" parameters
             \end{itemize}
             }
@@ -663,7 +663,7 @@
         \begin{column}{0.45\textwidth}
             \only<2->{
             \begin{exampleblock}{Recommended Settings}
-                $k_{ani} = \{2.0, 0.3\}$ (core, edge)\\
+                $k\ix{ani} = \{2.0, 0.3\}$ (core, edge)\\
                 Grid: 30$\times$150 pixels\\
                 Domain: $1.3^2 V_P$
             \end{exampleblock}
@@ -684,7 +684,7 @@
             \only<1->{
                 \textbf{Statistical Analysis:}
                 \begin{itemize}
-                    \item Forward vs backward $P_{rad}$ correlation
+                    \item Forward vs backward $P\ix{rad}$ correlation
                     \item Core radiation slightly overestimated
                     \item Total power significantly overestimated
                     \item Consistent with phantom benchmarks
@@ -695,11 +695,11 @@
             \only<2->{
                 \textbf{Power Balance Application:}
                 \begin{equation*}
-                    P_{bal} = P_{ECRH} - P_{rad} - P_{div}
+                    P\ix{bal} = P\ix{ECRH} - P\ix{rad} - P\ix{div}
                 \end{equation*}
                 \begin{itemize}
-                    \item $P_{2D}^{core}$ improves balance accuracy
-                    \item More stable than $P_{rad}$ alone
+                    \item $P\ix{2D}^{core}$ improves balance accuracy
+                    \item More stable than $P\ix{rad}$ alone
                     \item Alternative for quasi-steady-state analysis
                 \end{itemize}
             }
@@ -718,9 +718,9 @@
 
     \only<1->{
         \begin{itemize}
-            \item \textbf{Reconstruction Accuracy:} $P_{rad}$ consistently underestimates total 2D integrated power by amount equal to SOL radiation
+            \item \textbf{Reconstruction Accuracy:} $P\ix{rad}$ consistently underestimates total 2D integrated power by amount equal to SOL radiation
             \item \textbf{Quality Metrics:} $\chi^2$ and correlation coefficient $\rho_c$ not always congruent - optimal tomogram may not have $\chi^2 = 1$
-            \item \textbf{Anisotropy Optimization:} Ideal $k_{ani}$ set exists for each profile but dimensionality makes finding it impractical
+            \item \textbf{Anisotropy Optimization:} Ideal $k\ix{ani}$ set exists for each profile but dimensionality makes finding it impractical
             \item \textbf{Experimental Validation:} Results agree well with phantom benchmarks, supporting algorithm reliability
         \end{itemize}
     }
@@ -747,7 +747,7 @@
         \item \textbf{Real-Time Feedback System:} Successfully implemented, tested and operated first bolometer radiation feedback at W7-X
         \only<2->{
         \begin{itemize}
-            \item Achieved stable detachment with $f_{rad} \ge 85\%$, peaks up to 100\%
+            \item Achieved stable detachment with $f\ix{rad} \ge 85\%$, peaks up to 100\%
             \item Reduced target heat loads by factor of 2
             \item Validated 3-channel LOS subset for fast prediction
         \end{itemize}
@@ -789,9 +789,9 @@
             \only<1->{
             \textbf{Detachment Physics:}
             \begin{itemize}
-                \item C$^{3+}$ detachment visible at $f_{rad} \sim 50\%$
-                \item Stable detachment achievable at $f_{rad} > 90\%$
-                \item Radiation shifts inward as $f_{rad} \rightarrow 1$
+                \item C$^{3+}$ detachment visible at $f\ix{rad} \sim 50\%$
+                \item Stable detachment achievable at $f\ix{rad} > 90\%$
+                \item Radiation shifts inward as $f\ix{rad} \rightarrow 1$
                 \item X-point and island radiation concentration
             \end{itemize}
             }
@@ -880,7 +880,7 @@
             \textbf{Reactor Relevance:}
             \begin{itemize}
                 \item Essential for DEMO power plant operation
-                \item Reliable radiative cooling at $f\ix{rad}\ge95\%$
+                \item Reliable radiative cooling at $f\ix{rad}\ge$95\%
                 \item Machine protection and heat load management
                 \item Steady-state operation capability
             \end{itemize}
@@ -944,14 +944,14 @@
     \begin{itemize}
         \only<1->{%
             \item Developed and operated first real-time bolometer radiation feedback system at W7-X stellarator
-            \item Achieved stable, controlled detachment with radiation fractions $f_{rad} \ge 85\%$ and peaks up to 100\%
+            \item Achieved stable, controlled detachment with radiation fractions $f\ix{rad}\ge$85\% and peaks up to 100\%
             \item Reduced divertor target heat loads by factor of 2 through controlled impurity seeding
             \item Validated 3-channel bolometer subset for fast radiation power prediction with $\ge$85\% accuracy
             \item Systematic line of sight sensitivity analysis identified optimal detector configurations for feedback
         }
 
         \only<2->{
-            \item STRAHL modeling revealed carbon dominance in SOL radiation and inward shift at high $f_{rad}$
+            \item STRAHL modeling revealed carbon dominance in SOL radiation and inward shift at high $f\ix{rad}$
             \item Developed and benchmarked Minimum Fisher Regularization tomography with radially dependent anisotropy
             \item Demonstrated robust 2D radiation reconstruction from experimental data
             \item Provided alternative power balance methodology using tomographic integrals
@@ -986,6 +986,7 @@
     }%
 \end{frame}
 
+
 \begin{frame}[plain]
     \backgroundlogo%
     \begin{center}
@@ -1016,7 +1017,7 @@
         \Huge\textbf{Backup Slides}
 
         \vspace{2em}
-        \Large Additional Technical Details
+        \Large Additional Details
     \end{center}
 
     % TP: Backup slides contain detailed technical information from appendices
@@ -1037,7 +1038,7 @@
             \begin{enumerate}
                 \item \textbf{Initialization} (T1-60s)
                     \begin{itemize}
-                        \item Load geometry matrices $K_M$, $V_M$
+                        \item Load geometry matrices $K\ix{M}$, $V\ix{M}$
                         \item Configure channel selection $S$
                         \item Initialize analog output
                     \end{itemize}
@@ -1060,7 +1061,7 @@
             \textbf{Real-time Feedback:}
             \begin{itemize}
                 \item Parallel analog output via NI 6321
-                \item Two prediction channels $P_{\text{pred}}^{(1)}$, $P_{\text{pred}}^{(2)}$
+                \item Two prediction channels $P\ix{pred}^{\left(1\right)}$, $P\ix{pred}^{\left(2\right)}$
                 \item FIFO buffer management
                 \item Sample time $\Delta t$ configurable
             \end{itemize}
@@ -1095,7 +1096,7 @@
         \begin{column}{0.55\textwidth}
             \textbf{Method:}
             \begin{itemize}
-                \item Uses spectral correlation between $P_{\text{rad}}$ and $P_{\text{pred}}$
+                \item Uses spectral correlation between $P\ix{\text{rad}}$ and $P\ix{\text{pred}}$
                 \item Discrete Fast Fourier Transform (DFFT)
                 \item Cross-spectral density analysis
                 \item Coherence-based metric
@@ -1104,9 +1105,9 @@
             \vspace{0.5em}
             \textbf{Mathematical Formulation:}
             \begin{align*}
-                \gamma_i &= \mathcal{F}(P_{\text{rad}})(\omega) \\
-                \gamma_j &= \mathcal{F}(P_{\text{pred}})(\omega) \\
-                \varphi(\omega) &= \sqrt{\frac{|g_{i,j}^2|}{|\gamma_i\gamma_j|}}
+                \gamma_i &= \mathcal{F}(P\ix{\text{rad}})(\omega) \\
+                \gamma_j &= \mathcal{F}(P\ix{\text{pred}})(\omega) \\
+                \varphi(\omega) &= \sqrt{\frac{|g\ix{i,j}^2|}{|\gamma_i\gamma_j|}}
             \end{align*}
 
             Quality: $\vartheta = \int \varphi(\omega) d\omega$
@@ -1117,8 +1118,8 @@
             \begin{itemize}
                 \item Similar patterns to correlation metric
                 \item Global maximum at upper inboard X-point
-                \item HBC: best at $0.38r_a$
-                \item VBC: best at $-0.13r_a$
+                \item HBC: best at $0.38r\ix{a}$
+                \item VBC: best at $-0.13r\ix{a}$
                 \item Spectral focus excludes absolute value contributions
             \end{itemize}
 
@@ -1147,16 +1148,16 @@
 
             \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_ECRH_HBCm.pdf}
 
-            \small Heating power $P_{\text{ECRH}}$ correlation
+            \small Heating power $P\ix{ECRH}$ correlation
         \end{column}
 
         \begin{column}{0.48\textwidth}
             \textbf{Key Findings:}
             \begin{itemize}
-                \item Higher $P_{\text{ECRH}}$ ($\ge$3.5 MW) $\rightarrow$ better predictability
-                \item Optimal $f_{\text{rad}} > 0.75$
-                \item Core $T_e \sim$ 1.3 keV ideal
-                \item Gap at $\vartheta \approx$ 0.3-0.5
+                \item Higher $P\ix{ECRH}$ ($\ge$\SI{3.5}{\mega\watt}) $\rightarrow$ better predictability
+                \item Optimal $f\ix{rad}>0.75$
+                \item Core $T\ix{e}\sim$ \SI{1.3}{\kilo\electronvolt} ideal
+                \item Gap at $\vartheta\approx$ 0.3-0.5
                 \item Both cameras in good agreement
             \end{itemize}
 
@@ -1188,9 +1189,9 @@
         \begin{column}{0.48\textwidth}
             \textbf{Decay Length Variation:}
 
-            \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/STRAHL/nete/compare_ne_Te_94_105_edge.pdf}
+            \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/STRAHL/nete/compare_ne_Te_94_105_edge.png}
 
-            \small SOL decay length: $\lambda$ = 2 cm vs 5 cm
+            \small SOL decay length: $\lambda=$\SI{2}{\centi\meter} vs \SI{5}{\centi\meter}
 
             \vspace{0.5em}
             \textbf{Impact:}
@@ -1204,9 +1205,9 @@
         \begin{column}{0.48\textwidth}
             \textbf{Impurity Source Location:}
 
-            \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/STRAHL/fract_abund/compare_fract_abund_82_94_edge.pdf}
+            \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/STRAHL/fract_abund/compare_fract_abund_82_94_edge.png}
 
-            \small Source at LCFS vs divertor ($r_a$ + 7.5 cm)
+            \small Source at LCFS vs divertor ($r\ix{a}+$\SI{7.5}{\centi\meter})
 
             \vspace{0.5em}
             \textbf{Impact:}
@@ -1229,16 +1230,16 @@
 
     \begin{columns}[T]
         \begin{column}{0.48\textwidth}
-            \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/STRAHL/diag_lines/compare_strahl_rad_93_94_edge.pdf}
+            \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/STRAHL/diag_lines/compare_strahl_rad_93_94_edge.png}
 
-            \small Total radiation for $f_{\text{rad}}$ = 90\% and 100\%
+            \small Total radiation for $f\ix{rad}=$90\% and 100\%
         \end{column}
 
         \begin{column}{0.48\textwidth}
             \textbf{Critical Observations:}
             \begin{itemize}
-                \item At $f_{\text{rad}}$ = 90\%: peak in SOL
-                \item At $f_{\text{rad}}$ = 100\%: peak shifts to LCFS
+                \item At $f\ix{rad}=$90\%: peak in SOL
+                \item At $f\ix{rad}=$100\%: peak shifts to LCFS
                 \item C$^{3+}$ and C$^{2+}$ most sensitive
                 \item Dramatic profile changes near separatrix
             \end{itemize}
@@ -1246,7 +1247,7 @@
             \vspace{0.5em}
             \textbf{Implications:}
             \begin{itemize}
-                \item LOS sensitivity strongly depends on $f_{\text{rad}}$
+                \item LOS sensitivity strongly depends on $f\ix{rad}$
                 \item Detachment scenarios predictable
                 \item Validates feedback system design
                 \item Critical for controlled detachment
@@ -1273,7 +1274,7 @@
 
             \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter4/MFR/compare_fixedLoS_emissivities3D.pdf}
 
-            \small Etendue change: $<10^{-13}$ mm$^{-3}$
+            \small Etendue change: $<$\SI{e-13}{per\milli\meter}
 
             \vspace{0.5em}
             \begin{itemize}
@@ -1317,7 +1318,7 @@
         \begin{column}{0.48\textwidth}
             \textbf{Radially Dependent Anisotropy (RDA):}
             \begin{itemize}
-                \item Standard MFR with $k_{\text{ani}}$ profile
+                \item Standard MFR with $k\ix{ani}$ profile
                 \item Smooth reconstructions
                 \item Good radial profile matching
                 \item Established method
@@ -1326,7 +1327,7 @@
             \vspace{0.5em}
             \textbf{Relative Gradient Smoothing (RGS):}
             \begin{itemize}
-                \item Weight: $\mathbf{W}_{\text{RGS}} = (1/g_i)^2$
+                \item Weight: $\mathbf{W}\ix{RGS}=(1/g_i)^2$
                 \item Can be combined with RDA
                 \item Stronger feature localization
                 \item Higher local intensities
@@ -1460,5 +1461,3 @@
     % TP: All methods thoroughly tested and characterized
     % TP: Results support main conclusions and demonstrate robustness
 \end{frame}
-
-\end{document}
