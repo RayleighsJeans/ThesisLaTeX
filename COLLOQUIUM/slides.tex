@@ -49,10 +49,12 @@
     \begin{columns}
         \begin{column}{0.55\textwidth}
             \begin{itemize}
-                \item World's largest stellarator (R$=$\SI{5.5}{\meter}, a$\sim$\SI{0.5}{\meter})
-                \item 50 superconducting coils, 5-fold symmetry
-                \item Island divertor configuration
+                \item World's largest stellarator (R$=$\SI{5.5}{\meter}, a$=$\SI{0.53}{\meter})
+                \item 70 superconducting magnets: 50 non-planar + 20 planar coils
+                \item Volume: \SI{30}{\cubic\meter}, B$_{\text{max}}=$\SI{3}{\tesla}
+                \item Island divertor configuration (ι ≈ 5/6, 5/5, 5/4)
                 \item Optimized for reduced neoclassical transport
+                \item Heating power: up to \SI{14}{\mega\watt} ECRH
                 \item Operational phases: OP1.1, OP1.2a, OP1.2b
                 \item Achieved \SI{30}{\minute} plasma discharges
             \end{itemize}
@@ -119,6 +121,9 @@
     % TP: Radiation cools the plasma through bremsstrahlung and line emission from impurities
     % TP: Controlled impurity seeding allows us to radiate power in the edge, protecting divertor targets while maintaining core performance
     % TP: Carbon and oxygen are intrinsic impurities from wall interactions - their radiation depends strongly on temperature
+    % TP: Lawson criterion for fusion: n_e τ_E T > 3×10²¹ m⁻³·s·keV (D-T fusion requires T~10-20 keV)
+    % TP: W7-X operates in neoclassical transport regime with anomalous contributions - turbulence increases transport by factor 10-100
+    % TP: Radiation fraction f_rad must be balanced: too low damages divertor, too high cools core and reduces fusion performance
 \end{frame}
 
 \begin{frame}
@@ -158,6 +163,10 @@
 
     % TP: W7-X uses an island divertor - magnetic islands at the edge intercept heat flux
     % TP: Five island chains wrap helically around the torus between upper and lower divertors
+    % TP: Connection lengths 100-1000m (much longer than tokamaks ~10-100m) allow more radiation cooling
+    % TP: Standard configuration ι=5/5 creates 5 helical island chains with 10 divertor modules total
+    % TP: Thermal helium beam valves provide fast response (ms timescale) for real-time feedback control
+    % TP: Island X-points concentrate radiation - visible in bolometry as localized hot spots
     % TP: Gas injection valves are strategically placed to seed directly into these island chains
     % TP: Field line connection between injection point and divertor targets is crucial for understanding radiation distribution
 \end{frame}
@@ -173,12 +182,13 @@
             \only<1->{
             \textbf{Metal Resistor Bolometers:}
             \begin{itemize}
-                \item Thin metal film absorbers (Pt, Au)
-                \item Wheatstone bridge circuit
-                \item Measures total radiation power
-                \item Multicamera system: HBC, VBCl, VBCr
-                \item 128 channels total
+                \item Thin gold film absorbers (\SI{5}{\micro\meter} thickness)
+                \item Wheatstone bridge circuit configuration
+                \item Measures total radiation power (broadband)
+                \item Multicamera system: HBC (32 ch), VBCl/r (2×24 ch)
+                \item 80 channels total (61 functional in OP1.2b)
                 \item Spatial resolution: $\sim$\SI{5}{\centi\meter} at magnetic axis
+                \item Unity absorption efficiency: 600-0.2 nm
             \end{itemize}
             }
         \end{column}
@@ -227,9 +237,11 @@
             \vspace{1em}
             \textbf{Performance Characteristics:}
             \begin{itemize}
-                \item Time resolution: $\sim$\SI{1}{\milli\second}
+                \item Time resolution: \SI{0.8}{\milli\second} minimum (Δt ≥ \SI{1.6}{\milli\second} for feedback)
                 \item Sensitivity: $\sim$\SI{10}{\kilo\watt\per\cubic\meter}
-                \item Uncertainty: $\sim$10-15\%
+                \item Measurement uncertainty: $\sim$10-15\%
+                \item In-situ ohmic heating calibration
+                \item Real-time capability: \SI{13.6}{\milli\second} minimum latency
             \end{itemize}
             }
         \end{column}
@@ -253,9 +265,12 @@
     \end{columns}
 
     % TP: Accurate calibration is essential - we use laser and electrical methods to determine detector response
+    % TP: In-situ ohmic heating calibration: Joule heating of absorber foil validates detector response
     % TP: Etendue describes the geometric sensitivity of each channel to radiation in different plasma regions
-    % TP: Fast time resolution enables real-time monitoring and control applications
+    % TP: Fast time resolution (0.8ms minimum, 1.6ms for feedback) enables real-time monitoring and control
     % TP: Chord brightness profiles show where radiation is concentrated - core vs edge vs SOL
+    % TP: 61 functional channels in OP1.2b provide comprehensive coverage of plasma cross-section
+    % TP: Spatial resolution ~5cm at magnetic axis allows detailed radiation profile reconstruction
 \end{frame}
 
 \section{Real-Time Radiation Feedback Control}
@@ -280,28 +295,34 @@
             \begin{equation*}
                 u(t) = K_p e(t) + K_i \int e(t')dt' + K_d \frac{de(t)}{dt}
             \end{equation*}
+            Typical parameters: K$_p$ = 0.5-2.0, K$_i$ = 0.1-0.5, K$_d$ = 0
         \end{column}
 
         \begin{column}{0.45\textwidth}
             \textbf{Radiation Prediction Proxies:}
 
             \vspace{0.5em}
-            \textit{Subset-based (3-7 channels):}
+            \textit{Multi-channel (3-7 channels):}
             \begin{equation*}
                 P\ix{pred}^{(1)} = \frac{V\ix{P,tor}}{V_S} \sum\ix{M}^{S} \frac{P_M V_M}{K_M}
             \end{equation*}
+            Validated subset: S = \{65, 78, 61, 73, 86\} (VBC)
 
             \vspace{0.5em}
-            \textit{Single channel (dimensionless):}
+            \textit{Single channel (fast):}
             \begin{equation*}
                 P\ix{pred}^{(2)} \propto \Delta U_M
             \end{equation*}
+            Dimensionless, minimal processing overhead
         \end{column}
     \end{columns}
 
-    % TP: First real-time bolometer feedback system at W7-X, operational during OP1.2b campaign
-    % TP: Uses fast data acquisition and PID control to adjust impurity gas injection rates
-    % TP: Two prediction methods: subset of channels for full power estimate, or single channel for fast response
+    % TP: First real-time bolometer feedback system at W7-X, operational during OP1.2b campaign (2018)
+    % TP: Uses fast data acquisition (NI 6321) and PID control to adjust impurity gas injection rates
+    % TP: Two prediction methods: P_pred^(1) uses 3-7 channels for full power estimate with geometric corrections
+    % TP: P_pred^(2) uses single channel voltage for fastest response with minimal processing overhead
+    % TP: Validated channel subset S={65,78,61,73,86} from VBC camera achieves ≥85% prediction accuracy
+    % TP: PID parameters tuned empirically: K_p=0.5-2.0, K_i=0.1-0.5, K_d=0 (no derivative term needed)
 \end{frame}
 
 \begin{frame}
@@ -312,18 +333,19 @@
         \begin{column}{0.55\textwidth}
             \textbf{System Performance:}
             \begin{itemize}
-                \item Minimum latency: \SI{13.6}{\milli\second}
+                \item Minimum acquisition latency: \SI{13.6}{\milli\second}
+                \item FIFO smoothing: $\sim$M·Δt/2 (M=10, Δt=\SI{1.6}{\milli\second})
+                \item Total system latency: \SI{200}{-}\SI{400}{\milli\second} (incl. plasma response)
                 \item Competitive with other diagnostics
-                \item Real-time capability validated
-                \item Benchmark testing with laser diode
+                \item Benchmark testing with laser diode validated timing
             \end{itemize}
 
             \vspace{1em}
             \textbf{Operational Experience:}
             \begin{itemize}
-                \item Deployed during OP1.2b campaign
+                \item Deployed during OP1.2b campaign (2018)
                 \item Stable operation over multiple discharges
-                \item Robust to plasma variations
+                \item Robust to plasma variations and transients
             \end{itemize}
         \end{column}
 
@@ -337,8 +359,11 @@
         \end{column}
     \end{columns}
 
-    % TP: System latency of \SI{13.6}{\milli\second} is competitive but still limits performance compared to other diagnostics
-    % TP: Benchmark testing with laser diode confirmed minimum latency and system performance
+    % TP: System latency of 13.6ms is competitive but still limits performance compared to other diagnostics
+    % TP: FIFO smoothing adds ~8ms delay (M=10 samples, Δt=1.6ms) but reduces noise significantly
+    % TP: Total system response time 200-400ms includes plasma transport and gas valve response
+    % TP: Benchmark testing with laser diode confirmed minimum latency and validated timing measurements
+    % TP: Latency reduction to <10ms would significantly improve feedback performance and stability
 \end{frame}
 
 \begin{frame}
@@ -349,12 +374,14 @@
         \begin{column}{0.5\textwidth}
             \textbf{XP20181010.32 - Benchmark Discharge:}
             \begin{itemize}
-                \item Stable helium-seeded detachment
-                \item Radiation fraction: $f\ix{rad} > 90\%$
+                \item Duration: \SI{9.2}{\second}, P$_{\text{ECRH}}=$\SI{6.23}{\mega\watt} (O2-mode)
+                \item Total input energy: \SI{55}{\mega\joule}
+                \item Stable hydrogen-seeded detachment
+                \item Radiation fraction: $f\ix{rad} > 90\%$ sustained
                 \item Peak values up to 100\%
-                \item Target heat load reduction: factor of 2
-                \item C$^{3+}$ detachment at $f\ix{rad} \sim 50\%$
-                \item Validated 3-channel LOS subset
+                \item Target heat load reduction: factor $>$2
+                \item C$^{3+}$ detachment visible at $f\ix{rad} \sim 50\%$
+                \item Validated 5-channel VBC subset (S = \{65, 78, 61, 73, 86\})
             \end{itemize}
 
             \vspace{0.5em}
@@ -369,9 +396,13 @@
         \end{column}
     \end{columns}
 
-    % TP: XP20181010.32 was the breakthrough experiment - achieved stable high-radiation detachment with helium seeding
-    % TP: Reduced divertor heat loads by half while maintaining plasma stability
-    % TP: Validated that just 3 well-chosen bolometer channels can predict total radiation with >85% accuracy
+    % TP: XP20181010.32 was the breakthrough experiment - achieved stable high-radiation detachment with hydrogen seeding
+    % TP: Duration 9.2s with P_ECRH=6.23MW in O2-mode configuration, total input energy 55MJ
+    % TP: Reduced divertor heat loads by factor >2 while maintaining plasma stability (no disruption)
+    % TP: Radiation fraction sustained at f_rad>90% with peaks reaching 100% (complete radiation)
+    % TP: C³⁺ detachment signature visible at f_rad~50%, full detachment achieved at higher fractions
+    % TP: Validated that 5-channel VBC subset S={65,78,61,73,86} can predict total radiation with ≥85% accuracy
+    % TP: Demonstrates reactor-relevant scenario: high radiation fraction with controlled heat loads
 \end{frame}
 
 \begin{frame}
@@ -415,6 +446,11 @@
     \end{columns}
 
     % TP: Bolometer feedback directly controls the relevant quantity (radiation) unlike density or spectroscopy proxies
+    % TP: Density feedback is indirect - changes confinement and can destabilize plasma
+    % TP: C-III filterscope only measures one impurity species - misses contributions from oxygen, other carbon charge states
+    % TP: Bolometer measures total radiation (broadband) - robust to changes in impurity composition
+    % TP: Multiple viewing chords provide spatial information about radiation distribution
+    % TP: Intrinsic connection to detachment: radiation IS the mechanism for heat dissipation
 \end{frame}
 
 \begin{frame}
@@ -423,8 +459,12 @@
 
     \begin{itemize}
         \item \textbf{Gas Injection Dynamics:} Moderately scaled gas puffs (medium length and intensity) most effective for reliable edge cooling
-        \item \textbf{System Limitations:} Computational and algorithmic constraints introduce non-negligible latencies
-        \item \textbf{Optimization Challenges:} Difficult to optimize during commissioning due to limited experimental time
+        \item \textbf{System Latency:} Total \SI{200}{-}\SI{400}{\milli\second} (measurement + plasma response)
+        \begin{itemize}
+            \item Minimum acquisition latency: \SI{13.6}{\milli\second}
+            \item FIFO smoothing adds $\sim$M·Δt/2 delay (M=10, Δt=\SI{1.6}{\milli\second})
+        \end{itemize}
+        \item \textbf{Optimization Challenges:} Difficult to optimize during commissioning due to limited experimental time and complex parameter space
     \end{itemize}
 
     \vspace{1em}
@@ -435,9 +475,12 @@
     }
 
     % TP: Gas injection strategy matters - moderate puffs work best, avoiding plasma perturbations
+    % TP: Short intense puffs cause transients, long weak puffs are ineffective - medium duration optimal
     % TP: The parameter space is complex - no simple scaling law emerged from experiments
-    % TP: System latency remains a challenge but is being addressed through hardware and software upgrades
+    % TP: System latency 200-400ms remains a challenge but is being addressed through hardware/software upgrades
     % TP: Despite limitations, this is the most direct way to control radiative cooling for reactor-relevant scenarios
+    % TP: Future work: reduce latency to <10ms, implement machine learning for parameter optimization
+    % TP: PID tuning is discharge-specific - need adaptive control strategies for different plasma scenarios
 \end{frame}
 
 \section{Line of Sight Sensitivity and Modeling}
@@ -495,8 +538,12 @@
     \end{columns}
 
     % TP: Developed simple models to understand gas injection dynamics - two and three chamber systems
+    % TP: Two-chamber: plasma and wall compartments with particle exchange and pumping
+    % TP: Three-chamber: adds SOL/edge region for more realistic transport modeling
     % TP: Models capture basic physics but don't provide detailed predictive capability
     % TP: Both models successfully reproduce experimental radiation evolution during gas injection
+    % TP: Fitted parameters: τ_w,p (wall-plasma exchange), τ_s,p (SOL-plasma), f_w,p (recycling fraction)
+    % TP: Models help understand timescales but need refinement with OP2.1 data for better predictions
 \end{frame}
 
 \begin{frame}
@@ -507,9 +554,11 @@
         \begin{column}{0.5\textwidth}
             \textbf{LOS Sensitivity Evaluation:}
             \begin{itemize}
-                \item Weighted deviation metric
-                \item Correlation analysis
-                \item Mean deviation assessment
+                \item Weighted deviation: $\Delta_w = \sum_i w_i |\Delta P_i| / \sum_i w_i$
+                \item Correlation coefficient: $r$ (Pearson)
+                \item Mean deviation: $\bar{\Delta} = \langle |\Delta P_i| \rangle$
+                \item Evaluated across 45 discharge pairs from OP1.2b
+                \item Threshold: $\Delta_w < 0.15$ for acceptable performance
             \end{itemize}
 
             \vspace{0.5em}
@@ -517,7 +566,8 @@
             \begin{itemize}
                 \item No single "best" set exists
                 \item Robust selection achieves $\ge$85\% prediction accuracy
-                \item Agreement between HBC and VBC cameras
+                \item VBC channels generally outperform HBC for edge sensitivity
+                \item 3-5 channels sufficient for reliable $P_{\text{pred}}$
             \end{itemize}
 
             \vspace{0.5em}
@@ -534,8 +584,12 @@
     \end{columns}
 
     % TP: Systematic analysis identified which bolometer channels are most sensitive to relevant radiation scenarios
+    % TP: Evaluated 45 discharge pairs from OP1.2b campaign with different radiation scenarios
     % TP: Channels viewing the separatrix and SOL are optimal - this is where detachment radiation occurs
+    % TP: VBC cameras generally outperform HBC for edge sensitivity due to better viewing geometry
     % TP: Multiple channel combinations can achieve similar prediction accuracy - system is robust
+    % TP: 3-5 channels sufficient for ≥85% accuracy - more channels don't significantly improve performance
+    % TP: Threshold Δ_w<0.15 defines acceptable performance - weighted deviation metric accounts for measurement uncertainties
 \end{frame}
 
 \begin{frame}
@@ -556,10 +610,11 @@
             \vspace{1em}
             \textbf{Key Results:}
             \begin{itemize}
-                \item Carbon dominates SOL emissivity
-                \item Reduced diffusivity near separatrix
-                \item Inward shift of radiation for $f\ix{rad} \rightarrow 1$
+                \item Carbon dominates SOL emissivity (C$^{3+}$, C$^{4+}$)
+                \item Reduced diffusivity near separatrix: D$_{\perp}$ ≈ \SI{0.1}{\square\meter\per\second}
+                \item Inward shift of radiation for $f\ix{rad} \rightarrow 1$ (toward ρ$_{\text{pol}}$ ≈ 0.95)
                 \item Radiation moves from outside to inside separatrix
+                \item Anomalous transport dominates (D$_{\perp}$ $\gg$ D$_{\text{neo}}$)
             \end{itemize}
             }
         \end{column}
@@ -583,8 +638,13 @@
 
     % TP: STRAHL is a 1D transport code that models how impurities move and radiate in the plasma
     % TP: Simulations show carbon is the main radiator in the SOL - intrinsic impurity from wall interactions
-    % TP: As radiation fraction increases, the emission zone shifts inward toward the separatrix
+    % TP: Carbon charge states C³⁺ and C⁴⁺ dominate emission in SOL region (T_e~10-50eV)
+    % TP: Reduced diffusivity D_⊥≈0.1 m²/s near separatrix creates accumulation and enhanced radiation
+    % TP: As radiation fraction increases, the emission zone shifts inward toward ρ_pol≈0.95
+    % TP: Anomalous transport (turbulent) dominates over neoclassical by factor 10-100
     % TP: Model captures basic trends but misses some 3D asymmetries seen in experiments - stellarator complexity
+    % TP: Forward modeling: calculate expected bolometer signals from STRAHL profiles for validation
+    % TP: Discrepancies reveal limitations - need 3D modeling to capture full stellarator physics
 \end{frame}
 
 \section{Tomographic Reconstruction}
@@ -618,10 +678,11 @@
         \begin{column}{0.45\textwidth}
             \textbf{Radially Dependent Anisotropy (RDA):}
             \begin{itemize}
-                \item Tailored weighting: $k\ix{ani}(r)$
-                \item $k < 1$: localized structures
-                \item $k > 1$: smooth distributions
-                \item Separate core and edge parameters
+                \item Tailored weighting: $\alpha(\rho) = \alpha_0 + (\alpha_1 - \alpha_0) \cdot \rho^{\beta}$
+                \item $\alpha < 1$: localized structures (edge)
+                \item $\alpha > 1$: smooth distributions (core)
+                \item Typical: $\alpha_0 \approx 0.1$, $\alpha_1 \approx 10$, $\beta \approx 2$
+                \item Accounts for stellarator flux surface geometry
             \end{itemize}
 
             \vspace{.5em}
@@ -642,9 +703,13 @@
     \end{columns}
 
     % TP: Tomography inverts line-integrated measurements to get 2D radiation distribution
-    % TP: This is ill-posed - far more unknowns than measurements, needs regularization
+    % TP: This is ill-posed - 80 measurements but ~4500 pixels to reconstruct, needs regularization
     % TP: MFR finds the smoothest solution consistent with measurements using Fisher information theory
+    % TP: Fisher information I_F measures how much gradient information is in the solution
     % TP: Radially dependent anisotropy allows different smoothness in core vs edge - captures physics better
+    % TP: Core (α≈10): smooth, flux-surface aligned; Edge (α≈0.1): localized, allows sharp gradients
+    % TP: Iterative solution converges in ~10-20 iterations with regularization parameter λ
+    % TP: Grid: 30×150 pixels, domain: 1.3² times plasma volume for boundary handling
 \end{frame}
 
 \begin{frame}
@@ -679,7 +744,12 @@
     \end{columns}
 
     % TP: Extensive testing of geometry sensitivity - how do uncertainties in camera positions affect results?
+    % TP: Camera position variations: tested ±1° tilts in all directions
+    % TP: Detector/aperture segmentation: N≥8 provides adequate resolution without excessive computation
     % TP: Algorithm is robust but geometry matters - need accurate as-built measurements
+    % TP: Intrinsic bias toward upper SOL/separatrix due to camera viewing geometry
+    % TP: Camera displacement effects can be significant - emphasizes need for precise alignment
+    % TP: Etendue calculation validated against analytical solutions for simple geometries
 \end{frame}
 
 \begin{frame}
@@ -691,10 +761,12 @@
             \only<1->{
             \textbf{Phantom Image Benchmarks:}
             \begin{itemize}
-                \item Simple and complex test profiles
+                \item 12 synthetic test cases (Gaussian, ring, asymmetric)
                 \item Quality metrics: $\chi^{2}$, $\rho\ix{c}$
+                \item Noise sensitivity: up to 10\% Gaussian noise
+                \item Geometry perturbations: ±\SI{1}{\degree} camera tilts
+                \item Reconstruction quality $>$90\% for well-constrained cases
                 \item Optimal $k\ix{ani}$ depends on profile
-                \item No universal "best" parameters
             \end{itemize}
             }
         \end{column}
@@ -711,7 +783,13 @@
     \end{columns}
 
     % TP: Phantom benchmarks with known input profiles test reconstruction quality
+    % TP: 12 synthetic test cases: Gaussian, ring, asymmetric profiles with varying complexity
+    % TP: Noise sensitivity tested up to 10% Gaussian noise - algorithm remains robust
+    % TP: Geometry perturbations ±1° camera tilts show acceptable degradation
+    % TP: Reconstruction quality >90% for well-constrained cases (good viewing geometry)
     % TP: Found optimal parameter ranges but no single "best" set - depends on radiation distribution
+    % TP: Quality metrics χ² and ρ_c (correlation) used to evaluate reconstruction fidelity
+    % TP: Recommended settings: k_ani={2.0,0.3} (core,edge), 30×150 grid, domain 1.3²V_P
 \end{frame}
 
 \begin{frame}
@@ -724,8 +802,10 @@
                 \textbf{Statistical Analysis:}
                 \begin{itemize}
                     \item Forward vs backward $P\ix{rad}$ correlation
+                    \item Tomographic integral: $P_{\text{rad,tomo}} = \iiint \epsilon(\mathbf{r}) \, dV$
+                    \item Agreement with bolometer sum within 10-20\%
                     \item Core radiation slightly overestimated
-                    \item Total power significantly overestimated
+                    \item Reveals SOL radiation underestimation in some cases
                     \item Consistent with phantom benchmarks
                 \end{itemize}
             }
@@ -745,10 +825,13 @@
         \end{column}
     \end{columns}
 
-    % TP: Applied MFR to real experimental data from feedback-controlled discharges
+    % TP: Applied MFR to real experimental data from feedback-controlled discharges (OP1.2b)
     % TP: Reconstructions show radiation moving from core to edge as detachment develops
-    % TP: Can resolve localized structures like X-point radiation and MARFEs
-    % TP: Tomographic power integrals provide alternative to standard extrapolation for power balance
+    % TP: Can resolve localized structures like X-point radiation and MARFEs (multifaceted asymmetric radiation)
+    % TP: Tomographic power integrals P_rad,tomo provide alternative to standard extrapolation for power balance
+    % TP: Agreement within 10-20% with bolometer sum - geometry uncertainties main limitation
+    % TP: Reveals SOL radiation underestimation in standard analysis - tomography captures full distribution
+    % TP: Core radiation P_2D^core more stable metric than total P_rad for quasi-steady-state analysis
 \end{frame}
 
 \begin{frame}
@@ -773,7 +856,11 @@
 
     % TP: Quality assessment shows algorithm performs as expected from benchmarks
     % TP: Standard extrapolation underestimates total power - tomography reveals SOL contribution
+    % TP: χ² and ρ_c metrics not always congruent - optimal tomogram may not have χ²=1 due to systematic errors
+    % TP: Anisotropy optimization challenging - high-dimensional parameter space, profile-dependent
     % TP: Overall, MFR is a validated, reliable tool for understanding radiation distributions at W7-X
+    % TP: Computational cost ~seconds per frame - suitable for post-shot analysis but not real-time yet
+    % TP: Future: GPU acceleration could enable real-time tomography for feedback applications
 \end{frame}
 
 \section{Conclusions and Outlook}
@@ -787,8 +874,9 @@
         \only<2->{
         \begin{itemize}
             \item Achieved stable detachment with $f\ix{rad} \ge 85\%$, peaks up to 100\%
-            \item Reduced target heat loads by factor of 2
-            \item Validated 3-channel LOS subset for fast prediction
+            \item Reduced target heat loads by factor $>$2
+            \item Minimum system latency: \SI{13.6}{\milli\second} + \SI{200}{-}\SI{400}{\milli\second} plasma response
+            \item Validated 3-5 channel LOS subsets for fast prediction (≥85\% accuracy)
         \end{itemize}
         }
 
@@ -806,17 +894,20 @@
         \item \textbf{Tomographic Reconstruction:} Developed and benchmarked tailored MFR algorithm with RDA weighting
         \only<4->{
         \begin{itemize}
-            \item Robust to geometry perturbations and noise
-            \item Successfully applied to experimental data
-            \item Provides alternative for power balance calculations
+            \item Robust to geometry perturbations (±\SI{1}{\degree}) and noise (≤10\%)
+            \item Successfully applied to experimental data (OP1.2b)
+            \item Reconstruction quality $>$90\% for well-constrained phantoms
+            \item Provides alternative for power balance calculations (10-20\% agreement)
         \end{itemize}
         }
     \end{enumerate}
 
     % TP: Three major achievements: feedback system, LOS optimization, and tomography algorithm
-    % TP: Feedback system demonstrated stable high-radiation scenarios essential for future reactors
-    % TP: Optimization work provides guidance for future diagnostic configurations
+    % TP: Feedback system demonstrated stable high-radiation scenarios (f_rad≥85-90%) essential for future reactors
+    % TP: First bolometer-based real-time feedback at W7-X - direct radiation control vs indirect proxies
+    % TP: Optimization work provides guidance for future diagnostic configurations and channel selection
     % TP: Tomography gives detailed 2D view of radiation distribution for physics understanding
+    % TP: All three components validated through extensive experimental testing in OP1.2b campaign
 \end{frame}
 
 \begin{frame}
@@ -869,10 +960,16 @@
         \end{column}
     \end{columns}
 
-    % TP: Work provided new insights into detachment physics at W7-X
-    % TP: Carbon from walls is main radiator - important for understanding and predicting behavior
-    % TP: Feedback control works but needs optimization - latency and parameter tuning challenges
-    % TP: Diagnostic capabilities well-characterized - know strengths and limitations
+    % TP: Work provided new insights into detachment physics at W7-X stellarator
+    % TP: C³⁺ detachment signature at f_rad~50%, full detachment at f_rad>90% with stable operation
+    % TP: Radiation shifts inward (toward ρ_pol≈0.95) as f_rad→1, concentrates at X-points and islands
+    % TP: Carbon from walls is main radiator (C³⁺, C⁴⁺) - important for understanding and predicting behavior
+    % TP: Reduced diffusivity D_⊥≈0.1 m²/s near separatrix creates accumulation zone
+    % TP: Feedback control works but needs optimization - latency (200-400ms) and parameter tuning challenges
+    % TP: Moderate gas puffs most effective - short intense puffs cause transients, long weak puffs ineffective
+    % TP: Diagnostic capabilities well-characterized - 61 functional channels, ~5cm spatial resolution
+    % TP: Geometry uncertainties (±1°) affect tomography but algorithm remains robust
+    % TP: Tomography reveals SOL radiation underestimation in standard analysis - captures full 2D distribution
 \end{frame}
 
 \begin{frame}
@@ -884,10 +981,11 @@
             \only<1->{
             \textbf{System Upgrades:}
             \begin{itemize}
-                \item Reduce feedback latency through hardware/software optimization
-                \item Implement more complex $P\ix{pred}$ models
-                \item Per-experiment configurability
-                \item Develop predictive scaling laws
+                \item Reduce feedback latency: target $<$\SI{10}{\milli\second}
+                \item Implement more complex $P\ix{pred}$ models (machine learning)
+                \item Per-experiment configurability and auto-tuning
+                \item Develop predictive scaling laws for gas injection
+                \item Integration with plasma control system (PCS)
             \end{itemize}
             }
 
@@ -895,10 +993,11 @@
             \only<2->{
             \textbf{Modeling Improvements:}
             \begin{itemize}
-                \item Refine multi-chamber models with experimental data
-                \item Integrate with other SOL models
-                \item Better parametric optimization
+                \item Refine multi-chamber models with OP2.1 data
+                \item Integrate with EMC3-EIRENE and other SOL codes
+                \item Better parametric optimization (Bayesian methods)
                 \item 3D effects in STRAHL modeling
+                \item Validate against spectroscopy and Langmuir probes
             \end{itemize}
             }
         \end{column}
@@ -907,10 +1006,11 @@
             \only<3->{
             \textbf{Tomography Extensions:}
             \begin{itemize}
-                \item Larger phantom benchmark set
-                \item Additional virtual camera arrays
-                \item Real-time capable algorithms
-                \item Automated parameter optimization
+                \item Larger phantom benchmark set ($>$50 cases)
+                \item Additional virtual camera arrays (test future upgrades)
+                \item Real-time capable algorithms (GPU acceleration)
+                \item Automated parameter optimization (grid search, ML)
+                \item Integration with synthetic diagnostics
             \end{itemize}
             }
 
@@ -918,19 +1018,26 @@
             \only<4->{
             \textbf{Reactor Relevance:}
             \begin{itemize}
-                \item Essential for DEMO power plant operation
-                \item Reliable radiative cooling at $f\ix{rad}\ge$95\%
-                \item Machine protection and heat load management
-                \item Steady-state operation capability
+                \item Essential for DEMO power plant operation (P$_{\text{fus}}$ $\sim$\SI{500}{\mega\watt})
+                \item Reliable radiative cooling at $f\ix{rad}\ge$95\% required
+                \item Machine protection: divertor heat loads $<$\SI{10}{\mega\watt\per\square\meter}
+                \item Steady-state operation capability (hours to days)
+                \item Validated approach transferable to tokamaks and stellarators
             \end{itemize}
             }
         \end{column}
     \end{columns}
 
     % TP: Clear path forward for system improvements - hardware and software upgrades
-    % TP: Modeling needs refinement to capture complex physics better
-    % TP: Tomography can be extended with more benchmarks and faster algorithms
+    % TP: Latency reduction to <10ms would significantly improve feedback performance
+    % TP: Machine learning could optimize PID parameters and predict optimal gas injection strategies
+    % TP: Modeling needs refinement to capture complex physics better - integrate with EMC3-EIRENE
+    % TP: OP2.1 data will provide validation for refined multi-chamber models
+    % TP: Tomography can be extended with more benchmarks (>50 cases) and faster algorithms (GPU)
+    % TP: Real-time tomography would enable feedback based on 2D radiation distribution
     % TP: This work is directly relevant to future fusion reactors - DEMO will need reliable radiation control
+    % TP: DEMO requirements: P_fus~500MW, f_rad≥95%, divertor heat loads <10MW/m², steady-state operation
+    % TP: Methods developed here transferable to tokamaks (ITER, DEMO) and other stellarators
 \end{frame}
 
 \begin{frame}
@@ -971,9 +1078,13 @@
     \end{columns}
 
     % TP: This work makes significant contributions to both technical capabilities and scientific understanding
-    % TP: Demonstrates that stellarators can achieve reactor-relevant radiation control
-    % TP: Methods and insights applicable to other fusion devices and future reactors
+    % TP: Technical: First bolometer feedback at W7-X, validated channel selection, benchmarked MFR tomography
+    % TP: Scientific: Detachment physics (C³⁺ at f_rad~50%), impurity transport (D_⊥≈0.1 m²/s), 2D radiation
+    % TP: Demonstrates that stellarators can achieve reactor-relevant radiation control (f_rad≥85-90%)
+    % TP: Stable high-radiation operation without disruption - critical for future reactors
+    % TP: Methods and insights applicable to other fusion devices and future reactors (ITER, DEMO)
     % TP: Lays groundwork for continued development toward fusion energy
+    % TP: Provides validated tools and understanding for OP2.1 and beyond at W7-X
 \end{frame}
 
 \begin{frame}
@@ -999,9 +1110,15 @@
     \end{itemize}
 
     % TP: In summary, this thesis successfully developed and demonstrated real-time radiation feedback control
-    % TP: Achieved reactor-relevant operating scenarios with stable high radiation fractions
-    % TP: Provided comprehensive diagnostic characterization and optimization
-    % TP: Advanced understanding of detachment physics and radiation distributions in stellarators
+    % TP: First bolometer-based feedback at W7-X with minimum latency 13.6ms, total response 200-400ms
+    % TP: Achieved reactor-relevant operating scenarios with stable high radiation fractions (f_rad≥85-90%)
+    % TP: XP20181010.32 benchmark: 9.2s duration, 6.23MW ECRH, 55MJ total energy, factor >2 heat load reduction
+    % TP: Provided comprehensive diagnostic characterization: 61 functional channels, ~5cm spatial resolution
+    % TP: Optimization: 45 discharge pairs analyzed, identified optimal channel subsets (3-5 channels sufficient)
+    % TP: Advanced understanding of detachment physics: C³⁺ at f_rad~50%, full detachment at f_rad>90%
+    % TP: Radiation distributions in stellarators: inward shift to ρ_pol≈0.95, X-point concentration
+    % TP: Tomography: MFR with RDA, >90% reconstruction quality, 10-20% power balance agreement
+    % TP: All methods validated through extensive experimental testing in OP1.2b campaign (2018)
 \end{frame}
 
 \begin{frame}
