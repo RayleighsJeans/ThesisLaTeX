@@ -326,7 +326,7 @@
             \begin{itemize}
                 \item Duration \SI{9.2}{\second}\\$P\ix{ECRH}^{\text{max}}=$\,\SI{6.23}{\mega\watt} (O2-mode)
                 \item Total input energy \SI{55}{\mega\joule}
-                \item Radiation fraction PID setpoint $f\ix{rad}\sim90\%$
+                \item Radiation fraction PID setpoint $f\ix{rad}\sim90\%$ off $P\ix{pred}^{(1)}$
                 \item 5-channel VBC subset $S=\left\{65,78,61,73,86\right\}$
             \end{itemize}
 
@@ -334,12 +334,20 @@
         \begin{column}{0.6\textwidth}
             \centering
             \only<1>{
-            \includegraphics[width=0.95\textwidth]{%
+            \includegraphics[width=0.85\textwidth]{%
                 ../THESIS/content/figures/chapter2/20181010_032/20181010_032_power_feedback_top.pdf}
             }
             \only<2>{
-            \includegraphics[width=0.95\textwidth]{%
+            \includegraphics[width=0.85\textwidth]{%
+                ../THESIS/content/figures/chapter2/20181010_032/20181010_032_dens_chord_frad_div_bottom.pdf}
+            }
+            \only<3>{
+            \includegraphics[width=0.85\textwidth]{%
                 ../THESIS/content/figures/chapter2/20181010_032/20181010_032_power_feedback_bottom.pdf}
+            }
+            \only<4>{
+            \includegraphics[width=0.85\textwidth]{%
+                ../THESIS/content/figures/chapter2/20181010_032/20181010_032_dens_chord_frad_div_top.pdf}
             }
         \end{column}
     \end{columns}
@@ -360,58 +368,20 @@
         \begin{column}{0.5\textwidth}
             \textbf{XP20181010.32}
             \begin{itemize}
-                \item Peak $f\ix{rad}$ up to 100\%
-                \item Target heat load reduction: factor $>$2
-                \item C$^{3+}$ detachment visible at $f\ix{rad}\sim50\%$
+                \item Peak $f\ix{rad}\gtrsim$100\%, cycling with gas inlet
+                \item Target heat load reduction factor $>$2
+                \item C$^{2+}$ detachment visible at $f\ix{rad}\sim50\%$
             \end{itemize}
 
             \vspace{0.5em}
-            \begin{exampleblock}{Key Result}
-                Demonstrated stable, feedback-controlled radiative cooling with $f\ix{rad} \ge 85\%$ without terminal plasma disruption
-            \end{exampleblock}
-        \end{column}
-        \begin{column}{0.45\textwidth}
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Experimental Achievements}
-    \backgroundlogo%
-
-    \textbf{Comparison with Other Feedback Methods:}
-    
-    \begin{columns}
-        \begin{column}{0.48\textwidth}
-            \textbf{Electron Density Feedback:}
-            \begin{itemize}
-                \item Indirect control of radiation
-                \item Density affects confinement
-                \item Less direct connection to detachment
-            \end{itemize}
-
-            \vspace{1em}
-            \textbf{C-III Filterscope Feedback:}
-            \begin{itemize}
-                \item Spectroscopic proxy
-                \item Single impurity species
-                \item Limited spatial information
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.48\textwidth}
-            \textbf{Bolometer Feedback:}
-            \begin{itemize}
-                \item Direct radiation measurement
-                \item Intrinsic connection to detachment physics
-                \item Total power control
-                \item Multiple viewing chords
-                \item Robust to impurity mix changes
-            \end{itemize}
-
-            \vspace{1em}
-            \begin{alertblock}{Advantage}
-                Bolometer feedback directly controls the relevant quantity (radiation) unlike density or spectroscopy proxies
+            \begin{alertblock}{Key Result}
+                Demonstrated stable, real-time feedback-controlled radiative cooling with $f\ix{rad}\ge85\%$ without terminal plasma disruption and significant target heat load reduction
             \end{alertblock}
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+           \includegraphics[width=\textwidth]{
+                ../THESIS/content/figures/chapter2/20181010_032/20181010_032_0920_023_cIII_contour_L.pdf}
         \end{column}
     \end{columns}
 
@@ -421,146 +391,83 @@
     % TP: Bolometer measures total radiation (broadband) - robust to changes in impurity composition
     % TP: Multiple viewing chords provide spatial information about radiation distribution
     % TP: Intrinsic connection to detachment: radiation IS the mechanism for heat dissipation
+    % TP: Gas injection strategy matters - moderate puffs work best, avoiding plasma perturbations
+    % TP: Short intense puffs cause transients, long weak puffs are ineffective - medium duration optimal
+    % TP: The parameter space is complex - no simple scaling law emerged from experiments
+    % TP: System latency 200-400ms remains a challenge but is being addressed through hardware/software upgrades
+    % TP: Despite limitations, this is the most direct way to control radiative cooling for reactor-relevant scenarios
+    % TP: Future work: reduce latency to <10ms, implement machine learning for parameter optimization
+    % TP: PID tuning is discharge-specific - need adaptive control strategies for different plasma scenarios
 \end{frame}
-% 
-% \begin{frame}
-%     \frametitle{Feedback Performance Analysis}
-%     \backgroundlogo%
-% 
-%     \begin{itemize}
-%         \item \textbf{Gas Injection Dynamics:} Moderately scaled gas puffs (medium length and intensity) most effective for reliable edge cooling
-%         \item \textbf{System Latency:} Total \SI{200}{-}\SI{400}{\milli\second} (measurement + plasma response)
-%         \begin{itemize}
-%             \item Minimum acquisition latency: \SI{13.6}{\milli\second}
-%             \item FIFO smoothing adds $\sim$M·Δt/2 delay (M=10, Δt=\SI{1.6}{\milli\second})
-%         \end{itemize}
-%         \item \textbf{Optimization Challenges:} Difficult to optimize during commissioning due to limited experimental time and complex parameter space
-%     \end{itemize}
-% 
-%     \vspace{1em}
-%     \only<2->{
-%     \begin{alertblock}{Critical Finding}
-%         The intrinsic connection of $P\ix{rad}$ and $f\ix{rad}$ to the detachment process makes bolometer feedback essential for future fusion reactor applications
-%     \end{alertblock}
-%     }
-% 
-%     % TP: Gas injection strategy matters - moderate puffs work best, avoiding plasma perturbations
-%     % TP: Short intense puffs cause transients, long weak puffs are ineffective - medium duration optimal
-%     % TP: The parameter space is complex - no simple scaling law emerged from experiments
-%     % TP: System latency 200-400ms remains a challenge but is being addressed through hardware/software upgrades
-%     % TP: Despite limitations, this is the most direct way to control radiative cooling for reactor-relevant scenarios
-%     % TP: Future work: reduce latency to <10ms, implement machine learning for parameter optimization
-%     % TP: PID tuning is discharge-specific - need adaptive control strategies for different plasma scenarios
-% \end{frame}
-% 
-% \section{Line of Sight Sensitivity and Modeling}
-% 
-% \begin{frame}
-%     \frametitle{Impurity Seeding Models}
-%     \backgroundlogo%
-% 
-%     \begin{columns}
-%         \begin{column}{0.5\textwidth}
-%             \only<1->{
-%             \textbf{Two-Chamber Model:}
-%             \begin{align*}
-%                 \dot{N}\ix{w}=&\left(N\ix{w,lim}-N\ix{w}\right)\tau\ix{w,p}\\%
-%                 \dot{N}\ix{p}=&\Gamma\ix{s}+N\ix{w}\tau\ix{w,p}-f\ix{w,p}N\ix{p}-N\ix{p}\tau\ix{p}%
-%             \end{align*}
-% 
-%             \begin{itemize}
-%                 \item Plasma and wall compartments
-%                 \item Particle exchange rates
-%                 \item Pumping and recycling
-%             \end{itemize}
-%             }
-% 
-%             \vspace{0.5em}
-%             \only<3->{
-%             \centering
-%             \includegraphics[width=0.8\textwidth]{%
-%                 ../THESIS/content/figures/chapter3/chambers/twochamber_scheme_crop_colors.pdf}
-%             }
-%         \end{column}
-% 
-%         \begin{column}{0.45\textwidth}
-%             \only<2->{
-%             \textbf{Three-Chamber Model:}
-%             \begin{align*}
-%                 \dot{N}\ix{w}=&\left(N\ix{w,lim}-N\ix{w}\right)\tau\ix{w,s}\\%
-%                 \dot{N}\ix{s}=&\Gamma\ix{s}-N\ix{s}\left(\tau\ix{s,p}+\tau\ix{s}\right)+g\left(N\ix{P},N\ix{S}\right)-c\ix{0}\\%
-%                 \dot{N}\ix{p}=&N\ix{s}\tau\ix{s,p}-\frac{N\ix{p}N\ix{s}}{N\ix{p,lim}}%
-%             \end{align*}
-%             \begin{itemize}
-%                 \item Adds SOL compartment
-%                 \item Better represents edge physics
-%                 \item Both models equally capable of representing feedback measurements
-%             \end{itemize}
-%             }
-% 
-%             \vspace{0.5em}
-%             \only<3->{
-%             \centering
-%             \includegraphics[width=0.8\textwidth]{%
-%                 ../THESIS/content/figures/chapter3/chambers/threechamber_scheme_crop_colors.pdf}
-%             }
-%         \end{column}
-%     \end{columns}
-% 
-%     % TP: Developed simple models to understand gas injection dynamics - two and three chamber systems
-%     % TP: Two-chamber: plasma and wall compartments with particle exchange and pumping
-%     % TP: Three-chamber: adds SOL/edge region for more realistic transport modeling
-%     % TP: Models capture basic physics but don't provide detailed predictive capability
-%     % TP: Both models successfully reproduce experimental radiation evolution during gas injection
-%     % TP: Fitted parameters: τ_w,p (wall-plasma exchange), τ_s,p (SOL-plasma), f_w,p (recycling fraction)
-%     % TP: Models help understand timescales but need refinement with OP2.1 data for better predictions
-% \end{frame}
-% 
-% \begin{frame}
-%     \frametitle{Channel Selection Sensitivity}
-%     \backgroundlogo%
-% 
-%     \begin{columns}
-%         \begin{column}{0.5\textwidth}
-%             \textbf{LOS Sensitivity Evaluation:}
-%             \begin{itemize}
-%                 \item Weighted deviation: $\Delta_w = \sum_i w_i |\Delta P_i| / \sum_i w_i$
-%                 \item Correlation coefficient: $r$ (Pearson)
-%                 \item Mean deviation: $\bar{\Delta} = \langle |\Delta P_i| \rangle$
-%                 \item Evaluated across 45 discharge pairs from OP1.2b
-%                 \item Threshold: $\Delta_w < 0.15$ for acceptable performance
-%             \end{itemize}
-% 
-%             \vspace{0.5em}
-%             \textbf{Optimal Channel Selection:}
-%             \begin{itemize}
-%                 \item No single "best" set exists
-%                 \item Robust selection achieves $\ge$85\% prediction accuracy
-%                 \item VBC channels generally outperform HBC for edge sensitivity
-%                 \item 3-5 channels sufficient for reliable $P_{\text{pred}}$
-%             \end{itemize}
-% 
-%             \vspace{0.5em}
-%             \begin{block}{Key Finding}
-%                 Detectors viewing separatrix and SOL region most viable for real-time feedback configurations
-%             \end{block}
-%         \end{column}
-% 
-%         \begin{column}{0.45\textwidth}
-%             \centering
-%             \includegraphics[width=\textwidth]{%
-%                 ../THESIS/content/figures/chapter2/ch_selection_3_13_27_g.pdf}
-%         \end{column}
-%     \end{columns}
-% 
-%     % TP: Systematic analysis identified which bolometer channels are most sensitive to relevant radiation scenarios
-%     % TP: Evaluated 45 discharge pairs from OP1.2b campaign with different radiation scenarios
-%     % TP: Channels viewing the separatrix and SOL are optimal - this is where detachment radiation occurs
-%     % TP: VBC cameras generally outperform HBC for edge sensitivity due to better viewing geometry
-%     % TP: Multiple channel combinations can achieve similar prediction accuracy - system is robust
-%     % TP: 3-5 channels sufficient for ≥85% accuracy - more channels don't significantly improve performance
-%     % TP: Threshold Δ_w<0.15 defines acceptable performance - weighted deviation metric accounts for measurement uncertainties
-% \end{frame}
+
+\section{Line of Sight Sensitivity}
+
+\begin{frame}
+    \frametitle{Channel Selection Sensitivity}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1-4>{
+            \begin{itemize}
+                \item Evaluate LOS/channel efficacy for feedback (generalised local radiation sensitivity)
+                \item Data set of all feedback discharges from OP1.2b
+                \item Applied 5 different metric (linear \& weighted deviation, FFT, ...)
+            \end{itemize}
+            }
+
+            \only<5>{
+            \vspace{0.5em}
+            \textbf{Optimal Channel Selection:}
+            \begin{itemize}
+                \item No single "best" set exists
+                \item Robust selection achieves $\ge$85\% prediction accuracy
+                \item VBC channels generally outperform HBC for edge sensitivity
+                \item 3-5 channels sufficient for reliable $P_{\text{pred}}$
+            \end{itemize}
+
+            \vspace{0.5em}
+            \begin{block}{Key Finding}
+                Detectors viewing separatrix and SOL region most viable for real-time feedback configurations
+            \end{block}
+            }
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \only<1>{
+                % \begin{equation*}
+                %     \varphi\left(t\right)=1-\frac{\left\|P\ix{pred}-P\ix{rad}\right\|\left(t\right)}{P\ix{rad}\left(t\right)},\,\left(\left\|P\ix{pred}-P\ix{rad}\right\|<P\ix{pred}\right)\\%
+                %     \vartheta=\frac{1}{T\ix{stop}-T\ix{start}}\int_{T\ix{start}}^{T\ix{stop}}\varphi \left(t\right)\diff t%
+                % \end{equation*}
+            }
+            \only<2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/best_chans/best_chans_wghtd_dev_C[_8_7_23].pdf}
+            }
+            \only<3>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_3_HBCm_combinations.pdf}
+            }
+            \only<4>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_combs_HBCm.pdf}
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_combs_VBC.pdf}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Systematic analysis identified which bolometer channels are most sensitive to relevant radiation scenarios
+    % TP: Evaluated 45 discharge pairs from OP1.2b campaign with different radiation scenarios
+    % TP: Channels viewing the separatrix and SOL are optimal - this is where detachment radiation occurs
+    % TP: VBC cameras generally outperform HBC for edge sensitivity due to better viewing geometry
+    % TP: Multiple channel combinations can achieve similar prediction accuracy - system is robust
+    % TP: 3-5 channels sufficient for ≥85% accuracy - more channels don't significantly improve performance
+    % TP: Threshold Δ_w<0.15 defines acceptable performance - weighted deviation metric accounts for measurement uncertainties
+\end{frame}
 % 
 % \begin{frame}
 %     \frametitle{STRAHL Impurity Transport Modeling}
@@ -1133,23 +1040,147 @@
 % 
 % 
 % 
-% % ============================================================================
-% % BACKUP SLIDES - APPENDIX CONTENT
-% % ============================================================================
-% 
+% ============================================================================
+% BACKUP SLIDES - APPENDIX CONTENT
+% ============================================================================
+
+\begin{frame}
+    \backgroundlogo%
+
+    % TP: Backup slides contain detailed technical information from appendices
+    % TP: Available for questions on specific technical aspects
+\end{frame}
+
 % \begin{frame}
+%     \frametitle{Impurity Seeding Models}
 %     \backgroundlogo%
-%     \begin{center}
-%         \Huge\textbf{Backup Slides}
 % 
-%         \vspace{2em}
-%         \Large Additional Details
-%     \end{center}
+%     \begin{columns}
+%         \begin{column}{0.5\textwidth}
+%             \only<1->{
+%             \textbf{Two-Chamber Model:}
+%             \begin{align*}
+%                 \dot{N}\ix{w}=&\left(N\ix{w,lim}-N\ix{w}\right)\tau\ix{w,p}\\%
+%                 \dot{N}\ix{p}=&\Gamma\ix{s}+N\ix{w}\tau\ix{w,p}-f\ix{w,p}N\ix{p}-N\ix{p}\tau\ix{p}%
+%             \end{align*}
 % 
-%     % TP: Backup slides contain detailed technical information from appendices
-%     % TP: Available for questions on specific technical aspects
+%             \begin{itemize}
+%                 \item Plasma and wall compartments
+%                 \item Particle exchange rates
+%                 \item Pumping and recycling
+%             \end{itemize}
+%             }
+% 
+%             \vspace{0.5em}
+%             \only<3->{
+%             \centering
+%             \includegraphics[width=0.8\textwidth]{%
+%                 ../THESIS/content/figures/chapter3/chambers/twochamber_scheme_crop_colors.pdf}
+%             }
+%         \end{column}
+% 
+%         \begin{column}{0.45\textwidth}
+%             \only<2->{
+%             \textbf{Three-Chamber Model:}
+%             \begin{align*}
+%                 \dot{N}\ix{w}=&\left(N\ix{w,lim}-N\ix{w}\right)\tau\ix{w,s}\\%
+%                 \dot{N}\ix{s}=&\Gamma\ix{s}-N\ix{s}\left(\tau\ix{s,p}+\tau\ix{s}\right)+g\left(N\ix{P},N\ix{S}\right)-c\ix{0}\\%
+%                 \dot{N}\ix{p}=&N\ix{s}\tau\ix{s,p}-\frac{N\ix{p}N\ix{s}}{N\ix{p,lim}}%
+%             \end{align*}
+%             \begin{itemize}
+%                 \item Adds SOL compartment
+%                 \item Better represents edge physics
+%                 \item Both models equally capable of representing feedback measurements
+%             \end{itemize}
+%             }
+% 
+%             \vspace{0.5em}
+%             \only<3->{
+%             \centering
+%             \includegraphics[width=0.8\textwidth]{%
+%                 ../THESIS/content/figures/chapter3/chambers/threechamber_scheme_crop_colors.pdf}
+%             }
+%         \end{column}
+%     \end{columns}
+% 
+%     % TP: Developed simple models to understand gas injection dynamics - two and three chamber systems
+%     % TP: Two-chamber: plasma and wall compartments with particle exchange and pumping
+%     % TP: Three-chamber: adds SOL/edge region for more realistic transport modeling
+%     % TP: Models capture basic physics but don't provide detailed predictive capability
+%     % TP: Both models successfully reproduce experimental radiation evolution during gas injection
+%     % TP: Fitted parameters: τ_w,p (wall-plasma exchange), τ_s,p (SOL-plasma), f_w,p (recycling fraction)
+%     % TP: Models help understand timescales but need refinement with OP2.1 data for better predictions
 % \end{frame}
-% 
+
+% ----------------------------------------------------------------------------
+% Plasma Power Balance
+% ----------------------------------------------------------------------------
+
+% \begin{frame}{Plasma Power Balance}
+%     \begin{columns}[T]
+%         \begin{column}{0.48\textwidth}
+%             \textbf{0-D Energy Conservation:}
+%             
+%             Starting from 3D fluid equations:
+%             \begin{align*}
+%                 \frac{3}{2}\frac{\partial p}{\partial t} + \frac{3}{2}(\nabla \cdot p)\vec{u} + p\nabla \cdot \vec{u} + \nabla \cdot \vec{q} = s
+%             \end{align*}
+%             
+%             Where s = s$_H$ - s$_{\text{rad}}$ (sources - sinks)
+%             
+%             \vspace{0.3cm}
+%             \textbf{Integrated Power Balance:}
+%             \begin{empheq}[box=\fbox]{align*}
+%                 P_{\text{bal}} &= P_{\text{ECRH}} - P_{\text{rad}} - P_{\text{div}} - \frac{dW}{dt} \overset{!}{=} 0
+%             \end{empheq}
+%             
+%             \vspace{0.3cm}
+%             \textbf{Power Components:}
+%             \begin{itemize}
+%                 \item P$_{\text{ECRH}}$: Input heating (10\% error)
+%                 \item P$_{\text{rad}}$: Radiation loss (5\% error, +25\% vessel)
+%                 \item P$_{\text{div}}$: Divertor target load (10\% error)
+%                 \item dW/dt: Stored energy change (W$_{\text{dia}}$)
+%             \end{itemize}
+%         \end{column}
+%         
+%         \begin{column}{0.48\textwidth}
+%             \begin{figure}
+%                 \centering
+%                 \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter1/power_balance_example_20180808_004.pdf}
+%                 \caption*{Power balance example XP20180808.4}
+%             \end{figure}
+%             
+%             \vspace{0.3cm}
+%             \textbf{Stored Energy:}
+%             \begin{itemize}
+%                 \item W$_{\text{dia}}$: Diamagnetic energy (preferred)
+%                 \item W$_{\text{kin}}$ = $\frac{3}{2}\int \sum_j n_j T_j \frac{dV}{dr}dr$
+%                 \item W$_{\text{kin}}$ overestimates by ~25\%
+%             \end{itemize}
+%             
+%             \vspace{0.3cm}
+%             \textbf{Challenges:}
+%             \begin{itemize}
+%                 \item Large error bars from propagation
+%                 \item Fast transitions poorly described
+%                 \item Toroidal asymmetries
+%                 \item Vessel heat load contribution
+%             \end{itemize}
+%         \end{column}
+%     \end{columns}
+%     
+%     % TP: Power balance critical for characterizing plasma performance and energy confinement
+%     % TP: 0-D model assumes thermodynamic equilibrium and fully ionized plasma
+%     % TP: Diamagnetic energy W_dia more reliable than kinetic energy W_kin
+%     % TP: P_bal ≈ 0 validates energy conservation within measurement uncertainties
+%     % TP: Radiation mandatory in reactor to reduce divertor heat loads via volume dissipation
+%     % TP: Error propagation makes detailed analysis difficult - need improved diagnostics
+%     % TP: Fast plasma transitions show large P_bal deviations - model limitations
+%     % TP: Vessel heat load contribution recently identified as significant error source
+% \end{frame}
+
+%
 % % ----------------------------------------------------------------------------
 % % Detector Sensitivity and Etendue
 % % ----------------------------------------------------------------------------
@@ -2120,3 +2151,149 @@
 %     % TP: Results support main conclusions and demonstrate robustness
 % \end{frame}
 % 
+
+% ----------------------------------------------------------------------------
+% Correlation Metric for LOS Evaluation
+% ----------------------------------------------------------------------------
+
+% \begin{frame}
+%     \frametitle{Correlation Metric for LOS Evaluation}
+%     \backgroundlogo%
+% 
+%     \textbf{Cross-Correlation Approach:}
+% 
+%     \begin{columns}[T]
+%         \begin{column}{0.55\textwidth}
+%             \textbf{Method:}
+%             \begin{itemize}
+%                 \item Measures temporal likeness between $P_{\text{pred}}$ and $P_{\text{rad}}$
+%                 \item Cross-correlation integral analysis
+%                 \item Compares to self-correlation baseline
+%                 \item Quality inversely proportional to deviation
+%             \end{itemize}
+% 
+%             \vspace{0.5em}
+%             \textbf{Mathematical Formulation:}
+%             \begin{align*}
+%                 \varphi(t) &= \int_{-\infty}^{\infty}P_{\text{pred}}(\tau)P_{\text{rad}}(t+\tau)d\tau \\
+%                 \vartheta &= \frac{1}{T_{\text{stop}}-T_{\text{start}}}\int_{T_{\text{start}}}^{T_{\text{stop}}}|\varphi^{\ast}(t)-\varphi(t)|dt \\
+%                 \varphi^{\ast}(t) &= \int_{-\infty}^{\infty}P_{\text{rad}}(\tau)P_{\text{rad}}(t+\tau)d\tau
+%             \end{align*}
+%         \end{column}
+% 
+%         \begin{column}{0.43\textwidth}
+%             \textbf{Key Results:}
+%             \begin{itemize}
+%                 \item Quality range: 1-28 a.u. (XP20181010.32)
+%                 \item Large error bars: up to 40\%
+%                 \item Distinct local maxima at $\pm0.85r_a$
+%                 \item Lowest sensitivity at X-point viewing channels
+%                 \item Congruent profiles across $m=3,5,7$
+%             \end{itemize}
+% 
+%             \vspace{0.5em}
+%             \textbf{Interpretation:}
+%             \begin{itemize}
+%                 \item Emphasizes temporal behavior
+%                 \item Sensitive to localized perturbations
+%                 \item Contrasts with weighted deviation
+%                 \item X-point channels show poor temporal correlation
+%             \end{itemize}
+%         \end{column}
+%     \end{columns}
+% 
+%     \vspace{0.3cm}
+%     \textbf{Camera Comparison:}
+%     \begin{itemize}
+%         \item HBC: Lowest sensitivity at $\pm0.9r_a$ (separatrix/SOL viewing)
+%         \item VBC: Global maximum at upper inboard X-point location
+%         \item Both cameras: Large standard deviations indicate high variability
+%         \item Selection size $m$ has minimal impact on profile shape
+%     \end{itemize}
+% 
+%     % TP: Correlation metric provides frequency-domain perspective on LOS quality
+%     % TP: Contrasts with weighted deviation - X-point channels perform poorly here
+%     % TP: Large error bars indicate high sensitivity to discharge conditions
+%     % TP: Temporal correlation critical for feedback - gas puff perturbations affect this metric
+%     % TP: Lower values indicate better prediction quality (inverse relationship)
+%     % TP: Most channels show similar sensitivity except at local extrema
+%     % TP: Results suggest localized radiation perturbations dominate temporal correlation
+% \end{frame}
+% 
+% % ----------------------------------------------------------------------------
+% % Mean Deviation Metric for LOS Evaluation
+% % ----------------------------------------------------------------------------
+% 
+% \begin{frame}
+%     \frametitle{Mean Deviation Metric for LOS Evaluation}
+%     \backgroundlogo%
+% 
+%     \textbf{Modified Variance Approach:}
+% 
+%     \begin{columns}[T]
+%         \begin{column}{0.55\textwidth}
+%             \textbf{Method:}
+%             \begin{itemize}
+%                 \item Modified variance calculation
+%                 \item No temporal relation weighting
+%                 \item No cut-offs in $P_{\text{pred}}$ spectrum
+%                 \item Positive-definite results
+%             \end{itemize}
+% 
+%             \vspace{0.5em}
+%             \textbf{Mathematical Formulation:}
+%             \begin{align*}
+%                 \varphi(t) &= \frac{1}{T_{\text{stop}}-T_{\text{start}}}(P_{\text{rad}}(t)-P_{\text{pred}}(t))^2 \\
+%                 \vartheta &= \sqrt{(T_{\text{stop}}-T_{\text{start}})\left(\int_{T_{\text{start}}}^{T_{\text{stop}}}\varphi(t)dt\right)^{-1}}
+%             \end{align*}
+% 
+%             \vspace{0.3em}
+%             \textbf{Quality Interpretation:}
+%             \begin{itemize}
+%                 \item Higher $\vartheta$ = better prediction
+%                 \item Smaller $\varphi(t)$ = higher congruence
+%                 \item Inverse correlation between metric and map
+%             \end{itemize}
+%         \end{column}
+% 
+%         \begin{column}{0.43\textwidth}
+%             \textbf{Key Results:}
+%             \begin{itemize}
+%                 \item Quality: $\sim$1.2$\times$10$^{-4}$ a.u. (HBC, $m=7$)
+%                 \item Error bars: 20-40\% (large variability)
+%                 \item Local maxima at $-0.28r_a$ and $0.6r_a$ ($m=3$)
+%                 \item Quality scales with selection size $m$
+%                 \item VBC: Similar patterns, higher sensitivity
+%             \end{itemize}
+% 
+%             \vspace{0.5em}
+%             \textbf{Comparison to Other Metrics:}
+%             \begin{itemize}
+%                 \item Similar extrema locations as weighted deviation
+%                 \item Less pronounced features
+%                 \item Missing SOL edge extrema
+%                 \item Order of magnitude larger error bars
+%                 \item No outliers in local sensitivity
+%             \end{itemize}
+%         \end{column}
+%     \end{columns}
+% 
+%     \vspace{0.3cm}
+%     \textbf{Conclusions:}
+%     \begin{itemize}
+%         \item Promotes edge channels ($\pm r_a$) for best prediction
+%         \item Core-viewing channels consistently positive impact
+%         \item $m=7$ selections achieve good quality for any combination
+%         \item Outermost LOS (plasma boundary) least favorable
+%         \item Qualitatively agrees with weighted deviation but with larger uncertainties
+%     \end{itemize}
+% 
+%     % TP: Mean deviation offers variance-based quality assessment without temporal weighting
+%     % TP: Results qualitatively similar to weighted deviation but less pronounced features
+%     % TP: Large error bars (20-40\%) indicate high sensitivity to experimental conditions
+%     % TP: Quality consistently improves with larger selection sizes (m=3→5→7)
+%     % TP: Core-viewing channels show consistent positive contribution across all metrics
+%     % TP: Edge channels near separatrix optimal for feedback prediction
+%     % TP: Mathematical formulation simpler than correlation but yields similar insights
+%     % TP: Exclusive conclusion: outermost boundary-viewing LOS unfavorable for feedback
+% \end{frame}
