@@ -90,7 +90,7 @@
                 \item Line radiation: atomic transitions
                 \item Impurity effects on plasma performance
             \end{itemize}
-            
+
             \begin{exampleblock}{Impurity Seeding}
                 Injection of low-Z (He, N$_2$) or high-Z (Ne, Ar) impurities to enhance edge radiation and cooling
             \end{exampleblock}
@@ -242,8 +242,8 @@
             \textbf{Architecture:}
             \begin{itemize}
                 \item Integrated data acquisition hardware \& optimized control software
-                \item Twin proxies and dedicated signal outputs 
-                \item Thermal gas valve actuation with multipurpose/-diagnostic PID controller 
+                \item Twin proxies and dedicated signal outputs
+                \item Thermal gas valve actuation with multipurpose/-diagnostic PID controller
             \end{itemize}
         \end{column}
 
@@ -408,7 +408,7 @@
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \only<1-4>{
+            \only<1-2>{
             \begin{itemize}
                 \item Evaluate LOS/channel efficacy for feedback (generalised local radiation sensitivity)
                 \item Data set of all feedback discharges from OP1.2b
@@ -416,7 +416,7 @@
             \end{itemize}
             }
 
-            \only<5>{
+            \only<3>{
             \vspace{0.5em}
             \textbf{Optimal Channel Selection:}
             \begin{itemize}
@@ -427,34 +427,34 @@
             \end{itemize}
 
             \vspace{0.5em}
-            \begin{block}{Key Finding}
-                Detectors viewing separatrix and SOL region most viable for real-time feedback configurations
-            \end{block}
+            \begin{alertblock}{Takeaway}
+                Detectors viewing close to separatrix and SOL most viable for feedback purposes
+            \end{alertblock}
             }
         \end{column}
 
         \begin{column}{0.45\textwidth}
             \only<1>{
-                % \begin{equation*}
-                %     \varphi\left(t\right)=1-\frac{\left\|P\ix{pred}-P\ix{rad}\right\|\left(t\right)}{P\ix{rad}\left(t\right)},\,\left(\left\|P\ix{pred}-P\ix{rad}\right\|<P\ix{pred}\right)\\%
-                %     \vartheta=\frac{1}{T\ix{stop}-T\ix{start}}\int_{T\ix{start}}^{T\ix{stop}}\varphi \left(t\right)\diff t%
-                % \end{equation*}
+                \textbf{Weighted deviation:}%
+                \begin{align*}
+                    \varphi\left(t\right)=&1-\frac{\left\|P\ix{pred}-P\ix{rad}\right\|\left(t\right)}{P\ix{rad}\left(t\right)}\\%
+                    \vartheta=&\frac{1}{T}\int_{T}\varphi\left(t\right)\diff t%
+                \end{align*}
             }
             \only<2>{
                 \centering
+                \hspace*{.3cm}%
                 \includegraphics[width=\textwidth]{%
                     ../THESIS/content/figures/chapter3/training/best_chans/best_chans_wghtd_dev_C[_8_7_23].pdf}
+                \includegraphics[width=.9\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_3_HBCm_combinations.pdf}
             }
             \only<3>{
                 \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/weighted_deviation_3_HBCm_combinations.pdf}
-            }
-            \only<4>{
-                \centering
-                \includegraphics[width=\textwidth]{%
+                \hspace*{-.35cm}%
+                \includegraphics[width=.9\textwidth]{%
                     ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_combs_HBCm.pdf}
-                \includegraphics[width=\textwidth]{%
+                \includegraphics[width=.9\textwidth]{%
                     ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_combs_VBC.pdf}
             }
         \end{column}
@@ -468,171 +468,153 @@
     % TP: 3-5 channels sufficient for ≥85% accuracy - more channels don't significantly improve performance
     % TP: Threshold Δ_w<0.15 defines acceptable performance - weighted deviation metric accounts for measurement uncertainties
 \end{frame}
-% 
-% \begin{frame}
-%     \frametitle{STRAHL Impurity Transport Modeling}
-%     \backgroundlogo%
-% 
-%     \begin{columns}
-%         \begin{column}{0.5\textwidth}
-%             \only<1->{
-%             \textbf{STRAHL Code:}
-%             \begin{itemize}
-%                 \item 1D impurity transport simulation
-%                 \item Models carbon and oxygen radiation
-%                 \item Includes ionization, recombination
-%                 \item Diffusion and convection transport
-%             \end{itemize}
-% 
-%             \vspace{1em}
-%             \textbf{Key Results:}
-%             \begin{itemize}
-%                 \item Carbon dominates SOL emissivity (C$^{3+}$, C$^{4+}$)
-%                 \item Reduced diffusivity near separatrix: D$_{\perp}$ ≈ \SI{0.1}{\square\meter\per\second}
-%                 \item Inward shift of radiation for $f\ix{rad} \rightarrow 1$ (toward ρ$_{\text{pol}}$ ≈ 0.95)
-%                 \item Radiation moves from outside to inside separatrix
-%                 \item Anomalous transport dominates (D$_{\perp}$ $\gg$ D$_{\text{neo}}$)
-%             \end{itemize}
-%             }
-%         \end{column}
-% 
-%         \begin{column}{0.45\textwidth}
-%             \only<2->{
-%             \textbf{Forward Modeling:}
-%             \begin{itemize}
-%                 \item Calculate chord brightness from STRAHL profiles
-%                 \item Compare with experimental measurements
-%                 \item Validate transport assumptions
-%             \end{itemize}
-% 
-%             \vspace{1em}
-%             \begin{alertblock}{Discrepancy}
-%                 Forward calculations show less asymmetry in chord brightness than experiments, suggesting model limitations in capturing 3D effects
-%             \end{alertblock}
-%             }
-%         \end{column}
-%     \end{columns}
-% 
-%     % TP: STRAHL is a 1D transport code that models how impurities move and radiate in the plasma
-%     % TP: Simulations show carbon is the main radiator in the SOL - intrinsic impurity from wall interactions
-%     % TP: Carbon charge states C³⁺ and C⁴⁺ dominate emission in SOL region (T_e~10-50eV)
-%     % TP: Reduced diffusivity D_⊥≈0.1 m²/s near separatrix creates accumulation and enhanced radiation
-%     % TP: As radiation fraction increases, the emission zone shifts inward toward ρ_pol≈0.95
-%     % TP: Anomalous transport (turbulent) dominates over neoclassical by factor 10-100
-%     % TP: Model captures basic trends but misses some 3D asymmetries seen in experiments - stellarator complexity
-%     % TP: Forward modeling: calculate expected bolometer signals from STRAHL profiles for validation
-%     % TP: Discrepancies reveal limitations - need 3D modeling to capture full stellarator physics
-% \end{frame}
-% 
-% \section{Tomographic Reconstruction}
-% 
-% \begin{frame}
-%     \frametitle{Minimum Fisher Regularization (MFR)}
-%     \backgroundlogo%
-% 
-%     \begin{columns}
-%         \begin{column}{0.5\textwidth}
-%             \textbf{Ill-Posed Inverse Problem:}
-%             \begin{itemize}
-%                 \item 128 line-integrated measurements
-%                 \item Reconstruct 2D emissivity: $\sim$4500 pixels
-%                 \item Requires regularization
-%             \end{itemize}
-% 
-%             \vspace{1em}
-%             \textbf{Fisher Information:}
-%             \begin{equation*}
-%                 I_F = \int \frac{1}{g(\vec{r})} \left(\frac{\partial g(\vec{r})}{\partial \vec{r}}\right)^2 d\vec{r}
-%             \end{equation*}
-% 
-%             \vspace{0.5em}
-%             \textbf{Iterative Solution:}
-%             \begin{equation*}
-%                 \vec{x}^{(n+1)} = \left(\mathbf{T}^T\mathbf{T} + \mu\mathbf{H}^{(n)}\right)^{-1} \mathbf{T}^T\vec{b}
-%             \end{equation*}
-%         \end{column}
-% 
-%         \begin{column}{0.45\textwidth}
-%             \textbf{Radially Dependent Anisotropy (RDA):}
-%             \begin{itemize}
-%                 \item Tailored weighting: $\alpha(\rho) = \alpha_0 + (\alpha_1 - \alpha_0) \cdot \rho^{\beta}$
-%                 \item $\alpha < 1$: localized structures (edge)
-%                 \item $\alpha > 1$: smooth distributions (core)
-%                 \item Typical: $\alpha_0 \approx 0.1$, $\alpha_1 \approx 10$, $\beta \approx 2$
-%                 \item Accounts for stellarator flux surface geometry
-%             \end{itemize}
-% 
-%             \vspace{.5em}
-%             \begin{block}{MFR Advantages}
-%                 \begin{itemize}
-%                     \item Robust to noisy data
-%                     \item Smooth solutions
-%                     \item Incorporates a priori knowledge
-%                     \item Stable convergence
-%                 \end{itemize}
-%             \end{block}
-% 
-%             % \vspace{0.5em}
-%             % \centering
-%             % \includegraphics[width=0.8\textwidth]{%
-%             %     ../THESIS/content/figures/chapter4/kAni_profile_comparison.pdf}
-%         \end{column}
-%     \end{columns}
-% 
-%     % TP: Tomography inverts line-integrated measurements to get 2D radiation distribution
-%     % TP: This is ill-posed - 80 measurements but ~4500 pixels to reconstruct, needs regularization
-%     % TP: MFR finds the smoothest solution consistent with measurements using Fisher information theory
-%     % TP: Fisher information I_F measures how much gradient information is in the solution
-%     % TP: Radially dependent anisotropy allows different smoothness in core vs edge - captures physics better
-%     % TP: Core (α≈10): smooth, flux-surface aligned; Edge (α≈0.1): localized, allows sharp gradients
-%     % TP: Iterative solution converges in ~10-20 iterations with regularization parameter λ
-%     % TP: Grid: 30×150 pixels, domain: 1.3² times plasma volume for boundary handling
-% \end{frame}
-% 
-% \begin{frame}
-%     \frametitle{Geometry Sensitivity and Benchmarking}
-%     \backgroundlogo%
-% 
-%     \begin{columns}
-%         \begin{column}{0.5\textwidth}
-%             \only<1->{
-%             \textbf{Geometry Perturbation Tests:}
-%             \begin{itemize}
-%                 \item Camera position variations
-%                 \item Detector/aperture segmentation (N=2,4,8)
-%                 \item Triangulation vs rectangular splitting
-%                 \item Etendue calculation validation
-%             \end{itemize}
-%             }
-%         \end{column}
-% 
-%         \begin{column}{0.45\textwidth}
-%             \only<2->{
-%             \begin{block}{Key Findings:}
-%                 \begin{itemize}
-%                     \item Significant robustness to geometry variations
-%                     \item N$\ge$8 segmentation adequate
-%                     \item Intrinsic bias toward upper SOL/separatrix
-%                     \item Camera displacement effects non-negligible
-%                 \end{itemize}
-%             \end{block}
-%             }
-%         \end{column}
-%     \end{columns}
-% 
-%     % TP: Extensive testing of geometry sensitivity - how do uncertainties in camera positions affect results?
-%     % TP: Camera position variations: tested ±1° tilts in all directions
-%     % TP: Detector/aperture segmentation: N≥8 provides adequate resolution without excessive computation
-%     % TP: Algorithm is robust but geometry matters - need accurate as-built measurements
-%     % TP: Intrinsic bias toward upper SOL/separatrix due to camera viewing geometry
-%     % TP: Camera displacement effects can be significant - emphasizes need for precise alignment
-%     % TP: Etendue calculation validated against analytical solutions for simple geometries
-% \end{frame}
-% 
+
+\section{Tomography}
+
+\begin{frame}
+    \frametitle{Minimum Fisher Regularization}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+           \only<1-2>{
+            \textbf{Measurement:}
+            \begin{align*}
+                \mathbf{T}\,\vec{x}=\vec{b}
+            \end{align*}
+
+            \textbf{Bolometer tomography:}
+            \begin{itemize}
+                \item 61 line-integrated measurements $\vec{b}$
+                \item 2D emissivity $\vec{x}$: $\sim$4500 pixels
+                \item \textit{Geometry} $\mathbf{T}$ has high condition
+                \item \color{red}{ill-posed, requires regularization}
+            \end{itemize}
+            }
+
+            \only<3-4>{
+            \begin{block}{MFR + RDA Advantages}
+                \begin{itemize}
+                    \item Robust to noisy data
+                    \item Incorporates a priori knowledge
+                    \item Stable convergence
+                \end{itemize}
+            \end{block}
+           }
+
+           \only<4>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/kAni_profile_comparison.pdf}
+            }
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \only<2>{
+            \textbf{Problem:}
+            \begin{align*}
+                \underset{\eta}{\text{min}}&\left\|\left(\mathbf{T}^{\intercal}\mathbf{T}+\mu^{-1}\mathbf{H}\right)^{-1}\mathbf{T}^{\intercal}\vec{b}\,\right\|\,\rightarrow\,\vec{x}%
+            \end{align*}
+
+            \textbf{Fisher Information:}
+            \begin{align*}
+                I\ix{F}=\int\frac{1}{x}\left(\frac{\partial x}{\partial \vec{r}}\right)^2 d\vec{r}\,\leftrightarrow\,%
+                \mathbf{H}\sim\frac{1}{x}\pmb{\Delta}^{\intercal}\pmb{\Delta}
+            \end{align*}
+
+            limiting error on reconstruction:
+            \begin{equation*}
+                \sigma\ix{x}\le\frac{1}{I\ix{F}}
+            \end{equation*}
+            }
+
+            \only<3-4>{%
+            \textbf{Radially Dependent Anisotropy:}
+            \begin{itemize}
+                \item Tailored weighting to poloidal gradient
+                \item $k\ix{ani}<1$: favours anisotropy
+                \item $k\ix{ani}>1$: favours smooth emissivity
+            \end{itemize}
+
+            \vspace{-1em}
+            \begin{align*}
+                \mathbf{H}&\to\mathbf{H}\ix{ani}\\%
+                \pmb{\Delta}&=\pmb{\nabla}\ix{r}^{\intercal}(\cdot)\pmb{\nabla}\ix{r}+\pmb{\nabla}_{\vartheta}^{\intercal}(\cdot)\pmb{\nabla}_{\vartheta}\\%
+                \pmb{\nabla}_{\vartheta}&\to\pmb{\widetilde{\nabla}}_{\vartheta}=\frac{1}{k\ix{ani}\Delta r}\mathbf{D}\ix{dia}^{(0)}\pmb{\nabla}_{\vartheta}
+            \end{align*}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Tomography inverts line-integrated measurements to get 2D radiation distribution
+    % TP: This is ill-posed - 80 measurements but ~4500 pixels to reconstruct, needs regularization
+    % TP: MFR finds the smoothest solution consistent with measurements using Fisher information theory
+    % TP: Fisher information I_F measures how much gradient information is in the solution
+    % TP: Radially dependent anisotropy allows different smoothness in core vs edge - captures physics better
+    % TP: Core (α≈10): smooth, flux-surface aligned; Edge (α≈0.1): localized, allows sharp gradients
+    % TP: Iterative solution converges in ~10-20 iterations with regularization parameter λ
+    % TP: Grid: 30×150 pixels, domain: 1.3² times plasma volume for boundary handling
+\end{frame}
+
+\begin{frame}
+    \frametitle{Benchmarking}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1,3>{
+            \textbf{Geometry Perturbation Test:}
+            \begin{itemize}
+                \item Previous and future calculations based on as-designed geometry
+                \item Forward calculation of synthetic 2D emissivity show asymmetry (STRAHL)
+                \only<3>{
+                    \item Tests for symmetrical chord profile yield artificial camera geometry
+                }
+            \end{itemize}
+            }
+
+            \only<2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/phantoms/2D/phantom_v_tomo2D_strahl_ID00094_31x75x4_aniM4_1.0_1.0_nT20_nW1_nigs1_times0.11_cut.png}
+                \small($f\ix{rad}\sim100\%$)
+            }
+
+            \only<4>{
+                \centering
+                \includegraphics[width=.7\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/LoS_comparison_artificialHBCm_sN8.pdf}
+            }
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \only<2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
+            }
+
+            \only<4>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/compare_artificialHBCm_emissivities3D.pdf}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Extensive testing of geometry sensitivity - how do uncertainties in camera positions affect results?
+    % TP: Camera position variations: tested ±1° tilts in all directions
+    % TP: Detector/aperture segmentation: N≥8 provides adequate resolution without excessive computation
+    % TP: Algorithm is robust but geometry matters - need accurate as-built measurements
+    % TP: Intrinsic bias toward upper SOL/separatrix due to camera viewing geometry
+    % TP: Camera displacement effects can be significant - emphasizes need for precise alignment
+    % TP: Etendue calculation validated against analytical solutions for simple geometries
+\end{frame}
+%
 % \begin{frame}
 %     \frametitle{Geometry Sensitivity and Benchmarking}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}
 %         \begin{column}{0.5\textwidth}
 %             \only<1->{
@@ -647,7 +629,7 @@
 %             \end{itemize}
 %             }
 %         \end{column}
-% 
+%
 %         \begin{column}{0.45\textwidth}
 %             \only<2->{
 %             \begin{exampleblock}{Recommended Settings}
@@ -658,7 +640,7 @@
 %             }
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Phantom benchmarks with known input profiles test reconstruction quality
 %     % TP: 12 synthetic test cases: Gaussian, ring, asymmetric profiles with varying complexity
 %     % TP: Noise sensitivity tested up to 10% Gaussian noise - algorithm remains robust
@@ -668,11 +650,11 @@
 %     % TP: Quality metrics χ² and ρ_c (correlation) used to evaluate reconstruction fidelity
 %     % TP: Recommended settings: k_ani={2.0,0.3} (core,edge), 30×150 grid, domain 1.3²V_P
 % \end{frame}
-% 
+%
 % \begin{frame}
 %     \frametitle{Experimental Tomography Results}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}
 %         \begin{column}{0.5\textwidth}
 %             \only<1->{
@@ -701,7 +683,7 @@
 %             }
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Applied MFR to real experimental data from feedback-controlled discharges (OP1.2b)
 %     % TP: Reconstructions show radiation moving from core to edge as detachment develops
 %     % TP: Can resolve localized structures like X-point radiation and MARFEs (multifaceted asymmetric radiation)
@@ -710,11 +692,11 @@
 %     % TP: Reveals SOL radiation underestimation in standard analysis - tomography captures full distribution
 %     % TP: Core radiation P_2D^core more stable metric than total P_rad for quasi-steady-state analysis
 % \end{frame}
-% 
+%
 % \begin{frame}
 %     \frametitle{Tomography Quality Assessment}
 %     \backgroundlogo%
-% 
+%
 %     \only<1->{
 %         \begin{itemize}
 %             \item \textbf{Reconstruction Accuracy:} $P\ix{rad}$ consistently underestimates total 2D integrated power by amount equal to SOL radiation
@@ -723,14 +705,14 @@
 %             \item \textbf{Experimental Validation:} Results agree well with phantom benchmarks, supporting algorithm reliability
 %         \end{itemize}
 %     }
-% 
+%
 %     \only<2->{
 %         \vspace{1em}
 %         \begin{block}{Conclusion}
 %             MFR with RDA weighting provides robust, reliable 2D radiation reconstructions suitable for physics analysis and power balance calculations, though computational limitations prevent continuous real-time operation
 %         \end{block}
 %     }
-% 
+%
 %     % TP: Quality assessment shows algorithm performs as expected from benchmarks
 %     % TP: Standard extrapolation underestimates total power - tomography reveals SOL contribution
 %     % TP: χ² and ρ_c metrics not always congruent - optimal tomogram may not have χ²=1 due to systematic errors
@@ -739,13 +721,13 @@
 %     % TP: Computational cost ~seconds per frame - suitable for post-shot analysis but not real-time yet
 %     % TP: Future: GPU acceleration could enable real-time tomography for feedback applications
 % \end{frame}
-% 
+%
 % \section{Conclusions and Outlook}
-% 
+%
 % \begin{frame}
 %     \frametitle{Key Achievements}
 %     \backgroundlogo%
-% 
+%
 %     \begin{enumerate}
 %         \item \textbf{Real-Time Feedback System:} Successfully implemented, tested and operated first bolometer radiation feedback at W7-X
 %         \only<2->{
@@ -756,7 +738,7 @@
 %             \item Validated 3-5 channel LOS subsets for fast prediction (≥85\% accuracy)
 %         \end{itemize}
 %         }
-% 
+%
 %         \vspace{0.5em}
 %         \item \textbf{Line of Sight Optimization:} Systematic sensitivity analysis identified optimal detector configurations
 %         \only<3->{
@@ -766,7 +748,7 @@
 %             \item No single "best" set - multiple viable configurations
 %         \end{itemize}
 %         }
-% 
+%
 %         \vspace{0.5em}
 %         \item \textbf{Tomographic Reconstruction:} Developed and benchmarked tailored MFR algorithm with RDA weighting
 %         \only<4->{
@@ -778,7 +760,7 @@
 %         \end{itemize}
 %         }
 %     \end{enumerate}
-% 
+%
 %     % TP: Three major achievements: feedback system, LOS optimization, and tomography algorithm
 %     % TP: Feedback system demonstrated stable high-radiation scenarios (f_rad≥85-90%) essential for future reactors
 %     % TP: First bolometer-based real-time feedback at W7-X - direct radiation control vs indirect proxies
@@ -786,11 +768,11 @@
 %     % TP: Tomography gives detailed 2D view of radiation distribution for physics understanding
 %     % TP: All three components validated through extensive experimental testing in OP1.2b campaign
 % \end{frame}
-% 
+%
 % \begin{frame}
 %     \frametitle{Scientific Insights}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}
 %         \begin{column}{0.5\textwidth}
 %             \only<1->{
@@ -802,7 +784,7 @@
 %                 \item X-point and island radiation concentration
 %             \end{itemize}
 %             }
-% 
+%
 %             \vspace{1em}
 %             \only<2->{
 %             \textbf{Impurity Transport:}
@@ -813,7 +795,7 @@
 %             \end{itemize}
 %             }
 %         \end{column}
-% 
+%
 %         \begin{column}{0.45\textwidth}
 %             \only<3->{
 %             \textbf{Feedback Control:}
@@ -824,7 +806,7 @@
 %                 \item System latency limits performance
 %             \end{itemize}
 %             }
-% 
+%
 %             \vspace{1em}
 %             \only<4->{
 %             \textbf{Diagnostic Performance:}
@@ -836,7 +818,7 @@
 %             }
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Work provided new insights into detachment physics at W7-X stellarator
 %     % TP: C³⁺ detachment signature at f_rad~50%, full detachment at f_rad>90% with stable operation
 %     % TP: Radiation shifts inward (toward ρ_pol≈0.95) as f_rad→1, concentrates at X-points and islands
@@ -848,11 +830,11 @@
 %     % TP: Geometry uncertainties (±1°) affect tomography but algorithm remains robust
 %     % TP: Tomography reveals SOL radiation underestimation in standard analysis - captures full 2D distribution
 % \end{frame}
-% 
+%
 % \begin{frame}
 %     \frametitle{Future Outlook and Recommendations}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}
 %         \begin{column}{0.5\textwidth}
 %             \only<1->{
@@ -865,7 +847,7 @@
 %                 \item Integration with plasma control system (PCS)
 %             \end{itemize}
 %             }
-% 
+%
 %             \vspace{1em}
 %             \only<2->{
 %             \textbf{Modeling Improvements:}
@@ -878,7 +860,7 @@
 %             \end{itemize}
 %             }
 %         \end{column}
-% 
+%
 %         \begin{column}{0.45\textwidth}
 %             \only<3->{
 %             \textbf{Tomography Extensions:}
@@ -890,7 +872,7 @@
 %                 \item Integration with synthetic diagnostics
 %             \end{itemize}
 %             }
-% 
+%
 %             \vspace{1em}
 %             \only<4->{
 %             \textbf{Reactor Relevance:}
@@ -904,7 +886,7 @@
 %             }
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Clear path forward for system improvements - hardware and software upgrades
 %     % TP: Latency reduction to <10ms would significantly improve feedback performance
 %     % TP: Machine learning could optimize PID parameters and predict optimal gas injection strategies
@@ -916,17 +898,17 @@
 %     % TP: DEMO requirements: P_fus~500MW, f_rad≥95%, divertor heat loads <10MW/m², steady-state operation
 %     % TP: Methods developed here transferable to tokamaks (ITER, DEMO) and other stellarators
 % \end{frame}
-% 
+%
 % \begin{frame}
 %     \frametitle{Broader Impact}
 %     \backgroundlogo%
-% 
+%
 %     \only<1->{
 %     \begin{block}{Contribution to Fusion Energy Research}
 %         This thesis advances the state-of-the-art in plasma diagnostics and control for stellarator fusion devices, providing essential tools and knowledge for achieving reactor-relevant operating scenarios with controlled radiative cooling and stable detachment.
 %     \end{block}
 %     }
-% 
+%
 %     \vspace{1em}
 %     \begin{columns}
 %         \begin{column}{0.45\textwidth}
@@ -940,7 +922,7 @@
 %             \end{itemize}
 %             }
 %         \end{column}
-% 
+%
 %         \begin{column}{0.45\textwidth}
 %             \only<3->{
 %             \textbf{Scientific Contributions:}
@@ -953,7 +935,7 @@
 %             }
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: This work makes significant contributions to both technical capabilities and scientific understanding
 %     % TP: Technical: First bolometer feedback at W7-X, validated channel selection, benchmarked MFR tomography
 %     % TP: Scientific: Detachment physics (C³⁺ at f_rad~50%), impurity transport (D_⊥≈0.1 m²/s), 2D radiation
@@ -963,11 +945,11 @@
 %     % TP: Lays groundwork for continued development toward fusion energy
 %     % TP: Provides validated tools and understanding for OP2.1 and beyond at W7-X
 % \end{frame}
-% 
+%
 % \begin{frame}
 %     \frametitle{Summary}
 %     \backgroundlogo%
-% 
+%
 %     \begin{itemize}
 %         \only<1->{%
 %             \item Developed and operated first real-time bolometer radiation feedback system at W7-X stellarator
@@ -976,7 +958,7 @@
 %             \item Validated 3-channel bolometer subset for fast radiation power prediction with $\ge$85\% accuracy
 %             \item Systematic line of sight sensitivity analysis identified optimal detector configurations for feedback
 %         }
-% 
+%
 %         \only<2->{
 %             \item STRAHL modeling revealed carbon dominance in SOL radiation and inward shift at high $f\ix{rad}$
 %             \item Developed and benchmarked Minimum Fisher Regularization tomography with radially dependent anisotropy
@@ -985,7 +967,7 @@
 %             \item Established essential approach for future fusion reactor heat load management
 %         }
 %     \end{itemize}
-% 
+%
 %     % TP: In summary, this thesis successfully developed and demonstrated real-time radiation feedback control
 %     % TP: First bolometer-based feedback at W7-X with minimum latency 13.6ms, total response 200-400ms
 %     % TP: Achieved reactor-relevant operating scenarios with stable high radiation fractions (f_rad≥85-90%)
@@ -997,15 +979,15 @@
 %     % TP: Tomography: MFR with RDA, >90% reconstruction quality, 10-20% power balance agreement
 %     % TP: All methods validated through extensive experimental testing in OP1.2b campaign (2018)
 % \end{frame}
-% 
+%
 % \begin{frame}
 %     \frametitle{Collaborations}
 %     \backgroundlogo%
-% 
+%
 %     \begin{block}{Acknowledgement}
 %         \acknowledgementtext%
 %     \end{block}
-% 
+%
 %     \vspace{2em}
 %     \textbf{Collaborators:}
 %     \collaborators[1.1cm]{%
@@ -1018,28 +1000,28 @@
 %         }%
 %     }%
 % \end{frame}
-% 
-% 
+%
+%
 % \begin{frame}[plain]
 %     \backgroundlogo%
 %     \begin{center}
 %         {\Huge Thank You}
 %     \end{center}
-% 
+%
 %     % TP: Thank the audience and open for questions
 %     % TP: Be prepared to discuss: feedback system details, tomography algorithm, experimental results, future work
 %     % TP: Acknowledge collaborators and funding agencies
 % \end{frame}
-% 
+%
 % \begin{frame}[allowframebreaks]{References}
 %     \printbibliography
-% 
+%
 %     % TP: Full reference list available for detailed citations
 %     % TP: Key references include Anton et al. (MFR), Zhang et al. (W7-X bolometry), and experimental campaign papers
 % \end{frame}
-% 
-% 
-% 
+%
+%
+%
 % ============================================================================
 % BACKUP SLIDES - APPENDIX CONTENT
 % ============================================================================
@@ -1051,10 +1033,82 @@
     % TP: Available for questions on specific technical aspects
 \end{frame}
 
+\begin{frame}
+    \frametitle{STRAHL Impurity Transport Modeling}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1-2>{
+            \textbf{STRAHL Code:}
+            \begin{itemize}
+                \item 1D impurity transport and radiation simulation
+                \item Solves radial continuity for each ionisation stage
+                \item Experimental input data: pertubation study in transport coefficients, profile smoothing, source model etc.
+                \item Valid in confinement, simple ansatz outside LCFS
+            \end{itemize}
+            }
+
+            \only<3>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                   ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
+            }
+            \only<4>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/forward_int/%
+                    forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_tilt_cor_3.0deg_sN8_30x20x150_1.35.png}%
+            }
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \only<1>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter3/STRAHL/diag_lines/compare_strahl_rad_93_94_edge.png}
+            }
+
+            \only<2>{
+            \textbf{Key Results:}
+            \begin{itemize}
+                \item Carbon dominates emissivity (C$^{2/3+}$, x$10^{2}+$ of Oxygen levels)
+                \item Inward shift of radiation for $f\ix{rad}\rightarrow 1$ toward $r\sim0.95r\ix{a}$
+                \item Radiation moves from outside to inside separatrix
+            \end{itemize}
+            }
+
+            \only<3>{
+            \textbf{Forward Modeling:}
+            \begin{itemize}
+                \item Chord brightness from STRAHL results
+                \item Compare with experimental measurements
+                \item Validate assumptions about impurity radiation and transport
+            \end{itemize}
+
+            \vspace{0.5em}
+            \begin{alertblock}{Discrepancy}
+                Forward calculations show asymmetry - less than experiments - in confinement, suggesting intrinsic geometry effects
+            \end{alertblock}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: STRAHL is a 1D transport code that models how impurities move and radiate in the plasma
+    % TP: Simulations show carbon is the main radiator in the SOL - intrinsic impurity from wall interactions
+    % TP: Carbon charge states C³⁺ and C⁴⁺ dominate emission in SOL region (T_e~10-50eV)
+    % TP: Reduced diffusivity D_⊥≈0.1 m²/s near separatrix creates accumulation and enhanced radiation
+    % TP: As radiation fraction increases, the emission zone shifts inward toward ρ_pol≈0.95
+    % TP: Anomalous transport (turbulent) dominates over neoclassical by factor 10-100
+    % TP: Model captures basic trends but misses some 3D asymmetries seen in experiments - stellarator complexity
+    % TP: Forward modeling: calculate expected bolometer signals from STRAHL profiles for validation
+    % TP: Discrepancies reveal limitations - need 3D modeling to capture full stellarator physics
+\end{frame}
+
 % \begin{frame}
 %     \frametitle{Impurity Seeding Models}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}
 %         \begin{column}{0.5\textwidth}
 %             \only<1->{
@@ -1063,14 +1117,14 @@
 %                 \dot{N}\ix{w}=&\left(N\ix{w,lim}-N\ix{w}\right)\tau\ix{w,p}\\%
 %                 \dot{N}\ix{p}=&\Gamma\ix{s}+N\ix{w}\tau\ix{w,p}-f\ix{w,p}N\ix{p}-N\ix{p}\tau\ix{p}%
 %             \end{align*}
-% 
+%
 %             \begin{itemize}
 %                 \item Plasma and wall compartments
 %                 \item Particle exchange rates
 %                 \item Pumping and recycling
 %             \end{itemize}
 %             }
-% 
+%
 %             \vspace{0.5em}
 %             \only<3->{
 %             \centering
@@ -1078,7 +1132,7 @@
 %                 ../THESIS/content/figures/chapter3/chambers/twochamber_scheme_crop_colors.pdf}
 %             }
 %         \end{column}
-% 
+%
 %         \begin{column}{0.45\textwidth}
 %             \only<2->{
 %             \textbf{Three-Chamber Model:}
@@ -1093,7 +1147,7 @@
 %                 \item Both models equally capable of representing feedback measurements
 %             \end{itemize}
 %             }
-% 
+%
 %             \vspace{0.5em}
 %             \only<3->{
 %             \centering
@@ -1102,7 +1156,7 @@
 %             }
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Developed simple models to understand gas injection dynamics - two and three chamber systems
 %     % TP: Two-chamber: plasma and wall compartments with particle exchange and pumping
 %     % TP: Three-chamber: adds SOL/edge region for more realistic transport modeling
@@ -1120,20 +1174,20 @@
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
 %             \textbf{0-D Energy Conservation:}
-%             
+%
 %             Starting from 3D fluid equations:
 %             \begin{align*}
 %                 \frac{3}{2}\frac{\partial p}{\partial t} + \frac{3}{2}(\nabla \cdot p)\vec{u} + p\nabla \cdot \vec{u} + \nabla \cdot \vec{q} = s
 %             \end{align*}
-%             
+%
 %             Where s = s$_H$ - s$_{\text{rad}}$ (sources - sinks)
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{Integrated Power Balance:}
 %             \begin{empheq}[box=\fbox]{align*}
 %                 P_{\text{bal}} &= P_{\text{ECRH}} - P_{\text{rad}} - P_{\text{div}} - \frac{dW}{dt} \overset{!}{=} 0
 %             \end{empheq}
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{Power Components:}
 %             \begin{itemize}
@@ -1143,14 +1197,14 @@
 %                 \item dW/dt: Stored energy change (W$_{\text{dia}}$)
 %             \end{itemize}
 %         \end{column}
-%         
+%
 %         \begin{column}{0.48\textwidth}
 %             \begin{figure}
 %                 \centering
 %                 \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter1/power_balance_example_20180808_004.pdf}
 %                 \caption*{Power balance example XP20180808.4}
 %             \end{figure}
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{Stored Energy:}
 %             \begin{itemize}
@@ -1158,7 +1212,7 @@
 %                 \item W$_{\text{kin}}$ = $\frac{3}{2}\int \sum_j n_j T_j \frac{dV}{dr}dr$
 %                 \item W$_{\text{kin}}$ overestimates by ~25\%
 %             \end{itemize}
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{Challenges:}
 %             \begin{itemize}
@@ -1169,7 +1223,7 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-%     
+%
 %     % TP: Power balance critical for characterizing plasma performance and energy confinement
 %     % TP: 0-D model assumes thermodynamic equilibrium and fully ionized plasma
 %     % TP: Diamagnetic energy W_dia more reliable than kinetic energy W_kin
@@ -1184,18 +1238,18 @@
 % % ----------------------------------------------------------------------------
 % % Detector Sensitivity and Etendue
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{Detector Sensitivity: Etendue and Light Yield}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}
 %         \begin{column}{0.5\textwidth}
 %             \textbf{Etendue Definition:}
 %             \begin{equation*}
 %                 \widetilde{K}_{M}=\iint_{A, M}\frac{\cos(\alpha)\cos(\beta)}{4\pi d^{2}}\,\diff A_{M}\diff A_{A}
 %             \end{equation*}
-%             
+%
 %             \vspace{0.5em}
 %             \textbf{Physical Meaning:}
 %             \begin{itemize}
@@ -1204,7 +1258,7 @@
 %                 \item α, β: Angles between LOS and normals
 %                 \item d: Aperture-detector distance
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{W7-X Design:}
 %             \begin{itemize}
@@ -1213,27 +1267,27 @@
 %                 \item Unity transmission in cone center
 %             \end{itemize}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.45\textwidth}
 %             \centering
 %             \includegraphics[width=\textwidth]{%
 %                 ../THESIS/content/figures/chapter1/los_angles_dist.pdf}
-%             
+%
 %             \vspace{0.5em}
 %             \small Angular relations and partial shadowing
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Etendue quantifies the geometric light collection efficiency of detector-pinhole pairs
 %     % TP: Critical for accurate power measurements - partial shadowing reduces effective detector area
 %     % TP: Angles α and β account for non-perpendicular incidence reducing effective collection
 %     % TP: W7-X design with d<a ensures trapezoidal widening LOS cone (not triangular narrowing)
 % \end{frame}
-% 
+%
 % \begin{frame}
 %     \frametitle{Etendue Distribution and Transmission Maps}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Normalized Transmission:}
@@ -1243,7 +1297,7 @@
 %                 \item Stronger effect perpendicular to array
 %                 \item Partial shadowing along camera axis
 %             \end{itemize}
-% 
+%
 %             \vspace{1em}
 %             \textbf{Camera Comparison:}
 %             \begin{itemize}
@@ -1254,24 +1308,24 @@
 %                 \item VBC etendue: 2× larger than HBC
 %             \end{itemize}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.48\textwidth}
 %             \centering
 %             \includegraphics[width=\textwidth]{%
 %                 ../THESIS/content/figures/chapter1/etendue_2D.pdf}
-%             
+%
 %             \vspace{0.5em}
 %             \small 2D etendue map for W7-X geometry
-%             
+%
 %             \vspace{1em}
 %             \includegraphics[width=0.9\textwidth]{%
 %                 ../THESIS/content/figures/chapter1/etendue_box_lines.pdf}
-%             
+%
 %             \vspace{0.3em}
 %             \small Transmission along detector dimensions
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: 2D etendue maps show spatial variation of light collection efficiency across detector surface
 %     % TP: Detectors parallel to aperture have symmetric transmission with center maximum
 %     % TP: Detectors at array edges experience stronger partial shadowing effects
@@ -1279,15 +1333,15 @@
 %     % TP: All cameras designed to contribute roughly equal LOS volumes despite etendue differences
 %     % TP: Numerical integration of etendue equation required for accurate geometry modeling
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Temperature Drift Effects
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{Temperature Drift Impact on Measurements}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}
 %         \begin{column}{0.5\textwidth}
 %             \textbf{Thermal Interference Sources:}
@@ -1297,7 +1351,7 @@
 %                 \item Grey body radiation: $\propto \varepsilon A\Delta T^{4}$
 %                 \item Ohmic heating from excitation voltage
 %             \end{itemize}
-% 
+%
 %             \vspace{1em}
 %             \textbf{Detector Response:}
 %             \begin{itemize}
@@ -1306,7 +1360,7 @@
 %                 \item R, κ, τ all temperature-dependent
 %                 \item Excitation heating: $\sim$\SI{25}{\kelvin}
 %             \end{itemize}
-% 
+%
 %             \vspace{1em}
 %             \textbf{Material Properties (Au):}
 %             \begin{itemize}
@@ -1316,15 +1370,15 @@
 %                 \item Linear behavior above \SI{275}{\kelvin}
 %             \end{itemize}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.45\textwidth}
 %             \centering
 %             \includegraphics[width=\textwidth]{%
 %                 ../THESIS/content/figures/chapter1/temperature_drift.pdf}
-%             
+%
 %             \vspace{0.5em}
 %             \small Temperature drift example (XP20180927.37)
-%             
+%
 %             \vspace{1em}
 %             \textbf{Mitigation Strategies:}
 %             \begin{itemize}
@@ -1336,7 +1390,7 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Temperature drifts are major systematic error source in long-pulse experiments
 %     % TP: Each detector has unique drift function due to composition variations and thermal coupling
 %     % TP: Grey body radiation from camera housing scales with T⁴ - significant at high thermal loads
@@ -1345,15 +1399,15 @@
 %     % TP: Future divertor bolometer will use temperature-dependent calibration lookup tables
 %     % TP: ITER design includes parallel real-time calibration during data acquisition
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Wheatstone Calibration Process
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{In-Situ Wheatstone Bridge Calibration}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}
 %         \begin{column}{0.5\textwidth}
 %             \textbf{Ohmic Heating Method:}
@@ -1364,7 +1418,7 @@
 %                 \item Measure current evolution I(t)
 %                 \item Fit exponential decay
 %             \end{enumerate}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Extracted Parameters:}
 %             \begin{align*}
@@ -1372,7 +1426,7 @@
 %                 \Delta I(t) &= -\Delta I(0)[1-\exp(-t/\tau_{M})] \\
 %                 \kappa_{M} &= \frac{\Delta I^{4}(0)}{4I(\infty)(I(\infty)-I_{0})}
 %             \end{align*}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Circuit Parameters:}
 %             \begin{itemize}
@@ -1381,15 +1435,15 @@
 %                 \item C$_C$ = 2 nF (cable capacitance)
 %             \end{itemize}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.45\textwidth}
 %             \centering
 %             \includegraphics[width=\textwidth]{%
 %                 ../THESIS/content/figures/chapter1/heating_ohmic_example_full.pdf}
-%             
+%
 %             \vspace{0.5em}
 %             \small Ohmic heating stages (measurement & reference)
-%             
+%
 %             \vspace{1em}
 %             \textbf{OP1.2b Statistics:}
 %             \begin{itemize}
@@ -1398,7 +1452,7 @@
 %                 \item Cooling time: 110.57 ms (4.93 ms dev)
 %                 \item Offset: 0.204 μV (31.11 μV dev)
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Quality Criteria:}
 %             \begin{itemize}
@@ -1408,7 +1462,7 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: In-situ calibration essential - no two detectors identical due to manufacturing variations
 %     % TP: Ohmic heating saturates absorber temperature before measurement - prevents additional heating
 %     % TP: First few milliseconds excluded from fit - initial response dominated by substrate variations
@@ -1418,11 +1472,11 @@
 %     % TP: Calibration performed before every experimental campaign - monitors detector degradation
 %     % TP: Cable parameters R_C and C_C measured independently and included in power calculations
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Detector Performance Statistics (OP1.2b) - Part 1
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}{Detector Performance Statistics (OP1.2b) - Part 1}
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
@@ -1434,7 +1488,7 @@
 %                 \item Acquisition range: $\pm$10-20 mV
 %                 \item Resolution: 0.31-2.44 $\mu$V (16-bit)
 %             \end{itemize}
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{Calibration Parameters:}
 %             \begin{itemize}
@@ -1444,14 +1498,14 @@
 %                 \item Offset $V_{\text{off}}$: 0.204 $\pm$ 31.11 $\mu$V
 %             \end{itemize}
 %         \end{column}
-%         
+%
 %         \begin{column}{0.48\textwidth}
 %             \begin{figure}
 %                 \centering
 %                 \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter1/Rohm_99th_OP12b.pdf}
 %                 \caption*{Resistance stability across OP1.2b}
 %             \end{figure}
-%             
+%
 %             \begin{figure}
 %                 \centering
 %                 \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter1/Kappam_99th_OP12b.pdf}
@@ -1459,7 +1513,7 @@
 %             \end{figure}
 %         \end{column}
 %     \end{columns}
-%     
+%
 %     \vspace{0.2cm}
 %     \textbf{Key Observations:}
 %     \begin{itemize}
@@ -1467,18 +1521,18 @@
 %         \item Plateaus indicate individual experiment days with slight temperature variations
 %         \item Three VBC detectors showed divergence near campaign end (deterioration/electronics)
 %     \end{itemize}
-%     
+%
 %     % TP: Emphasize the exceptional stability of calibration parameters across 1182 experiments
 %     % TP: Note that resistance variations are primarily due to camera temperature changes between days
 %     % TP: Explain that heat capacity perturbations around experiment 350 were systematic calibration issues
 %     % TP: Highlight that cooling time reciprocally responds to heat capacity variations
 %     % TP: Mention that detector degradation is minimal, showing robust long-term performance
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Detector Performance Statistics (OP1.2b) - Part 2
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}{Detector Performance Statistics (OP1.2b) - Part 2}
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
@@ -1491,7 +1545,7 @@
 %                 \item Signal median: 0.042 $\pm$ 0.032 mV
 %                 \item Signal maximum: 1.186 $\pm$ 3.704 mV
 %             \end{itemize}
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{Signal Quality:}
 %             \begin{itemize}
@@ -1501,14 +1555,14 @@
 %                 \item Drift correction via linear fit
 %             \end{itemize}
 %         \end{column}
-%         
+%
 %         \begin{column}{0.48\textwidth}
 %             \begin{figure}
 %                 \centering
 %                 \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter1/std_dev_99th_OP12b.pdf}
 %                 \caption*{Standard deviation (noise)}
 %             \end{figure}
-%             
+%
 %             \begin{figure}
 %                 \centering
 %                 \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter1/adj_median_99th_OP12b.pdf}
@@ -1516,7 +1570,7 @@
 %             \end{figure}
 %         \end{column}
 %     \end{columns}
-%     
+%
 %     \vspace{0.2cm}
 %     \textbf{Performance Assessment:}
 %     \begin{itemize}
@@ -1525,7 +1579,7 @@
 %         \item Thermal interference spikes up to 2 $\mu$V/s (10$\times$ average) in high load cases
 %         \item System performs well within specifications: SNR $>$ 1000 at high temporal resolution
 %     \end{itemize}
-%     
+%
 %     % TP: Stress that noise levels are consistently low throughout the entire campaign
 %     % TP: Explain that collective peaks in noise across multiple experiments indicate power supply perturbations
 %     % TP: Note that drift correction is straightforward via linear fitting for acquisition times up to 10s
@@ -1533,11 +1587,11 @@
 %     % TP: Emphasize that median signals are 100× larger than noise, ensuring excellent measurement quality
 %     % TP: Mention that the system meets all design specifications for fusion-grade bolometry
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Bolometer Equation Derivation - Part 1
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}{Bolometer Equation Derivation - Part 1: Measurement Principle}
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
@@ -1548,14 +1602,14 @@
 %                 \item Balanced bridge: R$_M$ = R$_R$ = R $\Rightarrow$ $\Delta$U = 0
 %                 \item Incident power heats M $\Rightarrow$ R$_M$ increases
 %             \end{itemize}
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{Bridge Imbalance:}
 %             \begin{align*}
 %                 \frac{\Delta U}{U_{\text{ex}}} &= \frac{R+\Delta R}{2R+\Delta R} - \frac{R}{2R+\Delta R} \\
 %                 &\approx \frac{\Delta R}{2R}
 %             \end{align*}
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{Temperature-Resistance Relation:}
 %             \begin{itemize}
@@ -1563,25 +1617,25 @@
 %                 \item Pt meanders: $\alpha$ = temperature coefficient
 %             \end{itemize}
 %         \end{column}
-%         
+%
 %         \begin{column}{0.48\textwidth}
 %             \begin{figure}
 %                 \centering
 %                 \includegraphics[width=0.9\textwidth]{../THESIS/content/figures/chapter1/wheatstone3.pdf}
 %                 \caption*{Wheatstone bridge schematic}
 %             \end{figure}
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{Power Balance:}
 %             \begin{align*}
 %                 \kappa\frac{d(\Delta T)}{dt} &= P_{\text{bol}} - \kappa\frac{\Delta T}{\tau}
 %             \end{align*}
-%             
+%
 %             \textbf{Final Bolometer Equation:}
 %             \begin{align*}
 %                 P_{\text{bol}} &= \frac{2R\kappa}{U_{\text{ex}}\alpha R\tau}\left(\Delta U + \tau\frac{d(\Delta U)}{dt}\right)
 %             \end{align*}
-%             
+%
 %             Where:
 %             \begin{itemize}
 %                 \item $\kappa$: Heat capacity
@@ -1590,7 +1644,7 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-%     
+%
 %     % TP: AC excitation removes 1/f noise - critical for small signal detection
 %     % TP: Bridge imbalance doubles signal-to-noise since both M absorbers respond
 %     % TP: Temperature change has two components: steady-state and transient (derivative term)
@@ -1598,11 +1652,11 @@
 %     % TP: Heat capacity κ determines sensitivity - lower κ = higher temperature change for same power
 %     % TP: All parameters (R, κ, τ) must be calibrated in-situ before each campaign
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Bolometer Equation Derivation - Part 2
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}{Bolometer Equation Derivation - Part 2: Line-of-Sight Geometry}
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
@@ -1610,14 +1664,14 @@
 %             \begin{align*}
 %                 \widetilde{K}_M &= \iint_{A,M} \frac{\cos(\alpha)\cos(\beta)}{4\pi d^2} dA_M dA_A
 %             \end{align*}
-%             
+%
 %             \begin{itemize}
 %                 \item $\alpha$, $\beta$: Angles between LOS and normals
 %                 \item d: Detector-aperture distance
 %                 \item Accounts for partial shadowing
 %                 \item HBC: d = 175 mm, VBC: d = 84 mm
 %             \end{itemize}
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{LOS Geometry Types:}
 %             \begin{itemize}
@@ -1625,7 +1679,7 @@
 %                 \item d $>$ a: Triangular cone
 %                 \item Transmission $\approx$ 1 for d $<$ a
 %             \end{itemize}
-%             
+%
 %             \vspace{0.3cm}
 %             \textbf{Camera Specifications:}
 %             \begin{itemize}
@@ -1634,29 +1688,29 @@
 %                 \item Toroidal tilt: 68.75° (5° extension)
 %             \end{itemize}
 %         \end{column}
-%         
+%
 %         \begin{column}{0.48\textwidth}
 %             \begin{figure}
 %                 \centering
 %                 \includegraphics[width=0.85\textwidth]{../THESIS/content/figures/chapter1/los_angles_dist.pdf}
 %                 \caption*{LOS angular geometry}
 %             \end{figure}
-%             
+%
 %             \begin{figure}
 %                 \centering
 %                 \includegraphics[width=0.85\textwidth]{../THESIS/content/figures/chapter1/detector_los_cones.pdf}
 %                 \caption*{Detector-aperture arrangement}
 %             \end{figure}
-%             
+%
 %             \textbf{Radiation Power per LOS:}
 %             \begin{align*}
 %                 P_{\text{rad},M} &= \frac{P_M}{K_M} = \frac{P_M}{\widetilde{K}_M \cdot L_M}
 %             \end{align*}
-%             
+%
 %             Where L$_M$ = total LOS length
 %         \end{column}
 %     \end{columns}
-%     
+%
 %     % TP: Etendue critical for absolute power calibration - accounts for geometric efficiency
 %     % TP: Partial shadowing reduces light yield at detector edges - integrated in etendue calculation
 %     % TP: Trapezoidal LOS means transmission approximately uniform across cone
@@ -1664,15 +1718,15 @@
 %     % TP: Fan-shaped detector arrangement maximizes plasma coverage with minimal crosstalk
 %     % TP: Spatial resolution ~4-5 cm at magnetic axis determined by etendue width
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Magnetic Configuration
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{Island Divertor Configuration}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}
 %         \begin{column}{0.55\textwidth}
 %             \textbf{Magnetic Configuration:}
@@ -1683,7 +1737,7 @@
 %                 \item Field lines connect upstream to downstream targets
 %                 \item Connection lengths: $\mathcal{O}$(\SIrange{100}{1000}{\meter})
 %             \end{itemize}
-% 
+%
 %             \vspace{1em}
 %             \textbf{Gas Injection Strategy:}
 %             \begin{itemize}
@@ -1697,13 +1751,13 @@
 %             \centering
 %             \includegraphics[width=\textwidth]{%
 %                 ../THESIS/content/figures/chapter2/divertor_fluxtubes.pdf}
-% 
+%
 %             \vspace{1em}
 %             \includegraphics[width=\textwidth]{%
 %                 ../THESIS/content/figures/chapter2/divertor_effenberg_reduced.pdf}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: W7-X uses an island divertor - magnetic islands at the edge intercept heat flux
 %     % TP: Five island chains wrap helically around the torus between upper and lower divertors
 %     % TP: Connection lengths 100-1000m (much longer than tokamaks ~10-100m) allow more radiation cooling
@@ -1713,15 +1767,15 @@
 %     % TP: Gas injection valves are strategically placed to seed directly into these island chains
 %     % TP: Field line connection between injection point and divertor targets is crucial for understanding radiation distribution
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Measurement Algorithm
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{Measurement Algorithm Overview}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Algorithm Stages:}
@@ -1746,7 +1800,7 @@
 %                     \end{itemize}
 %             \end{enumerate}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Real-time Feedback:}
 %             \begin{itemize}
@@ -1755,7 +1809,7 @@
 %                 \item FIFO buffer management
 %                 \item Sample time $\Delta t$ configurable
 %             \end{itemize}
-% 
+%
 %             \vspace{1em}
 %             \textbf{Data Storage:}
 %             \begin{itemize}
@@ -1766,22 +1820,22 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Three-stage algorithm: initialization, calibration, measurement
 %     % TP: Real-time capability through parallel processing and FIFO buffers
 %     % TP: All data archived for post-shot analysis
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Fourier Transform Correlation Method
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{Fourier Transform Correlation Metric}
 %     \backgroundlogo%
-% 
+%
 %     \textbf{Alternative LOS Sensitivity Evaluation:}
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.55\textwidth}
 %             \textbf{Method:}
@@ -1791,7 +1845,7 @@
 %                 \item Cross-spectral density analysis
 %                 \item Coherence-based metric
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Mathematical Formulation:}
 %             \begin{align*}
@@ -1799,10 +1853,10 @@
 %                 \gamma_j &= \mathcal{F}(P\ix{pred})(\omega) \\
 %                 \varphi(\omega) &= \sqrt{\frac{|g\ix{i,j}^2|}{|\gamma_i\gamma_j|}}
 %             \end{align*}
-% 
+%
 %             Quality: $\vartheta = \int \varphi(\omega) d\omega$
 %         \end{column}
-% 
+%
 %         \begin{column}{0.43\textwidth}
 %             \textbf{Key Results:}
 %             \begin{itemize}
@@ -1812,7 +1866,7 @@
 %                 \item VBC: best at $-0.13r\ix{a}$
 %                 \item Spectral focus excludes absolute value contributions
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Advantages:}
 %             \begin{itemize}
@@ -1822,25 +1876,25 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Fourier transform provides frequency-domain perspective on LOS sensitivity
 %     % TP: Confirms X-point viewing channels have highest spectral correlation
 %     % TP: Complements time-domain correlation metrics
 % \end{frame}
-% 
+%
 % \begin{frame}
 %     \frametitle{Plasma Parameter Sensitivity Analysis}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Correlation with Plasma Parameters:}
-% 
+%
 %             \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_ECRH_HBCm.pdf}
-% 
+%
 %             \small Heating power $P\ix{ECRH}$ correlation
 %         \end{column}
-% 
+%
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Key Findings:}
 %             \begin{itemize}
@@ -1850,7 +1904,7 @@
 %                 \item Gap at $\vartheta\approx$ 0.3-0.5
 %                 \item Both cameras in good agreement
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Optimal Discharge Conditions:}
 %             \begin{itemize}
@@ -1861,28 +1915,28 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Systematic correlation between plasma parameters and prediction quality
 %     % TP: Identifies optimal experimental configurations for feedback
 %     % TP: Validates that high f_rad scenarios work well with feedback system
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % STRAHL Modeling Details
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{STRAHL Parameter Variations}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Decay Length Variation:}
-% 
+%
 %             \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/STRAHL/nete/compare_ne_Te_94_105_edge.png}
-% 
+%
 %             \small SOL decay length: $\lambda=$\SI{2}{\centi\meter} vs \SI{5}{\centi\meter}
-% 
+%
 %             \vspace{0.3em}
 %             \textbf{Impact:}
 %             \begin{itemize}
@@ -1891,14 +1945,14 @@
 %                 \item No systematic radial shifts
 %             \end{itemize}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Impurity Source Location:}
-% 
+%
 %             \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/STRAHL/fract_abund/compare_fract_abund_82_94_edge.png}
-% 
+%
 %             \small Source at LCFS vs divertor ($r\ix{a}+$\SI{7.5}{\centi\meter})
-% 
+%
 %             \vspace{0.3em}
 %             \textbf{Impact:}
 %             \begin{itemize}
@@ -1907,23 +1961,23 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Parameter variations test STRAHL model sensitivity and robustness
 %     % TP: Decay length primarily affects SOL, source location affects ion distributions
 %     % TP: Core results relatively stable - important for feedback modeling
 % \end{frame}
-% 
+%
 % \begin{frame}
 %     \frametitle{STRAHL: Radiation Fraction Dependence}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
 %             \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter3/STRAHL/diag_lines/compare_strahl_rad_93_94_edge.png}
-% 
+%
 %             \small Total radiation for $f\ix{rad}=$90\% and 100\%
 %         \end{column}
-% 
+%
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Critical Observations:}
 %             \begin{itemize}
@@ -1932,7 +1986,7 @@
 %                 \item C$^{3+}$ and C$^{2+}$ most sensitive
 %                 \item Dramatic profile changes near separatrix
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Implications:}
 %             \begin{itemize}
@@ -1943,28 +1997,28 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Radiation distribution changes dramatically with f_rad
 %     % TP: 100% case shows peak at separatrix - relevant for detachment control
 %     % TP: Lower charge states (C2+, C3+) dominate near LCFS at high f_rad
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Camera Geometry Perturbations
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{Camera Geometry Sensitivity}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Unilateral Mirroring:}
-% 
+%
 %             \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter4/MFR/compare_fixedLoS_emissivities3D.pdf}
-% 
+%
 %             \small Etendue change: $<$\SI{e-13}{per\milli\meter}
-% 
+%
 %             \vspace{0.5em}
 %             \begin{itemize}
 %                 \item Half of HBC array mirrored
@@ -1972,14 +2026,14 @@
 %                 \item Asymmetry reduced by 0.5-1\%
 %             \end{itemize}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Artificial Symmetric Camera:}
-% 
+%
 %             \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter4/MFR/compare_symmetric_emissivities3D.pdf}
-% 
+%
 %             \small Fully symmetric, equidistant array
-% 
+%
 %             \vspace{0.5em}
 %             \begin{itemize}
 %                 \item Perfectly symmetric geometry
@@ -1989,20 +2043,20 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Small geometry perturbations have minimal impact on measurements
 %     % TP: As-built HBC geometry is very close to ideal symmetric design
 %     % TP: Validates that manufacturing tolerances are acceptable
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % MFR: RDA vs RGS
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{Tomography: RDA vs RGS Comparison}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Radially Dependent Anisotropy (RDA):}
@@ -2012,7 +2066,7 @@
 %                 \item Good radial profile matching
 %                 \item Established method
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Relative Gradient Smoothing (RGS):}
 %             \begin{itemize}
@@ -2022,7 +2076,7 @@
 %                 \item Higher local intensities
 %             \end{itemize}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Comparison Results:}
 %             \begin{itemize}
@@ -2032,7 +2086,7 @@
 %                 \item RGS: may lose weak structures
 %                 \item RDA: more robust for general use
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Conclusion:}
 %             \begin{itemize}
@@ -2043,42 +2097,42 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     % TP: Two regularization approaches compared systematically
 %     % TP: RDA chosen as primary method - good balance of accuracy and robustness
 %     % TP: RGS can enhance specific features but may sacrifice overall accuracy
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Additional Phantom Tests
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{Phantom Tomography: Edge Cases}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Inverted Anisotropy:}
-% 
+%
 %             \includegraphics[width=0.9\textwidth]{../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR0.8_fsR1.1_mx1.0e+06_aniM4_3.0_20.0_nT15_nW2_nigs1_times0.11.png}
-% 
+%
 %             \small Bright SOL ring + core islands
-% 
+%
 %             \begin{itemize}
 %                 \item More challenging reconstruction
 %                 \item SOL dominates measurement
 %                 \item Core features partially obscured
 %             \end{itemize}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Homogeneous Distribution:}
-% 
+%
 %             \includegraphics[width=0.9\textwidth]{../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_blind_test_ones_mx1.0e+06_aniM3_1.0_1.0_nigs1_times0.11.png}
-% 
+%
 %             \small Uniform \SI{1}{\mega\watt\per\cubic\meter} everywhere
-% 
+%
 %             \begin{itemize}
 %                 \item Tests baseline reconstruction
 %                 \item Validates algorithm behavior
@@ -2086,23 +2140,23 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     \vspace{0.5em}
 %     \textbf{Lessons:} Camera sensitivity in SOL can obscure core features; algorithm performs well for uniform distributions; inverted scenarios more challenging than standard core-peaked profiles.
-% 
+%
 %     % TP: Edge case phantoms test algorithm limits and robustness
 %     % TP: Inverted case shows SOL brightness can obscure core details
 %     % TP: Homogeneous test confirms no artificial pattern generation
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Summary of Appendix Content
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{Appendix Summary}
 %     \backgroundlogo%
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Measurement Algorithm:}
@@ -2112,7 +2166,7 @@
 %                 \item Robust calibration procedure
 %                 \item Full data archiving
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{LOS Sensitivity Methods:}
 %             \begin{itemize}
@@ -2121,7 +2175,7 @@
 %                 \item Optimal discharge conditions determined
 %             \end{itemize}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.48\textwidth}
 %             \textbf{STRAHL Validation:}
 %             \begin{itemize}
@@ -2129,7 +2183,7 @@
 %                 \item Model robustness confirmed
 %                 \item Critical $f\ix{rad}$ dependence shown
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Tomography Extensions:}
 %             \begin{itemize}
@@ -2140,17 +2194,17 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     \vspace{1em}
 %     \begin{center}
 %         \textbf{All appendix content validates and extends main thesis results}
 %     \end{center}
-% 
+%
 %     % TP: Appendices provide crucial technical validation
 %     % TP: All methods thoroughly tested and characterized
 %     % TP: Results support main conclusions and demonstrate robustness
 % \end{frame}
-% 
+%
 
 % ----------------------------------------------------------------------------
 % Correlation Metric for LOS Evaluation
@@ -2159,9 +2213,9 @@
 % \begin{frame}
 %     \frametitle{Correlation Metric for LOS Evaluation}
 %     \backgroundlogo%
-% 
+%
 %     \textbf{Cross-Correlation Approach:}
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.55\textwidth}
 %             \textbf{Method:}
@@ -2171,7 +2225,7 @@
 %                 \item Compares to self-correlation baseline
 %                 \item Quality inversely proportional to deviation
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Mathematical Formulation:}
 %             \begin{align*}
@@ -2180,7 +2234,7 @@
 %                 \varphi^{\ast}(t) &= \int_{-\infty}^{\infty}P_{\text{rad}}(\tau)P_{\text{rad}}(t+\tau)d\tau
 %             \end{align*}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.43\textwidth}
 %             \textbf{Key Results:}
 %             \begin{itemize}
@@ -2190,7 +2244,7 @@
 %                 \item Lowest sensitivity at X-point viewing channels
 %                 \item Congruent profiles across $m=3,5,7$
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Interpretation:}
 %             \begin{itemize}
@@ -2201,7 +2255,7 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     \vspace{0.3cm}
 %     \textbf{Camera Comparison:}
 %     \begin{itemize}
@@ -2210,7 +2264,7 @@
 %         \item Both cameras: Large standard deviations indicate high variability
 %         \item Selection size $m$ has minimal impact on profile shape
 %     \end{itemize}
-% 
+%
 %     % TP: Correlation metric provides frequency-domain perspective on LOS quality
 %     % TP: Contrasts with weighted deviation - X-point channels perform poorly here
 %     % TP: Large error bars indicate high sensitivity to discharge conditions
@@ -2219,17 +2273,17 @@
 %     % TP: Most channels show similar sensitivity except at local extrema
 %     % TP: Results suggest localized radiation perturbations dominate temporal correlation
 % \end{frame}
-% 
+%
 % % ----------------------------------------------------------------------------
 % % Mean Deviation Metric for LOS Evaluation
 % % ----------------------------------------------------------------------------
-% 
+%
 % \begin{frame}
 %     \frametitle{Mean Deviation Metric for LOS Evaluation}
 %     \backgroundlogo%
-% 
+%
 %     \textbf{Modified Variance Approach:}
-% 
+%
 %     \begin{columns}[T]
 %         \begin{column}{0.55\textwidth}
 %             \textbf{Method:}
@@ -2239,14 +2293,14 @@
 %                 \item No cut-offs in $P_{\text{pred}}$ spectrum
 %                 \item Positive-definite results
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Mathematical Formulation:}
 %             \begin{align*}
 %                 \varphi(t) &= \frac{1}{T_{\text{stop}}-T_{\text{start}}}(P_{\text{rad}}(t)-P_{\text{pred}}(t))^2 \\
 %                 \vartheta &= \sqrt{(T_{\text{stop}}-T_{\text{start}})\left(\int_{T_{\text{start}}}^{T_{\text{stop}}}\varphi(t)dt\right)^{-1}}
 %             \end{align*}
-% 
+%
 %             \vspace{0.3em}
 %             \textbf{Quality Interpretation:}
 %             \begin{itemize}
@@ -2255,7 +2309,7 @@
 %                 \item Inverse correlation between metric and map
 %             \end{itemize}
 %         \end{column}
-% 
+%
 %         \begin{column}{0.43\textwidth}
 %             \textbf{Key Results:}
 %             \begin{itemize}
@@ -2265,7 +2319,7 @@
 %                 \item Quality scales with selection size $m$
 %                 \item VBC: Similar patterns, higher sensitivity
 %             \end{itemize}
-% 
+%
 %             \vspace{0.5em}
 %             \textbf{Comparison to Other Metrics:}
 %             \begin{itemize}
@@ -2277,7 +2331,7 @@
 %             \end{itemize}
 %         \end{column}
 %     \end{columns}
-% 
+%
 %     \vspace{0.3cm}
 %     \textbf{Conclusions:}
 %     \begin{itemize}
@@ -2287,7 +2341,7 @@
 %         \item Outermost LOS (plasma boundary) least favorable
 %         \item Qualitatively agrees with weighted deviation but with larger uncertainties
 %     \end{itemize}
-% 
+%
 %     % TP: Mean deviation offers variance-based quality assessment without temporal weighting
 %     % TP: Results qualitatively similar to weighted deviation but less pronounced features
 %     % TP: Large error bars (20-40\%) indicate high sensitivity to experimental conditions
