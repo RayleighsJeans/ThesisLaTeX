@@ -400,7 +400,7 @@
     % TP: PID tuning is discharge-specific - need adaptive control strategies for different plasma scenarios
 \end{frame}
 
-\section{Line of Sight Sensitivity}
+\section{Line-of-Sight Sensitivity}
 
 \begin{frame}
     \frametitle{Channel Selection Sensitivity}
@@ -562,13 +562,23 @@
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \only<1,3>{
+            \only<1,3,6,9>{
             \textbf{Geometry Perturbation Test:}
             \begin{itemize}
                 \item Previous and future calculations based on as-designed geometry
-                \item Forward calculation of synthetic 2D emissivity show asymmetry (STRAHL)
                 \only<3>{
+                    \item \color{ipp}{Forward calculation of synthetic 2D emissivity show asymmetry (STRAHL)}
+                    \item \color{ipp}{Tests for symmetrical chord profile yield artificial camera geometry}
+                }
+                \only<6,9>{
+                    \item Forward calculation of synthetic 2D emissivity show asymmetry (STRAHL)
                     \item Tests for symmetrical chord profile yield artificial camera geometry
+                }
+                \only<6>{
+                    \item \color{ipp}{Pertubation study from measured machine stresses}
+                }
+                \only<9>{
+                    \item Pertubation study from measured machine stresses
                 }
             \end{itemize}
             }
@@ -576,18 +586,38 @@
             \only<2>{
                 \centering
                 \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/phantoms/2D/phantom_v_tomo2D_strahl_ID00094_31x75x4_aniM4_1.0_1.0_nT20_nW1_nigs1_times0.11_cut.png}
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut.png}
                 \small($f\ix{rad}\sim100\%$)
             }
 
-            \only<4>{
+            \only<4-5>{
                 \centering
                 \includegraphics[width=.7\textwidth]{%
                     ../THESIS/content/figures/chapter4/MFR/LoS_comparison_artificialHBCm_sN8.pdf}
             }
+            \only<7>{
+                \centering
+                \includegraphics[width=.7\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/LoS_comparison_tilted_pos3_sN8.pdf}
+            }
+            \only<8>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut3.png}\\
+                using $\mathbf{T}\ix{sym}$
+            }
         \end{column}
 
         \begin{column}{0.45\textwidth}
+            \only<1>{
+                \centering
+                \includegraphics[width=.66\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/detector_splitting_cut.pdf}
+                \vspace{1cm}
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/kfactors_volumes_interpolations_comp_cut.pdf}
+            }
+
             \only<2>{
                 \centering
                 \includegraphics[width=\textwidth]{%
@@ -598,6 +628,33 @@
                 \centering
                 \includegraphics[width=\textwidth]{%
                     ../THESIS/content/figures/chapter4/MFR/compare_artificialHBCm_emissivities3D.pdf}
+                $\left\|\mathbf{T}-\mathbf{T}\ix{sym}\right\|$
+            }
+            \only<5>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_artificialHBCm_sN8_30x20x150_1.35.png}
+            }
+            \only<7>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_tilt_cor_2.0deg_sN8_30x20x150_1.35.png}
+            }
+            \only<8>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.1_mx1.0e+06_tilt-1.0_aniM3_2.0_2.0_nigs1_times0.11_cut2.png}\\
+                using $\mathbf{T}\ix{ilt}$
+            }
+
+            \only<9>{
+                \begin{alertblock}{Results}
+                    \begin{itemize}
+                        \item Discretization of system is computationally stable
+                        \item Intrinsic asymmetry of same order of magnitude as potential, unknown geometric pertubation - non-negligible
+                        \item Worst case machine warp scenario $\sim0.2r\ix{a}$ shift
+                    \end{itemize}
+                \end{alertblock}
             }
         \end{column}
     \end{columns}
@@ -610,46 +667,78 @@
     % TP: Camera displacement effects can be significant - emphasizes need for precise alignment
     % TP: Etendue calculation validated against analytical solutions for simple geometries
 \end{frame}
-%
-% \begin{frame}
-%     \frametitle{Geometry Sensitivity and Benchmarking}
-%     \backgroundlogo%
-%
-%     \begin{columns}
-%         \begin{column}{0.5\textwidth}
-%             \only<1->{
-%             \textbf{Phantom Image Benchmarks:}
-%             \begin{itemize}
-%                 \item 12 synthetic test cases (Gaussian, ring, asymmetric)
-%                 \item Quality metrics: $\chi^{2}$, $\rho\ix{c}$
-%                 \item Noise sensitivity: up to 10\% Gaussian noise
-%                 \item Geometry perturbations: ±\SI{1}{\degree} camera tilts
-%                 \item Reconstruction quality $>$90\% for well-constrained cases
-%                 \item Optimal $k\ix{ani}$ depends on profile
-%             \end{itemize}
-%             }
-%         \end{column}
-%
-%         \begin{column}{0.45\textwidth}
-%             \only<2->{
-%             \begin{exampleblock}{Recommended Settings}
-%                 $k\ix{ani} = \{2.0, 0.3\}$ (core, edge)\\
-%                 Grid: 30$\times$150 pixels\\
-%                 Domain: $1.3^{2} V\ix{P}$
-%             \end{exampleblock}
-%             }
-%         \end{column}
-%     \end{columns}
-%
-%     % TP: Phantom benchmarks with known input profiles test reconstruction quality
-%     % TP: 12 synthetic test cases: Gaussian, ring, asymmetric profiles with varying complexity
-%     % TP: Noise sensitivity tested up to 10% Gaussian noise - algorithm remains robust
-%     % TP: Geometry perturbations ±1° camera tilts show acceptable degradation
-%     % TP: Reconstruction quality >90% for well-constrained cases (good viewing geometry)
-%     % TP: Found optimal parameter ranges but no single "best" set - depends on radiation distribution
-%     % TP: Quality metrics χ² and ρ_c (correlation) used to evaluate reconstruction fidelity
-%     % TP: Recommended settings: k_ani={2.0,0.3} (core,edge), 30×150 grid, domain 1.3²V_P
-% \end{frame}
+
+\begin{frame}
+    \frametitle{Phantom Reconstructions}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+                \begin{block}{Purpose}
+                    Regularized, parametric inversion methods need (experienced) tailoring towards their respective application - if not characteristic distributions.
+                \end{block}
+            }
+
+            \only<2-4>{
+            \textbf{Benchmarks:}
+            \begin{itemize}
+                \item 12+ synthetic emissivities: Gaussian, rings, anisotropies, convolutions\dots
+                \item $k\ix{ani}$ \& phantom variations studies (radius, intensity etc.)
+                \item Experimentally motivated distributions
+                \item \color{red}{Performed for only one magnetic grid configuration \& LOS geometry}
+            \end{itemize}
+            }
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \only<3>{
+                \textbf{Metrics:}
+                \begin{align*}
+                    \chi^{2}&=\frac{1}{N\ix{ch}}\left\|\left(\vec{b}\ix{phan}-\vec{b}\ix{tom}\right)\vec{\sigma}\ix{bol}^{-1}\right\|\\%
+                    \rho\ix{c}&=\frac{1}{\sigma_{pha}\sigma_{tom}}\text{cov}\left(\vec{x}\ix{phan},\,\vec{x}\ix{tom}\right)\\%
+                    M\ix{SD}&\sim\left\|\frac{\vec{x}\ix{tom}-\vec{x}\ix{phan}}{\|x\ix{phan}\|}\cdot\vec{A}^{\intercal}\right\|\\%
+                    P\ix{rad,X}^{\text{2D}}&=\vec{x}\ix{X}^{\intercal}\cdot\vec{A}\,,\quad X=\left\{\text{phan, tom}\right\}%
+                \end{align*}
+            }
+
+            \only<4>{
+                \textbf{Metrics:}
+                \begin{align*}
+                    \Aboxed{
+                        \chi^{2}&=\frac{1}{N\ix{ch}}\left\|\left(\vec{b}\ix{phan}-\vec{b}\ix{tom}\right)\vec{\sigma}\ix{bol}^{-1}\right\|}\\%
+                    \rho\ix{c}&=\frac{1}{\sigma_{pha}\sigma_{tom}}\text{cov}\left(\vec{b}\ix{phan},\,\vec{b}\ix{tom}\right)\\%
+                    M\ix{SD}&\sim\left\|\frac{\vec{x}\ix{tom}-\vec{x}\ix{phan}}{\|x\ix{phan}\|}\cdot\vec{A}^{\intercal}\right\|\\%
+                    P\ix{rad,X}^{\text{2D}}&=\vec{x}\ix{X}^{\intercal}\cdot\vec{A}\,,\quad X=\left\{\text{phan, tom}\right\}%
+                \end{align*}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Phantom benchmarks with known input profiles test reconstruction quality
+    % TP: 12 synthetic test cases: Gaussian, ring, asymmetric profiles with varying complexity
+    % TP: Noise sensitivity tested up to 10% Gaussian noise - algorithm remains robust
+    % TP: Geometry perturbations ±1° camera tilts show acceptable degradation
+    % TP: Reconstruction quality >90% for well-constrained cases (good viewing geometry)
+    % TP: Found optimal parameter ranges but no single "best" set - depends on radiation distribution
+    % TP: Quality metrics χ² and ρ_c (correlation) used to evaluate reconstruction fidelity
+    % TP: Recommended settings: k_ani={2.0,0.3} (core,edge), 30×150 grid, domain 1.3²V_P
+\end{frame}
+
+\begin{frame}
+    \frametitle{Phantoms: Example}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+        \end{column}
+    \end{columns}
+
+
+\end{frame}
 %
 % \begin{frame}
 %     \frametitle{Experimental Tomography Results}
