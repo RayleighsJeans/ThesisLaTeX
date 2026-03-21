@@ -18,14 +18,14 @@
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \begin{itemize}
-                \item Lawson criterion for net energy gain:
-                \begin{equation*}
-                    n_e T \tau_E \ge \frac{12f\ix{tot}}{\langle\sigma\ix{DT}v\rangle f_H^2 E_\alpha - 4L_Z(T)} T^2
-                \end{equation*}
-                \item Requires: high temperature ($T \sim$ \SIrange{10}{20}{\kilo\electronvolt}), density, and confinement time
-            \end{itemize}
+            \textbf{\textit{Lawson criterion} for net energy gain:}
+            \begin{align*}
+                n\ix{e}T\tau\ix{E}\,\ge&\,\,\frac{12f\ix{tot}}{\langle\sigma\ix{DT}v\rangle f_H^2 E_\alpha - 4L_Z(T)}T^2\\%
+                \gtrsim&\,\,3\times10^{21}\text{keVs/m}^{3}
+            \end{align*}
+            (requires temperatures $T\sim$\,\SIrange{e1}{e3}{\kilo\electronvolt})
         \end{column}
+
         \begin{column}{0.45\textwidth}
             \only<1->{
                 \begin{block}{Triple Product}
@@ -46,23 +46,21 @@
 
     \begin{columns}
         \begin{column}{0.55\textwidth}
-            \begin{itemize}
-                \item World's largest stellarator (major radius \SI{5.5}{\meter}, minor radius \SI{0.53}{\meter})
-                \item 70 superconducting magnets: 50 non-planar \& 20 planar coils
-                \item Volume \SI{30}{\cubic\meter}, $B\ix{max}=$\SI{3}{\tesla}
-                \item Island divertor configuration (ι ≈ 5/6, 5/5, 5/4)
-                \item Optimized for reduced neoclassical transport
-                \item Heating power up to \SI{14}{\mega\watt} ECRH
-            \end{itemize}
+            \begin{alertblock}{Key Challenge}
+                Managing heat loads on plasma-facing components during long, high performance plasma
+            \end{alertblock}
+
+            \vspace{1em}
+            \only<2>{
+                \color{ippdark}{%
+                    \Rightarrow\,\,Dissipation of large fraction of heat load (energy) in scrape-off layer and particle flux to the target through \underline{\textit{detachment}}}
+            }
         \end{column}
+
         \begin{column}{0.4\textwidth}
             \centering
             \includegraphics[width=0.9\textwidth]{%
                 ../THESIS/content/figures/chapter0/w7x.pdf}
-
-            \begin{alertblock}{Key Challenge}
-                Managing heat loads on plasma-facing components during long, high performance plasma
-            \end{alertblock}
         \end{column}
     \end{columns}
 
@@ -72,34 +70,34 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Plasma Radiation and Transport}
+    \frametitle{Plasma Radiation}
     \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \textbf{Transport Mechanisms:}
             \begin{itemize}
-                \item Classical: collisional diffusion
-                \item Neoclassical: trapped particles, $\propto 1/\nu$
-                \item Anomalous: turbulence (dominant)
+                \item plasma profiles so radiation in SOL increases and transport across seperatrix reduced
+                \only<3>{
+                    \item \color{ipp}{avoid impurity accumulation}
+                }
             \end{itemize}
 
-            \textbf{Radiation:}
-            \begin{itemize}
-                \item Bremsstrahlung: $P\ix{Brems} \propto n\ix{e}^{2} T^{1/2}$
-                \item Line radiation: atomic transitions
-                \item Impurity effects on plasma performance
-            \end{itemize}
-
-            \begin{exampleblock}{Impurity Seeding}
-                Injection of low-Z (He, N$_2$) or high-Z (Ne, Ar) impurities to enhance edge radiation and cooling
-            \end{exampleblock}
+            \only<2,3>{
+                \begin{exampleblock}{Impurity Seeding}
+                    Injection of low-Z (He, N$_2$) or high-Z (Ne, Ar) impurities to enhance edge radiation and cooling
+                \end{exampleblock}
+            }
+            \only<3>{
+                \color{red}{
+                    \Rightarrow\,\,stable control w. radiation information?
+                }
+            }
         \end{column}
 
         \begin{column}{0.45\textwidth}
             \centering
             \includegraphics[width=0.88\textwidth]{%
-                ../THESIS/content/figures/chapter0/oxygen_carbon_rad.pdf}
+                ../THESIS/content/figures/chapter0/schneiderRadLoss.pdf}
         \end{column}
     \end{columns}
 
@@ -191,7 +189,7 @@
                     \item \color{ipp}{\textbf{Tomographic reconstruction}}
                     \item \color{ipp}{\textbf{Real-time feedback control}}
                 \end{itemize}
-                \rightarrow\,\,\color{red}{controlled radiative cooling in the plasma edge}
+                \color{red}{\Rightarrow\,\,controlled radiative cooling in the plasma edge}
             }
         \end{column}
 
@@ -708,8 +706,8 @@
                     \Aboxed{
                         \chi^{2}&=\frac{1}{N\ix{ch}}\left\|\left(\vec{b}\ix{phan}-\vec{b}\ix{tom}\right)\vec{\sigma}\ix{bol}^{-1}\right\|}\\%
                     \rho\ix{c}&=\frac{1}{\sigma_{pha}\sigma_{tom}}\text{cov}\left(\vec{b}\ix{phan},\,\vec{b}\ix{tom}\right)\\%
-                    M\ix{SD}&\sim\left\|\frac{\vec{x}\ix{tom}-\vec{x}\ix{phan}}{\|x\ix{phan}\|}\cdot\vec{A}^{\intercal}\right\|\\%
-                    P\ix{rad,X}^{\text{2D}}&=\vec{x}\ix{X}^{\intercal}\cdot\vec{A}\,,\quad X=\left\{\text{phan, tom}\right\}%
+                    \text{MSD}&\sim\left\|\frac{\vec{x}\ix{tom}-\vec{x}\ix{phan}}{\|x\ix{phan}\|}\cdot\vec{A}^{\intercal}\right\|\\%
+                    P\ix{X}^{\text{2D}}&=\vec{x}\ix{X}^{\intercal}\cdot\vec{A}\,,\quad X=\left\{\text{phan, tom}\right\}%
                 \end{align*}
             }
         \end{column}
@@ -731,14 +729,89 @@
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
+        \only<1-5>{
+            \centering
+            \includegraphics[width=0.9\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.3_nT15_nW2_nigs1_times0.11_cut1.png}
+                (Phantom: $\vec{b}\ix{phan}$)
+        }
         \end{column}
 
         \begin{column}{0.5\textwidth}
+        \only<2>{
+            \centering
+            \includegraphics[width=0.9\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.1_nT15_nW2_nigs1_times0.11_cut1.png}
+            $k\ix{core},\,k\ix{edge}=\left\{2,\,0.1\right\}$
+        }
+        \only<3>{
+            \centering
+            \includegraphics[width=0.9\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.3_nT15_nW2_nigs1_times0.11_cut2.png}
+            $k\ix{core},\,k\ix{edge}=\left\{2,\,0.3\right\}$
+        }
+        \only<4>{
+            \centering
+            \includegraphics[width=0.9\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.6_nT15_nW2_nigs1_times0.11_cut1.png}
+            $k\ix{core},\,k\ix{edge}=\left\{2,\,0.6\right\}$
+        }
+        \only<5>{
+            \centering
+            \includegraphics[width=0.9\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_20.0_3.0_nT15_nW2_nigs1_times0.11_cut1.png}
+            $k\ix{core},\,k\ix{edge}=\left\{20,\,3.0\right\}$
+        }
         \end{column}
     \end{columns}
 
+    \only<6>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/new/phantom/phantom_v_tomo_profiles_symR1.1_fsR0.8_mx1.0e+06_aniM3_2.0_0.1_nigs1_times0.11.png}
+    }
+    \only<7>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_sym_R1_1_m5_kedge_scan_cut.png}
+    }
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo%
+    \only<1>{
+        \frametitle{Phantoms: Statistics}
+    }
+
+    \only<2>{
+        \begin{block}{Isotropic Rings: $k\ix{ani}$ scan}
+           \centering
+            \includegraphics[width=.8\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_single_ring_kani_scans.png}
+        \end{block}
+    }
+
+    \only<3>{
+        \begin{block}{Isotropic Rings: Radial Scan}
+           \centering
+            \includegraphics[width=.8\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_radius_scans.png}
+        \end{block}
+    }
+
+    \only<4,5>{
+        \begin{block}{Composite Distributions}
+           \only<4>{
+           \centering
+            \includegraphics[width=.8\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_x4575_cut.png}
+
+           }
+        \end{block}
+    }
 
 \end{frame}
+
 %
 % \begin{frame}
 %     \frametitle{Experimental Tomography Results}
@@ -869,7 +942,7 @@
 %             \begin{itemize}
 %                 \item C$^{3+}$ detachment visible at $f\ix{rad} \sim 50\%$
 %                 \item Stable detachment achievable at $f\ix{rad} > 90\%$
-%                 \item Radiation shifts inward as $f\ix{rad} \rightarrow 1$
+%                 \item Radiation shifts inward as $f\ix{rad} \Rightarrow 1$
 %                 \item X-point and island radiation concentration
 %             \end{itemize}
 %             }
@@ -1987,7 +2060,7 @@
 %         \begin{column}{0.48\textwidth}
 %             \textbf{Key Findings:}
 %             \begin{itemize}
-%                 \item Higher $P\ix{ECRH}$ ($\ge$\SI{3.5}{\mega\watt}) $\rightarrow$ better predictability
+%                 \item Higher $P\ix{ECRH}$ ($\ge$\SI{3.5}{\mega\watt}) $\Rightarrow$ better predictability
 %                 \item Optimal $f\ix{rad}>0.75$
 %                 \item Core $T\ix{e}\sim$ \SI{1.3}{\kilo\electronvolt} ideal
 %                 \item Gap at $\vartheta\approx$ 0.3-0.5
