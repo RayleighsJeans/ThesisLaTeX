@@ -187,6 +187,9 @@ sympy-plots-for-*.tex/
 .vscode/*
 .vscode/**/*
 
+# bob AI assistant
+.bob/
+
 # pythontex
 *.pytxcode
 pythontex-files-*/
@@ -247,3 +250,4 @@ THESIS/main.syi
 
 # colloquium
 COLLOQUIUM/ippw7x.pdf
+AGENTS.md
