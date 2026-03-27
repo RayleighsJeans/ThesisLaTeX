@@ -651,7 +651,8 @@
                 \centering
                 \includegraphics[width=\textwidth]{%
                     ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut.png}
-                \gcaption{EIM grid, STRAHL phantom radiation profile}\\
+                \gcaption{EIM grid, STRAHL phantom radiation profile}
+
                 \small($f\ix{rad}\sim100\%$)
             }
 
@@ -670,67 +671,70 @@
             \only<8>{
                 \centering
                 \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut3.png}\\
-                \gcaption{tomogram of foward calculation using tilted geometry, backward symmetrical}\\
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut3.png}
+                \gcaption{tomogram of foward calculation using tilted geometry, backward symmetrical}
+
                 using $\mathbf{T}\ix{sym}\cdot\vec{x}=\vec{b}$
             }
         \end{column}
 
-%         \begin{column}{0.5\textwidth}
-%             \only<1>{
-%                 \centering
-%                 \includegraphics[width=.5\textwidth]{%
-%                     ../THESIS/content/figures/chapter4/MFR/detector_splitting_cut.pdf}\\
-%                 \vspace*{1em}
-%                 \includegraphics[width=\textwidth]{%
-%                     ../THESIS/content/figures/chapter4/MFR/kfactors_volumes_interpolations_comp_cut.pdf}
-%                 \gcaption{(top) detector/aperture splitting $N=8$\\%
-%                           (bottom) $V\ix{M}$ comparison for different segmentations}
-%             }
-%             \only<2>{
-%                 \centering
-%                 \includegraphics[width=\textwidth]{%
-%                     ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
-%                 \gcaption{forward integration of STRAHL phantom profile $f\ix{rad}\sim100\%$}
-%             }
-%             \only<4>{
-%                 \centering
-%                 \includegraphics[width=\textwidth]{%
-%                     ../THESIS/content/figures/chapter4/MFR/compare_artificialHBCm_emissivities3D.pdf}
-%                 \gcaption{absolute difference between camera geometries (left, original vs. symmetric)}
-%                 $\left\|\mathbf{T}-\mathbf{T}\ix{sym}\right\|$
-%             }
-%             \only<5>{
-%                 \centering
-%                 \includegraphics[width=.95\textwidth]{%
-%                     ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_artificialHBCm_sN8_30x20x150_1.35.png}
-%                 \gcaption{forward integration of STRAHL phantom profile\\%
-%                           for $f\ix{rad}\sim100\%$ with symmetrical camera geometry}
-%             }
-%             \only<7>{
-%                 \centering
-%                 \includegraphics[width=\textwidth]{%
-%                     ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_tilt_cor_2.0deg_sN8_30x20x150_1.35.png}
-%                 \gcaption{forward integration of STRAHL phantom profile\\%
-%                           using $2^{\circ}$ rotated symmetrical geometry}
-%             }
-%             \only<8>{
-%                 \centering
-%                 \includegraphics[width=\textwidth]{%
-%                     ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.1_mx1.0e+06_tilt-1.0_aniM3_2.0_2.0_nigs1_times0.11_cut2.png}
-%                 \gcaption{tomogram of foward and backward calculation using symmetrical geometry}
-%                 using $\mathbf{T}\ix{ilt}\cdot\vec{x}=\vec{b}$
-%             }
-%             \only<9>{
-%                 \begin{alertblock}{Results}
-%                     \begin{itemize}
-%                         \item Discretization of system is computationally stable
-%                         \item Intrinsic asymmetry of same order of magnitude as potential, unknown geometric pertubation - non-negligible
-%                         \item Worst case machine warp scenario $\sim0.2r\ix{a}$ shift
-%                     \end{itemize}
-%                 \end{alertblock}
-%             }
-%         \end{column}
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+                \centering
+                \includegraphics[width=.5\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/detector_splitting_cut.pdf}\\
+                \vspace*{1em}
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/kfactors_volumes_interpolations_comp_cut.pdf}
+                \gcaption{(top) detector/aperture splitting $N=8$\\%
+                          (bottom) $V\ix{M}$ comparison for different segmentations}
+            }
+            \only<2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
+                \gcaption{forward integration of STRAHL phantom profile $f\ix{rad}\sim100\%$}
+            }
+            \only<4>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/compare_artificialHBCm_emissivities3D.pdf}
+                \gcaption{absolute difference between camera geometries (left, original vs. symmetric)}
+
+                $\left\|\mathbf{T}-\mathbf{T}\ix{sym}\right\|$
+            }
+            \only<5>{
+                \centering
+                \includegraphics[width=.95\textwidth]{%
+                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_artificialHBCm_sN8_30x20x150_1.35.png}
+                \gcaption{forward integration of STRAHL phantom profile\\%
+                          for $f\ix{rad}\sim100\%$ with symmetrical camera geometry}
+            }
+            \only<7>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_tilt_cor_2.0deg_sN8_30x20x150_1.35.png}
+                \gcaption{forward integration of STRAHL phantom profile\\%
+                          using $2^{\circ}$ rotated symmetrical geometry}
+            }
+            \only<8>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.1_mx1.0e+06_tilt-1.0_aniM3_2.0_2.0_nigs1_times0.11_cut2.png}
+                \gcaption{tomogram of foward and backward calculation using symmetrical geometry}
+
+                using $\mathbf{T}\ix{ilt}\cdot\vec{x}=\vec{b}$
+            }
+            \only<9>{
+                \begin{alertblock}{Results}
+                    \begin{itemize}
+                        \item Discretization of system is computationally stable
+                        \item Intrinsic asymmetry of same order of magnitude as potential, unknown geometric pertubation - non-negligible
+                        \item Worst case machine warp scenario $\sim0.2r\ix{a}$ shift
+                    \end{itemize}
+                \end{alertblock}
+            }
+        \end{column}
     \end{columns}
 
     % TP: Extensive testing of geometry sensitivity - how do uncertainties in camera positions affect results?
