@@ -669,7 +669,7 @@
                     \item Tests for symmetrical chord profile motivate artificial camera geometry
                 }
                 \only<6>{
-                    \item \color{ipp}{Pertubation study from measured machine stresse $\le\pm2^{\circ}$ off axiss}
+                    \item \color{ipp}{Pertubation study from measured machine stress $\le\pm2^{\circ}$ off axis}
                 }
                 \visible<9>{
                     \item Pertubation study from measured machine stresses $\le\pm2^{\circ}$ off axis
@@ -1333,73 +1333,6 @@
     % TP: Backup slides contain detailed technical information from appendices
     % TP: Available for questions on specific technical aspects
 \end{frame}
-
-\begin{frame}
-    \frametitle{STRAHL Impurity Transport Modeling}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \only<1-2>{
-            \textbf{STRAHL Code:}
-            \begin{itemize}
-                \item 1D impurity transport and radiation simulation
-                \item Solves radial continuity for each ionisation stage
-                \item Experimental input data: pertubation study in transport coefficients, profile smoothing, source model etc.
-                \item Valid in confinement, simple ansatz outside LCFS
-            \end{itemize}
-            }
-
-            \only<3>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                   ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
-            }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \only<1>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter3/STRAHL/diag_lines/compare_strahl_rad_93_94_edge.png}
-            }
-
-            \only<2>{
-            \textbf{Key Results:}
-            \begin{itemize}
-                \item Carbon dominates emissivity (C$^{2/3+}$, x$10^{2}+$ of Oxygen levels)
-                \item Inward shift of radiation for $f\ix{rad}\rightarrow 1$ toward $r\sim0.95r\ix{a}$
-                \item Radiation moves from outside to inside separatrix
-            \end{itemize}
-            }
-
-            \only<3>{
-            \textbf{Forward Modeling:}
-            \begin{itemize}
-                \item Chord brightness from STRAHL results
-                \item Compare with experimental measurements
-                \item Validate assumptions about impurity radiation and transport
-            \end{itemize}
-
-            \vspace{0.5em}
-            \begin{alertblock}{Discrepancy}
-                Forward calculations show asymmetry - less than experiments - in confinement, suggesting intrinsic geometry effects
-            \end{alertblock}
-            }
-        \end{column}
-    \end{columns}
-
-    % TP: STRAHL is a 1D transport code that models how impurities move and radiate in the plasma
-    % TP: Simulations show carbon is the main radiator in the SOL - intrinsic impurity from wall interactions
-    % TP: Carbon charge states C³⁺ and C⁴⁺ dominate emission in SOL region (T_e~10-50eV)
-    % TP: Reduced diffusivity D_⊥≈0.1 m²/s near separatrix creates accumulation and enhanced radiation
-    % TP: As radiation fraction increases, the emission zone shifts inward toward ρ_pol≈0.95
-    % TP: Anomalous transport (turbulent) dominates over neoclassical by factor 10-100
-    % TP: Model captures basic trends but misses some 3D asymmetries seen in experiments - stellarator complexity
-    % TP: Forward modeling: calculate expected bolometer signals from STRAHL profiles for validation
-    % TP: Discrepancies reveal limitations - need 3D modeling to capture full stellarator physics
-\end{frame}
-
 \begin{frame}
     \frametitle{Impurity Seeding Models}
     \backgroundlogo%
@@ -2039,147 +1972,69 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{LOS Sensitivity: Fourier Transform Correlation Metric}
+    \frametitle{STRAHL Impurity Transport Modeling}
     \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \textbf{Method:}
+            \only<1-2>{
+            \textbf{STRAHL Code:}
             \begin{itemize}
-                \item Uses spectral correlation between $P\ix{rad}$ and $P\ix{pred}$ with DFFT
-                \item Cross-spectral density, coherence-based metric
+                \item 1D impurity transport and radiation simulation
+                \item Solves radial continuity for each ionisation stage
+                \item Experimental input data: pertubation study in transport coefficients, profile smoothing, source model etc.
+                \item Valid in confinement, simple ansatz outside LCFS
             \end{itemize}
+            }
 
-            \textbf{Mathematical Formulation:}
-            \begin{align*}
-                \gamma_i &= \mathcal{F}(P\ix{rad})(\omega)\qquad%
-                \gamma_j  = \mathcal{F}(P\ix{pred})(\omega) \\
-                \varphi(\omega) &= \sqrt{|g\ix{i,j}^2|/|\gamma_i\gamma_j|} \Rightarrow \vartheta = \int \varphi(\omega) d\omega
-            \end{align*}
+            \only<3>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                   ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
+            }
         \end{column}
 
         \begin{column}{0.5\textwidth}
             \only<1>{
                 \centering
                 \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/best_chans/%
-                    best_chans_wghtd_dev_C[_8_7_23].pdf}
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/%
-                    weighted_deviation_3_HBCm_combinations.pdf}
+                ../THESIS/content/figures/chapter3/STRAHL/diag_lines/compare_strahl_rad_93_94_edge.png}
             }
 
             \only<2>{
-                \centering
-                \includegraphics[width=.7\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/%
-                    weighted_deviation_sensitivity_combs_HBCm.pdf}
-                \includegraphics[width=.7\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/%
-                    weighted_deviation_sensitivity_combs_VBC.pdf}
-            }
-
-            \only<3>{
             \textbf{Key Results:}
             \begin{itemize}
-                \item Similar patterns to correlation metric
-                \item Global maximum at upper inboard X-point
-                \item Spectral focus excludes absolute value contributions
-            \end{itemize}
-
-            \textbf{Advantages:}
-            \begin{itemize}
-                \item Frequency domain analysis
-                \item Identifies oscillatory behavior
+                \item Carbon dominates emissivity (C$^{2/3+}$, x$10^{2}+$ of Oxygen levels)
+                \item Inward shift of radiation for $f\ix{rad}\rightarrow 1$ toward $r\sim0.95r\ix{a}$
+                \item Radiation moves from outside to inside separatrix
             \end{itemize}
             }
-        \end{column}
-    \end{columns}
 
-    % TP: Fourier transform provides frequency-domain perspective on LOS sensitivity
-    % TP: Confirms X-point viewing channels have highest spectral correlation
-    % TP: Complements time-domain correlation metrics
-\end{frame}
-
-\begin{frame}
-    \frametitle{LOS Sensitivity: Plasma Parameters}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \only<1>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_ECRH_HBCm.pdf}
-                \gcaption{(HBC) heating power $P\ix{ECRH}$ correlation}
-            }
-            \only<2>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_ECRH_VBC.pdf}
-                \gcaption{(VBC) heating power $P\ix{ECRH}$ correlation}
-            }
             \only<3>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_frad_HBCm.pdf}
-                \gcaption{(HBC) radiation fraction $f\ix{rad}$ correlation}
-            }
-            \only<4>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_frad_VBC.pdf}
-                \gcaption{(VBC) radiation fraction $f\ix{rad}$ correlation}
-            }
-            \only<5>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_ne_lint_HBCm.pdf}
-                \gcaption{(HBC) line integrated electron density correlation}
-            }
-            \only<6>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_ne_lint_VBC.pdf}
-                \gcaption{(VBC) line integrated electron density correlation}
-            }
-            \only<7>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_Te_core_HBCm.pdf}
-                \gcaption{(HBC) core electron temperature correlation}
-            }
-            \only<8>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_Te_core_VBC.pdf}
-                \gcaption{(VBC) core electron temperature correlation}
-            }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \textbf{Key Findings:}
+            \textbf{Forward Modeling:}
             \begin{itemize}
-                \item Higher $P\ix{ECRH}$ ($\ge$\SI{3.5}{\mega\watt}) $\Rightarrow$ better predictability
-                \item Optimal $0.4<f\ix{rad}<0.75$
-                \item Core $T\ix{e}\sim$\SI{1.3}{\kilo\electronvolt} ideal
-                \item Both cameras in good agreement
+                \item Chord brightness from STRAHL results
+                \item Compare with experimental measurements
+                \item Validate assumptions about impurity radiation and transport
             \end{itemize}
 
             \vspace{0.5em}
-            \textbf{\textit{Optimal} Discharge Conditions:}
-            \begin{itemize}
-                \item Medium-high heating power
-                \item High radiation fraction
-                \item Moderate core temperature
-                \item Consistency across LOS combinations
-            \end{itemize}
+            \begin{alertblock}{Discrepancy}
+                Forward calculations show asymmetry - less than experiments - in confinement, suggesting intrinsic geometry effects
+            \end{alertblock}
+            }
         \end{column}
     \end{columns}
 
-    % TP: Systematic correlation between plasma parameters and prediction quality
-    % TP: Identifies optimal experimental configurations for feedback
-    % TP: Validates that high f_rad scenarios work well with feedback system
+    % TP: STRAHL is a 1D transport code that models how impurities move and radiate in the plasma
+    % TP: Simulations show carbon is the main radiator in the SOL - intrinsic impurity from wall interactions
+    % TP: Carbon charge states C³⁺ and C⁴⁺ dominate emission in SOL region (T_e~10-50eV)
+    % TP: Reduced diffusivity D_⊥≈0.1 m²/s near separatrix creates accumulation and enhanced radiation
+    % TP: As radiation fraction increases, the emission zone shifts inward toward ρ_pol≈0.95
+    % TP: Anomalous transport (turbulent) dominates over neoclassical by factor 10-100
+    % TP: Model captures basic trends but misses some 3D asymmetries seen in experiments - stellarator complexity
+    % TP: Forward modeling: calculate expected bolometer signals from STRAHL profiles for validation
+    % TP: Discrepancies reveal limitations - need 3D modeling to capture full stellarator physics
 \end{frame}
 
 \begin{frame}
@@ -2333,13 +2188,13 @@
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
             \only<1-2>{
-                \textbf{Artificial Symmetric Camera:}
+                \textbf{Axisymmetric HBC Aperture:}
                 \includegraphics[width=\textwidth]{%
                     ../THESIS/content/figures/chapter4/MFR/compare_centered_emissivities3D.pdf}
             }
-            
+
             \only<3-4>{
-                \textbf{Unilateral Mirroring:}
+                \textbf{Unilateral Mirrored HBC:}
                 \includegraphics[width=\textwidth]{%
                     ../THESIS/content/figures/chapter4/MFR/compare_fixedLoS_emissivities3D.pdf}
             }
@@ -2348,9 +2203,8 @@
         \begin{column}{0.5\textwidth}
             \only<1>{
                 \begin{itemize}
-                    \item Half of HBC array mirrored
-                    \item Minimal impact on forward model
-                    \item Asymmetry reduced by 0.5-1\%
+                    \item Designed aperture location slightly off-axis \item Center location $Z\ne0$, face normal not towards $(R,Z,\varphi)=(0,0,\cdot)$
+                    \item Adjustmend thereof and camera array accordingly
                 \end{itemize}
             }
 
@@ -2363,10 +2217,9 @@
 
             \only<3>{
                 \begin{itemize}
-                    \item Perfectly symmetric geometry
-                    \item Similar etendue variations
-                    \item Validates as-built design
-                    \item Confirms near-ideal geometry
+                    \item Half of HBC array mirrored
+                    \item Minimal impact on forward model
+                    \item Asymmetry reduced by 0.5-1\%
                 \end{itemize}
             }
 
@@ -2385,7 +2238,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Segmentation and LOS Cones}
+    \frametitle{Segmentation and Line-of-Sight Cones}
     \backgroundlogo
 
     \begin{figure}[t]%
@@ -2401,10 +2254,11 @@
                 ../THESIS/content/figures/chapter4/MFR/%
                 viewcones_ch15_16_sN8.pdf}%
         \end{subfigure}%
+        \vspace*{1em}
         \gcaption{%
-            Comparison for example LOS cones for channel 14 and 16 of the HBC with rectangular splitting at (\textcolor{blue}{blue}) $N=2$ and (\textcolor{green}{green}) $N=8$. Full cone vs infinitesimal projection}
-            \end{figure}%
-
+            Comparison for example LOS cones for channel 14 and 16 of the HBC with rectangular splitting\\%
+            at (\textcolor{blue}{blue}) $N=2$ and (\textcolor{green}{green}) $N=8$. Full cone vs infinitesimal projection}
+        \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -2413,42 +2267,41 @@
 
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
-            \textbf{Radially Dependent Anisotropy (RDA):}
+            \only<1>{
+            \textbf{Relative Gradient Smoothing (RGS)\cite{Zhang2024}:}
             \begin{itemize}
-                \item Standard MFR with $k\ix{ani}$ profile
-                \item Smooth reconstructions
-                \item Good radial profile matching
-                \item Established method
-            \end{itemize}
-
-            \vspace{0.5em}
-            \textbf{Relative Gradient Smoothing (RGS):}
-            \begin{itemize}
-                \item Weight: $\mathbf{W}\ix{RGS}=(1/g\ix{i})^{2}$
                 \item Can be combined with RDA
                 \item Stronger feature localization
                 \item Higher local intensities
             \end{itemize}
+            }
+
+            \only<2-3>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_dfs_0.7_1.0_asym_m1_mx1.0e+06_RGS_aniM3_2.0_0.3_nigs1_times0.11_cut1.png}
+                \gcaption{convoluted, concentric phantom radiation profile (ani-/isotropic)}
+            }
         \end{column}
 
         \begin{column}{0.5\textwidth}
-            \textbf{Comparison Results:}
-            \begin{itemize}
-                \item Similar integrated power values
-                \item RGS: sharper features
-                \item RGS: better peak localization
-                \item RGS: may lose weak structures
-                \item RDA: more robust for general use
-            \end{itemize}
-
-            \vspace{0.5em}
-            \textbf{Conclusion:}
-            \begin{itemize}
-                \item RDA sufficient for most cases
-                \item RGS useful for specific scenarios
-                \item Combined approach possible
-                \item Choice depends on physics goals
-            \end{itemize}
+            \only<1>{
+            \begin{align*}
+                \mathbf{K}\,\,\to\,\,\vec{x}^{\intercal}\,\mathbf{H}\ix{RGS}\,\vec{x}\propto\left(\frac{\nabla x}{x}\right)^{2}%
+            \end{align*}
+            }
+            \only<2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_dfs_0.7_1.0_asym_m1_mx1.0e+06_RGS_aniM3_2.0_0.3_nigs1_times0.11_cut2.png}
+                \gcaption{MFR reconstruction using RGS, $k\ix{ani}=\{2, 0.3\}$}
+            }
+            \only<3>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_dfs_0.7_1.0_asym_m1_mx1.0e+06_aniM3_2.0_0.3_nigs1_times0.11_cut1.png}
+                \gcaption{MFR reconstruction using RDA, $k\ix{ani}=\{2, 0.3\}$}
+            }
         \end{column}
     \end{columns}
 
@@ -2456,361 +2309,350 @@
     % TP: RDA chosen as primary method - good balance of accuracy and robustness
     % TP: RGS can enhance specific features but may sacrifice overall accuracy
 \end{frame}
-% %
-% % % ----------------------------------------------------------------------------
-% % % Additional Phantom Tests
-% % % ----------------------------------------------------------------------------
-% %
-% % \begin{frame}
-% %     \frametitle{Phantom Tomography: Edge Cases}
-% %     \backgroundlogo%
-% %
-% %     \begin{columns}[T]
-% %         \begin{column}{0.5\textwidth}
-% %             \textbf{Inverted Anisotropy:}
-% %
-% %             \includegraphics[width=0.9\textwidth]{../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR0.8_fsR1.1_mx1.0e+06_aniM4_3.0_20.0_nT15_nW2_nigs1_times0.11.png}
-% %
-% %             \small Bright SOL ring + core islands
-% %
-% %             \begin{itemize}
-% %                 \item More challenging reconstruction
-% %                 \item SOL dominates measurement
-% %                 \item Core features partially obscured
-% %             \end{itemize}
-% %         \end{column}
-% %
-% %         \begin{column}{0.5\textwidth}
-% %             \textbf{Homogeneous Distribution:}
-% %
-% %             \includegraphics[width=0.9\textwidth]{../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_blind_test_ones_mx1.0e+06_aniM3_1.0_1.0_nigs1_times0.11.png}
-% %
-% %             \small Uniform \SI{1}{\mega\watt\per\cubic\meter} everywhere
-% %
-% %             \begin{itemize}
-% %                 \item Tests baseline reconstruction
-% %                 \item Validates algorithm behavior
-% %                 \item Confirms no artificial structures
-% %             \end{itemize}
-% %         \end{column}
-% %     \end{columns}
-% %
-% %     \vspace{0.5em}
-% %     \textbf{Lessons:} Camera sensitivity in SOL can obscure core features; algorithm performs well for uniform distributions; inverted scenarios more challenging than standard core-peaked profiles.
-% %
-% %     % TP: Edge case phantoms test algorithm limits and robustness
-% %     % TP: Inverted case shows SOL brightness can obscure core details
-% %     % TP: Homogeneous test confirms no artificial pattern generation
-% % \end{frame}
-% %
-% % % ----------------------------------------------------------------------------
-% % % Summary of Appendix Content
-% % % ----------------------------------------------------------------------------
-% %
-% % \begin{frame}
-% %     \frametitle{Appendix Summary}
-% %     \backgroundlogo%
-% %
-% %     \begin{columns}[T]
-% %         \begin{column}{0.5\textwidth}
-% %             \textbf{Measurement Algorithm:}
-% %             \begin{itemize}
-% %                 \item Three-stage process validated
-% %                 \item Real-time capability confirmed
-% %                 \item Robust calibration procedure
-% %                 \item Full data archiving
-% %             \end{itemize}
-% %
-% %             \vspace{0.5em}
-% %             \textbf{LOS Sensitivity Methods:}
-% %             \begin{itemize}
-% %                 \item Fourier correlation complements time-domain
-% %                 \item Plasma parameter correlations identified
-% %                 \item Optimal discharge conditions determined
-% %             \end{itemize}
-% %         \end{column}
-% %
-% %         \begin{column}{0.5\textwidth}
-% %             \textbf{STRAHL Validation:}
-% %             \begin{itemize}
-% %                 \item Parameter variations tested
-% %                 \item Model robustness confirmed
-% %                 \item Critical $f\ix{rad}$ dependence shown
-% %             \end{itemize}
-% %
-% %             \vspace{0.5em}
-% %             \textbf{Tomography Extensions:}
-% %             \begin{itemize}
-% %                 \item Geometry perturbations minimal
-% %                 \item RDA vs RGS compared
-% %                 \item Edge case phantoms tested
-% %                 \item Algorithm limits characterized
-% %             \end{itemize}
-% %         \end{column}
-% %     \end{columns}
-% %
-% %     \vspace{1em}
-% %     \begin{center}
-% %         \textbf{All appendix content validates and extends main thesis results}
-% %     \end{center}
-% %
-% %     % TP: Appendices provide crucial technical validation
-% %     % TP: All methods thoroughly tested and characterized
-% %     % TP: Results support main conclusions and demonstrate robustness
-% % \end{frame}
-% %
-%
-% % ----------------------------------------------------------------------------
-% % Correlation Metric for LOS Evaluation
-% % ----------------------------------------------------------------------------
-%
-% % \begin{frame}
-% %     \frametitle{Correlation Metric for LOS Evaluation}
-% %     \backgroundlogo%
-% %
-% %     \textbf{Cross-Correlation Approach:}
-% %
-% %     \begin{columns}[T]
-% %         \begin{column}{0.5\textwidth}
-% %             \textbf{Method:}
-% %             \begin{itemize}
-% %                 \item Measures temporal likeness between $P_{\text{pred}}$ and $P_{\text{rad}}$
-% %                 \item Cross-correlation integral analysis
-% %                 \item Compares to self-correlation baseline
-% %                 \item Quality inversely proportional to deviation
-% %             \end{itemize}
-% %
-% %             \vspace{0.5em}
-% %             \textbf{Mathematical Formulation:}
-% %             \begin{align*}
-% %                 \varphi(t) &= \int_{-\infty}^{\infty}P_{\text{pred}}(\tau)P_{\text{rad}}(t+\tau)d\tau \\
-% %                 \vartheta &= \frac{1}{T_{\text{stop}}-T_{\text{start}}}\int_{T_{\text{start}}}^{T_{\text{stop}}}|\varphi^{\ast}(t)-\varphi(t)|dt \\
-% %                 \varphi^{\ast}(t) &= \int_{-\infty}^{\infty}P_{\text{rad}}(\tau)P_{\text{rad}}(t+\tau)d\tau
-% %             \end{align*}
-% %         \end{column}
-% %
-% %         \begin{column}{0.5\textwidth}
-% %             \textbf{Key Results:}
-% %             \begin{itemize}
-% %                 \item Quality range: 1-28 a.u. (XP20181010.32)
-% %                 \item Large error bars: up to 40\%
-% %                 \item Distinct local maxima at $\pm0.85r_a$
-% %                 \item Lowest sensitivity at X-point viewing channels
-% %                 \item Congruent profiles across $m=3,5,7$
-% %             \end{itemize}
-% %
-% %             \vspace{0.5em}
-% %             \textbf{Interpretation:}
-% %             \begin{itemize}
-% %                 \item Emphasizes temporal behavior
-% %                 \item Sensitive to localized perturbations
-% %                 \item Contrasts with weighted deviation
-% %                 \item X-point channels show poor temporal correlation
-% %             \end{itemize}
-% %         \end{column}
-% %     \end{columns}
-% %
-% %     \vspace{0.3cm}
-% %     \textbf{Camera Comparison:}
-% %     \begin{itemize}
-% %         \item HBC: Lowest sensitivity at $\pm0.9r_a$ (separatrix/SOL viewing)
-% %         \item VBC: Global maximum at upper inboard X-point location
-% %         \item Both cameras: Large standard deviations indicate high variability
-% %         \item Selection size $m$ has minimal impact on profile shape
-% %     \end{itemize}
-% %
-% %     % TP: Correlation metric provides frequency-domain perspective on LOS quality
-% %     % TP: Contrasts with weighted deviation - X-point channels perform poorly here
-% %     % TP: Large error bars indicate high sensitivity to discharge conditions
-% %     % TP: Temporal correlation critical for feedback - gas puff perturbations affect this metric
-% %     % TP: Lower values indicate better prediction quality (inverse relationship)
-% %     % TP: Most channels show similar sensitivity except at local extrema
-% %     % TP: Results suggest localized radiation perturbations dominate temporal correlation
-% % \end{frame}
-% %
-% % % ----------------------------------------------------------------------------
-% % % Mean Deviation Metric for LOS Evaluation
-% % % ----------------------------------------------------------------------------
-% %
-% % \begin{frame}
-% %     \frametitle{Mean Deviation Metric for LOS Evaluation}
-% %     \backgroundlogo%
-% %
-% %     \textbf{Modified Variance Approach:}
-% %
-% %     \begin{columns}[T]
-% %         \begin{column}{0.5\textwidth}
-% %             \textbf{Method:}
-% %             \begin{itemize}
-% %                 \item Modified variance calculation
-% %                 \item No temporal relation weighting
-% %                 \item No cut-offs in $P_{\text{pred}}$ spectrum
-% %                 \item Positive-definite results
-% %             \end{itemize}
-% %
-% %             \vspace{0.5em}
-% %             \textbf{Mathematical Formulation:}
-% %             \begin{align*}
-% %                 \varphi(t) &= \frac{1}{T_{\text{stop}}-T_{\text{start}}}(P_{\text{rad}}(t)-P_{\text{pred}}(t))^2 \\
-% %                 \vartheta &= \sqrt{(T_{\text{stop}}-T_{\text{start}})\left(\int_{T_{\text{start}}}^{T_{\text{stop}}}\varphi(t)dt\right)^{-1}}
-% %             \end{align*}
-% %
-% %             \vspace{0.3em}
-% %             \textbf{Quality Interpretation:}
-% %             \begin{itemize}
-% %                 \item Higher $\vartheta$ = better prediction
-% %                 \item Smaller $\varphi(t)$ = higher congruence
-% %                 \item Inverse correlation between metric and map
-% %             \end{itemize}
-% %         \end{column}
-% %
-% %         \begin{column}{0.5\textwidth}
-% %             \textbf{Key Results:}
-% %             \begin{itemize}
-% %                 \item Quality: $\sim$1.2$\times$10$^{-4}$ a.u. (HBC, $m=7$)
-% %                 \item Error bars: 20-40\% (large variability)
-% %                 \item Local maxima at $-0.28r_a$ and $0.6r_a$ ($m=3$)
-% %                 \item Quality scales with selection size $m$
-% %                 \item VBC: Similar patterns, higher sensitivity
-% %             \end{itemize}
-% %
-% %             \vspace{0.5em}
-% %             \textbf{Comparison to Other Metrics:}
-% %             \begin{itemize}
-% %                 \item Similar extrema locations as weighted deviation
-% %                 \item Less pronounced features
-% %                 \item Missing SOL edge extrema
-% %                 \item Order of magnitude larger error bars
-% %                 \item No outliers in local sensitivity
-% %             \end{itemize}
-% %         \end{column}
-% %     \end{columns}
-% %
-% %     \vspace{0.3cm}
-% %     \textbf{Conclusions:}
-% %     \begin{itemize}
-% %         \item Promotes edge channels ($\pm r_a$) for best prediction
-% %         \item Core-viewing channels consistently positive impact
-% %         \item $m=7$ selections achieve good quality for any combination
-% %         \item Outermost LOS (plasma boundary) least favorable
-% %         \item Qualitatively agrees with weighted deviation but with larger uncertainties
-% %     \end{itemize}
-% %
-% %     % TP: Mean deviation offers variance-based quality assessment without temporal weighting
-% %     % TP: Results qualitatively similar to weighted deviation but less pronounced features
-% %     % TP: Large error bars (20-40\%) indicate high sensitivity to experimental conditions
-% %     % TP: Quality consistently improves with larger selection sizes (m=3→5→7)
-% %     % TP: Core-viewing channels show consistent positive contribution across all metrics
-% %     % TP: Edge channels near separatrix optimal for feedback prediction
-% %     % TP: Mathematical formulation simpler than correlation but yields similar insights
-% %     % TP: Exclusive conclusion: outermost boundary-viewing LOS unfavorable for feedback
-% % \end{frame}
-%
-%\begin{frame}
-%     \frametitle{Impact}
-%     \backgroundlogo%
-%
-%     \visible<1-3>{
-%     \begin{block}{Contribution to Fusion  Research}
-%         This thesis advances plasma diagnostics and control for stellarator fusion devices, providing essential tools and knowledge for achieving reactor-relevant operating scenarios with controlled radiative cooling, as well as stable detachment.
-%     \end{block}
-%     }
-%
-%     \vspace{1em}
-%     \begin{columns}
-%         \begin{column}{0.5\textwidth}
-%             \visible<2-3>{
-%             \textbf{Technical Contributions:}
-%             \begin{itemize}
-%                 \item First real-time bolometer feedback at W7-X
-%                 \item Validated diagnostic optimization methods
-%                 \item Benchmarked tomography algorithm
-%                 \item Demonstrated controlled, stable high-$f\ix{rad}$ operation
-%             \end{itemize}
-%             }
-%         \end{column}
-%
-%         \begin{column}{0.5\textwidth}
-%             \visible<3->{
-%             \textbf{Scientific Contributions:}
-%             \begin{itemize}
-%                 \item Detachment physics understanding
-%                 \item Impurity transport insights
-%                 \item Radiation distribution characterization
-%                 \item Power balance methodology
-%             \end{itemize}
-%             }
-%         \end{column}
-%     \end{columns}
-%
-%     % TP: This work makes significant contributions to both technical capabilities and scientific understanding
-%     % TP: Technical: First bolometer feedback at W7-X, validated channel selection, benchmarked MFR tomography
-%     % TP: Scientific: Detachment physics (C³⁺ at f_rad~50%), impurity transport (D_⊥≈0.1 m²/s), 2D radiation
-%     % TP: Demonstrates that stellarators can achieve reactor-relevant radiation control (f_rad\ge85-90%)
-%     % TP: Stable high-radiation operation without disruption - critical for future reactors
-%     % TP: Methods and insights applicable to other fusion devices and future reactors (ITER, DEMO)
-%     % TP: Lays groundwork for continued development toward fusion energy
-%     % TP: Provides validated tools and understanding for OP2.1 and beyond at W7-X
-% \end{frame}
-%
-% \begin{frame}
-%     \frametitle{Scientific Insights}
-%     \backgroundlogo%
-%
-%     \begin{columns}
-%         \begin{column}{0.5\textwidth}
-%             \visible<1-4>{
-%             \textbf{Detachment Physics:}
-%             \begin{itemize}
-%                 \item C$^{2+}$ detachment visible at $f\ix{rad}\sim50\%$
-%                 \item Stable detachment achievable $f\ix{rad}>80\%$
-%                 \item Inward radiation shift $f\ix{rad}\Rightarrow80\%+$
-%                 \item X-point and island radiation condensation
-%             \end{itemize}
-%             }
-%
-%             \vspace{1em}
-%             \visible<2-4>{
-%             \textbf{Impurity Transport:}
-%             \begin{itemize}
-%                 \item Carbon dominates SOL emissivity
-%                 \item Reduced diffusivity near separatrix
-%             \end{itemize}
-%             }
-%         \end{column}
-%
-%         \begin{column}{0.5\textwidth}
-%             \visible<3-4>{
-%             \textbf{Feedback Control:}
-%             \begin{itemize}
-%                 \item Moderate working gas puffs effective
-%                 \item System latency has limited performance
-%                 \item LOS selection uncritical for constrained cases
-%             \end{itemize}
-%             }
-%
-%             \vspace{1em}
-%             \visible<4>{
-%             \textbf{Diagnostic Performance:}
-%             \begin{itemize}
-%                 \item Geometry uncertainties may affect results greatly (unknown)
-%                 \item MFR + RDA viable and essential tool for evaluation
-%                 \item Tomography reveals SOL radiation underestimation
-%             \end{itemize}
-%             }
-%         \end{column}
-%     \end{columns}
-%
-%     % TP: Work provided new insights into detachment physics at W7-X stellarator
-%     % TP: C³⁺ detachment signature at f_rad~50%, full detachment at f_rad>90% with stable operation
-%     % TP: Radiation shifts inward (toward ρ_pol≈0.95) as f_rad→1, concentrates at X-points and islands
-%     % TP: Carbon from walls is main radiator (C³⁺, C⁴⁺) - important for understanding and predicting behavior
-%     % TP: Reduced diffusivity D_⊥≈0.1 m²/s near separatrix creates accumulation zone
-%     % TP: Feedback control works but needs optimization - latency (200-400ms) and parameter tuning challenges
-%     % TP: Moderate gas puffs most effective - short intense puffs cause transients, long weak puffs ineffective
-%     % TP: Diagnostic capabilities well-characterized - 61 functional channels, ~5cm spatial resolution
-%     % TP: Geometry uncertainties (±1°) affect tomography but algorithm remains robust
-%     % TP: Tomography reveals SOL radiation underestimation in standard analysis - captures full 2D distribution
-% \end{frame}
+
+\begin{frame}
+    \frametitle{Tomography: Artificial Cameras}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+           \only<1>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/LoS_comparison_newCamera_VBCm_sN8.pdf}
+            \gcaption{artificial (conceptual) VBCm(irror) camera vs VBCl/r}
+           }
+           \only<2>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/LoS_comparison_newCamera_MIRh_sN8.pdf}
+            \gcaption{artificial (conceptual) MIR(rored)h(orizontal) camera vs HBCm}
+           }
+           \only<3-4>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.3_nT15_nW2_nigs1_times0.11_cut1.png}
+            \gcaption{artificial phantom radiation profile; anisotropic island chain + bright ring in core}
+           }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+           \only<1>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/compare_VBCm_emissivities3D_fix.pdf}
+            \gcaption{etendue/LOS sensitivity for VBCm camera }
+           }
+           \only<2>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/compare_MIRh_emissivities3D_fix.pdf}
+            \gcaption{etendue/LOS sensitivity for MIRh camera}
+           }
+           \only<3>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.1_nT15_nW2_nigs1_times0.11_cut1.png}
+            \gcaption{MFR + RDA reconstruction, 3 camera system $k\ix{ani}=\{2, 0.1\}$}
+           }
+           \only<4>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_ARTm_aniM3_2.0_0.1_ARTf_nigs1_times0.11_cut2.png}
+            \gcaption{MFR + RDA reconstruction, 4 camera system incl. MIRh $k\ix{ani}=\{2, 0.1\}$}
+           }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Phantom Tomography: Edge Cases}
+    \backgroundlogo%
+
+    \only<1>{
+        \textbf{Inverted Anisotropy:}
+        \centering
+        \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR0.8_fsR1.1_mx1.0e+06_aniM4_3.0_20.0_nT15_nW2_nigs1_times0.11.png}
+        \gcaption{bright SOL ring + core anistropy, $k\ix{ani}=\{3, 20\}$}
+    }
+    \only<2-3>{
+        \textbf{Homogeneous Distribution:}
+        \centering
+        \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_blind_test_ones_mx1.0e+06_aniM3_1.0_1.0_nigs1_times0.11.png}
+        \gcaption{unit/null test, $k\ix{ani}=1$}
+    }
+    \only<3>{
+    \textbf{Lessons:} Camera sensitivity in SOL can obscure core features; algorithm performs well for uniform distributions; inverted scenarios more challenging than standard core-peaked profiles.
+    }
+
+    % TP: Edge case phantoms test algorithm limits and robustness
+    % TP: Inverted case shows SOL brightness can obscure core details
+    % TP: Homogeneous test confirms no artificial pattern generation
+\end{frame}
+
+\begin{frame}
+    \frametitle{Line-of-Sight Sensitivity Evaluation}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Cross-Correlation:}
+            \begin{align*}
+                \varphi(t) &= \int_{-\infty}^{\infty}P_{\text{pred}}(\tau)P_{\text{rad}}(t+\tau)d\tau \\
+                \varphi^{\ast}(t) &= \int_{-\infty}^{\infty}P_{\text{rad}}(\tau)P_{\text{rad}}(t+\tau)d\tau \\
+                \vartheta &= \frac{1}{T_{\text{stop}}-T_{\text{start}}}\int_{T_{\text{start}}}^{T_{\text{stop}}}|\varphi^{\ast}(t)-\varphi(t)|dt
+            \end{align*}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/best_chans/best_comb_self_cross_corr_C[4_6_13_24_26].pdf}
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/%
+                    self_correlation_3_HBCm_combinations.pdf}
+            }
+
+            \only<2>{
+                \centering
+                \includegraphics[width=.8\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/%
+                    self_correlation_sensitivity_combs_HBCm.pdf}
+                \includegraphics[width=.8\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/%
+                    self_correlation_sensitivity_combs_VBC.pdf}
+            }
+
+            \only<3>{
+            \textbf{Key Results:}
+            \begin{itemize}
+                \item Large error bars: up to 40\%
+                \item Distinct local maxima at $\pm0.85r_a$
+                \item Lowest sensitivity at X-point viewing channels
+                \item Congruent profiles across $m=3,5,7$
+                \item Emphasizes temporal behavior
+                \item Sensitive to localized perturbations
+                \item Contrasts with weighted deviation
+                \item X-point channels show poor temporal correlation
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Correlation metric provides frequency-domain perspective on LOS quality
+    % TP: Contrasts with weighted deviation - X-point channels perform poorly here
+    % TP: Large error bars indicate high sensitivity to discharge conditions
+    % TP: Temporal correlation critical for feedback - gas puff perturbations affect this metric
+    % TP: Lower values indicate better prediction quality (inverse relationship)
+    % TP: Most channels show similar sensitivity except at local extrema
+    % TP: Results suggest localized radiation perturbations dominate temporal correlation
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Line-of-Sight Sensitivity Evaluation}
+    \backgroundlogo%
+
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Mean Deviation:}
+            \begin{align*}
+                \varphi(t) &= \frac{1}{T_{\text{stop}}-T_{\text{start}}}(P_{\text{rad}}(t)-P_{\text{pred}}(t))^2 \\
+                \vartheta &= \sqrt{(T_{\text{stop}}-T_{\text{start}})\left(\int_{T_{\text{start}}}^{T_{\text{stop}}}\varphi(t)dt\right)^{-1}}
+            \end{align*}
+
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/best_chans/best_chans_mean_dev_C[26_8_23].pdf}
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/%
+                    mean_deviation_3_HBCm_combinations.pdf}
+            }
+
+            \only<2>{
+                \centering
+                \includegraphics[width=.8\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/%
+                    mean_deviation_sensitivity_combs_HBCm.pdf}
+                \includegraphics[width=.8\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/%
+                    mean_deviation_sensitivity_combs_VBC.pdf}
+            }
+
+            \only<3>{
+            \textbf{Key Results:}
+            \begin{itemize}
+                \item Higher $\vartheta$ = better prediction
+                \item Smaller $\varphi(t)$ = higher congruence
+                \item Error bars: 20-40\% (large variability)
+                \item Local maxima at $-0.28r_a$ and $0.6r_a$ ($m=3$)
+                \item Quality scales with selection size $m$
+                \item Similar extrema locations as weighted deviation
+                \item Order of magnitude larger error bars
+                \item No outliers in local sensitivity
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Mean deviation offers variance-based quality assessment without temporal weighting
+    % TP: Results qualitatively similar to weighted deviation but less pronounced features
+    % TP: Large error bars (20-40\%) indicate high sensitivity to experimental conditions
+    % TP: Quality consistently improves with larger selection sizes (m=3→5→7)
+    % TP: Core-viewing channels show consistent positive contribution across all metrics
+    % TP: Edge channels near separatrix optimal for feedback prediction
+    % TP: Mathematical formulation simpler than correlation but yields similar insights
+    % TP: Exclusive conclusion: outermost boundary-viewing LOS unfavorable for feedback
+\end{frame}
+
+\begin{frame}
+    \frametitle{Line-of-Sight Sensitivity Evaluation}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{FFT Correlation:}
+            \begin{itemize}
+                \item Uses spectral correlation between $P\ix{rad}$ and $P\ix{pred}$ with DFFT
+                \item Cross-spectral density, coherence-based metric
+            \end{itemize}
+
+            \textbf{Mathematical Formulation:}
+            \begin{align*}
+                \gamma_i &= \mathcal{F}(P\ix{rad})(\omega)\qquad%
+                \gamma_j  = \mathcal{F}(P\ix{pred})(\omega) \\
+                g\ix{i,j}\left(\omega\right)=\frac{1}{T}&\int_{-\infty}^{\infty}\gamma\ix{i}\left(\omega\right)\gamma\ix{j}\left(\omega-\nu\right)\diff\nu\\
+                \varphi(\omega) &= \sqrt{|g\ix{i,j}^2|/|\gamma_i\gamma_j|} \Rightarrow \vartheta = \int \varphi(\omega) d\omega
+            \end{align*}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/best_chans/%
+                    best_chans_wghtd_dev_C[_8_7_23].pdf}
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/%
+                    weighted_deviation_3_HBCm_combinations.pdf}
+            }
+
+            \only<2>{
+                \centering
+                \includegraphics[width=.8\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/%
+                    weighted_deviation_sensitivity_combs_HBCm.pdf}
+                \includegraphics[width=.8\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/%
+                    weighted_deviation_sensitivity_combs_VBC.pdf}
+            }
+
+            \only<3>{
+            \textbf{Key Results:}
+            \begin{itemize}
+                \item Similar patterns to correlation metric
+                \item Global maximum at upper inboard X-point
+                \item Spectral focus excludes absolute value contributions
+            \end{itemize}
+
+            \textbf{Advantages:}
+            \begin{itemize}
+                \item Frequency domain analysis
+                \item Identifies oscillatory behavior
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Fourier transform provides frequency-domain perspective on LOS sensitivity
+    % TP: Confirms X-point viewing channels have highest spectral correlation
+    % TP: Complements time-domain correlation metrics
+\end{frame}
+
+\begin{frame}
+    \frametitle{LOS Sensitivity: Plasma Parameters}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_ECRH_HBCm.pdf}
+                \gcaption{(HBC) heating power $P\ix{ECRH}$ correlation}
+            }
+            \only<2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_ECRH_VBC.pdf}
+                \gcaption{(VBC) heating power $P\ix{ECRH}$ correlation}
+            }
+            \only<3>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_frad_HBCm.pdf}
+                \gcaption{(HBC) radiation fraction $f\ix{rad}$ correlation}
+            }
+            \only<4>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_frad_VBC.pdf}
+                \gcaption{(VBC) radiation fraction $f\ix{rad}$ correlation}
+            }
+            \only<5>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_ne_lint_HBCm.pdf}
+                \gcaption{(HBC) line integrated electron density correlation}
+            }
+            \only<6>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_ne_lint_VBC.pdf}
+                \gcaption{(VBC) line integrated electron density correlation}
+            }
+            \only<7>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_Te_core_HBCm.pdf}
+                \gcaption{(HBC) core electron temperature correlation}
+            }
+            \only<8>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_params_Te_core_VBC.pdf}
+                \gcaption{(VBC) core electron temperature correlation}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \textbf{Key Findings:}
+            \begin{itemize}
+                \item Higher $P\ix{ECRH}$ ($\ge$\SI{3.5}{\mega\watt}) $\Rightarrow$ better predictability
+                \item Optimal $0.4<f\ix{rad}<0.75$
+                \item Core $T\ix{e}\sim$\SI{1.3}{\kilo\electronvolt} ideal
+                \item Both cameras in good agreement
+            \end{itemize}
+
+            \vspace{0.5em}
+            \textbf{\textit{Optimal} Discharge Conditions:}
+            \begin{itemize}
+                \item Medium-high heating power
+                \item High radiation fraction
+                \item Moderate core temperature
+                \item Consistency across LOS combinations
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    % TP: Systematic correlation between plasma parameters and prediction quality
+    % TP: Identifies optimal experimental configurations for feedback
+    % TP: Validates that high f_rad scenarios work well with feedback system
+\end{frame}
 
 \backupend
