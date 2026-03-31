@@ -17,21 +17,53 @@
     range-units=single%
 }
 
-
 \usepackage{xcolor}
 \usepackage{caption}
 \usepackage{subcaption}
 \captionsetup{labelformat=empty,labelsep=none}
 
+\DeclareSIUnit{\arbitraryunit}{a.\,u.}
+\DeclareSIUnit{\atom}{atoms}
+
+% per mille
+\DeclareSIUnit{\permille}{‰}
+
+% samples
+\DeclareSIUnit{\sample}{S}
+
+% We need that as for fW, fF etc. the letters overlap, which souldn't happen here. Don't use for e.g. fA !
+\DeclareSIPrefix{\Femto}{f\kern0.1ex}{-15}
+
+% barn related shortcuts
+\DeclareSIUnit{\pb}{\pico\barn}
+\DeclareSIUnit{\fb}{\femto\barn}
+\DeclareSIUnit{\nb}{\nano\barn}
+
 % Custom commands
 \newcommand{\tenpo}[1]{\cdot 10^{#1}}
 \newcommand{\ix}[1]{_{\mathrm{#1}}}
-
 \newcommand{\diff}{\mathrm{d}}
-\newcommand{\imag}{\mathbf{i}}
 
-\newcommand{\fett}[1]{\textbf{#1}}
-\newcommand{\tilt}[1]{\textit{#1}}
+\newcommand{\head}[1]{%
+    ^{\text{#1}}}%
+\newcommand{\imag}{%
+    \mathbf{i}}%
+\newcommand{\tilt}[1]{%
+    \textit{#1}}%
+\newcommand{\divergenz}[1]{%
+    \textit{div}\left(#1\right)}
+\newcommand{\euler}{%
+    \mathnormal{e}}%
+\newcommand{\fett}[1]{%
+    \textbf{#1}}%
+\newcommand{\inexample}{%
+    \text{e.g.}}%
+\newcommand{\kett}{%
+    \rangle}%
+\newcommand{\bra}{%
+    \langle}%
+\newcommand{\grad}[1]{%
+    \textit{grad}\left(#1\right)}
 
 \newcommand\inlineeqno{\stepcounter{equation}\ \quad\quad(\theequation)}
 

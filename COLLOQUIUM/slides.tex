@@ -171,22 +171,19 @@
 
     \frametitle{Bolometer Diagnostic}
     \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter1/component_3d.pdf}
-            \source{D. Zhang et al., 2010\cite{Zhang2010}}
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \centering
-            \includegraphics[width=.6\textwidth]{%
-                ../THESIS/content/figures/chapter1/bolometers_QSB_vert.png}
-        \end{column}
-    \end{columns}
-
+            
+            
+    \only<1>{%
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter1/component_3d.pdf}
+        \source{D. Zhang et al., 2010\cite{Zhang2010}}
+    }
+    \only<2>{
+        \centering
+        \includegraphics[width=.6\textwidth]{%
+            ../THESIS/content/figures/chapter1/bolometers_QSB.png}
+    }
 \end{frame}
 
 \begin{frame}
@@ -1333,42 +1330,152 @@
     % TP: Backup slides contain detailed technical information from appendices
     % TP: Available for questions on specific technical aspects
 \end{frame}
+
+% @TODO:
+%        - 1-2 slides on transport
+%        - 1-2 slides on impurities
+%        - 1 slide on detachment
+%        - how STRAHL works
+%        - update talking points
+
+
+\begin{frame}
+    \backgroundlogo
+    \frametitle{Feedback Comparison: Dispersion Interferometer}
+
+    \textbf{XP20181016.16}
+
+    \only<1>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter2/20181016_016/20181016_016_power_feedback_horiz.pdf}
+        \gcaption{core plasma parameters and feedback}
+    }
+    \only<2>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter2/20181016_016/20181016_016_dens_chord_frad_div_horiz.pdf}
+        \gcaption{kinetic plasma profiles and power balance}
+    }
+    \only<3>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter2/20181016_016/20181016_016_chord_contour.pdf}
+        \gcaption{bolometer chord brightness}
+    }
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo
+    \frametitle{Feedback Comparison: C-III Filterscopes}
+
+    \textbf{XP20180920.32}
+
+    \only<1>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter2/20180920_032/20180920_032_power_feedback_horiz.pdf}
+        \gcaption{core plasma parameters and feedback}
+    }
+    \only<2>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter2/20180920_032/20181010_032_0920_023_cIII_contour.pdf}
+        \gcaption{C$^{2+}$ filterscope measurements (left) XP20181010.32 and (right) XP20180920.32}
+    }
+    \only<3>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter2/20180920_032/20180920_032_chord_contour.pdf}
+        \gcaption{bolometer chord brightness}
+    }
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo
+
+    \only<1>{
+    \centering
+    \includegraphics[width=0.9\textwidth]{%
+        ../THESIS/content/figures/chapter1/volume_per_camera.pdf}
+    \centering
+    \includegraphics[width=0.9\textwidth]{%
+        ../THESIS/content/figures/chapter1/kfac_per_camera.pdf}
+    \gcaption{Line of sight volumes $V_{M}$ (top) and etendues $K_{M}$ (bottom) of all camera arrays}
+    }
+
+    \only<2>{
+    \centering
+    \includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter1/vessel_lcfs_domain.pdf}%
+    \gcaption{Bolometer plane}
+    }
+
+    \only<3>{
+        \begin{align*}%
+            \iint_{A, M}\frac{\cos\left(\alpha\right)\cos\left(\beta\right)}{2\pi d^{2}}\diff A_{M}\diff A_{A}\overset{!}{=}&\int_{M}\diff \widetilde{K}_{M}\\
+            T^{\left(i,j\right)}_{M}=\sum_{k=1}^{N_{\vartheta}}T^{\left(i,j,k\right)}_{M}=&\sum_{k=1}^{N_{\vartheta}}\left(\int_{M}L^{\left(i,j,k\right)}_{M}\diff\widetilde{K}_{M}\right)
+        \end{align*}%
+    }
+
+    \only<4>{
+    \centering%
+    \includegraphics[width=0.85\textwidth]{%
+        ../THESIS/content/figures/chapter1/%
+        vessel_combinedL_poincare.pdf}%
+    \gcaption{(left) standard magnetic configuration based grid with 20 radial and 150 poloidal divisions that covers $1.3^2\,V\ix{LCFS}$ (right) total geometry contribution per pixel summed up from all three camera arrays.}
+    }
+
+    \only<5>{
+        \begin{align*}%
+            r_{\text{eff}, M}&=\left\{%
+            \begin{array}{ll}%
+                \underset{T^{\left(i,j\right)}_{M}>0}{\text{argmin}}\,\left(r\ix{eff}^{\left(i,j\right)}\right)\\%
+                \,\\%
+                \displaystyle\sum_{i=0}^{N_{r}}\sum_{j=0}^{N_{\vartheta}}\left(T_{M}^{\left(i.j\right)}\,r\ix{eff}^{\left(i,j\right)}/\sum_{i=0}^{N_{r}}\sum_{j=0}^{N_{\vartheta}}T_{M}^{\left(i,j\right)}\right)
+            \end{array}\right.\label{eq:effective_radM}\\%
+            \quad\text{sgn}\left(r\ix{eff}^{\left(i,j\right)}\right)&=\left\{%
+            \begin{array}{ll}%
+                -1,&\left(z_{0}^{\left(i,j\right)}<z\ix{mag}\vee M\in S\ix{HBC}\right)\wedge\\%
+                &\,\,\,\,\left(r_{0}^{\left(i,j\right)}<r\ix{mag}\vee\left(M\in S\ix{VBCl}\vee M\in S\ix{VBCr}\right)\right)\\%
+                +1,&\text{else}%
+            \end{array}\right.%
+        \end{align*}%
+    }
+
+    \only<6>{
+        \centering%
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter1/%
+            reffLoS_minEmiss_normalized.pdf}%
+        \gcaption{Normalized effective plasma radius $r\ix{eff}$ in units of the minor plasma radius $r\ix{a}$=\SI{0.539}{\meter} - both methods 'min' and '$\varepsilon$'}
+    }
+\end{frame}
+
 \begin{frame}
     \frametitle{Impurity Seeding Models}
     \backgroundlogo%
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \only<1>{
-            \centering
-            \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter3/chambers/twochamber_scheme_crop_colors.pdf}
-            }
-
-            \only<2->{
+            \only<1-4>{
             \textbf{Two-Chamber Model:}
             \begin{align*}
                 \dot{N}\ix{w}=&\left(N\ix{w,lim}-N\ix{w}\right)\tau\ix{w,p}\\%
                 \dot{N}\ix{p}=&\Gamma\ix{s}+N\ix{w}\tau\ix{w,p}-f\ix{w,p}N\ix{p}-N\ix{p}\tau\ix{p}%
             \end{align*}
-
             \begin{itemize}
                 \item Plasma and wall compartments
                 \item Particle exchange rates
                 \item Pumping and recycling
             \end{itemize}
             }
-
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \only<3>{
-            \centering
-            \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter3/chambers/threechamber_scheme_crop_colors.pdf}
+            \only<5>{
+                \textbf{Parameters:} %
+                $\Gamma\ix{s}=$\SI{0.648}{\arbitraryunit\per\second}, $\tau\ix{w,p}=$\SI{0.1}{\arbitraryunit\per\second}, $N\ix{w,lim}=$\SI{1.388}{\arbitraryunit}, $\tau\ix{p}=$\SI{0.436}{\arbitraryunit\per\second}, $N\ix{p,0}=$\SI{0.011}{\arbitraryunit} and $N\ix{w,0}=$\SI{0.075}{\arbitraryunit}
             }
 
-            \only<4>{
+            \only<6-9>{
             \textbf{Three-Chamber Model:}
             \begin{align*}
                 \dot{N}\ix{w}=&\left(N\ix{w,lim}-N\ix{w}\right)\tau\ix{w,s}\\%
@@ -1380,6 +1487,105 @@
                 \item Better represents edge physics
                 \item Both models equally capable of representing feedback measurements
             \end{itemize}
+            }
+            \only<10>{
+                \textbf{Parameters:} %
+                $\tau\ix{s,p}=$\,\SI{0.1}{\arbitraryunit\per\second}, $N\ix{p,lim}=$\,\SI{17.9}{\arbitraryunit}, $\tau\ix{p,s}=$\,\SI{14.931}{\arbitraryunit\per\second}, $\Gamma\ix{s}=$\,\SI{18.08}{\arbitraryunit\per\second},  $N\ix{w,lim}=$\,\SI{2.579}{\arbitraryunit}, $\tau\ix{w,s}=$\,\SI{2.561}{\arbitraryunit\per\second}, $\tau\ix{s}=$\,\SI{2.772}{\arbitraryunit\per\second}, $N\ix{p,0}=0$, $N\ix{s,0}=0$, $N\ix{w,0}=1$. The weighting factor is $f=10.957$
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/twochamber_scheme_crop_colors.pdf}
+                \gcaption{two chamber model}
+            }
+            \only<2>{
+                \centering
+                \includegraphics[width=.8\linewidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    twochamber_gammas_scan.pdf}
+                \centering
+                \includegraphics[width=.8\linewidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    twochamber_Nwlim_scan.pdf}%
+                \gcaption{parameter variation for two chamber model}
+            }
+            \only<3>{
+                \centering
+                \includegraphics[width=.8\linewidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    twochamber_tauwp_scan.pdf}
+                \centering
+                \includegraphics[width=.8\linewidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    twochamber_N_w0_scan.pdf}
+                \gcaption{parameter variation for two chamber model}
+            }
+            \only<4>{
+                \centering%
+                \includegraphics[height=.66\textheight]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    20180920_049_power_feedback_vert.pdf}%
+                \gcaption{%
+                    XP20180920.49: experimental data $P\ix{rad}$ and PID components of gas seeding valve controller}
+            }
+            \only<5>{
+                \centering
+                \includegraphics[height=0.66\textheight]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    chamber_simulation_two_stage_vert.pdf}%
+                \gcaption{application of model on from XP20180920.49 between \SI{4.2}{\second} and \SI{8.2}{\second}}%
+            }
+
+            \only<6>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    threechamber_scheme_crop_colors.pdf}
+                \gcaption{three chamber model}
+            }
+            \only<7>{
+                \centering
+                \includegraphics[width=.8\linewidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    threechamber_Nwlim_scan.pdf}
+                \centering
+                \includegraphics[width=.8\linewidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    threechamber_Nplim_scan.pdf}
+                \gcaption{parameter variation for three chamber model}
+            }
+            \only<8>{
+                \centering
+                \includegraphics[width=.8\linewidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    threechamber_tausp_scan.pdf}
+                \centering
+                \includegraphics[width=.8\linewidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    threechamber_gammas_scan.pdf}
+                \gcaption{parameter variation for three chamber model}
+            }
+            \only<9>{
+                \centering
+                \includegraphics[width=.8\linewidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    threechamber_tauws_scan.pdf}
+                \centering
+                \includegraphics[width=.8\linewidth]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    threechamber_taus_scan.pdf}
+                \gcaption{parameter variation for three chamber model}
+            }
+            \only<10>{
+                \centering
+                \includegraphics[height=.66\textheight]{%
+                    ../THESIS/content/figures/chapter3/chambers/%
+                    chamber_simulation_two_stage_threechamber_vert.pdf}%
+                \gcaption{%
+                    application of model on XP20180920.49 between \SI{4.2}{\second} and \SI{8.2}{\second}}
             }
         \end{column}
     \end{columns}
@@ -1394,10 +1600,11 @@
 \end{frame}
 
 \begin{frame}{Plasma Power Balance}
+
+    \only<1>{
     \begin{columns}
         \begin{column}{0.5\textwidth}
 
-            \vspace*{-3em}
             \textbf{0-D Energy Conservation:}
             \newline%
             Starting from 3D fluid equations:
@@ -1430,15 +1637,16 @@
                 \item Vessel heat load contribution
             \end{itemize}
             }
-
-            \only<2>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter1/power_balance_example_20180808_004.pdf}
-                \gcaption{XP20180808.04}
-            }
         \end{column}
     \end{columns}
+    }
+
+    \only<2>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter1/power_balance_example_20180808_004.pdf}
+        \gcaption{XP20180808.04}
+    }
 
     % TP: Power balance critical for characterizing plasma performance and energy confinement
     % TP: 0-D model assumes thermodynamic equilibrium and fully ionized plasma
@@ -1471,7 +1679,7 @@
                 \end{itemize}
             }
 
-            \only<2>{
+            \only<2-3>{
             \textbf{W7-X Design:}
             \begin{itemize}
                 \item $d<a$ (detector smaller than aperture)
@@ -1481,7 +1689,7 @@
             \end{itemize}
             }
 
-            \only<3>{
+            \only<4>{
                 \textbf{LOS Geometry Types:}
                 \begin{itemize}
                     \item d $<$ a: Trapezoidal cone (W7-X case)
@@ -1512,8 +1720,14 @@
                         ../THESIS/content/figures/chapter1/ftran_hbcm.pdf}
                     \gcaption{mesh transmissibility for HBCm}
                 }
-
                 \only<3>{
+                    \centering
+                    \includegraphics[width=\textwidth]{%
+                        ../THESIS/content/figures/chapter1/coating_results.pdf}
+                    \gcaption{mesh ECRH protetion results (MISTRAL)}
+                }
+
+                \only<4>{
                     \centering
                     \includegraphics[height=.5\textheight]{%
                         ../THESIS/content/figures/chapter1/detector_los_quality.pdf}
@@ -1750,7 +1964,7 @@
     \backgroundlogo
     \frametitle{Detector Performance Statistics (OP1.2b)}
 
-    \only<1>{
+    \only<1-2>{
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \textbf{Campaign Overview:}
@@ -1773,18 +1987,29 @@
         \end{column}
 
         \begin{column}{0.5\textwidth}
-            \centering
-            \includegraphics[height=.33\textheight]{%
-                ../THESIS/content/figures/chapter1/Rohm_99th_OP12b.pdf}
-            \centering
-            \includegraphics[height=.33\textheight]{%
-                ../THESIS/content/figures/chapter1/Kappam_99th_OP12b.pdf}
-            \gcaption{(top) resistance stability across OP1.2b; (bottom) heat capacity consistency}
+            \only<1>{
+                \centering
+                \includegraphics[height=.33\textheight]{%
+                    ../THESIS/content/figures/chapter1/Rohm_99th_OP12b.pdf}
+                \centering
+                \includegraphics[height=.33\textheight]{%
+                    ../THESIS/content/figures/chapter1/Kappam_99th_OP12b.pdf}
+                \gcaption{(top) resistance stability across OP1.2b; (bottom) heat capacity consistency}
+            }
+            \only<2>{
+                \centering
+                \includegraphics[height=.33\textheight]{%
+                    ../THESIS/content/figures/chapter1/Taum_99th_OP12b.pdf}
+                \centering
+                \includegraphics[height=.33\textheight]{%
+                    ../THESIS/content/figures/chapter1/abs_offs_99th_OP12b.pdf}
+                \gcaption{(top) cooling time stability across OP1.2b; (bottom) voltage offset consistency}
+            }
         \end{column}
     \end{columns}
     }
 
-    \only<2>{
+    \only<3>{
     \textbf{Key Observations:}
     \begin{itemize}
         \item Very stable calibration parameters throughout campaign
@@ -1804,7 +2029,7 @@
     \backgroundlogo
     \frametitle{Detector Performance Statistics (OP1.2b)}
 
-    \only<1>{
+    \only<1-2>{
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \textbf{Acquisition Performance:}
@@ -1828,18 +2053,29 @@
         \end{column}
 
         \begin{column}{0.5\textwidth}
-            \centering
-            \includegraphics[height=.33\textheight]{%
-                ../THESIS/content/figures/chapter1/std_dev_99th_OP12b.pdf}
-            \centering
-            \includegraphics[height=.33\textheight]{%
-                ../THESIS/content/figures/chapter1/adj_median_99th_OP12b.pdf}
-            \gcaption{(top) standard deviation (noise); (bottom) median signal during discharges}
+            \only<1>{
+                \centering
+                \includegraphics[height=.33\textheight]{%
+                    ../THESIS/content/figures/chapter1/std_dev_99th_OP12b.pdf}
+                \centering
+                \includegraphics[height=.33\textheight]{%
+                    ../THESIS/content/figures/chapter1/adj_median_99th_OP12b.pdf}
+                \gcaption{(top) standard deviation (noise); (bottom) median signal during discharges}
+            }
+            \only<2>{
+                \centering
+                \includegraphics[height=.33\textheight]{%
+                    ../THESIS/content/figures/chapter1/slope_99th_OP12b.pdf}
+                \centering
+                \includegraphics[height=.33\textheight]{%
+                    ../THESIS/content/figures/chapter1/adj_max_99th_OP12b.pdf}
+                \gcaption{(top) temperature drift stability across OP1.2b (bottom) maximum voltage measured}
+            }
         \end{column}
     \end{columns}
     }
 
-    \only<2>{
+    \only<3>{
     \textbf{Performance Assessment:}
     \begin{itemize}
         \item Expected signal 2 orders of magnitude larger than drift/noise
@@ -1972,6 +2208,37 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{STRAHL Basics}
+    \backgroundlogo
+
+    \only<1>{
+    \begin{align*}
+        &\frac{\partial n_{\text{i,}Z}}{\partial t}=\frac{1}{r}\frac{\partial}{\partial r}\,r\left(D^{\ast}\frac{\partial n_{\text{i,}Z}}{\partial r}-v^{\ast}n_{\text{i,}Z}\right)+S_{\text{i,}Z}\,\,,\\%
+        D^{\ast}=&\left\langle D\left(\theta\right)\vert \nabla r\vert^{2}\right\rangle\ix{FS}\coloneqq \frac{1}{4\pi^{2}R\ix{M}r}\displaystyle\oint\ix{FS}D\left(\theta\right)\vert\nabla r\vert\diff S\,\,\\%
+        v^{\ast}=&\left\langle v\left(\theta\right)\vert\nabla r\vert\right\rangle\ix{FS}=\frac{1}{4\pi^{2}R\ix{M}r}\displaystyle\oint\ix{FS}v\diff S\,\,.\\
+        \begin{split}
+            S_{\text{i,}Z}=-&n_{\text{i,}Z}\left(n\ix{e}Q\head{ion}_{\text{i,}Z}+n\ix{e}Q_{\text{i,}Z}\head{rec}+n\ix{H}Q_{\text{i,}Z}\head{cex}\right)+n\ix{e}Q_{\text{i,}Z-1}\head{ion}n_{\text{i,}Z-1}+\\%
+            &n_{\text{i,}Z+1}\left(n\ix{e}Q_{\text{i,}Z+1}\head{rec}+n\ix{H}Q_{\text{i,}Z+1}\head{cex}\right)%
+        \end{split}
+    \end{align*}
+    }
+
+    \only<2>{
+    \begin{align*}
+        \begin{split}
+            \frac{\partial\vec{n}}{\partial t}=&\mathbf{D}\frac{\partial^{2}\vec{n}}{\partial t^{2}}+\left(\left(\frac{1}{r}+\frac{\diff}{\diff r}\right)\mathbf{D}-\mathbf{v}\right)\frac{\partial\vec{n}}{\partial r}-\\%
+            &\left(\frac{1}{r}+\frac{\diff}{\diff r}\right)\mathbf{v}\vec{n}-\mathbf{S}\vec{n}-\mathbf{R}\vec{n}+\vec{d}%
+        \end{split}\\
+        \begin{split}
+            &\vec{n}^{\left(l+1/2\right)}=\frac{\vec{n}^{\left(l\right)}+\vec{n}^{\left(l+1\right)}}{2}\,\,\\%
+            \frac{\vec{n}^{\left(l+1\right)}-\vec{n}^{\left(l\right)}}{\Delta t}=&\left[\mathbf{D}\frac{\partial^{2}}{\partial r^{2}}+\left(\left(\frac{1}{r}+\frac{\diff}{\diff r}\right)\mathbf{D}-\mathbf{v}\right)\frac{\partial}{\partial r}-\right.\\%
+            &\quad\left.\left(\frac{1}{r}+\frac{\diff}{\diff r}\right)\vec{v}-\mathbf{S}-\mathbf{R}\right]\vec{n}^{\left(l+1\right)}+\vec{d}\,\,.%
+        \end{split}
+    \end{align*}
+    }
+\end{frame}
+
+\begin{frame}
     \frametitle{STRAHL Impurity Transport Modeling}
     \backgroundlogo%
 
@@ -1986,11 +2253,17 @@
                 \item Valid in confinement, simple ansatz outside LCFS
             \end{itemize}
             }
-
             \only<3>{
                 \centering
                 \includegraphics[width=\textwidth]{%
                    ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
+            }
+            \only<4>{
+                \centering%
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/STRAHL/%
+                    chordal_profile_HBCm_20181010_032.png}%
+                \gcaption{XP20181010.32: experimental chord brightness}
             }
         \end{column}
 
@@ -2010,7 +2283,7 @@
             \end{itemize}
             }
 
-            \only<3>{
+            \only<3-4>{
             \textbf{Forward Modeling:}
             \begin{itemize}
                 \item Chord brightness from STRAHL results
@@ -2059,13 +2332,13 @@
             \only<2>{
                 \centering
                 \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/STRAHL/transport/compare_anomal_transp_102_104_edge.png}
+                    ../THESIS/content/figures/chapter3/STRAHL/transport/compare_anomal_transp_102_104_full.png}
                 \gcaption{($f\ix{rad}\sim100\%$) input anomal \& drift transport profiles}
             }
             \only<3>{
                 \centering
                 \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/STRAHL/transport/compare_anomal_transp_103_104_edge.png}
+                    ../THESIS/content/figures/chapter3/STRAHL/transport/compare_anomal_transp_103_104_full.png}
                 \gcaption{($f\ix{rad}\sim100\%$) input anomal \& drift transport profiles}
             }
             \only<4>{
@@ -2179,6 +2452,14 @@
     % TP: Radiation distribution changes dramatically with f_rad
     % TP: 100% case shows peak at separatrix - relevant for detachment control
     % TP: Lower charge states (C2+, C3+) dominate near LCFS at high f_rad
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo
+    \centering
+    \includegraphics[width=.5\textwidth]{%
+        ../THESIS/content/figures/chapter1/los_example_polygon.pdf}
+    \gcaption{Line of sight volume and line element in voxel}
 \end{frame}
 
 \begin{frame}
@@ -2379,9 +2660,6 @@
         \centering
         \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_blind_test_ones_mx1.0e+06_aniM3_1.0_1.0_nigs1_times0.11.png}
         \gcaption{unit/null test, $k\ix{ani}=1$}
-    }
-    \only<3>{
-    \textbf{Lessons:} Camera sensitivity in SOL can obscure core features; algorithm performs well for uniform distributions; inverted scenarios more challenging than standard core-peaked profiles.
     }
 
     % TP: Edge case phantoms test algorithm limits and robustness
@@ -2653,6 +2931,78 @@
     % TP: Systematic correlation between plasma parameters and prediction quality
     % TP: Identifies optimal experimental configurations for feedback
     % TP: Validates that high f_rad scenarios work well with feedback system
+\end{frame}
+
+\begin{frame}
+    \frametitle{DAQ Latency}
+    \backgroundlogo
+
+    \only<1>{
+    \begin{figure}%
+        \centering%
+        \begin{subfigure}{0.48\textwidth}%
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/lib_woRTF_branch_nS_0_8ms.pdf}%
+            \caption{samples per half period}
+        \end{subfigure}%
+        \begin{subfigure}{0.48\textwidth}%
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/lib_woRTF_branch_sT_0_8ms.pdf}%
+            \caption{sample time}
+        \end{subfigure}%
+        \gcaption{laser test results without real-time radiation feedback for \SI{0.8}{\milli\second} sample time}%
+    \end{figure}%
+    }
+
+    \only<2>{
+    \begin{figure}%
+        \centering%
+        \begin{subfigure}{0.48\textwidth}%
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/lib_woRTF_branch_sT_1_6ms.pdf}%
+        \end{subfigure}%
+        \hspace*{0.25cm}%
+        \begin{subfigure}{0.48\textwidth}%
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/lib_woRTF_branch_sT_3_2ms.pdf}%
+        \end{subfigure}%
+        \gcaption{laser test results without real-time radiation feedback for \SI{1.6}{\milli\second} and \SI{3.2}{\second} sample time}
+    \end{figure}%
+    }
+
+    \only<3>{
+    \begin{figure}%
+        \centering%
+        \begin{subfigure}{0.48\textwidth}%
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/lib_wRTF_branch_nS_0_8ms.pdf}%
+            \caption{samples per half period}
+        \end{subfigure}%
+        \hspace*{0.25cm}%
+        \begin{subfigure}{0.48\textwidth}%
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/lib_wRTF_branch_sT_0_8ms.pdf}%
+            \caption{sample time}
+        \end{subfigure}%
+        \gcaption{laser test results with real-time radiation feedback for \SI{0.8}{\milli\second}}%
+    \end{figure}%
+    }
+
+    \only<4>{
+    \begin{figure}[t]%
+        \centering%
+        \begin{subfigure}{0.48\textwidth}%
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/lib_wRTF_branch_sT_1_0ms.pdf}%
+        \end{subfigure}%
+        \hspace*{0.25cm}%
+        \begin{subfigure}{0.48\textwidth}%
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/lib_wRTF_branch_sT_1_6ms.pdf}%
+        \end{subfigure}%
+        \gcaption{laser test results with real-time radiation feedback for \SI{1.6}{\milli\second}}
+    \end{figure}%
+    }
 \end{frame}
 
 \backupend
