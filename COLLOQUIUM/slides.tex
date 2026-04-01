@@ -181,8 +181,8 @@
 
     \frametitle{Bolometer Diagnostic}
     \backgroundlogo%
-            
-            
+
+
     \only<1>{%
         \centering
         \includegraphics[width=\textwidth]{%
@@ -1360,12 +1360,366 @@
     % TP: Available to address specific questions on methodology, implementation details, or alternative approaches
 \end{frame}
 
-% @TODO:
-%        - 1-2 slides on transport
-%        - 1-2 slides on impurities
-%        - 1 slide on detachment
-%        - how STRAHL works
-%        - update talking points
+\begin{frame}
+    \frametitle{Plasma Transport at W7-X}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Transport Mechanisms:}
+            \begin{itemize}
+                \item \textbf{Classical}: Coulomb collisions, $D\propto1/B^{2}$
+                \item \textbf{Neoclassical}: Trapped particles, banana orbits, $\nabla B$ drifts
+                \item \textbf{Anomalous}: Turbulence (ITG, ETG), $D_{\text{an}}\gg D_{\text{neo}}$
+            \end{itemize}
+
+            \textbf{Radial Particle Flux:}
+            \begin{align*}
+                \Gamma_q &= -D_q \nabla n_q + v_q n_q \\
+                D_q &= D_{\text{neo},q} + D_{\text{an},q} \\
+                v_q &= v_{\text{neo},q} + v_{\text{an},q}
+            \end{align*}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \textbf{Neoclassical Regimes:}
+            \begin{itemize}
+                \item \textbf{Banana} (low $\nu$): Trapped particles dominant, W7-X optimized
+                \item \textbf{Electron-root} ($T_e\gg T_i$): Reduced transport $\propto\sqrt{\nu}$
+                \item \textbf{Ion-root} (higher $\nu$): Transport $\propto$ 1/$\nu$
+                \item \textbf{Pfirsch-Schlüter} (high $\nu$): $D_{\text{PS}}\propto D_{\text{classical}}$
+            \end{itemize}
+
+            \textbf{W7-X Optimization:}
+            \begin{itemize}
+                \item Reduced neoclassical transport in low collisionality
+                \item Still 1-2 orders higher than tokamaks
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    % TP: Three transport mechanisms: classical (Coulomb collisions, D∝1/B²), neoclassical (trapped particles, banana orbits, ∇B drifts), anomalous (turbulence from ITG/ETG instabilities)
+    % TP: Radial particle flux: Γ_q = -D_q∇n_q + v_q n_q, combines diffusion (D) and convection (v) from all mechanisms
+    % TP: Neoclassical transport regimes: (1) Banana (low ν, trapped particles), (2) Electron-root (T_e>>T_i, reduced transport ∝√ν), (3) Ion-root (higher ν, ∝1/ν), (4) Pfirsch-Schlüter (high ν, ∝D_classical)
+    % TP: W7-X optimization: designed to reduce neoclassical transport in low collisionality (banana regime), but still 1-2 orders of magnitude higher than tokamaks due to broken symmetry
+    % TP: Anomalous transport: typically D_an >> D_neo by order of magnitude, caused by micro-instabilities (ITG, ETG), scales with heating power and machine size
+    % TP: Impurity transport: D_neo << D_an usually, but charge-dependent neoclassical convection v_neo,q matters for high-Z impurities (v∝q)
+    % TP: Spatial/temporal scales: turbulence operates at <cm, <ms scales, much faster than neoclassical equilibration
+\end{frame}
+
+\begin{frame}
+    \frametitle{Impurity Transport and Radiation at W7-X}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+            \textbf{Impurity Behavior:}
+            \begin{itemize}
+                \item Anomalous diffusion dominates: $D_{\text{an}}\sim$\SIrange{0.3}{3}{\square\metre\per\second}
+                \item Neoclassical convection: $v_{\text{neo}}\propto q$ (charge-dependent)
+                \item High-Z: inward pinch risk (core accumulation)
+                \item Temperature screening: $H_x$ parameter modifies $v_{\text{neo}}$
+            \end{itemize}
+            }
+
+            \only<2>{
+            \textbf{Radiation Fraction:}
+            \begin{align*}
+                f_{\text{rad}} &= \frac{P_{\text{rad}}}{P_{\text{ECRH}}} \\
+                P_{\text{rad}} &= P_{\text{brems}} + P_{\text{line}}
+            \end{align*}
+
+            \textbf{DEMO Target:} $f_{\text{rad}}>0.95$
+            \begin{itemize}
+                \item 70\% from core
+                \item 30\% from SOL/divertor
+            \end{itemize}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+           \only<1>{
+            \textbf{Challenges:}
+            \begin{enumerate}
+                \item \textbf{Dilution}: $f_H$ decreases with impurity content
+                \item \textbf{Accumulation}: Inward convection → core buildup
+                \item \textbf{Radiative collapse}: Oversaturation → cooling
+                \item \textbf{Control}: Balance radiation vs confinement
+            \end{enumerate}
+            }
+
+            \only<2>{
+            \textbf{Benefits of Divertor Radiation:}
+            \begin{itemize}
+                \item Reduced sputtering (lower $T_e$ at target)
+                \item Broadened heat flux distribution
+                \item Increased density near target
+                \item Detachment: $T_e<$ \SI{5}{\electronvolt}, $P_{\text{div}}$\rightarrow0
+            \end{itemize}
+
+            \textbf{W7-X OP1.2b:}
+            \begin{itemize}
+                \item $f_{\text{rad}}$ up to 85-100\% achieved
+                \item Carbon dominant impurity (graphite divertor)
+                \item Real-time feedback control demonstrated
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Impurity transport dominated by anomalous diffusion: D_an~0.3-3 m²/s, exceeds neoclassical by order of magnitude
+    % TP: Neoclassical convection charge-dependent: v_neo∝q, creates inward pinch for high-Z impurities, risk of core accumulation
+    % TP: Temperature screening: H_x parameter modifies neoclassical convection, can reduce inward pinch in certain conditions
+    % TP: Radiation fraction: f_rad = P_rad/P_ECRH, combines bremsstrahlung (P_brems) and line radiation (P_line)
+    % TP: DEMO target: f_rad>0.95 required for reactor, 70% from core radiation, 30% from SOL/divertor
+    % TP: Dilution challenge: impurities reduce fuel fraction f_H, affects fusion triple product n_e T τ_E
+    % TP: Accumulation risk: inward convection leads to core buildup, especially for high-Z impurities, can trigger radiative collapse
+    % TP: Radiative collapse: oversaturation → excessive cooling → loss of confinement, must be avoided
+    % TP: Divertor radiation benefits: (1) reduced sputtering (lower T_e at target), (2) broadened heat flux, (3) increased density, (4) enables detachment
+    % TP: Detachment regime: T_e<5 eV at target, P_div→0, plasma-neutral interactions dominate, protects divertor from heat damage
+    % TP: W7-X OP1.2b achievements: f_rad=85-100% demonstrated, carbon dominant impurity (graphite divertor), real-time bolometer feedback control successful
+    % TP: Control challenge: balance high radiation (protect divertor) vs maintaining confinement (avoid collapse), requires real-time feedback
+\end{frame}
+
+\begin{frame}
+    \frametitle{Plasma Impurities at W7-X}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+            \textbf{Impurity Sources:}
+            \begin{itemize}
+                \item \textbf{Intrinsic}: Wall interactions, sputtering
+                    \begin{itemize}
+                        \item Carbon (graphite divertor)
+                        \item Oxygen (residual gas)
+                        \item Metals (wall materials)
+                    \end{itemize}
+                \item \textbf{Extrinsic}: Intentional seeding
+                    \begin{itemize}
+                        \item Helium, Argon, Nitrogen, Neon (radiation control)
+                        \item Controlled gas puffing
+                    \end{itemize}
+            \end{itemize}
+            }
+
+            \only<2>{
+            \textbf{W7-X OP1.2b Observations:}
+            \begin{itemize}
+                \item Carbon dominant (10²x oxygen)
+                \item Graphite divertor main source
+                \item Intrinsic impurity control sufficient
+                \item No extrinsic seeding required for f$_{\text{rad}}$ > 85\%
+            \end{itemize}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+            \textbf{Ionization Stages (Carbon):}
+            \begin{itemize}
+                \item \textbf{Core} (r < 0.6r$_a$): C$^{6+}$ fully stripped
+                \item \textbf{Edge} (0.6-1.0 r$_a$): C$^{5+}$, C$^{4+}$ dominant
+                \item \textbf{Separatrix}: C$^{4+}$, C$^{3+}$ transition
+                \item \textbf{SOL}: C$^{3+}$, C$^{2+}$, C$^{+}$, C$^{0}$
+            \end{itemize}
+
+            \textbf{Radiation Distribution:}
+            \begin{itemize}
+                \item f$_{\text{rad}}$ = 33\%: P$_{\text{core}}\approx$ P$_{\text{SOL}}$ (50/50)
+                \item f$_{\text{rad}}$ = 66\%: Linear scaling
+                \item f$_{\text{rad}}$ = 90\%: P$_{\text{core}}$ increases
+                \item f$_{\text{rad}}$ = 100\%: P$_{\text{core}}$ = 70\%, P$_{\text{SOL}}$ = 30\%
+            \end{itemize}
+            }
+
+            \only<2>{
+            \textbf{Peak Emissivity:}
+            \begin{itemize}
+                \item Core: ~0.65 kW/m³ (f$_{\text{rad}}$ = 33\%)
+                \item SOL: ~45 kW/m³ (f$_{\text{rad}}$ = 33\%)
+                \item Maximum always outside LCFS
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Impurity sources: (1) Intrinsic from wall interactions/sputtering (carbon from graphite divertor, oxygen residual, metals), (2) Extrinsic from intentional seeding (N, Ne for radiation control)
+    % TP: W7-X OP1.2b: carbon dominant impurity, 10²× higher radiation than oxygen, graphite divertor main source
+    % TP: Intrinsic control: sufficient for f_rad>85% without extrinsic seeding, demonstrates effective impurity management
+    % TP: Carbon ionization stages: C⁶⁺ (fully stripped) in core (r<0.6r_a), C⁵⁺/C⁴⁺ in edge (0.6-1.0 r_a), C⁴⁺/C³⁺ at separatrix, C³⁺/C²⁺/C⁺/C⁰ in SOL
+    % TP: Ionization balance: determined by local T_e, higher charge states in hotter regions, recombination in cooler edge/SOL
+    % TP: Radiation distribution evolution: f_rad=33% (50/50 core/SOL split), f_rad=66% (linear scaling), f_rad=90% (core increases), f_rad=100% (70/30 core/SOL)
+    % TP: Core/SOL turnover: at high f_rad, radiation shifts inward from SOL to inside separatrix, supports detachment hypothesis
+    % TP: Peak emissivity: core ~0.65 kW/m³, SOL ~45 kW/m³ at f_rad=33%, maximum always outside LCFS initially
+    % TP: Spatial distribution: emissivity peaks outside LCFS for moderate f_rad, shifts inward toward ρ_pol~0.95 at high f_rad
+\end{frame}
+
+\begin{frame}
+    \frametitle{Impurity Effects and Transport Sensitivity}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Effects on Plasma Performance:}
+            \begin{enumerate}
+                \item \textbf{Fuel Dilution}
+                    \begin{itemize}
+                        \item Reduces $f_H = n_H/(n_e - n_Z$)
+                        \item Affects Lawson criterion: $n_e T\tau_E$
+                        \item Higher Z \rightarrow stronger dilution
+                    \end{itemize}
+                \item \textbf{Radiation Losses}
+                    \begin{itemize}
+                        \item Line radiation: L$_Z$(T$_e$)
+                        \item Bremsstrahlung: $\propto Z^2$
+                        \item Beneficial for divertor protection
+                    \end{itemize}
+                \item \textbf{Core Accumulation}
+                    \begin{itemize}
+                        \item Inward neoclassical pinch ($v\propto q$)
+                        \item Risk of radiative collapse
+                        \item Requires active control
+                    \end{itemize}
+            \end{enumerate}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \vspace*{-.5em}
+            \textbf{Transport Coefficient Sensitivity:}
+
+            \textbf{Diffusion:}
+            \begin{itemize}
+                \item Lower $D\propto120\%$ increase in $P_{\text{max}}$ near separatrix
+                \item Reduced transport at low $T_e$ increases emissions
+                \item C$^{3+}$, C$^{2+}$ shift toward LCFS
+            \end{itemize}
+
+            \textbf{Separatrix Profile:}
+            \begin{itemize}
+                \item 10\% reduction in T$_{e,a}$, n$_{e,a}$:
+                    \begin{itemize}
+                        \item Inward shift \SIrange{2}{5}{\centi\metre}
+                        \item Significant P$_{\text{tot}}$ reduction
+                        \item C$^{6+}$ abundance increases
+                        \item C$^{3+}$, C$^{4+}$ largest changes
+                    \end{itemize}
+                \item Mimics f$_{\text{rad}}$ = 90\% → 100\% transition
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    % TP: Fuel dilution: impurities reduce hydrogen fraction f_H = n_H/(n_e - n_Z), affects Lawson criterion n_e T τ_E, higher Z → stronger dilution effect
+    % TP: Radiation losses: line radiation L_Z(T_e) from bound-bound transitions, bremsstrahlung ∝ Z² from free-free, beneficial for divertor heat load reduction
+    % TP: Core accumulation: inward neoclassical pinch v_neo ∝ q (charge-dependent), risk of radiative collapse from excessive core cooling, requires active feedback control
+    % TP: Diffusion sensitivity: lower D increases peak emissivity by 120% near separatrix, reduced transport at low T_e enhances radiation, C³⁺/C²⁺ shift toward LCFS
+    % TP: Physical mechanism: lower diffusion → longer residence time → more ionization/radiation before transport away
+    % TP: Separatrix profile sensitivity: 10% reduction in T_e,a and n_e,a causes 2-5 cm inward shift, significant P_tot reduction, C⁶⁺ abundance increases (lower recombination)
+    % TP: Charge state response: C³⁺ and C⁴⁺ experience largest changes, most sensitive to edge temperature variations
+    % TP: Detachment mimicry: T_e,a/n_e,a reduction mimics transition from f_rad=90% to 100%, validates detachment hypothesis
+    % TP: Equal importance: both transport coefficients (D) and edge plasma parameters (T_e,a, n_e,a) equally important for radiation distribution
+    % TP: STRAHL validation: 1D model successfully reproduces experimental trends, confirms carbon dominance, validates detachment observations at high f_rad
+    % TP: Limitations: forward modeling shows inadequacy in reproducing poloidal asymmetry, indicates need for 3D modeling (EMC3-EIRENE)
+\end{frame}
+
+\begin{frame}
+    \frametitle{Plasma Detachment}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+            \textbf{Detachment Process:}
+            \begin{itemize}
+                \item \textbf{Definition}: Transition where plasma-neutral interactions dominate over plasma-surface contact
+                \item \textbf{Threshold}: T$_e$ < \SI{5}{\electronvolt} at divertor target
+                \item \textbf{Result}: P$_{\text{div}}$\rightarrow0, heat flux dramatically reduced
+            \end{itemize}
+            }
+
+            \only<2>{
+            \textbf{Physical Mechanisms:}
+            \begin{enumerate}
+                \item \textbf{Volumetric Losses}
+                    \begin{itemize}
+                        \item Ionization: e + H \rightarrow H$^+$ + 2e (\SI{13.6}{\electronvolt})
+                        \item Recombination: e + H$^+$ \rightarrow H + $\gamma$
+                        \item Charge exchange: H + H$^+$ \rightarrow H$^+$ + H
+                    \end{itemize}
+                \item \textbf{Radiation Enhancement}
+                    \begin{itemize}
+                        \item Impurity line radiation increases
+                        \item Lower charge states (C$^{2+}$, C$^{3+}$) dominate
+                        \item Cooling feedback loop
+                    \end{itemize}
+                \item \textbf{Momentum Loss}
+                    \begin{itemize}
+                        \item Friction with neutrals
+                        \item Pressure drop along field lines
+                        \item Plasma flow stagnation
+                    \end{itemize}
+            \end{enumerate}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+            \textbf{Detachment Signatures:}
+            \begin{itemize}
+                \item T$_e$ < 5 eV at target (IR thermography)
+                \item P$_{\text{div}}$ → 0 (heat flux reduction)
+                \item n$_e$ increase near target (interferometry)
+                \item Radiation front moves toward X-point
+                \item Balmer line emission (H$_\alpha$, H$_\beta$)
+            \end{itemize}
+
+            \textbf{W7-X OP1.2b Observations:}
+            \begin{itemize}
+                \item f$_{\text{rad}}$ = 100\%: Detachment achieved
+                \item Core/SOL turnover: 70\%/30\% split
+                \item Radiation shifts inward ($\rho_{\text{pol}}\approx0.95$)
+                \item T$_{e,a}$, n$_{e,a}$ reduction at separatrix
+                \item Peak intensity halved, maxima at 0.8r$_a$
+            \end{itemize}
+            }
+
+            \only<2>{
+            \textbf{Benefits for Reactor:}
+            \begin{itemize}
+                \item Divertor protection (reduced heat loads)
+                \item Reduced sputtering (longer component lifetime)
+                \item Broadened heat flux distribution
+                \item Enables steady-state operation
+            \end{itemize}
+
+            \textbf{Control Challenge:}
+            \begin{itemize}
+                \item Balance: high radiation vs confinement
+                \item Avoid radiative collapse
+                \item Real-time feedback essential
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Detachment definition: transition where plasma-neutral interactions dominate over plasma-surface contact, critical for divertor protection
+    % TP: Threshold condition: T_e < 5 eV at divertor target, measured by IR thermography and Langmuir probes
+    % TP: Primary result: P_div → 0, heat flux to divertor dramatically reduced (factor 5-10×), protects components from damage
+    % TP: Volumetric losses: (1) ionization (e + H → H⁺ + 2e, costs 13.6 eV), (2) recombination (e + H⁺ → H + photon), (3) charge exchange (H + H⁺ → H⁺ + H)
+    % TP: Radiation enhancement: impurity line radiation increases as plasma cools, lower charge states (C²⁺, C³⁺) dominate in detached regime
+    % TP: Cooling feedback loop: radiation → lower T_e → more neutrals → more radiation, self-sustaining once initiated
+    % TP: Momentum loss: friction with neutrals causes pressure drop along field lines, plasma flow stagnates, reduces parallel transport
+    % TP: Detachment signatures: (1) T_e<5 eV at target, (2) P_div→0, (3) n_e increase near target, (4) radiation front moves toward X-point, (5) Balmer line emission (H_α, H_β)
+    % TP: W7-X OP1.2b observations: f_rad=100% achieves detachment, core/SOL radiation turnover (70%/30% split), radiation shifts inward to ρ_pol≈0.95
+    % TP: Separatrix changes: T_e,a and n_e,a reduction at separatrix, peak intensity halved, maxima shift inward to 0.8r_a
+    % TP: STRAHL validation: 1D model successfully reproduces detachment signatures, confirms inward radiation shift, validates core/SOL turnover hypothesis
+    % TP: Reactor benefits: (1) divertor protection (reduced heat loads), (2) reduced sputtering (longer lifetime), (3) broadened heat flux, (4) enables steady-state operation
+    % TP: Control challenge: must balance high radiation (protect divertor) vs maintaining confinement (avoid radiative collapse), requires real-time feedback
+    % TP: Real-time feedback: bolometer-based control demonstrated at W7-X, maintains f_rad=85-100% for 9.2s (XP20181010.32), first stellarator achievement
+    % TP: Importance for ITER/DEMO: detachment mandatory for reactor operation, W7-X demonstrates feasibility and control strategies
+\end{frame}
 
 \begin{frame}
     \backgroundlogo
@@ -1373,14 +1727,14 @@
 
     \only<1>{
         \centering
-        \includegraphics[width=\textwidth]{%
+        \includegraphics[width=.6\textwidth]{%
             ../THESIS/content/figures/chapter1/Fusion_ntau_wiki.png}
-        \gcaption{Lawson criterion for different plasma compositions - minimum value of required for self-heating\cite{WikiLawsson}}
+        \gcaption{Lawson criterion for different plasma compositions - minimum value of required for self-heating\cite{WikiLawson}}
     }
 
     \only<2>{
         \centering
-        \includegraphics[width=\textwidth]{%
+        \includegraphics[width=.66\textwidth]{%
             ../THESIS/content/figures/chapter1/Fustion_triple-product_diagram_Horvath.png}
         \gcaption{Lawson criterion of important magnetic confinement fusion experiments\cite{WikiLawson}}
     }
@@ -2286,6 +2640,74 @@
     \backgroundlogo
 
     \only<1>{
+        \begin{flushleft}
+            \textbf{A Priori Inputs Required:}
+        \end{flushleft}
+        \begin{itemize}
+            \item[1.] Background plasma profiles: $n_e(r,t)$ electron density, $T_e(r,t)$ electron temperature from Thomson scattering
+            \item[2.] Magnetic geometry: flux surfaces, connection lengths, effective radii (from equilibrium reconstruction)
+            \item[3.] Transport coefficients: $D(r)$ diffusion, $v(r)$ convection (either fitted to data or assumed from theory)
+            \item[4.] Impurity source: location (divertor, wall, gas valve), rate $\Gamma_s(t)$, species (C, O, N, Ne, etc.)
+            \item[5.] Atomic data: ionization rates $Q_{ion}(T_e)$, recombination rates $Q_{rec}(T_e,n_e)$, charge exchange $Q_{cex}$ from ADAS database
+            \item[6.] Neutral density: $n_H(r)$ hydrogen/deuterium profile for charge exchange reactions
+        \end{itemize}
+    }
+    \only<2>{
+        \begin{flushleft}
+            \textbf{Physics Captured:}
+        \end{flushleft}
+        \begin{itemize}
+            \item Radial transport: diffusion (turbulent) and convection (drift, neoclassical) move impurities inward/outward
+            \item Ionization/recombination: balance determines charge state distribution $Z(r)$, depends on local $T_e$
+            \item Charge exchange: neutrals capture electrons from ions, affects edge ionization balance
+            \item Radiation: each charge state emits line radiation + continuum, summed to get total $P_{rad}(r)$
+            \item Flux-surface averaging: D* and v* are poloidally averaged, accounts for stellarator 3D geometry approximately
+        \end{itemize}
+    }
+
+   \only<3>{
+        \begin{flushleft}
+            \textbf{Key Assumptions:}
+        \end{flushleft}
+        \begin{itemize}
+            \item Trace impurity: $n_Z\ll n_e$, impurities don't affect background plasma (valid for $Z_{eff}<2$)
+            \item Coronal equilibrium: ionization balance faster than transport (valid for core, breaks down in edge)
+            \item No neutral transport: assumes neutrals instantly ionized or lost (simplified, neglects recycling details)
+            \item Steady-state background: $n_e(r)$, $T_e(r)$ evolve slowly compared to impurity transport timescales
+        \end{itemize}
+    }
+
+   \only<4>{
+        \begin{flushleft}
+            \textbf{Outputs:}
+        \end{flushleft}
+        \begin{itemize}
+            \item Impurity density profiles: $n_i,\,\,Z(r,t)$ for each charge state $Z$
+            \item Radiation profiles: $P_{rad}(r,t) = \sum_Z n_{i,Z(r,t)}\times L_Z(T_e)$ where $L_Z$ is cooling rate
+            \item Fractional abundance: $f_Z(r) = n_i,Z / \sum_Z n_{i,Z}$, shows dominant charge states
+            \item Integrated quantities: total radiated power, $Z_{eff}$ contribution, impurity confinement time
+        \end{itemize}
+    }
+
+   \only<5>{
+        \begin{flushleft}
+            \textbf{Validation Strategy:}
+        \end{flushleft}
+        \begin{itemize}
+            \item Compare STRAHL $P_{rad}(r)$ with bolometry measurements (tomographic reconstruction)
+            \item Adjust $D(r)$ and $v(r)$ to match experimental radiation profiles
+            \item Check charge state ratios against spectroscopy (e.g., C$^{2+}$/$C^{4+}$ from visible lines)
+            \item Verify temporal evolution during gas puff experiments
+        \end{itemize}
+   }
+
+    \only<6-7>{
+    \begin{flushleft}
+        \textbf{Equations:}
+    \end{flushleft}
+    }
+
+    \only<6>{
     \begin{align*}
         &\frac{\partial n_{\text{i,}Z}}{\partial t}=\frac{1}{r}\frac{\partial}{\partial r}\,r\left(D^{\ast}\frac{\partial n_{\text{i,}Z}}{\partial r}-v^{\ast}n_{\text{i,}Z}\right)+S_{\text{i,}Z}\,\,,\\%
         D^{\ast}=&\left\langle D\left(\theta\right)\vert \nabla r\vert^{2}\right\rangle\ix{FS}\coloneqq \frac{1}{4\pi^{2}R\ix{M}r}\displaystyle\oint\ix{FS}D\left(\theta\right)\vert\nabla r\vert\diff S\,\,\\%
@@ -2297,12 +2719,13 @@
     \end{align*}
     }
 
-    \only<2>{
+    \only<7>{
     \begin{align*}
         \begin{split}
             \frac{\partial\vec{n}}{\partial t}=&\mathbf{D}\frac{\partial^{2}\vec{n}}{\partial t^{2}}+\left(\left(\frac{1}{r}+\frac{\diff}{\diff r}\right)\mathbf{D}-\mathbf{v}\right)\frac{\partial\vec{n}}{\partial r}-\\%
             &\left(\frac{1}{r}+\frac{\diff}{\diff r}\right)\mathbf{v}\vec{n}-\mathbf{S}\vec{n}-\mathbf{R}\vec{n}+\vec{d}%
-        \end{split}\\
+        \end{split}%
+        \,\\
         \begin{split}
             &\vec{n}^{\left(l+1/2\right)}=\frac{\vec{n}^{\left(l\right)}+\vec{n}^{\left(l+1\right)}}{2}\,\,\\%
             \frac{\vec{n}^{\left(l+1\right)}-\vec{n}^{\left(l\right)}}{\Delta t}=&\left[\mathbf{D}\frac{\partial^{2}}{\partial r^{2}}+\left(\left(\frac{1}{r}+\frac{\diff}{\diff r}\right)\mathbf{D}-\mathbf{v}\right)\frac{\partial}{\partial r}-\right.\\%
@@ -2310,6 +2733,12 @@
         \end{split}
     \end{align*}
     }
+
+    % TP: STRAHL Overview - 1D impurity transport code for fusion plasmas, developed at IPP Garching
+    % TP: Purpose: simulate radial transport and radiation of impurity ions in tokamaks/stellarators
+    % TP: Fundamental approach: solves continuity equation for each ionization stage Z (from neutral Z=0 to fully stripped)
+    % TP: 1D approximation: flux-surface averaged quantities, assumes toroidal/poloidal symmetry (valid for core, simplified for edge)
+    % TP: Time-dependent: captures evolution of impurity profiles during gas puffing, injection, or transport changes
 \end{frame}
 
 \begin{frame}
