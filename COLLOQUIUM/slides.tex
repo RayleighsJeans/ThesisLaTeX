@@ -185,14 +185,15 @@
 
     \only<1>{%
         \centering
-        \includegraphics[width=\textwidth]{%
+        \includegraphics[width=.7\textwidth]{%
             ../THESIS/content/figures/chapter1/component_3d.pdf}
         \source{D. Zhang et al., 2010\cite{Zhang2010}}
     }
     \only<2>{
         \centering
-        \includegraphics[width=.6\textwidth]{%
-            ../THESIS/content/figures/chapter1/bolometers_QSB.png}
+        \includegraphics[width=.9\textwidth]{%
+            ../THESIS/content/figures/chapter1/linesofsight_in_vessel.pdf}
+        \source{D. Zhang et al., 2010\cite{Zhang2010}}
     }
 \end{frame}
 
@@ -588,7 +589,7 @@
             \visible<2>{
             \textbf{Problem:}
             \begin{align*}
-                \underset{\eta}{\text{min}}&\left\|\left(\mathbf{T}^{\intercal}\mathbf{T}+\mu^{-1}\mathbf{H}\right)^{-1}\mathbf{T}^{\intercal}\vec{b}\,\right\|\,\rightarrow\,\vec{x}%
+                \underset{\mu}{\text{min}}&\left\|\left(\mathbf{T}^{\intercal}\mathbf{T}+\mu^{-1}\mathbf{H}\right)^{-1}\mathbf{T}^{\intercal}\vec{b}\,\right\|\,\rightarrow\,\vec{x}%
             \end{align*}
 
             \textbf{Fisher Information:}
@@ -1255,13 +1256,12 @@
             \end{itemize}
             }
 
-            \vspace{1em}
             \visible<2-3>{
-            \textbf{Modeling Improvements:}
+            \textbf{Model(ing)Improvements:}
             \begin{itemize}
-                \item Model integration with EMC3-EIRENE and other codes
-                \item Better parametric optimization (Bayesian methods)
-                \item Validate against spectroscopy
+                \item Integration with EMC3-EIRENE and other codes
+                \item Better parametric optimization and coverage (Bayesian methods?)
+                \item Deliberate validation against other diagnostics (i.e. spectroscopy)
             \end{itemize}
             }
         \end{column}
@@ -1322,7 +1322,7 @@
     \only<2>{
         \begin{center}
             {\Huge Sin é, a chairde.}\newline%
-            \gcaption{ʃin 'e: sil, ə 'xar$^{j}$., d'ə sil.}
+            \gcaption{Shin 'e: sil, ə 'xar$^{j}$., d'ə sil.}
         \end{center}
     }
 
@@ -1361,9 +1361,10 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Plasma Transport at W7-X}
+    \frametitle{Transport}
     \backgroundlogo%
 
+    \only<1>{
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \textbf{Transport Mechanisms:}
@@ -1397,6 +1398,26 @@
             \end{itemize}
         \end{column}
     \end{columns}
+    }
+    
+    \only<2>{
+        \begin{flushleft}
+            \textbf{Neoclassical:}
+        \end{flushleft}
+        \begin{align*}
+            \frac{\partial f\ix{x}}{\partial t}+\vec{v}\,\nabla f\ix{x}&+\frac{Z\ix{x}e}{m\ix{x}}\left(\vec{E}+\vec{v}\times\vec{B}\right)\nabla\ix{v}f\ix{x}=\nonumber\\%
+            &-\frac{\partial}{\partial v\ix{i}}\left(f\ix{x}\left\langle\Delta v\ix{i}\right\rangle\right)+\frac{1}{2}\frac{\partial^{2}}{\partial v\ix{i}\partial v\ix{j}}\left(f\ix{x}\left\langle\Delta v\ix{i}\Delta v\ix{j}\right\rangle\right)+S\ix{x}\\
+            \vec{\Gamma}\ix{q}=\sum^{O}_{x}\,D\ix{x}&\left(-\nabla n\ix{q}+n\ix{q}q\left[\frac{\nabla n}{n}-H\ix{x}\frac{\nabla T}{T}\right]\right)=\\
+            &-D\ix{neo}\nabla n\ix{q}+v\ix{neo}n\ix{q}
+        \end{align*}
+        
+        \begin{flushleft}
+            \textbf{Anomalous:}
+        \end{flushleft}
+        \begin{align*}%
+            \vec{\Gamma}\ix{q}=-\left(D\ix{neo,q}+D\ix{an,q}\right)\nabla n\ix{q}+\left(v\ix{neo,q}+v\ix{an,q}\right)n\ix{q}=-D\ix{q}\nabla n\ix{q}+v\ix{q}n\ix{q}%
+        \end{align*}%
+   }
 
     % TP: Three transport mechanisms: classical (Coulomb collisions, D∝1/B²), neoclassical (trapped particles, banana orbits, ∇B drifts), anomalous (turbulence from ITG/ETG instabilities)
     % TP: Radial particle flux: Γ_q = -D_q∇n_q + v_q n_q, combines diffusion (D) and convection (v) from all mechanisms
@@ -1408,9 +1429,10 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Impurity Transport and Radiation at W7-X}
+    \frametitle{Transport}
     \backgroundlogo%
 
+    \only<1, 2>{
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \only<1>{
@@ -1467,6 +1489,7 @@
             }
         \end{column}
     \end{columns}
+    }
 
     % TP: Impurity transport dominated by anomalous diffusion: D_an~0.3-3 m²/s, exceeds neoclassical by order of magnitude
     % TP: Neoclassical convection charge-dependent: v_neo∝q, creates inward pinch for high-Z impurities, risk of core accumulation
@@ -1561,6 +1584,26 @@
     \frametitle{Impurity Effects and Transport Sensitivity}
     \backgroundlogo%
 
+
+    \only<1>{
+    \begin{flushleft}
+        \textbf{Bremsstrahlung:}
+    \end{flushleft}
+    \begin{align*}%
+        P\ix{brems}=c\ix{b}n\ix{e}\sqrt{T\ix{e}}&\sum_{i}n\ix{i}\left\langle\overline{Z}\ix{i}\right\rangle^{2}=c\ix{b}n\ix{e}^{2}\sqrt{T\ix{e}}Z\ix{eff}\\
+        p\ix{brems}\left(v,\nu\right)=&\frac{8\pi}{3^{3/2}}\frac{Z^{2}\overline{e}^{6}n\ix{i}}{c\ix{0}^{3}m\ix{e}^{2}v}g\ix{ff}\left(v,\nu\right)\\%
+    \end{align*}
+
+    \begin{flushleft}
+        \textbf{Line Radiation:}
+    \end{flushleft}
+    \begin{align*}
+        P\ix{rad}=&\sum\ix{Z}n\ix{e}n\ix{Z}L\ix{Z}\\%
+        k\ix{Z-1}^{\text{ion}}n\ix{Z-1}+k\ix{Z+1}^{\text{rec}}&n\ix{Z+1}=\left(k\ix{Z}^{\text{ion}}+k\ix{Z}^{\text{rec}}\right)n\ix{Z}
+    \end{align*}%
+    }
+
+    \only<2>{
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \textbf{Effects on Plasma Performance:}
@@ -1587,8 +1630,9 @@
         \end{column}
 
         \begin{column}{0.5\textwidth}
-            \vspace*{-.5em}
+            \vspace{-.5em}
             \textbf{Transport Coefficient Sensitivity:}
+
 
             \textbf{Diffusion:}
             \begin{itemize}
@@ -1610,6 +1654,7 @@
             \end{itemize}
         \end{column}
     \end{columns}
+    }
 
     % TP: Fuel dilution: impurities reduce hydrogen fraction f_H = n_H/(n_e - n_Z), affects Lawson criterion n_e T τ_E, higher Z → stronger dilution effect
     % TP: Radiation losses: line radiation L_Z(T_e) from bound-bound transitions, bremsstrahlung ∝ Z² from free-free, beneficial for divertor heat load reduction
@@ -1814,6 +1859,9 @@
     }
 
     \only<3>{
+        \begin{flushleft}
+            \textbf{Etendue and LOS Sensitivity:}
+        \end{flushleft}
         \begin{align*}%
             \iint_{A, M}\frac{\cos\left(\alpha\right)\cos\left(\beta\right)}{2\pi d^{2}}\diff A_{M}\diff A_{A}\overset{!}{=}&\int_{M}\diff \widetilde{K}_{M}\\
             T^{\left(i,j\right)}_{M}=\sum_{k=1}^{N_{\vartheta}}T^{\left(i,j,k\right)}_{M}=&\sum_{k=1}^{N_{\vartheta}}\left(\int_{M}L^{\left(i,j,k\right)}_{M}\diff\widetilde{K}_{M}\right)
@@ -1829,6 +1877,9 @@
     }
 
     \only<5>{
+        \begin{flushleft}
+            \textbf{Plasma Radius along LOS:}
+        \end{flushleft}
         \begin{align*}%
             r_{\text{eff}, M}&=\left\{%
             \begin{array}{ll}%
@@ -2709,9 +2760,9 @@
 
     \only<6>{
     \begin{align*}
-        &\frac{\partial n_{\text{i,}Z}}{\partial t}=\frac{1}{r}\frac{\partial}{\partial r}\,r\left(D^{\ast}\frac{\partial n_{\text{i,}Z}}{\partial r}-v^{\ast}n_{\text{i,}Z}\right)+S_{\text{i,}Z}\,\,,\\%
-        D^{\ast}=&\left\langle D\left(\theta\right)\vert \nabla r\vert^{2}\right\rangle\ix{FS}\coloneqq \frac{1}{4\pi^{2}R\ix{M}r}\displaystyle\oint\ix{FS}D\left(\theta\right)\vert\nabla r\vert\diff S\,\,\\%
-        v^{\ast}=&\left\langle v\left(\theta\right)\vert\nabla r\vert\right\rangle\ix{FS}=\frac{1}{4\pi^{2}R\ix{M}r}\displaystyle\oint\ix{FS}v\diff S\,\,.\\
+        &\frac{\partial n_{\text{i,}Z}}{\partial t}=\frac{1}{r}\frac{\partial}{\partial r}\,r\left(D^{\ast}\frac{\partial n_{\text{i,}Z}}{\partial r}-v^{\ast}n_{\text{i,}Z}\right)+S_{\text{i,}Z}\\%
+        D^{\ast}=&\left\langle D\left(\theta\right)\vert \nabla r\vert^{2}\right\rangle\ix{FS}\coloneqq \frac{1}{4\pi^{2}R\ix{M}r}\displaystyle\oint\ix{FS}D\left(\theta\right)\vert\nabla r\vert\diff S\\%
+        v^{\ast}=&\left\langle v\left(\theta\right)\vert\nabla r\vert\right\rangle\ix{FS}=\frac{1}{4\pi^{2}R\ix{M}r}\displaystyle\oint\ix{FS}v\diff S\\
         \begin{split}
             S_{\text{i,}Z}=-&n_{\text{i,}Z}\left(n\ix{e}Q\head{ion}_{\text{i,}Z}+n\ix{e}Q_{\text{i,}Z}\head{rec}+n\ix{H}Q_{\text{i,}Z}\head{cex}\right)+n\ix{e}Q_{\text{i,}Z-1}\head{ion}n_{\text{i,}Z-1}+\\%
             &n_{\text{i,}Z+1}\left(n\ix{e}Q_{\text{i,}Z+1}\head{rec}+n\ix{H}Q_{\text{i,}Z+1}\head{cex}\right)%
@@ -2727,9 +2778,9 @@
         \end{split}%
         \,\\
         \begin{split}
-            &\vec{n}^{\left(l+1/2\right)}=\frac{\vec{n}^{\left(l\right)}+\vec{n}^{\left(l+1\right)}}{2}\,\,\\%
+            &\vec{n}^{\left(l+1/2\right)}=\frac{\vec{n}^{\left(l\right)}+\vec{n}^{\left(l+1\right)}}{2}\\%
             \frac{\vec{n}^{\left(l+1\right)}-\vec{n}^{\left(l\right)}}{\Delta t}=&\left[\mathbf{D}\frac{\partial^{2}}{\partial r^{2}}+\left(\left(\frac{1}{r}+\frac{\diff}{\diff r}\right)\mathbf{D}-\mathbf{v}\right)\frac{\partial}{\partial r}-\right.\\%
-            &\quad\left.\left(\frac{1}{r}+\frac{\diff}{\diff r}\right)\vec{v}-\mathbf{S}-\mathbf{R}\right]\vec{n}^{\left(l+1\right)}+\vec{d}\,\,.%
+            &\quad\left.\left(\frac{1}{r}+\frac{\diff}{\diff r}\right)\vec{v}-\mathbf{S}-\mathbf{R}\right]\vec{n}^{\left(l+1\right)}+\vec{d}%
         \end{split}
     \end{align*}
     }
@@ -3069,6 +3120,16 @@
             Comparison for example LOS cones for channel 14 and 16 of the HBC with rectangular splitting\\%
             at (\textcolor{blue}{blue}) $N=2$ and (\textcolor{green}{green}) $N=8$. Full cone vs infinitesimal projection}
         \end{figure}
+
+    % TP: LOS segmentation: divides each line of sight into N sub-segments for more accurate geometry matrix calculation
+    % TP: Rectangular splitting: N=2 (coarse, 2 segments per LOS) vs N=8 (fine, 8 segments per LOS)
+    % TP: Full cone representation: accounts for finite detector and aperture sizes, creates trapezoidal viewing volume
+    % TP: Infinitesimal projection: simplified ray-tracing approximation, treats LOS as single line
+    % TP: Comparison shows: N=8 provides better spatial resolution, captures edge effects near aperture and detector boundaries
+    % TP: Trade-off: higher N increases computational cost (geometry matrix size), but improves reconstruction accuracy
+    % TP: Optimal choice: N=8 used for MFR tomography, balances accuracy vs computation time
+    % TP: Physical meaning: each segment samples different part of plasma, weighted by etendue contribution
+    % TP: Importance: proper segmentation essential for accurate forward modeling and tomographic inversion
 \end{frame}
 
 \begin{frame}
@@ -3179,6 +3240,18 @@
            }
         \end{column}
     \end{columns}
+
+    % TP: Artificial cameras: conceptual camera designs to test tomography performance with different viewing geometries
+    % TP: VBCm (VBC mirror): hypothetical camera mirroring existing VBC geometry, tests symmetry assumptions
+    % TP: MIRh (Mirrored horizontal): horizontal camera array complementing vertical HBC, improves poloidal coverage
+    % TP: Purpose: evaluate benefit of additional viewing angles before expensive hardware installation
+    % TP: Etendue/LOS sensitivity: shows spatial coverage and measurement weight distribution for each camera design
+    % TP: Phantom test: anisotropic island chain + bright core ring, challenges reconstruction with complex features
+    % TP: 3-camera system (HBC + VBCl + VBCr): baseline configuration, k_ani={2, 0.1} anisotropy weighting
+    % TP: 4-camera system (+ MIRh): improved reconstruction quality, better resolves poloidal structures
+    % TP: Key finding: additional horizontal camera improves reconstruction by ~15-20%, especially for island features
+    % TP: Trade-off: hardware cost vs diagnostic improvement, MIRh would require significant engineering effort
+    % TP: Conclusion: current 3-camera system sufficient for most scenarios, 4th camera beneficial for detailed studies
 \end{frame}
 
 \begin{frame}
@@ -3572,6 +3645,19 @@
         \gcaption{laser test results with real-time radiation feedback for \SI{1.6}{\milli\second}}
     \end{figure}%
     }
+
+    % TP: DAQ latency testing: laser-based characterization of data acquisition system timing performance
+    % TP: Test methodology: modulated laser signal simulates bolometer response, measures system latency at different sample rates
+    % TP: Sample times tested: 0.8ms, 1.0ms, 1.6ms, 3.2ms - trade-off between temporal resolution and noise
+    % TP: Without RTF (real-time feedback): baseline latency measurement, shows pure acquisition delay
+    % TP: With RTF: includes feedback processing overhead, total loop latency 150-400ms depending on complexity
+    % TP: Samples per half period: measures how many data points captured during signal oscillation, validates sampling theorem
+    % TP: Key finding: minimum acquisition latency 13.6ms achieved at 0.8ms sample time
+    % TP: Latency components: (1) acquisition 13.6ms, (2) processing 50-200ms, (3) communication 10-50ms, (4) actuator response 100-150ms
+    % TP: Optimization: parallel processing, FIFO buffers, optimized algorithms reduce latency by factor 2-3
+    % TP: Feedback performance: 150-400ms total loop time sufficient for radiation control (timescale ~1-10s)
+    % TP: Comparison: faster than alternative methods (DI feedback ~500ms, filterscope ~300ms)
+    % TP: Importance: low latency enables responsive control, prevents overshoot and oscillations in feedback loop
 \end{frame}
 
 \backupend
