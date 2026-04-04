@@ -191,35 +191,77 @@ am Wendelstein 7-X\\[1em]
 \subsection{Motivation}
 
 \begin{itemize}
-\item Ziel: 2D-Strahlungsverteilung $P_{rad}$ (R,Z) aus 1D-Linienintegrierten-Helligkeitsmessungen rekonstruieren
+\item Ziel: 2D-Strahlungsverteilung $P_{rad}$ (R,Z) aus 1D-Linienintegrierten-Strahlungsmessungen rekonstruieren
 \item Herausforderung: unterbestimmtes Invertierungs-Problem - 61 oder (24x2)x32 Messungen, $\sim$4500 Gitterzellen, unendliche Lösungen möglich
 \item Lösung: Regularisierungs-Ansatz durch Fisher Information mit radial abhängiger Anisotropie-Gewichtung (RDA)
 \item MFR-Prinzip: Maximiere Entropie (Glätte) bei Erfüllung von Randbedigungen - bevorzugt physikalisch plausible (glatt entland Flussflächen) Lösungen
-\item Validierung durch (1) synthetische Phantome mit bekannter Loesung und (2) experimentelle Daten mit $P_{rad}$ -Messungen
+\item Validierung durch (1) synthetische Phantome mit bekannter Loesung und (2) experimentelle Daten mit $P_{rad}$-Messungen
 \end{itemize}
 
 \subsection{MFR mit RDA}
 
 \begin{itemize}
-\item Gitter-Konfiguration: 30$\times$150 Zellen (radial $\times $ poloidal), Domäne $1.3^2V_P$ umfasst Plasma + SOL + Divertor
-\item Anisotropie-Gewichtung: $k_{ani}$ ($\rho$) variiert radial - {2,0, 0,3} Standard (Kern anisotrop, Rand isotrop), {5,0, 0,5} hochanisotrop (starke Flussflächenausrichtung)
-\item Physikalische Motivation: Strahlung folgt Flussflächen im Kern (anisotrop), wird isotrop im SOL/Divertor (kurze Verbindungslängen)
-\item Konvergenz: $ N_T $ =10-20 Iterationen ausreichend für $\chi^2 $ <1,5, typisch $\sim $ 15 Iterationen für experimentelle Daten
-\item Regularisierung: Glättung entlang Flussflächen im Kern, isotrope Glättung im Rand - balanciert Physik und Datenkonstraints
-\item Implementierung: Python mit NumPy/SciPy, optimiert für Geschwindigkeit ( $\sim $ 1s pro Rekonstruktion), parallelisierbar für Echtzeit
+\item Gitter-Konfiguration: 30$\times$150 Zellen (radial\,$\times$\,poloidal), Domäne $1.3^2V_P$ umfasst Plasma + SOL (bei Standardkonfiguration)
+\item Radiale Anisotropie-Gewichtung: $k_{ani}(\rho)$ zusaetzlicher Faktor auf poloidale Ableitung (<1 individiuelle Beiträge gewichtiger, >1 weniger Einfluss) variiert radial
+\item Physikalische Motivation: Strahlung folgt Flussflächen im Kern (isotrop), wird (potentiell) anisotrop(er) im SOL/Divertor kuerzere Verbindungslängen, offen Flussflächen, Inseln etc.
 \end{itemize}
 
 \subsection{Validierung}
 
 \begin{itemize}
-\item Phantom-Benchmarks: 59 synthetische Tests mit verschiedenen Strahlungsmustern (Kern-dominiert, Rand-dominiert, gemischt)
-\item Phantom-Leistung: Rekonstruktionsqualität $\rho_c $ >0,85 (Korrelation mit Wahrheit), $\chi^2 $ <2,5 (Anpassungsgüte), typisch $\rho_c \sim $ 0,90-0,95
-\item Experimentelle Tests: 4 Entladungen aus OP1.2b, $ P_{2D} $ (integriert über Gitter) innerhalb 10-20\% von $ P_{rad} $ (unabhängige Messung)
-\item Vergleich mit anderen Methoden: MFR+RDA übertrifft Standard-MFR (isotrop) und Tikhonov-Regularisierung - bessere räumliche Auflösung und Genauigkeit
-\item Räumliche Auflösung: $\sim $ 5cm an magnetischer Achse, begrenzt durch Bolometer-Kanalgeometrie und Etendue-Breite
-\item Robustheit: Stabil gegen Rauschen (SNR>100), fehlende Kanäle (bis zu 30\% Ausfall), und Kalibrierungsfehler ( $\pm $ 10\%)
-\item $\sim $ 2-5s/Frame CPU, GPU könnte <100ms
-\item Zukunft: Echtzeit-Tomographie möglich
+\item Alle vorherigen und folgenden Untersuchungen basieren auf Design des Bolometers (idealisierte Geometrie per Bauplan ohne 'Fehler')
+\item Geometrische Untersuchungen: Diskretisierung des Bolometers ohne signifikanten Einfluss
+\item Beihilfe mit synthetischen Tests aus Phantom-Strahlungsprofilen aus bspw. STRAHL 
+\item Voll symmetrische Emissivität und Design-Geometrie (HBC) ergeben leichte Asymmetrie in linienintegrierten Messungen
+\item Fragestellung: Welche Kamerageometrie ist denn symmetrisch bzw. woher kommt die Asymmetrie?
+\item Kuenstliche Geometrie erarbeitet: Zentrierung des Arrays, Spiegelung der Sichtlinien innerhalb der Kamera und schliessliche 'Aufrechtstellung' und Ausrichtung genau in die 108$^\circ$ Ebene
+\item Vergleichbar fast vernachlaessigbare Aenderung in $\mathbf{T}$ aber voll symmetrisches Ergebnis in $P_{M}$
+\item Post-OP1.2b Roboter-gestuetzte Messungen der HBC Kameraoeffnung zeigen Verschiebungen, potentiell durch thermischen und mechanischen Stress auf die Maschine
+\item Unbekannt wie der Zustand waehrend der Messkampagne ist: Anwendung mit Stoerungsrechnung dieser Abweichungen auf Kamerageometrie zeigt bis zu $\pm$2$^{\circ}$ Abweichung in Kamera-Ebene als Worst-Case-Szenario
+\item Integration des vorherigen Phantoms mit solcher Geometrie gibt $\pm$0.2r$_{a}$ Verschiebung im Vergleich zu symmetrischen Ergebnissen
+\item Hypothetischer Fall: wissen nicht von der Verschiebung bzw. Verzerrung der Geometrie - Messung mit gestoerter Kamera-Ausrichtung und Tomographie mit Design-Geometrie (Blindfehler)
+\end{itemize}
+
+\subsubsection*{Phantoms}
+
+\begin{itemize}
+\item Phantom-Benchmarks: Regularisierungen muessen/sollten mit a priori Wissen eingestellt werden um sinnvolle bzw. verlaessliche Ergebnisse zu erhalten
+\item synthetische Tests mit verschiedenen Strahlungsmustern (Kern-dominiert, Rand-dominiert, gemischt)
+\item Metriken um Qualität zu messen: Rekonstruktionsqualität $\rho_c$ (Korrelation mit Wahrheit), $\chi^2$ (Anpassungsgüte), zweidimensionale, mittlere Abweichug (MSD), 2D integrierte Leistungen
+\item nur $\chi^2$ fuer experimentelle Rekonstruktionen verfügbar
+\item Beispiel: helle, Insel-artige Emissivität in SOL mit weniger intensivem, isotropem Ring in Kern
+\item Statistik: Beispielhafte Ergebnisse fuer nur $k_{edge}$ Variation. Klares Maximum in Pearson nicht kongruent mit $\chi$/MSD
+\item Legt ein grundlegendes Problem nahe: Optimierung fuer Klassen von Verteilungen/Regularisierungsparametern gueltig und noetig, nicht allgemein fuer alle Emissivitäten moeglich
+\item weitere Beispiele mit Uebersicht
+\item Simples Beispiel und einfache Variation mit nachvollziehbaren, trivialen Ergebnissen
+\item Ansatz umdrehen: $k_{ani}$ fest und Aufloesbarkeit testen mit Variation der Lokalisierung der Strahlung ($\Delta r$<0.2r$_{a}$ verschwimmt, r>r$_{a}$ erschwert Rekonstruktion)
+\item Singulaere, anisotrope Strukturen: Kamera-Bias untersuchen
+\item Qualitativ kaum Unterschiede, kein Hinweis auf intrinsischen Bias
+\item Integrierte Statistik: Leistung - Liniare Zusammenhaenge gut, Zielgroessen der Tomographie und teil der Optimierungsaufgabe.
+\item 2D Leistung und $P_{rad}$ zwar korrelierend, aber systematische Diskrepanz durch Trennung von Rand- und Kernstrahlungsverlust bestaetigt
+\item Qualitätsparameter: Pearson $\ne\chi^{2}$ aber stimmt mit MSD Verlauf ueberein
+\item $\chi^{2}$ als Optimierungsgroesse der Tomographie hinreichend aber durch Faltung mit Fehlerbalken und Geometrie-Einfluessen schwer
+\item Zusammenfassung
+\end{itemize}
+
+\subsubsection*{Experimentelle Rekonstruktionen}
+
+\begin{itemize}
+  \item LBO Events: Verunreinigungs-Injektion durch Laser-Ablationen von Metall auf Fenster zu Plasma gerichtet und Laser ausserhalb
+  \item Starke Strahlungsspitzen, sonst konstante Plasmaparameter
+  \item Fokus auf ersten Laser-Schuss bei 2s, Strahlungsantwort (stark) verzögert
+  \item Mit Erfahrung aus Phantomen gute, verlaessliche und Einfache Rekonstruktion
+  \item Statistik: nur Leistungen als Parameter zur Verfuegung - Diskrepanz P$_{rad}$ vs P$_{2D}$ reproduziert mit SOL/Kern Korrelationen bis auf die genauen Werte hin
+  \item Bestaetigung mit Phantomen und synthetischen Daten unterstuetzt die Ergebnisse und validiert die 2D Leistung aus Tomogramen als (mehr) angemessenen Strahlungsverlustwert
+\end{itemize}
+
+\subsubsection*{Globale Leistungsbilanz}
+
+\begin{itemize}
+  \item Simpler 0D Ansatz aus quasi Equlibrium fuer globale Leistungsbilanz aus gespeicherter Energie, Eintrag und Verlusten
+  \item XP20181010.32 als bekannte Referenz nochmal heranziehen
+  \item Vergleich P$_{bal}$ aus P$_{rad}$ und getrennten P$_{2D}$ Gesamt und nur aus Plasma-Kern
+  \item Bessere Repraesentation und stabiler bei Plasma-Uebergaengen, allgemein naeher an P$_{bal}=0$ fuer Emissivitaet nur aus Kern
 \end{itemize}
 
 \section{SCHLUSSFOLGERUNGEN}
@@ -227,44 +269,24 @@ am Wendelstein 7-X\\[1em]
 \subsection{Haupterfolge}
 
 \begin{itemize}
-\item Drei Hauptbeiträge bilden ein integriertes System für W7-X-Strahlungsmanagement:
+\item Drei Hauptbeiträge
 \item (1) Echtzeit-Feedback: Erste bolometer-basierte Implementierung am W7-X, erreichte $ f_{rad} \geq $ 85\% mit Faktor $\geq 2 \times $ Divertor-Wärmelast-Reduktion
-\item (2) LOS-Optimierung: Systematische Analyse von 45 Entladungspaaren identifizierte optimale Kanalauswahl, m=3-5 Kanäle ausreichend für robuste Kontrolle
-\item (3) Tomographie: MFR+RDA-Methode validiert durch 59 Phantom-Tests und 4 experimentelle Entladungen, liefert 2D-Strahlungsverteilung
-\item Integration: Feedback-System nutzt optimierte Kanäle aus LOS-Analyse, Tomographie validiert räumliche Strahlungsverteilung
-\item Reaktorrelevanz: Direkt anwendbar auf ITER und DEMO für Divertorschutz und Langpuls-Operationen
-\end{itemize}
-
-\subsection{Zusammenfassung}
-
-\begin{itemize}
-\item \textbf{Feedback-System:} 13,6ms Akquisitionslatenz (minimal), 150-400ms Gesamtschleife, PID-Regler mit dual-Proxy-Vorhersage
-\item \textbf{Benchmark-Experiment:} XP20181010.32 - 9,2s Dauer, $ P_{ECRH} $ =6,23 MW, $ f_{rad} \geq $ 85\% aufrechterhalten, Faktor $\geq 2 \times $ Wärmelast-Reduktion, keine Disruption
-\item \textbf{Diagnostik-Leistung:} 94 Kanäle installiert (61 funktional in OP1.2b), Kalibrierungsstabilität <5\% über 1182 Experimente, SNR>1000
-\item \textbf{LOS-Sensitivität:} Separatrix/SOL-beobachtende Kanäle ( $\rho_{\text{pol}} \sim $ 0,95-1,05) optimal, VBC übertrifft HBC für Randsensitivität, mehrere Kanal-Sets erreichen $\geq $ 85\% Genauigkeit
-\item \textbf{Ablösungsphysik:} C $ ^2 $ -Signatur erscheint bei $ f_{rad} \sim $ 50\%, vollständige Ablösung bei $ f_{rad} $ >90\%, kritische Region bei $\rho_{\text{pol}} \approx $ 0,95
-\item \textbf{STRAHL-Modellierung:} Kohlenstoff dominiert um Faktor 10 $ ^2\times $ über Sauerstoff, C $ ^3 $ /C $ ^2 $ -Verhältnis kritisch an LCFS für Strahlungsverteilung
-\item \textbf{Tomographie-Qualität:} Rekonstruktionen erreichen $\rho_c $ >0,85, $\chi^2 $ <2,5, $ P_{2D} $ innerhalb 10-20\% von $ P_{rad} $ , zeigen X-Punkt-Lokalisierung und Inselketten-Struktur
-\item \textbf{Leistungsbilanz:} $ P_{2D}^{Kern} $ stabil für quasi-stationäre Phasen, Standard-MFR unterschätzt um 15-25\% (SOL-Beitrag fehlt)
-\item \textbf{Validierung:} OP1.2b-Kampagne 2018, 1182 Experimente analysiert, 45 Entladungspaare für LOS-Studie, 4 für Tomographie-Validierung
+\item (2) LOS-Optimierung: Systematische Analyse von 45+ Entladungspaaren identifizierte optimale Kanalauswahl, m=3-5 Kanäle ausreichend für robuste Kontrolle
+\item (3) Tomographie: MFR+RDA-Methode validiert durch 12+ Phantom-Tests und experimentelle Entladungen, liefert 2D-Strahlungsverteilung
+\item Integration: Feedback-System mit optimierten Kanälen aus LOS-Analyse, Tomographie validiert räumliche Strahlungsverteilung
+\item Reaktorrelevanz: (direkt) anwendbar für Divertorschutz und Langpuls-Operationen
 \end{itemize}
 
 \section{AUSBLICK}
 
-\subsection{Zukünftige Arbeiten}
-
 \begin{itemize}
-\item \textbf{Hardware-Upgrades:} (1) Akquisitionssystem-Upgrade auf <10ms Latenz für schnellere Feedback-Antwort, (2) Erweiterte Kanalabdeckung für bessere räumliche Auflösung
-\item \textbf{Software-Verbesserungen:} Prädiktive Algorithmen zur Antizipation von Strahlungsänderungen, maschinelles Lernen für adaptive Kontrolle
-\item \textbf{ML-Anwendungen:} (1) PID-Parameter-Optimierung für verschiedene Plasmaregime, (2) automatische Kanalauswahl basierend auf Plasmazustand, (3) Gas-Injektions-Timing-Optimierung
-\item \textbf{Modellierungs-Validierung:} STRAHL+EMC3-EIRENE 3D-Kopplung für vollständige Verunreinigungstransport-Simulation, Validierung gegen OP2.1-Daten
-\item \textbf{Kammermodelle:} Verfeinerung von Zwei/Drei-Kammer-Modellen für Verunreinigungstransport, Entwicklung von Skalierungsgesetzen für verschiedene Betriebsregime
+\item \textbf{Upgrades:} (1) Akquisitionssystem-Upgrade auf <10ms Latenz für schnellere Feedback-Antwort, (2) Erweiterte Kanalabdeckung für bessere räumliche Auflösung
+\item \textbf{Algorithmus-Verbesserungen:} Prädiktive Algorithmen zur Antizipation von Strahlungsänderungen, maschinelles Lernen für adaptive Kontrolle
+\item \textbf{Maschinelles Lernen:} (1) PID-Parameter-Optimierung für verschiedene Plasmaregime, (2) automatische Kanalauswahl basierend auf Plasmazustand, (3) Gas-Injektions-Timing-Optimierung
+\item \textbf{Modellierung:} STRAHL+EMC3-EIRENE 3D-Kopplung für vollständige Verunreinigungstransport-Simulation, Validierung gegen OP2.1-Daten
 \item \textbf{Tomographie-Erweiterung:} Erweiterte Phantom-Bibliothek (>50 Tests), GPU-Beschleunigung für <100ms/Frame-Rekonstruktion
 \item \textbf{Echtzeit-Tomographie:} Integration in Feedback-System für räumliche Strahlungskontrolle, MARFE-Früherkennung und -Vermeidung
 \item \textbf{Parameter-Optimierung:} Bayes'sche Optimierung oder Gittersuche für $ k_{an}i ( \rho $ )-Profil, adaptive Anisotropie basierend auf Plasmazustand
-\item \textbf{ITER/DEMO-Anwendung:} Direkt übertragbare Methoden, $ P_{fus}\sim $ 500 MW, $ f_{rad} \geq $ 95\% erforderlich, $ q_{di} $ <10 MW/m $ ^2 $ Ziel
-\item \textbf{Andere Geräte:} Anwendbar auf LHD (Stellarator), ITER, DEMO, SPARC (Tokamaks) - universelle Strahlungskontroll-Strategie
-\item \textbf{Vision:} Vollautomatisches, adaptives, prädiktives Strahlungsmanagement-System für zukünftige Fusionsreaktoren
 \end{itemize}
 
 \section{ABSCHLUSS}
@@ -272,10 +294,28 @@ am Wendelstein 7-X\\[1em]
 \subsection{Danksagung}
 
 \begin{itemize}
-\item Vielen Dank für Ihre Aufmerksamkeit - "Sin é, a chairde" (Irisch-Gälisch: "Das ist es, Freunde")
-\item Fragen sind willkommen zu allen Aspekten: Feedback-Implementierung, LOS-Sensitivitätsanalyse, Tomographie-Methodik, experimentelle Ergebnisse
-\item Diskussionsthemen: (1) Latenzreduktions-Strategien, (2) alternative Regularisierungsmethoden, (3) Parameter-Optimierungsansätze, (4) ITER/DEMO-Anwendbarkeit
-\item Danksagung: W7-X-Betriebsteam, IPP-Greifswald-Kollegen, EUROfusion-Konsortium, Helmholtz-Gemeinschaft, Universität Greifswald
+\item Vielen Dank für Ihre Aufmerksamkeit - "Sin é, a chairde" (Gaelisch: "That's it, folks.")
+\item Fragen, bitte immer her damit!
+\item Danksagung: W7-X-Betriebsteam, IPP-Greifswald-Kollegen, Prof. Dr. Klinger, der Arbeitsgruppe 'Transport, Verunreinigungen und Strahlung' um Dr. Felix Reimold und Dr. Rainer Burhenn und Familie
+\end{itemize}
+
+\subsection{Zusammenfassung}
+
+\begin{itemize}
+\item \textbf{Feedback-System:} 13,6ms Akquisitionslatenz (minimal), 150-400ms Gesamtschleife, PID-Regler mit dual-Proxy-Vorhersage
+\item \textbf{Benchmark-Experiment:} XP20181010.32 - 9,2s Dauer, $P_{ECRH}$ =6,23 MW, $f_{rad} \geq $ 85\% aufrechterhalten, Faktor $\geq2\times$ Wärmelast-Reduktion, keine Disruption
+\item \textbf{Diagnostik-Leistung:} 94 Kanäle installiert (61 funktional in OP1.2b), Kalibrierungsstabilität <5\% über 1182 Experimente, SNR>1000
+\item \textbf{LOS-Sensitivität:} Separatrix/SOL-beobachtende Kanäle ( $\rho_{\text{pol}} \sim$ 0,95-1,05) optimal, VBC übertrifft HBC für Randsensitivität, mehrere Kanal-Sets erreichen $\geq$ 85\% Genauigkeit
+\item \textbf{Ablösungsphysik:} C$^{2+}$ -Signatur erscheint bei $f_{rad}\sim$50\%, vollständige Ablösung bei $ f_{rad} $ >90\%, kritische Region bei $\rho_{\text{pol}}\approx$ 0,95
+\item \textbf{STRAHL-Modellierung:} Kohlenstoff dominiert um Faktor 10$^2\times$ über Sauerstoff, C$^{3+}$/C$^{2+}$ -Verhältnis kritisch an LCFS für Strahlungsverteilung
+\item \textbf{Tomographie-Qualität:} Rekonstruktionen erreichen $\rho_c$ >0,85, $\chi^2$ <2,5, $ P_{2D} $ innerhalb 10-20\% von $P_{rad}$ , zeigen X-Punkt-Lokalisierung und Inselketten-Struktur
+\item \textbf{Leistungsbilanz:} $P_{2D}^{Kern} $ stabil für quasi-stationäre Phasen, Standard-MFR unterschätzt um 15-25\% (SOL-Beitrag fehlt)
+\item \textbf{Validierung:} OP1.2b-Kampagne 2018, 1182 Experimente analysiert, 45 Entladungspaare für LOS-Studie, 4 für Tomographie-Validierung
+
+\item \textbf{Andere Geräte:} Anwendbar auf LHD (Stellarator), ITER, DEMO, SPARC (Tokamaks) - universelle Strahlungskontroll-Strategie
+\item \textbf{Vision:} Vollautomatisches, adaptives, prädiktives Strahlungsmanagement-System für zukünftige Fusionsreaktoren
+\item \textbf{ITER/DEMO-Anwendung:} Direkt übertragbare Methoden, $P_{fus}\sim$ 500 MW, $f_{rad}\geq$95\% erforderlich, $q_{di}$<10 MW/m$^2$ Ziel
+\item \textbf{Kammermodelle:} Verfeinerung von Zwei/Drei-Kammer-Modellen für Verunreinigungstransport, Entwicklung von Skalierungsgesetzen für verschiedene Betriebsregime
 \end{itemize}
 
 \section{BACKUP-FOLIEN - Übersicht}
@@ -541,10 +581,5 @@ am Wendelstein 7-X\\[1em]
 \item Minimum: 13,6ms erreicht
 \item Totale Schleife: 150-400ms ausreichend
 \end{itemize}
-
-\vspace{2em}
-\noindent\textbf{Dokument für PhD-Verteidigung vorbereitet}\\
-\noindent\textbf{Gesamt-Abschnitte: 60+ Frames mit umfassenden Stichpunkten}\\
-\noindent\textbf{Nutzen Sie diesen Leitfaden für konsistente Botschaften und technische Genauigkeit während der gesamten Präsentation}
 
 \end{document}
