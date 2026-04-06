@@ -23,12 +23,11 @@
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-            \textbf{\textit{Lawson criterion} for net energy gain:}
+            \textbf{\textit{Lawson criterion}: Burn Condition}
             \begin{align*}
-                n\ix{e}T\tau\ix{E}\,\ge&\,\,\frac{12f\ix{tot}}{\langle\sigma\ix{DT}v\rangle f_H^2 E_\alpha - 4L_Z(T)}T^2\\%
-                \gtrsim&\,\,3\times10^{21}\text{keVs/m}^{3}
+                n\ix{e}T\tau\ix{E}\,\gtrsim&\,\,3\times10^{21}\,\text{keVs/m}^{3}
             \end{align*}
-            (requires temperatures $T\sim$\,\SIrange{e1}{e3}{\kilo\electronvolt})
+            $\rightarrow$ requires temperatures $T\sim$\,\SIrange{e1}{e3}{\kilo\electronvolt}
         \end{column}
 
         \begin{column}{0.5\textwidth}
@@ -91,12 +90,12 @@
             \begin{overprint}
                 \onslide<2,3>{
                     \begin{exampleblock}{Impurity Seeding}
-                        Injection of low-Z (He, N$_2$) or high-Z (Ne, Ar) impurities to enhance edge radiation and cooling
+                        Injection of (external) impurities to enhance edge radiation and cooling
                     \end{exampleblock}
                 }
                 \onslide<3>{
                     \begin{itemize}
-                        \item \color{ipp}{avoid critical impurity accumulation, use working gas}
+                        \item \color{ipp}{avoid critical impurity accumulation, \underline{use working gas}}
                     \end{itemize}
                     \color{red}{
                         \Rightarrow\,\,stable control w. radiation information?
@@ -109,7 +108,7 @@
             \centering
             \includegraphics[width=0.75\textwidth]{%
                 ../THESIS/content/figures/chapter0/schneiderRadLoss.pdf}
-            \source{R. Schneider et al., 2006\cite{Schneider2006}\\%
+            \source{R. Schneider et al.\cite{Schneider2006}\\%
                     $P\ix{rad}/(Vn\ix{e}n\ix{imp})$ as a function of electron temperature}
         \end{column}
     \end{columns}
@@ -125,7 +124,1010 @@
 \end{frame}
 
 
-\section{Core Bolometer at W7-X}
+\section{Real-Time Radiation Feedback Control}
+
+\begin{frame}
+    \addtocounter{framenumber}{-1}
+
+    \frametitle{Feedback System}
+    \backgroundlogo%
+
+    \begin{exampleblock}{Question}
+        Is radiation feedback of the W7-X bolometer capable of achieving stable detachment?
+    \end{exampleblock}
+    \vspace{1em}
+
+    \visible<2>{
+    \begin{center}
+    \includegraphics[height=0.45\textheight]{../THESIS/content/figures/chapter2/divertor_effenberg_reduced.pdf}
+    \source{%
+        F. Effenber et al., 2019\cite{Effenberg2019_seed}\\%
+        Divertor elements HM 1-5: up (1) down (0) \& gas boxes, bolometry system and connecting field lines}
+    \end{center}
+    }
+
+    % TP: W7-X island divertor concept: 5 helical island chains (m/n=5/5) at plasma edge intercept heat and particle flux
+    % TP: Each island chain has upper and lower divertor modules - 10 modules total arranged helically around torus
+    % TP: Connection lengths L_c=100-1000m (10-100× longer than tokamaks) allow extensive radiation cooling along field lines
+    % TP: Standard magnetic configuration: ι/2π=1 (rotational transform), creates 5-fold symmetric island structure
+    % TP: Gas injection system: 10 piezo valves for fast response (<10ms), thermal helium beam valves for feedback control
+    % TP: Valve locations strategically placed: HM1-5 modules (upper/lower pairs) allow targeted seeding into specific island chains
+    % TP: Island X-points are radiation hot spots - field lines converge, increasing local emissivity by factor 2-5×
+    % TP: Bolometer cameras positioned to view these X-points - critical for feedback sensitivity
+    % TP: Field line tracing shows direct connection between gas injection points and divertor targets via island chains
+\end{frame}
+
+\begin{frame}
+    \frametitle{Feedback System}
+    \backgroundlogo%
+
+    \begin{columns}%
+        \begin{column}{0.5\textwidth}%
+            \textbf{Architecture:}%
+            \begin{itemize}%
+                \item Integrated data acquisition hardware \& optimized control software%
+                \item Thermal gas valve actuation with multi-diagnostic PID controller%
+                \visible<2-4>{\item Twin proxies and dedicated signal outputs}%
+                \visible<4>{\item Setpoint variable is\\%
+                            $f\ix{rad}=P\ix{rad}/P\ix{H}$}%
+            \end{itemize}%
+        \end{column}%
+
+        \begin{column}{0.5\textwidth}%
+           \only<1>{
+                \centering%
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter2/hebeam_box_cut.pdf}%
+                \source{%
+                    T. Barbui et al., 2016\cite{Barbui2016}\\%
+                    Thermal helium beam and spectroscopy}
+                \vspace{4em}%
+            }%
+
+            \only<2>{%
+                \textbf{Radiation Prediction Proxies:}%
+
+                \textbf{A:} \textit{Channel selection $S$}%
+                \begin{equation*}%
+                    P\ix{pred}^{(1)}=\frac{V\ix{P,tor}}{V_S}\sum\ix{M}^{S}\frac{P_M V_M}{K_M}
+                \end{equation*}%
+                (e.g. $S\ix{VBC}=\left\{61,86,78,73,70,65\right\}$)%
+
+                \vspace{.5em}%
+                \textbf{B:} \textit{Single channel}%
+                \begin{equation*}%
+                    P\ix{pred}^{(2)}\propto\Delta\widetilde{U_M}
+                \end{equation*}%
+                (dimensionless, minimal overhead)%
+            }%
+
+            \only<3-4>{
+                \centering%
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter2/20181010_032/20181010_32_channels.pdf}%
+                \gcaption{Line of sight selection $S$ (XP20181010.32), only VBC channels\\%
+                          covering magnetic islands, as well as the core and X-points partially}
+            }
+        \end{column}%
+    \end{columns}%
+
+    % TP: First bolometer-based real-time radiation feedback system at W7-X, operational during OP1.2b campaign (2018)
+    % TP: Hardware: NI 6321 DAQ card for fast acquisition, dedicated analog outputs for PID controller, parallel processing architecture
+    % TP: Two prediction proxies implemented: (1) P_pred^(1) = geometry-weighted sum over selected channels S, (2) P_pred^(2) = single channel voltage (dimensionless, minimal overhead)
+    % TP: Channel selection S optimized through systematic analysis: VBC subset S={61,65,73,78,86} viewing separatrix and X-points achieves ≥85% accuracy
+    % TP: Alternative HBC selections also viable: S={4,7,8,20,23,27} provides similar performance with different viewing geometry
+    % TP: PID controller parameters: K_p=0.5-2.0 (proportional gain), K_i=0.1-0.5 (integral), K_d=0 (derivative not needed due to slow plasma response)
+    % TP: Setpoint: f_rad target (typically 85-90%), controller adjusts gas valve opening to maintain radiation fraction
+\end{frame}
+
+\begin{frame}
+    \frametitle{Experimental Achievements}%
+    \backgroundlogo%
+
+    \begin{columns}%
+        \begin{column}{0.5\textwidth}%
+            \visible<1-3>{%
+                \textbf{XP20181010.32}%
+                \begin{itemize}%
+                    \item Radiation fraction PID setpoint $f\ix{rad}\sim90\%$ off $P\ix{pred}^{(1)}$%
+                    \item 5-channel VBC subset $S=\left\{61,65,73,78,86\right\}$%
+                \end{itemize}%
+            }%
+
+            \visible<2-3>{%
+                \vspace*{.35em}
+                \centering%
+                \includegraphics[width=.95\textwidth]{%
+                    ../THESIS/content/figures/chapter2/20181010_032/20181010_032_power_feedback_prad.pdf}%
+                \gcaption{XP20181010.32: both $P\ix{rad}$ and predictions $P\ix{pred}^{(N)}$}
+            }%
+        \end{column}%
+
+        \begin{column}{0.5\textwidth}%
+            \centering
+            \only<3>{%
+            \includegraphics[height=0.66\textheight]{%
+                ../THESIS/content/figures/chapter2/20181010_032/20181010_032_power_frad.pdf}%
+            \gcaption{%
+                XP20181010.32: (top) input power and plasma stored energy\\%
+                (bottom) PID input, $f\ix{rad}$ and divertor heatload}
+            }%
+        \end{column}%
+    \end{columns}%
+
+    % TP: XP20181010.32 - breakthrough experiment achieving stable feedback-controlled detachment with hydrogen seeding
+    % TP: Discharge parameters: duration 9.2s, P_ECRH=6.23 MW, standard magnetic configuration (ι/2π=1), total input energy 55 MJ
+    % TP: Key achievement: sustained f_rad≥85% with peaks reaching 100% (P_rad=P_ECRH), no plasma disruption or termination
+    % TP: Divertor heat load reduction: factor ≥2× from baseline ~10 MW/m² to <5 MW/m², validated by infrared thermography
+    % TP: Detachment signatures: C²⁺ filterscope emission appears at f_rad~50%, intensifies and moves poloidally as f_rad increases
+    % TP: Prediction accuracy: P_pred^(1) tracks P_rad within 10-15% throughout discharge, validates 5-channel VBC subset S={61,65,73,78,86}
+    % TP: Plasma stored energy W_dia maintained at ~0.8-1.0 MJ despite high radiation - demonstrates compatibility with good confinement
+    % TP: This demonstrates reactor-relevant scenario: high f_rad for component protection while maintaining plasma performance
+\end{frame}
+
+\begin{frame}
+    \frametitle{Experimental Achievements}%
+    \backgroundlogo%
+
+    \begin{columns}%
+        \begin{column}{0.5\textwidth}%
+            \textbf{XP20181010.32}%
+            \begin{itemize}%
+                \item Peak $f\ix{rad}\sim$100\%, cycling with gas inlet%
+                \item Target heat load reduction factor $\ge2$%
+                \visible<2-3>{\item C$^{2+}$ detachment visible at $f\ix{rad}\sim50\%$}%
+            \end{itemize}%
+
+            \visible<3>{
+            \vspace{1.25em}%
+            \begin{alertblock}{Key Result: Bolometer Feedback}%
+                Demonstrated stable, real-time feedback-controlled radiative cooling with $f\ix{rad}\ge85\%$, significant target heat load reduction and without plasma disruption%
+            \end{alertblock}%
+            }
+        \end{column}%
+
+        \begin{column}{0.5\textwidth}%
+            \visible<2-3>{
+            \centering
+            \includegraphics[height=0.45\textheight]{%
+                ../THESIS/content/figures/chapter2/20181010_032/20181010_032_0920_023_cIII_contour_L.pdf}%
+            \gcaption{spatial-temporal evolution (C2+ radiation)\\%
+                      in divertor of HM51; filterscope measurements}
+            }
+        \end{column}%
+    \end{columns}%
+
+    % TP: Bolometer feedback advantages: (1) directly measures control variable (total radiation), (2) broadband - insensitive to impurity mix, (3) fast response (1.6ms sampling)
+    % TP: Comparison with alternatives: density feedback (DI) is indirect - affects confinement, can destabilize; C-III filterscope measures only one charge state, misses O, other C ions
+    % TP: Bolometer robustness: total radiation measurement independent of impurity species composition (C vs O vs seeded gases)
+    % TP: Spatial information: multiple viewing chords reveal radiation distribution - core vs edge vs SOL, identify X-point hot spots
+    % TP: Physical connection: radiation IS the detachment mechanism - controlling P_rad directly controls heat dissipation
+    % TP: Gas injection optimization: moderate puff duration (50-200ms) optimal - short pulses cause transients, long pulses ineffective
+    % TP: PID tuning challenges: parameters discharge-specific, depend on magnetic configuration, heating power, impurity species
+    % TP: No universal scaling law found - complex parameter space requires adaptive control strategies
+    % TP: System limitations: 150-400ms total latency (dominated by plasma response), limits achievable control bandwidth to ~2-5 Hz
+    % TP: Future improvements: (1) reduce acquisition latency to <10ms, (2) implement predictive control using plasma models, (3) machine learning for automatic PID optimization
+    % TP: Despite limitations, bolometer feedback is the most direct method for radiation control in reactor-relevant scenarios
+    % TP: Validated approach: successfully demonstrated at W7-X, applicable to ITER, DEMO, and future stellarators
+\end{frame}
+
+\section{Line-of-Sight Sensitivity}
+
+\begin{frame}
+    \frametitle{Line-of-Sight Sensitivity}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{exampleblock}{Prediction Quality}
+                Whats the best set of channels $S$ to use for feedback purposes and to predict the total radiation power?
+            \end{exampleblock}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \visible<2-4>{\item Evaluate LOS/channel efficacy fors generalised local radiation sensitivity}
+                \visible<3-4>{\item Data set of all feedback discharges from OP1.2b}
+                \visible<4>{\item Applied five different metrics - linear \& weighted deviations, FFT, correlations ...}
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    % TP: Systematic LOS sensitivity analysis to identify optimal channel configurations for feedback control
+    % TP: Dataset: 45 discharge pairs from OP1.2b campaign spanning wide parameter range (P_ECRH=3.5-6.5 MW, f_rad=0.3-1.0, T_e=0.9-1.5 keV)
+    % TP: Methodology: evaluate all possible channel combinations (C(32,m) for HBC, C(62,m) for VBC) for m=3,5,7 channels
+    % TP: Six evaluation metrics applied: (1) correlation, (2) weighted deviation, (3) mean deviation, (4) Fourier transform correlation, (5) Fisher information, (6) χ² fitness
+    % TP: Each metric quantifies how well P_pred from channel subset S predicts total P_rad
+\end{frame}
+
+\begin{frame}
+    \frametitle{Line-of-Sight Sensitivity}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Optimal Channel Selection:}
+            \begin{itemize}
+                \visible<2-6>{\item Robust selection achieves $\ge$85\% prediction accuracy}
+                \visible<3-6>{\item No single "best" set exists}
+                \visible<4-6>{\item VBC channels generally outperform HBC for edge sensitivity}
+                \visible<5-6>{\item 3-5 channels sufficient for reliable $P_{\text{pred}}$}
+            \end{itemize}
+
+            \visible<6>{
+            \vspace{0.5em}
+            \begin{alertblock}{Takeaway}
+                Detectors viewing close to separatrix and SOL most viable for feedback purposes
+            \end{alertblock}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+                \centering%
+                \includegraphics[width=.75\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_combs_comb.pdf}
+                \gcaption{LOS sensitivity by weighted deviation measurement for $M=\{3,5,7\}$}
+        \end{column}
+    \end{columns}
+
+    % TP: Key finding: channels viewing separatrix (ρ_pol~0.95-1.05) and SOL most effective - this is where detachment radiation concentrates
+    % TP: VBC cameras outperform HBC for edge sensitivity: better viewing geometry toward X-points and island chains
+    % TP: Global maximum in sensitivity profiles: VBC channel viewing upper inboard X-point (r_eff≈-0.13 r_a)
+    % TP: HBC shows local maxima at ±0.4 r_a, ±0.7 r_a corresponding to island chain intersections
+    % TP: Robustness: multiple channel combinations achieve ≥85% prediction accuracy - no single "best" set exists
+    % TP: Optimal channel count: m=3-5 sufficient, m=7 provides marginal improvement (<5%) at cost of increased complexity
+    % TP: Weighted deviation threshold: Δ_w<0.15 defines acceptable performance (accounts for measurement uncertainties and temporal variations)
+    % TP: Correlation with plasma parameters: high P_ECRH (≥4.2 MW), high f_rad (>0.75), T_e~1.3 keV yield best prediction quality
+\end{frame}
+
+\section{Tomography}
+
+\begin{frame}
+    \only<1>{
+        \addtocounter{framenumber}{-1}
+    }
+
+    \frametitle{Minimum Fisher Regularization}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \visible<1-4>{
+                \begin{exampleblock}{Inversion Problem}
+                    What can we learn from the inversion of the line-integrated measurements of the multi-camera bolometer system?
+                \end{exampleblock}
+            }
+
+            \visible<2-4>{
+            \textbf{Measurement:}
+            $\qquad\qquad\mathbf{T}\,\vec{x}=\vec{b}$
+            \vspace*{1em}
+            }
+
+            \visible<3-4>{
+            \textbf{Bolometer tomography:}
+            \begin{itemize}
+                \visible<3-4>{\item \textit{Geometry} $\mathbf{T}$ has high condition}
+                \visible<3-4>{\item $\mathbf{T}$ not quadratic; no inverse exists necessarily}
+                \visible<4>{\item \color{red}{ill-posed, requires regularization}}
+            \end{itemize}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \visible<4>{
+            \textbf{Problem:}
+            \begin{align*}
+                \underset{\mu}{\text{min}}&\left\|\left(\mathbf{T}^{\intercal}\mathbf{T}+\mu^{-1}\mathbf{H}\right)^{-1}\mathbf{T}^{\intercal}\vec{b}\,\right\|\,\rightarrow\,\vec{x}%
+            \end{align*}
+
+            \textbf{Fisher Information:}
+            \begin{align*}
+                I\ix{F}=\int\frac{1}{x}\left(\frac{\partial x}{\partial \vec{r}}\right)^2 d\vec{r}\,\leftrightarrow\,%
+                \mathbf{H}\sim\frac{1}{x}\pmb{\Delta}^{\intercal}(\cdot)\pmb{\Delta}
+            \end{align*}
+
+            \textit{Cramér-Rao} error bound:
+            \begin{equation*}
+                \sigma\ix{x}\le\frac{1}{I\ix{F}}
+            \end{equation*}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: Tomography problem: invert line-integrated measurements (Tx=b) to reconstruct 2D emissivity distribution x
+    % TP: Ill-posed inverse problem: 61 measurements but ~4500 pixels (30 radial × 150 poloidal grid) - severely underdetermined
+    % TP: Geometry matrix T: encodes etendue-weighted line integrals, condition number ~10⁶ indicates strong ill-posedness
+    % TP: Regularization required: Minimum Fisher Regularization (MFR) with Tikhonov-type penalty minimizes ||Tx-b||² + λ⁻¹||Hx||²
+    % TP: Fisher information I_F = ∫(1/x)(∂x/∂r)² dr measures gradient content - lower I_F = smoother solution
+    % TP: Regularization matrix H ∝ (1/x)∇ᵀ∇ penalizes large gradients weighted by local emissivity
+    % TP: Radially dependent anisotropy (RDA): different smoothness in radial vs poloidal directions, k_ani(r) varies with radius
+    % TP: Core (k_ani≈2-10): favors smooth, flux-surface aligned emission; Edge (k_ani≈0.1-0.5): allows localized, anisotropic structures
+    % TP: Iterative solution: converges in N_T=10-20 iterations, regularization parameter λ chosen by L-curve method
+    % TP: Computational grid: 30×150 cells (radial×poloidal), domain extends to 1.3²V_P to handle boundary radiation
+\end{frame}
+
+\begin{frame}
+    \frametitle{Minimum Fisher Regularization}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \visible<1-4>{
+                \begin{exampleblock}{RDA: Radially Dependent Anisotropy}
+                    Incoorporate a priori knowledge about radiation symmetry along fluxsurfaces into poloidal gradient of tomopgraphy
+                \end{exampleblock}
+            }
+
+            \visible<2-4>{
+            \vspace{-2em}
+            \begin{align*}
+                \mathbf{H}&\to\mathbf{H}\ix{ani}\\%
+                \pmb{\Delta}&=\pmb{\nabla}\ix{r}^{\intercal}(\cdot)\pmb{\nabla}\ix{r}+\pmb{\nabla}_{\vartheta}^{\intercal}(\cdot)\pmb{\nabla}_{\vartheta}\\%
+                \pmb{\nabla}_{\vartheta}&\to\pmb{\widetilde{\nabla}}_{\vartheta}=\frac{1}{k\ix{ani}\Delta r}\mathbf{D}\ix{dia}^{(0)}\pmb{\nabla}_{\vartheta}
+            \end{align*}
+
+            \begin{itemize}
+                \item $k\ix{ani}<1$: favours anisotropy
+                \item $k\ix{ani}>1$: favours smooth emissivity
+            \end{itemize}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \visible<4>{
+            \begin{block}{MFR + RDA Advantages}
+                \begin{itemize}
+                    \item Robust to noisy data
+                    \item Stable convergence
+                    \item Incorporates a priori knowledge
+                \end{itemize}
+            \end{block}
+           }
+
+           \visible<3-4>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/kAni_profile_comparison.pdf}
+            \gcaption{$k\ix{ani}$ profile examples over radial cell number}\\
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: RDA implementation: k_ani(r) profile transitions smoothly from core to edge using tanh function
+    % TP: Typical profiles: k_ani={2.0, 0.3} (core, edge) for standard cases, {5.0, 0.5} for highly anisotropic phantoms
+    % TP: Physical motivation: core radiation follows flux surfaces (isotropic in flux coordinates), edge shows X-point localization (anisotropic)
+    % TP: Advantages of MFR+RDA: (1) incorporates physics knowledge, (2) robust to noise, (3) stable convergence, (4) no negative emissivities
+    % TP: Alternative: Relative Gradient Smoothing (RGS) can be combined with RDA for enhanced feature localization
+    % TP: RGS weighting: H_RGS ∝ (∇x/x)² emphasizes relative gradients, stronger localization but may sacrifice global accuracy
+    % TP: Comparison: RDA chosen as primary method - better balance between accuracy and robustness for W7-X geometry
+\end{frame}
+
+\begin{frame}
+    \frametitle{Benchmarking}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1-2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut.png}
+                \gcaption{STRAHL phantom radiation profile\\%
+                          EIM grid, commonly 30x150 cells at $1.3V\ix{P}^{2}$ or $1.3r\ix{a}$}
+
+                \small($f\ix{rad}\sim100\%$)
+            }
+            \only<3-5>{
+                \centering
+                \includegraphics[width=.7\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/LoS_comparison_artificialHBCm_sN8.pdf}
+                \gcaption{LOS comparison: original vs. artificial, symmetric HBC}
+            }
+            \only<6-7>{
+                \centering
+                \includegraphics[width=.7\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/LoS_comparison_tilted_pos3_sN8.pdf}
+                \gcaption{tilted (symmetrical) camera geometry; $2^{\circ}$ poloidal rotation at aperture}
+            }
+            \only<8-9>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut3.png}
+                \gcaption{tomogram of foward calculation using tilted geometry, backward symmetrical; $k\ix{ani}=\{2, 0.5\}$}
+
+                \small{using $\mathbf{T}\ix{sym}\cdot\vec{x}=\vec{b}$}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
+                \gcaption{forward integration of STRAHL phantom profile $f\ix{rad}\sim100\%$}
+            }
+            \only<4>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/compare_artificialHBCm_emissivities3D.pdf}
+                \gcaption{absolute difference between camera geometries (left, original vs. symmetric)}
+
+                \small{$\left\|\mathbf{T}-\mathbf{T}\ix{sym}\right\|$}
+            }
+            \only<5>{
+                \centering
+                \includegraphics[width=.95\textwidth]{%
+                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_artificialHBCm_sN8_30x20x150_1.35.png}
+                \gcaption{forward integration of STRAHL phantom profile\\%
+                          for $f\ix{rad}\sim100\%$ with symmetrical camera geometry}
+            }
+            \only<7>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_tilt_cor_2.0deg_sN8_30x20x150_1.35.png}
+                \gcaption{forward integration of STRAHL phantom profile\\%
+                          using $2^{\circ}$ rotated symmetrical geometry}
+            }
+            \only<9>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.1_mx1.0e+06_tilt-1.0_aniM3_2.0_2.0_nigs1_times0.11_cut2.png}
+                \gcaption{tomogram of foward and backward calculation using symmetrical geometry}
+
+                \small{using $\mathbf{T}\ix{ilt}\cdot\vec{x}=\vec{b}$}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Benchmarking}
+    \backgroundlogo%
+
+    \begin{alertblock}{Results}
+        \begin{itemize}
+            \visible<1-4>{\item Discretization of system is computationally stable}
+            \visible<2-4>{\item As-designed camera geometry yields small, intrinsic asymmetry}
+            \visible<3-4>{\item Intrinsic asymmetry of same order of magnitude as potential, unknown geometric pertubation}
+            \visible<4>{\item Worst case machine warp scenario $\sim0.2r\ix{a}$ shift}
+        \end{itemize}
+    \end{alertblock}
+
+    % TP: Geometry perturbation study: tested camera position variations (±2° tilts), detector/aperture segmentation (N=2,4,8), artificial symmetric geometries
+    % TP: Segmentation convergence: N≥8 provides adequate resolution (etendue variations <10⁻¹¹ mm⁻³), N=8 chosen for computational efficiency
+    % TP: Camera tilt sensitivity: ±2° rotations cause etendue changes ~10⁻¹¹ mm⁻³, forward model variations 0.5-1% in chord brightness
+    % TP: Intrinsic asymmetry: HBC 68.75° tilt causes 0.5-1% left-right asymmetry in forward calculations even with symmetric radiation
+    % TP: Artificial symmetric HBC: mirroring half the array reduces asymmetry, validates that as-designed geometry is near-optimal
+    % TP: Worst-case scenario: ±2° misalignment could shift reconstructed features by ~0.2 r_a, emphasizes need for accurate as-built measurements
+    % TP: Etendue validation: numerical integration agrees with analytical solutions for simple geometries (parallel plates, point sources)
+    % TP: Conclusion: discretization computationally stable, geometry uncertainties non-negligible but manageable with careful calibration
+\end{frame}
+
+\begin{frame}
+    \frametitle{Phantom Reconstructions}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \visible<1-4>{
+                \begin{block}{Purpose}
+                    Regularized, parametric inversions need experienced tailoring for their respective application.
+                \end{block}
+            }
+
+            \visible<2-4>{
+            \textbf{Benchmarks:}
+            \begin{itemize}
+                \item wide, varied set of  synthetic emissivities
+                \item $k\ix{ani}$ \& phantom variation studies
+                \visible<4>{\item \color{red}{Performed for only one magnetic grid configuration \& LOS geometry}}
+            \end{itemize}
+            }
+        \end{column}%
+
+        \begin{column}{0.5\textwidth}%
+            \visible<3-4>{%
+                \textbf{Metrics:}%
+                \begin{align*}%
+                    \rho\ix{c}&=\frac{1}{\sigma_{pha}\sigma_{tom}}\text{cov}\left(\vec{x}\ix{phan},\,\vec{x}\ix{tom}\right)\\%
+                    M\ix{SD}&\sim\left\|\frac{\vec{x}\ix{tom}-\vec{x}\ix{phan}}{\|x\ix{phan}\|}\cdot\vec{A}^{\intercal}\right\|\\%
+                    P\ix{rad,X}^{\text{2D}}&=\vec{x}\ix{X}^{\intercal}\cdot\vec{A}\,,\quad X=\left\{\text{phan, tom}\right\}%
+                \end{align*}%
+            }%
+
+            \only<3>{%
+                \vspace*{-3em}
+                \begin{align*}%
+                    \chi^{2}&=\frac{1}{N\ix{ch}}\left\|\left(\vec{b}\ix{phan}-\vec{b}\ix{tom}\right)\vec{\sigma}\ix{bol}^{-1}\right\|%
+                \end{align*}%
+            }%
+
+            \only<4>{
+                \vspace*{-3.5em}
+                \begin{align*}%
+                    \Aboxed{%
+                        \chi^{2}&=\frac{1}{N\ix{ch}}\left\|\left(\vec{b}\ix{phan}-\vec{b}\ix{tom}\right)\vec{\sigma}\ix{bol}^{-1}\right\|}%
+                \end{align*}%
+            }%
+        \end{column}%
+    \end{columns}%
+
+    % TP: Phantom benchmark suite: 12+ synthetic radiation distributions testing algorithm performance across parameter space
+    % TP: Test cases include: (1) simple rings at various radii, (2) Gaussian features, (3) anisotropic island-like structures, (4) nested concentric profiles, (5) asymmetric distributions
+    % TP: Noise robustness: tested with up to 10% Gaussian noise on measurements, algorithm maintains ρ_c>0.85 and χ²<2
+    % TP: Parameter variations: systematic scans of k_ani (0.1-20), radial position (0.3-1.3 r_a), intensity (0.1-2 MW/m³), width (σ_r, σ_θ)
+    % TP: Quality metrics: (1) correlation ρ_c (phantom vs tomogram), (2) χ² fitness (forward vs measured), (3) MSD (mean squared deviation), (4) integrated powers P_rad,2D
+    % TP: Key findings: P_rad underestimates P_2D by ~P_2D^(SOL) (standard extrapolation misses SOL contribution), χ² and ρ_c not always congruent
+    % TP: Optimal parameters identified: k_ani={2.0, 0.3} for standard cases, {5.0, 0.5} for highly anisotropic, N_T=15 iterations, grid 30×150
+    % TP: Reconstruction quality: >90% for well-constrained phantoms (good camera coverage), 70-85% for challenging cases (localized features, poor viewing angles)
+    % TP: Recommended settings validated through 59 phantom tests with comprehensive parameter variations
+\end{frame}
+
+\begin{frame}
+    \frametitle{Phantoms: Example}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+        \only<1-4>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.3_nT15_nW2_nigs1_times0.11_cut1.png}
+            \gcaption{phantom profile: symmetrical island-like (6) chain at\\%
+                      $1.1r\ix{a}$ and a less bright ring at $0.8r\ix{a}$}
+
+            \small{Phantom: $\vec{b}\ix{phan}$}
+        }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+        \only<2>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.1_nT15_nW2_nigs1_times0.11_cut1.png}
+            \gcaption{reconstruction for left phantom radiation distribution}
+
+            \small{$k\ix{core},\,k\ix{edge}=\left\{2,\,0.1\right\}$}
+        }
+        \only<3>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.3_nT15_nW2_nigs1_times0.11_cut2.png}
+            \gcaption{reconstruction for left phantom radiation distribution}
+
+            \small{$k\ix{core},\,k\ix{edge}=\left\{2,\,0.3\right\}$}
+        }
+        \only<4>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_20.0_3.0_nT15_nW2_nigs1_times0.11_cut1.png}
+            \gcaption{reconstruction for left phantom radiation distribution}
+
+            \small{$k\ix{core},\,k\ix{edge}=\left\{20,\,3.0\right\}$}
+        }
+        \end{column}
+    \end{columns}
+
+    \only<5>{
+        \begin{flushleft}
+            \textbf{Statistics:}
+        \end{flushleft}
+        \centering
+        \includegraphics[width=.95\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_sym_R1_1_m5_kedge_scan_cut.png}
+        \gcaption{$k\ix{ani}$ scan of previous anistropic phantom profile\\%
+                  (left, top) 2D variance absolute/for core and SOL %
+                  (left, bottom) comparison $\chi^{2}$ likeness and $\rho\ix{c}$\\%
+                  (right) 2D integrated powers: phantom vs tomogram in SOL, core and total}
+    }
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo%
+    \frametitle{Phantoms: Statistics}
+
+    \only<1>{
+        \centering
+        \includegraphics[width=.8\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/new/phantom_statistics_comp_pow.png}
+        \gcaption{%
+            integrated phantom radiation profile reconstruction statistics\\%
+            (left, top) $P\ix{rad}$ extrapolation (bottom) 2D integrated power $phan$ vs $tom$\\%
+            (right) phantom $P\ix{rad}$ vs 2D core (top) and (bottom) SOL power \& regression}
+    }
+    \only<2>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/new/phantom_statistics_comp_qual.png}
+        \gcaption{%
+            integrated phantom radiation profile reconstruction statistics\\%
+            (left) $\chi^{2}$ and 2D variance over $\rho\ix{c}$ (right) variance over $\chi^{2}$}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{MFR + RDA}
+    \backgroundlogo%
+
+    \visible<1-5>{
+        \begin{itemize}
+            \item \textbf{Reconstruction Accuracy:} $P\ix{rad}$ underestimates $P\ix{2D}$ by $\sim P\ix{2D}^{(SOL)}$
+            \visible<2-5>{\item \textbf{Quality Metrics:} $\chi^{2}$ and $\rho\ix{c}$ not always congruent - \textit{'qualitatively'} optimal tomogram not $\chi^{2}\sim1$ necessarily (discrepancy \textit{quantity \leftrightarrow quality})}
+            \visible<3-5>{\item \textbf{Anisotropy Optimization:} Ideal $k\ix{ani}$ set exists for each profile family but dimensionality makes finding it difficult}
+        \end{itemize}
+    }
+
+    \visible<4-5>{
+        \vspace{1em}
+        \begin{block}{Conclusion}
+            MFR with RDA weighting provides robust, reliable 2D radiation reconstructions suitable for further analysis and calculations. \visible<5>{\color{red}{Phantom reconstructions give validation and confidence for experimental data tomographies.}}
+        \end{block}
+    }
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo%
+    \frametitle{Experimental Reconstructions}
+
+    \begin{flushleft}
+        \large\textbf{Example: XP20180809.13}
+    \end{flushleft}
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<2-5>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180809.013/2D/tomo_20180809.013aniM3_5.00_0.50_nT14_reduced_nigs1_sN8_30x20x150_1.35_0.29_mfr1D.png}
+                \gcaption{XP20180809.13: reconstruction, $k\ix{ani}=\{5,0.5\}$}
+
+                \small{t\,=\,\SI{2.1}{\second}}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<1-2>{
+                \centering
+                \includegraphics[width=.9\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180809.013/20180809_013_dens_chord_frad_div_cut2.pdf}
+                \gcaption{XP20180809.13: core experimental data; successive laser blow-off events}
+            }
+
+            \only<3>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/tomo/20180809.013/2D/tomo_20180809.013aniM3_5.00_0.50_nT14_reduced_nigs1_sN8_30x20x150_1.35_2.15_mfr1D.png}
+                \gcaption{XP20180809.13: reconstruction, $k\ix{ani}=\{5,0.5\}$}
+
+                \small{t\,=\,\SI{2.15}{\second}}
+            }
+
+            \only<4>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180809.013/2D/tomo_20180809.013aniM3_5.00_0.50_nT14_reduced_nigs1_sN8_30x20x150_1.35_2.20_mfr1D.png}
+                \gcaption{XP20180809.13: reconstruction, $k\ix{ani}=\{5,0.5\}$}
+
+                \small{t\,=\,\SI{2.2}{\second}}
+            }
+
+           \only<5>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180809.013/2D/tomo_20180809.013aniM3_5.00_0.50_nT14_reduced_nigs1_sN8_30x20x150_1.35_3.05_mfr1D.png}
+                \gcaption{XP20180809.13: reconstruction, $k\ix{ani}=\{5,0.5\}$}
+
+                \small{t\,=\,\SI{2.5}{\second}}
+           }
+        \end{column}
+    \end{columns}
+
+    % TP: Experimental reconstructions: applied MFR+RDA to 4 feedback-controlled discharges from OP1.2b (XP20180809.13, XP20181010.32, XP20181011.12, XP20181018.45)
+    % TP: Temporal evolution: reconstructions show radiation moving from core to edge as f_rad increases, validates detachment progression
+    % TP: Spatial features resolved: X-point localization (factor 2-3× local enhancement), island chain structure, MARFE-like asymmetries
+    % TP: XP20180809.13 example: laser blow-off events clearly visible as transient core radiation spikes, demonstrates temporal resolution
+    % TP: Power balance application: P_2D^(core) + P_2D^(SOL) provides alternative to standard P_rad extrapolation
+    % TP: Agreement: P_2D^(total) within 10-20% of P_rad, discrepancy attributed to geometry uncertainties and SOL extrapolation errors
+    % TP: Key finding: standard extrapolation systematically underestimates total power by missing SOL contribution (~15-25%)
+    % TP: Core radiation P_2D^(core) more stable metric for quasi-steady-state analysis - less sensitive to edge fluctuations
+    % TP: Statistical analysis (4 discharges, 50+ time slices): P_rad ∝ P_2D^(X) correlation strong (R²>0.85), validates reconstruction accuracy
+    % TP: Quality metrics: χ²=1.2-2.5 (acceptable), ρ_c=0.75-0.90 (good correlation), MSD<0.3 (low deviation)
+    % TP: Discrepancy between χ² and ρ_c: optimal tomogram may not have χ²=1 due to systematic errors (geometry, calibration)
+    % TP: Anisotropy optimization remains challenging: high-dimensional parameter space (k_core, k_edge, transition width), profile-dependent
+    % TP: Computational performance: ~2-5 seconds per frame on standard CPU, suitable for post-shot analysis but not real-time
+    % TP: Future prospects: GPU acceleration could reduce to <100ms per frame, enabling real-time tomography for advanced feedback
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo%
+    \frametitle{Experimental Reconstructions}
+
+    \centering
+    \includegraphics[width=.8\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/exp_statistics_results_xp_cut.png}
+    \gcaption{%
+            integrated experimental radiation profile reconstruction statistics\\%
+            (left) phantom $P\ix{rad}$ vs 2D core (top) and (bottom) SOL power \& regression; %
+            (right) $P\ix{rad}$ extrapolation $phan$ vs $tom$}
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo
+    \frametitle{Global Power Balance}
+
+    \visible<1-3>{
+    \textbf{Simplified 0D Ansatz:}
+    $\qquad\qquad0\overset{!}{=}-P\ix{H}+P\ix{rad}+P\ix{div}+\frac{\diff W}{\diff t}=P\ix{bal}$
+    }
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \visible<2-3>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomogram_power_balance_20181010.032_cut1.png}
+                \gcaption{XP20181010.32: experimental data; quantities towards $P\ix{bal}$}
+            }
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \only<3>{
+                \vspace{1cm}
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomogram_power_balance_20181010.032_cut2.png}
+                \gcaption{XP20181010.32: calculated $P\ix{bal}$: continous data and using $P\ix{2D}$ core and total from tomograms}
+            }
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Experimental Reconstructions}
+    \backgroundlogo%
+
+    \begin{alertblock}{Statistical Analysis}
+        \begin{itemize}
+            \visible<1-7>{\item $P\ix{rad}\propto P^{(X)}\ix{2D}$ correlation (core, SOL)}
+            \visible<2-7>{\item Proportionality and trends congruent with phantom benchmarks}
+            \visible<3-7>{\item 2D integrated total power underestimated}
+            \visible<4-7>{\item SOL emissivity over-emphasized in reconstruction}
+            \visible<5-7>{\item $P\ix{2D}$ improves balance accuracy and stability}
+            \visible<6-7>{\item Strong improvement over $P\ix{rad}$ in $P\ix{bal}$ of transient scenarios}
+            \visible<7>{\item Integrated 2D core emissivity satisfies $P\ix{bal}\approx0$}
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+
+\section{Conclusions}
+
+\begin{frame}
+    \frametitle{Key Achievements}%
+    \backgroundlogo%
+
+    \vspace*{-2em}
+    \begin{enumerate}%
+        \item \textbf{Real-Time Radiation Feedback System:}\\%
+            Implemented, tested \& operated first bolometer radiation feedback at W7-X%
+        \visible<2-4>{%
+        \begin{itemize}
+            \item First controlled ($P\ix{rad}$), stable detachment with $f\ix{rad}\ge85\%$
+            \item Target heat load reduction factor $\ge2$
+            \item Validated 3-5 channel LOS subsets for fast prediction ($\ge80\%$ accuracy)
+        \end{itemize}
+        }%
+
+        \item \textbf{Line-of-Sight Optimization:}\\%
+            Systematic sensitivity analysis for optimal detector configurations%
+        \visible<3-4>{%
+        \begin{itemize}
+            \item Separatrix and SOL viewing channels most effective
+            \item (Any) Robust selection achieves $\ge$80\% prediction accuracy
+            \item No single \textit{best} set - multiple viable configurations $M\ge5$
+        \end{itemize}
+        }%
+
+        \item \textbf{Tomographic Reconstruction:}\\%
+            Benchmarked and tailored MFR algorithm with \textit{RDA} weighting%
+        \visible<4>{%
+        \begin{itemize}
+            \item Extensive artificial emissivity profile testing \& parameter variation
+            \item Reconstruction quality $\ge80\%$ for well-constrained phantoms
+            \item Successfull with experimental data \& power balance calculations
+        \end{itemize}
+        }%
+    \end{enumerate}
+
+    % TP: Three major achievements form integrated diagnostic and control system for W7-X radiation management
+    % TP: (1) Real-time feedback system: first bolometer-based radiation control at W7-X, achieved f_rad≥85% with factor ≥2 heat load reduction
+    % TP: (2) LOS optimization: systematic analysis of 45 discharge pairs, identified robust channel configurations (m=3-5 sufficient)
+    % TP: (3) Tomography: validated MFR+RDA algorithm through 59 phantom tests and 4 experimental reconstructions
+    % TP: Integration: feedback uses optimized channels, tomography provides detailed 2D validation of radiation distribution
+    % TP: Reactor relevance: demonstrated stable high-radiation scenarios essential for ITER, DEMO divertor protection
+
+    % TP: Comprehensive summary of thesis contributions and validation
+    % TP: Feedback system specifications: minimum acquisition latency 13.6ms, total loop 150-400ms (plasma-limited), PID control with dual prediction proxies
+    % TP: Benchmark discharge XP20181010.32: 9.2s duration, P_ECRH=6.23 MW, f_rad≥85% sustained, heat load reduction factor ≥2, no disruption
+    % TP: Diagnostic characterization: 94 channels installed (61 functional OP1.2b), calibration stability <5% over 1182 experiments, SNR>1000
+    % TP: LOS sensitivity results: separatrix/SOL viewing channels optimal, VBC outperforms HBC for edge, multiple viable configurations identified
+    % TP: Detachment physics insights: C²⁺ signature at f_rad~50%, full detachment f_rad>90%, radiation shifts inward to ρ_pol≈0.95
+    % TP: STRAHL modeling: carbon dominates by 10²× over oxygen, C³⁺/C²⁺ critical near LCFS, validates feedback channel selection
+    % TP: Tomography performance: reconstruction quality ρ_c>0.85, χ²<2.5, P_2D within 10-20% of P_rad, resolves X-point structures
+    % TP: Power balance improvement: P_2D^(core) provides stable metric, reveals 15-25% SOL underestimation in standard extrapolation
+    % TP: All methods extensively validated through OP1.2b campaign (2018): 1182 experiments, 45 feedback discharges analyzed
+\end{frame}
+
+\section*{Outlook}
+
+\begin{frame}
+    \frametitle{In a Distant Future\,\dots}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+            \visible<1-3>{
+            \textbf{Upgrades:}
+            \begin{itemize}
+                \item Reduce feedback latency <\SI{10}{\milli\second}
+                \item Implement machine learning for $P\ix{pred}$/LOS selection
+                \item Per-experiment configuration ($K\ix{M}$, $V\ix{M}$)
+                \item Predictive scaling laws for gas injection
+            \end{itemize}
+            }
+
+            \visible<2-3>{
+            \textbf{Modeling:}
+            \begin{itemize}
+                \item EMC3-EIRENE feedback scenario exploration
+                \item Parametric optimization and coverage for tomography/LOS sensitivity
+            \end{itemize}
+            }
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \visible<3>{
+            \textbf{Tomography Extensions:}
+            \begin{itemize}
+                \item Synthetic, virtual camera arrays
+                \item Extend phantom benchmark set and parameter space
+                \item Automated parameter optimization (grid search, ML)
+                \item Real-time algorithms (benchmark LUT?)
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: System upgrades roadmap: (1) hardware - reduce latency to <10ms through faster DAQ, (2) software - implement predictive control algorithms
+    % TP: Machine learning applications: (1) automatic PID optimization for different scenarios, (2) optimal channel selection, (3) predictive gas injection timing
+    % TP: Advanced modeling: integrate STRAHL with EMC3-EIRENE for 3D impurity transport, validate against OP2.1 high-performance scenarios
+    % TP: Improved chamber models: refine two/three-chamber parameters with OP2.1 data, develop predictive scaling laws for gas injection
+    % TP: Tomography extensions: (1) expand phantom benchmark suite to >50 cases, (2) GPU acceleration for real-time capability (<100ms/frame)
+    % TP: Real-time tomography vision: 2D radiation distribution feedback would enable spatial control (target specific regions), detect MARFEs early
+    % TP: Automated parameter optimization: Bayesian methods or grid search to find optimal k_ani profiles for different radiation scenarios
+    % TP: ITER/DEMO relevance: methods directly transferable, DEMO requirements (P_fus~500 MW, f_rad≥95%, q_div<10 MW/m²) demand reliable radiation control
+    % TP: Stellarator applicability: techniques applicable to other stellarators (LHD, future devices), tokamaks (ITER, DEMO, SPARC)
+    % TP: Long-term vision: fully automated radiation control system with adaptive learning, spatial distribution optimization, predictive capabilities
+\end{frame}
+
+\begin{frame}[noframenumbering]
+    \frametitle{Collaborations}
+    \backgroundlogo%
+
+    \begin{block}{Acknowledgement}
+        \acknowledgementtext%
+    \end{block}
+
+    \vspace{2em}
+    \textbf{Collaborators:}
+    \collaborators[1.1cm]{%
+        {%
+            logos/w7x.png,%
+            logos/ipp.png,%
+            logos/minerva.png,%
+            logos/helmholtz_research_crop.png,%
+            logos/eurofusion_crop.png%
+        }%
+    }%
+\end{frame}
+
+\begin{frame}[plain,noframenumbering]
+    \backgroundlogo%
+
+    \only<1>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            logos/w7xteam.jpg}%
+    }
+    \only<2>{
+        \begin{center}
+            {\Huge Sin é, a chairde.}\newline%
+            \gcaption{Shin 'e: sil, ə 'xar$^{j}$., d'ə sil.}
+        \end{center}
+    }
+
+    % TP: Thank you for your attention - "Sin é, a chairde" (That's it, friends) - Irish Gaelic closing
+    % TP: Open for questions on any aspect: feedback system implementation, LOS optimization methodology, tomography algorithm details, experimental results interpretation
+    % TP: Key discussion points prepared: (1) latency reduction strategies, (2) comparison with alternative feedback methods, (3) tomography parameter optimization, (4) ITER/DEMO applicability
+    % TP: Acknowledge W7-X team, IPP collaborators, EUROfusion support, Helmholtz Association, University of Greifswald
+\end{frame}
+
+\begin{frame}[allowframebreaks, noframenumbering]{References}
+    \backgroundlogo%
+    \printbibliography
+
+    % TP: Comprehensive reference list covering all cited work
+    % TP: Key references: (1) Anton et al. 1996 - original MFR algorithm, (2) Zhang et al. 2010, 2024 - W7-X bolometry design and RGS, (3) Effenberg et al. 2019 - island divertor physics
+    % TP: Experimental papers: OP1.2b campaign results, detachment studies, impurity transport modeling
+    % TP: Theoretical foundations: Fisher information theory, Tikhonov regularization, plasma transport theory
+\end{frame}
+
+% @TODO:
+% - Plot of phantoms used in statistics
+% - Plot of other feedback experiments
+% - Better Ansatz for power balance new W7-X?
+% - More Camera Geometry
+% - More experimental tomography results
+% - Scaling attempts
+
+% ============================================================================
+% BACKUP SLIDES - APPENDIX CONTENT
+% ============================================================================
+\appendix
+\backupbegin
+
+
+\begin{frame}
+    \frametitle{Triple Product}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{\textit{Lawson criterion}: Burn Condition}
+            \begin{align*}
+                n\ix{e}T\tau\ix{E}\,\ge&\,\,\frac{12f\ix{tot}}{\langle\sigma\ix{DT}v\rangle f_H^2 E_\alpha - 4L_Z(T)}T^2
+            \end{align*}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item $n\ix{x}$ the number densities and $T$ the equilibrated temperatures of electrons, ions and atomic hydrogen 
+                \item $f\ix{H}=n\ix{H}/n\ix{e}$ the hydrogen dilution
+                \item $f\ix{tot}=\sum_{i}n\ix{i}/n\ix{e}$ the ion-electron Dilution
+                \item $E_{\alpha}$ kinetic alpha particle energy
+                \item $L\ix{Z}$ the radiative loss function
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo
+    \frametitle{Lawson Criterion: Ranges}
+
+    \only<1>{
+        \centering
+        \includegraphics[width=.6\textwidth]{%
+            ../THESIS/content/figures/chapter1/Fusion_ntau_wiki.png}
+        \gcaption{Lawson criterion for different plasma compositions - minimum value of required for self-heating\cite{WikiLawson}}
+    }
+
+    \only<2>{
+        \centering
+        \includegraphics[width=.66\textwidth]{%
+            ../THESIS/content/figures/chapter1/Fustion_triple-product_diagram_Horvath.png}
+        \gcaption{Lawson criterion of important magnetic confinement fusion experiments\cite{WikiLawson}}
+    }
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo
+    \centering
+    \includegraphics[width=.9\textwidth]{%
+        ../THESIS/content/figures/chapter1/coils.pdf}
+    \source{W7-X magnetic coils, Geiger et al\cite{Geiger2015}}
+\end{frame}
 
 \begin{frame}
     \frametitle{Bolometer Diagnostic}%
@@ -263,1095 +1265,6 @@
     % TP: Chord brightness P_ch = P_M/K_M provides radial profile information - shows radiation distribution from core to SOL
     % TP: Absorption efficiency near unity (>95%) across 0.2-600 nm wavelength range - truly broadband measurement
 \end{frame}
-
-\section{Real-Time Radiation Feedback Control}
-
-\begin{frame}
-    \addtocounter{framenumber}{-1}
-
-    \frametitle{Feedback System}
-    \backgroundlogo%
-
-    \centering
-    \includegraphics[width=0.8\textwidth]{../THESIS/content/figures/chapter2/divertor_effenberg_reduced.pdf}
-    \source{%
-        F. Effenber et al., 2019\cite{Effenberg2019_seed}\\%
-        Divertor elements HM 1-5: up (1) down (0) \& gas boxes, bolometry system and connecting field lines}
-
-    % TP: W7-X island divertor concept: 5 helical island chains (m/n=5/5) at plasma edge intercept heat and particle flux
-    % TP: Each island chain has upper and lower divertor modules - 10 modules total arranged helically around torus
-    % TP: Connection lengths L_c=100-1000m (10-100× longer than tokamaks) allow extensive radiation cooling along field lines
-    % TP: Standard magnetic configuration: ι/2π=1 (rotational transform), creates 5-fold symmetric island structure
-    % TP: Gas injection system: 10 piezo valves for fast response (<10ms), thermal helium beam valves for feedback control
-    % TP: Valve locations strategically placed: HM1-5 modules (upper/lower pairs) allow targeted seeding into specific island chains
-    % TP: Island X-points are radiation hot spots - field lines converge, increasing local emissivity by factor 2-5×
-    % TP: Bolometer cameras positioned to view these X-points - critical for feedback sensitivity
-    % TP: Field line tracing shows direct connection between gas injection points and divertor targets via island chains
-\end{frame}
-
-\begin{frame}
-    \frametitle{Feedback System}
-    \backgroundlogo%
-
-    \begin{columns}%
-        \begin{column}{0.5\textwidth}%
-            \textbf{Architecture:}%
-            \begin{itemize}%
-                \item Integrated data acquisition hardware \& optimized control software%
-                \item Twin proxies and dedicated signal outputs%
-                \item Thermal gas valve actuation with multi-diagnostic PID controller%
-            \end{itemize}%
-        \end{column}%
-
-        \begin{column}{0.5\textwidth}%
-           \only<1>{
-                \centering%
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter2/hebeam_box_cut.pdf}%
-                \source{%
-                    T. Barbui et al., 2016\cite{Barbui2016}\\%
-                    Thermal helium beam and spectroscopy}
-                \vspace{4em}%
-            }%
-
-            \only<2>{%
-                \textbf{Radiation Prediction Proxies:}%
-
-                \textbf{A:} \textit{Channel selection $S$}%
-                \begin{equation*}%
-                    P\ix{pred}^{(1)}=\frac{V\ix{P,tor}}{V_S}\sum\ix{M}^{S}\frac{P_M V_M}{K_M}
-                \end{equation*}%
-                (e.g. $S\ix{VBC}=\left\{61,86,78,73,70,65\right\}$)%
-
-                \vspace{.5em}%
-                \textbf{B:} \textit{Single channel}%
-                \begin{equation*}%
-                    P\ix{pred}^{(2)}\propto\Delta\widetilde{U_M}
-                \end{equation*}%
-                (dimensionless, minimal overhead)%
-            }%
-
-            \only<3>{
-                \centering%
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter2/20181010_032/20181010_32_channels.pdf}%
-                \gcaption{Line of sight selection $S$ (XP20181010.32), only VBC channels\\%
-                          covering magnetic islands, as well as the core and X-points partially}
-            }
-        \end{column}%
-    \end{columns}%
-
-    % TP: First bolometer-based real-time radiation feedback system at W7-X, operational during OP1.2b campaign (2018)
-    % TP: Hardware: NI 6321 DAQ card for fast acquisition, dedicated analog outputs for PID controller, parallel processing architecture
-    % TP: Two prediction proxies implemented: (1) P_pred^(1) = geometry-weighted sum over selected channels S, (2) P_pred^(2) = single channel voltage (dimensionless, minimal overhead)
-    % TP: Channel selection S optimized through systematic analysis: VBC subset S={61,65,73,78,86} viewing separatrix and X-points achieves ≥85% accuracy
-    % TP: Alternative HBC selections also viable: S={4,7,8,20,23,27} provides similar performance with different viewing geometry
-    % TP: PID controller parameters: K_p=0.5-2.0 (proportional gain), K_i=0.1-0.5 (integral), K_d=0 (derivative not needed due to slow plasma response)
-    % TP: Setpoint: f_rad target (typically 85-90%), controller adjusts gas valve opening to maintain radiation fraction
-\end{frame}
-
-\begin{frame}
-    \frametitle{Feedback System}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \textbf{Performance:}
-            \begin{itemize}
-                \item FIFO smoothing in $P\ix{pred}^{(1)}$: $\sim N\Delta t/2$
-                \item Minimum acquisition latency \SI{13.6}{\milli\second}
-                \item Total system latency: \SIrange{150}{400}{\milli\second} (dominated by plasma response)
-            \end{itemize}
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \centering
-            \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter2/oscilloscope_fix.pdf}
-            \gcaption{oscilloscope screen capture; single detector\\%
-                      laboratory latency measurement with laser diode}
-        \end{column}
-    \end{columns}
-
-    % TP: System latency breakdown: acquisition 13.6ms (minimum, validated with laser diode), FIFO smoothing ~8ms (M=10 samples × 1.6ms), processing <1ms
-    % TP: Total feedback loop latency: 150-400ms dominated by plasma response time (gas transport, ionization, radiation buildup)
-    % TP: FIFO moving average filter: reduces noise by factor √M but adds latency M·Δt/2 ≈ 8ms for M=10
-    % TP: Trade-off: faster sampling (Δt=0.8ms) reduces latency but increases noise, 1.6ms optimal for feedback application
-    % TP: Benchmark test with laser diode: confirmed 13.6ms acquisition latency, validated timing chain from photon to digital signal
-    % TP: Future improvements: reduce acquisition to <10ms through hardware upgrades, implement predictive algorithms to compensate for plasma response delay
-    % TP: Comparison: Thomson scattering ~50ms, interferometry ~1ms, but bolometry measures the actual control variable (radiation)
-\end{frame}
-
-\begin{frame}
-    \frametitle{Experimental Achievements}%
-    \backgroundlogo%
-
-    \begin{columns}%
-        \begin{column}{0.5\textwidth}%
-            \visible<1-4>{%
-                \textbf{XP20181010.32}%
-                \begin{itemize}%
-                    \item Radiation fraction PID setpoint $f\ix{rad}\sim90\%$ off $P\ix{pred}^{(1)}$%
-                    \item 5-channel VBC subset $S=\left\{61,65,73,78,86\right\}$%
-                \end{itemize}%
-            }%
-
-            \visible<2-4>{%
-                \vspace*{.35em}
-                \centering%
-                \includegraphics[width=.95\textwidth]{%
-                    ../THESIS/content/figures/chapter2/20181010_032/20181010_032_power_feedback_prad.pdf}%
-                \gcaption{XP20181010.32: both $P\ix{rad}$ and predictions $P\ix{pred}^{(N)}$}
-            }%
-        \end{column}%
-
-        \begin{column}{0.5\textwidth}%
-            \centering
-            \only<3>{%
-            \includegraphics[height=0.66\textheight]{%
-                ../THESIS/content/figures/chapter2/20181010_032/20181010_032_power_frad.pdf}%
-            \gcaption{%
-                XP20181010.32: (top) input power and plasma stored energy\\%
-                (bottom) PID input, $f\ix{rad}$ and divertor heatload}
-            }%
-            \only<4>{%
-            \includegraphics[height=0.66\textheight]{%
-                ../THESIS/content/figures/chapter2/20181010_032/20181010_032_power_feedback_bottom.pdf}%
-            \gcaption{%
-                XP20181010.32: (top) PID value and valve activation\\%
-                (bottom) PID states: prop., int. and diff. at scale}
-            }%
-        \end{column}%
-    \end{columns}%
-
-    % TP: XP20181010.32 - breakthrough experiment achieving stable feedback-controlled detachment with hydrogen seeding
-    % TP: Discharge parameters: duration 9.2s, P_ECRH=6.23 MW, standard magnetic configuration (ι/2π=1), total input energy 55 MJ
-    % TP: Key achievement: sustained f_rad≥85% with peaks reaching 100% (P_rad=P_ECRH), no plasma disruption or termination
-    % TP: Divertor heat load reduction: factor ≥2× from baseline ~10 MW/m² to <5 MW/m², validated by infrared thermography
-    % TP: Detachment signatures: C²⁺ filterscope emission appears at f_rad~50%, intensifies and moves poloidally as f_rad increases
-    % TP: Prediction accuracy: P_pred^(1) tracks P_rad within 10-15% throughout discharge, validates 5-channel VBC subset S={61,65,73,78,86}
-    % TP: Plasma stored energy W_dia maintained at ~0.8-1.0 MJ despite high radiation - demonstrates compatibility with good confinement
-    % TP: This demonstrates reactor-relevant scenario: high f_rad for component protection while maintaining plasma performance
-\end{frame}
-
-\begin{frame}
-    \frametitle{Experimental Achievements}%
-    \backgroundlogo%
-
-    \begin{columns}%
-        \begin{column}{0.5\textwidth}%
-            \textbf{XP20181010.32}%
-            \begin{itemize}%
-                \item Peak $f\ix{rad}\sim$100\%, cycling with gas inlet%
-                \item Target heat load reduction factor $\ge2$%
-                \item C$^{2+}$ detachment visible at $f\ix{rad}\sim50\%$%
-            \end{itemize}%
-
-            \vspace{1.25em}%
-            \begin{alertblock}{Key Result}%
-                Demonstrated stable, real-time feedback-controlled radiative cooling with $f\ix{rad}\ge85\%$ without terminal plasma disruption and significant target heat load reduction%
-            \end{alertblock}%
-        \end{column}%
-
-        \begin{column}{0.5\textwidth}%
-            \centering
-            \includegraphics[height=0.45\textheight]{%
-                ../THESIS/content/figures/chapter2/20181010_032/20181010_032_0920_023_cIII_contour_L.pdf}%
-            \gcaption{spatial-temporal evolution (C2+ radiation)\\%
-                      in divertor of HM51; filterscope measurements}
-        \end{column}%
-    \end{columns}%
-
-    % TP: Bolometer feedback advantages: (1) directly measures control variable (total radiation), (2) broadband - insensitive to impurity mix, (3) fast response (1.6ms sampling)
-    % TP: Comparison with alternatives: density feedback (DI) is indirect - affects confinement, can destabilize; C-III filterscope measures only one charge state, misses O, other C ions
-    % TP: Bolometer robustness: total radiation measurement independent of impurity species composition (C vs O vs seeded gases)
-    % TP: Spatial information: multiple viewing chords reveal radiation distribution - core vs edge vs SOL, identify X-point hot spots
-    % TP: Physical connection: radiation IS the detachment mechanism - controlling P_rad directly controls heat dissipation
-    % TP: Gas injection optimization: moderate puff duration (50-200ms) optimal - short pulses cause transients, long pulses ineffective
-    % TP: PID tuning challenges: parameters discharge-specific, depend on magnetic configuration, heating power, impurity species
-    % TP: No universal scaling law found - complex parameter space requires adaptive control strategies
-    % TP: System limitations: 150-400ms total latency (dominated by plasma response), limits achievable control bandwidth to ~2-5 Hz
-    % TP: Future improvements: (1) reduce acquisition latency to <10ms, (2) implement predictive control using plasma models, (3) machine learning for automatic PID optimization
-    % TP: Despite limitations, bolometer feedback is the most direct method for radiation control in reactor-relevant scenarios
-    % TP: Validated approach: successfully demonstrated at W7-X, applicable to ITER, DEMO, and future stellarators
-\end{frame}
-
-\section{Line-of-Sight Sensitivity}
-
-\begin{frame}
-    \frametitle{Line-of-Sight Sensitivity}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \begin{itemize}
-                \item Evaluate LOS/channel efficacy for feedback (generalised local radiation sensitivity)
-                \item Data set of all feedback discharges from OP1.2b
-                \item Applied 5 different metric (linear \& weighted deviation, FFT, ...)
-            \end{itemize}
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \only<1>{
-                \addtocounter{framenumber}{-1}
-
-                \textbf{Weighted deviation:}%
-                \begin{align*}
-                    \varphi\left(t\right)=&1-\frac{\left\|P\ix{pred}-P\ix{rad}\right\|\left(t\right)}{P\ix{rad}\left(t\right)}\\%
-                    \vartheta=&\frac{1}{T}\int_{T}\varphi\left(t\right)\diff t%
-                \end{align*}
-            }
-
-            \only<2>{
-                \centering%
-                \includegraphics[width=.9\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/wghtd_dev_best_C[_8_7_23]_overview.pdf}
-                \gcaption{(top) weighted deviation norm and example for $S\ix{HBC}=\{8,7,23\}$;\\%
-                          (bottom) full dataset for $M=3$ selection sets (HBC)}
-            }
-        \end{column}
-    \end{columns}
-
-    % TP: Systematic LOS sensitivity analysis to identify optimal channel configurations for feedback control
-    % TP: Dataset: 45 discharge pairs from OP1.2b campaign spanning wide parameter range (P_ECRH=3.5-6.5 MW, f_rad=0.3-1.0, T_e=0.9-1.5 keV)
-    % TP: Methodology: evaluate all possible channel combinations (C(32,m) for HBC, C(62,m) for VBC) for m=3,5,7 channels
-    % TP: Six evaluation metrics applied: (1) correlation, (2) weighted deviation, (3) mean deviation, (4) Fourier transform correlation, (5) Fisher information, (6) χ² fitness
-    % TP: Each metric quantifies how well P_pred from channel subset S predicts total P_rad
-\end{frame}
-
-\begin{frame}
-    \frametitle{Line-of-Sight Sensitivity}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \textbf{Optimal Channel Selection:}
-            \begin{itemize}
-                \item No single "best" set exists
-                \item Robust selection achieves $\ge$85\% prediction accuracy
-                \item VBC channels generally outperform HBC for edge sensitivity
-                \item 3-5 channels sufficient for reliable $P_{\text{pred}}$
-            \end{itemize}
-
-            \vspace{0.5em}
-            \begin{alertblock}{Takeaway}
-                Detectors viewing close to separatrix and SOL most viable for feedback purposes
-            \end{alertblock}
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-                \centering%
-                \includegraphics[width=.75\textwidth]{%
-                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_combs_comb.pdf}
-                \gcaption{LOS sensitivity by weighted deviation measurement for $M=\{3,5,7\}$}
-        \end{column}
-    \end{columns}
-
-    % TP: Key finding: channels viewing separatrix (ρ_pol~0.95-1.05) and SOL most effective - this is where detachment radiation concentrates
-    % TP: VBC cameras outperform HBC for edge sensitivity: better viewing geometry toward X-points and island chains
-    % TP: Global maximum in sensitivity profiles: VBC channel viewing upper inboard X-point (r_eff≈-0.13 r_a)
-    % TP: HBC shows local maxima at ±0.4 r_a, ±0.7 r_a corresponding to island chain intersections
-    % TP: Robustness: multiple channel combinations achieve ≥85% prediction accuracy - no single "best" set exists
-    % TP: Optimal channel count: m=3-5 sufficient, m=7 provides marginal improvement (<5%) at cost of increased complexity
-    % TP: Weighted deviation threshold: Δ_w<0.15 defines acceptable performance (accounts for measurement uncertainties and temporal variations)
-    % TP: Correlation with plasma parameters: high P_ECRH (≥4.2 MW), high f_rad (>0.75), T_e~1.3 keV yield best prediction quality
-\end{frame}
-
-\section{Tomography}
-
-\begin{frame}
-    \only<1>{
-        \addtocounter{framenumber}{-1}
-    }
-
-    \frametitle{Minimum Fisher Regularization}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-           \visible<1-2>{
-            \textbf{Measurement:}
-            \begin{align*}
-                \mathbf{T}\,\vec{x}=\vec{b}
-            \end{align*}
-
-            \textbf{Bolometer tomography:}
-            \begin{itemize}
-                \item 61 line-integrated measurements $\vec{b}$
-                \item 2D emissivity $\vec{x}$: $\sim$4500 pixels
-                \item \textit{Geometry} $\mathbf{T}$ has high condition
-                \visible<2>{\item \color{red}{ill-posed, requires regularization}}
-            \end{itemize}
-            }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \visible<2>{
-            \textbf{Problem:}
-            \begin{align*}
-                \underset{\mu}{\text{min}}&\left\|\left(\mathbf{T}^{\intercal}\mathbf{T}+\mu^{-1}\mathbf{H}\right)^{-1}\mathbf{T}^{\intercal}\vec{b}\,\right\|\,\rightarrow\,\vec{x}%
-            \end{align*}
-
-            \textbf{Fisher Information:}
-            \begin{align*}
-                I\ix{F}=\int\frac{1}{x}\left(\frac{\partial x}{\partial \vec{r}}\right)^2 d\vec{r}\,\leftrightarrow\,%
-                \mathbf{H}\sim\frac{1}{x}\pmb{\Delta}^{\intercal}\pmb{\Delta}
-            \end{align*}
-
-            limiting error on reconstruction:
-            \begin{equation*}
-                \sigma\ix{x}\le\frac{1}{I\ix{F}}
-            \end{equation*}
-            }
-        \end{column}
-    \end{columns}
-
-    % TP: Tomography problem: invert line-integrated measurements (Tx=b) to reconstruct 2D emissivity distribution x
-    % TP: Ill-posed inverse problem: 61 measurements but ~4500 pixels (30 radial × 150 poloidal grid) - severely underdetermined
-    % TP: Geometry matrix T: encodes etendue-weighted line integrals, condition number ~10⁶ indicates strong ill-posedness
-    % TP: Regularization required: Minimum Fisher Regularization (MFR) with Tikhonov-type penalty minimizes ||Tx-b||² + λ⁻¹||Hx||²
-    % TP: Fisher information I_F = ∫(1/x)(∂x/∂r)² dr measures gradient content - lower I_F = smoother solution
-    % TP: Regularization matrix H ∝ (1/x)∇ᵀ∇ penalizes large gradients weighted by local emissivity
-    % TP: Radially dependent anisotropy (RDA): different smoothness in radial vs poloidal directions, k_ani(r) varies with radius
-    % TP: Core (k_ani≈2-10): favors smooth, flux-surface aligned emission; Edge (k_ani≈0.1-0.5): allows localized, anisotropic structures
-    % TP: Iterative solution: converges in N_T=10-20 iterations, regularization parameter λ chosen by L-curve method
-    % TP: Computational grid: 30×150 cells (radial×poloidal), domain extends to 1.3²V_P to handle boundary radiation
-\end{frame}
-
-\begin{frame}
-    \frametitle{Minimum Fisher Regularization}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \visible<1,2>{%
-            \textbf{Radially Dependent Anisotropy:}
-            \begin{itemize}
-                \item Tailored weighting to poloidal gradient
-                \item $k\ix{ani}<1$: favours anisotropy
-                \item $k\ix{ani}>1$: favours smooth emissivity
-            \end{itemize}
-
-            \vspace{-1em}
-            \begin{align*}
-                \mathbf{H}&\to\mathbf{H}\ix{ani}\\%
-                \pmb{\Delta}&=\pmb{\nabla}\ix{r}^{\intercal}(\cdot)\pmb{\nabla}\ix{r}+\pmb{\nabla}_{\vartheta}^{\intercal}(\cdot)\pmb{\nabla}_{\vartheta}\\%
-                \pmb{\nabla}_{\vartheta}&\to\pmb{\widetilde{\nabla}}_{\vartheta}=\frac{1}{k\ix{ani}\Delta r}\mathbf{D}\ix{dia}^{(0)}\pmb{\nabla}_{\vartheta}
-            \end{align*}
-            }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \visible<1-2>{
-            \begin{block}{MFR + RDA Advantages}
-                \begin{itemize}
-                    \item Robust to noisy data
-                    \item Incorporates a priori knowledge
-                    \item Stable convergence
-                \end{itemize}
-            \end{block}
-           }
-
-           \visible<2>{
-            \centering
-            \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter4/kAni_profile_comparison.pdf}
-            \gcaption{$k\ix{ani}$ profile examples over radial cell number}
-            }
-        \end{column}
-    \end{columns}
-
-    % TP: RDA implementation: k_ani(r) profile transitions smoothly from core to edge using tanh function
-    % TP: Typical profiles: k_ani={2.0, 0.3} (core, edge) for standard cases, {5.0, 0.5} for highly anisotropic phantoms
-    % TP: Physical motivation: core radiation follows flux surfaces (isotropic in flux coordinates), edge shows X-point localization (anisotropic)
-    % TP: Advantages of MFR+RDA: (1) incorporates physics knowledge, (2) robust to noise, (3) stable convergence, (4) no negative emissivities
-    % TP: Alternative: Relative Gradient Smoothing (RGS) can be combined with RDA for enhanced feature localization
-    % TP: RGS weighting: H_RGS ∝ (∇x/x)² emphasizes relative gradients, stronger localization but may sacrifice global accuracy
-    % TP: Comparison: RDA chosen as primary method - better balance between accuracy and robustness for W7-X geometry
-\end{frame}
-
-\begin{frame}
-    \frametitle{Benchmarking}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \only<1,3,6,9>{
-            \textbf{Geometry Perturbation Test:}
-            \begin{itemize}
-                \item Previous and future calculations based on as-designed geometry
-                \only<3>{
-                    \item \color{ipp}{Forward calculation of synthetic 2D emissivity show asymmetry (STRAHL)}
-                    \item \color{ipp}{Tests for symmetrical chord profile motivate artificial camera geometry}
-                }
-                \visible<6,9>{
-                    \item Forward calculation of synthetic 2D emissivity show asymmetry (STRAHL)
-                    \item Tests for symmetrical chord profile motivate artificial camera geometry
-                }
-                \only<6>{
-                    \item \color{ipp}{Pertubation study from measured machine stress $\le\pm2^{\circ}$ off axis}
-                }
-                \visible<9>{
-                    \item Pertubation study from measured machine stresses $\le\pm2^{\circ}$ off axis
-                }
-            \end{itemize}
-            }
-
-            \only<2>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut.png}
-                \gcaption{STRAHL phantom radiation profile\\%
-                          EIM grid, commonly 30x150 cells at $1.3V\ix{P}^{2}$ or $1.3r\ix{a}$}
-
-                \small($f\ix{rad}\sim100\%$)
-            }
-
-            \only<4-5>{
-                \centering
-                \includegraphics[width=.7\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/LoS_comparison_artificialHBCm_sN8.pdf}
-                \gcaption{LOS comparison: original vs. artificial, symmetric HBC}
-            }
-            \only<7>{
-                \centering
-                \includegraphics[width=.7\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/LoS_comparison_tilted_pos3_sN8.pdf}
-                \gcaption{tilted (symmetrical) camera geometry; $2^{\circ}$ poloidal rotation at aperture}
-            }
-            \only<8>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut3.png}
-                \gcaption{tomogram of foward calculation using tilted geometry, backward symmetrical}
-                \small{using $\mathbf{T}\ix{sym}\cdot\vec{x}=\vec{b}$}
-            }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \only<1>{
-                \centering
-                \includegraphics[width=.5\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/detector_splitting_cut.pdf}\\
-                \vspace*{1em}
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/kfactors_volumes_interpolations_comp_cut.pdf}
-                \gcaption{(top) detector/aperture splitting $N=8$\\%
-                          (bottom) $V\ix{M}$ comparison for different segmentations}
-            }
-            \only<2>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
-                \gcaption{forward integration of STRAHL phantom profile $f\ix{rad}\sim100\%$}
-            }
-            \only<4>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/compare_artificialHBCm_emissivities3D.pdf}
-                \gcaption{absolute difference between camera geometries (left, original vs. symmetric)}
-
-                \small{$\left\|\mathbf{T}-\mathbf{T}\ix{sym}\right\|$}
-            }
-            \only<5>{
-                \centering
-                \includegraphics[width=.95\textwidth]{%
-                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_artificialHBCm_sN8_30x20x150_1.35.png}
-                \gcaption{forward integration of STRAHL phantom profile\\%
-                          for $f\ix{rad}\sim100\%$ with symmetrical camera geometry}
-            }
-            \only<7>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_tilt_cor_2.0deg_sN8_30x20x150_1.35.png}
-                \gcaption{forward integration of STRAHL phantom profile\\%
-                          using $2^{\circ}$ rotated symmetrical geometry}
-            }
-            \only<8>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.1_mx1.0e+06_tilt-1.0_aniM3_2.0_2.0_nigs1_times0.11_cut2.png}
-                \gcaption{tomogram of foward and backward calculation using symmetrical geometry}
-
-                \small{using $\mathbf{T}\ix{ilt}\cdot\vec{x}=\vec{b}$}
-            }
-            \only<9>{
-                \addtocounter{framenumber}{1}
-
-                \begin{alertblock}{Results}
-                    \begin{itemize}
-                        \item Discretization of system is computationally stable
-                        \item Intrinsic asymmetry of same order of magnitude as potential, unknown geometric pertubation - non-negligible
-                        \item Worst case machine warp scenario $\sim0.2r\ix{a}$ shift
-                    \end{itemize}
-                \end{alertblock}
-            }
-        \end{column}
-    \end{columns}
-
-    % TP: Geometry perturbation study: tested camera position variations (±2° tilts), detector/aperture segmentation (N=2,4,8), artificial symmetric geometries
-    % TP: Segmentation convergence: N≥8 provides adequate resolution (etendue variations <10⁻¹¹ mm⁻³), N=8 chosen for computational efficiency
-    % TP: Camera tilt sensitivity: ±2° rotations cause etendue changes ~10⁻¹¹ mm⁻³, forward model variations 0.5-1% in chord brightness
-    % TP: Intrinsic asymmetry: HBC 68.75° tilt causes 0.5-1% left-right asymmetry in forward calculations even with symmetric radiation
-    % TP: Artificial symmetric HBC: mirroring half the array reduces asymmetry, validates that as-designed geometry is near-optimal
-    % TP: Worst-case scenario: ±2° misalignment could shift reconstructed features by ~0.2 r_a, emphasizes need for accurate as-built measurements
-    % TP: Etendue validation: numerical integration agrees with analytical solutions for simple geometries (parallel plates, point sources)
-    % TP: Conclusion: discretization computationally stable, geometry uncertainties non-negligible but manageable with careful calibration
-\end{frame}
-
-\begin{frame}
-    \frametitle{Phantom Reconstructions}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \visible<1-4>{
-                \begin{block}{Purpose}
-                    Regularized, parametric inversions need experienced tailoring for their respective application.
-                \end{block}
-            }
-
-            \visible<2-4>{
-            \textbf{Benchmarks:}
-            \begin{itemize}
-                \item 12+ synthetic emissivities: Gaussian, rings, anisotropies, convolutions\dots
-                \item $k\ix{ani}$ \& phantom variations studies (radius, intensity etc.)
-                \item \color{red}{Performed for only one magnetic grid configuration \& LOS geometry}
-            \end{itemize}
-            }
-        \end{column}%
-
-        \begin{column}{0.5\textwidth}%
-            \visible<3-4>{%
-                \textbf{Metrics:}%
-                \begin{align*}%
-                    \rho\ix{c}&=\frac{1}{\sigma_{pha}\sigma_{tom}}\text{cov}\left(\vec{x}\ix{phan},\,\vec{x}\ix{tom}\right)\\%
-                    M\ix{SD}&\sim\left\|\frac{\vec{x}\ix{tom}-\vec{x}\ix{phan}}{\|x\ix{phan}\|}\cdot\vec{A}^{\intercal}\right\|\\%
-                    P\ix{rad,X}^{\text{2D}}&=\vec{x}\ix{X}^{\intercal}\cdot\vec{A}\,,\quad X=\left\{\text{phan, tom}\right\}%
-                \end{align*}%
-            }%
-
-            \only<3>{%
-                \vspace*{-3em}
-                \begin{align*}%
-                    \chi^{2}&=\frac{1}{N\ix{ch}}\left\|\left(\vec{b}\ix{phan}-\vec{b}\ix{tom}\right)\vec{\sigma}\ix{bol}^{-1}\right\|%
-                \end{align*}%
-            }%
-
-            \only<4>{
-                \vspace*{-3.5em}
-                \begin{align*}%
-                    \Aboxed{%
-                        \chi^{2}&=\frac{1}{N\ix{ch}}\left\|\left(\vec{b}\ix{phan}-\vec{b}\ix{tom}\right)\vec{\sigma}\ix{bol}^{-1}\right\|}%
-                \end{align*}%
-            }%
-        \end{column}%
-    \end{columns}%
-
-    % TP: Phantom benchmark suite: 12+ synthetic radiation distributions testing algorithm performance across parameter space
-    % TP: Test cases include: (1) simple rings at various radii, (2) Gaussian features, (3) anisotropic island-like structures, (4) nested concentric profiles, (5) asymmetric distributions
-    % TP: Noise robustness: tested with up to 10% Gaussian noise on measurements, algorithm maintains ρ_c>0.85 and χ²<2
-    % TP: Parameter variations: systematic scans of k_ani (0.1-20), radial position (0.3-1.3 r_a), intensity (0.1-2 MW/m³), width (σ_r, σ_θ)
-    % TP: Quality metrics: (1) correlation ρ_c (phantom vs tomogram), (2) χ² fitness (forward vs measured), (3) MSD (mean squared deviation), (4) integrated powers P_rad,2D
-    % TP: Key findings: P_rad underestimates P_2D by ~P_2D^(SOL) (standard extrapolation misses SOL contribution), χ² and ρ_c not always congruent
-    % TP: Optimal parameters identified: k_ani={2.0, 0.3} for standard cases, {5.0, 0.5} for highly anisotropic, N_T=15 iterations, grid 30×150
-    % TP: Reconstruction quality: >90% for well-constrained phantoms (good camera coverage), 70-85% for challenging cases (localized features, poor viewing angles)
-    % TP: Recommended settings validated through 59 phantom tests with comprehensive parameter variations
-\end{frame}
-
-\begin{frame}
-    \frametitle{Phantoms: Example}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-        \only<1-5>{
-            \centering
-            \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.3_nT15_nW2_nigs1_times0.11_cut1.png}
-            \gcaption{phantom profile: symmetrical island-like (6) chain at\\%
-                      $1.1r\ix{a}$ and a less bright ring at $0.8r\ix{a}$}
-
-            \small{Phantom: $\vec{b}\ix{phan}$}
-        }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-        \only<2>{
-            \centering
-            \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.1_nT15_nW2_nigs1_times0.11_cut1.png}
-            \gcaption{reconstruction for left phantom radiation distribution}
-
-            \small{$k\ix{core},\,k\ix{edge}=\left\{2,\,0.1\right\}$}
-        }
-        \only<3>{
-            \centering
-            \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.3_nT15_nW2_nigs1_times0.11_cut2.png}
-            \gcaption{reconstruction for left phantom radiation distribution}
-
-            \small{$k\ix{core},\,k\ix{edge}=\left\{2,\,0.3\right\}$}
-        }
-        \only<4>{
-            \centering
-            \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.6_nT15_nW2_nigs1_times0.11_cut1.png}
-            \gcaption{reconstruction for left phantom radiation distribution}
-
-            \small{$k\ix{core},\,k\ix{edge}=\left\{2,\,0.6\right\}$}
-        }
-        \only<5>{
-            \centering
-            \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_20.0_3.0_nT15_nW2_nigs1_times0.11_cut1.png}
-            \gcaption{reconstruction for left phantom radiation distribution}
-
-            \small{$k\ix{core},\,k\ix{edge}=\left\{20,\,3.0\right\}$}
-        }
-        \end{column}
-    \end{columns}
-
-    \only<6>{
-        \centering
-        \includegraphics[width=\textwidth]{%
-            ../THESIS/content/figures/chapter4/MFR/new/phantom/phantom_v_tomo_profiles_symR1.1_fsR0.8_mx1.0e+06_aniM3_2.0_0.1_nigs1_times0.11.png}
-        \gcaption{(left) radial profile of phantom and tomogram, 2D integrated power and regularisation weights\\%
-                  (right) forward and backward calculated chord brightness, $\chi^{2}$ likeness and $P\ix{rad}$ extrapolation}
-    }
-    \only<7>{
-        \centering
-        \includegraphics[width=.95\textwidth]{%
-            ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_sym_R1_1_m5_kedge_scan_cut.png}
-        \gcaption{$k\ix{ani}$ scan of previous anistropic phantom profile\\%
-                  (left, top) 2D variance absolute/for core and SOL %
-                  (left, bottom) comparison $\chi^{2}$ likeness and $\rho\ix{c}$\\%
-                  (right) 2D integrated powers: phantom vs tomogram in SOL, core and total}
-    }
-\end{frame}
-
-\begin{frame}
-    \backgroundlogo%
-    \frametitle{Phantoms: Statistics}
-
-    \only<1>{
-        \begin{flushleft}
-            \large\textbf{Isotropic Rings: $k\ix{ani}$ Scan for Single Ring at $0.8r\ix{a}$}
-        \end{flushleft}
-        \centering
-        \includegraphics[width=.9\textwidth]{%
-            ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_single_ring_kani_scans2.png}
-        \gcaption{$k\ix{ani}$ scan of simple ring\\%
-                  (left) $k\ix{core}$ scan with $k\ix{edge}=1$ fixed %
-                  (right) $k\ix{edge}$ scan with $k\ix{core}=1$ fixed}
-    }
-
-    \only<2>{
-        \begin{flushleft}
-            \large\textbf{Isotropic Rings: Radial Scans}
-        \end{flushleft}
-        \centering
-        \includegraphics[width=.9\textwidth]{%
-            ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_radius_scans2.png}
-        \gcaption{radial position scan of simple rings\\%
-                  (left) radial position scan of symmetric, single ring at $0.3-1.3r\ix{a}$\\%
-                  (right) radial scan of inner ring radius $0.4-1r\ix{a}$ for concentric rings; outer at $1.1r\ix{a}$}
-    }
-
-    \only<3,4>{
-        \begin{flushleft}
-            \large\textbf{Composite Distributions}
-        \end{flushleft}
-        \only<3>{
-            \vspace*{1em}
-            \centering
-            \includegraphics[width=0.95\textwidth]{%
-                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_x4575_cut.png}
-            \gcaption{phantom radiation profiles; single, gaussian feature at (left) $R=$\SI{4.75}{\meter} and (right) $R=$\SI{5.75}{\meter}; both at $Z=0$}
-        }
-        \only<4>{
-            \centering
-            \includegraphics[width=0.95\textwidth]{%
-                ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_pos_mesh_x4575_kcore_scans2.png}
-            \gcaption{$k\ix{core}$ scan for previous phantoms with features at (left) $R=$\SI{4.75}{\meter} and (right) $R=$\SI{5.75}{\meter}}
-        }
-    }
-\end{frame}
-
-\begin{frame}
-    \backgroundlogo%
-    \frametitle{Phantoms: Statistics}
-
-    \only<1>{
-        \centering
-        \includegraphics[width=.8\textwidth]{%
-            ../THESIS/content/figures/chapter4/MFR/new/phantom_statistics_comp_pow.png}
-        \gcaption{%
-            integrated phantom radiation profile reconstruction statistics\\%
-            (left, top) $P\ix{rad}$ extrapolation (bottom) 2D integrated power $phan$ vs $tom$\\%
-            (right) phantom $P\ix{rad}$ vs 2D core (top) and (bottom) SOL power \& regression}
-    }
-    \only<2>{
-        \centering
-        \includegraphics[width=\textwidth]{%
-            ../THESIS/content/figures/chapter4/MFR/new/phantom_statistics_comp_qual.png}
-        \gcaption{%
-            integrated phantom radiation profile reconstruction statistics\\%
-            (left) $\chi^{2}$ and 2D variance over $\rho\ix{c}$ (right) variance over $\chi^{2}$}
-    }
-\end{frame}
-
-\begin{frame}
-    \frametitle{MFR + RDA}
-    \backgroundlogo%
-
-    \visible<1-4>{
-        \begin{itemize}
-            \item \textbf{Reconstruction Accuracy:} $P\ix{rad}$ underestimates $P\ix{2D}$ by $\sim P\ix{2D}^{(SOL)}$
-            \visible<2-4>{\item \textbf{Quality Metrics:} $\chi^{2}$ and $\rho\ix{c}$ not always congruent - \textit{'qualitatively'} optimal tomogram not $\chi^{2}\sim1$ necessarily (discrepancy \textit{quantity \leftrightarrow quality})}
-            \visible<3-4>{\item \textbf{Anisotropy Optimization:} Ideal $k\ix{ani}$ set exists for each profile family but dimensionality makes finding it difficult}
-        \end{itemize}
-    }
-
-    \visible<4>{
-        \vspace{1em}
-        \begin{block}{Conclusion}
-            MFR with RDA weighting provides robust, reliable 2D radiation reconstructions suitable for further analysis and calculations.
-        \end{block}
-    }
-\end{frame}
-
-\begin{frame}
-    \backgroundlogo%
-    \frametitle{Experimental Reconstructions}
-
-    \begin{flushleft}
-        \large\textbf{Example: XP20180809.13}
-    \end{flushleft}
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \only<2-5>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180809.013/2D/tomo_20180809.013aniM3_5.00_0.50_nT14_reduced_nigs1_sN8_30x20x150_1.35_0.29_mfr1D.png}
-                \gcaption{XP20180809.13: reconstruction, $k\ix{ani}=\{5,0.5\}$}
-
-                \small{t\,=\,\SI{2.1}{\second}}
-            }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \only<1-2>{
-                \centering
-                \includegraphics[width=.9\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180809.013/20180809_013_dens_chord_frad_div_cut2.pdf}
-                \gcaption{XP20180809.13: core experimental data; successive laser blow-off events}
-            }
-
-            \only<3>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter4/MFR/new/tomo/20180809.013/2D/tomo_20180809.013aniM3_5.00_0.50_nT14_reduced_nigs1_sN8_30x20x150_1.35_2.15_mfr1D.png}
-                \gcaption{XP20180809.13: reconstruction, $k\ix{ani}=\{5,0.5\}$}
-
-                \small{t\,=\,\SI{2.15}{\second}}
-            }
-
-            \only<4>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180809.013/2D/tomo_20180809.013aniM3_5.00_0.50_nT14_reduced_nigs1_sN8_30x20x150_1.35_2.20_mfr1D.png}
-                \gcaption{XP20180809.13: reconstruction, $k\ix{ani}=\{5,0.5\}$}
-
-                \small{t\,=\,\SI{2.2}{\second}}
-            }
-
-           \only<5>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180809.013/2D/tomo_20180809.013aniM3_5.00_0.50_nT14_reduced_nigs1_sN8_30x20x150_1.35_3.05_mfr1D.png}
-                \gcaption{XP20180809.13: reconstruction, $k\ix{ani}=\{5,0.5\}$}
-
-                \small{t\,=\,\SI{3.05}{\second}}
-           }
-        \end{column}
-    \end{columns}
-
-    % TP: Experimental reconstructions: applied MFR+RDA to 4 feedback-controlled discharges from OP1.2b (XP20180809.13, XP20181010.32, XP20181011.12, XP20181018.45)
-    % TP: Temporal evolution: reconstructions show radiation moving from core to edge as f_rad increases, validates detachment progression
-    % TP: Spatial features resolved: X-point localization (factor 2-3× local enhancement), island chain structure, MARFE-like asymmetries
-    % TP: XP20180809.13 example: laser blow-off events clearly visible as transient core radiation spikes, demonstrates temporal resolution
-    % TP: Power balance application: P_2D^(core) + P_2D^(SOL) provides alternative to standard P_rad extrapolation
-    % TP: Agreement: P_2D^(total) within 10-20% of P_rad, discrepancy attributed to geometry uncertainties and SOL extrapolation errors
-    % TP: Key finding: standard extrapolation systematically underestimates total power by missing SOL contribution (~15-25%)
-    % TP: Core radiation P_2D^(core) more stable metric for quasi-steady-state analysis - less sensitive to edge fluctuations
-    % TP: Statistical analysis (4 discharges, 50+ time slices): P_rad ∝ P_2D^(X) correlation strong (R²>0.85), validates reconstruction accuracy
-    % TP: Quality metrics: χ²=1.2-2.5 (acceptable), ρ_c=0.75-0.90 (good correlation), MSD<0.3 (low deviation)
-    % TP: Discrepancy between χ² and ρ_c: optimal tomogram may not have χ²=1 due to systematic errors (geometry, calibration)
-    % TP: Anisotropy optimization remains challenging: high-dimensional parameter space (k_core, k_edge, transition width), profile-dependent
-    % TP: Computational performance: ~2-5 seconds per frame on standard CPU, suitable for post-shot analysis but not real-time
-    % TP: Future prospects: GPU acceleration could reduce to <100ms per frame, enabling real-time tomography for advanced feedback
-\end{frame}
-
-\begin{frame}
-    \backgroundlogo%
-    \frametitle{Experimental Reconstructions}
-
-    \centering
-    \includegraphics[width=.8\textwidth]{%
-        ../THESIS/content/figures/chapter4/MFR/new/exp_statistics_results_xp_cut.png}
-    \gcaption{%
-            integrated experimental radiation profile reconstruction statistics\\%
-            (left) phantom $P\ix{rad}$ vs 2D core (top) and (bottom) SOL power \& regression; %
-            (right) $P\ix{rad}$ extrapolation $phan$ vs $tom$}
-\end{frame}
-
-\begin{frame}
-    \backgroundlogo
-    \frametitle{Global Power Balance}
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \only<1-2>{
-            \textbf{Simplified 0D Ansatz:}
-            \begin{align*}
-                0\overset{!}{=}&\,S+\frac{1}{V\ix{P}}\int\frac{3}{2}\left(\frac{\partial p}{\partial t}\right)+p\nabla\vec{v}+\nabla\vec{q}\,\diff\vec{r}\\%
-                =&-P\ix{H}+P\ix{rad}+P\ix{div}+\frac{\diff W}{\diff t}\\%
-                =&\,P\ix{bal}
-            \end{align*}
-            \vspace*{1em}
-            }
-
-            \only<3>{
-                \vspace*{1em}
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/tomogram_power_balance_20181010.032_cut2.png}
-                \gcaption{XP20181010.32: calculated $P\ix{bal}$: continous data and using $P\ix{2D}$ core and total from tomograms}
-            }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \only<2-3>{
-                \centering
-                \includegraphics[width=.9\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/tomogram_power_balance_20181010.032_cut1.png}
-                \gcaption{XP20181010.32: experimental data; quantities towards $P\ix{bal}$}
-            }
-        \end{column}
-    \end{columns}
-
-\end{frame}
-
-\begin{frame}
-    \frametitle{Experimental Reconstructions}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \visible<1-2>{
-                \begin{block}{Statistical Analysis}
-                \begin{itemize}
-                    \item $P\ix{rad}\propto P^{(X)}\ix{2D}$ correlation (core, SOL)
-                    \item 2D integrated total power significantly underestimated (conflict experimental experience)
-                    \item SOL emissivity over-emphasized in reconstruction and absolute power figures
-                    \item Proportionality and trends congruent with phantom benchmarks
-                \end{itemize}
-                \end{block}
-            }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \visible<2>{
-                \begin{exampleblock}{Power Balance}
-                \begin{itemize}
-                    \item $P\ix{2D}$ improves balance accuracy and stability
-                    \item Strong improvement over $P\ix{rad}$ in transient scenarios
-                    \item Integrated 2D core emissivity nearly satisfies $P\ix{bal}=0$
-                    \item Viable alternative for quasi steady-state analysis
-                    \item[]%
-                \end{itemize}
-                \end{exampleblock}
-            }
-        \end{column}
-    \end{columns}
-
-\end{frame}
-
-
-\section{Conclusions}
-
-\begin{frame}
-    \frametitle{Key Achievements}%
-    \backgroundlogo%
-
-    \vspace*{-2em}
-    \begin{enumerate}%
-        \item \textbf{Real-Time Radiation Feedback System:}\\%
-            Implemented, tested \& operated first bolometer radiation feedback at W7-X%
-        \visible<2-4>{%
-        \begin{itemize}
-            \item First controlled ($P\ix{rad}$), stable detachment with $f\ix{rad}\ge85\%$
-            \item Target heat load reduction factor $\ge2$
-            \item Validated 3-5 channel LOS subsets for fast prediction ($\ge80\%$ accuracy)
-        \end{itemize}
-        }%
-
-        \item \textbf{Line-of-Sight Optimization:}\\%
-            Systematic sensitivity analysis for optimal detector configurations%
-        \visible<3-4>{%
-        \begin{itemize}
-            \item Separatrix and SOL viewing channels most effective
-            \item (Any) Robust selection achieves $\ge$80\% prediction accuracy
-            \item No single \textit{best} set - multiple viable configurations $M\ge5$
-        \end{itemize}
-        }%
-
-        \item \textbf{Tomographic Reconstruction:}\\%
-            Benchmarked and tailored MFR algorithm with \textit{RDA} weighting%
-        \visible<4>{%
-        \begin{itemize}
-            \item Extensive artificial emissivity profile testing \& parameter variation
-            \item Reconstruction quality $\ge80\%$ for well-constrained phantoms
-            \item Successfull with experimental data \& power balance calculations
-        \end{itemize}
-        }%
-    \end{enumerate}
-
-    % TP: Three major achievements form integrated diagnostic and control system for W7-X radiation management
-    % TP: (1) Real-time feedback system: first bolometer-based radiation control at W7-X, achieved f_rad≥85% with factor ≥2 heat load reduction
-    % TP: (2) LOS optimization: systematic analysis of 45 discharge pairs, identified robust channel configurations (m=3-5 sufficient)
-    % TP: (3) Tomography: validated MFR+RDA algorithm through 59 phantom tests and 4 experimental reconstructions
-    % TP: Integration: feedback uses optimized channels, tomography provides detailed 2D validation of radiation distribution
-    % TP: Reactor relevance: demonstrated stable high-radiation scenarios essential for ITER, DEMO divertor protection
-
-    % TP: Comprehensive summary of thesis contributions and validation
-    % TP: Feedback system specifications: minimum acquisition latency 13.6ms, total loop 150-400ms (plasma-limited), PID control with dual prediction proxies
-    % TP: Benchmark discharge XP20181010.32: 9.2s duration, P_ECRH=6.23 MW, f_rad≥85% sustained, heat load reduction factor ≥2, no disruption
-    % TP: Diagnostic characterization: 94 channels installed (61 functional OP1.2b), calibration stability <5% over 1182 experiments, SNR>1000
-    % TP: LOS sensitivity results: separatrix/SOL viewing channels optimal, VBC outperforms HBC for edge, multiple viable configurations identified
-    % TP: Detachment physics insights: C²⁺ signature at f_rad~50%, full detachment f_rad>90%, radiation shifts inward to ρ_pol≈0.95
-    % TP: STRAHL modeling: carbon dominates by 10²× over oxygen, C³⁺/C²⁺ critical near LCFS, validates feedback channel selection
-    % TP: Tomography performance: reconstruction quality ρ_c>0.85, χ²<2.5, P_2D within 10-20% of P_rad, resolves X-point structures
-    % TP: Power balance improvement: P_2D^(core) provides stable metric, reveals 15-25% SOL underestimation in standard extrapolation
-    % TP: All methods extensively validated through OP1.2b campaign (2018): 1182 experiments, 45 feedback discharges analyzed
-\end{frame}
-
-\section{Outlook}
-
-\begin{frame}
-    \frametitle{Future and Possibilities}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \visible<1-3>{
-            \textbf{System Upgrades:}
-            \begin{itemize}
-                \item Reduce feedback latency <\SI{10}{\milli\second}
-                \item Implement machine learning for $P\ix{pred}$/LOS selection
-                \item Per-experiment configuration ($K\ix{M}$, $V\ix{M}$)
-                \item Predictive scaling laws for gas injection
-            \end{itemize}
-            }
-
-            \visible<2-3>{
-            \textbf{Model(ing)Improvements:}
-            \begin{itemize}
-                \item Integration with EMC3-EIRENE and other codes
-                \item Better parametric optimization and coverage (Bayesian methods?)
-                \item Deliberate validation against other diagnostics (i.e. spectroscopy)
-            \end{itemize}
-            }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \visible<3>{
-            \textbf{Tomography Extensions:}
-            \begin{itemize}
-                \item Larger phantom benchmark set (>50 cases) and parameter space
-                \item Real-time algorithms (benchmark LUT?)
-                \item Automated parameter optimization (grid search, ML)
-            \end{itemize}
-            }
-        \end{column}
-    \end{columns}
-
-    % TP: System upgrades roadmap: (1) hardware - reduce latency to <10ms through faster DAQ, (2) software - implement predictive control algorithms
-    % TP: Machine learning applications: (1) automatic PID optimization for different scenarios, (2) optimal channel selection, (3) predictive gas injection timing
-    % TP: Advanced modeling: integrate STRAHL with EMC3-EIRENE for 3D impurity transport, validate against OP2.1 high-performance scenarios
-    % TP: Improved chamber models: refine two/three-chamber parameters with OP2.1 data, develop predictive scaling laws for gas injection
-    % TP: Tomography extensions: (1) expand phantom benchmark suite to >50 cases, (2) GPU acceleration for real-time capability (<100ms/frame)
-    % TP: Real-time tomography vision: 2D radiation distribution feedback would enable spatial control (target specific regions), detect MARFEs early
-    % TP: Automated parameter optimization: Bayesian methods or grid search to find optimal k_ani profiles for different radiation scenarios
-    % TP: ITER/DEMO relevance: methods directly transferable, DEMO requirements (P_fus~500 MW, f_rad≥95%, q_div<10 MW/m²) demand reliable radiation control
-    % TP: Stellarator applicability: techniques applicable to other stellarators (LHD, future devices), tokamaks (ITER, DEMO, SPARC)
-    % TP: Long-term vision: fully automated radiation control system with adaptive learning, spatial distribution optimization, predictive capabilities
-\end{frame}
-
-\begin{frame}[noframenumbering]
-    \frametitle{Collaborations}
-    \backgroundlogo%
-
-    \begin{block}{Acknowledgement}
-        \acknowledgementtext%
-    \end{block}
-
-    \vspace{2em}
-    \textbf{Collaborators:}
-    \collaborators[1.1cm]{%
-        {%
-            logos/w7x.png,%
-            logos/ipp.png,%
-            logos/minerva.png,%
-            logos/helmholtz_research_crop.png,%
-            logos/eurofusion_crop.png%
-        }%
-    }%
-\end{frame}
-
-\begin{frame}[plain,noframenumbering]
-    \backgroundlogo%
-
-    \only<1>{
-        \centering
-        \includegraphics[width=\textwidth]{%
-            logos/w7xteam.jpg}%
-    }
-    \only<2>{
-        \begin{center}
-            {\Huge Sin é, a chairde.}\newline%
-            \gcaption{Shin 'e: sil, ə 'xar$^{j}$., d'ə sil.}
-        \end{center}
-    }
-
-    % TP: Thank you for your attention - "Sin é, a chairde" (That's it, friends) - Irish Gaelic closing
-    % TP: Open for questions on any aspect: feedback system implementation, LOS optimization methodology, tomography algorithm details, experimental results interpretation
-    % TP: Key discussion points prepared: (1) latency reduction strategies, (2) comparison with alternative feedback methods, (3) tomography parameter optimization, (4) ITER/DEMO applicability
-    % TP: Acknowledge W7-X team, IPP collaborators, EUROfusion support, Helmholtz Association, University of Greifswald
-\end{frame}
-
-\begin{frame}[allowframebreaks, noframenumbering]{References}
-    \backgroundlogo%
-    \printbibliography
-
-    % TP: Comprehensive reference list covering all cited work
-    % TP: Key references: (1) Anton et al. 1996 - original MFR algorithm, (2) Zhang et al. 2010, 2024 - W7-X bolometry design and RGS, (3) Effenberg et al. 2019 - island divertor physics
-    % TP: Experimental papers: OP1.2b campaign results, detachment studies, impurity transport modeling
-    % TP: Theoretical foundations: Fisher information theory, Tikhonov regularization, plasma transport theory
-\end{frame}
-
-% @TODO:
-% - Plot of phantoms used in statistics
-% - Better Ansatz for power balance new W7-X?
-
-
-% ============================================================================
-% BACKUP SLIDES - APPENDIX CONTENT
-% ============================================================================
-\appendix
-\backupbegin
 
 \begin{frame}
     \backgroundlogo%
@@ -1769,32 +1682,61 @@
 \end{frame}
 
 \begin{frame}
-    \backgroundlogo
-    \frametitle{Lawson Criterion: Ranges}
+    \frametitle{Feedback System}
+    \backgroundlogo%
 
-    \only<1>{
-        \centering
-        \includegraphics[width=.6\textwidth]{%
-            ../THESIS/content/figures/chapter1/Fusion_ntau_wiki.png}
-        \gcaption{Lawson criterion for different plasma compositions - minimum value of required for self-heating\cite{WikiLawson}}
-    }
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Performance:}
+            \begin{itemize}
+                \item FIFO smoothing in $P\ix{pred}^{(1)}$: $\sim N\Delta t/2$
+                \item Minimum acquisition latency \SI{13.6}{\milli\second}
+                \item Total system latency: \SIrange{150}{400}{\milli\second} (dominated by plasma response)
+            \end{itemize}
+        \end{column}
 
-    \only<2>{
-        \centering
-        \includegraphics[width=.66\textwidth]{%
-            ../THESIS/content/figures/chapter1/Fustion_triple-product_diagram_Horvath.png}
-        \gcaption{Lawson criterion of important magnetic confinement fusion experiments\cite{WikiLawson}}
-    }
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/oscilloscope_fix.pdf}
+            \gcaption{oscilloscope screen capture; single detector\\%
+                      laboratory latency measurement with laser diode}
+        \end{column}
+    \end{columns}
+
+    % TP: System latency breakdown: acquisition 13.6ms (minimum, validated with laser diode), FIFO smoothing ~8ms (M=10 samples × 1.6ms), processing <1ms
+    % TP: Total feedback loop latency: 150-400ms dominated by plasma response time (gas transport, ionization, radiation buildup)
+    % TP: FIFO moving average filter: reduces noise by factor √M but adds latency M·Δt/2 ≈ 8ms for M=10
+    % TP: Trade-off: faster sampling (Δt=0.8ms) reduces latency but increases noise, 1.6ms optimal for feedback application
+    % TP: Benchmark test with laser diode: confirmed 13.6ms acquisition latency, validated timing chain from photon to digital signal
+    % TP: Future improvements: reduce acquisition to <10ms through hardware upgrades, implement predictive algorithms to compensate for plasma response delay
+    % TP: Comparison: Thomson scattering ~50ms, interferometry ~1ms, but bolometry measures the actual control variable (radiation)
 \end{frame}
 
 \begin{frame}
-    \backgroundlogo
-    \centering
-    \includegraphics[width=.9\textwidth]{%
-        ../THESIS/content/figures/chapter1/coils.pdf}
-    \source{W7-X magnetic coils, Geiger et al\cite{Geiger2015}}
-\end{frame}
+    \frametitle{XP20181010.32: Activation}%
+    \backgroundlogo%
 
+    \begin{columns}%
+        \begin{column}{0.5\textwidth}%
+            \centering
+            \includegraphics[height=0.66\textheight]{%
+                ../THESIS/content/figures/chapter2/20181010_032/20181010_032_power_frad.pdf}%
+            \gcaption{%
+                XP20181010.32: (top) input power and plasma stored energy\\%
+                (bottom) PID input, $f\ix{rad}$ and divertor heatload}
+        \end{column}%
+
+        \begin{column}{0.5\textwidth}%
+            \centering
+            \includegraphics[height=0.66\textheight]{%
+                ../THESIS/content/figures/chapter2/20181010_032/20181010_032_power_feedback_bottom.pdf}%
+            \gcaption{%
+                XP20181010.32: (top) PID value and valve activation\\%
+                (bottom) PID states: prop., int. and diff. at scale}
+        \end{column}%
+    \end{columns}%
+\end{frame}
 
 \begin{frame}
     \backgroundlogo
@@ -3046,6 +2988,25 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Detector Splitting}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[width=.5\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/detector_splitting_cut.pdf}
+            \gcaption{detector/aperture splitting $N=8$}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/kfactors_volumes_interpolations_comp_cut.pdf}
+            \gcaption{$V\ix{M}$ comparison for different segmentations}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
     \frametitle{Camera Geometry Sensitivity}
     \backgroundlogo%
 
@@ -3199,6 +3160,54 @@
 \end{frame}
 
 \begin{frame}
+    \backgroundlogo%
+    \frametitle{Phantoms: Statistics}
+
+    \only<1>{
+        \begin{flushleft}
+            \large\textbf{Isotropic Rings: $k\ix{ani}$ Scan for Single Ring at $0.8r\ix{a}$}
+        \end{flushleft}
+        \centering
+        \includegraphics[width=.9\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_single_ring_kani_scans2.png}
+        \gcaption{$k\ix{ani}$ scan of simple ring\\%
+                  (left) $k\ix{core}$ scan with $k\ix{edge}=1$ fixed %
+                  (right) $k\ix{edge}$ scan with $k\ix{core}=1$ fixed}
+    }
+
+    \only<2>{
+        \begin{flushleft}
+            \large\textbf{Isotropic Rings: Radial Scans}
+        \end{flushleft}
+        \centering
+        \includegraphics[width=.9\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_radius_scans2.png}
+        \gcaption{radial position scan of simple rings\\%
+                  (left) radial position scan of symmetric, single ring at $0.3-1.3r\ix{a}$\\%
+                  (right) radial scan of inner ring radius $0.4-1r\ix{a}$ for concentric rings; outer at $1.1r\ix{a}$}
+    }
+
+    \only<3,4>{
+        \begin{flushleft}
+            \large\textbf{Composite Distributions}
+        \end{flushleft}
+        \only<3>{
+            \vspace*{1em}
+            \centering
+            \includegraphics[width=0.95\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_x4575_cut.png}
+            \gcaption{phantom radiation profiles; single, gaussian feature at (left) $R=$\SI{4.75}{\meter} and (right) $R=$\SI{5.75}{\meter}; both at $Z=0$}
+        }
+        \only<4>{
+            \centering
+            \includegraphics[width=0.95\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_pos_mesh_x4575_kcore_scans2.png}
+            \gcaption{$k\ix{core}$ scan for previous phantoms with features at (left) $R=$\SI{4.75}{\meter} and (right) $R=$\SI{5.75}{\meter}}
+        }
+    }
+\end{frame}
+
+\begin{frame}
     \frametitle{Tomography: Artificial Cameras}
 
     \begin{columns}
@@ -3274,7 +3283,7 @@
         \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR0.8_fsR1.1_mx1.0e+06_aniM4_3.0_20.0_nT15_nW2_nigs1_times0.11.png}
         \gcaption{bright SOL ring + core anistropy, $k\ix{ani}=\{3, 20\}$}
     }
-    \only<2-3>{
+    \only<2>{
         \textbf{Homogeneous Distribution:}
         \centering
         \includegraphics[width=\textwidth]{../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_blind_test_ones_mx1.0e+06_aniM3_1.0_1.0_nigs1_times0.11.png}
@@ -3289,6 +3298,36 @@
     % TP: Purpose: confirms algorithm doesn't generate artificial patterns or structures from noise
     % TP: Result: reconstruction remains uniform within ±5%, validates that regularization doesn't impose false structure
     % TP: Importance: edge cases reveal algorithm limitations and guide operational parameter selection
+\end{frame}
+
+\begin{frame}
+    \frametitle{Line-of-Sight Sensitivity Evaluation}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Weighted deviation:}%
+            \begin{align*}
+                \varphi\left(t\right)=&1-\frac{\left\|P\ix{pred}-P\ix{rad}\right\|\left(t\right)}{P\ix{rad}\left(t\right)}\\%
+                \vartheta=&\frac{1}{T}\int_{T}\varphi\left(t\right)\diff t%
+            \end{align*}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+                \centering%
+                \includegraphics[width=.9\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/wghtd_dev_best_C[_8_7_23]_overview.pdf}
+                \gcaption{(top) weighted deviation norm and example for $S\ix{HBC}=\{8,7,23\}$;\\%
+                          (bottom) full dataset for $M=3$ selection sets (HBC)}
+            }
+            \only<2>{
+                \includegraphics[width=.75\textwidth]{%
+                    ../THESIS/content/figures/chapter3/training/weighted_deviation_sensitivity_combs_comb.pdf}
+                \gcaption{LOS sensitivity by weighted deviation measurement for $M=\{3,5,7\}$}
+            }
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
