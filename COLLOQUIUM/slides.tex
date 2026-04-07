@@ -65,7 +65,7 @@
             \centering
             \includegraphics[width=0.9\textwidth]{%
                 ../THESIS/content/figures/chapter0/w7x.pdf}
-            \source{IPP, Risse et al.\cite{Risse2018}}
+            \source{IPP, Risse et al., 2018\cite{Risse2018}}
         \end{column}
     \end{columns}
 
@@ -108,7 +108,7 @@
             \centering
             \includegraphics[width=0.75\textwidth]{%
                 ../THESIS/content/figures/chapter0/schneiderRadLoss.pdf}
-            \source{R. Schneider et al.\cite{Schneider2006}\\%
+            \source{R. Schneider et al., 2006\cite{Schneider2006}\\%
                     $P\ix{rad}/(Vn\ix{e}n\ix{imp})$ as a function of electron temperature}
         \end{column}
     \end{columns}
@@ -139,11 +139,13 @@
 
     \visible<2>{
     \begin{center}
-    \includegraphics[height=0.45\textheight]{../THESIS/content/figures/chapter2/divertor_effenberg_reduced.pdf}
-    \source{%
-        F. Effenber et al., 2019\cite{Effenberg2019_seed}\\%
-        Divertor elements HM 1-5: up (1) down (0) \& gas boxes, bolometry system and connecting field lines}
-    \end{center}
+        \includegraphics[height=0.425\textheight]{%
+            ../THESIS/content/figures/chapter2/divertor_effenberg_reduced.pdf}
+        \\%
+        \tiny\textcolor{hgfgray50}{%
+            F. Effenber et al., 2019\cite{Effenberg2019_seed}\\%
+            Divertor elements HM 1-5: up (1) down (0) \& gas boxes, bolometry system and connecting field lines}
+    \end{center}%
     }
 
     % TP: W7-X island divertor concept: 5 helical island chains (m/n=5/5) at plasma edge intercept heat and particle flux
@@ -733,7 +735,7 @@
             ../THESIS/content/figures/chapter4/MFR/new/phantom_statistics_comp_pow.png}
         \gcaption{%
             integrated phantom radiation profile reconstruction statistics\\%
-            (left, top) $P\ix{rad}$ extrapolation (bottom) 2D integrated power $phan$ vs $tom$\\%
+            (left, top) $P\ix{rad}$ extrapolation (bottom) 2D integrated power $phan$ vs $tom$\\%f
             (right) phantom $P\ix{rad}$ vs 2D core (top) and (bottom) SOL power \& regression}
     }
     \only<2>{
@@ -867,20 +869,24 @@
                 \centering
                 \includegraphics[width=\textwidth]{%
                     ../THESIS/content/figures/chapter4/MFR/new/tomogram_power_balance_20181010.032_cut1.png}
-                \gcaption{XP20181010.32: experimental data; quantities towards $P\ix{bal}$}
             }
         \end{column}
         \begin{column}{0.5\textwidth}
-            \only<3>{
-                \vspace{1cm}
+            \visible<3>{
+                \vspace{-1.2cm}
                 \centering
                 \includegraphics[width=\textwidth]{%
                     ../THESIS/content/figures/chapter4/MFR/new/tomogram_power_balance_20181010.032_cut2.png}
-                \gcaption{XP20181010.32: calculated $P\ix{bal}$: continous data and using $P\ix{2D}$ core and total from tomograms}
             }
         \end{column}
     \end{columns}
 
+    \visible<2-3>{
+    \centering
+    \tiny\textcolor{hgfgray50}{%
+        XP20181010.32: (left) experimental data; quantities towards $P\ix{bal}$\\
+        (right) calculated $P\ix{bal}$ - continous data and using $P\ix{2D}$ core and total from tomograms}
+    }
 \end{frame}
 
 \begin{frame}
@@ -1043,7 +1049,7 @@
     \only<2>{
         \begin{center}
             {\Huge Sin é, a chairde.}\newline%
-            \gcaption{Shin 'e: sil, ə 'xar$^{j}$., d'ə sil.}
+            \gcaption{That's all, folks.}
         \end{center}
     }
 
@@ -1064,10 +1070,6 @@
 \end{frame}
 
 % @TODO:
-% - Plot of phantoms used in statistics
-% - Plot of other feedback experiments
-% - Better Ansatz for power balance new W7-X?
-% - More Camera Geometry
 % - More experimental tomography results
 % - Scaling attempts
 
@@ -1112,12 +1114,17 @@
             ../THESIS/content/figures/chapter1/Fusion_ntau_wiki.png}
         \gcaption{Lawson criterion for different plasma compositions - minimum value of required for self-heating\cite{WikiLawson}}
     }
-
     \only<2>{
         \centering
         \includegraphics[width=.66\textwidth]{%
             ../THESIS/content/figures/chapter1/Fustion_triple-product_diagram_Horvath.png}
         \gcaption{Lawson criterion of important magnetic confinement fusion experiments\cite{WikiLawson}}
+    }
+    \only<3>{
+        \centering
+        \includegraphics[width=.66\textwidth]{%
+            ../THESIS/content/figures/chapter0/w7x_lawson_dinklage.png}
+        \gcaption{Triple product for W7-X campgaigns; Dinklage, Litaudon et al., 2023\cite{Litaudon2023}}
     }
 \end{frame}
 
@@ -1126,7 +1133,7 @@
     \centering
     \includegraphics[width=.9\textwidth]{%
         ../THESIS/content/figures/chapter1/coils.pdf}
-    \source{W7-X magnetic coils, Geiger et al\cite{Geiger2015}}
+    \source{W7-X magnetic coils, Geiger et al., 2015\cite{Geiger2015}}
 \end{frame}
 
 \begin{frame}
@@ -1711,6 +1718,105 @@
     % TP: Benchmark test with laser diode: confirmed 13.6ms acquisition latency, validated timing chain from photon to digital signal
     % TP: Future improvements: reduce acquisition to <10ms through hardware upgrades, implement predictive algorithms to compensate for plasma response delay
     % TP: Comparison: Thomson scattering ~50ms, interferometry ~1ms, but bolometry measures the actual control variable (radiation)
+\end{frame}
+
+\begin{frame}
+    \frametitle{XP20180920.29: Feedback Progression}%
+    \backgroundlogo%
+
+    \begin{columns}%
+        \begin{column}{0.5\textwidth}%
+            \only<1>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/20180920_029/20180920_029_power_top.pdf}%
+            \gcaption{%
+                XP20180920.29: (top) input power and plasma stored energy (bottom) $P\ix{rad}$ and predictions}
+            }
+        \end{column}%
+
+        \begin{column}{0.5\textwidth}%
+            \only<1>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/20180920_029/20180920_029_frad_activation.pdf}%
+            \gcaption{%
+                XP20180920.29: (top) feedback activation (bottom) $f\ix{rad}$ and predictions}
+            }
+
+        \end{column}%
+    \end{columns}%
+
+    \only<2>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter2/20180920_029/20180920_029_chord.pdf}%
+        \gcaption{%
+            XP20180920.29: chord brightness profiles}
+    }
+    \only<3>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter2/20180920_029/20180920_029_chord_contour.pdf}%
+        \gcaption{%
+            XP20180920.29: chord brightness profiles}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{XP20180920.31: Feedback Progression}%
+    \backgroundlogo%
+
+    \begin{columns}%
+        \begin{column}{0.5\textwidth}%
+            \only<1>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/20180920_031/20180920_031_power_feedback_top.pdf}%
+            \gcaption{%
+                XP20180920.31: (top) input power and plasma stored energy (bottom) $P\ix{rad}$ and predictions}
+            }
+            \only<2>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/20180920_031/20180920_031_dens_chord_frad_div_bottom.pdf}%
+            \gcaption{%
+                XP20180920.31: (top) chord brightness (bottom) $f\ix{rad}$ and prediction}
+            }
+        \end{column}%
+
+        \begin{column}{0.5\textwidth}%
+            \only<1>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/20180920_031/20180920_031_dens_chord_frad_div_top.pdf}%
+            \gcaption{%
+                XP20180920.31: (top) density profiles (bottom) temperature profiles}
+            }
+            \only<2>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter2/20180920_031/20180920_031_power_feedback_bottom.pdf}%
+            \gcaption{%
+                XP20180920.31: (top) feedback activation (bottom) PID values}
+            }
+        \end{column}%
+    \end{columns}%
+
+    \only<3>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter2/20180920_031/20180920_031_chord.pdf}%
+        \gcaption{%
+            XP20180920.31: chord brightness profiles}
+    }
+    \only<4>{
+        \centering
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter2/20180920_031/20180920_031_chord_contour.pdf}%
+        \gcaption{%
+            XP20180920.31: chord brightness profiles}
+    }
 \end{frame}
 
 \begin{frame}
@@ -2991,12 +3097,13 @@
     \frametitle{Detector Splitting}
     \backgroundlogo%
 
+    \only<1>{
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \centering
-            \includegraphics[width=.5\textwidth]{%
-                ../THESIS/content/figures/chapter4/MFR/detector_splitting_cut.pdf}
-            \gcaption{detector/aperture splitting $N=8$}
+            \includegraphics[width=.8\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/detector_splitting.pdf}
+            \gcaption{detector/aperture splitting $N=2-8$, $T=2-8$}
         \end{column}
         \begin{column}{0.5\textwidth}
             \includegraphics[width=\textwidth]{%
@@ -3004,6 +3111,18 @@
             \gcaption{$V\ix{M}$ comparison for different segmentations}
         \end{column}
     \end{columns}
+    }
+
+    \only<2>{
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/kfactors_volumes_interpolations_comp.pdf}
+        \gcaption{$K\ix{M}$, $V\ix{M}$ comparison for different segmentations}
+    }
+    \only<3>{
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/kfactors_volumes_interpolations_close_up.pdf}
+        \gcaption{$K\ix{M}$, $V\ix{M}$ comparison for different segmentations}
+    }
 \end{frame}
 
 \begin{frame}
@@ -3164,6 +3283,13 @@
     \frametitle{Phantoms: Statistics}
 
     \only<1>{
+        \centering
+        \includegraphics[width=.8\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/ring_R0.5_mx1.0e+06_aniM3_10.0_10.0_nigs1_times0.11.png}
+        \gcaption{%
+            single ring at $0.5r\ix{a}$, phantom emissivity and reconstruction; $k\ix{ani}=\{10, 10\}$}
+    }
+    \only<2>{
         \begin{flushleft}
             \large\textbf{Isotropic Rings: $k\ix{ani}$ Scan for Single Ring at $0.8r\ix{a}$}
         \end{flushleft}
@@ -3174,8 +3300,14 @@
                   (left) $k\ix{core}$ scan with $k\ix{edge}=1$ fixed %
                   (right) $k\ix{edge}$ scan with $k\ix{core}=1$ fixed}
     }
-
-    \only<2>{
+    \only<3>{
+        \centering
+        \includegraphics[width=.8\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/dfs_0.6_1.05_aniM3_1.0_1.0_moc.png}
+        \gcaption{%
+            double ring at $0.6r\ix{a}$ and $1.05r\ix{a}$, phantom emissivity and reconstruction; $k\ix{ani}=\{1, 1\}$}
+    }
+    \only<4>{
         \begin{flushleft}
             \large\textbf{Isotropic Rings: Radial Scans}
         \end{flushleft}
@@ -3186,19 +3318,18 @@
                   (left) radial position scan of symmetric, single ring at $0.3-1.3r\ix{a}$\\%
                   (right) radial scan of inner ring radius $0.4-1r\ix{a}$ for concentric rings; outer at $1.1r\ix{a}$}
     }
-
-    \only<3,4>{
+    \only<5,6>{
         \begin{flushleft}
             \large\textbf{Composite Distributions}
         \end{flushleft}
-        \only<3>{
+        \only<5>{
             \vspace*{1em}
             \centering
             \includegraphics[width=0.95\textwidth]{%
                 ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_x4575_cut.png}
             \gcaption{phantom radiation profiles; single, gaussian feature at (left) $R=$\SI{4.75}{\meter} and (right) $R=$\SI{5.75}{\meter}; both at $Z=0$}
         }
-        \only<4>{
+        \only<6>{
             \centering
             \includegraphics[width=0.95\textwidth]{%
                 ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_pos_mesh_x4575_kcore_scans2.png}
@@ -3298,6 +3429,130 @@
     % TP: Purpose: confirms algorithm doesn't generate artificial patterns or structures from noise
     % TP: Result: reconstruction remains uniform within ±5%, validates that regularization doesn't impose false structure
     % TP: Importance: edge cases reveal algorithm limitations and guide operational parameter selection
+\end{frame}
+
+\begin{frame}
+    \frametitle{Experimental Tomography: XP20180725.44}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/20180725_044_power_feedback.pdf}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+            \centering
+            \includegraphics[height=\textheight]{%
+                ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/20180725_044_dens_chord_frad_div_2.pdf}
+            }
+
+            \only<3>{
+                \centering
+                \includegraphics[height=\textheight]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/2D/tomo_20180725.044aniM4_2.00_0.25_nT15_nW2_reduced_nigs1_sN8_30x20x150_1.25_3.00_mfr1D.png}
+                \gcaption{XP20180725.44: experimental reconstruction $k\ix{ani}=\{2, 0.25\}$}
+
+                {\small\color{ippdark}{$t=3.0s$}}
+            }
+            \only<4>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/2D/tomo_20180725.044aniM4_2.00_0.25_nT15_nW2_reduced_nigs1_sN8_30x20x150_1.25_3.10_mfr1D.png}
+                \gcaption{XP20180725.44: experimental reconstruction $k\ix{ani}=\{2, 0.25\}$}
+
+                {\small\color{ippdark}{$t=3.1s$}}
+            }
+            \only<5>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/2D/tomo_20180725.044aniM4_2.00_0.25_nT15_nW2_reduced_nigs1_sN8_30x20x150_1.25_3.20_mfr1D.png}
+                \gcaption{XP20180725.44: experimental reconstruction $k\ix{ani}=\{2, 0.25\}$}
+
+                {\small\color{ippdark}{$t=3.2s$}}
+            }
+            \only<6>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/2D/tomo_20180725.044aniM4_2.00_0.25_nT15_nW2_reduced_nigs1_sN8_30x20x150_1.25_3.30_mfr1D.png}
+                \gcaption{XP20180725.44: experimental reconstruction $k\ix{ani}=\{2, 0.25\}$}
+
+                {\small\color{ippdark}{$t=3.3s$}}
+            }
+            \only<7>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/2D/tomo_20180725.044aniM4_2.00_0.25_nT15_nW2_reduced_nigs1_sN8_30x20x150_1.25_3.40_mfr1D.png}
+                \gcaption{XP20180725.44: experimental reconstruction $k\ix{ani}=\{2, 0.25\}$}
+
+                {\small\color{ippdark}{$t=3.4s$}}
+            }
+            \only<8>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/2D/tomo_20180725.044aniM4_2.00_0.25_nT15_nW2_reduced_nigs1_sN8_30x20x150_1.25_3.50_mfr1D.png}
+                \gcaption{XP20180725.44: experimental reconstruction $k\ix{ani}=\{2, 0.25\}$}
+
+                {\small\color{ippdark}{$t=3.5s$}}
+            }
+            \only<9>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/2D/tomo_20180725.044aniM4_2.00_0.25_nT15_nW2_reduced_nigs1_sN8_30x20x150_1.25_3.60_mfr1D.png}
+                \gcaption{XP20180725.44: experimental reconstruction $k\ix{ani}=\{2, 0.25\}$}
+
+                {\small\color{ippdark}{$t=3.6s$}}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Experimental Tomography: XP20181010.32}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/tomo_20181010.032aniM4_2.00_0.30_nT15_nW6_reduced_nigs1_sN8_30x20x150_1.35_0.62_mfr1D.png}
+                \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.3\}$}
+
+                {\small\color{ippdark}{$f\ix{rad}\sim33\%$, $t=0.6s$}}
+            }
+            \only<2>{
+            \centering
+            \includegraphics[width=\textwidth]{%
+                ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/tomo_20181010.032aniM4_2.00_0.30_nT15_nW6_reduced_nigs1_sN8_30x20x150_1.35_2.21_mfr1D.png}
+                \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.3\}$}
+
+                {\small\color{ippdark}{$f\ix{rad}\sim90\%$, $t=2.2s$}}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<1>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+                    tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.15_mfr1D.png}
+                \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.3\}$}
+
+                {\small\color{ippdark}{$f\ix{rad}\sim66\%$, $t=1.1s$}}
+            }
+            \only<2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/tomo_20181010.032aniM4_2.00_0.30_nT15_nW6_reduced_nigs1_sN8_30x20x150_1.35_3.42_mfr1D.png}
+                \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.3\}$}
+
+                {\small\color{ippdark}{$f\ix{rad}\sim100\%$, $t=3.4s$}}
+            }
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -3707,6 +3962,122 @@
     % TP: Feedback performance: 150-400ms total loop time sufficient for radiation control (timescale ~1-10s)
     % TP: Comparison: faster than alternative methods (DI feedback ~500ms, filterscope ~300ms)
     % TP: Importance: low latency enables responsive control, prevents overshoot and oscillations in feedback loop
+\end{frame}
+
+\begin{frame}
+    \frametitle{XP20181010.32}
+    \backgroundlogo%
+
+    \only<1>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_0.60_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=0.6s$}}}
+    \only<2>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_0.70_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=0.7s$}}}
+    \only<3>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_0.80_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=0.8s$}}}
+    \only<4>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_0.90_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=0.9s$}}}
+    \only<5>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.00_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=1.0s$}}}
+    \only<6>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.10_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=1.1s$}}}
+    \only<7>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.20_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=1.2s$}}}
+    \only<8>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.30_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=1.3s$}}}
+    \only<9>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.40_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=1.4s$}}}
+    \only<10>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.50_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=1.5s$}}}
+    \only<11>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.60_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=1.6s$}}}
+    \only<12>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.70_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=1.7s$}}}
+    \only<13>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.80_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=1.8s$}}}
+    \only<14>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_1.90_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=1.9s$}}}
+    \only<15>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_2.00_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=2.0s$}}}
+    \only<16>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_2.10_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=2.1s$}}}
+    \only<17>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_2.20_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=2.2s$}}}
+    \only<18>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_3.20_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=3.2s$}}}
+    \only<19>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_3.25_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=3.25s$}}}
+    \only<20>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_3.30_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=3.3s$}}}
+    \only<21>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_3.35_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=3.35s$}}}
+    \only<22>{\centering\includegraphics[width=.66\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/tomo/20181010.032/2D/%
+        tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_3.40_mfr1D}
+        \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
+        {\small\color{ippdark}{$t=3.4s$}}}
 \end{frame}
 
 \backupend
