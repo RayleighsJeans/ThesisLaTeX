@@ -59,6 +59,10 @@
                 \color{ippdark}{%
                     \Rightarrow\,\,Dissipation of large fraction of heat load (energy) in scrape-off layer and particle flux to the target through \underline{\textit{detachment}}}
             }
+            \visible<3>{
+                \color{ippdark}{%
+                    \Rightarrow\,\,\underline{\textit{Detachment}}}
+            }
         \end{column}
 
         \begin{column}{0.5\textwidth}
@@ -350,16 +354,18 @@
         \begin{column}{0.5\textwidth}
             \textbf{Optimal Channel Selection:}
             \begin{itemize}
-                \visible<2-6>{\item Robust selection achieves $\ge$85\% prediction accuracy}
-                \visible<3-6>{\item No single "best" set exists}
-                \visible<4-6>{\item VBC channels generally outperform HBC for edge sensitivity}
-                \visible<5-6>{\item 3-5 channels sufficient for reliable $P_{\text{pred}}$}
+                \visible<2-3>{
+                    \item Robust selection achieves $\ge$85\% prediction accuracy
+                    \item No single, dominating set exists
+                    \item VBC channels generally outperform HBC for edge sensitivity
+                    \item 5+ channels sufficient for reliable $P_{\text{pred}}$
+                }
             \end{itemize}
 
-            \visible<6>{
+            \visible<3>{
             \vspace{0.5em}
             \begin{alertblock}{Takeaway}
-                Detectors viewing close to separatrix and SOL most viable for feedback purposes
+                Detectors viewing close to separatrix and X-poins most viable for feedback purposes
             \end{alertblock}
             }
         \end{column}
@@ -468,7 +474,9 @@
                 \pmb{\Delta}&=\pmb{\nabla}\ix{r}^{\intercal}(\cdot)\pmb{\nabla}\ix{r}+\pmb{\nabla}_{\vartheta}^{\intercal}(\cdot)\pmb{\nabla}_{\vartheta}\\%
                 \pmb{\nabla}_{\vartheta}&\to\pmb{\widetilde{\nabla}}_{\vartheta}=\frac{1}{k\ix{ani}\Delta r}\mathbf{D}\ix{dia}^{(0)}\pmb{\nabla}_{\vartheta}
             \end{align*}
+            }
 
+            \visible<3-4>{
             \begin{itemize}
                 \item $k\ix{ani}<1$: favours anisotropy
                 \item $k\ix{ani}>1$: favours smooth emissivity
@@ -482,7 +490,7 @@
                 \begin{itemize}
                     \item Robust to noisy data
                     \item Stable convergence
-                    \item Incorporates a priori knowledge
+                    \item A priori (an-)isotropy
                 \end{itemize}
             \end{block}
            }
@@ -1094,7 +1102,7 @@
 
         \begin{column}{0.5\textwidth}
             \begin{itemize}
-                \item $n\ix{x}$ the number densities and $T$ the equilibrated temperatures of electrons, ions and atomic hydrogen 
+                \item $n\ix{x}$ the number densities and $T$ the equilibrated temperatures of electrons, ions and atomic hydrogen
                 \item $f\ix{H}=n\ix{H}/n\ix{e}$ the hydrogen dilution
                 \item $f\ix{tot}=\sum_{i}n\ix{i}/n\ix{e}$ the ion-electron Dilution
                 \item $E_{\alpha}$ kinetic alpha particle energy
@@ -1322,7 +1330,7 @@
         \end{column}
     \end{columns}
     }
-    
+
     \only<2>{
         \begin{flushleft}
             \textbf{Neoclassical:}
@@ -1333,7 +1341,7 @@
             \vec{\Gamma}\ix{q}=\sum^{O}_{x}\,D\ix{x}&\left(-\nabla n\ix{q}+n\ix{q}q\left[\frac{\nabla n}{n}-H\ix{x}\frac{\nabla T}{T}\right]\right)=\\
             &-D\ix{neo}\nabla n\ix{q}+v\ix{neo}n\ix{q}
         \end{align*}
-        
+
         \begin{flushleft}
             \textbf{Anomalous:}
         \end{flushleft}
