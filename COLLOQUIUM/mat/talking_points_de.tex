@@ -41,9 +41,9 @@ am Wendelstein 7-X\\[1em]
 \section{TITELFOLIE + INHALTSVERZEICHNIS}
 
 \begin{itemize}
-\item Bevor wir anfangen möchte ich gerne den Unterton der nächsten 90min vorgeben: Zitat französischer, zeitgenössischer Philosophen Guy-Man de Homem Christo und Thomas Bangalter: "It's been much too long"
+\item Bevor wir anfangen möchte ich gerne den Unterton der nächsten 90min vorgeben: Zitat französischer, zeitgenössischer Philosophen Guy-Man de Homem-Christo und Thomas Bangalter: "It's been much too long"
 \item Willkommen und vielen Dank für Ihr zahlreiches Erscheinen zu meinem Promotionskolloquium.
-\item Titel meiner Arbeit: ..., zwar etwas ausladent, aber es soll heute im Besonderen um die Bolometer-Diagnostik am Stellarator Wendelstein 7-X und dessen Echtzeit-Auswertung plus tomographische Analyse gehen
+\item Titel meiner Arbeit: ..., zwar etwas ausladent, aber es soll heute im Besonderen um die Bolometer-Diagnostik am Stellarator Wendelstein 7-X und die von mir eingeführte Echtzeit-Auswertung, sowie tomographische Analyse von synthetischen und experimentellen Daten gehen
 \item \textbf{KLICK}
 \item Vortrag stelle ich zentrale und kritische Herausforderungen sowie Aufgaben meiner Arbeit vor: Design, Implementierung und Einsatz eines Bolometer-basierten Echtzeit-Feedbacks, die parametrisierte Optimierung und Sensitivitätsanalyse der Kanalauswahl sowie Validierung und Anwendung einer optimierten Tomographie-Methode für das Bolometer-System an W7-X
 \end{itemize}
@@ -54,7 +54,7 @@ am Wendelstein 7-X\\[1em]
 
 \begin{itemize}
 \item Energiegewinnung aus D-T-Kernfusionen in Hochtemperaturplasmen ist sauber und Rohmaterialien sind weithin ausreichend verfügbar - Deuterium aus Meerwasser, Tritium aus Lithium-Mantel nach Initialzünding
-\item Notwendiges Niveau an Effizienz und Plasmanergie durch Lawson-Kriterium Tripleprodukt definiert: $ n_e\cdot\tau_E\cdot T\geq3\times10^{21} $ keVs/$m^3$ für Netto-Energiegewinn Q>1
+\item Notwendiges Niveau an Effizienz und Plasmanergie durch Lawson-Kriterium bzw. Tripleprodukt definiert: $ n_e\cdot\tau_E\cdot T\geq3\times10^{21} $ keVs/$m^3$ für Netto-Energiegewinn Q>1
 \item bei Magnetischer Einschluss $\sim$2,5T bei W7-X erfordert Grössenordnungen T $\sim$ 10-20 keV (100-200 Millionen °C) und Einschlusszeit $\tau_E\sim$ 1-10s
 \item \textbf{KLICK}
 \item Herausforderung: Management der Wärmelasten auf plasmazugewandten Komponenten während langer Pulse (bis zu 30 Minuten an W7-X geplant)
@@ -63,11 +63,14 @@ am Wendelstein 7-X\\[1em]
 \item Prozess Detachment - Ablösen des Plasma-/rands vom Divertor wobei kinetisch und durch Strahlung ein Grossteil der Energie abgebaut wird
 \item \textbf{KLICK}
 \item Manipulation der Plasmaprofile, speziell im Rand/SOL um Leistungsverlust (Abstrahlung) und Transport über Separatrix hin zum Divertor zu minimieren
-\item Kohlenstoff und Sauerstoff sind intrinsische Verunreinigungen aus Wandwechselwirkungen - Kohlenstoff dominiert um Faktor $10^2\times$ über Saürstoff in relevanten Dichte- und Temperaturbereichen im Rand
-\item Strahlungskühlungsfunktion $ P_{rad} /(V \cdot n_e \cdot n_imp ) $ hat Maxima bei unterschiedlichen Temperaturen für jede Verunreinigung: C Maximum $\sim $ 10-50 eV (Rand), O Maximum $\sim $ 100 eV
+\item Bild: Strahlungseffizient aus Linienstrahlung für verschiedene Verunreinigung über Temperatur
+\item Strahlungskühlung $P_{rad}/(V\,n_e\,n_imp)$ hat Maxima bei unterschiedlichen Temperaturen für jedes Element: C Maximum $\sim$10-50\,eV (Rand), O Maximum $\sim$100\,eV $/rightarrow$ Kohlenstoff Potential für Detachment
+\item beides intrinsische Verunreinigungen vorranging aus Wandwechselwirkungen - Kohlenstoff dominiert um Faktor $10^2\times$ über Sauerstoff in relevanten Dichte- und Temperaturbereichen im Rand
 \item \textbf{KLICK}
-\item Verunreinigungseinspeisung-Strategie: Injektion von niedrig-Z (He, N$_2$ ) oder hoch-Z (Ne, Ar) Elementen zur Steigerung der Strahlung im Plasmarand ohne Akkumulation dieser im Plasmakern -> Störung der Dynamik und pontentieller Strahlungskollaps
-\item Erster Einsatz erfordert Validierung und zum Schutz der Maschine und besseres Verständnis: Injektion und Feedback mit Arbeitsgas
+\item genereller Ansatz: Verunreinigungseinspeisung - Injektion von bspw. niedrig-Z (He, N$_2$) Elementen zur Steigerung der Strahlung im Plasmarand, Einbringen extrinsischer Verunreinigungen
+\item \textbf{KLICK}
+\item ohne Akkumulation dieser im Plasmakern -> Störung der Dynamik und pontentieller Strahlungskollaps
+\item Erster Einsatz erfordert Validierung und zum Schutz der Maschine und besseres Verständnis: Injektion und Feedback mit Arbeitsgas, so Profiländerung, Kohlenstoffkühlung
 \item Erfordert Echtzeitkontrolle, potentiell mit Strahlungsverlust - Motivation für Bolometer-Feedbacksystem
 \end{itemize}
 
@@ -76,15 +79,18 @@ am Wendelstein 7-X\\[1em]
 \subsection{System}
 
 \begin{itemize}
-\item Konzept nicht neu, Geplant für ITER, DEMO, eingesetzt in existierenden Forschungsreaktoren
+\item Konzept nicht neu, Durchgeführt an anderen Forschungsreaktoren und geplant für ITER, DEMO
 \item \textbf{KLICK}
-\item Annahme: Bolometer ist Feedback-Diagnostik und Aktuator ist Piezoventil-Box für thermischem Gaseinlass
-\item Gaseinspeisung: 10 Piezoventile für präzise Kontrolle, schnelle Injektion (Antwortzeit <50ms)
+\item Annahme: Bolometer ist Mess-Diagnostik und Aktuator ist Piezoventil-Box für thermischem Gaseinlass
+\item Sehen hier stark reduziertes Modell von W7-X, nur Andeutung der 5 vollsymmetrischen Module inkl. Divertoren oben und unten, unterbrochen jeweils durch Dreiecksebene in der sich das Bolometer befindet
+\item Zwei Gas-Boxen inkl. Verunreinigungs-Spektroskopie und Schema der  umlaufenden Feldlinien auf welchen injiziert wird
 \item Separatrix und X-Punkte sind Strahlungs-Hotspots: höhere Emissivität aufgrund von Linienstrahlung der Verunreinigung wie vorher erkannt und Plasmaprofilen dort (niedrigen Temperaturen)
-\item Verbindungslängen $L_c$=100-1000m; effiziente Strahlungskühlung entlang Feldlinien
-\item Bolometer-Kameras strategisch in Dreiecksebene auch auf X-Punkte ausgerichtet für optimale Sensitivität gegenüber Ablösungsübergängen
+\item Sichtlinien der Multikamerasystems des Bolometer in der Dreiecksebene decken X-Punkte, Separatrix und mag. Inseln vollständig ab für optimale Sensitivität gegenüber Ablösungsübergängen
 \item \textbf{KLICK}
 \item Feedback-System nicht exklusiv für Bolometer: Prozess generalisiert und anwendbar auf mehrere Variablen
+\item System verwendet für die detaillierte Steuerung über alle Plasmaparameter einen PID bzw PIDs - Standard in Anlagenkontrolle bzw. in Steuerungstheorie
+\item Rechts Piezoventilbox, in Divertornähe Gaseinlass inkl. Schema der Spektroskopie-Sichtlinien mit räumlich-radialer Auflösung
+\item \textbf{KLICK}
 \item Zwei Vorhersage-Proxies entwickelt: $P_{pred}^{1}$ geometriegewichtet (nutzt mehrere Kanäle mit räumlichen Gewichten), $P_{pred}^{2} $ Einzelkanal (einfachste Implementierung)
 \item \textbf{KLICK}
 \item Beispiel-Kanalauswahl: VBC S={61,65,73,78,86} erreicht zBsp. ohne a priori Wissen $\geq$85\% Vorhersagegenauigkeit, beobachtet Separatrix/SOL-Region im speziellen
@@ -96,22 +102,23 @@ am Wendelstein 7-X\\[1em]
 
 \begin{itemize}
 \item Prozess Verlauf natürlich in meheren Schritten - mit mehr und weniger Erfolg
-\item Durchbruch-Experiment: stabile Entladung mit Wasserstoff-Feedback (vorherige Versuche nicht erfolgreich im eigentlichen Sinn; Kollaps, kein Detachment)
+\item Durchbruch-Experiment: stabile 'Hochleistungs'-Feedback-Entladung mit Wasserstoff-Einlass
+\item Dauer: $\sim$9s Feedback-Kontrolle, $P_{ECRH}$=6.25\,MW, Gesamtenergie 55\,MJ
 \item \textbf{KLICK}
 \item Zielpunkt Strahlungsverlust mit $P_{pred}^{1}$ $f_{rad}\sim$90\% aufrechterhalten, Spitzen bis 100\% während übergängen
 \item \textbf{KLICK}
 \item Vorhersagegenauigkeit: $P_{pred}^{1}$ verfolgt $P_{rad}$ innerhalb 10-15\% über gesamte Entladung, validiert Proxy-Konzept
 \item Sogar $P_{pred}^{2} $ mit ähnlicher Genaugikeit zu $P_{rad}$ ohne Dimensionierung und Ableitung
 \item \textbf{KLICK}
-\item Dauer: $\sim$9s Feedback-Kontrolle, $P_{ECRH}$=6.25\,MW, Gesamtenergie 55\,MJ
-\item Plasmanergie: $W_{dia}\sim$0.7-0.8MJ trotz hoher Strahlung aufrechterhalten, gute Einschlusszeit angedeutet, minimale Oszillationen
-\item Vorhersage-$f_{rad}$ überschätzt 'tatsächlichen' Verlustwert konstant
-\item Wärmelast-Reduktion: Faktor $\geq2\times$ erreicht (von $\sim$4\,MW auf <2\,MW), kritisch für Divertor
+\item Plasmanergie: Unter konstanter Heizleistung, $W_{dia}\sim$ stabil inkl. minimaler Oszillationen trotz hoher Strahlung aufrechterhalten, gute Einschlusszeit angedeutet
+\item Vorhersage-$f_{rad}$ überschätzt 'tatsächlichen' Verlustwert konstant $\sim$10\%
+\item Divertor Wärmelast-Reduktion: Faktor $\geq2\times$ erreicht (von $\sim$4\,MW auf <2\,MW)
 \item \textbf{KLICK}
 \item Strahlungsfeedback kann $f_{rad}\sim0.9-1$ inkl. Oszillationen aufrechterhalten und Divertor-Wärmelast signifikant reproduziert
 \item \textbf{KLICK}
-\item Filterscope-Messung: C$^2$-Spektroskopie zeigt Ablösung; Erscheint ab $f_{rad}\sim$50\%, vollständige Ablösung bei $f_{rad}$>90\%
-\item Zusammenfassung + Reaktorrelevanz: Demonstriert Szenario sehr gut anwendbar, Langzeitpotential, hohe Strahlung ohne Einschlussdegradation
+\item Spektroskopie-Messung exklusiv für C$^2$ Linienstrahlung zeigt Ablösung; Erscheint ab $f_{rad}\sim$50\%, vollständige Ablösung bei $f_{rad}$>80\% mit Oszillationen hin zu 100\% und weiterer Verschiebung
+\item \textbf{KLICK}
+\item Zusammenfassung: Demonstriert Szenario sehr gut anwendbar, Langzeitpotential, hohe Strahlung ohne Einschlussdegradation
 \end{itemize}
 
 \section{LOS-SENSITIVITÄT}
@@ -123,21 +130,25 @@ am Wendelstein 7-X\\[1em]
 \item Anschliessende Frage: Welche Bolometer-Kanäle sind am sensitivsten für Plasmaparameteränderungen oder am besten geeignet für Feedback?
 \item Ziel: Optimale Kanalauswahl für Echtzeit-Feedback-Kontrolle
 \item \textbf{KLICK}
-\item Systematischer Ansatz: Kanal-für-Kanal-Vergleich über alle Entladungspaare, räumliche Kartierung der Sensitivität, Variation der Grösse der Sichtlinien-Auswahl
+\item Systematischer Ansatz: Räumliche Kartierung der Sensitivität,
 \item \textbf{KLICK}
-\item Datensatz: 45+ Entladungspaare aus OP1.2b, Feedback Experimente (nicht nur $P_{rad}$)
+\item Datensatz: 45+ Entladungspaare aus OP1.2b, Feedback Experimente - nicht nur $P_{rad}$
 \item \textbf{KLICK}
-\item 5 Evaluierungsmetriken entwickelt, um verschiedene Aspekte der Kanalsensitivität zu quantifizieren
+\item 5 Evaluierungsmetriken entwickelt, um verschiedene Aspekte der Kanalsensitivität zu quantifizieren + Variation der Grösse der Sichtlinien-Auswahl
 \item Analyse-Workflow: Für jede Entladung, berechne Metrik für jede mögliche Kanalkombination und Kombinationsgrösse, aggregiere über Kombinationen und Integriere für zentrales Sensitivitätsprofil
 \item \textbf{KLICK}
-\item Bilder beschreiben, räumliche Kartierung: Sensitivität vs. $\rho_{\text{pol}}$
+\item Bilder beschreiben: Sensitivität vs. $\rho_{\text{pol}}$ ...
 \item \textbf{KLICK}
-\item Allgemein: robuste Kanalauswahl jederzeit $\sim$ 80\% Vorhersagegenauigkeit mit kleinen Fehlerbalken (m=5)
+\item Allgemein: robuste Kanalauswahl jederzeit $\sim$80\% Vorhersagegenauigkeit mit kleinen Fehlerbalken (m=5)
+\item \textbf{KLICK}
 \item Aussage über eine einzelne, hervorverstechende Kanalauswahl nicht möglich oder existiert nicht in diesem Rahmen
+\item \textbf{KLICK}
 \item Kernkanäle ( $\rho_{\text{pol}}$<0,8) zeigen niedrigere Sensitivität aufgrund flacher Strahlungsprofile - weniger Information über Plasmaänderungen
-\item Randkanäle ( $\rho_{\text{pol}}\sim$\,0,95-1,05) optimal für Feedback - erfassen Verunreinigungstransport und Strahlungsänderungen zürst
+\item \textbf{KLICK}
+\item 5 oder mehr Kanäle hinreichend für akkurates $P_{pred}$ bzw. Feedback-Zwecke
+\item \textbf{KLICK}
 \item Optimale Kanalanzahl: Systematische Variation m=3-7 zeigt m=3-5 ausreichend für Feedback (Kompromiss zwischen Redundanz und Komplexität)
-\item Hauptergebnis: HBC Separatrix/SOL-beobachtende Kanäle ( $\rho_{\text{pol}}\sim$\,0,95-1,05) zeigen höchste Sensitivität über alle Metriken
+\item : für HBC Sichtlinien über Separatrix/SOL ($\rho_{\text{pol}}\sim$\,0,95-1,05), bzw. für VBC auf X-Punkte konzentriert zeigen höchste Sensitivität über alle Metriken
 
 \end{itemize}
 
@@ -150,21 +161,41 @@ am Wendelstein 7-X\\[1em]
 \item Multikamerasystem - Inversion um Verlauf der gesuchten Emissivitätsverläufe besser zu verstehen
 \item Ziel: 2D-Strahlungsverteilung $P_{rad}$ (R,Z) aus Strahlungsmessungen rekonstruieren
 \item \textbf{KLICK}
-\item Herausforderung: unterbestimmtes Invertierungs-Problem - 61 oder (24x2)x32 Messungen, $\sim$4500 Gitterzellen, unendliche Lösungen möglich
+\item Herausforderung: Invertierung ist unterbestimmtes, lineares System - 61 Messungen oder (24x2)x32 LOS-Kreuzungen, $\sim$4500 Gitterzellen
+\item T allgemein nicht quadratisch, keine Inverse und schlechte bzw. hohe Kondition
 \item \textbf{KLICK}
-\item Lösung: Regularisierungs-Ansatz durch Fisher Information mit radial abhängiger Anisotropie-Gewichtung (RDA)
-\item Fischer-Info: misst Erwatungswert des Informationsgehaltes in $\vec{x}$ in $\vec{r}$
-\item Cramer Rao: Ungleichung deckelt die Varianz der Informations-Ungenauigkeit durch Regularisierung
-\item MFR-Prinzip: Maximiere Entropie (Glätte) bei Erfüllung von Randbedigungen - bevorzugt physikalisch plausible (glatt entland Flussflächen) Lösungen
+\item Lösung: Regularisierungs-Ansatz durch Fisher Information
+\item Diskretisierbares und numerisch lösbares Minimal-Problem mit zusätzlichen Stellschrauben, besonders in $\mathbf{H}$
+\item Fischer-Info misst Erwartungswert des Informationsgehaltes in $\vec{x}$ in $\vec{r}$
+\item Regularisierungsoperator links-rechts Laplace
+\item Zentrale Beziehung zur Cramer Rao Ungleichung: deckelt die Varianz der Informations-Ungenauigkeit durch Regularisierung
+\item MFR-Prinzip: Maximiere Entropie + Glätte bei Erfüllung von Randbedigungen - bevorzugt physikalisch plausible (glatt entland Flussflächen) Lösungen
 \end{itemize}
 
 \subsection{MFR mit RDA}
 
 \begin{itemize}
+\item Gehen noch einen Schritt weiter: welche zusätzlichen a prior Informationen können wir vor dem Hintergrund der Feedback Experimente einfließen lassen
 \item Radiale Anisotropie-Gewichtung: $k_{ani}(\rho)$ zusätzlicher Faktor auf poloidale Ableitung (<1 individiülle Beiträge gewichtiger, >1 weniger Einfluss) variiert radial
 \item Physikalische Motivation: Strahlung folgt Flussflächen im Kern (isotrop), wird (potentiell) anisotrop(er) im SOL/Divertor kürzere Verbindungslängen, offen Flussflächen, Inseln etc.
-\end{itemize}
+\item \textbf{KLICK}
+\item Gleichungsmodifikation
+\item \textbf{KLICK}
+\item Beispielprofil
+\item \textbf{KLICK}
+\item Allgemein glatte Resultate + störungsresistent, numerisch stabil und parametrisierbare An-/Isotropien
 
+\item \textbf{KLICK}
+\item Zusammenfassung der Störungrechnung an Grundlage des Kamerasystems
+\item \textbf{KLICK}
+\item Diskretisierung der Sichtlinien bzw. Detektoren und der Tomographie-Domäne ist allgemein numerisch stabil
+\item \textbf{KLICK}
+\item Vorwärtsrechnung mit vollsymmetrischen Verteilung ergab kleine aber nicht vernachlässigbare Asymmetrie in linienintegrierten Messungen
+\item \textbf{KLICK}
+\item Nachträglich gemessene Störung an Design-Geometrie ergibt Fehler mit selber Größenordnung wie eben diese, aber keine Aussage über wann/wie/wo
+\item \textbf{KLICK}
+\item Gerichtete Variation ergibt worst case
+\end{itemize}
 
 \subsubsection*{Phantoms}
 
@@ -184,43 +215,61 @@ am Wendelstein 7-X\\[1em]
 \item \textbf{KLICK}
 \item Skalierung um integralen Faktor führt zu kristalisierung an den vorher festgestellten Punkten; $k_{ani}\gg\Delta r/\varphi$ erzwingt Festsetzung an $max(I_{F})$
 \item \textbf{KLICK}
-\item Statistik: Beispielhafte Ergebnisse für nur $k_{edge}$ Variation. Klares Maximum in Pearson nicht kongruent mit $\chi$/MSD
-\item Legt ein grundlegendes Problem nahe: Optimierung für Klassen von Verteilungen/Regularisierungsparametern gültig und nötig, nicht allgemein für alle Emissivitäten möglich
+\item Statistik: Beispielhafte Ergebnisse für nur $k_{edge}$ Variation - Klares Maximum in Pearson nicht kongruent mit $\chi$ und MSD!
+\item Legt ein grundlegendes Problem nahe: Maß an $\chi^2$ nicht zwangsweise Beste Metrik für Optimierung
+\item diese Optimierung evtl. nur für Klassen von Verteilungen/Regularisierungsparametern gültig und nötig, nicht allgemein für alle Emissivitäten valide Ergebnisse
 \item \textbf{KLICK}
-\item Integrierte Statistik: Leistung - Liniare Zusammenhänge gut, Zielgrössen der Tomographie und teil der Optimierungsaufgabe.
-\item 2D Leistung und $P_{rad}$ zwar korrelierend, aber systematische Diskrepanz durch Trennung von Rand- und Kernstrahlungsverlust bestätigt
-\item \textbf{KLICK}
-\item Qualitätsparameter: Pearson $\ne\chi^{2}$ aber stimmt mit MSD Verlauf überein
+\item Integrale Statistik über all angewandten synthetischen Profile
+\item Qualitätsparameter: Pearson\,$\ne\chi^{2}$ aber stimmt mit MSD Verlauf überein
 \item $\chi^{2}$ als Optimierungsgrösse der Tomographie genügend aber durch Faltung mit Fehlerbalken und Geometrie-Einflüssen nuanciert zu betrachten
 \item Zusammenfassung
+\item Zusätzlich: Vergleich Virtueller Kameramessungen mit 2D Strahlungsintergralen zeigt Diskrepanz die in etwa Größenordnung SOL Emissivität ist
+\item \textbf{KLICK}
+\item Diskrepanz Qualitätsparameter
+\item \textbf{KLICK}
+\item Optimierung $k_{ani}$ hochdimensional
+\item \textbf{KLICK}
+\item Ansatz validiert und robuste, wertvolle Ergebnisse erzielt
+\item \textbf{KLICK}
+\item Folgende experimentelle Rekonstruktion fußen auf die gemachten Erkenntnisse
 \end{itemize}
 
 \subsubsection*{Experimentelle Rekonstruktionen}
 
 \begin{itemize}
-  \item Zur Veranschaulichung der gewonnen Erkenntnisse und Erfahrung ein eperimentelles, praktisches Beispiel
+  \item Zur Veranschaulichung der gewonnen Erfahrung ein praktisches Beispiel
   \item LBO Events: Verunreinigungs-Injektion durch Laser-Ablationen von Metall auf Fenster ins Plasma; hohe Temperatur und kinetische Energie
   \item Ionisations-Kaskaden inkl. Transport in eingeschlossenen Bereich erwartet
   \item Starke Strahlungsspitzen, sonst konstante Plasmaparameter
   \item Fokus auf ersten Laser-Schuss bei 2s, Strahlungsantwort verzögert
   \item \textbf{KLICK}
-  \item Mit Erfahrung aus Phantomen qualitativ und quantitativ erfolgreiche, verlässliche Rekonstruktionen
+  \item direkt: neues Gitter, andere magnetische Konfiguration (auch Teil der vorheringen Iteration und Rechnungen)
+  \item Mit Erfahrung aus Phantomen qualitativ und quantitativ erfolgreiche, verlässliche Rekonstruktionen, Strahlung stark im inneren, untersten X-Punkt und entlang der Separatrix
   \item \textbf{KLICK}
-  \item Statistik wie bei Phantomen: nur Leistungen als Parameter zur Verfügung - Diskrepanz P$_{rad}$ vs P$_{2D}$ reproduziert mit SOL/Kern Korrelationen bis auf die genauen Werte
+  \item angesprochene Statistik der Leistungen: hier als einzige Parameter Verfügung vgl. Phantome
+  \item Diskrepanz P$_{rad}$ vs P$_{2D}$ reproduziert mit SOL/Kern Korrelationen bis auf die genauen Werte
   \item Bestätigung mit Phantomen und synthetischen Daten unterstützt die Ergebnisse und validiert die 2D Leistung aus Tomogramen als (mehr) angemessenen Strahlungsverlustwert
 \end{itemize}
 
 \subsubsection*{Globale Leistungsbilanz}
 
 \begin{itemize}
-  \item Simpler 0D Ansatz aus quasi Equlibrium für globale Leistungsbilanz aus gespeicherter Energie, Eintrag und Verlusten
-  \item \textbf{KLICK}
-  \item XP20181010.32 als bekannte Referenz nochmal heranziehen
-  \item \textbf{KLICK}
-  \item Vergleich P$_{bal}$ aus P$_{rad}$ und getrennten P$_{2D}$ Gesamt und nur aus Plasma-Kern
-  \item Bessere Repräsentation und stabiler bei Plasma-übergängen, allgemein näher an P$_{bal}=0$ für Emissivität nur aus Kern
-  \item \textbf{KLICK}
-  \item Zusammenfassung
+\item Letzter Ausblick der Anwendungsmöglichkeiten mit sekundären Ergebnissen aus Tomographie
+\item Simpler 0D Ansatz aus quasi Equlibrium für globale Leistungsbilanz aus gespeicherter Energie, Eintrag und Verlusten;
+\item \textbf{KLICK}
+\item XP20181010.32 als bekannte Referenz nochmal heranziehen
+\item \textbf{KLICK}
+\item Vergleich P$_{bal}$ aus P$_{rad}$ und getrennten P$_{2D}$ Gesamt und nur aus Plasma-Kern
+\item Bessere Repräsentation und stabiler bei Plasma-übergängen, allgemein näher an P$_{bal}=0$ für Emissivität nur aus Kern
+\item \textbf{KLICK}
+\item Zusammenfassung
+\item Korrelation aber nicht Kongruenz der Kamera- und Verteilungs-Strahlungsleistungen
+\item \textbf{KLICK}
+\item Trends und qualitative Aussagen aber in Übereinstimmung mit Ergebnissen aus surrogaten Daten
+\item \textbf{KLICK}
+\item 2D Leistung generell unter- und SOL Helligkeit überschätzt
+\item \textbf{KLICK}
+\item Schlussfolgernd: Hinreichende Ergenisse mit globaler Leistungsbilanz
 \end{itemize}
 
 \section{SCHLUSSFOLGERUNGEN}

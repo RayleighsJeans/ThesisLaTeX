@@ -88,7 +88,7 @@
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{itemize}
-                \item adjust plasma profiles so radiation in SOL increases and transport across seperatrix reduced
+                \item adjust plasma profiles so radiation in edge/scrape-off layer (SOL) increases and transport to divertor reduced
             \end{itemize}
 
             \begin{overprint}
@@ -212,7 +212,7 @@
                 \centering%
                 \includegraphics[width=\textwidth]{%
                     ../THESIS/content/figures/chapter2/20181010_032/20181010_32_channels.pdf}%
-                \gcaption{Line of sight selection $S$ (XP20181010.32), only VBC channels\\%
+                \gcaption{line of sight selection $S$ (XP20181010.32), only VBC channels\\%
                           covering magnetic islands, as well as the core and X-points partially}
             }
         \end{column}%
@@ -253,7 +253,7 @@
         \begin{column}{0.5\textwidth}%
             \centering
             \only<3>{%
-            \includegraphics[height=0.66\textheight]{%
+            \includegraphics[height=0.65\textheight]{%
                 ../THESIS/content/figures/chapter2/20181010_032/20181010_032_power_frad.pdf}%
             \gcaption{%
                 XP20181010.32: (top) input power and plasma stored energy\\%
@@ -333,7 +333,7 @@
 
         \begin{column}{0.5\textwidth}
             \begin{itemize}
-                \visible<2-4>{\item Evaluate LOS/channel efficacy fors generalised local radiation sensitivity}
+                \visible<2-4>{\item Evaluate LOS/channel efficacy for generalised local radiation sensitivity}
                 \visible<3-4>{\item Data set of all feedback discharges from OP1.2b}
                 \visible<4>{\item Applied five different metrics - linear \& weighted deviations, FFT, correlations ...}
             \end{itemize}
@@ -355,15 +355,13 @@
         \begin{column}{0.5\textwidth}
             \textbf{Optimal Channel Selection:}
             \begin{itemize}
-                \visible<2-3>{
-                    \item Robust selection achieves $\ge$85\% prediction accuracy
-                    \item No single, dominating set exists
-                    \item VBC channels generally outperform HBC for edge sensitivity
-                    \item 5+ channels sufficient for reliable $P_{\text{pred}}$
-                }
+                \visible<2-6>{\item Robust selection achieves $\ge$85\% prediction accuracy}
+                \visible<3-6>{\item No single, dominating set exists}
+                \visible<4-6>{\item Lower sensitivity of the \textit{core} LOS}
+                \visible<5-6>{\item 5+ channels sufficient for reliable $P_{\text{pred}}$}
             \end{itemize}
 
-            \visible<3>{
+            \visible<6>{
             \vspace{0.5em}
             \begin{alertblock}{Takeaway}
                 Detectors viewing close to separatrix and X-poins most viable for feedback purposes
@@ -491,7 +489,7 @@
                 \begin{itemize}
                     \item Smooth profiles and robust to noise
                     \item Numerically stable
-                    \item a priori (an-)isotropy
+                    \item A priori (an-)isotropy
                 \end{itemize}
             \end{block}
            }
@@ -518,7 +516,7 @@
     \frametitle{Benchmarking}
     \backgroundlogo%
 
-    \begin{alertblock}{Results}
+    \begin{alertblock}{Results of $\mathbf{T}$ Pertubation Study}
         \begin{itemize}
             \visible<1-4>{\item Discretization of system is computationally stable}
             \visible<2-4>{\item As-designed camera geometry yields small, intrinsic asymmetry}
@@ -552,7 +550,7 @@
             \visible<2-4>{
             \textbf{Benchmarks:}
             \begin{itemize}
-                \item wide, varied set of  synthetic emissivities
+                \item Wide, varied set of  synthetic emissivities
                 \item $k\ix{ani}$ \& phantom variation studies
                 \visible<4>{\item \color{red}{Performed for only one magnetic grid configuration \& LOS geometry}}
             \end{itemize}
@@ -603,7 +601,7 @@
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
-        \only<1-4>{
+        \only<1-3>{
             \centering
             \includegraphics[width=\textwidth]{%
                 ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.3_nT15_nW2_nigs1_times0.11_cut1.png}
@@ -618,20 +616,12 @@
         \only<2>{
             \centering
             \includegraphics[width=\textwidth]{%
-                ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.1_nT15_nW2_nigs1_times0.11_cut1.png}
-            \gcaption{reconstruction for left phantom radiation distribution}
-
-            \small{$k\ix{core},\,k\ix{edge}=\left\{2,\,0.1\right\}$}
-        }
-        \only<3>{
-            \centering
-            \includegraphics[width=\textwidth]{%
                 ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_2.0_0.3_nT15_nW2_nigs1_times0.11_cut2.png}
             \gcaption{reconstruction for left phantom radiation distribution}
 
             \small{$k\ix{core},\,k\ix{edge}=\left\{2,\,0.3\right\}$}
         }
-        \only<4>{
+        \only<3>{
             \centering
             \includegraphics[width=\textwidth]{%
                 ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_symR1.1_fsR0.8_mx1.0e+06_aniM4_20.0_3.0_nT15_nW2_nigs1_times0.11_cut1.png}
@@ -642,7 +632,7 @@
         \end{column}
     \end{columns}
 
-    \only<5>{
+    \only<4>{
         \begin{flushleft}
             \textbf{Statistics:}
         \end{flushleft}
@@ -677,7 +667,7 @@
             \item \textbf{Reconstruction Accuracy:}\\%
                 $P\ix{rad}$ underestimates $P\ix{2D}$ by $\sim P\ix{2D}^{(SOL)}$
             \visible<2-5>{\item \textbf{Quality Metrics:}\\%
-                $\chi^{2}$ and $\rho\ix{c}$ not always congruent, discrepancy \textit{quantity \leftrightarrow quality}\\
+                $\chi^{2}$ and $\rho\ix{c}$ not always congruent, discrepancy \textit{quantity\,\,\leftrightarrow\,\,quality}\\
                 \textit{'qualitatively'} optimal tomogram not $\chi^{2}\sim1$ necessarily}
             \visible<3-5>{\item \textbf{Anisotropy Optimization:}\\%
                 Ideal $k\ix{ani}$ set exists per profile family,  dimensionality makes finding difficult}
@@ -818,7 +808,7 @@
     \frametitle{Experimental Reconstructions}
     \backgroundlogo%
 
-    \begin{alertblock}{Statistical Analysis}
+    \begin{alertblock}{Conclusions}
         \begin{itemize}
             \visible<1-5>{\item $P\ix{rad}\propto P^{(X)}\ix{2D}$ correlation (core, SOL)}
             \visible<2-5>{\item Proportionality and trends congruent with phantom benchmarks}
@@ -863,7 +853,7 @@
         \visible<4>{%
         \begin{itemize}
             \item Extensive artificial emissivity profile testing \& parameter variation
-            \item Successfull with experimental data \& power balance calculations
+            \item Successful with experimental data \& power balance calculations
         \end{itemize}
         }%
     \end{enumerate}
@@ -1142,16 +1132,6 @@
     % TP: Performance metrics: SNR>1000 at high radiation, noise σ_ΔU=0.339±12.586 μV, Gaussian error 1.6 μW, drift 0.057±27.621 μV/s
     % TP: Chord brightness P_ch = P_M/K_M provides radial profile information - shows radiation distribution from core to SOL
     % TP: Absorption efficiency near unity (>95%) across 0.2-600 nm wavelength range - truly broadband measurement
-\end{frame}
-
-\begin{frame}
-    \backgroundlogo%
-
-    % TP: Backup slides provide detailed technical information for in-depth questions
-    % TP: Topics covered: (1) impurity seeding models, (2) STRAHL transport code details, (3) etendue calculations, (4) calibration procedures, (5) power balance methodology
-    % TP: Additional experimental comparisons: density feedback (DI), C-III filterscope feedback, alternative discharge scenarios
-    % TP: Technical specifications: detector performance statistics, temperature drift analysis, Wheatstone bridge derivation
-    % TP: Available to address specific questions on methodology, implementation details, or alternative approaches
 \end{frame}
 
 \begin{frame}
@@ -3414,13 +3394,13 @@
         \begin{column}{0.5\textwidth}
             \only<1>{
             \centering
-            \includegraphics[height=\textheight]{%
+            \includegraphics[width=\textwidth]{%
                 ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/20180725_044_dens_chord_frad_div_2.pdf}
             }
 
-            \only<3>{
+            \only<2>{
                 \centering
-                \includegraphics[height=\textheight]{%
+                \includegraphics[width=\textwidth]{%
                     ../THESIS/content/figures/chapter4/MFR/new/tomo/20180725.044/2D/tomo_20180725.044aniM4_2.00_0.25_nT15_nW2_reduced_nigs1_sN8_30x20x150_1.25_3.00_mfr1D.png}
                 \gcaption{XP20180725.44: experimental reconstruction $k\ix{ani}=\{2, 0.25\}$}
 
