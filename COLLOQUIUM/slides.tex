@@ -55,9 +55,9 @@
             \end{alertblock}
 
             \vspace{1em}
-            \visible<2>{
+            \visible<2-3>{
                 \color{ippdark}{%
-                    \Rightarrow\,\,Dissipation of large fraction of heat load (energy) in scrape-off layer and particle flux to the target through \underline{\textit{detachment}}}
+                    \Rightarrow\,\,Dissipation of large fraction of heat load (energy) in scrape-off layer and particle flux to the target}
             }
             \visible<3>{
                 \color{ippdark}{%
@@ -99,7 +99,8 @@
                 }
                 \onslide<3>{
                     \begin{itemize}
-                        \item \color{ipp}{avoid critical impurity accumulation, \underline{use working gas}}
+                        \item \color{ipp}{avoid radiative collapse, impurity accumulation, validation, \dots\\%
+                        \underline{use working gas}}
                     \end{itemize}
                     \color{red}{
                         \Rightarrow\,\,stable control w. radiation information?
@@ -488,9 +489,9 @@
             \visible<4>{
             \begin{block}{MFR + RDA Advantages}
                 \begin{itemize}
-                    \item Robust to noisy data
-                    \item Stable convergence
-                    \item A priori (an-)isotropy
+                    \item Smooth profiles and robust to noise
+                    \item Numerically stable
+                    \item a priori (an-)isotropy
                 \end{itemize}
             \end{block}
            }
@@ -517,90 +518,12 @@
     \frametitle{Benchmarking}
     \backgroundlogo%
 
-    \begin{columns}
-        \begin{column}{0.5\textwidth}
-            \only<1-2>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut.png}
-                \gcaption{STRAHL phantom radiation profile\\%
-                          EIM grid, commonly 30x150 cells at $1.3V\ix{P}^{2}$ or $1.3r\ix{a}$}
-
-                \small($f\ix{rad}\sim100\%$)
-            }
-            \only<3-5>{
-                \centering
-                \includegraphics[width=.7\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/LoS_comparison_artificialHBCm_sN8.pdf}
-                \gcaption{LOS comparison: original vs. artificial, symmetric HBC}
-            }
-            \only<6-7>{
-                \centering
-                \includegraphics[width=.7\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/LoS_comparison_tilted_pos3_sN8.pdf}
-                \gcaption{tilted (symmetrical) camera geometry; $2^{\circ}$ poloidal rotation at aperture}
-            }
-            \only<8-9>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut3.png}
-                \gcaption{tomogram of foward calculation using tilted geometry, backward symmetrical; $k\ix{ani}=\{2, 0.5\}$}
-
-                \small{using $\mathbf{T}\ix{sym}\cdot\vec{x}=\vec{b}$}
-            }
-        \end{column}
-
-        \begin{column}{0.5\textwidth}
-            \only<2>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
-                \gcaption{forward integration of STRAHL phantom profile $f\ix{rad}\sim100\%$}
-            }
-            \only<4>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/compare_artificialHBCm_emissivities3D.pdf}
-                \gcaption{absolute difference between camera geometries (left, original vs. symmetric)}
-
-                \small{$\left\|\mathbf{T}-\mathbf{T}\ix{sym}\right\|$}
-            }
-            \only<5>{
-                \centering
-                \includegraphics[width=.95\textwidth]{%
-                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_artificialHBCm_sN8_30x20x150_1.35.png}
-                \gcaption{forward integration of STRAHL phantom profile\\%
-                          for $f\ix{rad}\sim100\%$ with symmetrical camera geometry}
-            }
-            \only<7>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_tilt_cor_2.0deg_sN8_30x20x150_1.35.png}
-                \gcaption{forward integration of STRAHL phantom profile\\%
-                          using $2^{\circ}$ rotated symmetrical geometry}
-            }
-            \only<9>{
-                \centering
-                \includegraphics[width=\textwidth]{%
-                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.1_mx1.0e+06_tilt-1.0_aniM3_2.0_2.0_nigs1_times0.11_cut2.png}
-                \gcaption{tomogram of foward and backward calculation using symmetrical geometry}
-
-                \small{using $\mathbf{T}\ix{ilt}\cdot\vec{x}=\vec{b}$}
-            }
-        \end{column}
-    \end{columns}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Benchmarking}
-    \backgroundlogo%
-
     \begin{alertblock}{Results}
         \begin{itemize}
             \visible<1-4>{\item Discretization of system is computationally stable}
             \visible<2-4>{\item As-designed camera geometry yields small, intrinsic asymmetry}
-            \visible<3-4>{\item Intrinsic asymmetry of same order of magnitude as potential, unknown geometric pertubation}
-            \visible<4>{\item Worst case machine warp scenario $\sim0.2r\ix{a}$ shift}
+            \visible<3-4>{\item Machine pertubation yields errors of same order of magnitude as intrinsic asymmetry}
+            \visible<4>{\item Worst case warp scenario $\sim0.2r\ix{a}$ shift}
         \end{itemize}
     \end{alertblock}
 
@@ -724,8 +647,8 @@
             \textbf{Statistics:}
         \end{flushleft}
         \centering
-        \includegraphics[width=.95\textwidth]{%
-            ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_sym_R1_1_m5_kedge_scan_cut.png}
+        \includegraphics[width=\textwidth]{%
+            ../THESIS/content/figures/chapter4/MFR/scan/phantom_scan_sym_R1_1_m5_kedge_scan_cut2.png}
         \gcaption{$k\ix{ani}$ scan of previous anistropic phantom profile\\%
                   (left, top) 2D variance absolute/for core and SOL %
                   (left, bottom) comparison $\chi^{2}$ likeness and $\rho\ix{c}$\\%
@@ -737,23 +660,12 @@
     \backgroundlogo%
     \frametitle{Phantoms: Statistics}
 
-    \only<1>{
-        \centering
-        \includegraphics[width=.8\textwidth]{%
-            ../THESIS/content/figures/chapter4/MFR/new/phantom_statistics_comp_pow.png}
-        \gcaption{%
-            integrated phantom radiation profile reconstruction statistics\\%
-            (left, top) $P\ix{rad}$ extrapolation (bottom) 2D integrated power $phan$ vs $tom$\\%f
-            (right) phantom $P\ix{rad}$ vs 2D core (top) and (bottom) SOL power \& regression}
-    }
-    \only<2>{
-        \centering
-        \includegraphics[width=\textwidth]{%
-            ../THESIS/content/figures/chapter4/MFR/new/phantom_statistics_comp_qual.png}
-        \gcaption{%
-            integrated phantom radiation profile reconstruction statistics\\%
-            (left) $\chi^{2}$ and 2D variance over $\rho\ix{c}$ (right) variance over $\chi^{2}$}
-    }
+    \centering
+    \includegraphics[width=\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/phantom_statistics_comp_qual.png}
+    \gcaption{%
+        integrated phantom radiation profile reconstruction statistics\\%
+        (left) $\chi^{2}$ and 2D variance over $\rho\ix{c}$ (right) variance over $\chi^{2}$}
 \end{frame}
 
 \begin{frame}
@@ -762,16 +674,20 @@
 
     \visible<1-5>{
         \begin{itemize}
-            \item \textbf{Reconstruction Accuracy:} $P\ix{rad}$ underestimates $P\ix{2D}$ by $\sim P\ix{2D}^{(SOL)}$
-            \visible<2-5>{\item \textbf{Quality Metrics:} $\chi^{2}$ and $\rho\ix{c}$ not always congruent - \textit{'qualitatively'} optimal tomogram not $\chi^{2}\sim1$ necessarily (discrepancy \textit{quantity \leftrightarrow quality})}
-            \visible<3-5>{\item \textbf{Anisotropy Optimization:} Ideal $k\ix{ani}$ set exists for each profile family but dimensionality makes finding it difficult}
+            \item \textbf{Reconstruction Accuracy:}\\%
+                $P\ix{rad}$ underestimates $P\ix{2D}$ by $\sim P\ix{2D}^{(SOL)}$
+            \visible<2-5>{\item \textbf{Quality Metrics:}\\%
+                $\chi^{2}$ and $\rho\ix{c}$ not always congruent, discrepancy \textit{quantity \leftrightarrow quality}\\
+                \textit{'qualitatively'} optimal tomogram not $\chi^{2}\sim1$ necessarily}
+            \visible<3-5>{\item \textbf{Anisotropy Optimization:}\\%
+                Ideal $k\ix{ani}$ set exists per profile family,  dimensionality makes finding difficult}
         \end{itemize}
     }
 
     \visible<4-5>{
-        \vspace{1em}
+        \vspace{.3em}
         \begin{block}{Conclusion}
-            MFR with RDA weighting provides robust, reliable 2D radiation reconstructions suitable for further analysis and calculations. \visible<5>{\color{red}{Phantom reconstructions give validation and confidence for experimental data tomographies.}}
+            MFR with RDA weighting provides robust, reliable 2D radiation reconstructions suitable for further analysis and calculations. \visible<5>{\color{red}{Experimental data tomographies performed on experience gained with synthetic data reconstructions.}}
         \end{block}
     }
 \end{frame}
@@ -780,9 +696,11 @@
     \backgroundlogo%
     \frametitle{Experimental Reconstructions}
 
+    \visible<1,2>{
     \begin{flushleft}
         \large\textbf{Example: XP20180809.13}
     \end{flushleft}
+    }
 
     \begin{columns}
         \begin{column}{0.5\textwidth}
@@ -854,12 +772,11 @@
     \frametitle{Experimental Reconstructions}
 
     \centering
-    \includegraphics[width=.8\textwidth]{%
-        ../THESIS/content/figures/chapter4/MFR/new/exp_statistics_results_xp_cut.png}
+    \includegraphics[width=\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/exp_statistics_results_xp_cut2.png}
     \gcaption{%
             integrated experimental radiation profile reconstruction statistics\\%
-            (left) phantom $P\ix{rad}$ vs 2D core (top) and (bottom) SOL power \& regression; %
-            (right) $P\ix{rad}$ extrapolation $phan$ vs $tom$}
+            phantom $P\ix{rad}$ vs 2D core (top) and (bottom) SOL power \& regression}
 \end{frame}
 
 \begin{frame}
@@ -903,13 +820,11 @@
 
     \begin{alertblock}{Statistical Analysis}
         \begin{itemize}
-            \visible<1-7>{\item $P\ix{rad}\propto P^{(X)}\ix{2D}$ correlation (core, SOL)}
-            \visible<2-7>{\item Proportionality and trends congruent with phantom benchmarks}
-            \visible<3-7>{\item 2D integrated total power underestimated}
-            \visible<4-7>{\item SOL emissivity over-emphasized in reconstruction}
-            \visible<5-7>{\item $P\ix{2D}$ improves balance accuracy and stability}
-            \visible<6-7>{\item Strong improvement over $P\ix{rad}$ in $P\ix{bal}$ of transient scenarios}
-            \visible<7>{\item Integrated 2D core emissivity satisfies $P\ix{bal}\approx0$}
+            \visible<1-5>{\item $P\ix{rad}\propto P^{(X)}\ix{2D}$ correlation (core, SOL)}
+            \visible<2-5>{\item Proportionality and trends congruent with phantom benchmarks}
+            \visible<3-5>{\item 2D integrated total power underestimated}
+            \visible<4-5>{\item SOL emissivity over-emphasized in reconstruction}
+            \visible<5>{\item $P\ix{2D}$ improves balance accuracy and stability (transient scenarios)}
         \end{itemize}
     \end{alertblock}
 \end{frame}
@@ -929,7 +844,7 @@
         \begin{itemize}
             \item First controlled ($P\ix{rad}$), stable detachment with $f\ix{rad}\ge85\%$
             \item Target heat load reduction factor $\ge2$
-            \item Validated 3-5 channel LOS subsets for fast prediction ($\ge80\%$ accuracy)
+            \item Validated 5 channel LOS subsets for fast prediction
         \end{itemize}
         }%
 
@@ -938,7 +853,7 @@
         \visible<3-4>{%
         \begin{itemize}
             \item Separatrix and SOL viewing channels most effective
-            \item (Any) Robust selection achieves $\ge$80\% prediction accuracy
+            \item Robust selection achieves $\ge$80\% prediction accuracy
             \item No single \textit{best} set - multiple viable configurations $M\ge5$
         \end{itemize}
         }%
@@ -948,7 +863,6 @@
         \visible<4>{%
         \begin{itemize}
             \item Extensive artificial emissivity profile testing \& parameter variation
-            \item Reconstruction quality $\ge80\%$ for well-constrained phantoms
             \item Successfull with experimental data \& power balance calculations
         \end{itemize}
         }%
@@ -973,57 +887,6 @@
     % TP: All methods extensively validated through OP1.2b campaign (2018): 1182 experiments, 45 feedback discharges analyzed
 \end{frame}
 
-\section*{Outlook}
-
-\begin{frame}
-    \frametitle{In a Distant Future\,\dots}
-    \backgroundlogo%
-
-    \begin{columns}
-        \begin{column}{0.55\textwidth}
-            \visible<1-3>{
-            \textbf{Upgrades:}
-            \begin{itemize}
-                \item Reduce feedback latency <\SI{10}{\milli\second}
-                \item Implement machine learning for $P\ix{pred}$/LOS selection
-                \item Per-experiment configuration ($K\ix{M}$, $V\ix{M}$)
-                \item Predictive scaling laws for gas injection
-            \end{itemize}
-            }
-
-            \visible<2-3>{
-            \textbf{Modeling:}
-            \begin{itemize}
-                \item EMC3-EIRENE feedback scenario exploration
-                \item Parametric optimization and coverage for tomography/LOS sensitivity
-            \end{itemize}
-            }
-        \end{column}
-
-        \begin{column}{0.45\textwidth}
-            \visible<3>{
-            \textbf{Tomography Extensions:}
-            \begin{itemize}
-                \item Synthetic, virtual camera arrays
-                \item Extend phantom benchmark set and parameter space
-                \item Automated parameter optimization (grid search, ML)
-                \item Real-time algorithms (benchmark LUT?)
-            \end{itemize}
-            }
-        \end{column}
-    \end{columns}
-
-    % TP: System upgrades roadmap: (1) hardware - reduce latency to <10ms through faster DAQ, (2) software - implement predictive control algorithms
-    % TP: Machine learning applications: (1) automatic PID optimization for different scenarios, (2) optimal channel selection, (3) predictive gas injection timing
-    % TP: Advanced modeling: integrate STRAHL with EMC3-EIRENE for 3D impurity transport, validate against OP2.1 high-performance scenarios
-    % TP: Improved chamber models: refine two/three-chamber parameters with OP2.1 data, develop predictive scaling laws for gas injection
-    % TP: Tomography extensions: (1) expand phantom benchmark suite to >50 cases, (2) GPU acceleration for real-time capability (<100ms/frame)
-    % TP: Real-time tomography vision: 2D radiation distribution feedback would enable spatial control (target specific regions), detect MARFEs early
-    % TP: Automated parameter optimization: Bayesian methods or grid search to find optimal k_ani profiles for different radiation scenarios
-    % TP: ITER/DEMO relevance: methods directly transferable, DEMO requirements (P_fus~500 MW, f_rad≥95%, q_div<10 MW/m²) demand reliable radiation control
-    % TP: Stellarator applicability: techniques applicable to other stellarators (LHD, future devices), tokamaks (ITER, DEMO, SPARC)
-    % TP: Long-term vision: fully automated radiation control system with adaptive learning, spatial distribution optimization, predictive capabilities
-\end{frame}
 
 \begin{frame}[noframenumbering]
     \frametitle{Collaborations}
@@ -1130,7 +993,7 @@
     }
     \only<3>{
         \centering
-        \includegraphics[width=.66\textwidth]{%
+        \includegraphics[width=.55\textwidth]{%
             ../THESIS/content/figures/chapter0/w7x_lawson_dinklage.png}
         \gcaption{Triple product for W7-X campgaigns; Dinklage, Litaudon et al., 2023\cite{Litaudon2023}}
     }
@@ -1420,6 +1283,13 @@
             }
         \end{column}
     \end{columns}
+    }
+
+    \only<3>{
+        \centering
+        \includegraphics[width=.66\textwidth]{%
+            ../THESIS/content/figures/chapter0/transportRegimes.pdf}
+        \source{Neocalssical transport regimes\cite{Milligen2004}}
     }
 
     % TP: Impurity transport dominated by anomalous diffusion: D_an~0.3-3 m²/s, exceeds neoclassical by order of magnitude
@@ -3231,6 +3101,84 @@
 \end{frame}
 
 \begin{frame}
+    \frametitle{Benchmarking}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \only<1-2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut.png}
+                \gcaption{STRAHL phantom radiation profile\\%
+                          EIM grid, commonly 30x150 cells at $1.3V\ix{P}^{2}$ or $1.3r\ix{a}$}
+
+                \small($f\ix{rad}\sim100\%$)
+            }
+            \only<3-5>{
+                \centering
+                \includegraphics[width=.7\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/LoS_comparison_artificialHBCm_sN8.pdf}
+                \gcaption{LOS comparison: original vs. artificial, symmetric HBC}
+            }
+            \only<6-7>{
+                \centering
+                \includegraphics[width=.7\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/LoS_comparison_tilted_pos3_sN8.pdf}
+                \gcaption{tilted (symmetrical) camera geometry; $2^{\circ}$ poloidal rotation at aperture}
+            }
+            \only<8-9>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.0_mx1.0e+06_aniM3_2.0_0.5_nigs1_times0.11_cut3.png}
+                \gcaption{tomogram of foward calculation using tilted geometry, backward symmetrical; $k\ix{ani}=\{2, 0.5\}$}
+
+                \small{using $\mathbf{T}\ix{sym}\cdot\vec{x}=\vec{b}$}
+            }
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \only<2>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter3/STRAHL/forward_lint/forward_chord_HBCm_00091_00092_00093_00094_min.png}
+                \gcaption{forward integration of STRAHL phantom profile $f\ix{rad}\sim100\%$}
+            }
+            \only<4>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/compare_artificialHBCm_emissivities3D.pdf}
+                \gcaption{absolute difference between camera geometries (left, original vs. symmetric)}
+
+                \small{$\left\|\mathbf{T}-\mathbf{T}\ix{sym}\right\|$}
+            }
+            \only<5>{
+                \centering
+                \includegraphics[width=.95\textwidth]{%
+                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_artificialHBCm_sN8_30x20x150_1.35.png}
+                \gcaption{forward integration of STRAHL phantom profile\\%
+                          for $f\ix{rad}\sim100\%$ with symmetrical camera geometry}
+            }
+            \only<7>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/forward_int/forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_tilt_cor_2.0deg_sN8_30x20x150_1.35.png}
+                \gcaption{forward integration of STRAHL phantom profile\\%
+                          using $2^{\circ}$ rotated symmetrical geometry}
+            }
+            \only<9>{
+                \centering
+                \includegraphics[width=\textwidth]{%
+                    ../THESIS/content/figures/chapter4/MFR/new/phantom/2D/phantom_v_tomo2D_ring_R1.1_mx1.0e+06_tilt-1.0_aniM3_2.0_2.0_nigs1_times0.11_cut2.png}
+                \gcaption{tomogram of foward and backward calculation using symmetrical geometry}
+
+                \small{using $\mathbf{T}\ix{ilt}\cdot\vec{x}=\vec{b}$}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
     \frametitle{Tomography: RDA vs RGS Comparison}
     \backgroundlogo%
 
@@ -3344,6 +3292,19 @@
             \gcaption{$k\ix{core}$ scan for previous phantoms with features at (left) $R=$\SI{4.75}{\meter} and (right) $R=$\SI{5.75}{\meter}}
         }
     }
+\end{frame}
+
+\begin{frame}
+    \backgroundlogo%
+    \frametitle{Phantoms: Statistics}
+
+    \centering
+    \includegraphics[width=.8\textwidth]{%
+        ../THESIS/content/figures/chapter4/MFR/new/phantom_statistics_comp_pow.png}
+    \gcaption{%
+        integrated phantom radiation profile reconstruction statistics\\%
+        (left, top) $P\ix{rad}$ extrapolation (bottom) 2D integrated power $phan$ vs $tom$\\%f
+        (right) phantom $P\ix{rad}$ vs 2D core (top) and (bottom) SOL power \& regression}
 \end{frame}
 
 \begin{frame}
@@ -4086,6 +4047,56 @@
         tomo_20181010.032aniM4_2.00_0.35_nT13_nW2_reduced_nigs1_sN8_30x20x150_1.35_3.40_mfr1D}
         \gcaption{XP20181010.32: experimental reconstruction $k\ix{ani}=\{2, 0.35\}$}
         {\small\color{ippdark}{$t=3.4s$}}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{In a Distant Future\,\dots}
+    \backgroundlogo%
+
+    \begin{columns}
+        \begin{column}{0.55\textwidth}
+            \visible<1-3>{
+            \textbf{Upgrades:}
+            \begin{itemize}
+                \item Reduce feedback latency <\SI{10}{\milli\second}
+                \item Implement machine learning for $P\ix{pred}$/LOS selection
+                \item Per-experiment configuration ($K\ix{M}$, $V\ix{M}$)
+                \item Predictive scaling laws for gas injection
+            \end{itemize}
+            }
+
+            \visible<2-3>{
+            \textbf{Modeling:}
+            \begin{itemize}
+                \item EMC3-EIRENE feedback scenario exploration
+                \item Parametric optimization and coverage for tomography/LOS sensitivity
+            \end{itemize}
+            }
+        \end{column}
+
+        \begin{column}{0.45\textwidth}
+            \visible<3>{
+            \textbf{Tomography Extensions:}
+            \begin{itemize}
+                \item Synthetic, virtual camera arrays
+                \item Extend phantom benchmark set and parameter space
+                \item Automated parameter optimization (grid search, ML)
+                \item Real-time algorithms (benchmark LUT?)
+            \end{itemize}
+            }
+        \end{column}
+    \end{columns}
+
+    % TP: System upgrades roadmap: (1) hardware - reduce latency to <10ms through faster DAQ, (2) software - implement predictive control algorithms
+    % TP: Machine learning applications: (1) automatic PID optimization for different scenarios, (2) optimal channel selection, (3) predictive gas injection timing
+    % TP: Advanced modeling: integrate STRAHL with EMC3-EIRENE for 3D impurity transport, validate against OP2.1 high-performance scenarios
+    % TP: Improved chamber models: refine two/three-chamber parameters with OP2.1 data, develop predictive scaling laws for gas injection
+    % TP: Tomography extensions: (1) expand phantom benchmark suite to >50 cases, (2) GPU acceleration for real-time capability (<100ms/frame)
+    % TP: Real-time tomography vision: 2D radiation distribution feedback would enable spatial control (target specific regions), detect MARFEs early
+    % TP: Automated parameter optimization: Bayesian methods or grid search to find optimal k_ani profiles for different radiation scenarios
+    % TP: ITER/DEMO relevance: methods directly transferable, DEMO requirements (P_fus~500 MW, f_rad≥95%, q_div<10 MW/m²) demand reliable radiation control
+    % TP: Stellarator applicability: techniques applicable to other stellarators (LHD, future devices), tokamaks (ITER, DEMO, SPARC)
+    % TP: Long-term vision: fully automated radiation control system with adaptive learning, spatial distribution optimization, predictive capabilities
 \end{frame}
 
 \backupend
