@@ -1,0 +1,3432 @@
+{
+  "total_commits": 93,
+  "thesis_commits": 55,
+  "colloquium_commits": 38,
+  "total_lines_added": 130050,
+  "total_lines_deleted": 59370,
+  "total_lines_net": 70680,
+  "commits_by_date": {
+    "2024-05-23": 3,
+    "2025-03-25": 2,
+    "2025-03-27": 1,
+    "2025-04-05": 1,
+    "2025-04-11": 1,
+    "2025-04-14": 1,
+    "2025-04-20": 1,
+    "2025-04-21": 1,
+    "2025-04-25": 1,
+    "2025-04-28": 1,
+    "2025-05-04": 1,
+    "2025-05-05": 1,
+    "2025-05-08": 1,
+    "2025-05-09": 1,
+    "2025-05-10": 1,
+    "2025-05-12": 2,
+    "2025-05-13": 1,
+    "2025-05-18": 1,
+    "2025-05-19": 1,
+    "2025-05-22": 1,
+    "2025-05-24": 1,
+    "2025-05-25": 1,
+    "2025-05-29": 1,
+    "2025-06-01": 1,
+    "2025-06-03": 2,
+    "2025-06-06": 1,
+    "2025-06-08": 1,
+    "2025-06-09": 1,
+    "2025-06-10": 1,
+    "2025-06-11": 1,
+    "2025-06-13": 1,
+    "2025-06-14": 1,
+    "2025-07-03": 1,
+    "2025-07-10": 1,
+    "2025-07-11": 1,
+    "2025-08-09": 1,
+    "2025-08-19": 1,
+    "2025-08-20": 1,
+    "2025-08-21": 2,
+    "2025-08-22": 1,
+    "2025-09-05": 1,
+    "2025-09-06": 1,
+    "2025-09-08": 1,
+    "2025-09-15": 1,
+    "2025-09-17": 2,
+    "2025-10-07": 1,
+    "2025-12-27": 1,
+    "2026-01-06": 1,
+    "2026-01-07": 1,
+    "2026-01-20": 1,
+    "2026-01-21": 1,
+    "2026-02-01": 1,
+    "2026-02-03": 2,
+    "2026-02-14": 1,
+    "2026-02-18": 1,
+    "2026-02-22": 3,
+    "2026-02-26": 1,
+    "2026-03-14": 1,
+    "2026-03-16": 1,
+    "2026-03-17": 1,
+    "2026-03-19": 1,
+    "2026-03-21": 1,
+    "2026-03-23": 1,
+    "2026-03-24": 1,
+    "2026-03-26": 1,
+    "2026-03-27": 1,
+    "2026-03-28": 1,
+    "2026-03-29": 1,
+    "2026-03-30": 1,
+    "2026-03-31": 1,
+    "2026-04-01": 3,
+    "2026-04-03": 3,
+    "2026-04-04": 2,
+    "2026-04-07": 3,
+    "2026-04-09": 2
+  },
+  "lines_by_date": {
+    "2024-05-23": {
+      "added": 39895,
+      "deleted": 0,
+      "net": 39895
+    },
+    "2025-03-25": {
+      "added": 42068,
+      "deleted": 42033,
+      "net": 35
+    },
+    "2025-03-27": {
+      "added": 0,
+      "deleted": 3,
+      "net": -3
+    },
+    "2025-04-05": {
+      "added": 1507,
+      "deleted": 1534,
+      "net": -27
+    },
+    "2025-04-11": {
+      "added": 14,
+      "deleted": 13,
+      "net": 1
+    },
+    "2025-04-14": {
+      "added": 9,
+      "deleted": 9,
+      "net": 0
+    },
+    "2025-04-20": {
+      "added": 63,
+      "deleted": 49,
+      "net": 14
+    },
+    "2025-04-21": {
+      "added": 7,
+      "deleted": 6,
+      "net": 1
+    },
+    "2025-04-25": {
+      "added": 19,
+      "deleted": 18,
+      "net": 1
+    },
+    "2025-04-28": {
+      "added": 8,
+      "deleted": 8,
+      "net": 0
+    },
+    "2025-05-04": {
+      "added": 28,
+      "deleted": 36,
+      "net": -8
+    },
+    "2025-05-05": {
+      "added": 20,
+      "deleted": 34,
+      "net": -14
+    },
+    "2025-05-08": {
+      "added": 21,
+      "deleted": 22,
+      "net": -1
+    },
+    "2025-05-09": {
+      "added": 19,
+      "deleted": 15,
+      "net": 4
+    },
+    "2025-05-10": {
+      "added": 6,
+      "deleted": 43,
+      "net": -37
+    },
+    "2025-05-12": {
+      "added": 91,
+      "deleted": 99,
+      "net": -8
+    },
+    "2025-05-13": {
+      "added": 8,
+      "deleted": 13,
+      "net": -5
+    },
+    "2025-05-18": {
+      "added": 163,
+      "deleted": 243,
+      "net": -80
+    },
+    "2025-05-19": {
+      "added": 208,
+      "deleted": 206,
+      "net": 2
+    },
+    "2025-05-22": {
+      "added": 26,
+      "deleted": 132,
+      "net": -106
+    },
+    "2025-05-24": {
+      "added": 120,
+      "deleted": 17,
+      "net": 103
+    },
+    "2025-05-25": {
+      "added": 115,
+      "deleted": 115,
+      "net": 0
+    },
+    "2025-05-29": {
+      "added": 10,
+      "deleted": 20,
+      "net": -10
+    },
+    "2025-06-01": {
+      "added": 225,
+      "deleted": 435,
+      "net": -210
+    },
+    "2025-06-03": {
+      "added": 40,
+      "deleted": 55,
+      "net": -15
+    },
+    "2025-06-06": {
+      "added": 58,
+      "deleted": 126,
+      "net": -68
+    },
+    "2025-06-08": {
+      "added": 18,
+      "deleted": 15,
+      "net": 3
+    },
+    "2025-06-09": {
+      "added": 31,
+      "deleted": 32,
+      "net": -1
+    },
+    "2025-06-10": {
+      "added": 11,
+      "deleted": 11,
+      "net": 0
+    },
+    "2025-06-11": {
+      "added": 8,
+      "deleted": 8,
+      "net": 0
+    },
+    "2025-06-13": {
+      "added": 51,
+      "deleted": 68,
+      "net": -17
+    },
+    "2025-06-14": {
+      "added": 167,
+      "deleted": 170,
+      "net": -3
+    },
+    "2025-07-03": {
+      "added": 110,
+      "deleted": 64,
+      "net": 46
+    },
+    "2025-07-11": {
+      "added": 13218,
+      "deleted": 104,
+      "net": 13114
+    },
+    "2025-08-09": {
+      "added": 198,
+      "deleted": 32,
+      "net": 166
+    },
+    "2025-08-19": {
+      "added": 0,
+      "deleted": 8,
+      "net": -8
+    },
+    "2025-08-20": {
+      "added": 10,
+      "deleted": 10,
+      "net": 0
+    },
+    "2025-08-21": {
+      "added": 93,
+      "deleted": 42,
+      "net": 51
+    },
+    "2025-08-22": {
+      "added": 184,
+      "deleted": 44,
+      "net": 140
+    },
+    "2025-09-05": {
+      "added": 119,
+      "deleted": 0,
+      "net": 119
+    },
+    "2025-09-06": {
+      "added": 142,
+      "deleted": 56,
+      "net": 86
+    },
+    "2025-09-08": {
+      "added": 18,
+      "deleted": 9,
+      "net": 9
+    },
+    "2025-09-15": {
+      "added": 39,
+      "deleted": 54,
+      "net": -15
+    },
+    "2025-10-07": {
+      "added": 17,
+      "deleted": 10,
+      "net": 7
+    },
+    "2025-12-27": {
+      "added": 1355,
+      "deleted": 0,
+      "net": 1355
+    },
+    "2026-01-06": {
+      "added": 6036,
+      "deleted": 358,
+      "net": 5678
+    },
+    "2026-01-20": {
+      "added": 733,
+      "deleted": 1437,
+      "net": -704
+    },
+    "2026-01-21": {
+      "added": 988,
+      "deleted": 210,
+      "net": 778
+    },
+    "2026-02-01": {
+      "added": 294,
+      "deleted": 175,
+      "net": 119
+    },
+    "2026-02-03": {
+      "added": 64,
+      "deleted": 34,
+      "net": 30
+    },
+    "2026-02-14": {
+      "added": 124,
+      "deleted": 8,
+      "net": 116
+    },
+    "2026-02-18": {
+      "added": 459,
+      "deleted": 0,
+      "net": 459
+    },
+    "2026-02-22": {
+      "added": 167,
+      "deleted": 129,
+      "net": 38
+    },
+    "2026-02-26": {
+      "added": 1590,
+      "deleted": 86,
+      "net": 1504
+    },
+    "2026-03-14": {
+      "added": 1856,
+      "deleted": 1352,
+      "net": 504
+    },
+    "2026-03-16": {
+      "added": 370,
+      "deleted": 193,
+      "net": 177
+    },
+    "2026-03-17": {
+      "added": 464,
+      "deleted": 410,
+      "net": 54
+    },
+    "2026-03-19": {
+      "added": 135,
+      "deleted": 45,
+      "net": 90
+    },
+    "2026-03-21": {
+      "added": 119,
+      "deleted": 40,
+      "net": 79
+    },
+    "2026-03-23": {
+      "added": 578,
+      "deleted": 442,
+      "net": 136
+    },
+    "2026-03-24": {
+      "added": 379,
+      "deleted": 354,
+      "net": 25
+    },
+    "2026-03-26": {
+      "added": 1629,
+      "deleted": 1607,
+      "net": 22
+    },
+    "2026-03-27": {
+      "added": 62,
+      "deleted": 58,
+      "net": 4
+    },
+    "2026-03-28": {
+      "added": 793,
+      "deleted": 755,
+      "net": 38
+    },
+    "2026-03-29": {
+      "added": 718,
+      "deleted": 624,
+      "net": 94
+    },
+    "2026-03-30": {
+      "added": 417,
+      "deleted": 575,
+      "net": -158
+    },
+    "2026-03-31": {
+      "added": 456,
+      "deleted": 74,
+      "net": 382
+    },
+    "2026-04-01": {
+      "added": 7891,
+      "deleted": 2937,
+      "net": 4954
+    },
+    "2026-04-03": {
+      "added": 1301,
+      "deleted": 243,
+      "net": 1058
+    },
+    "2026-04-04": {
+      "added": 192,
+      "deleted": 191,
+      "net": 1
+    },
+    "2026-04-07": {
+      "added": 1289,
+      "deleted": 661,
+      "net": 628
+    },
+    "2026-04-09": {
+      "added": 409,
+      "deleted": 351,
+      "net": 58
+    }
+  },
+  "commits_by_month": {
+    "2024-05": 3,
+    "2025-03": 3,
+    "2025-04": 7,
+    "2025-05": 14,
+    "2025-06": 10,
+    "2025-07": 3,
+    "2025-08": 6,
+    "2025-09": 6,
+    "2025-10": 1,
+    "2025-12": 1,
+    "2026-01": 4,
+    "2026-02": 9,
+    "2026-03": 13,
+    "2026-04": 13
+  },
+  "lines_by_month": {
+    "2024-05": {
+      "added": 39895,
+      "deleted": 0,
+      "net": 39895
+    },
+    "2025-03": {
+      "added": 42068,
+      "deleted": 42036,
+      "net": 32
+    },
+    "2025-04": {
+      "added": 1627,
+      "deleted": 1637,
+      "net": -10
+    },
+    "2025-05": {
+      "added": 835,
+      "deleted": 995,
+      "net": -160
+    },
+    "2025-06": {
+      "added": 609,
+      "deleted": 920,
+      "net": -311
+    },
+    "2025-07": {
+      "added": 13328,
+      "deleted": 168,
+      "net": 13160
+    },
+    "2025-08": {
+      "added": 485,
+      "deleted": 136,
+      "net": 349
+    },
+    "2025-09": {
+      "added": 318,
+      "deleted": 119,
+      "net": 199
+    },
+    "2025-10": {
+      "added": 17,
+      "deleted": 10,
+      "net": 7
+    },
+    "2025-12": {
+      "added": 1355,
+      "deleted": 0,
+      "net": 1355
+    },
+    "2026-01": {
+      "added": 7757,
+      "deleted": 2005,
+      "net": 5752
+    },
+    "2026-02": {
+      "added": 2698,
+      "deleted": 432,
+      "net": 2266
+    },
+    "2026-03": {
+      "added": 7976,
+      "deleted": 6529,
+      "net": 1447
+    },
+    "2026-04": {
+      "added": 11082,
+      "deleted": 4383,
+      "net": 6699
+    }
+  },
+  "commits_by_hour": {
+    "13": 5,
+    "14": 8,
+    "21": 6,
+    "22": 15,
+    "19": 1,
+    "23": 22,
+    "0": 5,
+    "17": 2,
+    "12": 1,
+    "7": 2,
+    "18": 2,
+    "6": 1,
+    "11": 9,
+    "16": 5,
+    "10": 3,
+    "8": 1,
+    "15": 3,
+    "20": 1,
+    "9": 1
+  },
+  "commits_by_weekday": {
+    "Thursday": 16,
+    "Tuesday": 18,
+    "Saturday": 13,
+    "Friday": 12,
+    "Monday": 13,
+    "Sunday": 11,
+    "Wednesday": 10
+  },
+  "file_types": {
+    "txt": {
+      "commits": 11,
+      "added": 420,
+      "deleted": 7
+    },
+    "atomdat": {
+      "commits": 4,
+      "added": 133,
+      "deleted": 0
+    },
+    "dat": {
+      "commits": 1,
+      "added": 109,
+      "deleted": 0
+    },
+    "0": {
+      "commits": 222,
+      "added": 18822,
+      "deleted": 0
+    },
+    "ipynb": {
+      "commits": 1,
+      "added": 235,
+      "deleted": 0
+    },
+    "md": {
+      "commits": 16,
+      "added": 5622,
+      "deleted": 0
+    },
+    "tex": {
+      "commits": 309,
+      "added": 29818,
+      "deleted": 12420
+    },
+    "bib": {
+      "commits": 15,
+      "added": 7159,
+      "deleted": 4205
+    },
+    "svg\"": {
+      "commits": 2,
+      "added": 160,
+      "deleted": 0
+    },
+    "no_ext": {
+      "commits": 4,
+      "added": 43,
+      "deleted": 0
+    },
+    "pdf_tex": {
+      "commits": 1,
+      "added": 72,
+      "deleted": 0
+    },
+    "pgf": {
+      "commits": 2,
+      "added": 4832,
+      "deleted": 0
+    },
+    "svg": {
+      "commits": 3,
+      "added": 13529,
+      "deleted": 0
+    },
+    "json": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "slg": {
+      "commits": 2,
+      "added": 5,
+      "deleted": 5
+    },
+    "syg": {
+      "commits": 2,
+      "added": 0,
+      "deleted": 0
+    },
+    "syi": {
+      "commits": 2,
+      "added": 0,
+      "deleted": 0
+    },
+    "cwl": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "lbx": {
+      "commits": 1,
+      "added": 21,
+      "deleted": 0
+    },
+    "pdf": {
+      "commits": 7,
+      "added": 44187,
+      "deleted": 42039
+    },
+    "sty": {
+      "commits": 41,
+      "added": 2062,
+      "deleted": 694
+    },
+    "latexmkrc": {
+      "commits": 1,
+      "added": 11,
+      "deleted": 0
+    },
+    "bbl-SAVE-ERROR": {
+      "commits": 1,
+      "added": 420,
+      "deleted": 0
+    },
+    "bcf-SAVE-ERROR": {
+      "commits": 1,
+      "added": 2384,
+      "deleted": 0
+    }
+  },
+  "most_edited_files": {
+    "THESIS/content/figures/chapter1/percentiles.txt": {
+      "commits": 1,
+      "added": 19,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/C_.atomdat": {
+      "commits": 1,
+      "added": 38,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/Fe.atomdat": {
+      "commits": 1,
+      "added": 37,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/H_.atomdat": {
+      "commits": 1,
+      "added": 28,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/O_.atomdat": {
+      "commits": 1,
+      "added": 30,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/log.dat": {
+      "commits": 1,
+      "added": 109,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/C_flx00000.0": {
+      "commits": 1,
+      "added": 7,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/O_flx00000.0": {
+      "commits": 1,
+      "added": 7,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/grid_00000.0": {
+      "commits": 1,
+      "added": 135,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/grid_00001.0": {
+      "commits": 1,
+      "added": 135,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00000.0": {
+      "commits": 1,
+      "added": 230,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00001.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00002.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00003.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00004.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00005.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00006.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00007.0": {
+      "commits": 1,
+      "added": 52,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00008.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00009.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00010.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00011.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00012.0": {
+      "commits": 1,
+      "added": 52,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00013.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00014.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00015.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00016.0": {
+      "commits": 1,
+      "added": 52,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00017.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00018.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00019.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00020.0": {
+      "commits": 1,
+      "added": 52,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00021.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00022.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00023.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00024.0": {
+      "commits": 1,
+      "added": 52,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00025.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00026.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00027.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00028.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00029.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00030.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00031.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00032.0": {
+      "commits": 1,
+      "added": 54,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00033.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00034.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00035.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00036.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00037.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00038.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00039.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00040.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00041.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00042.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00043.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00044.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00045.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00046.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00047.0": {
+      "commits": 1,
+      "added": 41,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00048.0": {
+      "commits": 1,
+      "added": 41,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00049.0": {
+      "commits": 1,
+      "added": 41,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00050.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00051.0": {
+      "commits": 1,
+      "added": 47,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00052.0": {
+      "commits": 1,
+      "added": 47,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00053.0": {
+      "commits": 1,
+      "added": 47,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00054.0": {
+      "commits": 1,
+      "added": 47,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00055.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00056.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00057.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00058.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00059.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00060.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00061.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00062.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00063.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00064.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00065.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00066.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00067.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00068.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00069.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00070.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00071.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00072.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00073.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00074.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00075.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00076.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00077.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00078.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00079.0": {
+      "commits": 1,
+      "added": 102,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00080.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00081.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00082.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00083.0": {
+      "commits": 1,
+      "added": 102,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00084.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00085.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00086.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00087.0": {
+      "commits": 1,
+      "added": 102,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00088.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00089.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00090.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00091.0": {
+      "commits": 1,
+      "added": 102,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00092.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00093.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00094.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00095.0": {
+      "commits": 1,
+      "added": 102,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00096.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00097.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00098.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00099.0": {
+      "commits": 1,
+      "added": 102,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00100.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00101.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00102.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00103.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00104.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00105.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00106.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00107.0": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/nete/pp00108.0": {
+      "commits": 1,
+      "added": 73,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00000.0": {
+      "commits": 1,
+      "added": 117,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00001.0": {
+      "commits": 1,
+      "added": 125,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00002.0": {
+      "commits": 1,
+      "added": 114,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00003.0": {
+      "commits": 1,
+      "added": 114,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00004.0": {
+      "commits": 1,
+      "added": 114,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00005.0": {
+      "commits": 1,
+      "added": 114,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00006.0": {
+      "commits": 1,
+      "added": 114,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00007.0": {
+      "commits": 1,
+      "added": 114,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00008.0": {
+      "commits": 1,
+      "added": 114,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00009.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00010.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00011.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00012.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00013.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00014.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00015.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00016.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00017.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00018.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00019.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00020.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00021.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00022.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00023.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00024.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00025.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00026.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00027.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00028.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00029.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00030.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00031.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00032.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00033.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00034.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00035.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00036.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00037.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00038.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00039.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00040.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00041.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00042.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00043.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00044.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00045.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00046.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00047.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00048.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00049.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00050.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00051.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00052.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00053.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00054.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00055.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00056.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00057.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00058.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00059.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00060.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00061.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00062.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00063.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00064.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00065.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00066.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00067.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00068.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00069.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00070.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00071.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00072.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00073.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00074.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00075.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00076.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00077.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00078.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00079.0": {
+      "commits": 1,
+      "added": 112,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00080.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00081.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00082.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00083.0": {
+      "commits": 1,
+      "added": 112,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00084.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00085.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00086.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00087.0": {
+      "commits": 1,
+      "added": 112,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00088.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00089.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00090.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00091.0": {
+      "commits": 1,
+      "added": 112,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00092.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00093.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00094.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00095.0": {
+      "commits": 1,
+      "added": 112,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00096.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00097.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00098.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00099.0": {
+      "commits": 1,
+      "added": 112,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00100.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00101.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00102.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00103.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00104.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00105.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00106.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00107.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter3/STRAHL/source/param_files/strahl_run_00108.0": {
+      "commits": 1,
+      "added": 113,
+      "deleted": 0
+    },
+    "THESIS/content/figures/chapter4/kaniComp.ipynb": {
+      "commits": 1,
+      "added": 235,
+      "deleted": 0
+    },
+    "THESIS/content/figures/daz_discussion.md": {
+      "commits": 1,
+      "added": 5,
+      "deleted": 0
+    },
+    "THESIS/content/figures/note.md": {
+      "commits": 1,
+      "added": 55,
+      "deleted": 0
+    },
+    "THESIS/content/abstract.tex": {
+      "commits": 2,
+      "added": 14,
+      "deleted": 4
+    },
+    "THESIS/content/abstract_de.tex": {
+      "commits": 4,
+      "added": 16,
+      "deleted": 6
+    },
+    "THESIS/content/acknowledgement.tex": {
+      "commits": 1,
+      "added": 17,
+      "deleted": 0
+    },
+    "THESIS/content/affidavit.tex": {
+      "commits": 3,
+      "added": 41,
+      "deleted": 12
+    },
+    "THESIS/content/appendix.tex": {
+      "commits": 2,
+      "added": 32,
+      "deleted": 14
+    },
+    "THESIS/content/bibliography.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/content/bibliography/bibliography.bib": {
+      "commits": 8,
+      "added": 4340,
+      "deleted": 1542
+    },
+    "THESIS/content/cats.tex": {
+      "commits": 1,
+      "added": 9,
+      "deleted": 0
+    },
+    "THESIS/content/chapters/appendix.tex": {
+      "commits": 14,
+      "added": 984,
+      "deleted": 409
+    },
+    "THESIS/content/chapters/chapter0.5.tex": {
+      "commits": 2,
+      "added": 24,
+      "deleted": 1
+    },
+    "THESIS/content/chapters/chapter0.tex": {
+      "commits": 5,
+      "added": 286,
+      "deleted": 121
+    },
+    "THESIS/content/chapters/chapter1.tex": {
+      "commits": 8,
+      "added": 962,
+      "deleted": 107
+    },
+    "THESIS/content/chapters/chapter2.tex": {
+      "commits": 15,
+      "added": 850,
+      "deleted": 277
+    },
+    "THESIS/content/chapters/chapter3.tex": {
+      "commits": 12,
+      "added": 1398,
+      "deleted": 564
+    },
+    "THESIS/content/chapters/chapter4.tex": {
+      "commits": 13,
+      "added": 2003,
+      "deleted": 721
+    },
+    "THESIS/content/chapters/chapter5.tex": {
+      "commits": 2,
+      "added": 20,
+      "deleted": 1
+    },
+    "THESIS/content/content.tex": {
+      "commits": 1,
+      "added": 21,
+      "deleted": 0
+    },
+    "THESIS/content/dedication.tex": {
+      "commits": 1,
+      "added": 11,
+      "deleted": 0
+    },
+    "THESIS/content/document.tex": {
+      "commits": 4,
+      "added": 72,
+      "deleted": 15
+    },
+    "THESIS/content/documentcls.tex": {
+      "commits": 2,
+      "added": 72,
+      "deleted": 5
+    },
+    "THESIS/content/drafts/complex.tex": {
+      "commits": 1,
+      "added": 151,
+      "deleted": 0
+    },
+    "THESIS/content/drafts/extended.tex": {
+      "commits": 1,
+      "added": 55,
+      "deleted": 0
+    },
+    "THESIS/content/drafts/references.bib": {
+      "commits": 3,
+      "added": 156,
+      "deleted": 11
+    },
+    "THESIS/content/drafts/simple.tex": {
+      "commits": 1,
+      "added": 130,
+      "deleted": 0
+    },
+    "THESIS/content/glossaries.tex": {
+      "commits": 1,
+      "added": 12,
+      "deleted": 0
+    },
+    "THESIS/content/listOfPublications.tex": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/content/lof.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "\"THESIS/content/logos/Logo_der_Technischen_Universit\\303\\244t_Berlin.svg\"": {
+      "commits": 1,
+      "added": 80,
+      "deleted": 0
+    },
+    "THESIS/content/lol.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/content/lot.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/content/preamble.tex": {
+      "commits": 1,
+      "added": 16,
+      "deleted": 0
+    },
+    "THESIS/content/quote.tex": {
+      "commits": 1,
+      "added": 20,
+      "deleted": 0
+    },
+    "THESIS/content/settings.tex": {
+      "commits": 2,
+      "added": 46,
+      "deleted": 1
+    },
+    "THESIS/content/titlepage.tex": {
+      "commits": 3,
+      "added": 105,
+      "deleted": 19
+    },
+    "THESIS/content/toc.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/clear": {
+      "commits": 2,
+      "added": 28,
+      "deleted": 0
+    },
+    "THESIS/compile": {
+      "commits": 2,
+      "added": 15,
+      "deleted": 0
+    },
+    "THESIS/data/figures/example.pdf_tex": {
+      "commits": 1,
+      "added": 72,
+      "deleted": 0
+    },
+    "THESIS/data/figures/example.pgf": {
+      "commits": 1,
+      "added": 2416,
+      "deleted": 0
+    },
+    "THESIS/data/figures/example.svg": {
+      "commits": 1,
+      "added": 363,
+      "deleted": 0
+    },
+    "THESIS/data/figures/example_stupid.pgf": {
+      "commits": 1,
+      "added": 2416,
+      "deleted": 0
+    },
+    "\"THESIS/data/logos/Logo_der_Technischen_Universit\\303\\244t_Berlin.svg\"": {
+      "commits": 1,
+      "added": 80,
+      "deleted": 0
+    },
+    "THESIS/dictionary/ltex.dictionary.en-GB.txt": {
+      "commits": 2,
+      "added": 160,
+      "deleted": 0
+    },
+    "THESIS/dictionary/ltex.dictionary.en-US.txt": {
+      "commits": 1,
+      "added": 40,
+      "deleted": 0
+    },
+    "THESIS/dictionary/ltex.disabledRules.en-GB.txt": {
+      "commits": 1,
+      "added": 7,
+      "deleted": 0
+    },
+    "THESIS/dictionary/ltex.hiddenFalsePositives.el-GR.txt": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/dictionary/ltex.hiddenFalsePositives.en-GB.txt": {
+      "commits": 2,
+      "added": 164,
+      "deleted": 0
+    },
+    "THESIS/dictionary/ltex.hiddenFalsePositives.en-US.txt": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "THESIS/dictionary/settings.json": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "THESIS/main.slg": {
+      "commits": 2,
+      "added": 5,
+      "deleted": 5
+    },
+    "THESIS/main.syg": {
+      "commits": 2,
+      "added": 0,
+      "deleted": 0
+    },
+    "THESIS/main.syi": {
+      "commits": 2,
+      "added": 0,
+      "deleted": 0
+    },
+    "THESIS/main.tex": {
+      "commits": 1,
+      "added": 37,
+      "deleted": 0
+    },
+    "THESIS/preamble/defs.tex": {
+      "commits": 4,
+      "added": 662,
+      "deleted": 3
+    },
+    "THESIS/preamble/fonts.tex": {
+      "commits": 1,
+      "added": 93,
+      "deleted": 0
+    },
+    "THESIS/preamble/fonts/CambriaMath.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/fonts/Consolas.tex": {
+      "commits": 1,
+      "added": 4,
+      "deleted": 0
+    },
+    "THESIS/preamble/fonts/EBGaramond.tex": {
+      "commits": 1,
+      "added": 8,
+      "deleted": 0
+    },
+    "THESIS/preamble/fonts/Libertinus.tex": {
+      "commits": 1,
+      "added": 11,
+      "deleted": 0
+    },
+    "THESIS/preamble/fonts/LibertinusMono.tex": {
+      "commits": 1,
+      "added": 10,
+      "deleted": 0
+    },
+    "THESIS/preamble/fonts/LibertinusSans.tex": {
+      "commits": 1,
+      "added": 10,
+      "deleted": 0
+    },
+    "THESIS/preamble/fonts/MinionPro.tex": {
+      "commits": 1,
+      "added": 11,
+      "deleted": 0
+    },
+    "THESIS/preamble/fonts/MyriadPro.tex": {
+      "commits": 1,
+      "added": 8,
+      "deleted": 0
+    },
+    "THESIS/preamble/math.tex": {
+      "commits": 1,
+      "added": 9,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/amsfonts.tex": {
+      "commits": 1,
+      "added": 9,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/amsmath.tex": {
+      "commits": 1,
+      "added": 12,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/amssymb.tex": {
+      "commits": 1,
+      "added": 4,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/amsthm.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/animate.tex": {
+      "commits": 1,
+      "added": 7,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/attachfile2.tex": {
+      "commits": 1,
+      "added": 34,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/babel.tex": {
+      "commits": 2,
+      "added": 21,
+      "deleted": 3
+    },
+    "THESIS/preamble/packages/biblatex.tex": {
+      "commits": 1,
+      "added": 155,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/bigfoot.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/blindtext.tex": {
+      "commits": 1,
+      "added": 6,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/bookmark.tex": {
+      "commits": 1,
+      "added": 13,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/booktabs.tex": {
+      "commits": 1,
+      "added": 21,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/calc.tex": {
+      "commits": 1,
+      "added": 2,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/caption.tex": {
+      "commits": 1,
+      "added": 31,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/chemfig.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/chemformula.tex": {
+      "commits": 1,
+      "added": 40,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/chemmacros.tex": {
+      "commits": 1,
+      "added": 25,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/cleveref.tex": {
+      "commits": 1,
+      "added": 29,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/csquotes.tex": {
+      "commits": 1,
+      "added": 15,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/enumitem.tex": {
+      "commits": 1,
+      "added": 17,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/epigraph.tex": {
+      "commits": 1,
+      "added": 10,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/float.tex": {
+      "commits": 1,
+      "added": 2,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/fontawesome5.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/fontenc.tex": {
+      "commits": 1,
+      "added": 6,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/fontspec.tex": {
+      "commits": 1,
+      "added": 7,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/glossaries-extra.tex": {
+      "commits": 1,
+      "added": 280,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/gnuplot-lua-tikz.tex": {
+      "commits": 1,
+      "added": 2,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/gnuplottex.tex": {
+      "commits": 1,
+      "added": 8,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/graphicx.tex": {
+      "commits": 1,
+      "added": 4,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/hyperref.tex": {
+      "commits": 1,
+      "added": 13,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/ifluatex.tex": {
+      "commits": 1,
+      "added": 9,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/impnattypo.tex": {
+      "commits": 1,
+      "added": 16,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/import.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/inputenc.tex": {
+      "commits": 1,
+      "added": 5,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/intopdf.tex": {
+      "commits": 1,
+      "added": 8,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/koma-moderncvclassic.tex": {
+      "commits": 1,
+      "added": 25,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/lettrine.tex": {
+      "commits": 1,
+      "added": 8,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/listings.tex": {
+      "commits": 1,
+      "added": 176,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/lmodern.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/lua-visual-debug.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/luacode.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/luatex85.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/marginnote.tex": {
+      "commits": 1,
+      "added": 34,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/media9.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/microtype.tex": {
+      "commits": 1,
+      "added": 34,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/minted.tex": {
+      "commits": 1,
+      "added": 12,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/moderncv.tex": {
+      "commits": 1,
+      "added": 842,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/moderntimeline.tex": {
+      "commits": 1,
+      "added": 204,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/nag.tex": {
+      "commits": 1,
+      "added": 9,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/pdfpages.tex": {
+      "commits": 1,
+      "added": 50,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/pdfx.tex": {
+      "commits": 1,
+      "added": 26,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/pgf.tex": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/pgfplots.tex": {
+      "commits": 1,
+      "added": 28,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/ragged2e.tex": {
+      "commits": 1,
+      "added": 2,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/scrhack.tex": {
+      "commits": 1,
+      "added": 5,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/scrlayer-scrpage.tex": {
+      "commits": 1,
+      "added": 43,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/scrtime.tex": {
+      "commits": 1,
+      "added": 2,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/selnolig.tex": {
+      "commits": 1,
+      "added": 2,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/seqsplit.tex": {
+      "commits": 1,
+      "added": 2,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/shellesc.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/siunitx.tex": {
+      "commits": 1,
+      "added": 61,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/subcaption.tex": {
+      "commits": 1,
+      "added": 21,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/tcolorbox.tex": {
+      "commits": 1,
+      "added": 8,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/tikz-network.tex": {
+      "commits": 1,
+      "added": 15,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/tikz.tex": {
+      "commits": 1,
+      "added": 237,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/todonotes.tex": {
+      "commits": 1,
+      "added": 26,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/unicode-math.tex": {
+      "commits": 1,
+      "added": 8,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/wrapfig.tex": {
+      "commits": 1,
+      "added": 23,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/xcolor.tex": {
+      "commits": 1,
+      "added": 49,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/xifthen.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/xparse.tex": {
+      "commits": 1,
+      "added": 5,
+      "deleted": 0
+    },
+    "THESIS/preamble/packages/xpatch.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/patches.tex": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "THESIS/preamble/properties.tex": {
+      "commits": 1,
+      "added": 180,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/colors.tex": {
+      "commits": 1,
+      "added": 621,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/engineering.tex": {
+      "commits": 1,
+      "added": 4,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/engineering/glossaries.tex": {
+      "commits": 1,
+      "added": 23,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/math.tex": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/math/glossaries.tex": {
+      "commits": 1,
+      "added": 16,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/math/symbols.tex": {
+      "commits": 1,
+      "added": 98,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/ml.tex": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/ml/glossaries.tex": {
+      "commits": 1,
+      "added": 23,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/ml/symbols.tex": {
+      "commits": 1,
+      "added": 8,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/plasma_physics.tex": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/plasma_physics/glossaries.tex": {
+      "commits": 1,
+      "added": 201,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/plasma_physics/symbols.tex": {
+      "commits": 1,
+      "added": 567,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/text.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/text/symbols.tex": {
+      "commits": 1,
+      "added": 10,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/tikz-util.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/preamble/subjects/tikz-util/defs.tex": {
+      "commits": 1,
+      "added": 59,
+      "deleted": 0
+    },
+    "THESIS/preamble/texStudioCommandReference.cwl": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "THESIS/template/abstract.tex": {
+      "commits": 1,
+      "added": 35,
+      "deleted": 0
+    },
+    "THESIS/template/acknowledgement.tex": {
+      "commits": 1,
+      "added": 4,
+      "deleted": 0
+    },
+    "THESIS/template/affidavit.tex": {
+      "commits": 1,
+      "added": 23,
+      "deleted": 0
+    },
+    "THESIS/template/appendix.tex": {
+      "commits": 1,
+      "added": 13,
+      "deleted": 0
+    },
+    "THESIS/template/bibliography.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/template/bibliography/custom-british-ordinal-sscript.lbx": {
+      "commits": 1,
+      "added": 21,
+      "deleted": 0
+    },
+    "THESIS/template/bibliography/dummy.bib": {
+      "commits": 1,
+      "added": 11,
+      "deleted": 0
+    },
+    "THESIS/template/content.tex": {
+      "commits": 1,
+      "added": 22,
+      "deleted": 0
+    },
+    "THESIS/template/cv.tex": {
+      "commits": 1,
+      "added": 79,
+      "deleted": 0
+    },
+    "THESIS/template/defs.tex": {
+      "commits": 1,
+      "added": 0,
+      "deleted": 0
+    },
+    "THESIS/template/document.tex": {
+      "commits": 1,
+      "added": 45,
+      "deleted": 0
+    },
+    "THESIS/template/documentcls.tex": {
+      "commits": 1,
+      "added": 60,
+      "deleted": 0
+    },
+    "THESIS/template/glossaries.tex": {
+      "commits": 1,
+      "added": 13,
+      "deleted": 0
+    },
+    "THESIS/template/hacks.tex": {
+      "commits": 1,
+      "added": 0,
+      "deleted": 0
+    },
+    "THESIS/template/head.tex": {
+      "commits": 1,
+      "added": 118,
+      "deleted": 0
+    },
+    "THESIS/template/listOfPublications.tex": {
+      "commits": 1,
+      "added": 53,
+      "deleted": 0
+    },
+    "THESIS/template/lof.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/template/lol.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/template/lot.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/template/preamble.tex": {
+      "commits": 1,
+      "added": 16,
+      "deleted": 0
+    },
+    "THESIS/template/preamble/fonts.tex": {
+      "commits": 1,
+      "added": 93,
+      "deleted": 0
+    },
+    "THESIS/template/settings.tex": {
+      "commits": 1,
+      "added": 34,
+      "deleted": 0
+    },
+    "THESIS/template/toc.tex": {
+      "commits": 1,
+      "added": 1,
+      "deleted": 0
+    },
+    "THESIS/template/utils.tex": {
+      "commits": 2,
+      "added": 163,
+      "deleted": 0
+    },
+    "THESIS/data/comments/daz/Chapter_5_A.pdf": {
+      "commits": 2,
+      "added": 42036,
+      "deleted": 42033
+    },
+    "THESIS/data/comments/kry/Hacker Philipp - PhD 2024_mkrych.pdf": {
+      "commits": 2,
+      "added": 3,
+      "deleted": 3
+    },
+    "THESIS/data/comments/notes.txt": {
+      "commits": 2,
+      "added": 26,
+      "deleted": 7
+    },
+    "THESIS/main.pdf": {
+      "commits": 2,
+      "added": 3,
+      "deleted": 3
+    },
+    "THESIS/covers/cover.tex": {
+      "commits": 3,
+      "added": 62,
+      "deleted": 4
+    },
+    "THESIS/covers/siegel.svg": {
+      "commits": 1,
+      "added": 13166,
+      "deleted": 0
+    },
+    "THESIS/content/cv.tex": {
+      "commits": 2,
+      "added": 179,
+      "deleted": 30
+    },
+    "THESIS/preamble/packages/geometry.tex": {
+      "commits": 1,
+      "added": 11,
+      "deleted": 0
+    },
+    "THESIS/spine/spine.tex": {
+      "commits": 2,
+      "added": 36,
+      "deleted": 0
+    },
+    "THESIS/{covers => cover}/cover.tex": {
+      "commits": 1,
+      "added": 0,
+      "deleted": 0
+    },
+    "THESIS/{covers => cover}/siegel.svg": {
+      "commits": 1,
+      "added": 0,
+      "deleted": 0
+    },
+    "THESIS/mnf_documents/AntragEroeffnung.tex": {
+      "commits": 1,
+      "added": 78,
+      "deleted": 0
+    },
+    "THESIS/mnf_documents/elektronEinv.tex": {
+      "commits": 1,
+      "added": 34,
+      "deleted": 0
+    },
+    "THESIS/mnf_documents/primaryDataDecl.tex": {
+      "commits": 4,
+      "added": 316,
+      "deleted": 119
+    },
+    "COLLOQUIUM/beamerouterthemeippw7x.sty": {
+      "commits": 1,
+      "added": 148,
+      "deleted": 0
+    },
+    "COLLOQUIUM/beamerposteripp.sty": {
+      "commits": 2,
+      "added": 320,
+      "deleted": 320
+    },
+    "COLLOQUIUM/main.tex": {
+      "commits": 3,
+      "added": 936,
+      "deleted": 936
+    },
+    "COLLOQUIUM/.latexmkrc": {
+      "commits": 1,
+      "added": 11,
+      "deleted": 0
+    },
+    "COLLOQUIUM/Helmholtz-AI.sty": {
+      "commits": 1,
+      "added": 13,
+      "deleted": 0
+    },
+    "COLLOQUIUM/IPP-w7x.sty": {
+      "commits": 1,
+      "added": 14,
+      "deleted": 0
+    },
+    "COLLOQUIUM/logos/helmholtz.pdf": {
+      "commits": 1,
+      "added": 2145,
+      "deleted": 0
+    },
+    "COLLOQUIUM/references.bib": {
+      "commits": 3,
+      "added": 2652,
+      "deleted": 2652
+    },
+    "COLLOQUIUM/slides.tex": {
+      "commits": 35,
+      "added": 12425,
+      "deleted": 8343
+    },
+    "COLLOQUIUM/theme/beamercolorthemehelmholtzai.sty": {
+      "commits": 2,
+      "added": 237,
+      "deleted": 206
+    },
+    "COLLOQUIUM/theme/beamerfontthemehelmholtzai.sty": {
+      "commits": 1,
+      "added": 22,
+      "deleted": 0
+    },
+    "COLLOQUIUM/theme/beamerinnerthemehelmholtzai.sty": {
+      "commits": 1,
+      "added": 3,
+      "deleted": 0
+    },
+    "COLLOQUIUM/theme/beamerouterthemehelmholtzai.sty": {
+      "commits": 5,
+      "added": 440,
+      "deleted": 52
+    },
+    "COLLOQUIUM/theme/beamerouterthemehelmholtzaiposter.sty": {
+      "commits": 1,
+      "added": 73,
+      "deleted": 0
+    },
+    "COLLOQUIUM/{ => theme}/beamerouterthemeippw7x.sty": {
+      "commits": 1,
+      "added": 0,
+      "deleted": 0
+    },
+    "COLLOQUIUM/theme/beamerthemehelmholtzai.sty": {
+      "commits": 3,
+      "added": 65,
+      "deleted": 37
+    },
+    "COLLOQUIUM/theme/beamerthemehelmholtzaiposter.sty": {
+      "commits": 1,
+      "added": 48,
+      "deleted": 0
+    },
+    "COLLOQUIUM/theme/beamerthemeipp.sty": {
+      "commits": 3,
+      "added": 199,
+      "deleted": 36
+    },
+    "COLLOQUIUM/definitions.sty": {
+      "commits": 12,
+      "added": 192,
+      "deleted": 23
+    },
+    "COLLOQUIUM/helmholtz.tex": {
+      "commits": 5,
+      "added": 36,
+      "deleted": 4
+    },
+    "COLLOQUIUM/ippw7x.tex": {
+      "commits": 1,
+      "added": 29,
+      "deleted": 0
+    },
+    "COLLOQUIUM/theme/beamercolors.sty": {
+      "commits": 1,
+      "added": 251,
+      "deleted": 0
+    },
+    "COLLOQUIUM/theme/beamercolorthemeipp.sty": {
+      "commits": 2,
+      "added": 29,
+      "deleted": 0
+    },
+    "COLLOQUIUM/theme/beamerfontthemeserif.sty": {
+      "commits": 2,
+      "added": 2,
+      "deleted": 1
+    },
+    "COLLOQUIUM/theme/beamerouterthemeippw7x.sty": {
+      "commits": 1,
+      "added": 6,
+      "deleted": 19
+    },
+    "COLLOQUIUM/.examples.tex": {
+      "commits": 2,
+      "added": 198,
+      "deleted": 2
+    },
+    "THESIS/summary.md": {
+      "commits": 1,
+      "added": 1387,
+      "deleted": 0
+    },
+    "COLLOQUIUM/summary.md": {
+      "commits": 1,
+      "added": 361,
+      "deleted": 0
+    },
+    "THESIS/content/chapters/summarAppendix.md": {
+      "commits": 1,
+      "added": 470,
+      "deleted": 0
+    },
+    "THESIS/content/chapters/summarCh0.5.md": {
+      "commits": 1,
+      "added": 108,
+      "deleted": 0
+    },
+    "THESIS/content/chapters/summarCh0.md": {
+      "commits": 1,
+      "added": 235,
+      "deleted": 0
+    },
+    "THESIS/content/chapters/summarCh1.md": {
+      "commits": 1,
+      "added": 619,
+      "deleted": 0
+    },
+    "THESIS/content/chapters/summarCh2.md": {
+      "commits": 1,
+      "added": 275,
+      "deleted": 0
+    },
+    "THESIS/content/chapters/summarCh3.md": {
+      "commits": 1,
+      "added": 417,
+      "deleted": 0
+    },
+    "THESIS/content/chapters/summarCh4.md": {
+      "commits": 1,
+      "added": 570,
+      "deleted": 0
+    },
+    "THESIS/content/chapters/summarCh5.md": {
+      "commits": 1,
+      "added": 209,
+      "deleted": 0
+    },
+    "COLLOQUIUM/helmholtz.bbl-SAVE-ERROR": {
+      "commits": 1,
+      "added": 420,
+      "deleted": 0
+    },
+    "COLLOQUIUM/helmholtz.bcf-SAVE-ERROR": {
+      "commits": 1,
+      "added": 2384,
+      "deleted": 0
+    },
+    "COLLOQUIUM/talking_points.md": {
+      "commits": 1,
+      "added": 472,
+      "deleted": 0
+    },
+    "COLLOQUIUM/talking_points.tex": {
+      "commits": 1,
+      "added": 400,
+      "deleted": 0
+    },
+    "COLLOQUIUM/talking_points_de.md": {
+      "commits": 1,
+      "added": 439,
+      "deleted": 0
+    },
+    "COLLOQUIUM/talking_points_de.tex": {
+      "commits": 1,
+      "added": 581,
+      "deleted": 0
+    },
+    "COLLOQUIUM/{ => mat}/talking_points.md": {
+      "commits": 1,
+      "added": 0,
+      "deleted": 0
+    },
+    "COLLOQUIUM/{ => mat}/talking_points.tex": {
+      "commits": 1,
+      "added": 0,
+      "deleted": 0
+    },
+    "COLLOQUIUM/{ => mat}/talking_points_de.md": {
+      "commits": 1,
+      "added": 0,
+      "deleted": 0
+    },
+    "COLLOQUIUM/{ => mat}/talking_points_de.tex": {
+      "commits": 1,
+      "added": 136,
+      "deleted": 136
+    },
+    "COLLOQUIUM/mat/talking_points_de.tex": {
+      "commits": 6,
+      "added": 688,
+      "deleted": 563
+    }
+  },
+  "commit_messages": [
+    {
+      "date": "2024-05-23",
+      "message": "figures"
+    },
+    {
+      "date": "2024-05-23",
+      "message": "content"
+    },
+    {
+      "date": "2024-05-23",
+      "message": "residuals"
+    },
+    {
+      "date": "2025-03-25",
+      "message": "comments"
+    },
+    {
+      "date": "2025-03-25",
+      "message": "lfs tracking"
+    },
+    {
+      "date": "2025-03-27",
+      "message": "kry comments"
+    },
+    {
+      "date": "2025-04-05",
+      "message": "chapter2_v3"
+    },
+    {
+      "date": "2025-04-11",
+      "message": "chapter3_v2.1"
+    },
+    {
+      "date": "2025-04-14",
+      "message": "chapter3_v2.2"
+    },
+    {
+      "date": "2025-04-20",
+      "message": "chapter3_v2.3"
+    },
+    {
+      "date": "2025-04-21",
+      "message": "chapter3_v2.4"
+    },
+    {
+      "date": "2025-04-25",
+      "message": "chapter3_v2.3"
+    },
+    {
+      "date": "2025-04-28",
+      "message": "chapter3_v2.5"
+    },
+    {
+      "date": "2025-05-04",
+      "message": "chapter3_v2.6"
+    },
+    {
+      "date": "2025-05-05",
+      "message": "chapter3_v2.7 + comments ch3"
+    },
+    {
+      "date": "2025-05-08",
+      "message": "chapter3_v2.8"
+    },
+    {
+      "date": "2025-05-09",
+      "message": "chapter3_v2.9"
+    },
+    {
+      "date": "2025-05-10",
+      "message": "chapter3_v2.10"
+    },
+    {
+      "date": "2025-05-12",
+      "message": "chapter3_v2.11"
+    },
+    {
+      "date": "2025-05-12",
+      "message": "chapter4_v2.1"
+    },
+    {
+      "date": "2025-05-13",
+      "message": "chapter4_v2.2"
+    },
+    {
+      "date": "2025-05-18",
+      "message": "chapter4_v2.3"
+    },
+    {
+      "date": "2025-05-19",
+      "message": "chapter4_v2.4"
+    },
+    {
+      "date": "2025-05-22",
+      "message": "chapter4_v2.5"
+    },
+    {
+      "date": "2025-05-24",
+      "message": "chapter4_v2.6"
+    },
+    {
+      "date": "2025-05-25",
+      "message": "chapter4_v2.7"
+    },
+    {
+      "date": "2025-05-29",
+      "message": "chapter5_v2.1"
+    },
+    {
+      "date": "2025-06-01",
+      "message": "chapter5_v2.2"
+    },
+    {
+      "date": "2025-06-03",
+      "message": "chapter5_v2.3"
+    },
+    {
+      "date": "2025-06-03",
+      "message": "chapter5_v2.4"
+    },
+    {
+      "date": "2025-06-06",
+      "message": "chapter5_v2.5"
+    },
+    {
+      "date": "2025-06-08",
+      "message": "chapter5_v2.6"
+    },
+    {
+      "date": "2025-06-09",
+      "message": "chapter5_v2.7"
+    },
+    {
+      "date": "2025-06-10",
+      "message": "intro_v2.1"
+    },
+    {
+      "date": "2025-06-11",
+      "message": "intro_v2.1"
+    },
+    {
+      "date": "2025-06-13",
+      "message": "intro_v2.2"
+    },
+    {
+      "date": "2025-06-14",
+      "message": "done_v2"
+    },
+    {
+      "date": "2025-07-03",
+      "message": "Spelling."
+    },
+    {
+      "date": "2025-07-10",
+      "message": "Merge branch 'main' of github.com:RayleighsJeans/ThesisLaTeX"
+    },
+    {
+      "date": "2025-07-11",
+      "message": "Cover and shorter."
+    },
+    {
+      "date": "2025-08-09",
+      "message": "MNF Status."
+    },
+    {
+      "date": "2025-08-19",
+      "message": "clean up"
+    },
+    {
+      "date": "2025-08-20",
+      "message": "foo"
+    },
+    {
+      "date": "2025-08-21",
+      "message": "Print update."
+    },
+    {
+      "date": "2025-08-21",
+      "message": "printing stage"
+    },
+    {
+      "date": "2025-08-22",
+      "message": ".\ua7fb\u0258\u027fti\u03f1."
+    },
+    {
+      "date": "2025-09-05",
+      "message": "Primaerdaten"
+    },
+    {
+      "date": "2025-09-06",
+      "message": "all links"
+    },
+    {
+      "date": "2025-09-08",
+      "message": "fineart"
+    },
+    {
+      "date": "2025-09-15",
+      "message": "Links statt Rechts."
+    },
+    {
+      "date": "2025-09-17",
+      "message": "signed and unsigned"
+    },
+    {
+      "date": "2025-09-17",
+      "message": "stat"
+    },
+    {
+      "date": "2025-10-07",
+      "message": "signed affidavit"
+    },
+    {
+      "date": "2025-12-27",
+      "message": "Colloq v0.1"
+    },
+    {
+      "date": "2026-01-06",
+      "message": "Colloq v0.2 - Working COLLOQ templates."
+    },
+    {
+      "date": "2026-01-07",
+      "message": "IntSt letter."
+    },
+    {
+      "date": "2026-01-20",
+      "message": "Colloq v0.2 - Base forms done."
+    },
+    {
+      "date": "2026-01-21",
+      "message": "Colloq v0.3"
+    },
+    {
+      "date": "2026-02-01",
+      "message": "Colloq v0.4"
+    },
+    {
+      "date": "2026-02-03",
+      "message": "Colloq v0.5"
+    },
+    {
+      "date": "2026-02-03",
+      "message": "LFS untrack"
+    },
+    {
+      "date": "2026-02-14",
+      "message": "Colloq v0.6"
+    },
+    {
+      "date": "2026-02-18",
+      "message": "Colloq v0.7"
+    },
+    {
+      "date": "2026-02-22",
+      "message": "Colloq v0.8"
+    },
+    {
+      "date": "2026-02-22",
+      "message": "Colloq v0.81"
+    },
+    {
+      "date": "2026-02-22",
+      "message": "Colloq v0.82"
+    },
+    {
+      "date": "2026-02-26",
+      "message": "Colloq v0.83"
+    },
+    {
+      "date": "2026-03-14",
+      "message": "Colloq v0.84"
+    },
+    {
+      "date": "2026-03-16",
+      "message": "Colloq v0.85"
+    },
+    {
+      "date": "2026-03-17",
+      "message": "Colloq v0.86"
+    },
+    {
+      "date": "2026-03-19",
+      "message": "Colloq v0.9"
+    },
+    {
+      "date": "2026-03-21",
+      "message": "Colloq v0.91"
+    },
+    {
+      "date": "2026-03-23",
+      "message": "Colloq v0.92"
+    },
+    {
+      "date": "2026-03-24",
+      "message": "Colloq v0.93"
+    },
+    {
+      "date": "2026-03-26",
+      "message": "Colloq v0.94"
+    },
+    {
+      "date": "2026-03-27",
+      "message": "Colloq v0.94"
+    },
+    {
+      "date": "2026-03-28",
+      "message": "Colloq v0.95"
+    },
+    {
+      "date": "2026-03-29",
+      "message": "Colloq v0.96"
+    },
+    {
+      "date": "2026-03-30",
+      "message": "Colloq v0.99"
+    },
+    {
+      "date": "2026-03-31",
+      "message": "Colloq v1.0"
+    },
+    {
+      "date": "2026-04-01",
+      "message": "Colloq v1.01. Talking points"
+    },
+    {
+      "date": "2026-04-01",
+      "message": "Colloq v1.02"
+    },
+    {
+      "date": "2026-04-01",
+      "message": "Colloq v1.03"
+    },
+    {
+      "date": "2026-04-03",
+      "message": "Deutsche TP."
+    },
+    {
+      "date": "2026-04-03",
+      "message": "Colloq v1.04"
+    },
+    {
+      "date": "2026-04-03",
+      "message": "Deutsche TP v2."
+    },
+    {
+      "date": "2026-04-04",
+      "message": "Detusche TP v3."
+    },
+    {
+      "date": "2026-04-04",
+      "message": "Deutsche TP v4."
+    },
+    {
+      "date": "2026-04-07",
+      "message": "Colloq v1.1"
+    },
+    {
+      "date": "2026-04-07",
+      "message": "Colloq v1.15"
+    },
+    {
+      "date": "2026-04-07",
+      "message": "Colloq v1.16. Deutsche TP v5."
+    },
+    {
+      "date": "2026-04-09",
+      "message": "Colloq v1.17"
+    },
+    {
+      "date": "2026-04-09",
+      "message": "Colloq vFertig."
+    }
+  ],
+  "first_commit": "2024-05-23T13:50:22",
+  "last_commit": "2026-04-09T22:43:42",
+  "longest_streak": 7,
+  "current_streak": 0,
+  "thesis_lines": {
+    "added": 103515,
+    "deleted": 46040,
+    "net": 57475
+  },
+  "colloquium_lines": {
+    "added": 26375,
+    "deleted": 13330,
+    "net": 13045
+  }
+}
