@@ -21,7 +21,7 @@
         $U_{\text{AO},n}$ $\leftarrow$ memory address, initialize \SI{0}{\volt}\;%
         \textbf{NI}\textsuperscript{\textregistered} \textbf{6321} $\leftarrow$ initialize two-channel analog output\;%
         \BlankLine%
-    
+
         \tcp{output as long as main data acquisition}%
         \tcp{does not return successfully}%
         \While{measurement incomplete}{%
@@ -407,29 +407,53 @@
                 \caption{\textbf{(a)} Impact of geometry changes on the collective etendues of the horizontal camera, where one half (\textit{upper}) of the camera array has been rotated so that all channels lie in one plane and each is the exact mirror opposite - the \textit{mirror} being a plane defined by the camera aperture normal, perpendicular to the LOS fan - of one from the other half. \textbf{(b)} Forward integrated chord brightness for the HBC at different $f\ix{rad}$ for previously presented STRAHL results in \cref{fig:chord_forward_exp_vs_STRAHL} using the hypothetical camera geometry from \textbf{(a)}.}\label{fig:geometry_forward_fixed}%
             \end{figure}%
 %
-        \subsection*{Artificial Symmetrical Horizontal Camera}%
+        \subsection{Additional Artificial Camera Arrays}\label{subsec:artf}%
 %
-            \begin{figure}[t]%
-                \centering%
-                \begin{subfigure}{0.47\textwidth}%
-                    \includegraphics[width=\textwidth]{%
-                        content/figures/chapter4/MFR/%
-                        compare_symmetric_emissivities3D.pdf}%
-                    \caption{}%
-                \end{subfigure}%
-                \hfill%
-                \begin{subfigure}{0.47\textwidth}%
-                    \includegraphics[width=\textwidth]{%
-                        content/figures/chapter4/forward_int/%
-                        forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_sN8_30x20x150_1.35.png}%
-                    \caption{}%
-                \end{subfigure}%
-                \caption{\textbf{(a)} Impact on the collective etendues of the horizontal camera, where the entire array has been replaced by an artificial, symmetrical, vertically upright LOS fan with equidistant channels around $z=0$, the vertical dimension of the W7-X coordinate system. \textbf{(b)} Forward integrated chord brightness at different $f\ix{rad}$ for previously presented STRAHL results in \cref{fig:chord_forward_exp_vs_STRAHL}, using the camera geometry of (a).}\label{fig:geometry_forward_symmetric}%
-            \end{figure}%
+           Upon investigation of possible LOS and camera geometry perturbations and their impact on the local sensitivity a forward model line-integrated measurements, the question of benefiting the tomographic inversions with additional, hypothetical and tailored detector arrays arose. This is largely motivated by the observed discrepancies during reconstructions of experimental data, which will be performed later in this chapter. While trying to find plausible radiation distributions that are in agreement with other diagnostics and intrinsically coherent, i.e. a temporal sequence of tomographic images shows comprehensible results, more cameras in particular locations were presumed to greatly improve upon their quality. Therefore, two sets of absorbers located opposite of the existing cameras were designed. One on the inboard side viewing the inside magnetic islands and X-points and one at the top of the triangular plane, viewing along the separatrix towards the outboard side and also the inboard island, both limited to fifteen LOS each.%
 %
-            Here on constructs a pseudo artificial horizontal camera array that has absolutely no variations among its absorbers and their LOS. The attribute \textit{pseudo} refers to this geometries' detector construction that is created by averaging size, shape and distance in-between the original HBCm absorbers that is therefore repeated 32 times to create this hypothetical device. This new, upright, centred, machine coordinate origin oriented camera with equidistant, equally sized detectors viewing the plasma through a parallel, centred aperture is also used to forward integrate the previous STRAHL results and find their respective chord brightness profiles. A plot for the varying radiation fraction levels $f\ix{rad}=0.33,\dots,1.0$ is accompanied by a two-dimensional deviation map in the triangular plane between this new geometries and the actual local sensitivity in \cref{fig:geometry_forward_symmetric}.\\%
-            With respect to the previous analysis of perturbations in etendue in \cref{fig:geometry_change_artificial}, this image presents similar magnitudes $\sim$\SIrange[per-mode=reciprocal]{e-11}{e-16}{\per\cubic\milli\meter} and comparable local maxima at the outboard side, closest to the pinhole of the artificial camera. Individual pixel artefacts can also be found here, though the poloidal structuring from before is far weaker and the characteristic of separate LOS can be noticed, originating at the aperture beyond the tip of the triangular domain. The also perfectly symmetric chord brightness profile on the right for $f\ix{rad}=1$ is very akin to the one before, though with a slightly reduced maximum of \SI{240}{\kilo\watt\per\cubic\meter}. At lower radiation fractions, the intensity of the local extremes are significantly increased by up to 50\% while also being further outside or even remaining beyond the separatrix. The overall shape however is still very similar.\\%
-            A planar correction and rotation of the original HBCm geometry provided fully symmetrical forward model integrated measurements without significant qualitative discrepancies to those produced by the underlying camera. The change in local sensitivity between that and this particular hypothetical array is of same order of magnitude as the differences created by varying detector and pinhole segmentation methods. A fully artificial horizontal camera that is achieved without any perturbation in orientation or detector construction also yields similarly symmetrical forward chord brightness profiles from STRAHL results for comparable etendue variations. On one hand, such small changes in $\mathbf{T}$ have the potential to significantly change the measurements and hence any thereon based reconstructions, while on the other the as-designed local sensitivity of the horizontal bolometer camera is proven to be very close to a theoretical, ideal geometry.%
+           \subsubsection*{Horizontally Mirrored Camera}%
+%
+                \begin{figure}[t]%
+                    \centering%
+                    \begin{subfigure}{0.4\textwidth}%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter4/MFR/%
+                            LoS_comparison_newCamera_MIRh_sN8.pdf}%
+                        \caption{}%
+                    \end{subfigure}%
+                    \hspace*{0.5cm}%\hfill%
+                    \begin{subfigure}{0.5\textwidth}%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter4/MFR/%
+                            LoS2D_comparison_newCamera_MIRh_sN8.pdf}%
+                        \caption{}%
+                    \end{subfigure}%
+                    \caption{\textbf{(a)} Comparison of the (black) horizontal bolometer camera LOS geometry and an artificial, \textit{new} camera ("MIRh", \textcolor{blue}{blue}) that is arranged opposite of the prior, spanning 15 new channels that cover the full torus cross-section homogeneously. \textbf{(b)} Same geometry comparison in projection of the toroidal plane of the bolometer camera assembly, i.e. $\varphi\ix{tor}=108^{\circ}$.}\label{fig:geometry_newcam_mirh}%
+                \end{figure}%
+    %
+                The first new, artificial camera is presented in \cref{fig:geometry_newcam_mirh} alongside the original HBCm in both three- and two-dimensional perspective similarly to the previous LOS plots. This new geometry will be called \textit{\textcolor{blue}{MIRh}} - abbreviation/simplification of \textit{MIRrored (horizontal)} (bolometer camera). The array is centred around $z=0$ and designed to cover the poloidal cross-section evenly while also having individual pseudo detectors viewing regions of particular significance, i.e. magnetic islands and X-points. It is also tilted in toroidal direction  - \SI{68.75}{\degree}, therefore with a toroidal reach of $\sim$\SI{5}{\degree} - and oriented antiparallel to its respective counterpart. Absorber size and shape within this camera are all the same and based on the respective HBCm average, while its aperture is equal to that of the latter. In contrast to the original horizontal camera, the MIRh pinhole is located much closer to the plasma and inside the enclosing first wall of the device, though the hypothetical construction puts the entire detector assembly outside said boundary, in some way being consistent with the space constraints at W7-X and the position of the VBCl/r.\\%
+%
+                \begin{figure}[t]%
+                    \centering%
+                    \begin{subfigure}{0.47\textwidth}%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter4/MFR/%
+                            compare_symmetric_emissivities3D.pdf}%
+                        \caption{}%
+                    \end{subfigure}%
+                    \hfill%
+                    \begin{subfigure}{0.47\textwidth}%
+                        \includegraphics[width=\textwidth]{%
+                            content/figures/chapter4/forward_int/%
+                            forward_chord_HBCm_00091_00092_00093_00094_min_EIM_beta000_sym_dets_aptplane_sN8_30x20x150_1.35.png}%
+                        \caption{}%
+                    \end{subfigure}%
+                    \caption{\textbf{(a)} Impact on the collective etendues of the horizontal camera, where the entire array has been replaced by an artificial, symmetrical, vertically upright LOS fan with equidistant channels around $z=0$, the vertical dimension of the W7-X coordinate system. \textbf{(b)} Forward integrated chord brightness at different $f\ix{rad}$ for previously presented STRAHL results in \cref{fig:chord_forward_exp_vs_STRAHL}, using the camera geometry of (a).}\label{fig:geometry_forward_symmetric}%
+                \end{figure}%
+%
+                Here on constructs a pseudo artificial horizontal camera array that has absolutely no variations among its absorbers and their LOS. The attribute \textit{pseudo} refers to this geometries' detector construction that is created by averaging size, shape and distance in-between the original HBCm absorbers that is therefore repeated 32 times to create this hypothetical device. This new, upright, centred, machine coordinate origin oriented camera with equidistant, equally sized detectors viewing the plasma through a parallel, centred aperture is also used to forward integrate the previous STRAHL results and find their respective chord brightness profiles. A plot for the varying radiation fraction levels $f\ix{rad}=0.33,\dots,1.0$ is accompanied by a two-dimensional deviation map in the triangular plane between this new geometries and the actual local sensitivity in \cref{fig:geometry_forward_symmetric}.\\%
+                With respect to the previous analysis of perturbations in etendue in \cref{fig:geometry_change_artificial}, this image presents similar magnitudes $\sim$\SIrange[per-mode=reciprocal]{e-11}{e-16}{\per\cubic\milli\meter} and comparable local maxima at the outboard side, closest to the pinhole of the artificial camera. Individual pixel artefacts can also be found here, though the poloidal structuring from before is far weaker and the characteristic of separate LOS can be noticed, originating at the aperture beyond the tip of the triangular domain. The also perfectly symmetric chord brightness profile on the right for $f\ix{rad}=1$ is very akin to the one before, though with a slightly reduced maximum of \SI{240}{\kilo\watt\per\cubic\meter}. At lower radiation fractions, the intensity of the local extremes are significantly increased by up to 50\% while also being further outside or even remaining beyond the separatrix. The overall shape however is still very similar.\\%
+                A planar correction and rotation of the original HBCm geometry provided fully symmetrical forward model integrated measurements without significant qualitative discrepancies to those produced by the underlying camera. The change in local sensitivity between that and this particular hypothetical array is of same order of magnitude as the differences created by varying detector and pinhole segmentation methods. A fully artificial horizontal camera that is achieved without any perturbation in orientation or detector construction also yields similarly symmetrical forward chord brightness profiles from STRAHL results for comparable etendue variations. On one hand, such small changes in $\mathbf{T}$ have the potential to significantly change the measurements and hence any thereon based reconstructions, while on the other the as-designed local sensitivity of the horizontal bolometer camera is proven to be very close to a theoretical, ideal geometry.%
 %
     \section{Minimum Fisher regularisation}\label{apx:phantom}
 %
